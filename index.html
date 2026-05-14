@@ -6,11 +6,11 @@
 
     <!-- SEO Meta Tags -->
     <title>
-      ShellUI v0.2.0 - Lightweight Microfrontend Shell | Ship Apps Faster
+      ShellUI v0.3.0 - Lightweight Microfrontend Shell | Ship Apps Faster
     </title>
     <meta
       name="description"
-      content="ShellUI v0.2.0 - A lightweight microfrontend shell framework. Features sidebar navigation, modal popups, side drawers, multi-language support, custom themes, toast notifications, and more. Built for developers."
+      content="ShellUI v0.3.0 - A lightweight microfrontend shell framework. Features authentication, legal documents, sidebar navigation, modal popups, side drawers, multi-language support, custom themes, toast notifications, and more. Pair with the identity-service backend or embed an admin panel in your app. Built for developers."
     />
     <meta
       name="keywords"
@@ -22,22 +22,22 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="ShellUI v0.2.0 - Lightweight Microfrontend Shell"
+      content="ShellUI v0.3.0 - Lightweight Microfrontend Shell"
     />
     <meta
       property="og:description"
-      content="Ship apps faster with ShellUI. A lightweight microfrontend shell framework with sidebar navigation, modals, drawers, themes, and more."
+      content="Ship apps faster with ShellUI. A lightweight microfrontend shell framework with authentication, legal documents, sidebar navigation, modals, drawers, themes, and optional in-app admin panels."
     />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="ShellUI v0.2.0 - Lightweight Microfrontend Shell"
+      content="ShellUI v0.3.0 - Lightweight Microfrontend Shell"
     />
     <meta
       name="twitter:description"
-      content="Ship apps faster with ShellUI. A lightweight microfrontend shell framework."
+      content="Ship apps faster with ShellUI. A lightweight microfrontend shell framework with authentication, legal documents, and optional in-app admin panels."
     />
 
     <!-- Favicon -->
@@ -468,7 +468,7 @@
             class="flex h-2 w-2 rounded-full bg-secondary dark:bg-[#DBB778] animate-pulse-glow"
           ></span>
           <span class="text-sm font-medium text-secondary dark:text-[#DBB778]"
-            >v0.2.0 Experimental</span
+            >v0.3.0 Experimental</span
           >
         </div>
 
@@ -484,8 +484,17 @@
           style="animation-delay: 0.2s"
         >
           A lightweight microfrontend shell framework. Build modern applications
-          with sidebar navigation, modals, drawers, themes, and more. Framework
-          agnostic and built for developers.
+          with authentication, legal documents, sidebar navigation, modals,
+          drawers, themes, and more. Connect the
+          <a
+            href="https://github.com/shellui/identity-service"
+            class="text-secondary dark:text-[#DBB778] hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+            >identity-service</a
+          >
+          backend or embed an admin panel in your app. Framework agnostic and
+          built for developers.
         </p>
 
         <div
@@ -522,8 +531,9 @@
           <p
             class="text-lg text-muted-foreground dark:text-[#9C9696] max-w-2xl mx-auto"
           >
-            Everything you need to build modern microfrontend applications. All
-            features available in v0.2.0.
+            Everything you need to build modern microfrontend applications. New
+            in v0.3.0: authentication, legal documents, the identity-service
+            backend, and optional in-app admin panels.
           </p>
         </div>
 
@@ -950,6 +960,141 @@
             </p>
           </div>
 
+          <!-- Authentication -->
+          <div
+            class="feature-card bg-card dark:bg-[#2A2828] border border-border dark:border-[#3F3B3B] rounded-lg p-6 animate-on-scroll"
+          >
+            <div
+              class="w-12 h-12 bg-secondary/10 dark:bg-[#DBB778]/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-secondary dark:text-[#DBB778]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-semibold text-foreground dark:text-[#E8EAED] mb-2 font-serif"
+            >
+              Authentication
+            </h3>
+            <p class="text-muted-foreground dark:text-[#9C9696]">
+              Sign-in flows with Supabase or ShellUI auth, route-aware login,
+              and redirect support for protected pages.
+            </p>
+          </div>
+
+          <!-- Legal Documents -->
+          <div
+            class="feature-card bg-card dark:bg-[#2A2828] border border-border dark:border-[#3F3B3B] rounded-lg p-6 animate-on-scroll"
+          >
+            <div
+              class="w-12 h-12 bg-secondary/10 dark:bg-[#DBB778]/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-secondary dark:text-[#DBB778]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-semibold text-foreground dark:text-[#E8EAED] mb-2 font-serif"
+            >
+              Legal Documents
+            </h3>
+            <p class="text-muted-foreground dark:text-[#9C9696]">
+              Ship privacy policy, terms of service, legal notice, and data
+              processing agreement content from markdown in your shell config.
+            </p>
+          </div>
+
+          <!-- Identity Service Backend -->
+          <div
+            class="feature-card bg-card dark:bg-[#2A2828] border border-border dark:border-[#3F3B3B] rounded-lg p-6 animate-on-scroll"
+          >
+            <div
+              class="w-12 h-12 bg-secondary/10 dark:bg-[#DBB778]/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-secondary dark:text-[#DBB778]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+                />
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-semibold text-foreground dark:text-[#E8EAED] mb-2 font-serif"
+            >
+              Identity Service Backend
+            </h3>
+            <p class="text-muted-foreground dark:text-[#9C9696]">
+              Pair ShellUI with the new
+              <a
+                href="https://github.com/shellui/identity-service"
+                class="text-secondary dark:text-[#DBB778] hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+                >identity-service</a
+              >
+              Django backend for OAuth login, JWT sessions, and user metadata.
+            </p>
+          </div>
+
+          <!-- Admin Panel -->
+          <div
+            class="feature-card bg-card dark:bg-[#2A2828] border border-border dark:border-[#3F3B3B] rounded-lg p-6 animate-on-scroll"
+          >
+            <div
+              class="w-12 h-12 bg-secondary/10 dark:bg-[#DBB778]/10 rounded-lg flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-secondary dark:text-[#DBB778]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"
+                />
+              </svg>
+            </div>
+            <h3
+              class="text-xl font-semibold text-foreground dark:text-[#E8EAED] mb-2 font-serif"
+            >
+              Admin Panel in App
+            </h3>
+            <p class="text-muted-foreground dark:text-[#9C9696]">
+              Optionally embed an admin panel inside your shell for staff users,
+              user management, metrics, and OAuth app configuration.
+            </p>
+          </div>
+
           <!-- Desktop App Support -->
           <div
             class="feature-card bg-card dark:bg-[#2A2828] border border-border dark:border-[#3F3B3B] rounded-lg p-6 animate-on-scroll"
@@ -1178,8 +1323,9 @@ shellui start</code></pre>
           <p
             class="text-lg text-muted-foreground dark:text-[#E8EAED] mb-8 max-w-2xl mx-auto"
           >
-            Start building your microfrontend application today. ShellUI v0.2.0
-            is experimental but ready for your projects.
+            Start building your microfrontend application today. ShellUI v0.3.0
+            adds authentication, legal documents, and optional admin tooling
+            while staying experimental and ready for your projects.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -1246,6 +1392,26 @@ shellui start</code></pre>
                   GitHub
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://github.com/shellui/identity-service"
+                  class="text-muted-foreground dark:text-[#E8EAED] hover:text-foreground dark:hover:text-[#DBB778] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Identity Service
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/shellui/shellui-admin"
+                  class="text-muted-foreground dark:text-[#E8EAED] hover:text-foreground dark:hover:text-[#DBB778] transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Admin Panel
+                </a>
+              </li>
             </ul>
           </div>
           <div>
@@ -1253,8 +1419,8 @@ shellui start</code></pre>
               Version
             </h3>
             <p class="text-sm text-muted-foreground dark:text-[#9C9696]">
-              v0.2.0 Experimental<br />
-              Released February 9, 2026
+              v0.3.0 Experimental<br />
+              Released May 14, 2026
             </p>
           </div>
         </div>
