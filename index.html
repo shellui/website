@@ -110,7 +110,6 @@
               "fade-in-up": "fadeInUp 0.8s ease-out",
               "slide-in": "slideIn 0.5s ease-out",
               float: "float 6s ease-in-out infinite",
-              "pulse-glow": "pulseGlow 3s ease-in-out infinite",
               "gradient-shift": "gradientShift 8s ease infinite",
             },
             keyframes: {
@@ -129,10 +128,6 @@
               float: {
                 "0%, 100%": { transform: "translateY(0px)" },
                 "50%": { transform: "translateY(-20px)" },
-              },
-              pulseGlow: {
-                "0%, 100%": { opacity: "0.4" },
-                "50%": { opacity: "0.8" },
               },
               gradientShift: {
                 "0%, 100%": { backgroundPosition: "0% 50%" },
@@ -336,36 +331,6 @@
         }
       }
 
-      /* Experimental badge */
-      .experimental-badge {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .experimental-badge::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(219, 183, 120, 0.3),
-          transparent
-        );
-        animation: shimmer 3s infinite;
-      }
-
-      @keyframes shimmer {
-        0% {
-          left: -100%;
-        }
-        100% {
-          left: 100%;
-        }
-      }
     </style>
   </head>
   <body class="antialiased">
@@ -464,17 +429,6 @@
     <!-- Hero Section -->
     <section class="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto text-center">
-        <div
-          class="inline-flex items-center gap-2 rounded-full border border-accent/30 dark:border-[#DBB778]/30 bg-accent/10 dark:bg-[#DBB778]/10 px-4 py-2 mb-8 experimental-badge animate-fade-in"
-        >
-          <span
-            class="flex h-2 w-2 rounded-full bg-secondary dark:bg-[#DBB778] animate-pulse-glow"
-          ></span>
-          <span class="text-sm font-medium text-secondary dark:text-[#DBB778]"
-            >v0.3.0 Experimental</span
-          >
-        </div>
-
         <h1
           class="text-5xl md:text-7xl font-bold text-primary dark:text-[#DBB778] mb-6 font-serif animate-fade-in-up"
         >
@@ -1354,7 +1308,7 @@ shellui start</code></pre>
       class="relative z-10 border-t border-border dark:border-[#3F3B3B] py-12 px-4 sm:px-6 lg:px-8"
     >
       <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
             <h3
               class="font-semibold text-foreground dark:text-[#E8EAED] mb-4 font-serif"
@@ -1493,14 +1447,6 @@ shellui start</code></pre>
                 </a>
               </li>
             </ul>
-          </div>
-          <div>
-            <h3 class="font-semibold text-foreground mb-4 font-serif">
-              Version
-            </h3>
-            <p class="text-sm text-muted-foreground dark:text-[#9C9696]">
-              v0.3.0 Experimental
-            </p>
           </div>
         </div>
         <div
