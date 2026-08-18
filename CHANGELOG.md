@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [Unreleased]
+
+### 🐛 Bug Fixes
+
+- Ship sized favicon assets (ICO, 16/32 PNG, 180px Apple touch icon) so the tab icon works on iPad and other devices.
+
 ## [0.3.0] - 2026-05-14
 
 ### ✨ Feature
