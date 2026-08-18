@@ -1,10 +1,10 @@
-# ShellUI Website
+# Shellui Website
 
-The official website for ShellUI, the lightweight microfrontend shell.
+The official website for Shellui, the lightweight microfrontend shell.
 
 ## Overview
 
-This repository contains the source code for the ShellUI landing page. It is built as a static site using HTML and Tailwind CSS. The site is currently in a "Coming Soon" state as we prepare for the initial release.
+This repository contains the source code for the Shellui landing page. It is built as a static site using HTML and Tailwind CSS. The site is currently in a "Coming Soon" state as we prepare for the initial release.
 
 ## Getting Started
 
