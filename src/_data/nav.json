@@ -7,6 +7,12 @@
       "icon": "book"
     },
     {
+      "href": "/developers/architecture/",
+      "label": "Architecture",
+      "description": "High-level architecture overview.",
+      "icon": "cube"
+    },
+    {
       "href": "/developers/roadmap/",
       "label": "Roadmap",
       "description": "See what's coming next.",
@@ -37,6 +43,12 @@
       "label": "Storage",
       "description": "File buckets and object storage for Shellui apps.",
       "icon": "storage"
+    },
+    {
+      "href": "/features/administration/",
+      "label": "Administration",
+      "description": "Admin panel to manage and overview your data.",
+      "icon": "cog"
     }
   ]
 }
