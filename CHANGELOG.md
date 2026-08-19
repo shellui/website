@@ -27,6 +27,10 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 - Rebuild the site as Eleventy with Tailwind CSS, Tailwind Plus Elements, Alpine demo blocks, sitemap, and GitHub Pages deploy. Homepage content is unchanged from the previous landing page.
 
+### 🛠 Improvements
+
+- Drop the custom warm palette and self-hosted fonts; use Tailwind CSS default colors and the system font stack, with a honey-gold primary accent.
+
 ### 🐛 Bug Fixes
 
 - Ship sized favicon assets (ICO, 16/32 PNG, 180px Apple touch icon) so the tab icon works on iPad and other devices.

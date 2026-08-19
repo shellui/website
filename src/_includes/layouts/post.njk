@@ -3,14 +3,14 @@ layout: layouts/base.njk
 ---
 <article class="px-4 py-20 pt-32 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-3xl">
-    <p class="mb-3 text-sm text-muted-foreground">
-      <a href="/blog/" class="hover:text-foreground">Blog</a>
+    <p class="mb-3 text-sm text-gray-600 dark:text-gray-400">
+      <a href="/blog/" class="hover:text-gray-900 dark:hover:text-white">Blog</a>
       <span aria-hidden="true"> · </span>
       <time datetime="{{ page.date.toISOString() }}">{{ page.date.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" }) }}</time>
     </p>
-    <h1 class="font-serif text-4xl font-bold text-primary md:text-5xl">{{ heading or title }}</h1>
+    <h1 class="text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">{{ heading or title }}</h1>
     {% if lede %}
-      <p class="mt-4 text-lg text-muted-foreground">{{ lede }}</p>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">{{ lede }}</p>
     {% endif %}
     <div class="prose mt-10">
       {{ content | safe }}

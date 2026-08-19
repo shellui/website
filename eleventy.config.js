@@ -6,29 +6,12 @@ import { IdAttributePlugin } from "@11ty/eleventy";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 
-function copyLatinFonts(pkgName, dest) {
-  const src = path.join(root, "node_modules", pkgName, "files");
-  for (const file of fs.readdirSync(src)) {
-    if (
-      file.includes("-latin-") &&
-      !file.includes("italic") &&
-      (file.includes("-400-") || file.includes("-600-") || file.includes("-700-"))
-    ) {
-      fs.copyFileSync(path.join(src, file), path.join(dest, file));
-    }
-  }
-}
-
 function buildCss() {
-  const cssDir = path.join(root, "_site/assets/css");
-  const fontDir = path.join(cssDir, "files");
-  fs.mkdirSync(fontDir, { recursive: true });
+  fs.mkdirSync(path.join(root, "_site/assets/css"), { recursive: true });
   execSync(
     "npx @tailwindcss/cli -i ./src/assets/css/input.css -o ./_site/assets/css/site.css --minify",
     { stdio: "inherit", cwd: root },
   );
-  copyLatinFonts("@fontsource/open-sans", fontDir);
-  copyLatinFonts("@fontsource/source-serif-pro", fontDir);
 }
 
 export default function (eleventyConfig) {

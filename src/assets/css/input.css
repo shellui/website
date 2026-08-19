@@ -1,12 +1,17 @@
 @import "tailwindcss";
-@import "@fontsource/open-sans/latin-400.css";
-@import "@fontsource/open-sans/latin-600.css";
-@import "@fontsource/open-sans/latin-700.css";
-@import "@fontsource/source-serif-pro/latin-400.css";
-@import "@fontsource/source-serif-pro/latin-600.css";
-@import "@fontsource/source-serif-pro/latin-700.css";
-@import "./theme.css";
 @import "./extras.css";
 
 @source "../../**/*.{njk,md,html,js}";
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #e3a512;
+  --color-primary-foreground: #1a1408;
+  --color-primary-ink: #c4920a;
+}
+
+@layer theme {
+  .dark {
+    --color-primary: #e8b84a;
+  }
+}

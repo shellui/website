@@ -30,8 +30,6 @@
     "tailwindcss": "^4.3.3"
   },
   "dependencies": {
-    "@fontsource/open-sans": "^5.3.0",
-    "@fontsource/source-serif-pro": "^5.3.0",
     "@tailwindplus/elements": "^1.0.22",
     "alpinejs": "^3.16.2"
   }

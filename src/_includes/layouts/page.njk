@@ -4,11 +4,11 @@ layout: layouts/base.njk
 <article class="px-4 py-20 pt-32 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-3xl">
     {% if eyebrow %}
-      <p class="mb-3 text-sm font-medium text-secondary">{{ eyebrow }}</p>
+      <p class="mb-3 text-sm font-medium text-primary-ink dark:text-primary">{{ eyebrow }}</p>
     {% endif %}
-    <h1 class="font-serif text-4xl font-bold text-primary md:text-5xl">{{ heading or title }}</h1>
+    <h1 class="text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">{{ heading or title }}</h1>
     {% if lede %}
-      <p class="mt-4 text-lg text-muted-foreground">{{ lede }}</p>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">{{ lede }}</p>
     {% endif %}
     <div class="prose mt-10">
       {{ content | safe }}

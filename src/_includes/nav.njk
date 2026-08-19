@@ -1,5 +1,5 @@
 <nav
-  class="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md"
+  class="fixed top-0 right-0 left-0 z-50 border-b border-gray-200/50 bg-white/80 backdrop-blur-md dark:border-gray-800/50 dark:bg-gray-950/80"
   aria-label="Primary"
 >
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -11,7 +11,7 @@
         <button
           id="theme-toggle"
           type="button"
-          class="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          class="rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
           aria-label="Toggle dark mode"
         >
           <svg class="h-5 w-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -21,11 +21,11 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
         </button>
-        <a href="{{ site.docs }}" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Docs</a>
-        <a href="{{ site.playground }}" class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Playground</a>
+        <a href="{{ site.docs }}" class="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Docs</a>
+        <a href="{{ site.playground }}" class="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Playground</a>
         <a
           href="{{ site.github }}"
-          class="text-muted-foreground transition-colors hover:text-foreground"
+          class="text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"

@@ -1,40 +1,40 @@
 <div
-  class="overflow-hidden rounded-xl border border-border bg-card shadow-sm"
+  class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900"
   x-data="{ tab: 'login' }"
 >
-  <div class="border-b border-border p-6">
-    <h2 class="font-serif text-xl font-semibold text-foreground">Authentication</h2>
-    <p class="mt-1 text-sm text-muted-foreground">Route-aware login with identity-service or Supabase. The default view is the email flow so crawlers still see the copy.</p>
+  <div class="border-b border-gray-200 p-6 dark:border-gray-800">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Authentication</h2>
+    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Route-aware login with identity-service or Supabase. The default view is the email flow so crawlers still see the copy.</p>
   </div>
   <div class="p-6">
     <div class="mb-4 flex flex-wrap gap-2" role="tablist" aria-label="Authentication methods">
-      <button type="button" class="rounded-lg px-3 py-1.5 text-sm font-medium" :class="tab === 'login' ? 'bg-primary text-primary-foreground' : 'border border-border text-foreground hover:bg-muted'" role="tab" :aria-selected="(tab === 'login').toString()" @click="tab = 'login'">Login</button>
-      <button type="button" class="rounded-lg px-3 py-1.5 text-sm font-medium" :class="tab === 'sso' ? 'bg-primary text-primary-foreground' : 'border border-border text-foreground hover:bg-muted'" role="tab" :aria-selected="(tab === 'sso').toString()" @click="tab = 'sso'">SSO</button>
-      <button type="button" class="rounded-lg px-3 py-1.5 text-sm font-medium" :class="tab === 'identity' ? 'bg-primary text-primary-foreground' : 'border border-border text-foreground hover:bg-muted'" role="tab" :aria-selected="(tab === 'identity').toString()" @click="tab = 'identity'">Identity service</button>
+      <button type="button" class="rounded-lg px-3 py-1.5 text-sm font-medium" :class="tab === 'login' ? 'bg-primary text-primary-foreground' : 'border border-gray-300 text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800'" role="tab" :aria-selected="(tab === 'login').toString()" @click="tab = 'login'">Login</button>
+      <button type="button" class="rounded-lg px-3 py-1.5 text-sm font-medium" :class="tab === 'sso' ? 'bg-primary text-primary-foreground' : 'border border-gray-300 text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800'" role="tab" :aria-selected="(tab === 'sso').toString()" @click="tab = 'sso'">SSO</button>
+      <button type="button" class="rounded-lg px-3 py-1.5 text-sm font-medium" :class="tab === 'identity' ? 'bg-primary text-primary-foreground' : 'border border-gray-300 text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800'" role="tab" :aria-selected="(tab === 'identity').toString()" @click="tab = 'identity'">Identity service</button>
     </div>
     <div x-show="tab === 'login'" role="tabpanel">
-      <h3 class="mb-2 font-serif text-lg font-semibold">Email and password</h3>
-      <p class="mb-4 text-sm text-muted-foreground">Shellui ships a sign-in screen as part of the shell. Protected routes redirect here, then return the user to the page they asked for.</p>
+      <h3 class="mb-2 text-lg font-semibold">Email and password</h3>
+      <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">Shellui ships a sign-in screen as part of the shell. Protected routes redirect here, then return the user to the page they asked for.</p>
       <form class="flex max-w-sm flex-col gap-3" action="#" method="get" onsubmit="return false">
         <label class="text-sm font-medium" for="demo-email">Email</label>
-        <input class="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground" id="demo-email" name="email" type="email" autocomplete="username" placeholder="you@company.com" />
+        <input class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50" id="demo-email" name="email" type="email" autocomplete="username" placeholder="you@company.com" />
         <label class="text-sm font-medium" for="demo-password">Password</label>
-        <input class="rounded-lg border border-input bg-background px-3 py-2 text-sm text-foreground" id="demo-password" name="password" type="password" autocomplete="current-password" />
+        <input class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50" id="demo-password" name="password" type="password" autocomplete="current-password" />
         <button type="submit" class="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90">Sign in</button>
       </form>
     </div>
     <div x-show="tab === 'sso'" x-cloak role="tabpanel">
-      <h3 class="mb-2 font-serif text-lg font-semibold">Single sign-on</h3>
-      <p class="mb-4 text-sm text-muted-foreground">Connect an OAuth provider through the shell config. The chrome stays yours; the identity provider handles the handshake.</p>
-      <ul class="list-disc pl-5 text-sm text-muted-foreground">
+      <h3 class="mb-2 text-lg font-semibold">Single sign-on</h3>
+      <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">Connect an OAuth provider through the shell config. The chrome stays yours; the identity provider handles the handshake.</p>
+      <ul class="list-disc pl-5 text-sm text-gray-600 dark:text-gray-400">
         <li>OAuth login from the identity-service backend</li>
         <li>JWT sessions for API calls from microfrontends</li>
         <li>Redirect back to the original protected route</li>
       </ul>
     </div>
     <div x-show="tab === 'identity'" x-cloak role="tabpanel">
-      <h3 class="mb-2 font-serif text-lg font-semibold">identity-service</h3>
-      <p class="text-sm text-muted-foreground">Pair Shellui with the <a class="text-secondary underline" href="https://github.com/shellui/identity-service">identity-service</a> Django backend for OAuth login, JWT sessions, and user metadata — or keep using Supabase if that is already in your stack.</p>
+      <h3 class="mb-2 text-lg font-semibold">identity-service</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-400">Pair Shellui with the <a class="text-primary-ink underline dark:text-primary" href="https://github.com/shellui/identity-service">identity-service</a> Django backend for OAuth login, JWT sessions, and user metadata — or keep using Supabase if that is already in your stack.</p>
     </div>
   </div>
 </div>
