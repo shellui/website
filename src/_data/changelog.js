@@ -12,6 +12,13 @@ const CACHE_DIR = join(__dirname, "..", "..", ".cache");
 const CACHE_FILE = join(CACHE_DIR, "changelog.md");
 const CACHE_MAX_AGE_MS = 1000 * 60 * 60; // 1 hour
 
+function inlineMarkdown(text) {
+  return text
+    .replace(/`([^`]+)`/g, '<code class="text-xs bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+}
+
 function linkTickets(text) {
   return text.replace(
     /\(#(\d+)\)/g,
@@ -53,7 +60,7 @@ function parseChangelog(md) {
     }
 
     if (currentSection && /^- /.test(line)) {
-      currentSection.items.push(linkTickets(line.replace(/^- /, "").trim()));
+      currentSection.items.push(inlineMarkdown(linkTickets(line.replace(/^- /, "").trim())));
     }
   }
 

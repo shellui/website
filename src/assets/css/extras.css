@@ -33,8 +33,12 @@
   max-width: 48rem;
 }
 
-.prose :where(h1, h2, h3) {
+.prose :where(h1, h2) {
   @apply mt-[1.75em] mb-[0.6em] text-gray-900 dark:text-white;
+}
+
+.prose :where(h3) {
+  @apply mt-[0.5em] mb-[0.6em] text-gray-900 dark:text-white;
 }
 
 .prose :where(h1) {
