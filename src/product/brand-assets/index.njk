@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+title: Brand assets | Shellui
+description: Download Shellui logos and brand visuals for press, presentations, and partner materials.
+---
+
+<article class="px-4 py-20 pt-32 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+    <p class="mb-3 text-sm font-medium text-primary-ink dark:text-primary">Product</p>
+    <h1 class="text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">Brand assets</h1>
+    <p class="mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-400">
+      Logos and visuals to talk about Shellui in articles, talks, integrations, and partner pages. Download the files below — no permission needed for editorial or community use.
+    </p>
+
+    <div class="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-white/5">
+      <h2 class="text-base font-semibold text-gray-900 dark:text-white">Press kit</h2>
+      <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+        Shellui is an open-source web app development platform: a microfrontend shell that wraps your application with shared navigation, authentication, storage, and administration.
+      </p>
+      <ul class="mt-4 list-disc space-y-1 pl-5 text-sm text-gray-600 dark:text-gray-400">
+        <li>Keep clear space around the logo and avoid stretching or recoloring it.</li>
+        <li>Use the transparent variants on colored or photographic backgrounds.</li>
+        <li>Prefer SVG when possible; use PNG for contexts that do not support vector graphics.</li>
+      </ul>
+    </div>
+
+    {% for group in brandAssets %}
+      <section class="mt-12">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">{{ group.name }}</h2>
+        <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {% for asset in group.items %}
+            <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
+              <div class="flex aspect-[16/10] items-center justify-center bg-[linear-gradient(45deg,#f3f4f6_25%,transparent_25%,transparent_75%,#f3f4f6_75%,#f3f4f6),linear-gradient(45deg,#f3f4f6_25%,transparent_25%,transparent_75%,#f3f4f6_75%,#f3f4f6)] bg-[length:16px_16px] bg-[position:0_0,8px_8px] p-8 dark:bg-[linear-gradient(45deg,#1f2937_25%,transparent_25%,transparent_75%,#1f2937_75%,#1f2937),linear-gradient(45deg,#1f2937_25%,transparent_25%,transparent_75%,#1f2937_75%,#1f2937)] dark:bg-[length:16px_16px] dark:bg-[position:0_0,8px_8px]">
+                <img src="{{ asset.href }}" alt="{{ asset.label }} ({{ asset.ext }})" class="max-h-24 max-w-full object-contain" loading="lazy" />
+              </div>
+              <div class="border-t border-gray-200 px-4 py-4 dark:border-gray-800">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="font-medium text-gray-900 dark:text-white">{{ asset.label }}</p>
+                    <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-400">{{ asset.file }}</p>
+                  </div>
+                  <span class="shrink-0 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">{{ asset.ext }}</span>
+                </div>
+                <a
+                  href="{{ asset.href }}"
+                  download
+                  class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-ink hover:opacity-90 dark:text-primary"
+                >
+                  Download
+                  <span aria-hidden="true">&darr;</span>
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+
+    <p class="mt-12 text-sm text-gray-500 dark:text-gray-400">
+      Questions about brand usage? <a href="/company/contact/" class="text-primary-ink underline hover:opacity-90 dark:text-primary">Get in touch</a>.
+    </p>
+  </div>
+</article>
