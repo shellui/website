@@ -3,56 +3,67 @@ layout: layouts/base.njk
 title: Shellui | The Web App Development Platform
 description: Shellui is the web app development platform. Build modern applications with authentication, legal documents, sidebar navigation, modal popups, side drawers, multi-language support, custom themes, toast notifications, and more. Pair with the identity-service backend or embed an admin panel in your app.
 ---
-    <!-- Hero Section -->
-    <section class="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1
-          class="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in-up"
-        >
-          Shellui<br />
-          <span class="text-primary-ink dark:text-primary"
-            >The Web App Development Platform</span
-          >
-        </h1>
-
-        <p
-          class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up"
-          style="animation-delay: 0.2s"
-        >
-          Build modern web apps with authentication, legal documents, sidebar
-          navigation, modals, drawers, themes, and more. Connect the
-          <a
-            href="https://github.com/shellui/identity-service"
-            class="text-primary-ink dark:text-primary hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            >identity-service</a
-          >
-          backend or embed an admin panel in your app. Framework agnostic and
-          built for developers.
-        </p>
-
+    <div class="relative isolate px-6 pt-14 lg:px-8">
+      <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
         <div
-          class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up"
-          style="animation-delay: 0.4s"
-        >
-          <a
-            href="https://docs.shellui.com"
-            class="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity"
-          >
-            Get Started
-          </a>
-          <a
-            href="https://github.com/shellui"
-            class="px-6 py-3 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View on GitHub
-          </a>
+          class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-30 bg-linear-to-tr from-primary to-amber-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] dark:opacity-20"
+          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+        ></div>
+      </div>
+      <div class="mx-auto max-w-2xl py-20 sm:py-24">
+        <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+          <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
+            New in v0.3.0: authentication, legal documents, and more.
+            <a href="/features/" class="font-semibold text-primary-ink dark:text-primary">
+              <span class="absolute inset-0" aria-hidden="true"></span>Read more
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+        <div class="text-center">
+          <h1>
+            <span class="block text-sm font-semibold tracking-widest text-primary-ink uppercase dark:text-primary">Shellui</span>
+            <span class="mt-3 block text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl lg:text-7xl dark:text-white">
+              The Web App<br class="hidden sm:inline" /> Development Platform
+            </span>
+          </h1>
+          <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">
+            Build modern web apps with authentication, legal documents, sidebar
+            navigation, modals, drawers, themes, and more. Connect the
+            <a
+              href="https://github.com/shellui/identity-service"
+              class="text-primary-ink hover:underline dark:text-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              >identity-service</a>
+            backend or embed an admin panel in your app. Framework agnostic and
+            built for developers.
+          </p>
+          <div class="mt-10 flex items-center justify-center gap-x-6">
+            <a
+              href="{{ site.docs }}"
+              class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Get started
+            </a>
+            <a
+              href="{{ site.github }}"
+              class="text-sm/6 font-semibold text-gray-900 dark:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View on GitHub <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
+      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div
+          class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-primary to-amber-200 opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem] dark:opacity-20"
+          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+        ></div>
+      </div>
+    </div>
 
     <!-- Features Section -->
     <section id="features" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8">

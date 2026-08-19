@@ -26,6 +26,9 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### ✨ Feature
 
 - Rebuild the site as Eleventy with Tailwind CSS, Tailwind Plus Elements, Alpine demo blocks, sitemap, and GitHub Pages deploy. Homepage content is unchanged from the previous landing page.
+- Add a centered header with Features, Developers, Pricing, Docs, and Blog. Features, Developers, Pricing, and Blog are work-in-progress pages; Docs points to docs.shellui.com.
+- Use the Tailwind Plus simple-centered hero on the homepage.
+- Use the Tailwind Plus simple-centered hero on the homepage.
 
 ### 🛠 Improvements
 
