@@ -7,8 +7,7 @@
   "scripts": {
     "start": "eleventy --serve",
     "dev": "eleventy --serve",
-    "build": "rm -rf _site && eleventy",
-    "build:css": "npx @tailwindcss/cli -i ./src/assets/css/input.css -o ./_site/assets/css/site.css --minify"
+    "build": "rm -rf _site && eleventy"
   },
   "repository": {
     "type": "git",
