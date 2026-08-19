@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: Shellui | The Web App Development Platform
-description: Shellui is the web app development platform. Build modern applications with authentication, legal documents, sidebar navigation, modal popups, side drawers, multi-language support, custom themes, toast notifications, and more. Pair with the identity-service backend or embed an admin panel in your app.
+description: Shellui is an open-source, opinionated microfrontend shell for building web applications. It provides the shared foundation developers need, so they can focus on their applications instead of rebuilding the same infrastructure over and over.
 ---
     <div class="relative isolate px-6 pt-14 lg:px-8">
       <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -11,33 +11,27 @@ description: Shellui is the web app development platform. Build modern applicati
         ></div>
       </div>
       <div class="mx-auto max-w-2xl py-20 sm:py-24">
-        <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-          <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
-            New in v0.3.0: authentication, legal documents, and more.
-            <a href="/features/" class="font-semibold text-primary-ink dark:text-primary">
-              <span class="absolute inset-0" aria-hidden="true"></span>Read more
-              <span aria-hidden="true">&rarr;</span>
-            </a>
+        {% set latestPost = collections.blog[0] %}
+        {% if latestPost %}
+          <div class="mb-6 flex justify-center sm:mb-8">
+            <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
+              {{ latestPost.data.heading or latestPost.data.title }}
+              <a href="{{ latestPost.url }}" class="font-semibold text-primary-ink dark:text-primary">
+                <span class="absolute inset-0" aria-hidden="true"></span>Read more
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
           </div>
-        </div>
+        {% endif %}
         <div class="text-center">
           <h1>
             <span class="block text-sm font-semibold tracking-widest text-primary-ink uppercase dark:text-primary">Shellui</span>
             <span class="mt-3 block text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl lg:text-7xl dark:text-white">
-              The Web App<br class="hidden sm:inline" /> Development Platform
+              Build the App.<br class="hidden sm:inline" /> Not the Infrastructure.
             </span>
           </h1>
           <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">
-            Build modern web apps with authentication, legal documents, sidebar
-            navigation, modals, drawers, themes, and more. Connect the
-            <a
-              href="https://github.com/shellui/identity-service"
-              class="text-primary-ink hover:underline dark:text-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-              >identity-service</a>
-            backend or embed an admin panel in your app. Framework agnostic and
-            built for developers.
+            Shellui is an <span class="text-gray-900 dark:text-white">open-source</span>, <span class="text-gray-900 dark:text-white">opinionated microfrontend shell</span> for building web applications. It provides the <span class="text-gray-900 dark:text-white">shared foundation</span> developers need, so they can <span class="text-gray-900 dark:text-white">focus on their applications</span> instead of rebuilding the same infrastructure over and over.
           </p>
           <div class="mt-10 flex items-center justify-center gap-x-6">
             <a

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.locale or 'en' }}">
+<html lang="{{ site.locale or 'en' }}" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,10 +35,10 @@
     </script>
     {% include "jsonld.njk" %}
   </head>
-  <body class="bg-white text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-50">
+  <body class="flex min-h-full flex-col bg-white text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-50">
     {% include "logo-sprite.njk" %}
     {% include "nav.njk" %}
-    <main class="relative z-10">
+    <main class="relative z-10 flex-1">
       {{ content | safe }}
     </main>
     {% include "footer.njk" %}
