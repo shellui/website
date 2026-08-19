@@ -6,11 +6,11 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const assetsDir = path.join(root, "../../img/brand-assets");
 
 const groups = [
+  { name: "Icon mark", bases: ["logo"] },
   { name: "Primary logo", bases: ["shellui_logo"] },
   { name: "Transparent background", bases: ["shellui_transparent_logo"] },
   { name: "Documentation", bases: ["shellui_doc_logo"] },
   { name: "Playground", bases: ["shellui_playground_logo"] },
-  { name: "Icon mark", bases: ["logo"] },
 ];
 
 function formatLabel(baseName) {
