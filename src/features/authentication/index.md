@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Authentication | Shellui
-description: Authentication in Shellui — sign-in flows, protected routes, Supabase, and identity-service.
+description: Authentication in Shellui - sign-in flows, protected routes, Supabase, and identity-service.
 heading: Authentication
 eyebrow: Features
 lede: This page is a work in progress.

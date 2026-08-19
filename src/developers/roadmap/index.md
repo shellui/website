@@ -27,7 +27,7 @@ lede: See what we're working on and what's coming next.
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full bg-primary-ink dark:bg-primary ring-4 ring-white dark:ring-gray-950"></div>
         <time datetime="2026-01" class="text-sm font-semibold text-primary-ink dark:text-primary">January 2026</time>
         <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Creation of the project</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Shellui is born — laying the groundwork for a modern, open-source application shell.</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Shellui is born - laying the groundwork for a modern, open-source application shell.</p>
       </div>
 
       <!-- Sep 2026 -->
@@ -35,7 +35,7 @@ lede: See what we're working on and what's coming next.
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full bg-primary-ink dark:bg-primary ring-4 ring-white dark:ring-gray-950"></div>
         <time datetime="2026-08" class="text-sm font-semibold text-primary-ink dark:text-primary">August 2026</time>
         <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Going full time</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Full-time commitment to Shellui — accelerating development toward a production-ready release.</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Full-time commitment to Shellui - accelerating development toward a production-ready release.</p>
       </div>
 
     </div>
@@ -52,7 +52,7 @@ lede: See what we're working on and what's coming next.
       <div class="relative">
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full border-2 border-gray-400 dark:border-gray-500 bg-white dark:bg-gray-950"></div>
         <time datetime="2026-Q3" class="text-sm font-semibold text-gray-500 dark:text-gray-400">Q3 2026</time>
-        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.5 — Pixel Perfect</p>
+        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.5 - Pixel Perfect</p>
         <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Polished, production-ready components with full design-system consistency across every screen.</p>
       </div>
 
@@ -60,7 +60,7 @@ lede: See what we're working on and what's coming next.
       <div class="relative">
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full border-2 border-gray-400 dark:border-gray-500 bg-white dark:bg-gray-950"></div>
         <time datetime="2026-Q4" class="text-sm font-semibold text-gray-500 dark:text-gray-400">Q4 2026</time>
-        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.6 — Smart Shell</p>
+        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.6 - Smart Shell</p>
         <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Built-in AI capabilities to assist users with navigation, data insights, and workflow automation.</p>
       </div>
 
@@ -68,7 +68,7 @@ lede: See what we're working on and what's coming next.
       <div class="relative">
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full border-2 border-gray-400 dark:border-gray-500 bg-white dark:bg-gray-950"></div>
         <time datetime="2026-Q4" class="text-sm font-semibold text-gray-500 dark:text-gray-400">Q4 2026</time>
-        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.7 — Marketplace</p>
+        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.7 - Marketplace</p>
         <p class="mt-1 text-base text-gray-600 dark:text-gray-400">A marketplace for discovering and installing microfrontend apps into your Shellui instance.</p>
       </div>
 
@@ -76,8 +76,8 @@ lede: See what we're working on and what's coming next.
       <div class="relative">
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full border-2 border-gray-400 dark:border-gray-500 bg-white dark:bg-gray-950"></div>
         <time datetime="2027-Q1" class="text-sm font-semibold text-gray-500 dark:text-gray-400">Q1 2027</time>
-        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v1.0 — Horizon</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Stable 1.0 release — feature-complete, battle-tested, and ready for production workloads.</p>
+        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v1.0 - Horizon</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Stable 1.0 release - feature-complete, battle-tested, and ready for production workloads.</p>
       </div>
 
     </div>
