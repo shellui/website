@@ -1,25 +1,25 @@
 {
   "developers": [
     {
-      "href": "/developers/documentation/",
+      "href": "https://docs.shellui.com",
       "label": "Documentation",
       "description": "Guides, references, and API docs.",
       "icon": "book"
     },
     {
-      "href": "/developers/architecture/",
+      "href": "/architecture/",
       "label": "Architecture",
       "description": "High-level architecture overview.",
       "icon": "cube"
     },
     {
-      "href": "/developers/roadmap/",
+      "href": "/roadmap/",
       "label": "Roadmap",
       "description": "See what's coming next.",
       "icon": "map"
     },
     {
-      "href": "/developers/changelog/",
+      "href": "/changelog/",
       "label": "Changelog",
       "description": "Every release and what changed.",
       "icon": "list"

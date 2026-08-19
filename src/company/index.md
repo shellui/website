@@ -74,6 +74,6 @@ description: Learn more about Shellui and the team behind it.
       <p class="mt-6 text-base/7 text-gray-600 dark:text-gray-400">Based in Zurich, Switzerland, but fully organised as a remote project - making it easy for anyone, anywhere, to join and contribute.</p>
     </div>
     <img src="/img/about/zurich.jpg" alt="Aerial view of Zurich, Switzerland" class="w-full rounded-2xl object-cover aspect-video outline-1 -outline-offset-1 outline-black/5" />
-    <p class="mt-3 text-sm text-gray-400 dark:text-gray-500">Photo by <a href="https://unsplash.com/@rickpsd" class="underline hover:text-gray-500">Henrique Ferreira</a> on <a href="https://unsplash.com/photos/aerial-view-of-city-buildings-during-daytime-6p-I-X-sPUY" class="underline hover:text-gray-500">Unsplash</a></p>
+    <p class="mt-3 text-sm text-gray-400 dark:text-gray-500">Photo by <a href="https://www.instagram.com/rick_final.gif" class="underline hover:text-gray-500">Henrique Ferreira</a></p>
   </div>
 </div>

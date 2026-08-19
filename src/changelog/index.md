@@ -52,4 +52,4 @@ lede: A detailed log of every release and what changed.
 {% endfor %}
 </div>
 
-<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Want to see what's coming next? Check out our <a href="/developers/roadmap/">roadmap</a>.</p>
+<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Want to see what's coming next? Check out our <a href="/roadmap/">roadmap</a>.</p>
