@@ -1,4 +1,24 @@
 {
+  "developers": [
+    {
+      "href": "/developers/documentation/",
+      "label": "Documentation",
+      "description": "Guides, references, and API docs.",
+      "icon": "book"
+    },
+    {
+      "href": "/developers/roadmap/",
+      "label": "Roadmap",
+      "description": "See what's coming next.",
+      "icon": "map"
+    },
+    {
+      "href": "/developers/changelog/",
+      "label": "Changelog",
+      "description": "Every release and what changed.",
+      "icon": "list"
+    }
+  ],
   "features": [
     {
       "href": "/features/microfrontend/",

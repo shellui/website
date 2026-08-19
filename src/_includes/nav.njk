@@ -1,7 +1,8 @@
 {% set featuresActive = page.url and page.url.slice(0, 10) == '/features/' %}
+{% set developersActive = page.url and page.url.slice(0, 13) == '/developers/' %}
 <header
   class="fixed inset-x-0 top-0 z-50 border-b border-gray-200/50 bg-white/80 backdrop-blur-md dark:border-gray-800/50 dark:bg-gray-950/80"
-  x-data="{ mobileOpen: false, featuresOpen: {{ 'true' if featuresActive else 'false' }} }"
+  x-data="{ mobileOpen: false, featuresOpen: {{ 'true' if featuresActive else 'false' }}, developersOpen: {{ 'true' if developersActive else 'false' }}, flyTimer: null }"
   @keydown.escape.window="mobileOpen = false"
 >
   <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Global">
@@ -12,23 +13,32 @@
     </div>
 
     <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-center lg:gap-x-8">
-      <div class="relative">
+      <div
+        class="relative"
+        @mouseenter="clearTimeout(flyTimer); developersOpen = false; featuresOpen = true"
+        @mouseleave="flyTimer = setTimeout(() => featuresOpen = false, 75)"
+      >
         <button
           type="button"
-          popovertarget="nav-features-menu"
           class="inline-flex items-center gap-x-1 text-sm font-medium {% if featuresActive %}text-gray-900 dark:text-white{% else %}text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
           {% if featuresActive %}aria-current="page"{% endif %}
+          :aria-expanded="featuresOpen.toString()"
         >
           Features
           <svg class="size-4 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
           </svg>
         </button>
-        <el-popover
-          id="nav-features-menu"
-          anchor="bottom"
-          popover
-          class="w-screen max-w-sm overflow-hidden rounded-2xl bg-white shadow-lg outline-1 outline-gray-900/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in dark:bg-gray-900 dark:outline-white/10 dark:shadow-none"
+        <div
+          x-show="featuresOpen"
+          x-cloak
+          x-transition:enter="transition ease-out duration-100"
+          x-transition:enter-start="translate-y-1 opacity-0"
+          x-transition:enter-end="translate-y-0 opacity-100"
+          x-transition:leave="transition ease-in duration-75"
+          x-transition:leave-start="translate-y-0 opacity-100"
+          x-transition:leave-end="translate-y-1 opacity-0"
+          class="absolute left-1/2 z-10 mt-2 w-screen max-w-sm -translate-x-1/2 overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-white/10 dark:shadow-none"
         >
           <div class="p-2">
             {% for item in nav.features %}
@@ -63,11 +73,73 @@
               View all features <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
-        </el-popover>
+        </div>
+      </div>
+
+      <div
+        class="relative"
+        @mouseenter="clearTimeout(flyTimer); featuresOpen = false; developersOpen = true"
+        @mouseleave="flyTimer = setTimeout(() => developersOpen = false, 75)"
+      >
+        <button
+          type="button"
+          class="inline-flex items-center gap-x-1 text-sm font-medium {% if developersActive %}text-gray-900 dark:text-white{% else %}text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
+          {% if developersActive %}aria-current="page"{% endif %}
+          :aria-expanded="developersOpen.toString()"
+        >
+          Developers
+          <svg class="size-4 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div
+          x-show="developersOpen"
+          x-cloak
+          x-transition:enter="transition ease-out duration-100"
+          x-transition:enter-start="translate-y-1 opacity-0"
+          x-transition:enter-end="translate-y-0 opacity-100"
+          x-transition:leave="transition ease-in duration-75"
+          x-transition:leave-start="translate-y-0 opacity-100"
+          x-transition:leave-end="translate-y-1 opacity-0"
+          class="absolute left-1/2 z-10 mt-2 w-screen max-w-sm -translate-x-1/2 overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-white/10 dark:shadow-none"
+        >
+          <div class="p-2">
+            {% for item in nav.developers %}
+              <div class="group relative flex gap-x-4 rounded-xl p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                <div class="flex size-10 flex-none items-center justify-center rounded-lg bg-gray-50 text-primary-ink group-hover:bg-white dark:bg-gray-800/50 dark:text-primary dark:group-hover:bg-gray-800">
+                  {% if item.icon == 'book' %}
+                    <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  {% elif item.icon == 'map' %}
+                    <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                  {% elif item.icon == 'list' %}
+                    <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                  {% endif %}
+                </div>
+                <div class="min-w-0 flex-1">
+                  <a href="{{ item.href }}" class="font-semibold text-gray-900 dark:text-white">
+                    {{ item.label }}
+                    <span class="absolute inset-0"></span>
+                  </a>
+                  <p class="mt-0.5 text-sm text-gray-600 dark:text-gray-400">{{ item.description }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="border-t border-gray-900/5 px-4 py-3 dark:border-white/10">
+            <a href="/developers/" class="text-sm font-semibold text-primary-ink hover:opacity-90 dark:text-primary">
+              All developer resources <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       {% for item in [
-        { href: "/developers/", label: "Developers" },
         { href: "/pricing/", label: "Pricing" },
         { href: site.docs, label: "Docs" },
         { href: "/blog/", label: "Blog" }
@@ -150,8 +222,37 @@
         </div>
       </div>
 
+      <div>
+        <button
+          type="button"
+          class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-medium {% if developersActive %}bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-white{% endif %}"
+          @click="developersOpen = !developersOpen"
+          :aria-expanded="developersOpen.toString()"
+        >
+          Developers
+          <svg class="size-5 text-gray-400 transition-transform" :class="developersOpen && 'rotate-180'" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div x-show="developersOpen" x-cloak class="mt-1 space-y-1 border-l border-gray-200 pl-3 dark:border-gray-800">
+          <a
+            href="/developers/"
+            class="block rounded-lg px-3 py-2 text-sm font-medium {% if page.url == '/developers/' %}bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-white{% endif %}"
+            {% if page.url == '/developers/' %}aria-current="page"{% endif %}
+            @click="mobileOpen = false"
+          >Overview</a>
+          {% for item in nav.developers %}
+            <a
+              href="{{ item.href }}"
+              class="block rounded-lg px-3 py-2 text-sm font-medium {% if page.url == item.href %}bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white{% else %}text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-900 dark:hover:text-white{% endif %}"
+              {% if page.url == item.href %}aria-current="page"{% endif %}
+              @click="mobileOpen = false"
+            >{{ item.label }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
       {% for item in [
-        { href: "/developers/", label: "Developers" },
         { href: "/pricing/", label: "Pricing" },
         { href: site.docs, label: "Docs" },
         { href: "/blog/", label: "Blog" }

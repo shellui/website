@@ -60,827 +60,128 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
     </div>
 
     <!-- Features Section -->
-    <section id="features" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
+    <section id="features" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16 animate-on-scroll">
-          <h2
-            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
-          >
+          <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
             Features
           </h2>
-          <p
-            class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
-          >
-            Everything you need to build modern web applications. New in v0.3.0:
-            authentication, legal documents, the identity-service backend, and
-            optional in-app admin panels.
+          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Shellui ships the infrastructure every web app needs so you can focus on what makes yours unique.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Layout Modes -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
+        <div class="grid grid-cols-1 gap-6">
+          <!-- Microfrontend — full width -->
+          <a
+            href="/features/microfrontend/"
+            class="group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-10 lg:p-14 transition-shadow hover:shadow-lg animate-on-scroll"
           >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Layout Modes
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Multiple layout modes: sidebar navigation, fullscreen content
-              view, and Windows desktop mode with taskbar.
-            </p>
-          </div>
-
-          <!-- Navigation Menu -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Flexible Navigation
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Navigation menu with icons, grouped items, and customizable
-              organization. Perfect for complex applications.
-            </p>
-          </div>
-
-          <!-- Link Opening Modes -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Flexible Link Opening
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Open links in main content area, modal popups, side drawers, or
-              external browser. Full control over navigation flow.
-            </p>
-          </div>
-
-          <!-- Side Drawers -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Side Drawer Panels
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Slide-in panels from any direction: top, bottom, left, or right.
-              Perfect for sidebars, notifications, and detail views.
-            </p>
-          </div>
-
-          <!-- Multi-language -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Multi-language Support
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Built-in support for English and French with localized interface.
-              Easy to extend with additional languages.
-            </p>
-          </div>
-
-          <!-- Custom Themes -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Custom Themes
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Light and dark mode variants with custom fonts for headings and
-              body text. Full control over your app's appearance.
-            </p>
-          </div>
-
-          <!-- Toast Notifications -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Toast Notifications
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Multiple styles: success, error, warning, info, and loading
-              states. Non-intrusive user feedback.
-            </p>
-          </div>
-
-          <!-- Alert Dialogs -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Alert Dialogs
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Different button configurations: ok, ok/cancel,
-              ok/cancel/secondary. Accessible and customizable.
-            </p>
-          </div>
-
-          <!-- Modal Windows -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Modal Windows
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Display content overlays with full control. Perfect for forms,
-              confirmations, and detailed views.
-            </p>
-          </div>
-
-          <!-- Settings Panel -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Settings Panel
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Customize appearance, language preferences, and privacy options.
-              User-friendly configuration interface.
-            </p>
-          </div>
-
-          <!-- Offline Support -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Offline Support
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Service worker integration for offline functionality and app
-              updates. Works seamlessly in the background.
-            </p>
-          </div>
-
-          <!-- Cookie Consent -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Cookie Consent
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Cookie consent management with categorized privacy controls.
-              GDPR-friendly and customizable.
-            </p>
-          </div>
-
-          <!-- Error Reporting -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Error Reporting
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Built-in error reporting to help improve app stability. Integrates
-              with Sentry for production monitoring.
-            </p>
-          </div>
-
-          <!-- Authentication -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Authentication
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Sign-in flows with Supabase or Shellui auth, route-aware login,
-              and redirect support for protected pages.
-            </p>
-          </div>
-
-          <!-- Legal Documents -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Legal Documents
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Ship privacy policy, terms of service, legal notice, and data
-              processing agreement content from markdown in your shell config.
-            </p>
-          </div>
-
-          <!-- Identity Service Backend -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Identity Service Backend
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Pair Shellui with the new
-              <a
-                href="https://github.com/shellui/identity-service"
-                class="text-primary-ink dark:text-primary hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-                >identity-service</a
-              >
-              Django backend for OAuth login, JWT sessions, and user metadata.
-            </p>
-          </div>
-
-          <!-- Admin Panel -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Admin Panel in App
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Optionally embed an admin panel inside your shell for staff users,
-              user management, metrics, and OAuth app configuration.
-            </p>
-          </div>
-
-          <!-- Desktop App Support -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Desktop App Support
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Native desktop application support through Tauri integration.
-              Build cross-platform desktop apps.
-            </p>
-          </div>
-
-          <!-- Responsive Design -->
-          <div
-            class="feature-card bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-6 animate-on-scroll"
-          >
-            <div
-              class="w-12 h-12 bg-primary/15 rounded-lg flex items-center justify-center mb-4"
-            >
-              <svg
-                class="w-6 h-6 text-primary-ink dark:text-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-2"
-            >
-              Responsive Design
-            </h3>
-            <p class="text-gray-600 dark:text-gray-400">
-              Adapts seamlessly to mobile and desktop screens. Customizable
-              navigation item visibility per device.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technical Details Section -->
-    <section
-      id="technical"
-      class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50"
-    >
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 animate-on-scroll">
-          <h2
-            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
-          >
-            Built for Developers
-          </h2>
-          <p
-            class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
-          >
-            Framework agnostic, TypeScript-first, and designed with developer
-            experience in mind.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <!-- Packages -->
-          <div
-            class="bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg p-8 animate-on-scroll"
-          >
-            <h3
-              class="text-2xl font-semibold text-gray-900 dark:text-white mb-4"
-            >
-              Packages
-            </h3>
-            <div class="space-y-4">
-              <div>
-                <h4
-                  class="font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  @shellui/cli
-                </h4>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">
-                  Command-line tool for creating and managing Shellui
-                  applications. Includes scaffolding, build, and development
-                  server.
+            <div class="flex flex-col lg:flex-row lg:items-center lg:gap-12">
+              <div class="flex-1">
+                <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-ink dark:text-primary mb-5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                  </svg>
+                  Core
+                </div>
+                <h3 class="text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
+                  Microfrontend Shell
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed max-w-xl">
+                  The runtime that stitches your apps together. Sidebar navigation, modals, drawers, themes, i18n, toasts, settings, cookie consent, and offline support &mdash; all configured from a single <code class="text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">shellui.config.ts</code>.
                 </p>
+                <span class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
+                  Explore microfrontend <span aria-hidden="true">&rarr;</span>
+                </span>
               </div>
-              <div>
-                <h4
-                  class="font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  @shellui/core
-                </h4>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">
-                  Core React application runtime. Provides all UI components,
-                  layouts, themes, and functionality.
-                </p>
-              </div>
-              <div>
-                <h4
-                  class="font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  @shellui/sdk
-                </h4>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">
-                  JavaScript SDK for programmatic Shellui integration. Perfect
-                  for advanced use cases and custom tooling.
-                </p>
-              </div>
+              <div class="hidden lg:block flex-shrink-0 w-80 h-52 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 dark:from-primary/15 dark:to-gray-800 border border-gray-100 dark:border-gray-700/50"></div>
             </div>
-          </div>
+          </a>
 
-          <!-- Tech Stack -->
-          <div
-            class="bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg p-8 animate-on-scroll"
-          >
-            <h3
-              class="text-2xl font-semibold text-gray-900 dark:text-white mb-4"
+          <!-- Authentication + Storage — half width each -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Authentication -->
+            <a
+              href="/features/authentication/"
+              class="group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 lg:p-10 transition-shadow hover:shadow-lg animate-on-scroll"
             >
-              Tech Stack
-            </h3>
-            <div class="space-y-4">
-              <div>
-                <h4
-                  class="font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  React & TypeScript
-                </h4>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">
-                  Built with React 18+ and TypeScript for type safety and modern
-                  development experience.
-                </p>
+              <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-ink dark:text-primary mb-5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+                Identity
               </div>
-              <div>
-                <h4
-                  class="font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  Radix UI & shadcn/ui
-                </h4>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">
-                  Accessible components built on Radix UI primitives, styled
-                  with Tailwind CSS following shadcn/ui patterns.
-                </p>
+              <h3 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mb-3">
+                Authentication
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                Sign-in flows with Supabase or the Shellui identity-service backend. Route-aware login, JWT sessions, OAuth providers, and protected-page redirects out of the box.
+              </p>
+              <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
+                Explore authentication <span aria-hidden="true">&rarr;</span>
+              </span>
+            </a>
+
+            <!-- Storage -->
+            <a
+              href="/features/storage/"
+              class="group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 lg:p-10 transition-shadow hover:shadow-lg animate-on-scroll"
+            >
+              <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-ink dark:text-primary mb-5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+                </svg>
+                Files
               </div>
-              <div>
-                <h4
-                  class="font-semibold text-gray-900 dark:text-white mb-2"
-                >
-                  i18next
-                </h4>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">
-                  Internationalization support with i18next and react-i18next.
-                  Easy to extend with additional languages.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Code Example -->
-        <div
-          class="mt-12 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg p-8 animate-on-scroll"
-        >
-          <h3
-            class="text-2xl font-semibold text-gray-900 dark:text-white mb-4"
-          >
-            Quick Start
-          </h3>
-          <div class="code-block">
-            <pre
-              class="text-gray-900 dark:text-white"
-            ><code># Create project directory
-mkdir my-shellui-app
-cd my-shellui-app
-
-# Initialize npm project
-npm init -y
-
-# Install Shellui dependencies
-npm install --save-dev @shellui/cli @shellui/core
-
-# Create shellui.config.ts
-# (See docs for configuration options)
-
-# Start development server
-shellui start</code></pre>
+              <h3 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mb-3">
+                Storage
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                S3-compatible file bucket with built-in upload, download, and access control. Serve assets through x-accel for high-performance delivery without exposing your bucket.
+              </p>
+              <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
+                Explore storage <span aria-hidden="true">&rarr;</span>
+              </span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <div
-          class="bg-gradient-to-br from-primary/15 to-primary/5 dark:from-primary/20 dark:to-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-12 animate-on-scroll"
-        >
-          <h2
-            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+    <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+      <div class="relative isolate overflow-hidden bg-gray-50 dark:bg-gray-900 px-6 py-24 text-center shadow-sm dark:shadow-2xl ring-1 ring-gray-200 dark:ring-0 sm:rounded-3xl sm:px-16">
+        <h2 class="text-4xl font-semibold tracking-tight text-balance text-gray-900 dark:text-white sm:text-5xl">
+          Start building today
+        </h2>
+        <p class="mx-auto mt-6 max-w-xl text-lg/8 text-pretty text-gray-600 dark:text-gray-300">
+          Stop rebuilding the same shell for every project. Focus on your app, and let Shellui handle the rest.
+        </p>
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+          <a
+            href="{{ site.docs }}"
+            class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:outline-white"
           >
-            Ready to Build?
-          </h2>
-          <p
-            class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto"
+            Get started
+          </a>
+          <a
+            href="{{ site.github }}"
+            class="text-sm/6 font-semibold text-gray-900 dark:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Start building on the web app development platform today. Shellui
-            v0.3.0 adds authentication, legal documents, and optional admin
-            tooling while staying experimental and ready for your projects.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://docs.shellui.com"
-              class="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity"
-            >
-              Read the Docs
-            </a>
-            <a
-              href="https://playground.shellui.com"
-              class="px-8 py-4 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
-            >
-              Try Playground
-            </a>
-          </div>
+            View on GitHub <span aria-hidden="true">→</span>
+          </a>
         </div>
+        <svg viewBox="0 0 1024 1024" aria-hidden="true" class="absolute top-1/2 left-1/2 -z-10 size-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]">
+          <circle r="512" cx="512" cy="512" fill="url(#cta-gradient)" fill-opacity="0.25" />
+          <defs>
+            <radialGradient id="cta-gradient">
+              <stop stop-color="#D4A853" />
+              <stop offset="1" stop-color="#A37200" />
+            </radialGradient>
+          </defs>
+        </svg>
       </div>
-    </section>
+    </div>
