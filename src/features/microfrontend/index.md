@@ -8,3 +8,5 @@ lede: This page is a work in progress.
 ---
 
 Shellui owns the shell around your app: sidebar navigation, layout modes, modals, drawers, and how microfrontends render inside the chrome.
+
+Next, see how [Authentication](/features/authentication/) handles sign-in, protected routes, and identity integration.

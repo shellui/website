@@ -61,7 +61,7 @@ lede: See what we're working on and what's coming next.
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full border-2 border-gray-400 dark:border-gray-500 bg-white dark:bg-gray-950"></div>
         <time datetime="2026-Q4" class="text-sm font-semibold text-gray-500 dark:text-gray-400">Q4 2026</time>
         <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.6 - Smart Shell</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Built-in AI capabilities to assist users with navigation, data insights, and workflow automation.</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Local AI APIs for Shellui developers to prompt directly without managing infrastructure, using a bring-your-own-key model.</p>
       </div>
 
       <!-- v0.7 -->

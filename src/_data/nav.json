@@ -7,12 +7,6 @@
       "icon": "book"
     },
     {
-      "href": "/architecture/",
-      "label": "Architecture",
-      "description": "High-level architecture overview.",
-      "icon": "cube"
-    },
-    {
       "href": "/roadmap/",
       "label": "Roadmap",
       "description": "See what's coming next.",
@@ -39,16 +33,16 @@
       "icon": "lock"
     },
     {
-      "href": "/features/storage/",
-      "label": "Storage",
-      "description": "File buckets and object storage for Shellui apps.",
-      "icon": "storage"
-    },
-    {
       "href": "/features/administration/",
       "label": "Administration",
       "description": "Admin panel to manage and overview your data.",
       "icon": "cog"
+    },
+    {
+      "href": "/features/storage/",
+      "label": "Storage",
+      "description": "File buckets and object storage for Shellui apps.",
+      "icon": "storage"
     }
   ]
 }

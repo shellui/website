@@ -7,3 +7,5 @@ lede: A powerful admin panel to manage and overview your data.
 ---
 
 This page is a work in progress.
+
+Next, continue with [Storage](/features/storage/) to see file management and object storage capabilities.
