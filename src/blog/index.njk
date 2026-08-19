@@ -1,0 +1,64 @@
+---
+layout: layouts/base.njk
+title: Blog | Shellui
+description: Official Shellui blog. News and notes on the web app development platform.
+---
+<div class="bg-white py-24 pt-32 sm:py-32 dark:bg-gray-950">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-4xl">
+      {% if collections.blog.length %}
+        <div class="space-y-20">
+          {% for post in collections.blog %}
+            <article class="relative isolate flex flex-col gap-8 lg:flex-row">
+              <div class="relative aspect-video sm:aspect-2/1 lg:aspect-square lg:w-64 lg:shrink-0">
+                {% if post.data.image %}
+                  <img
+                    src="{{ post.data.image }}"
+                    alt="{{ post.data.imageAlt or post.data.heading or post.data.title }}"
+                    class="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover dark:bg-gray-900"
+                    width="640"
+                    height="640"
+                  />
+                {% endif %}
+                <div class="absolute inset-0 rounded-2xl inset-ring inset-ring-gray-900/10 dark:inset-ring-white/10"></div>
+              </div>
+              <div>
+                <div class="flex items-center gap-x-4 text-xs">
+                  <time datetime="{{ post.date.toISOString() }}" class="text-gray-500 dark:text-gray-400">{{ post.date | shortDate }}</time>
+                  {% if post.data.category %}
+                    <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 dark:bg-gray-900 dark:text-gray-400">{{ post.data.category }}</span>
+                  {% endif %}
+                  <span class="text-gray-500 dark:text-gray-400">{{ post | readingTime }} min read</span>
+                </div>
+                <div class="group relative max-w-xl">
+                  <h2 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
+                    <a href="{{ post.url }}">
+                      <span class="absolute inset-0"></span>
+                      {{ post.data.heading or post.data.title }}
+                    </a>
+                  </h2>
+                  {% if post.data.description %}
+                    <p class="mt-5 text-sm/6 text-gray-600 dark:text-gray-400">{{ post.data.description }}</p>
+                  {% endif %}
+                </div>
+                <div class="mt-6 flex border-t border-gray-900/5 pt-6 dark:border-white/10">
+                  <div class="relative flex items-center gap-x-4">
+                    <img src="/img/logo.png" alt="" class="size-10 rounded-full bg-gray-50 object-contain p-1 dark:bg-gray-900" width="40" height="40" />
+                    <div class="text-sm/6">
+                      <p class="font-semibold text-gray-900 dark:text-white">{{ post.data.author or site.author }}</p>
+                      {% if post.data.authorRole %}
+                        <p class="text-gray-600 dark:text-gray-400">{{ post.data.authorRole }}</p>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-gray-600 dark:text-gray-400">No articles yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>

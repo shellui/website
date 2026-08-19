@@ -6,11 +6,23 @@ layout: layouts/base.njk
     <p class="mb-3 text-sm text-gray-600 dark:text-gray-400">
       <a href="/blog/" class="hover:text-gray-900 dark:hover:text-white">Blog</a>
       <span aria-hidden="true"> · </span>
-      <time datetime="{{ page.date.toISOString() }}">{{ page.date.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" }) }}</time>
+      <time datetime="{{ page.date.toISOString() }}">{{ page.date | readableDate }}</time>
+      <span aria-hidden="true"> · </span>
+      <span>{{ content | readingTime }} min read</span>
     </p>
     <h1 class="text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">{{ heading or title }}</h1>
+    <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">{{ author or site.author }}</p>
     {% if lede %}
       <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">{{ lede }}</p>
+    {% endif %}
+    {% if image %}
+      <img
+        src="{{ image }}"
+        alt="{{ imageAlt or heading or title }}"
+        class="mt-10 aspect-16/9 w-full rounded-2xl object-cover"
+        width="1280"
+        height="720"
+      />
     {% endif %}
     <div class="prose mt-10">
       {{ content | safe }}

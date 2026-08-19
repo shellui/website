@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "href": "/features/microfrontend/",
+      "label": "Microfrontend",
+      "description": "Layout modes, navigation, and shared shell chrome.",
+      "icon": "layout"
+    },
+    {
+      "href": "/features/authentication/",
+      "label": "Authentication",
+      "description": "Sign-in flows, protected routes, and identity integration.",
+      "icon": "lock"
+    },
+    {
+      "href": "/features/storage/",
+      "label": "Storage",
+      "description": "File buckets and object storage for Shellui apps.",
+      "icon": "storage"
+    }
+  ]
+}

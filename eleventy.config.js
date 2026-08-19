@@ -14,6 +14,14 @@ function buildCss() {
   );
 }
 
+function readingTimeMinutes(content) {
+  const words = String(content || "")
+    .replace(/<[^>]+>/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.round(words / 220));
+}
+
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(IdAttributePlugin);
 
@@ -30,6 +38,27 @@ export default function (eleventyConfig) {
     "src/assets/js": "assets/js",
     "node_modules/alpinejs/dist/cdn.min.js": "assets/js/alpine.min.js",
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
+  });
+
+  eleventyConfig.addFilter("readableDate", (date) =>
+    new Date(date).toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+  );
+
+  eleventyConfig.addFilter("shortDate", (date) =>
+    new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    }),
+  );
+
+  eleventyConfig.addFilter("readingTime", (post) => {
+    const content = typeof post === "string" ? post : post?.templateContent;
+    return readingTimeMinutes(content);
   });
 
   eleventyConfig.addShortcode("demo", function (name) {
