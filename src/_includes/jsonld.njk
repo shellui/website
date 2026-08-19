@@ -1,0 +1,47 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "{{ site.name }}",
+      "url": "{{ site.url }}",
+      "logo": "{{ site.url }}/img/logo.png",
+      "sameAs": [
+        "{{ site.github }}",
+        "{{ site.linkedin }}",
+        "{{ site.twitter }}",
+        "{{ site.docker }}"
+      ]
+    },
+    {
+      "@type": "{% if tags and 'blog' in tags %}Article{% else %}WebPage{% endif %}",
+      "name": {{ metaTitle | dump | safe }},
+      "headline": {{ metaTitle | dump | safe }},
+      "description": {{ metaDescription | dump | safe }},
+      "url": {{ canonical | dump | safe }},
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "{{ site.name }}",
+        "url": "{{ site.url }}"
+      }
+      {% if tags and "blog" in tags %}
+      ,"datePublished": "{{ page.date.toISOString() }}",
+      "author": { "@id": "{{ site.url }}/#organization" }
+      {% endif %}
+    }
+    {% if page.url == "/" %}
+    ,{
+      "@type": "SoftwareApplication",
+      "name": "{{ site.name }}",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "url": "{{ site.url }}",
+      "description": {{ metaDescription | dump | safe }},
+      "author": { "@id": "{{ site.url }}/#organization" }
+    }
+    {% endif %}
+  ]
+}
+</script>

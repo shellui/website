@@ -1,0 +1,53 @@
+<div
+  class="overflow-hidden rounded-xl border border-border bg-card shadow-sm"
+  x-data="{ view: 'dashboard', modal: false, drawer: false }"
+>
+  <div class="flex min-h-80">
+    <aside class="hidden w-52 shrink-0 border-r border-sidebar-border bg-sidebar p-3 sm:block" aria-label="Shell navigation">
+      <p class="px-2 pb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">Shell</p>
+      <nav class="flex flex-col gap-1">
+        <button type="button" class="w-full rounded-md px-3 py-2 text-left text-sm" :class="view === 'dashboard' ? 'bg-muted font-medium text-foreground' : 'text-muted-foreground hover:bg-muted hover:text-foreground'" @click="view = 'dashboard'">Dashboard</button>
+        <button type="button" class="w-full rounded-md px-3 py-2 text-left text-sm" :class="view === 'users' ? 'bg-muted font-medium text-foreground' : 'text-muted-foreground hover:bg-muted hover:text-foreground'" @click="view = 'users'">Users</button>
+        <button type="button" class="w-full rounded-md px-3 py-2 text-left text-sm" :class="view === 'settings' ? 'bg-muted font-medium text-foreground' : 'text-muted-foreground hover:bg-muted hover:text-foreground'" @click="view = 'settings'">Settings</button>
+      </nav>
+    </aside>
+    <div class="flex min-w-0 flex-1 flex-col">
+      <div class="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
+        <h3 class="font-serif text-lg font-semibold text-foreground">
+          <span x-show="view === 'dashboard'">Dashboard</span>
+          <span x-show="view === 'users'" x-cloak>Users</span>
+          <span x-show="view === 'settings'" x-cloak>Settings</span>
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-foreground hover:bg-muted" @click="modal = true">Open modal</button>
+          <button type="button" class="rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:opacity-90" @click="drawer = true">Open drawer</button>
+        </div>
+      </div>
+      <div class="p-4">
+        <div x-show="view === 'dashboard'">
+          <p class="text-sm text-muted-foreground">The shell owns the sidebar and chrome. App content renders here. This preview is real HTML in the page so search engines can read the labels, not an embedded frame.</p>
+        </div>
+        <div x-show="view === 'users'" x-cloak>
+          <p class="text-sm text-muted-foreground">Navigation can be auth-aware: staff see admin items, signed-out visitors see login. Pair with identity-service or Supabase.</p>
+        </div>
+        <div x-show="view === 'settings'" x-cloak>
+          <p class="text-sm text-muted-foreground">Themes, language, and layout mode (sidebar, fullscreen, or desktop taskbar) live in the shell so every microfrontend stays consistent.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" x-show="modal" x-cloak @keydown.escape.window="modal = false" role="dialog" aria-modal="true" aria-labelledby="shell-modal-title">
+    <div class="w-full max-w-md rounded-lg border border-border bg-card p-6 shadow-lg" @click.outside="modal = false">
+      <h3 id="shell-modal-title" class="font-serif text-lg font-semibold text-foreground">Modal window</h3>
+      <p class="mt-1 text-sm text-muted-foreground">Shellui opens content as overlays without leaving the current route.</p>
+      <p class="mt-4 text-sm text-muted-foreground">Use modals for forms, confirmations, and short detail views. The markup is in the document, so the heading stays crawlable.</p>
+      <button type="button" class="mt-6 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted" @click="modal = false">Close</button>
+    </div>
+  </div>
+  <div class="fixed inset-0 z-50 bg-black/40" x-show="drawer" x-cloak @keydown.escape.window="drawer = false" @click="drawer = false" aria-hidden="true"></div>
+  <aside class="fixed inset-y-0 right-0 z-50 w-full max-w-sm border-l border-border bg-background p-6 shadow-lg" x-show="drawer" x-cloak role="dialog" aria-modal="true" aria-labelledby="shell-drawer-title" @click.stop>
+    <h3 id="shell-drawer-title" class="font-serif text-xl font-semibold">Side drawer</h3>
+    <p class="mt-3 text-sm text-muted-foreground">Drawers slide in from any edge. They are useful for sidebars, notifications, and detail views that should not cover the whole app.</p>
+    <button type="button" class="mt-6 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground hover:bg-muted" @click="drawer = false">Close drawer</button>
+  </aside>
+</div>

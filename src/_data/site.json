@@ -1,0 +1,16 @@
+{
+  "name": "Shellui",
+  "url": "https://shellui.com",
+  "description": "Shellui is the web app development platform. Build modern applications with authentication, legal documents, sidebar navigation, modal popups, side drawers, multi-language support, custom themes, toast notifications, and more.",
+  "version": "0.3.0",
+  "author": "Shellui",
+  "docs": "https://docs.shellui.com",
+  "playground": "https://playground.shellui.com",
+  "github": "https://github.com/shellui",
+  "identityService": "https://github.com/shellui/identity-service",
+  "adminPanel": "https://github.com/shellui/shellui-admin",
+  "twitter": "https://x.com/shelluihq",
+  "linkedin": "https://www.linkedin.com/company/shellui",
+  "docker": "https://hub.docker.com/u/shellui",
+  "locale": "en"
+}

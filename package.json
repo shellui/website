@@ -1,0 +1,39 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "The official website for Shellui, the web app development platform.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "dev": "eleventy --serve",
+    "build": "rm -rf _site && eleventy",
+    "build:css": "npx @tailwindcss/cli -i ./src/assets/css/input.css -o ./_site/assets/css/site.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shellui/website.git"
+  },
+  "keywords": [
+    "shellui",
+    "eleventy",
+    "website"
+  ],
+  "author": "Shellui",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shellui/website/issues"
+  },
+  "homepage": "https://github.com/shellui/website#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "dependencies": {
+    "@fontsource/open-sans": "^5.3.0",
+    "@fontsource/source-serif-pro": "^5.3.0",
+    "@tailwindplus/elements": "^1.0.22",
+    "alpinejs": "^3.16.2"
+  }
+}

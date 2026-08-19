@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="{{ site.locale or 'en' }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ metaTitle }}</title>
+    <meta name="description" content="{{ metaDescription }}" />
+    <meta name="author" content="{{ site.author }}" />
+    <link rel="canonical" href="{{ canonical }}" />
+    <meta property="og:type" content="{% if tags and 'blog' in tags %}article{% else %}website{% endif %}" />
+    <meta property="og:title" content="{{ ogTitle or metaTitle }}" />
+    <meta property="og:description" content="{{ ogDescription or metaDescription }}" />
+    <meta property="og:url" content="{{ canonical }}" />
+    <meta property="og:site_name" content="{{ site.name }}" />
+    {% if ogImage %}
+      <meta property="og:image" content="{{ ogImage }}" />
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ ogTitle or metaTitle }}" />
+    <meta name="twitter:description" content="{{ ogDescription or metaDescription }}" />
+    <link rel="icon" href="/img/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var theme =
+          stored ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme === "dark") document.documentElement.classList.add("dark");
+      })();
+    </script>
+    {% include "jsonld.njk" %}
+  </head>
+  <body class="antialiased">
+    {% include "logo-sprite.njk" %}
+    {% include "bg-shapes.njk" %}
+    {% include "nav.njk" %}
+    <main class="relative z-10">
+      {{ content | safe }}
+    </main>
+    {% include "footer.njk" %}
+    <script src="/assets/js/alpine.min.js" defer></script>
+    <script src="/assets/js/elements.js" type="module"></script>
+    <script src="/assets/js/site.js" defer></script>
+  </body>
+</html>

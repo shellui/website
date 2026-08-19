@@ -1,52 +1,35 @@
 # Shellui Website
 
-The official website for Shellui, the lightweight microfrontend shell.
+The official website for [Shellui](https://shellui.com), the web app development platform.
 
-## Overview
+## Stack
 
-This repository contains the source code for the Shellui landing page. It is built as a static site using HTML and Tailwind CSS. The site is currently in a "Coming Soon" state as we prepare for the initial release.
+- **[Eleventy 3](https://www.11ty.dev/)** — static HTML pages
+- **[Tailwind CSS v4](https://tailwindcss.com/)** — compiled at build time (no CDN)
+- **[Tailwind Plus Elements](https://tailwindcss.com/plus/ui-blocks/documentation/elements)** — licensed interactive HTML (`el-*` custom elements) for Plus UI blocks
+- **[Alpine.js](https://alpinejs.dev/)** — light interactivity in `src/blocks/`
 
-## Getting Started
+Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are real HTML (no iframes). `content/` is IA notes only and is not published.
 
-Since this is a static site, you can view it by opening `index.html` in your browser. However, for the best experience, it is recommended to use a local static server.
-
-### Prerequisites
-
-- A web browser
-- Python 3 (optional, for simple local server)
-- Node.js (optional, for other static servers like `http-server`)
-
-### Running Locally
-
-You can use Python's built-in HTTP server:
+## Getting started
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm start
 ```
 
-Then navigate to `http://localhost:8000` in your browser.
-
-Or with Node.js `http-server` or `serve`:
+Open the local URL Eleventy prints (usually `http://localhost:8080`).
 
 ```bash
-npx serve .
+npm run build
 ```
 
-## Project Structure
+writes static files to `_site/`.
 
-```
-/
-├── index.html          # "Coming Soon" Homepage
-├── LICENSE             # MIT License
-└── README.md           # Project documentation
-```
+## Deploy
 
-## Technologies
-
-- **HTML5**: Semantic markup.
-- **Tailwind CSS**: Utility-first CSS framework (loaded via CDN for simplicity).
-- **Inter Font**: Used for typography.
+GitHub Actions (`.github/workflows/pages.yml`) builds `_site/` and deploys to GitHub Pages. After the first merge, set the repository Pages source to **GitHub Actions** (not “Deploy from branch”).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT — see [LICENSE](LICENSE).
