@@ -9,16 +9,36 @@ const groups = [
   { name: "Icon mark", bases: ["logo"] },
   { name: "Primary logo", bases: ["shellui_logo"] },
   { name: "Transparent background", bases: ["shellui_transparent_logo"] },
-  { name: "Documentation", bases: ["shellui_doc_logo"] },
-  { name: "Playground", bases: ["shellui_playground_logo"] },
+  { name: "Documentation", bases: ["shellui_doc_logo", "shellui_documentation_logo"] },
+  { name: "Playground", bases: ["shellui_playground_logo", "shellui_playground_text_logo"] },
+  { name: "Files", bases: ["shellui_files_text_logo"] },
 ];
 
+const labels = {
+  logo: "Shellui mark",
+  shellui_documentation_logo: "Documentation wordmark",
+  shellui_playground_text_logo: "Playground wordmark",
+  shellui_files_text_logo: "Files wordmark",
+};
+
+const lightArtwork = new Set([
+  "logo",
+  "shellui_transparent_logo",
+  "shellui_documentation_logo",
+  "shellui_playground_text_logo",
+  "shellui_files_text_logo",
+]);
+
 function formatLabel(baseName) {
-  if (baseName === "logo") return "Shellui mark";
+  if (labels[baseName]) return labels[baseName];
   return baseName
     .replace(/^shellui_/, "")
     .replace(/_/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function previewFor(baseName) {
+  return lightArtwork.has(baseName) ? "light" : "auto";
 }
 
 const files = fs.readdirSync(assetsDir).filter((file) => !file.startsWith("."));
@@ -37,6 +57,7 @@ for (const file of files) {
       ext,
       baseName,
       label: formatLabel(baseName),
+      preview: previewFor(baseName),
     },
   ]);
 }

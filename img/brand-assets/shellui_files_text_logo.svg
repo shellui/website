@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 36" role="img" aria-label="shellui files">
+  <text
+    x="0"
+    y="26"
+    fill="#111827"
+    font-family="ui-sans-serif, system-ui, sans-serif"
+    font-size="22"
+  >
+    <tspan font-weight="700">shellui</tspan>
+    <tspan font-weight="400"> | files</tspan>
+  </text>
+</svg>
