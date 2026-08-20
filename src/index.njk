@@ -14,11 +14,11 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
         {% set latestPost = collections.blog[0] %}
         {% if latestPost %}
           <div class="mb-6 flex justify-center sm:mb-8">
-            <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
+            <div class="relative flex items-center gap-x-3 rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
               {{ latestPost.data.heading or latestPost.data.title }}
+              <span class="h-4 w-px bg-gray-900/10 dark:bg-white/20" aria-hidden="true"></span>
               <a href="{{ latestPost.url }}" class="font-semibold text-primary-ink dark:text-primary">
                 <span class="absolute inset-0" aria-hidden="true"></span>Read more
-                <span aria-hidden="true">&rarr;</span>
               </a>
             </div>
           </div>
@@ -91,8 +91,8 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
                 <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed max-w-xl">
                   The runtime that stitches your apps together. Sidebar navigation, modals, drawers, themes, i18n, toasts, settings, cookie consent, and offline support &mdash; all configured from a single <code class="text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">shellui.config.ts</code>.
                 </p>
-                <span class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
-                  Explore microfrontend <span aria-hidden="true">&rarr;</span>
+                <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
+                  Explore microfrontend
                 </span>
               </div>
               <div class="hidden lg:block flex-shrink-0 w-80 h-52 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 dark:from-primary/15 dark:to-gray-800 border border-gray-100 dark:border-gray-700/50"></div>
@@ -118,8 +118,8 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
               <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
                 Sign-in flows with Supabase or the Shellui identity-service backend. Route-aware login, JWT sessions, OAuth providers, and protected-page redirects out of the box.
               </p>
-              <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
-                Explore authentication <span aria-hidden="true">&rarr;</span>
+              <span class="mt-5 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
+                Explore authentication
               </span>
             </a>
 
@@ -140,8 +140,8 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
               <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
                 S3-compatible file bucket with built-in upload, download, and access control. Serve assets through x-accel for high-performance delivery without exposing your bucket.
               </p>
-              <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
-                Explore storage <span aria-hidden="true">&rarr;</span>
+              <span class="mt-5 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
+                Explore storage
               </span>
             </a>
 
@@ -163,8 +163,8 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
               <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
                 A dedicated admin panel to manage users, monitor activity, and get a complete overview of your application data.
               </p>
-              <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
-                Explore administration <span aria-hidden="true">&rarr;</span>
+              <span class="mt-5 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
+                Explore administration
               </span>
             </a>
           </div>
@@ -172,11 +172,11 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
 
         <div class="mt-12 text-center animate-on-scroll">
           <a href="/features/" class="text-sm/6 font-semibold text-primary-ink dark:text-primary hover:underline">
-            See all features <span aria-hidden="true">&rarr;</span>
+            See all features
           </a>
           <span class="mx-3 text-gray-300 dark:text-gray-700">|</span>
           <a href="/roadmap/" class="text-sm/6 font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:underline">
-            View our roadmap <span aria-hidden="true">&rarr;</span>
+            View our roadmap
           </a>
         </div>
       </div>
