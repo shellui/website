@@ -207,22 +207,21 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
             </a>
           </div>
           <div class="playground-cta">
-            <dt class="flex items-center gap-4 font-semibold text-gray-900 dark:text-white">
-              {% include "playground-app-icon.njk" %}
-              Try the playground
-            </dt>
-            <dd class="mt-3 text-gray-600 dark:text-gray-400">
+            <dt class="font-semibold text-gray-900 dark:text-white">Try Shellui now</dt>
+            <dd class="mt-1 text-gray-600 dark:text-gray-400">
               Explore a live Shellui app — navigation, auth, and the full shell — with no install and no scaffolding.
-              <a
-                href="{{ site.playground }}"
-                class="font-semibold text-gray-900 dark:text-white"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open playground
-                <span aria-hidden="true">→</span>
-              </a>
             </dd>
+            {% set playgroundIconSize = "size-6" %}
+            <a
+              href="{{ site.playground }}"
+              class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {% include "playground-app-icon.njk" %}
+              Open playground
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
         </dl>
       </div>
