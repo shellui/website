@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -6,6 +7,30 @@ import { IdAttributePlugin } from "@11ty/eleventy";
 import { createHighlighter } from "shiki";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
+const hashAssets = process.env.ELEVENTY_RUN_MODE === "build";
+const siteOrigin = JSON.parse(
+  fs.readFileSync(path.join(root, "src/_data/site.json"), "utf8"),
+).url.replace(/\/$/, "");
+
+const HASHABLE_EXT = new Set([
+  ".avif",
+  ".css",
+  ".gif",
+  ".ico",
+  ".jpeg",
+  ".jpg",
+  ".js",
+  ".mjs",
+  ".otf",
+  ".png",
+  ".svg",
+  ".ttf",
+  ".webp",
+  ".woff",
+  ".woff2",
+]);
+const TEXT_EXT = new Set([".css", ".html", ".js", ".json", ".mjs", ".svg", ".txt", ".xml"]);
+const WELL_KNOWN_URLS = new Set(["/apple-touch-icon.png", "/favicon.ico"]);
 
 function buildCss() {
   fs.mkdirSync(path.join(root, "_site/assets/css"), { recursive: true });
@@ -13,6 +38,74 @@ function buildCss() {
     "npx @tailwindcss/cli -i ./src/assets/css/input.css -o ./_site/assets/css/site.css --minify",
     { stdio: "inherit", cwd: root },
   );
+}
+
+function contentHash(buffer) {
+  return createHash("sha256").update(buffer).digest("hex").slice(0, 8);
+}
+
+function hashedName(filename, hash) {
+  const ext = path.extname(filename);
+  return `${path.basename(filename, ext)}.${hash}${ext}`;
+}
+
+function walkFiles(dir) {
+  const files = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith(".")) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) files.push(...walkFiles(full));
+    else files.push(full);
+  }
+  return files;
+}
+
+function toPublicUrl(outputDir, file) {
+  return `/${path.relative(outputDir, file).split(path.sep).join("/")}`;
+}
+
+function isHashedName(filename) {
+  return /\.[a-f0-9]{8}\.[^.]+$/.test(filename);
+}
+
+function rewriteContents(file, manifest) {
+  if (manifest.size === 0) return;
+  if (!TEXT_EXT.has(path.extname(file).toLowerCase())) return;
+  let content = fs.readFileSync(file, "utf8");
+  const before = content;
+  const entries = [...manifest.entries()].sort((a, b) => b[0].length - a[0].length);
+  for (const [from, to] of entries) {
+    content = content.split(`${siteOrigin}${from}`).join(`${siteOrigin}${to}`);
+    content = content.split(from).join(to);
+  }
+  if (content !== before) fs.writeFileSync(file, content);
+}
+
+function fingerprintSite(outputDir) {
+  const rank = (file) => {
+    const ext = path.extname(file).toLowerCase();
+    if (ext === ".css") return 1;
+    if (ext === ".js" || ext === ".mjs") return 2;
+    return 0;
+  };
+  const hashable = walkFiles(outputDir)
+    .filter((file) => {
+      const url = toPublicUrl(outputDir, file);
+      if (WELL_KNOWN_URLS.has(url)) return false;
+      if (!HASHABLE_EXT.has(path.extname(file).toLowerCase())) return false;
+      if (isHashedName(path.basename(file))) return false;
+      return true;
+    })
+    .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
+
+  const manifest = new Map();
+  for (const file of hashable) {
+    rewriteContents(file, manifest);
+    const dest = path.join(path.dirname(file), hashedName(path.basename(file), contentHash(fs.readFileSync(file))));
+    fs.renameSync(file, dest);
+    manifest.set(toPublicUrl(outputDir, file), toPublicUrl(outputDir, dest));
+  }
+  for (const file of walkFiles(outputDir)) rewriteContents(file, manifest);
 }
 
 function readingTimeMinutes(content) {
@@ -75,6 +168,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.ignores.add("src/blocks/**");
 
   eleventyConfig.addWatchTarget("src/assets/css/");
+  eleventyConfig.addWatchTarget("src/assets/js/");
   eleventyConfig.addWatchTarget("src/blocks/");
 
   eleventyConfig.addPassthroughCopy({
@@ -169,6 +263,10 @@ export default async function (eleventyConfig) {
   );
 
   eleventyConfig.on("eleventy.before", buildCss);
+
+  eleventyConfig.on("eleventy.after", ({ dir }) => {
+    if (hashAssets) fingerprintSite(dir.output);
+  });
 
   eleventyConfig.setServerOptions({
     watch: ["_site/assets/css/site.css"],
