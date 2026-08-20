@@ -29,6 +29,59 @@
   }
 }
 
+.app-icon-gloss,
+.app-icon-shine {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.app-icon-gloss {
+  background: linear-gradient(
+    to bottom,
+    rgb(255 255 255 / 0.55) 0%,
+    rgb(255 255 255 / 0.12) 46%,
+    transparent 52%
+  );
+}
+
+.app-icon-shine::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgb(255 255 255 / 0.15) 35%,
+    rgb(255 255 255 / 0.75) 50%,
+    rgb(255 255 255 / 0.15) 65%,
+    transparent 100%
+  );
+  transform: translateX(-180%) skewX(-18deg);
+}
+
+.playground-cta:hover .app-icon-shine::after {
+  animation: app-icon-shine 0.9s ease-in-out;
+}
+
+@keyframes app-icon-shine {
+  0% {
+    transform: translateX(-180%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(280%) skewX(-18deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playground-cta:hover .app-icon-shine::after {
+    animation: none;
+  }
+}
+
 .prose {
   max-width: 48rem;
 }

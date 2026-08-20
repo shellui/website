@@ -1,11 +1,15 @@
 ---
-layout: layouts/page.njk
+layout: layouts/feature.njk
+centered: true
+playgroundCta: true
 title: Features | Shellui
 description: Features of the Shellui web app development platform.
+eyebrow: The shared foundation
 heading: Features
-lede: Shellui ships as a shared shell around your product. Explore the areas we are documenting first.
+lede: Shellui ships the infrastructure every web app needs so you can focus on what makes yours unique.
 ---
 
 - [Microfrontend](/features/microfrontend/) - Layout modes, navigation, and chrome for hosting app content in the shell.
 - [Authentication](/features/authentication/) - Sign-in flows, protected routes, and identity-service integration.
+- [Administration](/features/administration/) - Admin panel to manage users and get a complete overview of your data.
 - [Storage](/features/storage/) - File buckets and object storage for apps built on Shellui.

@@ -1,0 +1,74 @@
+---
+layout: layouts/base.njk
+---
+{% if centered %}
+<div class="bg-white px-6 py-24 pt-32 sm:py-32 sm:pt-40 lg:px-8 dark:bg-gray-950">
+  <div class="mx-auto max-w-2xl text-center">
+    {% if eyebrow %}
+      <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ eyebrow }}</p>
+    {% endif %}
+    <h1 class="mt-2 text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl dark:text-white">{{ heading or title }}</h1>
+    {% if lede %}
+      <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">{{ lede }}</p>
+    {% endif %}
+  </div>
+</div>
+<article class="px-6 {% if playgroundCta %}pb-8{% else %}pb-24{% endif %} lg:px-8">
+  <div class="prose mx-auto max-w-2xl">
+    {{ content | safe }}
+  </div>
+</article>
+{% else %}
+<div class="bg-white pt-28 pb-16 sm:pt-32 sm:pb-20 dark:bg-gray-950">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      {% if eyebrow %}
+        <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ eyebrow }}</p>
+      {% endif %}
+      <h1 class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white">{{ heading or title }}</h1>
+      {% if lede %}
+        <p class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">{{ lede }}</p>
+      {% endif %}
+    </div>
+    <div class="prose mx-auto mt-10 max-w-2xl lg:mx-0">
+      {{ content | safe }}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% if playgroundCta %}
+<div class="px-6 pb-16 sm:pb-24 lg:px-8">
+  <div class="playground-cta relative isolate mx-auto max-w-2xl overflow-hidden rounded-3xl bg-gray-50 px-6 py-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:shadow-2xl dark:ring-0 sm:px-8 sm:py-8">
+    <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+      <div class="flex min-w-0 items-center gap-5 text-left">
+        {% include "playground-app-icon.njk" %}
+        <div>
+          <h2 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+            Try Shellui in the playground
+          </h2>
+          <p class="mt-1 text-sm text-pretty text-gray-600 dark:text-gray-300">
+            Explore a live Shellui app with no install and no scaffolding.
+          </p>
+        </div>
+      </div>
+      <a
+        href="{{ site.playground }}"
+        class="shrink-0 rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:outline-white"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open playground
+      </a>
+    </div>
+    <svg viewBox="0 0 1024 1024" aria-hidden="true" class="absolute top-1/2 left-1/2 -z-10 size-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]">
+      <circle r="512" cx="512" cy="512" fill="url(#playground-cta-gradient)" fill-opacity="0.25" />
+      <defs>
+        <radialGradient id="playground-cta-gradient">
+          <stop stop-color="#D4A853" />
+          <stop offset="1" stop-color="#A37200" />
+        </radialGradient>
+      </defs>
+    </svg>
+  </div>
+</div>
+{% endif %}

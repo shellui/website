@@ -1,0 +1,18 @@
+[
+  {
+    "question": "When should I use Shellui?",
+    "answer": "Use Shellui when you are starting a web app and do not want to rebuild the same infrastructure every time: navigation, authentication, administration, storage, themes, and i18n. It shines when development is split across teams working in a single app — each team owns its own surface while the shared shell keeps chrome and collaboration consistent. It is also a strong fit for greenfield products and for composing multiple apps in a microfrontend. If you already have a mature stack you are happy with, you probably do not need it."
+  },
+  {
+    "question": "Should I migrate my application to Shellui?",
+    "answer": "Usually not as a full rewrite. A working application is expensive to replace, and Shellui is not a drop-in for an existing design system or backend. A better path is to adapt your app so it can run both ways — on its own, and inside the Shellui shell — then adopt the shell where it helps. That is often easier for a new surface you are adding than for moving an entire production app overnight. Try the playground first if you are unsure."
+  },
+  {
+    "question": "Is Shellui production ready?",
+    "answer": "Shellui is used in real projects and is still evolving. APIs and behavior can change, so pin your versions and follow the changelog rather than treating it as a frozen long-term contract."
+  },
+  {
+    "question": "What if the project disappears?",
+    "answer": "Shellui is our in-house solution. It is bootstrapped, we run it ourselves, and we have no plan to stop using it. It is also MIT licensed, so you keep the source, you can fork it, and you are not locked into a hosted platform."
+  }
+]

@@ -182,39 +182,49 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-      <div class="relative isolate overflow-hidden bg-gray-50 dark:bg-gray-900 px-6 py-24 text-center shadow-sm dark:shadow-2xl ring-1 ring-gray-200 dark:ring-0 sm:rounded-3xl sm:px-16">
-        <h2 class="text-4xl font-semibold tracking-tight text-balance text-gray-900 dark:text-white sm:text-5xl">
-          Start building today
-        </h2>
-        <p class="mx-auto mt-6 max-w-xl text-lg/8 text-pretty text-gray-600 dark:text-gray-300">
-          Stop rebuilding the same shell for every project. Focus on your app, and let Shellui handle the rest.
-        </p>
-        <div class="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href="{{ site.docs }}"
-            class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:outline-white"
-          >
-            Get started
-          </a>
-          <a
-            href="{{ site.github }}"
-            class="text-sm/6 font-semibold text-gray-900 dark:text-white"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View on GitHub <span aria-hidden="true">→</span>
-          </a>
+    {% include "home-faq.njk" %}
+
+    <div class="bg-white py-24 sm:py-32 dark:bg-gray-950">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:mx-0">
+          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
+            Ready to dive in?
+            <br />
+            Start using Shellui today.
+          </h2>
         </div>
-        <svg viewBox="0 0 1024 1024" aria-hidden="true" class="absolute top-1/2 left-1/2 -z-10 size-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]">
-          <circle r="512" cx="512" cy="512" fill="url(#cta-gradient)" fill-opacity="0.25" />
-          <defs>
-            <radialGradient id="cta-gradient">
-              <stop stop-color="#D4A853" />
-              <stop offset="1" stop-color="#A37200" />
-            </radialGradient>
-          </defs>
-        </svg>
+        <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-16 gap-y-16 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-24">
+          <div>
+            <dt class="font-semibold text-gray-900 dark:text-white">Get started</dt>
+            <dd class="mt-1 text-gray-600 dark:text-gray-400">
+              Follow the documentation to scaffold a project and start building with the shared shell.
+            </dd>
+            <a
+              href="{{ site.docs }}"
+              class="mt-6 inline-flex rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Get started
+            </a>
+          </div>
+          <div class="playground-cta">
+            <dt class="flex items-center gap-4 font-semibold text-gray-900 dark:text-white">
+              {% include "playground-app-icon.njk" %}
+              Try the playground
+            </dt>
+            <dd class="mt-3 text-gray-600 dark:text-gray-400">
+              Explore a live Shellui app — navigation, auth, and the full shell — with no install and no scaffolding.
+              <a
+                href="{{ site.playground }}"
+                class="font-semibold text-gray-900 dark:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open playground
+                <span aria-hidden="true">→</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
       </div>
     </div>
+

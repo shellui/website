@@ -1,10 +1,10 @@
 ---
-layout: layouts/page.njk
+layout: layouts/feature.njk
 title: Authentication | Shellui
 description: Authentication in Shellui - sign-in flows, protected routes, Supabase, and identity-service.
-heading: Authentication
 eyebrow: Features
-lede: This page is a work in progress.
+heading: Authentication
+lede: Sign-in flows with Supabase or the Shellui identity-service. Route-aware login, JWT sessions, OAuth providers, and protected-page redirects out of the box.
 ---
 
 Sign-in flows with Supabase or Shellui auth, route-aware login, and redirect support for protected pages. Pair with the [identity-service](https://github.com/shellui/identity-service) backend when you need OAuth and JWT sessions.
