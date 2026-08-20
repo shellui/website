@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Contribute | Shellui
-description: Contribute to the Shellui open source project.
+description: Contribute to Shellui with code, docs, design, testing, or ideas. Email contact@shellui.com first so we can plan how to work together.
 heading: Contribute
 lede: Anyone is welcome to join and contribute.
 ---

@@ -7,7 +7,10 @@
       "@id": "{{ site.url }}/#organization",
       "name": "{{ site.name }}",
       "url": "{{ site.url }}",
-      "logo": "{{ site.url }}/img/logo.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/img/logo.png"
+      },
       "sameAs": [
         "{{ site.github }}",
         "{{ site.linkedin }}",
@@ -16,21 +19,47 @@
       ]
     },
     {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}",
+      "name": "{{ site.name }}",
+      "description": {{ site.description | dump | safe }},
+      "inLanguage": "{{ site.locale or 'en' }}",
+      "publisher": { "@id": "{{ site.url }}/#organization" }
+    },
+    {
       "@type": "{% if tags and 'blog' in tags %}Article{% else %}WebPage{% endif %}",
+      "@id": "{{ canonical }}#{% if tags and 'blog' in tags %}article{% else %}webpage{% endif %}",
+      "url": {{ canonical | dump | safe }},
       "name": {{ metaTitle | dump | safe }},
       "headline": {{ metaTitle | dump | safe }},
       "description": {{ metaDescription | dump | safe }},
-      "url": {{ canonical | dump | safe }},
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "{{ site.name }}",
-        "url": "{{ site.url }}"
-      }
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      "publisher": { "@id": "{{ site.url }}/#organization" }
+      {% if breadcrumbs and breadcrumbs.length > 1 %}
+      ,"breadcrumb": { "@id": "{{ canonical }}#breadcrumb" }
+      {% endif %}
       {% if tags and "blog" in tags %}
       ,"datePublished": "{{ page.date.toISOString() }}",
       "author": { "@id": "{{ site.url }}/#organization" }
       {% endif %}
     }
+    {% if breadcrumbs and breadcrumbs.length > 1 %}
+    ,{
+      "@type": "BreadcrumbList",
+      "@id": "{{ canonical }}#breadcrumb",
+      "itemListElement": [
+        {% for crumb in breadcrumbs %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "name": {{ crumb.name | dump | safe }},
+          "item": {{ crumb.url | dump | safe }}
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    {% endif %}
     {% if page.url == "/" %}
     ,{
       "@type": "SoftwareApplication",
@@ -40,6 +69,22 @@
       "url": "{{ site.url }}",
       "description": {{ metaDescription | dump | safe }},
       "author": { "@id": "{{ site.url }}/#organization" }
+    }
+    ,{
+      "@type": "FAQPage",
+      "@id": "{{ site.url }}/#faq",
+      "mainEntity": [
+        {% for item in faq %}
+        {
+          "@type": "Question",
+          "name": {{ item.question | dump | safe }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ item.answer | dump | safe }}
+          }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
     }
     {% endif %}
   ]

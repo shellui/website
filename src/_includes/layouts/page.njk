@@ -3,6 +3,7 @@ layout: layouts/base.njk
 ---
 <article class="px-4 py-20 pt-32 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-3xl">
+    {% include "breadcrumbs.njk" %}
     {% if eyebrow %}
       <p class="mb-3 text-sm font-medium text-primary-ink dark:text-primary">{{ eyebrow }}</p>
     {% endif %}

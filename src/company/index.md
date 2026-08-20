@@ -1,11 +1,12 @@
 ---
 layout: layouts/base.njk
 title: About | Shellui
-description: Learn more about Shellui and the team behind it.
+description: Shellui is an open-source web app platform from Zurich. Sebastien Barbier built it so teams stop rebuilding auth, admin, and the same boilerplate.
 ---
 
 <article class="bg-white pt-32 pb-24 dark:bg-gray-900">
-  <div class="mx-auto max-w-3xl px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl px-6 lg:px-8">
+    {% include "breadcrumbs.njk" %}
     <h1 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">About Shellui</h1>
     <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">An open source web app development platform.</p>
     <div class="mt-10 text-base/7 text-gray-600 dark:text-gray-400 space-y-4">

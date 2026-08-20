@@ -1,7 +1,8 @@
 ---
 layout: layouts/base.njk
 title: Pricing | Shellui
-description: Shellui is free and open source under the MIT licence.
+description: Shellui is free forever under the MIT licence. Use the full platform at no cost, or hire an expert for architecture, custom work, and support.
+hideBreadcrumbs: true
 ---
 
 <div class="relative isolate bg-white px-6 py-24 pt-32 sm:py-32 sm:pt-40 lg:px-8 dark:bg-gray-950">

@@ -1,7 +1,7 @@
 {
   "name": "Shellui",
   "url": "https://shellui.com",
-  "description": "Shellui is the web app development platform. Build modern applications with authentication, legal documents, sidebar navigation, modal popups, side drawers, multi-language support, custom themes, toast notifications, and more.",
+  "description": "Shellui is the open-source web app development platform: a microfrontend shell with authentication, administration, storage, and shared UI.",
   "version": "0.3.0",
   "author": "Shellui",
   "docs": "https://docs.shellui.com",

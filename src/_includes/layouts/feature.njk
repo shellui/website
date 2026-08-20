@@ -4,6 +4,7 @@ layout: layouts/base.njk
 {% if centered %}
 <div class="bg-white px-6 py-24 pt-32 sm:py-32 sm:pt-40 lg:px-8 dark:bg-gray-950">
   <div class="mx-auto max-w-2xl text-center">
+    {% include "breadcrumbs.njk" %}
     {% if eyebrow %}
       <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ eyebrow }}</p>
     {% endif %}
@@ -22,6 +23,7 @@ layout: layouts/base.njk
 <div class="bg-white pt-28 pb-16 sm:pt-32 sm:pb-20 dark:bg-gray-950">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0">
+      {% include "breadcrumbs.njk" %}
       {% if eyebrow %}
         <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ eyebrow }}</p>
       {% endif %}

@@ -3,6 +3,7 @@ layout: layouts/base.njk
 ---
 <article class="bg-white px-6 py-32 pt-40 lg:px-8 dark:bg-gray-950">
   <div class="mx-auto max-w-3xl text-base/7 text-gray-700 dark:text-gray-300">
+    {% include "breadcrumbs.njk" %}
     {% if category %}
       <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ category }}</p>
     {% endif %}

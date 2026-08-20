@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Roadmap | Shellui
-description: See what's coming next for Shellui.
+description: "See Shellui's public roadmap: Pixel Perfect, Smart Shell AI APIs, a microfrontend marketplace, and v1.0 Horizon. Track progress on GitHub."
 eyebrow: Developers
 heading: Roadmap
 lede: See what we're working on and what's coming next.
