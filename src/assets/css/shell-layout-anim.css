@@ -84,6 +84,9 @@
   background:
     radial-gradient(circle at 18% 20%, color-mix(in oklab, var(--color-primary) 22%, transparent), transparent 42%),
     linear-gradient(160deg, #5c564c 0%, #3f3b34 100%);
+}
+
+.shell-anim--layout .shell-anim__desktop {
   animation: shell-anim-desktop var(--shell-anim-duration) var(--shell-anim-ease) infinite;
 }
 
@@ -121,6 +124,9 @@
   box-shadow: 0 8px 20px rgb(0 0 0 / 0.18);
   opacity: 0;
   transform: translate(8%, -6%) scale(0.92);
+}
+
+.shell-anim--layout .shell-anim__ghost {
   animation: shell-anim-ghost var(--shell-anim-duration) var(--shell-anim-ease) infinite;
 }
 
@@ -187,6 +193,9 @@
   overflow: hidden;
   background: rgb(255 255 255);
   container-type: inline-size;
+}
+
+.shell-anim--layout .shell-anim__app {
   animation: shell-anim-app var(--shell-anim-duration) var(--shell-anim-ease) infinite;
 }
 
@@ -199,6 +208,9 @@
   height: 0;
   overflow: hidden;
   background: rgb(243 244 246);
+}
+
+.shell-anim--layout .shell-anim__titlebar {
   animation: shell-anim-titlebar var(--shell-anim-duration) var(--shell-anim-ease) infinite;
 }
 
@@ -263,6 +275,9 @@
     var(--color-primary) 55%,
     color-mix(in oklab, var(--color-primary) 88%, var(--color-primary-ink)) 100%
   );
+}
+
+.shell-anim--layout .shell-anim__sidebar {
   animation: shell-anim-sidebar var(--shell-anim-duration) var(--shell-anim-ease) infinite;
 }
 
@@ -274,6 +289,9 @@
   width: max(5.4rem, 100%);
   height: 100%;
   padding: 0.5rem 0.4rem;
+}
+
+.shell-anim--layout .shell-anim__sidebar-inner {
   animation: shell-anim-sidebar-fade var(--shell-anim-duration) linear infinite;
 }
 
@@ -330,6 +348,9 @@
     var(--color-primary) 50%,
     color-mix(in oklab, var(--color-primary) 88%, var(--color-primary-ink)) 100%
   );
+}
+
+.shell-anim--layout .shell-anim__topbar {
   animation: shell-anim-topbar var(--shell-anim-duration) var(--shell-anim-ease) infinite;
 }
 
@@ -339,6 +360,9 @@
   gap: 0.32rem;
   height: 1.45rem;
   padding: 0 0.55rem;
+}
+
+.shell-anim--layout .shell-anim__topbar-inner {
   animation: shell-anim-topbar-fade var(--shell-anim-duration) linear infinite;
 }
 
@@ -440,6 +464,9 @@
   background: rgb(28 25 23 / 0.92);
   transform: translateY(110%);
   opacity: 0;
+}
+
+.shell-anim--layout .shell-anim__taskbar {
   animation: shell-anim-taskbar var(--shell-anim-duration) var(--shell-anim-ease) infinite;
 }
 
@@ -475,15 +502,15 @@
   color: rgb(156 163 175);
 }
 
-.shell-anim__mode--sidebar {
+.shell-anim--layout .shell-anim__mode--sidebar {
   animation: shell-anim-caption-sidebar var(--shell-anim-duration) linear infinite;
 }
 
-.shell-anim__mode--topbar {
+.shell-anim--layout .shell-anim__mode--topbar {
   animation: shell-anim-caption-topbar var(--shell-anim-duration) linear infinite;
 }
 
-.shell-anim__mode--window {
+.shell-anim--layout .shell-anim__mode--window {
   animation: shell-anim-caption-window var(--shell-anim-duration) linear infinite;
 }
 
@@ -756,6 +783,568 @@
   }
 }
 
+.prose .shell-anim p {
+  margin: 0.7rem 0 0;
+}
+
+.shell-anim--chrome .shell-anim__caption-static {
+  display: block;
+}
+
+.shell-anim--chrome {
+  --shell-chrome-duration: 9s;
+  --shell-chrome-delay: 0s;
+  --shell-chrome-ease: cubic-bezier(0.45, 0.05, 0.15, 1);
+}
+
+.shell-anim--modal {
+  --shell-chrome-duration: 9s;
+  --shell-chrome-delay: 0s;
+}
+
+.shell-anim--dialog {
+  --shell-chrome-duration: 9.5s;
+  --shell-chrome-delay: 1.3s;
+}
+
+.shell-anim--drawer {
+  --shell-chrome-duration: 10s;
+  --shell-chrome-delay: 0.6s;
+}
+
+.shell-anim--toast {
+  --shell-chrome-duration: 8s;
+  --shell-chrome-delay: 1.8s;
+}
+
+.shell-anim--settings {
+  --shell-chrome-duration: 11s;
+  --shell-chrome-delay: 0.4s;
+}
+
+.shell-anim__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: rgb(15 23 42 / 0.42);
+  opacity: 1;
+  animation: shell-chrome-scrim var(--shell-chrome-duration) var(--shell-chrome-ease)
+    var(--shell-chrome-delay) infinite;
+}
+
+.dark .shell-anim__scrim {
+  background: rgb(0 0 0 / 0.55);
+}
+
+.shell-anim__modal,
+.shell-anim__dialog {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.45rem;
+  background: rgb(255 255 255);
+  box-shadow: 0 14px 32px rgb(0 0 0 / 0.22);
+}
+
+.dark .shell-anim__modal,
+.dark .shell-anim__dialog {
+  background: rgb(31 41 55);
+}
+
+.shell-anim__modal {
+  top: 50%;
+  left: 50%;
+  width: 62%;
+  max-height: 72%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  animation: shell-chrome-center var(--shell-chrome-duration) var(--shell-chrome-ease)
+    var(--shell-chrome-delay) infinite;
+}
+
+.shell-anim__dialog {
+  top: 50%;
+  left: 50%;
+  width: 48%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  animation: shell-chrome-center var(--shell-chrome-duration) var(--shell-chrome-ease)
+    var(--shell-chrome-delay) infinite;
+}
+
+.shell-anim__card-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.4rem 0.5rem 0.28rem;
+}
+
+.shell-anim__card-title {
+  font-size: clamp(0.55rem, 3.8cqi, 0.72rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: rgb(17 24 39);
+  white-space: nowrap;
+}
+
+.dark .shell-anim__card-title {
+  color: rgb(243 244 246);
+}
+
+.shell-anim__card-x {
+  display: block;
+  width: 0.45rem;
+  height: 0.45rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: rgb(229 231 235);
+}
+
+.dark .shell-anim__card-x {
+  background: rgb(75 85 99);
+}
+
+.shell-anim__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  padding: 0 0.5rem 0.45rem;
+}
+
+.shell-anim__card-body span {
+  display: block;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: rgb(229 231 235);
+}
+
+.dark .shell-anim__card-body span {
+  background: rgb(55 65 81);
+}
+
+.shell-anim__card-body span:nth-child(2) {
+  width: 78%;
+}
+
+.shell-anim__card-body span:nth-child(3) {
+  width: 54%;
+}
+
+.shell-anim__card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.28rem;
+  padding: 0 0.5rem 0.45rem;
+}
+
+.shell-anim__btn {
+  display: block;
+  height: 0.7rem;
+  border-radius: 0.22rem;
+}
+
+.shell-anim__btn--ghost {
+  width: 1.7rem;
+  background: rgb(229 231 235);
+}
+
+.dark .shell-anim__btn--ghost {
+  background: rgb(55 65 81);
+}
+
+.shell-anim__btn--primary {
+  width: 2rem;
+  background: var(--color-primary);
+}
+
+.shell-anim__dialog-icon {
+  display: block;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin: 0.5rem auto 0.15rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-primary) 22%, white);
+  box-shadow: inset 0 0 0 1.5px var(--color-primary);
+}
+
+.dark .shell-anim__dialog-icon {
+  background: color-mix(in oklab, var(--color-primary) 28%, rgb(31 41 55));
+}
+
+.shell-anim__dialog .shell-anim__card-title {
+  text-align: center;
+  width: 100%;
+}
+
+.shell-anim__dialog .shell-anim__card-actions {
+  justify-content: center;
+  padding-bottom: 0.55rem;
+}
+
+.shell-anim__drawer,
+.shell-anim__settings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  background: rgb(255 255 255);
+  box-shadow: -10px 0 28px rgb(0 0 0 / 0.16);
+}
+
+.dark .shell-anim__drawer,
+.dark .shell-anim__settings {
+  background: rgb(31 41 55);
+}
+
+.shell-anim__drawer {
+  width: 46%;
+  transform: translateX(0);
+  animation: shell-chrome-drawer var(--shell-chrome-duration) var(--shell-chrome-ease)
+    var(--shell-chrome-delay) infinite;
+}
+
+.shell-anim__settings {
+  width: 52%;
+  transform: translateX(0);
+  animation: shell-chrome-drawer var(--shell-chrome-duration) var(--shell-chrome-ease)
+    var(--shell-chrome-delay) infinite;
+}
+
+.shell-anim__drawer .shell-anim__tiles {
+  margin-top: 0.15rem;
+  padding: 0 0.5rem;
+}
+
+.shell-anim__drawer-head,
+.shell-anim__settings-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  padding: 0.45rem 0.5rem 0.35rem;
+  border-bottom: 1px solid rgb(243 244 246);
+}
+
+.shell-anim__settings-head {
+  justify-content: flex-start;
+}
+
+.dark .shell-anim__drawer-head,
+.dark .shell-anim__settings-head {
+  border-bottom-color: rgb(55 65 81);
+}
+
+.shell-anim__gear {
+  display: block;
+  width: 0.62rem;
+  height: 0.62rem;
+  flex-shrink: 0;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-primary) 22%, transparent);
+}
+
+.shell-anim__setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.38rem 0.5rem;
+  border-bottom: 1px solid rgb(249 250 251);
+}
+
+.dark .shell-anim__setting {
+  border-bottom-color: rgb(55 65 81 / 0.6);
+}
+
+.shell-anim__setting-label {
+  font-size: clamp(0.48rem, 3.2cqi, 0.62rem);
+  font-weight: 500;
+  color: rgb(55 65 81);
+  white-space: nowrap;
+}
+
+.dark .shell-anim__setting-label {
+  color: rgb(209 213 219);
+}
+
+.shell-anim__toggle {
+  position: relative;
+  display: block;
+  width: 1.15rem;
+  height: 0.64rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--color-primary);
+  animation: shell-chrome-toggle-track var(--shell-chrome-duration) linear
+    var(--shell-chrome-delay) infinite;
+}
+
+.shell-anim__toggle i {
+  position: absolute;
+  top: 0.08rem;
+  left: 0.08rem;
+  display: block;
+  width: 0.48rem;
+  height: 0.48rem;
+  border-radius: 999px;
+  background: rgb(255 255 255);
+  animation: shell-chrome-toggle-knob var(--shell-chrome-duration) var(--shell-chrome-ease)
+    var(--shell-chrome-delay) infinite;
+}
+
+.shell-anim__setting-value {
+  display: block;
+  width: 1.6rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: rgb(229 231 235);
+}
+
+.dark .shell-anim__setting-value {
+  background: rgb(75 85 99);
+}
+
+.shell-anim__mini-layouts {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.shell-anim__mini-layouts i {
+  display: block;
+  width: 0.42rem;
+  height: 0.32rem;
+  border-radius: 0.08rem;
+  background: rgb(229 231 235);
+}
+
+.dark .shell-anim__mini-layouts i {
+  background: rgb(75 85 99);
+}
+
+.shell-anim__mini-layouts i.is-on {
+  background: var(--color-primary);
+}
+
+.shell-anim__toast {
+  position: absolute;
+  top: 8%;
+  right: 6%;
+  z-index: 5;
+  display: flex;
+  width: 46%;
+  align-items: center;
+  gap: 0.4rem;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  background: rgb(255 255 255);
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.16);
+  opacity: 1;
+  animation: shell-chrome-toast var(--shell-chrome-duration) var(--shell-chrome-ease)
+    var(--shell-chrome-delay) infinite;
+}
+
+.dark .shell-anim__toast {
+  background: rgb(31 41 55);
+}
+
+.shell-anim__toast-accent {
+  flex-shrink: 0;
+  width: 0.22rem;
+  align-self: stretch;
+  background: var(--color-primary);
+}
+
+.shell-anim__toast-icon {
+  flex-shrink: 0;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-primary) 28%, white);
+}
+
+.dark .shell-anim__toast-icon {
+  background: color-mix(in oklab, var(--color-primary) 35%, rgb(31 41 55));
+}
+
+.shell-anim__toast-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding: 0.4rem 0.45rem 0.4rem 0;
+}
+
+.shell-anim__toast-copy span {
+  display: block;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: rgb(229 231 235);
+}
+
+.dark .shell-anim__toast-copy span {
+  background: rgb(75 85 99);
+}
+
+.shell-anim__toast-copy span:first-child {
+  width: 72%;
+  height: 0.32rem;
+  background: rgb(156 163 175);
+}
+
+.dark .shell-anim__toast-copy span:first-child {
+  background: rgb(156 163 175);
+}
+
+.shell-anim__toast-copy span:last-child {
+  width: 90%;
+}
+
+@keyframes shell-chrome-scrim {
+  0%,
+  12% {
+    opacity: 0;
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  22%,
+  68% {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+
+  68% {
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes shell-chrome-center {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.92);
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  22%,
+  68% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation-timing-function: linear;
+  }
+
+  68% {
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -42%) scale(0.94);
+  }
+}
+
+@keyframes shell-chrome-drawer {
+  0%,
+  12% {
+    transform: translateX(105%);
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  24%,
+  70% {
+    transform: translateX(0);
+    animation-timing-function: linear;
+  }
+
+  70% {
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  84%,
+  100% {
+    transform: translateX(105%);
+  }
+}
+
+@keyframes shell-chrome-toast {
+  0%,
+  10% {
+    opacity: 0;
+    transform: translateY(-40%) scale(0.96);
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  20%,
+  62% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    animation-timing-function: linear;
+  }
+
+  62% {
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  76%,
+  100% {
+    opacity: 0;
+    transform: translateY(-24%) scale(0.96);
+  }
+}
+
+@keyframes shell-chrome-toggle-track {
+  0%,
+  28% {
+    background: rgb(209 213 219);
+  }
+
+  36%,
+  78% {
+    background: var(--color-primary);
+  }
+
+  88%,
+  100% {
+    background: rgb(209 213 219);
+  }
+}
+
+@keyframes shell-chrome-toggle-knob {
+  0%,
+  28% {
+    transform: translateX(0);
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  36%,
+  78% {
+    transform: translateX(0.5rem);
+    animation-timing-function: linear;
+  }
+
+  78% {
+    animation-timing-function: var(--shell-chrome-ease);
+  }
+
+  88%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .shell-anim__sidebar,
   .shell-anim__sidebar-inner,
@@ -766,7 +1355,15 @@
   .shell-anim__desktop,
   .shell-anim__ghost,
   .shell-anim__taskbar,
-  .shell-anim__mode {
+  .shell-anim__mode,
+  .shell-anim__scrim,
+  .shell-anim__modal,
+  .shell-anim__dialog,
+  .shell-anim__drawer,
+  .shell-anim__settings,
+  .shell-anim__toast,
+  .shell-anim__toggle,
+  .shell-anim__toggle i {
     animation: none;
   }
 

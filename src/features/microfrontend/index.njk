@@ -1,0 +1,49 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Microfrontend | Shellui
+description: Microfrontend support in Shellui - layout modes, navigation, and shared shell chrome.
+eyebrow: Features
+heading: Microfrontend
+lede: The runtime that stitches your apps together. Sidebar navigation, layout modes, modals, drawers, themes, and i18n - all configured from a single shell.
+---
+
+<div class="prose max-w-2xl">
+  <p>Shellui owns the shell around your app: sidebar navigation, layout modes, modals, drawers, and how microfrontends render inside the chrome. Apps keep their own UI. The shell keeps the shared surface consistent.</p>
+</div>
+
+<div class="mt-14 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] lg:gap-14">
+  <div class="max-w-xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Layout modes</h2>
+    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Switch between a colored sidebar, a top bar, and a windowed desktop from one config. Every microfrontend inherits the chrome, so navigation and the app canvas stay aligned when the layout changes.</p>
+  </div>
+  <div class="mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
+    {% include "shell-layout-anim.njk" %}
+  </div>
+</div>
+
+<div class="mt-20">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Shared chrome</h2>
+    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Dialogs, toasts, modals, drawers, and settings live in the shell too. Hosted apps can open them without rebuilding overlays, and the markup stays in the page.</p>
+  </div>
+
+  <div class="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2">
+    {% set chromes = [
+      { type: "modal", blurb: "Open forms and detail views without leaving the current route." },
+      { type: "dialog", blurb: "Short confirmations and choices, centered over the running app." },
+      { type: "drawer", blurb: "Slide in side panels for details, lists, and secondary flows." },
+      { type: "toast", blurb: "Transient status messages that appear without blocking the app." },
+      { type: "settings", blurb: "Theme, language, and layout controls that apply across every microfrontend." }
+    ] %}
+    {% for item in chromes %}
+      <div>
+        {% set chrome = item.type %}
+        {% include "shell-chrome-anim.njk" %}
+        <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">{{ item.blurb }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<p class="mt-16 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/authentication/">Authentication</a> handles sign-in, protected routes, and identity integration.</p>
