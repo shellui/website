@@ -111,7 +111,7 @@ export default function (eleventyConfig) {
     (content, author = "", role = "", image = "") => {
       const quote = wrapParagraph(content);
       const photo = image
-        ? `<img src="${escapeAttr(image)}" alt="" class="size-6 flex-none rounded-full bg-gray-50 object-cover dark:bg-gray-900" />`
+        ? `<img src="${escapeAttr(image)}" alt="" class="size-6 flex-none rounded-full bg-gray-50 object-contain p-0.5 dark:bg-gray-900" />`
         : "";
       const credit = [author, role].filter(Boolean).length
         ? `<figcaption class="mt-6 flex gap-x-4">${photo}<div class="text-sm/6">${author ? `<strong class="font-semibold text-gray-900 dark:text-white">${escapeXml(author)}</strong>` : ""}${author && role ? " – " : ""}${role ? escapeXml(role) : ""}</div></figcaption>`

@@ -13,7 +13,7 @@ layout: layouts/base.njk
       {{ content | readingTime }} min read
     </p>
     <div class="mt-6 flex items-center gap-x-3">
-      <img src="{{ authorImage or '/img/about/sebastien-barbier.jpg' }}" alt="{{ author or site.author }}" class="size-9 rounded-full bg-gray-50 object-cover dark:bg-gray-900" width="36" height="36" />
+      <img src="{{ authorImage or '/img/logo.png' }}" alt="{{ author or site.author }}" class="size-9 rounded-full bg-gray-50 object-contain p-0.5 dark:bg-gray-900" width="36" height="36" />
       <div class="text-sm/5">
         <p class="font-semibold text-gray-900 dark:text-white">{{ author or site.author }}</p>
         {% if authorRole %}

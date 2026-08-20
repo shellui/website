@@ -61,7 +61,7 @@ description: Official Shellui blog. News and notes on the web app development pl
                   {% endif %}
                 </div>
                 <div class="mt-4 flex items-center gap-x-3">
-                  <img src="{{ post.data.authorImage or '/img/about/sebastien-barbier.jpg' }}" alt="{{ post.data.author or site.author }}" class="size-8 rounded-full bg-gray-50 object-cover dark:bg-gray-900" width="32" height="32" />
+                  <img src="{{ post.data.authorImage or '/img/logo.png' }}" alt="{{ post.data.author or site.author }}" class="size-8 rounded-full bg-gray-50 object-contain p-0.5 dark:bg-gray-900" width="32" height="32" />
                   <div class="text-sm/5">
                     <p class="font-semibold text-gray-900 dark:text-white">{{ post.data.author or site.author }}</p>
                     {% if post.data.authorRole %}

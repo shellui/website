@@ -5,9 +5,9 @@ heading: Introducing Shellui
 lede: Meet Shellui, the web app development platform — a shared shell around your product so you can focus on the app, not the infrastructure.
 description: Meet Shellui, the web app development platform. This is the first post on our official blog.
 date: 2026-08-19
-author: Sébastien Barbier
-authorRole: Founder
-authorImage: /img/about/sebastien-barbier.jpg
+author: Shellui
+authorRole: The Shellui team
+authorImage: /img/logo.png
 category: Announcement
 image: /img/blog/introducing-shellui.jpg
 imageAlt: Person holding a hello sticker
@@ -29,7 +29,7 @@ It is framework agnostic and TypeScript-first. The packages are `@shellui/cli` f
 
 Documentation lives at [docs.shellui.com](https://docs.shellui.com). The [playground](https://playground.shellui.com) is there if you want to try the shell without scaffolding a repo. Source is on [GitHub](https://github.com/shellui).
 
-{% quote "Sébastien Barbier", "Founder", "/img/about/sebastien-barbier.jpg" %}
+{% quote "Shellui", "The Shellui team", "/img/logo.png" %}
 "We will use this blog for release notes, architecture notes, and how the platform is evolving."
 {% endquote %}
 
