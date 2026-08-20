@@ -1,0 +1,78 @@
+<div
+  class="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(11rem,16rem)_minmax(0,1fr)] lg:gap-12"
+  x-data="{ topic: 'grant' }"
+>
+  <ul class="flex flex-row flex-wrap gap-2 lg:flex-col lg:flex-nowrap" role="tablist" aria-label="Storage access APIs">
+    {% set storageAccess = [
+      { id: "grant", label: "Access grant" },
+      { id: "share", label: "Share link" },
+      { id: "quota", label: "Quota" }
+    ] %}
+    {% for item in storageAccess %}
+      <li class="min-w-0">
+        <button
+          type="button"
+          class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors"
+          :class="topic === '{{ item.id }}' ? 'bg-primary/10 text-primary-ink dark:text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'"
+          role="tab"
+          :aria-selected="(topic === '{{ item.id }}').toString()"
+          aria-controls="storage-access-example-{{ item.id }}"
+          id="storage-access-tab-{{ item.id }}"
+          @click="topic = '{{ item.id }}'"
+        >{{ item.label }}</button>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="min-w-0">
+    <div id="storage-access-example-grant" role="tabpanel" aria-labelledby="storage-access-tab-grant" x-show="topic === 'grant'">
+      {% highlight "ts", "grant.ts" %}
+await fetch(`${storageUrl}/storage/v1/access/grant`, {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    bucket: "company",
+    subject_type: "user",
+    subject_id: "42",
+    resource_type: "folder",
+    resource_id: "hr",
+    permission: "write",
+    effect: "allow",
+  }),
+});
+      {% endhighlight %}
+    </div>
+
+    <div id="storage-access-example-share" role="tabpanel" aria-labelledby="storage-access-tab-share" x-show="topic === 'share'" x-cloak>
+      {% highlight "ts", "share.ts" %}
+const { token, path_url } = await fetch(
+  `${storageUrl}/storage/v1/share/company/docs/q1.pdf`,
+  {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      expires_at: "2026-12-31T23:59:59Z",
+      max_downloads: 5,
+    }),
+  },
+).then((response) => response.json());
+      {% endhighlight %}
+    </div>
+
+    <div id="storage-access-example-quota" role="tabpanel" aria-labelledby="storage-access-tab-quota" x-show="topic === 'quota'" x-cloak>
+      {% highlight "ts", "quota.ts" %}
+const quota = await fetch(`${storageUrl}/storage/v1/quota`, {
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+  },
+}).then((response) => response.json());
+      {% endhighlight %}
+    </div>
+  </div>
+</div>

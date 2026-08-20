@@ -1,0 +1,78 @@
+<div
+  class="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(11rem,16rem)_minmax(0,1fr)] lg:gap-12"
+  x-data="{ topic: 'groups' }"
+>
+  <ul class="flex flex-row flex-wrap gap-2 lg:flex-col lg:flex-nowrap" role="tablist" aria-label="Identity directory APIs">
+    {% set directoryTopics = [
+      { id: "groups", label: "Groups" },
+      { id: "logs", label: "Login logs" },
+      { id: "tokens", label: "Access tokens" }
+    ] %}
+    {% for item in directoryTopics %}
+      <li class="min-w-0">
+        <button
+          type="button"
+          class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors"
+          :class="topic === '{{ item.id }}' ? 'bg-primary/10 text-primary-ink dark:text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'"
+          role="tab"
+          :aria-selected="(topic === '{{ item.id }}').toString()"
+          aria-controls="directory-example-{{ item.id }}"
+          id="directory-tab-{{ item.id }}"
+          @click="topic = '{{ item.id }}'"
+        >{{ item.label }}</button>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="min-w-0">
+    <div id="directory-example-groups" role="tabpanel" aria-labelledby="directory-tab-groups" x-show="topic === 'groups'">
+      {% highlight "ts", "groups.ts" %}
+import { useAuth } from "@shellui/core";
+
+const { user } = useAuth();
+const groups = user?.groups ?? [];
+
+await fetch(`${backendUrl}/api/v1/groups`, {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ name: "billing" }),
+});
+      {% endhighlight %}
+    </div>
+
+    <div id="directory-example-logs" role="tabpanel" aria-labelledby="directory-tab-logs" x-show="topic === 'logs'" x-cloak>
+      {% highlight "ts", "login-events.ts" %}
+const events = await fetch(
+  `${backendUrl}/api/v1/login-events?outcome=success`,
+  {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  },
+).then((response) => response.json());
+      {% endhighlight %}
+    </div>
+
+    <div id="directory-example-tokens" role="tabpanel" aria-labelledby="directory-tab-tokens" x-show="topic === 'tokens'" x-cloak>
+      {% highlight "ts", "access-token.ts" %}
+const { access_token } = await fetch(
+  `${backendUrl}/api/v1/personal-access-tokens`,
+  {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${sessionToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: "billing-service",
+      read_only: true,
+    }),
+  },
+).then((response) => response.json());
+      {% endhighlight %}
+    </div>
+  </div>
+</div>

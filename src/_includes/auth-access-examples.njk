@@ -1,0 +1,74 @@
+<div
+  class="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(11rem,16rem)_minmax(0,1fr)] lg:gap-12"
+  x-data="{ mode: 'public' }"
+>
+  <ul class="flex flex-row flex-wrap gap-2 lg:flex-col lg:flex-nowrap" role="tablist" aria-label="Company access modes">
+    {% set accessModes = [
+      { id: "public", label: "Public" },
+      { id: "domain", label: "Domain allow list" },
+      { id: "invite", label: "Invitation only" }
+    ] %}
+    {% for item in accessModes %}
+      <li class="min-w-0">
+        <button
+          type="button"
+          class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors"
+          :class="mode === '{{ item.id }}' ? 'bg-primary/10 text-primary-ink dark:text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'"
+          role="tab"
+          :aria-selected="(mode === '{{ item.id }}').toString()"
+          aria-controls="access-example-{{ item.id }}"
+          id="access-tab-{{ item.id }}"
+          @click="mode = '{{ item.id }}'"
+        >{{ item.label }}</button>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="min-w-0">
+    <div id="access-example-public" role="tabpanel" aria-labelledby="access-tab-public" x-show="mode === 'public'">
+      {% highlight "ts", "access.ts" %}
+await fetch(`${backendUrl}/api/v1/companies/${companyId}/`, {
+  method: "PATCH",
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    access_mode: "public",
+  }),
+});
+      {% endhighlight %}
+    </div>
+
+    <div id="access-example-domain" role="tabpanel" aria-labelledby="access-tab-domain" x-show="mode === 'domain'" x-cloak>
+      {% highlight "ts", "access.ts" %}
+await fetch(`${backendUrl}/api/v1/companies/${companyId}/`, {
+  method: "PATCH",
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    access_mode: "domain",
+    allowed_email_domains: ["acme.com"],
+  }),
+});
+      {% endhighlight %}
+    </div>
+
+    <div id="access-example-invite" role="tabpanel" aria-labelledby="access-tab-invite" x-show="mode === 'invite'" x-cloak>
+      {% highlight "ts", "access.ts" %}
+await fetch(`${backendUrl}/api/v1/companies/${companyId}/`, {
+  method: "PATCH",
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    access_mode: "invite",
+  }),
+});
+      {% endhighlight %}
+    </div>
+  </div>
+</div>

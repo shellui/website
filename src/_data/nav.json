@@ -35,19 +35,19 @@
     {
       "href": "/features/authentication/",
       "label": "Authentication",
-      "description": "Sign-in flows, protected routes, and identity integration.",
+      "description": "Sign-in in the shell, join modes, groups, logs, and tokens.",
       "icon": "lock"
     },
     {
       "href": "/features/administration/",
       "label": "Administration",
-      "description": "Admin panel to manage and overview your data.",
+      "description": "Embedded admin, directory tools, and custom sidebar apps.",
       "icon": "cog"
     },
     {
       "href": "/features/storage/",
       "label": "Storage",
-      "description": "File buckets and object storage for Shellui apps.",
+      "description": "Company bucket, file SDK, grants, share links, and quotas.",
       "icon": "storage"
     }
   ]

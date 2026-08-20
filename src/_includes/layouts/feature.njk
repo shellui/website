@@ -14,7 +14,7 @@ layout: layouts/base.njk
   </div>
 </div>
 <article class="px-6 {% if playgroundCta %}pb-8{% else %}pb-24{% endif %} lg:px-8">
-  <div class="prose mx-auto max-w-2xl">
+  <div class="{% if wide %}mx-auto max-w-7xl{% else %}prose mx-auto max-w-2xl{% endif %}">
     {{ content | safe }}
   </div>
 </article>
@@ -38,7 +38,7 @@ layout: layouts/base.njk
 {% endif %}
 {% if playgroundCta %}
 <div class="px-6 pb-16 sm:pb-24 lg:px-8">
-  <div class="playground-cta relative isolate mx-auto max-w-2xl overflow-hidden rounded-3xl bg-gray-50 px-6 py-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:shadow-2xl dark:ring-0 sm:px-8 sm:py-8">
+  <div class="playground-cta relative isolate mx-auto overflow-hidden rounded-3xl bg-gray-50 px-6 py-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:shadow-2xl dark:ring-0 sm:px-8 sm:py-8 {% if wide %}max-w-7xl{% else %}max-w-2xl{% endif %}">
     <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
       <div class="flex min-w-0 items-center gap-5 text-left">
         {% include "playground-app-icon.njk" %}

@@ -1,0 +1,92 @@
+<div
+  class="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(11rem,16rem)_minmax(0,1fr)] lg:gap-12"
+  x-data="{ method: 'upload' }"
+>
+  <ul class="flex flex-row flex-wrap gap-2 lg:flex-col lg:flex-nowrap" role="tablist" aria-label="Storage SDK methods">
+    {% set storageMethods = [
+      { id: "upload", label: "Upload" },
+      { id: "list", label: "List" },
+      { id: "download", label: "Download" },
+      { id: "picker", label: "Picker" }
+    ] %}
+    {% for item in storageMethods %}
+      <li class="min-w-0">
+        <button
+          type="button"
+          class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors"
+          :class="method === '{{ item.id }}' ? 'bg-primary/10 text-primary-ink dark:text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'"
+          role="tab"
+          :aria-selected="(method === '{{ item.id }}').toString()"
+          aria-controls="storage-sdk-example-{{ item.id }}"
+          id="storage-sdk-tab-{{ item.id }}"
+          @click="method = '{{ item.id }}'"
+        >{{ item.label }}</button>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="min-w-0">
+    <div id="storage-sdk-example-upload" role="tabpanel" aria-labelledby="storage-sdk-tab-upload" x-show="method === 'upload'">
+      {% highlight "ts", "upload.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+const bucket = shellui.storage.from("company");
+const file = new File(["quarter one"], "q1.pdf", { type: "application/pdf" });
+
+const { data, error } = await bucket.upload(
+  "docs/reports/2024/q1.pdf",
+  file,
+  { upsert: true },
+);
+      {% endhighlight %}
+    </div>
+
+    <div id="storage-sdk-example-list" role="tabpanel" aria-labelledby="storage-sdk-tab-list" x-show="method === 'list'" x-cloak>
+      {% highlight "ts", "list.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+const { data: entries, error } = await shellui.storage
+  .from("company")
+  .list("docs/reports", {
+    limit: 200,
+    sortBy: { column: "name", order: "asc" },
+  });
+      {% endhighlight %}
+    </div>
+
+    <div id="storage-sdk-example-download" role="tabpanel" aria-labelledby="storage-sdk-tab-download" x-show="method === 'download'" x-cloak>
+      {% highlight "ts", "download.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+const { data: blob, error } = await shellui.storage
+  .from("company")
+  .download("docs/reports/2024/q1.pdf");
+
+if (!error) {
+  const url = URL.createObjectURL(blob);
+}
+      {% endhighlight %}
+    </div>
+
+    <div id="storage-sdk-example-picker" role="tabpanel" aria-labelledby="storage-sdk-tab-picker" x-show="method === 'picker'" x-cloak>
+      {% highlight "ts", "picker.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+const result = await shellui.selectFiles({ multiple: true });
+if (!result) return;
+
+for (const file of result.items) {
+  console.log(file.id, file.path);
+}
+      {% endhighlight %}
+    </div>
+  </div>
+</div>

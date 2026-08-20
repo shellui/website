@@ -1,0 +1,62 @@
+<div
+  class="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(11rem,16rem)_minmax(0,1fr)] lg:gap-12"
+  x-data="{ item: 'app' }"
+>
+  <ul class="flex flex-row flex-wrap gap-2 lg:flex-col lg:flex-nowrap" role="tablist" aria-label="Admin navigation items">
+    {% set adminNavItems = [
+      { id: "app", label: "Application" },
+      { id: "staff", label: "Staff only" },
+      { id: "external", label: "New tab" }
+    ] %}
+    {% for navItem in adminNavItems %}
+      <li class="min-w-0">
+        <button
+          type="button"
+          class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors"
+          :class="item === '{{ navItem.id }}' ? 'bg-primary/10 text-primary-ink dark:text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'"
+          role="tab"
+          :aria-selected="(item === '{{ navItem.id }}').toString()"
+          aria-controls="admin-nav-example-{{ navItem.id }}"
+          id="admin-nav-tab-{{ navItem.id }}"
+          @click="item = '{{ navItem.id }}'"
+        >{{ navItem.label }}</button>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="min-w-0">
+    <div id="admin-nav-example-app" role="tabpanel" aria-labelledby="admin-nav-tab-app" x-show="item === 'app'">
+      {% highlight "ts", "administration.ts" %}
+{
+  label: { en: "Billing", fr: "Facturation" },
+  path: "billing",
+  url: "https://billing.example.com/",
+  icon: "/icons/billing.svg",
+}
+      {% endhighlight %}
+    </div>
+
+    <div id="admin-nav-example-staff" role="tabpanel" aria-labelledby="admin-nav-tab-staff" x-show="item === 'staff'" x-cloak>
+      {% highlight "ts", "administration.ts" %}
+{
+  label: "Django admin",
+  path: "django",
+  url: "/admin/",
+  requiresStaff: true,
+  openIn: "external",
+}
+      {% endhighlight %}
+    </div>
+
+    <div id="admin-nav-example-external" role="tabpanel" aria-labelledby="admin-nav-tab-external" x-show="item === 'external'" x-cloak>
+      {% highlight "ts", "administration.ts" %}
+{
+  label: "Support desk",
+  path: "support",
+  url: "https://support.example.com/",
+  openIn: "external",
+}
+      {% endhighlight %}
+    </div>
+  </div>
+</div>

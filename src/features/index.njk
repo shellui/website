@@ -1,0 +1,101 @@
+---
+layout: layouts/feature.njk
+centered: true
+wide: true
+playgroundCta: true
+title: Features | Shellui
+description: Four pieces of shared infrastructure — microfrontend shell, authentication, administration, and storage — so you can focus on the product.
+eyebrow: The shared foundation
+heading: Features
+lede: Shellui ships the infrastructure every web app needs. Four pieces, one shell. You bring the application.
+---
+
+<div class="grid gap-6 lg:gap-8">
+  <a
+    href="/features/microfrontend/"
+    class="group grid overflow-hidden rounded-3xl border border-gray-200 bg-white transition-shadow hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 lg:grid-cols-2"
+  >
+    <div class="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+      <p class="text-xs font-semibold tracking-widest text-primary-ink uppercase dark:text-primary">01</p>
+      <h2 class="mt-3 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Microfrontend</h2>
+      <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Host your app in an iframe. Load the SDK, call init, and talk to the shell over postMessage. The chrome stays in the host &mdash; layouts, toasts, dialogs, theme, and language included.</p>
+      <ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Sidebar, top bar, or window layout</li>
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Toast, dialog, modal, and drawer from the SDK</li>
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> One <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.config.ts</code></li>
+      </ul>
+      <span class="mt-8 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">Explore microfrontend</span>
+    </div>
+    <div class="flex items-center bg-gray-50 p-8 dark:bg-gray-950/60 sm:p-10">
+      <div class="mx-auto w-full max-w-md">
+        {% include "shell-layout-anim.njk" %}
+      </div>
+    </div>
+  </a>
+
+  <a
+    href="/features/authentication/"
+    class="group grid overflow-hidden rounded-3xl border border-gray-200 bg-white transition-shadow hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 lg:grid-cols-2"
+  >
+    <div class="order-2 flex items-center bg-gray-50 p-8 dark:bg-gray-950/60 sm:p-10 lg:order-1">
+      <div class="mx-auto w-full max-w-xs">
+        {% include "feature-visual-auth.njk" %}
+      </div>
+    </div>
+    <div class="order-1 flex flex-col justify-center p-8 sm:p-10 lg:order-2 lg:p-12">
+      <p class="text-xs font-semibold tracking-widest text-primary-ink uppercase dark:text-primary">02</p>
+      <h2 class="mt-3 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Authentication</h2>
+      <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Sign-in lives in the shell. Connect identity-service or Supabase, protect routes, and decide who can join &mdash; public, a domain allow list, or invitation only.</p>
+      <ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> OAuth, JWT sessions, and JWKS</li>
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Groups and login logs</li>
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Access tokens for users and services</li>
+      </ul>
+      <span class="mt-8 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">Explore authentication</span>
+    </div>
+  </a>
+
+  <a
+    href="/features/administration/"
+    class="group grid overflow-hidden rounded-3xl border border-gray-200 bg-white transition-shadow hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 lg:grid-cols-2"
+  >
+    <div class="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+      <p class="text-xs font-semibold tracking-widest text-primary-ink uppercase dark:text-primary">03</p>
+      <h2 class="mt-3 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Administration</h2>
+      <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Staff and company owners open an embedded admin from the account menu. Manage the directory there, then inject your own apps into the sidebar from config.</p>
+      <ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Users, organization, and join modes</li>
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Groups, logs, tokens, and OAuth clients</li>
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Custom admin navigation</li>
+      </ul>
+      <span class="mt-8 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">Explore administration</span>
+    </div>
+    <div class="flex items-center bg-gray-50 p-8 dark:bg-gray-950/60 sm:p-10">
+      <div class="mx-auto w-full max-w-sm">
+        {% include "feature-visual-admin.njk" %}
+      </div>
+    </div>
+  </a>
+
+  <a
+    href="/features/storage/"
+    class="group grid overflow-hidden rounded-3xl border border-gray-200 bg-white transition-shadow hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 lg:grid-cols-2"
+  >
+    <div class="order-2 flex items-center bg-gray-50 p-8 dark:bg-gray-950/60 sm:p-10 lg:order-1">
+      <div class="mx-auto w-full max-w-xs">
+        {% include "feature-visual-storage.njk" %}
+      </div>
+    </div>
+    <div class="order-1 flex flex-col justify-center p-8 sm:p-10 lg:order-2 lg:p-12">
+      <p class="text-xs font-semibold tracking-widest text-primary-ink uppercase dark:text-primary">04</p>
+      <h2 class="mt-3 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Storage</h2>
+      <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">A company bucket behind the shell. New files stay private until you share them. Iframe apps upload, list, and pick files through <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.storage</code>.</p>
+      <ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Access grants for users, groups, or the company</li>
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Share links with expiry and download caps</li>
+        <li class="flex gap-2"><span class="font-medium text-primary-ink dark:text-primary">→</span> Company and per-user quotas</li>
+      </ul>
+      <span class="mt-8 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">Explore storage</span>
+    </div>
+  </a>
+</div>
