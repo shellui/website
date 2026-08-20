@@ -78,24 +78,30 @@ description: Shellui is an open-source, opinionated microfrontend shell for buil
             class="group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-10 lg:p-14 transition-shadow hover:shadow-lg animate-on-scroll"
           >
             <div class="flex flex-col lg:flex-row lg:items-center lg:gap-12">
-              <div class="flex-1">
-                <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-ink dark:text-primary mb-5">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
-                  </svg>
-                  Core
+              <div class="contents lg:flex lg:flex-1 lg:flex-col">
+                <div>
+                  <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-ink dark:text-primary mb-5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                    </svg>
+                    Core
+                  </div>
+                  <h3 class="text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white lg:mb-4">
+                    Microfrontend Shell
+                  </h3>
                 </div>
-                <h3 class="text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
-                  Microfrontend Shell
-                </h3>
-                <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed max-w-xl">
-                  The runtime that stitches your apps together. Sidebar navigation, modals, drawers, themes, i18n, toasts, settings, cookie consent, and offline support &mdash; all configured from a single <code class="text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">shellui.config.ts</code>.
-                </p>
-                <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
-                  Explore microfrontend
-                </span>
+                <div class="order-3 mt-6 lg:order-none lg:mt-0">
+                  <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed max-w-xl">
+                    The runtime that stitches your apps together. Sidebar navigation, modals, drawers, themes, i18n, toasts, settings, cookie consent, and offline support &mdash; all configured from a single <code class="text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">shellui.config.ts</code>.
+                  </p>
+                  <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
+                    Explore microfrontend
+                  </span>
+                </div>
               </div>
-              <div class="hidden lg:block flex-shrink-0 w-80 h-52 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 dark:from-primary/15 dark:to-gray-800 border border-gray-100 dark:border-gray-700/50"></div>
+              <div class="order-2 mt-8 w-full max-w-md mx-auto lg:order-none lg:mx-0 lg:mt-0 lg:max-w-none lg:w-[26rem] xl:w-[28rem] shrink-0">
+                {% include "shell-layout-anim.njk" %}
+              </div>
             </div>
           </a>
 

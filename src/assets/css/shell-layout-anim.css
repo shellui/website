@@ -1,0 +1,780 @@
+/* 16s loop: sidebar → top bar → window → sidebar
+ *  0–22%   sidebar hold
+ * 22–31%   sidebar → top bar
+ * 31–53%   top bar hold
+ * 53–64%   top bar → window
+ * 64–84%   window hold
+ * 84–100%  window → sidebar
+ */
+.shell-anim {
+  --shell-anim-duration: 16s;
+  --shell-anim-ease: cubic-bezier(0.45, 0.05, 0.15, 1);
+  width: 100%;
+  user-select: none;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.shell-anim__device {
+  border-radius: 0.85rem;
+  border: 1px solid rgb(17 24 39 / 0.1);
+  background: rgb(249 250 251);
+  padding: 0.35rem 0.4rem 0.45rem;
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.04),
+    0 8px 24px rgb(0 0 0 / 0.04);
+}
+
+.dark .shell-anim__device {
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(17 24 39);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.2),
+    0 8px 24px rgb(0 0 0 / 0.25);
+}
+
+.shell-anim__bezel {
+  display: flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0.12rem 0.28rem 0.38rem;
+}
+
+.shell-anim__dot {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: rgb(209 213 219);
+}
+
+.dark .shell-anim__dot {
+  background: rgb(75 85 99);
+}
+
+.shell-anim__screen {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 0.45rem;
+  background: rgb(255 255 255);
+  isolation: isolate;
+}
+
+@media (min-width: 640px) {
+  .shell-anim__screen {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+.dark .shell-anim__screen {
+  background: rgb(3 7 18);
+}
+
+.shell-anim__desktop,
+.shell-anim__ghost,
+.shell-anim__app,
+.shell-anim__taskbar {
+  position: absolute;
+}
+
+.shell-anim__desktop {
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 18% 20%, color-mix(in oklab, var(--color-primary) 22%, transparent), transparent 42%),
+    linear-gradient(160deg, #5c564c 0%, #3f3b34 100%);
+  animation: shell-anim-desktop var(--shell-anim-duration) var(--shell-anim-ease) infinite;
+}
+
+.dark .shell-anim__desktop {
+  background:
+    radial-gradient(circle at 18% 20%, color-mix(in oklab, var(--color-primary) 18%, transparent), transparent 42%),
+    linear-gradient(160deg, #2a261f 0%, #141311 100%);
+}
+
+.shell-anim__desk-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.7rem 0.65rem;
+}
+
+.shell-anim__desk-icons span {
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 0.2rem;
+  background: rgb(255 255 255 / 0.28);
+  box-shadow: 0 0.45rem 0 0 rgb(255 255 255 / 0.12);
+}
+
+.shell-anim__ghost {
+  z-index: 1;
+  top: 9%;
+  right: 7%;
+  width: 40%;
+  height: 46%;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  background: rgb(255 255 255 / 0.92);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.18);
+  opacity: 0;
+  transform: translate(8%, -6%) scale(0.92);
+  animation: shell-anim-ghost var(--shell-anim-duration) var(--shell-anim-ease) infinite;
+}
+
+.dark .shell-anim__ghost {
+  background: rgb(31 41 55 / 0.95);
+}
+
+.shell-anim__ghost-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.18rem;
+  height: 0.85rem;
+  padding: 0 0.4rem;
+  background: rgb(243 244 246);
+}
+
+.dark .shell-anim__ghost-bar {
+  background: rgb(17 24 39);
+}
+
+.shell-anim__ghost-bar i {
+  display: block;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: #f87171;
+}
+
+.shell-anim__ghost-bar i:nth-child(2) {
+  background: #fbbf24;
+}
+
+.shell-anim__ghost-bar i:nth-child(3) {
+  background: #34d399;
+}
+
+.shell-anim__ghost-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  padding: 0.45rem;
+}
+
+.shell-anim__ghost-body span {
+  display: block;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgb(229 231 235);
+}
+
+.dark .shell-anim__ghost-body span {
+  background: rgb(55 65 81);
+}
+
+.shell-anim__ghost-body span:last-child {
+  width: 62%;
+}
+
+.shell-anim__app {
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgb(255 255 255);
+  container-type: inline-size;
+  animation: shell-anim-app var(--shell-anim-duration) var(--shell-anim-ease) infinite;
+}
+
+.dark .shell-anim__app {
+  background: rgb(17 24 39);
+}
+
+.shell-anim__titlebar {
+  flex: 0 0 auto;
+  height: 0;
+  overflow: hidden;
+  background: rgb(243 244 246);
+  animation: shell-anim-titlebar var(--shell-anim-duration) var(--shell-anim-ease) infinite;
+}
+
+.dark .shell-anim__titlebar {
+  background: rgb(31 41 55);
+}
+
+.shell-anim__titlebar-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 1.15rem;
+  padding: 0 0.4rem;
+}
+
+.shell-anim__traffic {
+  display: flex;
+  gap: 0.18rem;
+}
+
+.shell-anim__traffic i {
+  display: block;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: #f87171;
+}
+
+.shell-anim__traffic i:nth-child(2) {
+  background: #fbbf24;
+}
+
+.shell-anim__traffic i:nth-child(3) {
+  background: #34d399;
+}
+
+.shell-anim__win-title {
+  font-size: clamp(0.45rem, 3.2cqi, 0.62rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: rgb(55 65 81);
+  white-space: nowrap;
+}
+
+.dark .shell-anim__win-title {
+  color: rgb(209 213 219);
+}
+
+.shell-anim__body {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+}
+
+.shell-anim__sidebar {
+  flex: 0 0 auto;
+  width: 32%;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-primary) 82%, white) 0%,
+    var(--color-primary) 55%,
+    color-mix(in oklab, var(--color-primary) 88%, var(--color-primary-ink)) 100%
+  );
+  animation: shell-anim-sidebar var(--shell-anim-duration) var(--shell-anim-ease) infinite;
+}
+
+.shell-anim__sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+  box-sizing: border-box;
+  width: max(5.4rem, 100%);
+  height: 100%;
+  padding: 0.5rem 0.4rem;
+  animation: shell-anim-sidebar-fade var(--shell-anim-duration) linear infinite;
+}
+
+.shell-anim__brand {
+  display: block;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-bottom: 0.35rem;
+  border-radius: 0.28rem;
+  background: rgb(255 255 255 / 0.92);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.2);
+}
+
+.shell-anim__nav-item {
+  display: block;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.32);
+}
+
+.shell-anim__nav-item.is-on {
+  width: 86%;
+  background: rgb(255 255 255 / 0.88);
+}
+
+.shell-anim__nav-item:not(.is-on) {
+  width: 68%;
+}
+
+.shell-anim__nav-item:last-child {
+  width: 54%;
+}
+
+.shell-anim__main {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  background: rgb(249 250 251);
+}
+
+.dark .shell-anim__main {
+  background: rgb(3 7 18);
+}
+
+.shell-anim__topbar {
+  flex: 0 0 auto;
+  height: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--color-primary) 82%, white) 0%,
+    var(--color-primary) 50%,
+    color-mix(in oklab, var(--color-primary) 88%, var(--color-primary-ink)) 100%
+  );
+  animation: shell-anim-topbar var(--shell-anim-duration) var(--shell-anim-ease) infinite;
+}
+
+.shell-anim__topbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.32rem;
+  height: 1.45rem;
+  padding: 0 0.55rem;
+  animation: shell-anim-topbar-fade var(--shell-anim-duration) linear infinite;
+}
+
+.shell-anim__topbar .shell-anim__nav-item {
+  height: 0.38rem;
+}
+
+.shell-anim__topbar .shell-anim__nav-item.is-on {
+  width: 1.7rem;
+}
+
+.shell-anim__topbar .shell-anim__nav-item:not(.is-on) {
+  width: 1.15rem;
+}
+
+.shell-anim__content {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 7% 9%;
+}
+
+.shell-anim__label {
+  margin: 0 0 0.45em;
+  font-size: clamp(0.72rem, 6.8cqi, 1.22rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: rgb(17 24 39);
+  white-space: nowrap;
+}
+
+.dark .shell-anim__label {
+  color: rgb(255 255 255);
+}
+
+.shell-anim__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  margin-bottom: 0.7rem;
+}
+
+.shell-anim__lines span {
+  display: block;
+  height: 0.32rem;
+  border-radius: 999px;
+  background: rgb(229 231 235);
+}
+
+.dark .shell-anim__lines span {
+  background: rgb(55 65 81);
+}
+
+.shell-anim__lines span:nth-child(1) {
+  width: 92%;
+}
+
+.shell-anim__lines span:nth-child(2) {
+  width: 74%;
+}
+
+.shell-anim__lines span:nth-child(3) {
+  width: 58%;
+}
+
+.shell-anim__tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.shell-anim__tiles span {
+  display: block;
+  height: clamp(1.1rem, 12cqi, 2.1rem);
+  border-radius: 0.3rem;
+  background: rgb(243 244 246);
+  box-shadow: inset 0 0 0 1px rgb(17 24 39 / 0.04);
+}
+
+.dark .shell-anim__tiles span {
+  background: rgb(31 41 55);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.04);
+}
+
+.shell-anim__taskbar {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  height: 1.05rem;
+  background: rgb(28 25 23 / 0.92);
+  transform: translateY(110%);
+  opacity: 0;
+  animation: shell-anim-taskbar var(--shell-anim-duration) var(--shell-anim-ease) infinite;
+}
+
+.shell-anim__taskbar span {
+  display: block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 0.18rem;
+  background: rgb(255 255 255 / 0.28);
+}
+
+.shell-anim__taskbar span.is-on {
+  background: var(--color-primary);
+}
+
+.shell-anim__caption {
+  position: relative;
+  height: 1.2rem;
+  margin: 0.7rem 0 0;
+}
+
+.shell-anim__mode {
+  position: absolute;
+  inset: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: rgb(107 114 128);
+}
+
+.dark .shell-anim__mode {
+  color: rgb(156 163 175);
+}
+
+.shell-anim__mode--sidebar {
+  animation: shell-anim-caption-sidebar var(--shell-anim-duration) linear infinite;
+}
+
+.shell-anim__mode--topbar {
+  animation: shell-anim-caption-topbar var(--shell-anim-duration) linear infinite;
+}
+
+.shell-anim__mode--window {
+  animation: shell-anim-caption-window var(--shell-anim-duration) linear infinite;
+}
+
+.shell-anim__caption-static {
+  display: none;
+  margin: 0.7rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  color: rgb(107 114 128);
+}
+
+.dark .shell-anim__caption-static {
+  color: rgb(156 163 175);
+}
+
+@keyframes shell-anim-sidebar-fade {
+  0%,
+  22% {
+    opacity: 1;
+  }
+
+  28%,
+  94% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shell-anim-sidebar {
+  0%,
+  22% {
+    width: 32%;
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  31%,
+  93% {
+    width: 0;
+    animation-timing-function: linear;
+  }
+
+  93% {
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  100% {
+    width: 32%;
+  }
+}
+
+@keyframes shell-anim-topbar {
+  0%,
+  22% {
+    height: 0;
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  31%,
+  53% {
+    height: 1.45rem;
+    animation-timing-function: linear;
+  }
+
+  53% {
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  64%,
+  100% {
+    height: 0;
+  }
+}
+
+@keyframes shell-anim-topbar-fade {
+  0%,
+  24% {
+    opacity: 0;
+  }
+
+  29%,
+  55% {
+    opacity: 1;
+  }
+
+  61%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes shell-anim-titlebar {
+  0%,
+  53% {
+    height: 0;
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  64%,
+  84% {
+    height: 1.15rem;
+    animation-timing-function: linear;
+  }
+
+  84% {
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  93%,
+  100% {
+    height: 0;
+  }
+}
+
+@keyframes shell-anim-app {
+  0%,
+  53% {
+    inset: 0;
+    border-radius: 0;
+    box-shadow: none;
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  64%,
+  84% {
+    inset: 11% 9% 18% 11%;
+    border-radius: 0.45rem;
+    box-shadow: 0 12px 28px rgb(0 0 0 / 0.28);
+    animation-timing-function: linear;
+  }
+
+  84% {
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  96%,
+  100% {
+    inset: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+@keyframes shell-anim-desktop {
+  0%,
+  53% {
+    opacity: 0;
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  64%,
+  84% {
+    opacity: 1;
+    animation-timing-function: linear;
+  }
+
+  84% {
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  93%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes shell-anim-ghost {
+  0%,
+  53% {
+    opacity: 0;
+    transform: translate(8%, -6%) scale(0.92);
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  64%,
+  84% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    animation-timing-function: linear;
+  }
+
+  84% {
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  93%,
+  100% {
+    opacity: 0;
+    transform: translate(8%, -6%) scale(0.92);
+  }
+}
+
+@keyframes shell-anim-taskbar {
+  0%,
+  53% {
+    opacity: 0;
+    transform: translateY(110%);
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  64%,
+  84% {
+    opacity: 1;
+    transform: translateY(0);
+    animation-timing-function: linear;
+  }
+
+  84% {
+    animation-timing-function: var(--shell-anim-ease);
+  }
+
+  93%,
+  100% {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+}
+
+@keyframes shell-anim-caption-sidebar {
+  0%,
+  26% {
+    opacity: 1;
+  }
+
+  30%,
+  93% {
+    opacity: 0;
+  }
+
+  97%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shell-anim-caption-topbar {
+  0%,
+  26% {
+    opacity: 0;
+  }
+
+  30%,
+  57% {
+    opacity: 1;
+  }
+
+  62%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes shell-anim-caption-window {
+  0%,
+  57% {
+    opacity: 0;
+  }
+
+  62%,
+  88% {
+    opacity: 1;
+  }
+
+  93%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell-anim__sidebar,
+  .shell-anim__sidebar-inner,
+  .shell-anim__topbar,
+  .shell-anim__topbar-inner,
+  .shell-anim__titlebar,
+  .shell-anim__app,
+  .shell-anim__desktop,
+  .shell-anim__ghost,
+  .shell-anim__taskbar,
+  .shell-anim__mode {
+    animation: none;
+  }
+
+  .shell-anim__caption {
+    display: none;
+  }
+
+  .shell-anim__caption-static {
+    display: block;
+  }
+}

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./extras.css";
+@import "./shell-layout-anim.css";
 
 @source "../../**/*.{njk,md,html,js}";
 @custom-variant dark (&:where(.dark, .dark *));
