@@ -29,7 +29,7 @@
     {
       "href": "/features/microfrontend/",
       "label": "Microfrontend",
-      "description": "Layout modes, navigation, and shared shell chrome.",
+      "description": "Iframe hosting, SDK, and layout modes.",
       "icon": "layout"
     },
     {

@@ -258,6 +258,81 @@
   @apply overflow-x-auto rounded-md border border-gray-200 bg-gray-50 p-4 font-mono text-sm dark:border-gray-800 dark:bg-gray-900;
 }
 
+.code-sample {
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(229 231 235);
+  background-color: #fff;
+}
+
+.dark .code-sample {
+  border-color: rgb(31 41 55);
+  background-color: #24292e;
+}
+
+.code-sample__filename {
+  border-bottom: 1px solid rgb(229 231 235);
+  padding: 0.5rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgb(107 114 128);
+}
+
+.dark .code-sample__filename {
+  border-bottom-color: rgb(31 41 55);
+  color: rgb(156 163 175);
+}
+
+.code-sample .shiki {
+  margin: 0;
+  padding: 1rem 0;
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  background-color: transparent;
+}
+
+.code-sample .shiki,
+.code-sample .shiki span {
+  color: var(--shiki-light);
+}
+
+.dark .code-sample .shiki,
+.dark .code-sample .shiki span {
+  color: var(--shiki-dark);
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}
+
+.code-sample .shiki code {
+  counter-reset: code-line;
+  display: grid;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.code-sample .shiki .line {
+  display: block;
+  min-height: 1.65em;
+  padding-right: 1.1rem;
+}
+
+.code-sample .shiki .line::before {
+  counter-increment: code-line;
+  content: counter(code-line);
+  display: inline-block;
+  width: 2.5rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: rgb(156 163 175);
+  user-select: none;
+}
+
+.dark .code-sample .shiki .line::before {
+  color: rgb(110 118 129);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .animate-on-scroll {
     opacity: 0;

@@ -2,48 +2,85 @@
 layout: layouts/feature.njk
 wide: true
 title: Microfrontend | Shellui
-description: Microfrontend support in Shellui - layout modes, navigation, and shared shell chrome.
+description: Run your application inside Shellui in an iframe. Load the SDK, call init, and talk to the shell over postMessage. Switch between sidebar, top bar, and window layouts.
 eyebrow: Features
 heading: Microfrontend
-lede: The runtime that stitches your apps together. Sidebar navigation, layout modes, modals, drawers, themes, and i18n - all configured from a single shell.
+lede: Host your application in the Shellui iframe. Load the SDK, initialize it, and communicate with the shell through the postMessage API.
 ---
 
-<div class="prose max-w-2xl">
-  <p>Shellui owns the shell around your app: sidebar navigation, layout modes, modals, drawers, and how microfrontends render inside the chrome. Apps keep their own UI. The shell keeps the shared surface consistent.</p>
+<div class="max-w-2xl">
+  <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Run your application in Shellui</h2>
+  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Your app does not replace the shell. It runs inside an iframe that Shellui hosts. The shell owns navigation, layout, and chrome. Your application owns its own UI, in any stack you choose.</p>
+  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">To connect the two, load <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">@shellui/sdk</code> in the iframe and call <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">init</code>. After that handshake, every message between the app and the shell goes through the <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">postMessage</code> API. The SDK wraps that channel so you do not talk to <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">window.parent</code> by hand.</p>
 </div>
 
-<div class="mt-14 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] lg:gap-14">
-  <div class="max-w-xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Layout modes</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Switch between a colored sidebar, a top bar, and a windowed desktop from one config. Every microfrontend inherits the chrome, so navigation and the app canvas stay aligned when the layout changes.</p>
+<div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Load the SDK</p>
+    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Include <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">@shellui/sdk</code> in the app that will run inside the iframe.</p>
   </div>
-  <div class="mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
-    {% include "shell-layout-anim.njk" %}
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Call init</p>
+    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Initialize the SDK so the shell and your application can handshake and agree on the channel.</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Use postMessage</p>
+    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">All further communication travels over <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">postMessage</code> &mdash; layout, theme, navigation, and the rest of the shell API.</p>
+  </div>
+</div>
+
+<div class="mt-8 max-w-3xl">
+  {% highlight "ts", "app.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.addMessageListener("SHELLUI_SETTINGS_UPDATED", (data) => {
+  const { settings } = data.payload;
+  applyTheme(settings.appearance?.colorScheme);
+});
+
+shellui.sendMessageToParent({
+  type: "CUSTOM_MESSAGE",
+  payload: { ready: true },
+});
+  {% endhighlight %}
+</div>
+
+<div class="mt-20">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Layouts</h2>
+    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The shell can present the same iframe in three layout modes. Pick one in config; every microfrontend inherits it.</p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
+    <div>
+      {% set layoutMode = "sidebar" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-gray-900 dark:text-white">Sidebar</h3>
+      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Colored sidebar navigation with the application canvas beside it. The default app chrome.</p>
+    </div>
+    <div>
+      {% set layoutMode = "topbar" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-gray-900 dark:text-white">Top bar</h3>
+      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">The sidebar hides and navigation moves to a top bar, giving the iframe more horizontal space.</p>
+    </div>
+    <div>
+      {% set layoutMode = "window" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-gray-900 dark:text-white">Window</h3>
+      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">The app opens as a desktop window with a title bar and taskbar, alongside other windows.</p>
+    </div>
   </div>
 </div>
 
 <div class="mt-20">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Shared chrome</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Dialogs, toasts, modals, drawers, and settings live in the shell too. Hosted apps can open them without rebuilding overlays, and the markup stays in the page.</p>
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Basic UI features</h2>
+    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The shell already owns toasts, dialogs, modals, drawers, theme, and language. From the iframe you call them on <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui</code> after <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">init</code> &mdash; no extra overlay stack in your app.</p>
   </div>
-
-  <div class="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2">
-    {% set chromes = [
-      { type: "modal", blurb: "Open forms and detail views without leaving the current route." },
-      { type: "dialog", blurb: "Short confirmations and choices, centered over the running app." },
-      { type: "drawer", blurb: "Slide in side panels for details, lists, and secondary flows." },
-      { type: "toast", blurb: "Transient status messages that appear without blocking the app." },
-      { type: "settings", blurb: "Theme, language, and layout controls that apply across every microfrontend." }
-    ] %}
-    {% for item in chromes %}
-      <div>
-        {% set chrome = item.type %}
-        {% include "shell-chrome-anim.njk" %}
-        <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">{{ item.blurb }}</p>
-      </div>
-    {% endfor %}
-  </div>
+  {% include "shell-sdk-examples.njk" %}
 </div>
 
 <p class="mt-16 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/authentication/">Authentication</a> handles sign-in, protected routes, and identity integration.</p>

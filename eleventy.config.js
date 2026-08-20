@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { IdAttributePlugin } from "@11ty/eleventy";
+import { createHighlighter } from "shiki";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 
@@ -46,7 +47,29 @@ function wrapParagraph(content) {
 
 const figureCaptionIcon = `<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="mt-0.5 size-5 flex-none text-gray-300 dark:text-gray-600"><path d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z" clip-rule="evenodd" fill-rule="evenodd" /></svg>`;
 
-export default function (eleventyConfig) {
+const highlighterPromise = createHighlighter({
+  themes: ["github-light", "github-dark"],
+  langs: ["typescript", "javascript", "tsx", "bash", "json"],
+});
+
+export default async function (eleventyConfig) {
+  const highlighter = await highlighterPromise;
+
+  function highlightCode(code, lang = "ts", filename = "") {
+    const html = highlighter.codeToHtml(String(code || "").replace(/^\n+/, "").trimEnd(), {
+      lang,
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+      defaultColor: false,
+    });
+    const label = filename
+      ? `<div class="code-sample__filename">${escapeXml(filename)}</div>`
+      : "";
+    return `<div class="code-sample">${label}${html}</div>`;
+  }
+
   eleventyConfig.addPlugin(IdAttributePlugin);
 
   eleventyConfig.ignores.add("src/blocks/**");
@@ -97,6 +120,8 @@ export default function (eleventyConfig) {
     const origin = String(base || "").replace(/\/$/, "");
     return `${origin}${url.startsWith("/") ? url : `/${url}`}`;
   });
+
+  eleventyConfig.addPairedShortcode("highlight", highlightCode);
 
   eleventyConfig.addShortcode("figure", (src, alt = "", caption = "") => {
     const img = `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" class="aspect-video rounded-xl bg-gray-50 object-cover dark:bg-gray-900" />`;

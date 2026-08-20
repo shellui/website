@@ -1,4 +1,12 @@
-<div class="shell-anim shell-anim--layout" aria-hidden="true">
+{% set layoutMode = layoutMode or "loop" %}
+{% set isLoop = layoutMode == "loop" %}
+{% set layoutLabels = {
+  loop: "Sidebar, top bar, and window layouts",
+  sidebar: "Sidebar layout",
+  topbar: "Top bar layout",
+  window: "Window layout"
+} %}
+<div class="shell-anim {% if isLoop %}shell-anim--layout{% else %}shell-anim--static shell-anim--{{ layoutMode }}{% endif %}" aria-hidden="true">
   <div class="shell-anim__device">
     <div class="shell-anim__bezel">
       <span class="shell-anim__dot"></span>
@@ -70,10 +78,12 @@
       </div>
     </div>
   </div>
-  <p class="shell-anim__caption">
-    <span class="shell-anim__mode shell-anim__mode--sidebar">Sidebar layout</span>
-    <span class="shell-anim__mode shell-anim__mode--topbar">Top bar layout</span>
-    <span class="shell-anim__mode shell-anim__mode--window">Window layout</span>
-  </p>
-  <p class="shell-anim__caption-static">Sidebar, top bar, and window layouts</p>
+  {% if isLoop %}
+    <p class="shell-anim__caption">
+      <span class="shell-anim__mode shell-anim__mode--sidebar">Sidebar layout</span>
+      <span class="shell-anim__mode shell-anim__mode--topbar">Top bar layout</span>
+      <span class="shell-anim__mode shell-anim__mode--window">Window layout</span>
+    </p>
+  {% endif %}
+  <p class="shell-anim__caption-static">{{ layoutLabels[layoutMode] }}</p>
 </div>

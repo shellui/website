@@ -1,0 +1,111 @@
+<div
+  class="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(11rem,16rem)_minmax(0,1fr)] lg:gap-12"
+  x-data="{ feature: 'toast' }"
+>
+  <ul class="flex flex-row flex-wrap gap-2 lg:flex-col lg:flex-nowrap" role="tablist" aria-label="Shell UI features">
+    {% set uiFeatures = [
+      { id: "toast", label: "Toast" },
+      { id: "dialog", label: "Dialog" },
+      { id: "modal", label: "Modal" },
+      { id: "drawer", label: "Drawer" },
+      { id: "theme", label: "Theme" },
+      { id: "locale", label: "Lang / region" }
+    ] %}
+    {% for item in uiFeatures %}
+      <li class="min-w-0">
+        <button
+          type="button"
+          class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors"
+          :class="feature === '{{ item.id }}' ? 'bg-primary/10 text-primary-ink dark:text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'"
+          role="tab"
+          :aria-selected="(feature === '{{ item.id }}').toString()"
+          aria-controls="sdk-example-{{ item.id }}"
+          id="sdk-tab-{{ item.id }}"
+          @click="feature = '{{ item.id }}'"
+        >{{ item.label }}</button>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="min-w-0">
+    <div id="sdk-example-toast" role="tabpanel" aria-labelledby="sdk-tab-toast" x-show="feature === 'toast'">
+      {% highlight "ts", "toast.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.toast({
+  title: "Success!",
+  description: "Operation completed.",
+  type: "success",
+});
+      {% endhighlight %}
+    </div>
+
+    <div id="sdk-example-dialog" role="tabpanel" aria-labelledby="sdk-tab-dialog" x-show="feature === 'dialog'" x-cloak>
+      {% highlight "ts", "dialog.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.dialog({
+  title: "Confirm delete",
+  description: "Are you sure you want to delete this item?",
+  mode: "okCancel",
+  onOk: () => deleteItem(),
+  onCancel: () => {},
+});
+      {% endhighlight %}
+    </div>
+
+    <div id="sdk-example-modal" role="tabpanel" aria-labelledby="sdk-tab-modal" x-show="feature === 'modal'" x-cloak>
+      {% highlight "ts", "modal.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.openModal("/compose");
+      {% endhighlight %}
+    </div>
+
+    <div id="sdk-example-drawer" role="tabpanel" aria-labelledby="sdk-tab-drawer" x-show="feature === 'drawer'" x-cloak>
+      {% highlight "ts", "drawer.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.openDrawer({
+  url: "/filters",
+  position: "right",
+  size: "400px",
+});
+      {% endhighlight %}
+    </div>
+
+    <div id="sdk-example-theme" role="tabpanel" aria-labelledby="sdk-tab-theme" x-show="feature === 'theme'" x-cloak>
+      {% highlight "ts", "theme.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.addMessageListener("SHELLUI_SETTINGS_UPDATED", (data) => {
+  const { appearance } = data.payload.settings;
+  applyTheme(appearance?.colorScheme);
+});
+      {% endhighlight %}
+    </div>
+
+    <div id="sdk-example-locale" role="tabpanel" aria-labelledby="sdk-tab-locale" x-show="feature === 'locale'" x-cloak>
+      {% highlight "ts", "locale.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.addMessageListener("SHELLUI_SETTINGS_UPDATED", (data) => {
+  const { language } = data.payload.settings;
+  applyLanguage(language?.code);
+});
+      {% endhighlight %}
+    </div>
+  </div>
+</div>
