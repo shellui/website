@@ -12,5 +12,6 @@
   "twitter": "https://x.com/shelluihq",
   "linkedin": "https://www.linkedin.com/company/shellui",
   "docker": "https://hub.docker.com/u/shellui",
-  "locale": "en"
+  "locale": "en",
+  "rss": "/blog/feed.xml"
 }

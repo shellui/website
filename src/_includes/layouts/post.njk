@@ -1,30 +1,30 @@
 ---
 layout: layouts/base.njk
 ---
-<article class="px-4 py-20 pt-32 sm:px-6 lg:px-8">
-  <div class="mx-auto max-w-3xl">
-    <p class="mb-3 text-sm text-gray-600 dark:text-gray-400">
-      <a href="/blog/" class="hover:text-gray-900 dark:hover:text-white">Blog</a>
-      <span aria-hidden="true"> · </span>
+<article class="bg-white px-6 py-32 pt-40 lg:px-8 dark:bg-gray-950">
+  <div class="mx-auto max-w-3xl text-base/7 text-gray-700 dark:text-gray-300">
+    {% if category %}
+      <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ category }}</p>
+    {% endif %}
+    <h1 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{{ heading or title }}</h1>
+    <p class="mt-3 text-sm/5 text-gray-500 dark:text-gray-400">
       <time datetime="{{ page.date.toISOString() }}">{{ page.date | readableDate }}</time>
-      <span aria-hidden="true"> · </span>
-      <span>{{ content | readingTime }} min read</span>
+      <span aria-hidden="true"> &middot; </span>
+      {{ content | readingTime }} min read
     </p>
-    <h1 class="text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">{{ heading or title }}</h1>
-    <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">{{ author or site.author }}</p>
+    <div class="mt-6 flex items-center gap-x-3">
+      <img src="{{ authorImage or '/img/about/sebastien-barbier.jpg' }}" alt="{{ author or site.author }}" class="size-9 rounded-full bg-gray-50 object-cover dark:bg-gray-900" width="36" height="36" />
+      <div class="text-sm/5">
+        <p class="font-semibold text-gray-900 dark:text-white">{{ author or site.author }}</p>
+        {% if authorRole %}
+          <p class="text-gray-500 dark:text-gray-400">{{ authorRole }}</p>
+        {% endif %}
+      </div>
+    </div>
     {% if lede %}
-      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">{{ lede }}</p>
+      <p class="mt-8 text-xl/8 text-gray-700 dark:text-gray-300">{{ lede }}</p>
     {% endif %}
-    {% if image %}
-      <img
-        src="{{ image }}"
-        alt="{{ imageAlt or heading or title }}"
-        class="mt-10 aspect-16/9 w-full rounded-2xl object-cover"
-        width="1280"
-        height="720"
-      />
-    {% endif %}
-    <div class="prose mt-10">
+    <div class="article-body">
       {{ content | safe }}
     </div>
   </div>

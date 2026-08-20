@@ -1,0 +1,29 @@
+---
+permalink: /blog/feed.xml
+eleventyExcludeFromCollections: true
+sitemap: false
+layout: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>{{ site.name | xmlEscape }} Blog</title>
+    <link>{{ "/blog/" | absoluteUrl(site.url) | xmlEscape }}</link>
+    <description>{{ "News and notes on the web app development platform." | xmlEscape }}</description>
+    <language>{{ site.locale or "en" }}</language>
+    <atom:link href="{{ site.rss | absoluteUrl(site.url) | xmlEscape }}" rel="self" type="application/rss+xml"/>
+    {% if collections.blog.length %}
+    <lastBuildDate>{{ collections.blog[0].date | rfc822Date }}</lastBuildDate>
+    {% endif %}
+    {% for post in collections.blog %}
+    <item>
+      <title>{{ (post.data.heading or post.data.title) | xmlEscape }}</title>
+      <link>{{ post.url | absoluteUrl(site.url) | xmlEscape }}</link>
+      <guid isPermaLink="true">{{ post.url | absoluteUrl(site.url) | xmlEscape }}</guid>
+      <pubDate>{{ post.date | rfc822Date }}</pubDate>
+      {% if post.data.author %}<dc:creator>{{ post.data.author | xmlEscape }}</dc:creator>{% endif %}
+      {% if post.data.description %}<description>{{ post.data.description | xmlEscape }}</description>{% endif %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

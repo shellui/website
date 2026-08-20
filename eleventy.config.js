@@ -22,6 +22,30 @@ function readingTimeMinutes(content) {
   return Math.max(1, Math.round(words / 220));
 }
 
+function escapeAttr(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;");
+}
+
+function escapeXml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function wrapParagraph(content) {
+  const text = String(content || "").trim();
+  if (!text) return "";
+  return /^<p[\s>]/i.test(text) ? text : `<p>${text}</p>`;
+}
+
+const figureCaptionIcon = `<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="mt-0.5 size-5 flex-none text-gray-300 dark:text-gray-600"><path d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z" clip-rule="evenodd" fill-rule="evenodd" /></svg>`;
+
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(IdAttributePlugin);
 
@@ -60,6 +84,41 @@ export default function (eleventyConfig) {
     const content = typeof post === "string" ? post : post?.templateContent;
     return readingTimeMinutes(content);
   });
+
+  eleventyConfig.addFilter("xmlEscape", escapeXml);
+
+  eleventyConfig.addFilter("rfc822Date", (date) =>
+    new Date(date).toUTCString(),
+  );
+
+  eleventyConfig.addFilter("absoluteUrl", (url, base) => {
+    if (!url) return "";
+    if (/^https?:\/\//i.test(url)) return url;
+    const origin = String(base || "").replace(/\/$/, "");
+    return `${origin}${url.startsWith("/") ? url : `/${url}`}`;
+  });
+
+  eleventyConfig.addShortcode("figure", (src, alt = "", caption = "") => {
+    const img = `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" class="aspect-video rounded-xl bg-gray-50 object-cover dark:bg-gray-900" />`;
+    const figcaption = caption
+      ? `<figcaption class="mt-4 flex gap-x-2 text-sm/6 text-gray-500 dark:text-gray-400">${figureCaptionIcon}${escapeXml(caption)}</figcaption>`
+      : "";
+    return `<figure class="article-figure mt-16">${img}${figcaption}</figure>`;
+  });
+
+  eleventyConfig.addPairedShortcode(
+    "quote",
+    (content, author = "", role = "", image = "") => {
+      const quote = wrapParagraph(content);
+      const photo = image
+        ? `<img src="${escapeAttr(image)}" alt="" class="size-6 flex-none rounded-full bg-gray-50 object-cover dark:bg-gray-900" />`
+        : "";
+      const credit = [author, role].filter(Boolean).length
+        ? `<figcaption class="mt-6 flex gap-x-4">${photo}<div class="text-sm/6">${author ? `<strong class="font-semibold text-gray-900 dark:text-white">${escapeXml(author)}</strong>` : ""}${author && role ? " – " : ""}${role ? escapeXml(role) : ""}</div></figcaption>`
+        : "";
+      return `<figure class="article-quote mt-10 border-l border-primary-ink pl-9 dark:border-primary"><blockquote class="font-semibold text-gray-900 dark:text-white">${quote}</blockquote>${credit}</figure>`;
+    },
+  );
 
   eleventyConfig.addShortcode("demo", function (name) {
     if (!/^[a-z0-9-]+$/.test(name)) {

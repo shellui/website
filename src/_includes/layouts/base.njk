@@ -7,6 +7,7 @@
     <meta name="description" content="{{ metaDescription }}" />
     <meta name="author" content="{{ site.author }}" />
     <link rel="canonical" href="{{ canonical }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} Blog" href="{{ site.rss | absoluteUrl(site.url) }}" />
     <meta property="og:type" content="{% if tags and 'blog' in tags %}article{% else %}website{% endif %}" />
     <meta property="og:title" content="{{ ogTitle or metaTitle }}" />
     <meta property="og:description" content="{{ ogDescription or metaDescription }}" />

@@ -1,13 +1,32 @@
 ---
 layout: layouts/base.njk
 title: Blog | Shellui
+heading: From the blog
+lede: News and notes on the web app development platform.
 description: Official Shellui blog. News and notes on the web app development platform.
 ---
 <div class="bg-white py-24 pt-32 sm:py-32 dark:bg-gray-950">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:max-w-4xl">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{{ heading }}</h1>
+          <p class="mt-2 text-lg/8 text-gray-600 dark:text-gray-400">{{ lede }}</p>
+        </div>
+        <a
+          href="{{ site.rss }}"
+          class="inline-flex shrink-0 items-center gap-2 text-sm/6 font-semibold text-primary-ink hover:text-gray-900 dark:text-primary dark:hover:text-white"
+        >
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5">
+            <path d="M3.25 3.25a.75.75 0 0 1 .75-.75C12.705 2.5 19.5 9.295 19.5 17.5a.75.75 0 0 1-1.5 0C18 10.123 11.877 4 4 4a.75.75 0 0 1-.75-.75Z" />
+            <path d="M3.25 9.25a.75.75 0 0 1 .75-.75C9.47 8.5 13.5 12.53 13.5 18.5a.75.75 0 0 1-1.5 0c0-4.647-3.353-8.5-8-8.5a.75.75 0 0 1-.75-.75Z" />
+            <path d="M6 16.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+          </svg>
+          RSS feed
+        </a>
+      </div>
       {% if collections.blog.length %}
-        <div class="space-y-20">
+        <div class="mt-16 space-y-20 sm:mt-20">
           {% for post in collections.blog %}
             <article class="relative isolate flex flex-col gap-8 lg:flex-row">
               <div class="relative aspect-video sm:aspect-2/1 lg:aspect-square lg:w-64 lg:shrink-0">
@@ -22,7 +41,7 @@ description: Official Shellui blog. News and notes on the web app development pl
                 {% endif %}
                 <div class="absolute inset-0 rounded-2xl inset-ring inset-ring-gray-900/10 dark:inset-ring-white/10"></div>
               </div>
-              <div>
+              <div class="flex min-w-0 flex-1 flex-col justify-center">
                 <div class="flex items-center gap-x-4 text-xs">
                   <time datetime="{{ post.date.toISOString() }}" class="text-gray-500 dark:text-gray-400">{{ post.date | shortDate }}</time>
                   {% if post.data.category %}
@@ -31,25 +50,23 @@ description: Official Shellui blog. News and notes on the web app development pl
                   <span class="text-gray-500 dark:text-gray-400">{{ post | readingTime }} min read</span>
                 </div>
                 <div class="group relative max-w-xl">
-                  <h2 class="mt-3 text-lg/6 font-semibold text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
+                  <h2 class="mt-2 text-2xl font-semibold tracking-tight text-pretty text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">
                     <a href="{{ post.url }}">
                       <span class="absolute inset-0"></span>
                       {{ post.data.heading or post.data.title }}
                     </a>
                   </h2>
                   {% if post.data.description %}
-                    <p class="mt-5 text-sm/6 text-gray-600 dark:text-gray-400">{{ post.data.description }}</p>
+                    <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">{{ post.data.description }}</p>
                   {% endif %}
                 </div>
-                <div class="mt-6 flex border-t border-gray-900/5 pt-6 dark:border-white/10">
-                  <div class="relative flex items-center gap-x-4">
-                    <img src="/img/logo.png" alt="" class="size-10 rounded-full bg-gray-50 object-contain p-1 dark:bg-gray-900" width="40" height="40" />
-                    <div class="text-sm/6">
-                      <p class="font-semibold text-gray-900 dark:text-white">{{ post.data.author or site.author }}</p>
-                      {% if post.data.authorRole %}
-                        <p class="text-gray-600 dark:text-gray-400">{{ post.data.authorRole }}</p>
-                      {% endif %}
-                    </div>
+                <div class="mt-4 flex items-center gap-x-3">
+                  <img src="{{ post.data.authorImage or '/img/about/sebastien-barbier.jpg' }}" alt="{{ post.data.author or site.author }}" class="size-8 rounded-full bg-gray-50 object-cover dark:bg-gray-900" width="32" height="32" />
+                  <div class="text-sm/5">
+                    <p class="font-semibold text-gray-900 dark:text-white">{{ post.data.author or site.author }}</p>
+                    {% if post.data.authorRole %}
+                      <p class="text-gray-500 dark:text-gray-400">{{ post.data.authorRole }}</p>
+                    {% endif %}
                   </div>
                 </div>
               </div>
@@ -57,7 +74,7 @@ description: Official Shellui blog. News and notes on the web app development pl
           {% endfor %}
         </div>
       {% else %}
-        <p class="text-gray-600 dark:text-gray-400">No articles yet.</p>
+        <p class="mt-16 text-gray-600 dark:text-gray-400">No articles yet.</p>
       {% endif %}
     </div>
   </div>
