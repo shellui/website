@@ -104,6 +104,13 @@
   line-height: 1.3;
 }
 
+.prose h2 .role-badge {
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
 .prose :where(h3) {
   font-size: 1.25rem;
 }
@@ -124,6 +131,10 @@
 
 .prose :where(a) {
   @apply text-primary-ink underline underline-offset-2 dark:text-primary;
+}
+
+.prose a.outbound-button {
+  @apply bg-white text-gray-900 no-underline hover:bg-gray-50 hover:text-gray-900 hover:no-underline dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 dark:hover:text-gray-900;
 }
 
 .prose :where(code) {

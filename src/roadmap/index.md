@@ -2,6 +2,7 @@
 layout: layouts/page.njk
 title: Roadmap | Shellui
 description: See what's coming next for Shellui.
+eyebrow: Developers
 heading: Roadmap
 lede: See what we're working on and what's coming next.
 ---

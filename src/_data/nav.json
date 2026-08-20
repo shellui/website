@@ -7,6 +7,12 @@
       "icon": "book"
     },
     {
+      "href": "/architecture/",
+      "label": "Architecture",
+      "description": "How the Shellui stack fits together.",
+      "icon": "cube"
+    },
+    {
       "href": "/roadmap/",
       "label": "Roadmap",
       "description": "See what's coming next.",
