@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
-<article class="px-4 py-20 pt-32 sm:px-6 lg:px-8">
+<article class="page-top px-4 pb-20 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-3xl">
     {% include "breadcrumbs.njk" %}
     {% if eyebrow %}
@@ -11,7 +11,7 @@ layout: layouts/base.njk
     {% if lede %}
       <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">{{ lede }}</p>
     {% endif %}
-    <div class="prose mt-10">
+    <div class="{% if prose == false %}mt-10{% else %}prose mt-10{% endif %}">
       {{ content | safe }}
     </div>
   </div>

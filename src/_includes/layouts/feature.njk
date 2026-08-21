@@ -20,9 +20,9 @@ layout: layouts/base.njk
   </div>
 </article>
 {% else %}
-<div class="bg-white pt-28 pb-16 sm:pt-32 sm:pb-20 dark:bg-gray-950">
+<div class="page-top bg-white pb-16 sm:pb-20 dark:bg-gray-950">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl lg:mx-0">
+    <div class="lg:max-w-2xl">
       {% include "breadcrumbs.njk" %}
       {% if eyebrow %}
         <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ eyebrow }}</p>
@@ -32,7 +32,7 @@ layout: layouts/base.njk
         <p class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">{{ lede }}</p>
       {% endif %}
     </div>
-    <div class="mx-auto mt-10 {% if wide %}max-w-5xl{% else %}prose max-w-2xl{% endif %} lg:mx-0">
+    <div class="mt-10 {% if wide %}max-w-5xl{% else %}prose max-w-2xl{% endif %}">
       {{ content | safe }}
     </div>
   </div>
