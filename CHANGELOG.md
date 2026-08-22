@@ -32,6 +32,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 - Make the header responsive with a mobile hamburger menu; dark mode moves into the menu on small screens.
 - Add feature sub-pages for microfrontend, authentication, and storage.
 - Add a Features flyout menu in the header with links to each sub-page.
+- Add a custom 404 page at `/404.html` so GitHub Pages can serve it for missing URLs.
 
 ### 🛠 Improvements
 

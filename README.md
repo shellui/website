@@ -30,6 +30,8 @@ writes static files to `_site/`.
 
 GitHub Actions (`.github/workflows/pages.yml`) builds `_site/` and deploys to GitHub Pages. After the first merge, set the repository Pages source to **GitHub Actions** (not “Deploy from branch”).
 
+Missing URLs are served from `_site/404.html`. GitHub Pages only uses that filename at the site root (not `/404/index.html`).
+
 ## License
 
 MIT - see [LICENSE](LICENSE).
