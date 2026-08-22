@@ -42,6 +42,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### 🐛 Bug Fixes
 
 - Ship sized favicon assets (ICO, 16/32 PNG, 180px Apple touch icon) so the tab icon works on iPad and other devices.
+- Bust cached assets with a content-hash query string instead of renaming files, so GitHub Pages' 10-minute HTML cache cannot request hashed URLs a new deploy already replaced.
 
 ## [0.3.0] - 2026-05-14
 

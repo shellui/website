@@ -44,9 +44,13 @@ function contentHash(buffer) {
   return createHash("sha256").update(buffer).digest("hex").slice(0, 8);
 }
 
-function hashedName(filename, hash) {
-  const ext = path.extname(filename);
-  return `${path.basename(filename, ext)}.${hash}${ext}`;
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function replaceAssetUrl(content, from, to) {
+  if (!from || from === to) return content;
+  return content.replace(new RegExp(`${escapeRegExp(from)}(?!\\?v=)`, "g"), to);
 }
 
 function walkFiles(dir) {
@@ -75,8 +79,8 @@ function rewriteContents(file, manifest) {
   const before = content;
   const entries = [...manifest.entries()].sort((a, b) => b[0].length - a[0].length);
   for (const [from, to] of entries) {
-    content = content.split(`${siteOrigin}${from}`).join(`${siteOrigin}${to}`);
-    content = content.split(from).join(to);
+    content = replaceAssetUrl(content, `${siteOrigin}${from}`, `${siteOrigin}${to}`);
+    content = replaceAssetUrl(content, from, to);
   }
   if (content !== before) fs.writeFileSync(file, content);
 }
@@ -98,12 +102,14 @@ function fingerprintSite(outputDir) {
     })
     .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
 
+  // GitHub Pages caches every file for 10 minutes and does not allow custom
+  // Cache-Control headers. Keep stable filenames and bust caches with ?v=hash
+  // so a stale HTML document still finds assets after a deploy.
   const manifest = new Map();
   for (const file of hashable) {
     rewriteContents(file, manifest);
-    const dest = path.join(path.dirname(file), hashedName(path.basename(file), contentHash(fs.readFileSync(file))));
-    fs.renameSync(file, dest);
-    manifest.set(toPublicUrl(outputDir, file), toPublicUrl(outputDir, dest));
+    const url = toPublicUrl(outputDir, file);
+    manifest.set(url, `${url}?v=${contentHash(fs.readFileSync(file))}`);
   }
   for (const file of walkFiles(outputDir)) rewriteContents(file, manifest);
 }
