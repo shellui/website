@@ -21,12 +21,31 @@
     });
   }
 
+  function toggleTheme(event) {
+    const next = html.classList.contains("dark") ? "light" : "dark";
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (!document.startViewTransition || prefersReducedMotion) {
+      setTheme(next);
+      return;
+    }
+
+    if (event) {
+      html.style.setProperty("--x", `${event.clientX}px`);
+      html.style.setProperty("--y", `${event.clientY}px`);
+    }
+
+    document.startViewTransition(() => {
+      setTheme(next);
+    });
+  }
+
   setTheme(getInitialTheme());
 
   toggles.forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      setTheme(html.classList.contains("dark") ? "light" : "dark");
-    });
+    toggle.addEventListener("click", toggleTheme);
   });
 
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {

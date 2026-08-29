@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "1.0.0",
+  "version": "0.4.1",
   "description": "The official website for Shellui, the web app development platform.",
   "private": true,
   "type": "module",

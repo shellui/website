@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.4.1] - 2026-08-29
+
+### ✨ Feature
+
+- Animate dark/light mode switches with a circular reveal from the toggle using the View Transitions API.
+
 ## [0.4.0] - 2026-08-22
 
 ### ✨ Feature
