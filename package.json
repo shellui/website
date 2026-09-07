@@ -7,7 +7,9 @@
   "scripts": {
     "start": "eleventy --serve",
     "dev": "eleventy --serve",
-    "build": "rm -rf _site && eleventy"
+    "build": "rm -rf _site && eleventy",
+    "verify": "./tools/verify-site.sh",
+    "pre-release": "./tools/pre-release-check.sh"
   },
   "repository": {
     "type": "git",

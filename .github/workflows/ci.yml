@@ -1,0 +1,112 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build & verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify site output
+        run: |
+          chmod +x ./tools/verify-site.sh
+          ./tools/verify-site.sh
+
+  security:
+    name: Security & hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Secret scan (gitleaks)
+        run: |
+          set -euo pipefail
+          version=8.28.0
+          install_dir="${RUNNER_TEMP}/gitleaks"
+          mkdir -p "${install_dir}"
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${version}/gitleaks_${version}_linux_x64.tar.gz" \
+            | tar -xz -C "${install_dir}" gitleaks
+          "${install_dir}/gitleaks" detect --source . --verbose --redact --exit-code 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Dependency vulnerabilities
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Repo hygiene
+        run: |
+          set -euo pipefail
+
+          if git ls-files --error-unmatch .env >/dev/null 2>&1; then
+            echo '::error::.env is tracked by git — remove it from the repository'
+            exit 1
+          fi
+
+          if git grep -nIE '\bShellUI\b|\bshellUI\b|\bShellUi\b' -- . \
+              ':(exclude).github/workflows/**'; then
+            echo '::error::Use Shellui (product) or shellui (packages), never ShellUI'
+            exit 1
+          fi
+
+          if git grep -nIE 'BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|BEGIN PRIVATE KEY' -- . \
+              ':(exclude).github/workflows/**' \
+              ':(exclude).env.example' \
+              ':(exclude)*.md'; then
+            echo '::error::Private key material found in tracked files'
+            exit 1
+          fi
+
+  links:
+    name: Markdown links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Link check (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --config .lychee.toml
+            --verbose
+            --no-progress
+            README.md
+            CHANGELOG.md
+          fail: true

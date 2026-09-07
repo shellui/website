@@ -26,9 +26,25 @@ npm run build
 
 writes static files to `_site/`.
 
+## CI
+
+GitHub Actions run on every pull request and on pushes to `develop` / `main`:
+
+| Workflow | When | What |
+| --- | --- | --- |
+| `ci.yml` | PRs + pushes to `develop`/`main` | `npm ci`, production build, `_site` smoke checks, secret scan, `npm audit`, naming/hygiene, markdown link check |
+| `pre-release.yml` | PRs into `main` (and manual dispatch) | `package.json` ↔ `CHANGELOG.md` version alignment, no active Unreleased section, full build + verify |
+
+Locally:
+
+```bash
+npm run build && npm run verify
+npm run pre-release          # same checks as the develop → main gate
+```
+
 ## Deploy
 
-GitHub Actions (`.github/workflows/pages.yml`) builds `_site/` and deploys to GitHub Pages. After the first merge, set the repository Pages source to **GitHub Actions** (not “Deploy from branch”).
+GitHub Actions (`.github/workflows/pages.yml`) builds `_site/` and deploys to GitHub Pages on push to `main`. After the first merge, set the repository Pages source to **GitHub Actions** (not “Deploy from branch”).
 
 Missing URLs are served from `_site/404.html`. GitHub Pages only uses that filename at the site root (not `/404/index.html`).
 
