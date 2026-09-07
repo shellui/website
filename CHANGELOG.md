@@ -21,6 +21,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.4.2] - 2026-09-07
+
+### ✨ Feature
+
+- Load `@shellui/sdk` tiny from jsDelivr (`@0.5.0-alpha.5`) so the site syncs with a parent Shellui shell out of the box.
+
+### 🏗 Chore
+
+- Add GitHub Actions for PR CI (build, security, links) and a develop→main pre-release checklist.
+
 ## [0.4.1] - 2026-08-29
 
 ### ✨ Feature

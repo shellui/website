@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="/assets/css/site.css" />
     <script>
       (function () {
+        if (window.parent !== window) return;
         var stored = localStorage.getItem("theme");
         var theme =
           stored ||
@@ -49,6 +50,7 @@
       {{ content | safe }}
     </main>
     {% include "footer.njk" %}
+    <script src="https://cdn.jsdelivr.net/npm/@shellui/sdk@0.5.0-alpha.1/dist/shellui.tiny.js"></script>
     <script src="/assets/js/alpine.min.js" defer></script>
     <script src="/assets/js/elements.js" type="module"></script>
     <script src="/assets/js/site.js" defer></script>

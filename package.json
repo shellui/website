@@ -1,13 +1,15 @@
 {
   "name": "website",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "The official website for Shellui, the web app development platform.",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "eleventy --serve",
     "dev": "eleventy --serve",
-    "build": "rm -rf _site && eleventy"
+    "build": "rm -rf _site && eleventy",
+    "verify": "./tools/verify-site.sh",
+    "pre-release": "./tools/pre-release-check.sh"
   },
   "repository": {
     "type": "git",
