@@ -204,8 +204,12 @@ export default async function (eleventyConfig) {
   );
 
   eleventyConfig.addFilter("readingTime", (post) => {
-    const content = typeof post === "string" ? post : post?.templateContent;
-    return readingTimeMinutes(content);
+    try {
+      const content = typeof post === "string" ? post : post?.templateContent;
+      return readingTimeMinutes(content);
+    } catch (e) {
+      return 1;
+    }
   });
 
   eleventyConfig.addFilter("xmlEscape", escapeXml);
