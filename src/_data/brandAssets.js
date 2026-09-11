@@ -14,6 +14,10 @@ const groups = [
   { name: "Files", bases: ["shellui_files_text_logo"] },
 ];
 
+// Gold / multi-color marks keep their paint in the UI preview.
+// Everything else is monochrome ink — theme the preview to text color.
+const colorPreview = new Set(["shellui_doc_logo"]);
+
 const labels = {
   logo: "Shellui mark",
   shellui_documentation_logo: "Documentation wordmark",
@@ -50,6 +54,8 @@ for (const file of files) {
     label: formatLabel(baseName),
     // Always theme-aware checkerboard so dark mode tiles match.
     preview: "auto",
+    // Monochrome marks follow text color in the UI; color marks stay as painted.
+    previewTheme: !colorPreview.has(baseName),
     // Prefer SVG for the in-page preview when present.
     previewHref:
       formats.find((f) => f.ext === "SVG")?.href ??
