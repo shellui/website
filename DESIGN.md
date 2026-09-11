@@ -23,6 +23,16 @@ Lead with what's real and available now:
 
 AI/MCP integration and the marketplace are on the [roadmap](https://shellui.com/roadmap/) but should remain quiet — no hero treatment, no fake screenshots.
 
+### Visual direction (locked)
+
+**A — Evidence shell** (chosen 2026-09-11)
+
+- First viewport leads with **proof**: shell chrome frame and/or real `shellui.config.ts`, not a slogan-only hero
+- Densier evidence than a template landing page (config, seams, connected capabilities)
+- Honey gold stays **scarce** (active/focus/primary CTA)
+- CTA order: **Playground → Docs → GitHub** (GitHub as text link)
+- Avoid generic centered SaaS hero with decorative blobs as the whole story
+
 ## Visual principles
 
 ### 1. Frame over flourish
@@ -176,7 +186,7 @@ Equal-height card grids are fine for logo walls or lists, but shouldn't be the o
 
 ### 3. Breathing room
 
-Use generous spacing (`py-24`, `mt-12`, `gap-8`). Shellui should feel calm and uncluttered. Let sections breathe.
+Use generous spacing (`py-24`, `mt-12`, `gap-8`). Shellui should feel calm and uncluttered. Let sections breathe. Prefer intentional open space over accidental empty bands that push primary CTAs below the fold.
 
 ## Call-to-action priority
 
