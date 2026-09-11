@@ -16,7 +16,7 @@ const groups = [
 
 // Gold / multi-color marks keep their paint in the UI preview.
 // Everything else is monochrome ink — theme the preview to text color.
-const colorPreview = new Set(["shellui_doc_logo"]);
+const colorPreview = new Set(["shellui_doc_logo", "shellui_playground_logo", "shellui_logo"]);
 
 const labels = {
   logo: "Shellui mark",
@@ -56,11 +56,23 @@ for (const file of files) {
     preview: "auto",
     // Monochrome marks follow text color in the UI; color marks stay as painted.
     previewTheme: !colorPreview.has(baseName),
+    previewPreferPng: baseName === "shellui_playground_logo" || baseName === "shellui_logo",
     // Prefer SVG for the in-page preview when present.
-    previewHref:
-      formats.find((f) => f.ext === "SVG")?.href ??
-      formats[0]?.href ??
-      `/img/brand-assets/${file}`,
+    previewHref: (() => {
+      const preferPng = baseName === "shellui_playground_logo" || baseName === "shellui_logo";
+      if (preferPng) {
+        return (
+          formats.find((f) => f.ext === "PNG")?.href ??
+          formats.find((f) => f.ext === "SVG")?.href ??
+          formats[0]?.href
+        );
+      }
+      return (
+        formats.find((f) => f.ext === "SVG")?.href ??
+        formats[0]?.href ??
+        `/img/brand-assets/${file}`
+      );
+    })(),
     formats,
   });
 }
