@@ -1,187 +1,171 @@
 ---
 layout: layouts/base.njk
-title: Shellui | The Web App Development Platform
+title: Shellui | The Opinionated Microfrontend Shell
 description: Shellui is an open-source microfrontend shell for web apps. Shared auth, admin, storage, and navigation so you can build the product, not the infrastructure.
 ---
-    <div class="relative isolate px-6 pt-14 lg:px-8">
-      <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-        <div
-          class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-30 bg-linear-to-tr from-primary to-amber-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] dark:opacity-20"
-          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-        ></div>
-      </div>
-      <div class="mx-auto max-w-2xl py-20 sm:py-24">
-        {% set latestPost = collections.blog[0] %}
-        {% if latestPost %}
-          <div class="mb-6 flex justify-center sm:mb-8">
-            <div class="relative flex items-center gap-x-3 rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
-              {{ latestPost.data.heading or latestPost.data.title }}
-              <span class="h-4 w-px bg-gray-900/10 dark:bg-white/20" aria-hidden="true"></span>
-              <a href="{{ latestPost.url }}" class="font-semibold text-primary-ink dark:text-primary">
-                <span class="absolute inset-0" aria-hidden="true"></span>Read more
+    {# Hero — Evidence shell: split copy + chrome frame. No blob gradients. #}
+    <div class="relative px-6 pt-8 lg:px-8">
+      <div class="mx-auto max-w-7xl py-10 sm:py-12 lg:py-14">
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+          <div>
+            {% set latestPost = collections.blog[0] %}
+            {% if latestPost %}
+              <div class="mb-5 inline-flex">
+                <div class="relative flex items-center gap-x-3 rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
+                  {{ latestPost.data.heading or latestPost.data.title }}
+                  <span class="h-4 w-px bg-gray-900/10 dark:bg-white/20" aria-hidden="true"></span>
+                  <a href="{{ latestPost.url }}" class="font-semibold text-primary-ink dark:text-primary">
+                    <span class="absolute inset-0" aria-hidden="true"></span>Read more
+                  </a>
+                </div>
+              </div>
+            {% endif %}
+            <h1 class="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl lg:text-6xl dark:text-white">
+              Build the App.<br class="hidden sm:inline" /> Not the Infrastructure.
+            </h1>
+            <p class="mt-5 max-w-xl text-base font-medium text-pretty text-gray-500 sm:text-lg/8 dark:text-gray-400">
+              An <span class="text-gray-900 dark:text-white">open-source</span>, <span class="text-gray-900 dark:text-white">opinionated microfrontend shell</span>. Shared chrome — navigation, auth, storage, admin — so <span class="text-gray-900 dark:text-white">solos and small teams</span> ship apps instead of rebuilding the shell.
+            </p>
+            <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              {% set playgroundIconSize = "size-5" %}
+              <a
+                href="{{ site.playground }}"
+                class="playground-cta inline-flex items-center gap-2 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {% include "playground-app-icon.njk" %}
+                Open playground
+              </a>
+              <a
+                href="{{ site.docs }}"
+                class="rounded-md border border-gray-300 px-3.5 py-2.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-700 dark:text-white dark:hover:bg-gray-900"
+              >
+                Read the docs
+              </a>
+              <a
+                href="{{ site.github }}"
+                class="text-sm/6 font-semibold text-gray-900 dark:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>
-        {% endif %}
-        <div class="text-center">
-          <h1>
-            <span class="block text-sm font-semibold tracking-widest text-primary-ink uppercase dark:text-primary">Shellui</span>
-            <span class="mt-3 block text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl lg:text-7xl dark:text-white">
-              Build the App.<br class="hidden sm:inline" /> Not the Infrastructure.
-            </span>
-          </h1>
-          <p class="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">
-            Shellui is an <span class="text-gray-900 dark:text-white">open-source</span>, <span class="text-gray-900 dark:text-white">opinionated microfrontend shell</span> for building web applications. It provides the <span class="text-gray-900 dark:text-white">shared foundation</span> developers need, so they can <span class="text-gray-900 dark:text-white">focus on their applications</span> instead of rebuilding the same infrastructure over and over.
-          </p>
-          <div class="mt-10 flex items-center justify-center gap-x-6">
-            <a
-              href="{{ site.docs }}"
-              class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            >
-              Get started
-            </a>
-            <a
-              href="{{ site.github }}"
-              class="text-sm/6 font-semibold text-gray-900 dark:text-white"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View on GitHub <span aria-hidden="true">→</span>
-            </a>
-          </div>
+
+          {# Bordered shell frame: sidebar chrome + config as interior proof. Gold only on the active nav item. #}
+          <figure class="min-w-0">
+            <figcaption class="sr-only">Shell chrome with a shellui.config.ts excerpt showing navigation, authentication, and storage.</figcaption>
+            <div class="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+              <div class="flex items-center gap-1.5 border-b border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-800 dark:bg-gray-950">
+                <span class="size-2 rounded-full bg-gray-300 dark:bg-gray-700" aria-hidden="true"></span>
+                <span class="size-2 rounded-full bg-gray-300 dark:bg-gray-700" aria-hidden="true"></span>
+                <span class="size-2 rounded-full bg-gray-300 dark:bg-gray-700" aria-hidden="true"></span>
+                <span class="ml-2 font-mono text-[0.65rem] text-gray-500 dark:text-gray-500">shellui</span>
+              </div>
+              <div class="flex min-h-[18rem] sm:min-h-[20rem]">
+                <aside class="flex w-[6.5rem] shrink-0 flex-col gap-1 border-r border-gray-200 bg-gray-50 p-2 sm:w-36 sm:p-3 dark:border-gray-800 dark:bg-gray-950" aria-hidden="true">
+                  <div class="mb-2 flex items-center gap-1.5 px-1.5 py-1">
+                    <svg class="size-3.5 text-gray-900 dark:text-white" viewBox="0 0 1080 1080" aria-hidden="true">
+                      <use href="#logo-shellui-mark" />
+                    </svg>
+                    <span class="hidden font-semibold text-[0.65rem] text-gray-900 sm:inline dark:text-white">Shellui</span>
+                  </div>
+                  <span class="rounded-md bg-primary/15 px-2 py-1.5 text-[0.65rem] font-medium text-primary-ink dark:bg-primary/15 dark:text-primary">Billing</span>
+                  <span class="rounded-md px-2 py-1.5 text-[0.65rem] text-gray-500 dark:text-gray-500">Files</span>
+                  <span class="rounded-md px-2 py-1.5 text-[0.65rem] text-gray-500 dark:text-gray-500">Admin</span>
+                  <span class="rounded-md px-2 py-1.5 text-[0.65rem] text-gray-500 dark:text-gray-500">Settings</span>
+                </aside>
+                <div class="min-w-0 flex-1 bg-gray-50 dark:bg-gray-950">
+                  <div class="border-b border-gray-200 px-3 py-1.5 font-mono text-[0.65rem] text-gray-500 dark:border-gray-800 dark:text-gray-500">shellui.config.ts</div>
+                  <pre class="overflow-x-auto p-3 font-mono text-[0.65rem] leading-relaxed text-gray-700 sm:p-4 sm:text-xs dark:text-gray-300"><code><span class="text-gray-500 dark:text-gray-500">import type</span> { ShellUIConfig } <span class="text-gray-500 dark:text-gray-500">from</span> <span class="text-gray-900 dark:text-white">"@shellui/core"</span>;
+
+<span class="text-gray-500 dark:text-gray-500">const</span> config: ShellUIConfig = {
+  backend: {
+    type: <span class="text-gray-900 dark:text-white">"shellui"</span>,
+    login: { methods: [<span class="text-gray-900 dark:text-white">"oauth"</span>] },
+  },
+  navigation: [
+    {
+      label: <span class="text-gray-900 dark:text-white">"Billing"</span>,
+      url: <span class="text-gray-900 dark:text-white">"https://app.example.com/billing"</span>,
+      requiresAuth: <span class="text-gray-900 dark:text-white">true</span>,
+    },
+  ],
+  storage: { enabled: <span class="text-gray-900 dark:text-white">true</span> },
+};
+
+<span class="text-gray-500 dark:text-gray-500">export default</span> config;</code></pre>
+                </div>
+              </div>
+            </div>
+          </figure>
         </div>
-      </div>
-      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
-        <div
-          class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-primary to-amber-200 opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem] dark:opacity-20"
-          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-        ></div>
       </div>
     </div>
 
-    <!-- Features Section -->
-    <section id="features" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 animate-on-scroll">
-          <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
-            Features
+    {# Capabilities as joints in one system — not a row of equal icon cards. #}
+    <section id="features" class="relative z-10 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-8 max-w-2xl animate-on-scroll sm:mb-10">
+          <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
+            Four joints. One shell.
           </h2>
-          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Shellui ships the infrastructure every web app needs so you can focus on what makes yours unique.
+          <p class="mt-3 text-base text-gray-600 dark:text-gray-400">
+            Shell, identity, files, and admin are seams in the same runtime — configured together, not four products to stitch yourself.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-6">
-          <!-- Microfrontend - full width -->
-          <a
-            href="/features/microfrontend/"
-            class="group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-10 lg:p-14 transition-shadow hover:shadow-lg animate-on-scroll"
-          >
-            <div class="flex flex-col lg:flex-row lg:items-center lg:gap-12">
-              <div class="contents lg:flex lg:flex-1 lg:flex-col">
-                <div>
-                  <div class="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-ink dark:text-primary mb-5">
-                    <svg class="w-4 h-4" viewBox="0 0 1080 1080" aria-hidden="true">
-                      <use href="#logo-shellui-mark" />
-                    </svg>
-                    Shellui
-                  </div>
-                  <h3 class="text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white lg:mb-4">
-                    Microfrontend Shell
-                  </h3>
-                </div>
-                <div class="order-3 mt-6 lg:order-none lg:mt-0">
-                  <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed max-w-xl">
-                    The runtime that stitches your apps together. Sidebar navigation, modals, drawers, themes, i18n, toasts, settings, cookie consent, and offline support &mdash; all configured from a single <code class="text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">shellui.config.ts</code>.
-                  </p>
-                  <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
-                    Explore microfrontend
-                  </span>
-                </div>
-              </div>
-              <div class="order-2 mt-8 w-full max-w-md mx-auto lg:order-none lg:mx-0 lg:mt-0 lg:max-w-none lg:w-[26rem] xl:w-[28rem] shrink-0">
-                {% include "shell-layout-anim.njk" %}
-              </div>
-            </div>
+        <div class="overflow-hidden rounded-xl border border-gray-200 bg-white divide-y divide-gray-200 animate-on-scroll dark:border-gray-800 dark:bg-gray-900 dark:divide-gray-800 lg:grid lg:grid-cols-4 lg:divide-x lg:divide-y-0">
+          <a href="/features/microfrontend/" class="group flex flex-col p-6 transition-colors hover:bg-gray-50 sm:p-7 dark:hover:bg-gray-800/50">
+            <span class="font-mono text-[0.65rem] text-gray-400 dark:text-gray-500">navigation · layout</span>
+            <h3 class="mt-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Shell</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Iframe apps, sidebar or top bar, toasts, themes, i18n — from <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.config.ts</code>.
+            </p>
+            <span class="mt-5 inline-flex items-center text-sm font-medium text-gray-900 group-hover:underline dark:text-white">
+              Microfrontend <span aria-hidden="true" class="ml-1">→</span>
+            </span>
           </a>
-
-          <!-- Authentication + Storage + Administration -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Authentication -->
-            <a
-              href="/features/authentication/"
-              class="group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 lg:p-10 transition-shadow hover:shadow-lg animate-on-scroll"
-            >
-              <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-ink dark:text-primary mb-5">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                </svg>
-                Identity
-              </div>
-              <h3 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mb-3">
-                Authentication
-              </h3>
-              <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Sign-in in the shell with identity-service or Supabase. Protect routes, choose public, domain allow-list, or invitation-only access, and issue tokens for users and services.
-              </p>
-              <span class="mt-5 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
-                Explore authentication
-              </span>
-            </a>
-
-            <!-- Storage -->
-            <a
-              href="/features/storage/"
-              class="group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 lg:p-10 transition-shadow hover:shadow-lg animate-on-scroll"
-            >
-              <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-ink dark:text-primary mb-5">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
-                </svg>
-                Files
-              </div>
-              <h3 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mb-3">
-                Storage
-              </h3>
-              <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                S3-compatible company bucket with private-by-default files, access grants, share links, and quotas. Apps talk to it through <code class="text-sm bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">shellui.storage</code>.
-              </p>
-              <span class="mt-5 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
-                Explore storage
-              </span>
-            </a>
-
-            <!-- Administration -->
-            <a
-              href="/features/administration/"
-              class="group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 lg:p-10 transition-shadow hover:shadow-lg animate-on-scroll"
-            >
-              <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-ink dark:text-primary mb-5">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-                Admin
-              </div>
-              <h3 class="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white mb-3">
-                Administration
-              </h3>
-              <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Staff and owners open an embedded admin for users, groups, login logs, and tokens. Inject your own apps into the sidebar from config.
-              </p>
-              <span class="mt-5 inline-flex items-center text-sm font-medium text-primary-ink dark:text-primary group-hover:underline">
-                Explore administration
-              </span>
-            </a>
-          </div>
+          <a href="/features/authentication/" class="group flex flex-col p-6 transition-colors hover:bg-gray-50 sm:p-7 dark:hover:bg-gray-800/50">
+            <span class="font-mono text-[0.65rem] text-gray-400 dark:text-gray-500">backend · login</span>
+            <h3 class="mt-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Auth</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Sign-in lives in the shell. Identity-service or Supabase; public, domain, or invitation-only.
+            </p>
+            <span class="mt-5 inline-flex items-center text-sm font-medium text-gray-900 group-hover:underline dark:text-white">
+              Authentication <span aria-hidden="true" class="ml-1">→</span>
+            </span>
+          </a>
+          <a href="/features/storage/" class="group flex flex-col p-6 transition-colors hover:bg-gray-50 sm:p-7 dark:hover:bg-gray-800/50">
+            <span class="font-mono text-[0.65rem] text-gray-400 dark:text-gray-500">shellui.storage</span>
+            <h3 class="mt-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Storage</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Company bucket, private by default. Grants, share links, quotas through the SDK.
+            </p>
+            <span class="mt-5 inline-flex items-center text-sm font-medium text-gray-900 group-hover:underline dark:text-white">
+              Storage <span aria-hidden="true" class="ml-1">→</span>
+            </span>
+          </a>
+          <a href="/features/administration/" class="group flex flex-col p-6 transition-colors hover:bg-gray-50 sm:p-7 dark:hover:bg-gray-800/50">
+            <span class="font-mono text-[0.65rem] text-gray-400 dark:text-gray-500">admin · inject</span>
+            <h3 class="mt-2 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Admin</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              Embedded admin for users, groups, logs, and tokens. Inject your own apps from config.
+            </p>
+            <span class="mt-5 inline-flex items-center text-sm font-medium text-gray-900 group-hover:underline dark:text-white">
+              Administration <span aria-hidden="true" class="ml-1">→</span>
+            </span>
+          </a>
         </div>
 
-        <div class="mt-12 text-center animate-on-scroll">
-          <a href="/features/" class="text-sm/6 font-semibold text-primary-ink dark:text-primary hover:underline">
+        <div class="mt-8 animate-on-scroll">
+          <a href="/features/" class="text-sm/6 font-semibold text-gray-900 hover:underline dark:text-white">
             See all features
           </a>
           <span class="mx-3 text-gray-300 dark:text-gray-700">|</span>
-          <a href="/roadmap/" class="text-sm/6 font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:underline">
+          <a href="/roadmap/" class="text-sm/6 font-semibold text-gray-600 hover:text-gray-900 hover:underline dark:text-gray-400 dark:hover:text-white">
             View our roadmap
           </a>
         </div>
@@ -190,46 +174,44 @@ description: Shellui is an open-source microfrontend shell for web apps. Shared 
 
     {% include "home-faq.njk" %}
 
-    <div class="bg-white py-24 sm:py-32 dark:bg-gray-950">
+    <div class="bg-white py-20 sm:py-24 dark:bg-gray-950">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
-            Ready to dive in?
+          <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
+            See it running.
             <br />
-            Start using Shellui today.
+            Then read how it works.
           </h2>
         </div>
-        <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-16 gap-y-16 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-24">
-          <div>
-            <dt class="font-semibold text-gray-900 dark:text-white">Get started</dt>
-            <dd class="mt-1 text-gray-600 dark:text-gray-400">
-              Follow the documentation to scaffold a project and start building with the shared shell.
-            </dd>
-            <a
-              href="{{ site.docs }}"
-              class="mt-6 inline-flex rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            >
-              Get started
-            </a>
-          </div>
+        <dl class="mx-auto mt-12 grid max-w-2xl grid-cols-1 gap-x-16 gap-y-12 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-24">
           <div class="playground-cta">
             <dt class="font-semibold text-gray-900 dark:text-white">Try Shellui now</dt>
             <dd class="mt-1 text-gray-600 dark:text-gray-400">
-              Explore a live Shellui app - navigation, auth, and the full shell - with no install and no scaffolding.
+              Explore a live Shellui app — navigation, auth, and the full shell — with no install and no scaffolding.
             </dd>
             {% set playgroundIconSize = "size-6" %}
             <a
               href="{{ site.playground }}"
-              class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white"
+              class="mt-6 inline-flex items-center gap-2 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               target="_blank"
               rel="noopener noreferrer"
             >
               {% include "playground-app-icon.njk" %}
               Open playground
-              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div>
+            <dt class="font-semibold text-gray-900 dark:text-white">Read the docs</dt>
+            <dd class="mt-1 text-gray-600 dark:text-gray-400">
+              Follow the documentation to scaffold a project and start building with the shared shell.
+            </dd>
+            <a
+              href="{{ site.docs }}"
+              class="mt-6 inline-flex rounded-md border border-gray-300 px-3.5 py-2.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-700 dark:text-white dark:hover:bg-gray-900"
+            >
+              Read the docs
             </a>
           </div>
         </dl>
       </div>
     </div>
-
