@@ -21,24 +21,12 @@ const labels = {
   shellui_files_text_logo: "Files wordmark",
 };
 
-const lightArtwork = new Set([
-  "logo",
-  "shellui_transparent_logo",
-  "shellui_documentation_logo",
-  "shellui_playground_text_logo",
-  "shellui_files_text_logo",
-]);
-
 function formatLabel(baseName) {
   if (labels[baseName]) return labels[baseName];
   return baseName
     .replace(/^shellui_/, "")
     .replace(/_/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
-}
-
-function previewFor(baseName) {
-  return lightArtwork.has(baseName) ? "light" : "auto";
 }
 
 const files = fs.readdirSync(assetsDir).filter((file) => !file.startsWith("."));
@@ -49,34 +37,41 @@ for (const file of files) {
   const ext = path.extname(file).slice(1).toUpperCase();
   const baseName = path.basename(file, path.extname(file));
 
-  assetsByBase.set(baseName, [
-    ...(assetsByBase.get(baseName) ?? []),
-    {
-      file,
-      href: `/img/brand-assets/${file}`,
-      ext,
-      baseName,
-      label: formatLabel(baseName),
-      preview: previewFor(baseName),
-    },
-  ]);
-}
+  const formats = assetsByBase.get(baseName)?.formats ?? [];
+  formats.push({
+    file,
+    href: `/img/brand-assets/${file}`,
+    ext,
+  });
+  formats.sort((a, b) => a.ext.localeCompare(b.ext));
 
-for (const items of assetsByBase.values()) {
-  items.sort((a, b) => a.ext.localeCompare(b.ext));
+  assetsByBase.set(baseName, {
+    baseName,
+    label: formatLabel(baseName),
+    // Always theme-aware checkerboard so dark mode tiles match.
+    preview: "auto",
+    // Prefer SVG for the in-page preview when present.
+    previewHref:
+      formats.find((f) => f.ext === "SVG")?.href ??
+      formats[0]?.href ??
+      `/img/brand-assets/${file}`,
+    formats,
+  });
 }
 
 const grouped = groups
   .map((group) => ({
     name: group.name,
-    items: group.bases.flatMap((base) => assetsByBase.get(base) ?? []),
+    items: group.bases
+      .map((base) => assetsByBase.get(base))
+      .filter(Boolean),
   }))
   .filter((group) => group.items.length > 0);
 
 const usedBases = new Set(groups.flatMap((group) => group.bases));
 const otherItems = [...assetsByBase.entries()]
   .filter(([base]) => !usedBases.has(base))
-  .flatMap(([, items]) => items);
+  .map(([, item]) => item);
 
 if (otherItems.length > 0) {
   grouped.push({ name: "Other", items: otherItems });
