@@ -41,6 +41,7 @@ layout: layouts/base.njk
 {% if playgroundCta %}
 <div class="px-6 pb-16 sm:pb-24 lg:px-8">
   <div class="playground-cta relative isolate mx-auto overflow-hidden rounded-xl border border-gray-200 bg-gray-50 px-6 py-6 dark:border-gray-800 dark:bg-gray-900 sm:px-8 sm:py-8 {% if wide %}max-w-7xl{% else %}max-w-2xl{% endif %}">
+    <div class="pointer-events-none absolute -right-16 top-1/2 -z-10 size-56 -translate-y-1/2 rounded-full bg-linear-to-tr from-primary to-amber-200 opacity-25 blur-3xl dark:opacity-15" aria-hidden="true"></div>
     <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
       <div class="flex min-w-0 items-center gap-5 text-left">
         {% include "playground-app-icon.njk" %}

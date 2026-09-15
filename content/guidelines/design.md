@@ -1,7 +1,7 @@
 ---
 title: Design
 description: How to compose on-brand Shellui pages. Fetch this file first when building website or product surfaces. The HTML page at /guidelines/design/ is a human visual handbook - do not scrape it.
-version: 1.1.0
+version: 1.2.0
 ---
 
 Act as an excellent Shellui designer, editor, and information architect. Turn the available material into an official Shellui-authored page. Shape the argument and the interface together. Do not restyle a dump of sections or assemble a generic landing page.
@@ -42,7 +42,7 @@ Chrome to reuse: `nav.njk` (fixed `h-16`), `footer.njk`, `logo.njk`. Main paddin
 
 ## Tokens
 
-Gray canvas. Honey gold is the action color, not a wash. Prefer token utilities (`bg-background`, `text-foreground`, `border-border`, `bg-muted`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `text-primary-ink`, `bg-card`). In dark, gold text is `dark:text-primary` because `primary-ink` is not remapped.
+Gray canvas. Honey gold is the action color. A soft primary wash behind the homepage hero is brand ambient, not a gold field. Prefer token utilities (`bg-background`, `text-foreground`, `border-border`, `bg-muted`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `text-primary-ink`, `bg-card`). In dark, gold text is `dark:text-primary` because `primary-ink` is not remapped.
 
 | Token | Light | Dark | Role |
 | --- | --- | --- | --- |
@@ -79,7 +79,7 @@ Prefer shipped Tailwind Plus patterns. Paste into Nunjucks or `{% demo %}`. Rest
 | Code | `{% highlight %}` | Shiki |
 | Demo | `src/blocks/*.njk` | Real HTML, no iframe |
 
-Homepage blur blobs are legacy. New pages must not add `blur-3xl` clip-path polygons, logo clouds, gradient fields, testimonial marquees, or fake dashboards.
+**Shellui brand ambient** is allowed: a soft primary / amber wash (`blur-3xl`, `from-primary to-amber-200`) behind the homepage hero or a quiet CTA. Static is fine. Reject multi-color blobs, logo clouds, gradient fields, testimonial marquees, and fake dashboards.
 
 ## Compose
 
@@ -94,7 +94,7 @@ Passes: frame the job → choose composition → apply this visual system → in
 - All-caps tracked eyebrows as decoration
 - Em dashes or en dashes as punctuation
 - `easy`, `simple`, `quick`, `seamless`, `unlock`, `leverage`
-- Decorative gradients, glows, blobs, stripes, glass, ornamental shadows
+- Multi-color glows, stripes, glass, ornamental shadows. Soft primary/amber hero ambient is allowed (see Reuse)
 - Generic centered hero plus equal-weight card grid
 - Nested cards, or borders used to repair weak hierarchy
 - Arbitrary icon tiles, logo clouds, fake screenshots
