@@ -66,7 +66,7 @@
   <div class="relative z-50 border-b border-gray-200/50 bg-white/80 backdrop-blur-md dark:border-gray-800/50 dark:bg-gray-950/80">
     <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-8" aria-label="Global">
       <div class="flex lg:justify-self-start">
-        <a href="/" class="inline-flex items-center" aria-label="shellui">
+        <a href="/" class="inline-flex items-center" aria-label="Shellui" translate="no">
           {% include "logo.njk" %}
         </a>
       </div>
@@ -79,9 +79,10 @@
         >
           <button
             type="button"
-            class="inline-flex items-center gap-x-1 text-sm font-medium {% if featuresActive %}text-gray-900 dark:text-white{% else %}text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
+            class="inline-flex items-center gap-x-1 rounded-md text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary {% if featuresActive %}text-gray-900 dark:text-white{% else %}text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
             {% if featuresActive %}aria-current="page"{% endif %}
             :aria-expanded="featuresOpen.toString()"
+            aria-haspopup="true"
           >
             Features
             <svg class="size-4 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -91,10 +92,10 @@
           <div
             x-show="featuresOpen"
             x-cloak
-            x-transition:enter="transition ease-out duration-100"
+            x-transition:enter="transition ease-out duration-100 motion-reduce:transition-none"
             x-transition:enter-start="translate-y-1 opacity-0"
             x-transition:enter-end="translate-y-0 opacity-100"
-            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave="transition ease-in duration-75 motion-reduce:transition-none"
             x-transition:leave-start="translate-y-0 opacity-100"
             x-transition:leave-end="translate-y-1 opacity-0"
             class="absolute left-0 z-10 mt-2 w-screen max-w-sm -translate-x-[50px] overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-white/10 dark:shadow-none"
@@ -125,9 +126,10 @@
         >
           <button
             type="button"
-            class="inline-flex items-center gap-x-1 text-sm font-medium {% if developersActive %}text-gray-900 dark:text-white{% else %}text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
+            class="inline-flex items-center gap-x-1 rounded-md text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary {% if developersActive %}text-gray-900 dark:text-white{% else %}text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
             {% if developersActive %}aria-current="page"{% endif %}
             :aria-expanded="developersOpen.toString()"
+            aria-haspopup="true"
           >
             Developers
             <svg class="size-4 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -137,10 +139,10 @@
           <div
             x-show="developersOpen"
             x-cloak
-            x-transition:enter="transition ease-out duration-100"
+            x-transition:enter="transition ease-out duration-100 motion-reduce:transition-none"
             x-transition:enter-start="translate-y-1 opacity-0"
             x-transition:enter-end="translate-y-0 opacity-100"
-            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave="transition ease-in duration-75 motion-reduce:transition-none"
             x-transition:leave-start="translate-y-0 opacity-100"
             x-transition:leave-end="translate-y-1 opacity-0"
             class="absolute left-0 z-10 mt-2 w-screen max-w-sm -translate-x-[50px] overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-white/10 dark:shadow-none"
@@ -180,7 +182,7 @@
       <div class="flex flex-1 items-center justify-end gap-x-2 lg:flex-none lg:justify-self-end">
         <button
           type="button"
-          class="theme-toggle hidden rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 lg:inline-flex dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+          class="theme-toggle hidden size-11 items-center justify-center rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:inline-flex dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
           aria-label="Toggle dark mode"
         >
           <svg class="h-5 w-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -193,7 +195,7 @@
 
         <button
           type="button"
-          class="inline-flex size-10 items-center justify-center rounded-lg text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 lg:hidden dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+          class="inline-flex size-11 items-center justify-center rounded-lg text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:hidden dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
           :aria-expanded="mobileOpen.toString()"
           aria-controls="mobile-menu"
           @click="mobileOpen = !mobileOpen; featuresOpen = false; developersOpen = false"
@@ -229,7 +231,7 @@
         <div>
           <button
             type="button"
-            class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold tracking-wider text-gray-400 uppercase hover:bg-gray-50 dark:text-gray-500 dark:hover:bg-gray-800/50"
+            class="flex min-h-11 w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-semibold text-gray-500 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-gray-400 dark:hover:bg-gray-800/50"
             @click="mFeaturesOpen = !mFeaturesOpen"
             :aria-expanded="mFeaturesOpen.toString()"
           >
@@ -280,7 +282,7 @@
         <div class="mt-2">
           <button
             type="button"
-            class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold tracking-wider text-gray-400 uppercase hover:bg-gray-50 dark:text-gray-500 dark:hover:bg-gray-800/50"
+            class="flex min-h-11 w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-semibold text-gray-500 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-gray-400 dark:hover:bg-gray-800/50"
             @click="mDevelopersOpen = !mDevelopersOpen"
             :aria-expanded="mDevelopersOpen.toString()"
           >

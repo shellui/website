@@ -21,6 +21,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.4.4] - 2026-09-15
+
+### 📚 Documentation
+
+- Apply writing, web design, and design.md across public pages: sentence-case headings, banned-word cleanup, no em dashes, no gradient blobs, quieter composition.
+
+### 🛠 Improvements
+
+- Add skip link, theme-color, color-scheme, touch-action, heading scroll-margin, and 44px hit targets on chrome controls.
+
 ## [0.4.3] - 2026-09-15
 
 ### 📚 Documentation

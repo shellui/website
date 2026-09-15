@@ -40,7 +40,7 @@ layout: layouts/base.njk
 {% endif %}
 {% if playgroundCta %}
 <div class="px-6 pb-16 sm:pb-24 lg:px-8">
-  <div class="playground-cta relative isolate mx-auto overflow-hidden rounded-3xl bg-gray-50 px-6 py-6 shadow-sm ring-1 ring-gray-200 dark:bg-gray-900 dark:shadow-2xl dark:ring-0 sm:px-8 sm:py-8 {% if wide %}max-w-7xl{% else %}max-w-2xl{% endif %}">
+  <div class="playground-cta relative isolate mx-auto overflow-hidden rounded-xl border border-gray-200 bg-gray-50 px-6 py-6 dark:border-gray-800 dark:bg-gray-900 sm:px-8 sm:py-8 {% if wide %}max-w-7xl{% else %}max-w-2xl{% endif %}">
     <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
       <div class="flex min-w-0 items-center gap-5 text-left">
         {% include "playground-app-icon.njk" %}
@@ -63,15 +63,6 @@ layout: layouts/base.njk
         <span aria-hidden="true">&nbsp;→</span>
       </a>
     </div>
-    <svg viewBox="0 0 1024 1024" aria-hidden="true" class="absolute top-1/2 left-1/2 -z-10 size-256 -translate-x-1/2 mask-[radial-gradient(closest-side,white,transparent)]">
-      <circle r="512" cx="512" cy="512" fill="url(#playground-cta-gradient)" fill-opacity="0.25" />
-      <defs>
-        <radialGradient id="playground-cta-gradient">
-          <stop stop-color="#D4A853" />
-          <stop offset="1" stop-color="#A37200" />
-        </radialGradient>
-      </defs>
-    </svg>
   </div>
 </div>
 {% endif %}
