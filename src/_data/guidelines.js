@@ -107,12 +107,30 @@ function headingPlugin(md) {
   });
 }
 
+function tableWrapPlugin(md) {
+  const defaultOpen =
+    md.renderer.rules.table_open ||
+    function (tokens, idx, options, env, self) {
+      return self.renderToken(tokens, idx, options);
+    };
+  const defaultClose =
+    md.renderer.rules.table_close ||
+    function (tokens, idx, options, env, self) {
+      return self.renderToken(tokens, idx, options);
+    };
+  md.renderer.rules.table_open = (...args) =>
+    '<div class="prose-table-wrap">' + defaultOpen(...args);
+  md.renderer.rules.table_close = (...args) =>
+    defaultClose(...args) + "</div>";
+}
+
 const md = new MarkdownIt({
   html: false,
   linkify: true,
   typographer: false,
 });
 md.use(headingPlugin);
+md.use(tableWrapPlugin);
 
 function loadTopic(entry) {
   const sourcePath = `content/guidelines/${entry.slug}.md`;

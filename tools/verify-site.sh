@@ -58,6 +58,10 @@ grep -q 'Tailwind Plus' "${SITE}/design.md" || fail "/design.md missing Tailwind
 grep -q 'primary' "${SITE}/design.md" || fail "/design.md missing primary token"
 grep -q '/guidelines/' "${SITE}/brand-assets/index.html" || fail "brand-assets page missing guidelines cross-link"
 grep -q '/brand-assets/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand-assets cross-link"
+grep -q 'parent skill from this repo' "${SITE}/guidelines/index.html" || fail "guidelines hub missing labeled agent skill path"
+grep -q '<table' "${SITE}/guidelines/design/index.html" || fail "design guidelines HTML missing GFM tables"
+grep -q 'prose-table-wrap' "${SITE}/guidelines/design/index.html" || fail "design guidelines tables missing overflow wrap"
+grep -q 'id="color-surfaces-and-tokens"' "${SITE}/guidelines/design/index.html" || fail "design guidelines missing H4 id for token section"
 
 # Asset fingerprinting should rewrite CSS references with a cache-busting query
 if ! grep -qE 'assets/css/site\.css\?v=[a-f0-9]{8}' "${SITE}/index.html"; then

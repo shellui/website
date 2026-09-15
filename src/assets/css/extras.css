@@ -185,6 +185,10 @@
   @apply mt-[0.5em] mb-[0.6em] text-gray-900 dark:text-white;
 }
 
+.prose :where(h4) {
+  @apply mt-6 mb-2 text-base font-semibold text-gray-900 dark:text-white;
+}
+
 .prose :where(h1) {
   font-size: 2.25rem;
   line-height: 1.2;
@@ -240,6 +244,26 @@
   @apply text-gray-900 dark:text-gray-50;
 }
 
+.prose :where(.prose-table-wrap) {
+  @apply my-6 overflow-x-auto;
+}
+
+.prose :where(table) {
+  @apply w-full border-collapse text-sm;
+}
+
+.prose :where(th) {
+  @apply border border-gray-200 bg-gray-50 px-3 py-2 text-left align-bottom font-semibold text-gray-900 dark:border-gray-800 dark:bg-white/5 dark:text-white;
+}
+
+.prose :where(td) {
+  @apply border border-gray-200 px-3 py-2 align-top text-gray-600 dark:border-gray-800 dark:text-gray-400;
+}
+
+.prose :where(thead th) {
+  white-space: nowrap;
+}
+
 .guidelines-prose > :first-child {
   margin-top: 0;
 }
@@ -250,6 +274,10 @@
 
 .guidelines-prose :where(h3) {
   scroll-margin-top: 5.5rem;
+}
+
+.guidelines-prose :where(h4) {
+  scroll-margin-top: 5rem;
 }
 
 .guidelines-prose :where(strong) {
