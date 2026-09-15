@@ -3,10 +3,25 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import MarkdownIt from "markdown-it";
 
-const sourcePath = path.join(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "../../content/guidelines/writing.md",
-);
+const root = path.dirname(fileURLToPath(import.meta.url));
+const contentDir = path.join(root, "../../content/guidelines");
+
+const catalog = [
+  {
+    slug: "writing",
+    href: "/guidelines/writing/",
+    skillPath: "skills/writing-guidelines/SKILL.md",
+    navLabel: "Writing",
+    downloadName: "writing.md",
+  },
+  {
+    slug: "web-design",
+    href: "/guidelines/web-design/",
+    skillPath: "skills/web-design-guidelines/SKILL.md",
+    navLabel: "Web design",
+    downloadName: "web-design.md",
+  },
+];
 
 function parseFrontmatter(raw) {
   if (!raw.startsWith("---\n") && !raw.startsWith("---\r\n")) {
@@ -84,8 +99,6 @@ function headingPlugin(md) {
   });
 }
 
-const raw = fs.readFileSync(sourcePath, "utf8");
-const { data, body } = parseFrontmatter(raw);
 const md = new MarkdownIt({
   html: false,
   linkify: true,
@@ -93,15 +106,26 @@ const md = new MarkdownIt({
 });
 md.use(headingPlugin);
 
+function loadTopic(entry) {
+  const sourcePath = `content/guidelines/${entry.slug}.md`;
+  const raw = fs.readFileSync(path.join(contentDir, `${entry.slug}.md`), "utf8");
+  const { data, body } = parseFrontmatter(raw);
+  return {
+    ...entry,
+    version: data.version || "1.0.0",
+    title: data.title || entry.navLabel,
+    description: data.description || "",
+    html: md.render(body),
+    toc: extractToc(body),
+    downloadUrl: `/guidelines/${entry.downloadName}`,
+    sourcePath,
+  };
+}
+
+const topics = catalog.map(loadTopic);
+
 export default {
-  version: data.version || "1.0.0",
-  title: data.title || "Writing guidelines",
-  description:
-    data.description ||
-    "Voice, tone, and review rules for Shellui website and docs prose.",
-  html: md.render(body),
-  toc: extractToc(body),
-  downloadUrl: "/guidelines/writing.md",
-  sourcePath: "content/guidelines/writing.md",
-  skillPath: "skills/writing-guidelines/SKILL.md",
+  topics,
+  bySlug: Object.fromEntries(topics.map((topic) => [topic.slug, topic])),
+  parentSkillPath: "skills/guidelines/SKILL.md",
 };

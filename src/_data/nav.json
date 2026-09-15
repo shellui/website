@@ -26,8 +26,8 @@
     },
     {
       "href": "/guidelines/",
-      "label": "Writing guidelines",
-      "description": "Voice, tone, and review rules for site copy.",
+      "label": "Guidelines",
+      "description": "Writing, UI, and review rules for Shellui copy.",
       "icon": "pen"
     }
   ],

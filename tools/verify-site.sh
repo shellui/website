@@ -20,7 +20,10 @@ required_files=(
   assets/js/site.js
   brand-assets/index.html
   guidelines/index.html
+  guidelines/writing/index.html
+  guidelines/web-design/index.html
   guidelines/writing.md
+  guidelines/web-design.md
 )
 
 log "Checking required output files"
@@ -38,10 +41,14 @@ cname="$(tr -d '[:space:]' < "${SITE}/CNAME")"
 # Homepage must mention the product name
 grep -q 'Shellui' "${SITE}/index.html" || fail "index.html does not contain 'Shellui'"
 
-grep -q 'Guidelines v' "${SITE}/guidelines/index.html" || fail "guidelines page missing version label"
+grep -q '/guidelines/writing/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing writing link"
+grep -q '/guidelines/web-design/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing web-design link"
+grep -q 'Guidelines v' "${SITE}/guidelines/writing/index.html" || fail "writing guidelines page missing version label"
+grep -q 'Guidelines v' "${SITE}/guidelines/web-design/index.html" || fail "web design guidelines page missing version label"
 grep -q '^version:' "${SITE}/guidelines/writing.md" || fail "published writing.md missing version frontmatter"
+grep -q '^version:' "${SITE}/guidelines/web-design.md" || fail "published web-design.md missing version frontmatter"
 grep -q '/guidelines/' "${SITE}/brand-assets/index.html" || fail "brand-assets page missing guidelines cross-link"
-grep -q '/brand-assets/' "${SITE}/guidelines/index.html" || fail "guidelines page missing brand-assets cross-link"
+grep -q '/brand-assets/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand-assets cross-link"
 
 # Asset fingerprinting should rewrite CSS references with a cache-busting query
 if ! grep -qE 'assets/css/site\.css\?v=[a-f0-9]{8}' "${SITE}/index.html"; then

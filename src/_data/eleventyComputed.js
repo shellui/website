@@ -55,6 +55,8 @@ export default {
       changelog: "Changelog",
       pricing: "Pricing",
       guidelines: "Guidelines",
+      writing: "Writing",
+      "web-design": "Web design",
     };
 
     const pageLabel = String(data.title || data.heading || "")

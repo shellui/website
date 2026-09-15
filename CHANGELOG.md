@@ -25,9 +25,9 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 📚 Documentation
 
-- Add versioned writing guidelines (`content/guidelines/writing.md` v1.0.0) and an agent skill at `skills/writing-guidelines/SKILL.md`.
-- Publish a dedicated `/guidelines/` page that renders the same markdown, with a downloadable copy at `/guidelines/writing.md`.
-- Link writing guidelines from the Developers nav and footer. Brand assets stay at `/brand-assets/` with a cross-link.
+- Add versioned guidelines (`content/guidelines/writing.md` and `web-design.md`, v1.0.0) with agent skills under `skills/`.
+- Publish a `/guidelines/` hub plus `/guidelines/writing/` and `/guidelines/web-design/` pages that render the same markdown, with downloadable copies at `/guidelines/*.md`.
+- Link guidelines from the Developers nav and footer. Brand assets stay at `/brand-assets/` with a cross-link.
 
 ## [0.4.2] - 2026-09-07
 

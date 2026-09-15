@@ -10,9 +10,11 @@ Agents: load this file. Do not scrape the HTML page. The `version` field in the 
 
 ## How to use this file
 
-- **Humans**: read the page at `/guidelines/`, or download this markdown
+- **Humans**: read the page at `/guidelines/writing/`, or download this markdown
 - **Agents**: read `content/guidelines/writing.md` in this repo, or fetch `https://shellui.com/guidelines/writing.md`
 - **Skill wrapper**: `skills/writing-guidelines/SKILL.md`
+- **Sibling**: [web design guidelines](/guidelines/web-design/) for UI, accessibility, and chrome
+- **Hub**: [Guidelines](/guidelines/)
 
 Review files against every rule below. Output concise, high-signal findings. Sacrifice grammar for brevity.
 

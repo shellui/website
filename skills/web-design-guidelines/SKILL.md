@@ -1,17 +1,15 @@
 ---
-name: writing-guidelines
-description: Use when reviewing Shellui website or docs prose, checking writing style, auditing voice and tone, rewriting marketing copy, or applying the Shellui writing handbook.
+name: web-design-guidelines
+description: Use when reviewing Shellui website, docs, or in-shell UI, checking accessibility, auditing layout, or applying the Shellui web design handbook.
 metadata:
   version: "1.0.0"
 ---
 
-# Writing guidelines
+# Web design guidelines
 
-Review files for compliance with Shellui writing guidelines.
+Review files for compliance with Shellui web design guidelines (accessibility, focus, forms, motion, iframe chrome, light/dark).
 
-Inspired by the public writing-handbook pattern from Vercel Labs; the rules here are Shellui-specific (voice, product, hyphen preference). Do not copy Vercel branding, model catalogs, or dashboard links into Shellui copy.
-
-For UI, accessibility, and chrome, also load `skills/web-design-guidelines/SKILL.md`.
+Inspired by the public web-interface-guidelines pattern from Vercel Labs; the rules here are Shellui-specific (microfrontend host, themes, hyphen preference). Do not copy Vercel branding or dashboard links into Shellui UI.
 
 ## How it works
 
@@ -20,24 +18,26 @@ For UI, accessibility, and chrome, also load `skills/web-design-guidelines/SKILL
 3. Check against every rule in the loaded guidelines
 4. Output findings in the terse `file:line` format from the guidelines
 
+For copy, also load `skills/writing-guidelines/SKILL.md`.
+
 ## Guidelines source
 
 Prefer the in-repo file:
 
 ```
-content/guidelines/writing.md
+content/guidelines/web-design.md
 ```
 
 If this repository is not available, fetch the published markdown:
 
 ```
-https://shellui.com/guidelines/writing.md
+https://shellui.com/guidelines/web-design.md
 ```
 
 Fallback (GitHub):
 
 ```
-https://raw.githubusercontent.com/shellui/website/main/content/guidelines/writing.md
+https://raw.githubusercontent.com/shellui/website/main/content/guidelines/web-design.md
 ```
 
 The YAML frontmatter `version` field is the public label (for example `Guidelines v1.0.0`). Use that file as the single source of truth.
