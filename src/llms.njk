@@ -1,0 +1,53 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+layout: false
+---
+# Shellui
+
+> Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Built for developers shipping a product inside that shell.
+
+This file is the agent index for {{ site.url }}. Prefer the links below over scraping HTML. Product name is Shellui only (never "The Host"). In prose, "the shell" (lowercase) is the running host.
+
+CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, then `shellui start`. `shellui dev` aliases `shellui start`. Build with `shellui build` (output under `dist/web/`). For agent-led scaffolding (skills, framework starters), fetch [shellui.ai](https://shellui.ai) and follow that page. Do not scrape `/guidelines/design/` HTML; fetch `/design.md` instead.
+
+## Product
+
+- [Shellui]({{ site.url }}/): Product site
+- [Documentation]({{ site.docs }}): Installation, getting started, CLI, SDK, and feature guides
+- [Playground]({{ site.playground }}): Live shell with host chrome; no local install
+- [GitHub]({{ site.github }}): Source for the platform and related services
+- [Architecture]({{ site.url }}/architecture/): How the stack fits together
+- [Features]({{ site.url }}/features/): Microfrontend, authentication, administration, storage
+
+## Agent surfaces
+
+- [shellui.ai](https://shellui.ai): Agent bootstrap - install skills, install CLI, init, start
+- [Guidelines hub]({{ site.url }}/guidelines/): Writing, web design, and design rules for humans and agents
+- [design.md]({{ site.url }}/design.md): Composition authority when building Shellui pages (`fetch https://shellui.com/design.md`)
+- [Writing guidelines (markdown)]({{ site.url }}/guidelines/writing.md): Voice and review rules
+- [Web design guidelines (markdown)]({{ site.url }}/guidelines/web-design.md): UI, accessibility, and chrome
+
+## Docs
+
+- [Installation]({{ site.docs }}/installation): Install `@shellui/cli` globally or as a project dependency
+- [Getting started]({{ site.docs }}/quickstart): `shellui init`, `shellui start`, and first config
+- [CLI reference]({{ site.docs }}/cli): Commands, flags, and config file shape
+- [SDK reference]({{ site.docs }}/sdk): `@shellui/sdk` for iframe apps to talk to the shell
+
+## Hosting
+
+- [shellui.app](https://shellui.app): Hosting for Shellui apps on `*.shellui.app`
+- [shellui.app /llms.txt](https://shellui.app/llms.txt): Hosting overview for agents (`shellui login`, `shellui deploy`)
+
+## Optional
+
+- [Pricing]({{ site.url }}/pricing/)
+- [Brand assets]({{ site.url }}/brand-assets/): Logos and press-kit downloads
+- [Blog]({{ site.url }}/blog/)
+- [Changelog]({{ site.url }}/changelog/)
+- [Roadmap]({{ site.url }}/roadmap/)
+- [Contribute]({{ site.url }}/company/contribute/)
+- [identity-service]({{ site.identityService }}): Auth backend source
+- [admin]({{ site.adminPanel }}): Admin panel source
+- [storage-service]({{ site.storageService }}): Storage backend source

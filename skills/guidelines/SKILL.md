@@ -21,7 +21,7 @@ https://shellui.com/design.md
 | Writing | `skills/writing-guidelines/SKILL.md` | `content/guidelines/writing.md` | `/guidelines/writing/` |
 | Web design | `skills/web-design-guidelines/SKILL.md` | `content/guidelines/web-design.md` | `/guidelines/web-design/` |
 
-Hub: `/guidelines/`. Logos stay on `/brand-assets/`.
+Hub: `/guidelines/`. Logos stay on `/brand-assets/`. Site overview for agents: `/llms.txt`.
 
 Published markdown (after deploy):
 
@@ -29,6 +29,7 @@ Published markdown (after deploy):
 https://shellui.com/design.md
 https://shellui.com/guidelines/writing.md
 https://shellui.com/guidelines/web-design.md
+https://shellui.com/llms.txt
 ```
 
 YAML `version` in each markdown file is the public "Guidelines v…" label.

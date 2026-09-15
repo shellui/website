@@ -15,6 +15,7 @@ required_files=(
   404.html
   CNAME
   robots.txt
+  llms.txt
   sitemap.xml
   assets/css/site.css
   assets/js/site.js
@@ -47,6 +48,32 @@ grep -q 'Shellui' "${SITE}/index.html" || fail "index.html does not contain 'She
 grep -q '/guidelines/writing/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing writing link"
 grep -q '/guidelines/web-design/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing web-design link"
 grep -q '/design.md' "${SITE}/guidelines/index.html" || fail "guidelines hub missing design.md fetch URL"
+grep -q '/llms.txt' "${SITE}/guidelines/index.html" || fail "guidelines hub missing llms.txt link"
+grep -q '^# Shellui$' "${SITE}/llms.txt" || fail "llms.txt missing H1 project name"
+grep -q '^> ' "${SITE}/llms.txt" || fail "llms.txt missing blockquote summary"
+grep -q 'Built for developers' "${SITE}/llms.txt" || fail "llms.txt blockquote missing Built for phrasing"
+grep -q '^## Optional$' "${SITE}/llms.txt" || fail "llms.txt missing Optional section"
+grep -q 'https://shellui.com/design.md' "${SITE}/llms.txt" || fail "llms.txt missing design.md"
+grep -q '\[shellui.ai\](https://shellui.ai)' "${SITE}/llms.txt" || fail "llms.txt missing markdown link for shellui.ai"
+grep -q 'npm install -g @shellui/cli' "${SITE}/llms.txt" || fail "llms.txt missing CLI install"
+grep -q 'shellui init' "${SITE}/llms.txt" || fail "llms.txt missing shellui init"
+grep -q 'docs.shellui.com/sdk' "${SITE}/llms.txt" || fail "llms.txt missing SDK docs link"
+grep -q 'Auth backend source' "${SITE}/llms.txt" || fail "llms.txt missing identity-service annotation"
+grep -qE '^- \[.+\]\(.+\): ' "${SITE}/llms.txt" || fail "llms.txt missing annotated link list entries"
+if grep -q '\[This file\]' "${SITE}/llms.txt"; then
+  fail "llms.txt should not self-link with [This file]"
+fi
+if grep -qiE 'Audience:' "${SITE}/llms.txt"; then
+  fail "llms.txt must not use Audience: spec-sheet voice"
+fi
+if grep -qiE '<!DOCTYPE|<html' "${SITE}/llms.txt"; then
+  fail "llms.txt must be plain text, not HTML"
+fi
+if grep -qiE '\beasy\b|\bsimple\b|\bquick\b|—' "${SITE}/llms.txt"; then
+  fail "llms.txt has banned writing (easy/simple/quick or em dash)"
+fi
+grep -q 'rel="describedby" href="/llms.txt"' "${SITE}/index.html" || fail "site head missing llms.txt describedby link"
+
 grep -q 'Guidelines v' "${SITE}/guidelines/writing/index.html" || fail "writing guidelines page missing version label"
 grep -q 'Guidelines v' "${SITE}/guidelines/web-design/index.html" || fail "web design guidelines page missing version label"
 grep -q 'Hit targets:' "${SITE}/guidelines/web-design/index.html" || fail "web design page missing hit-target rule"
