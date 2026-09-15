@@ -5,11 +5,11 @@ layout: false
 ---
 # Shellui
 
-> Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Audience: developers shipping a product inside that shell.
+> Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Built for developers shipping a product inside that shell.
 
 This file is the agent index for {{ site.url }}. Prefer the links below over scraping HTML. Product name is Shellui only (never "The Host"). In prose, "the shell" (lowercase) is the running host.
 
-CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, then `shellui start`. `shellui dev` aliases `shellui start`. Build with `shellui build` (output under `dist/web/`). For agent-led scaffolding (skills, framework starters), fetch https://shellui.ai and follow that page. Do not scrape `/guidelines/design/` HTML; fetch `/design.md` instead.
+CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, then `shellui start`. `shellui dev` aliases `shellui start`. Build with `shellui build` (output under `dist/web/`). For agent-led scaffolding (skills, framework starters), fetch [shellui.ai](https://shellui.ai) and follow that page. Do not scrape `/guidelines/design/` HTML; fetch `/design.md` instead.
 
 ## Product
 
@@ -27,13 +27,13 @@ CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, th
 - [design.md]({{ site.url }}/design.md): Composition authority when building Shellui pages (`fetch https://shellui.com/design.md`)
 - [Writing guidelines (markdown)]({{ site.url }}/guidelines/writing.md): Voice and review rules
 - [Web design guidelines (markdown)]({{ site.url }}/guidelines/web-design.md): UI, accessibility, and chrome
-- [This file]({{ site.url }}/llms.txt): Site overview for agents
 
 ## Docs
 
 - [Installation]({{ site.docs }}/installation): Install `@shellui/cli` globally or as a project dependency
 - [Getting started]({{ site.docs }}/quickstart): `shellui init`, `shellui start`, and first config
 - [CLI reference]({{ site.docs }}/cli): Commands, flags, and config file shape
+- [SDK reference]({{ site.docs }}/sdk): `@shellui/sdk` for iframe apps to talk to the shell
 
 ## Hosting
 
@@ -48,6 +48,6 @@ CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, th
 - [Changelog]({{ site.url }}/changelog/)
 - [Roadmap]({{ site.url }}/roadmap/)
 - [Contribute]({{ site.url }}/company/contribute/)
-- [identity-service]({{ site.identityService }})
-- [admin]({{ site.adminPanel }})
-- [storage-service]({{ site.storageService }})
+- [identity-service]({{ site.identityService }}): Auth backend source
+- [admin]({{ site.adminPanel }}): Admin panel source
+- [storage-service]({{ site.storageService }}): Storage backend source
