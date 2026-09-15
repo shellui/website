@@ -23,8 +23,14 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ## [0.5.0] - 2026-MM-DD
 
+### 🛠 Improvements
+
+- Add skip link, theme-color, color-scheme, touch-action, heading scroll-margin, and 44px hit targets on chrome controls.
+
 ### 📚 Documentation
 
+- Apply writing, web design, and design.md across public pages: sentence-case headings, banned-word cleanup, no em dashes, quieter composition.
+- Restore Shellui brand ambient (soft primary/amber hero wash). design.md v1.2.0 allows that signature glow; still rejects multi-color blobs.
 - Add versioned guidelines (`content/guidelines/writing.md`, `web-design.md`, and `design.md`, v1.0.0) with agent skills under `skills/`.
 - Publish a `/guidelines/` hub plus topic pages. Writing and web design render the same markdown. Design is a visual human handbook at `/guidelines/design/`; agents fetch lean `/design.md`.
 - Link guidelines from the footer. Brand assets stay at `/brand-assets/` with a cross-link.

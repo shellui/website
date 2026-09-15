@@ -7,6 +7,11 @@
   function applyTheme(mode) {
     const isDark = mode === "dark";
     html.classList.toggle("dark", isDark);
+    html.style.colorScheme = isDark ? "dark" : "light";
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) {
+      themeColor.setAttribute("content", isDark ? "#030712" : "#ffffff");
+    }
     if (!embedded) {
       localStorage.setItem("theme", mode);
     }

@@ -1,44 +1,47 @@
 ---
 layout: layouts/page.njk
 title: Changelog | Shellui
-description: "Release notes for every Shellui version: features, fixes, and breaking changes across the shell, SDK, identity, admin, and storage."
+description: "Release notes for each Shellui version: features, fixes, and breaking changes across the shell, SDK, identity, admin, and storage."
 eyebrow: Developers
-heading: Changelog
-lede: A detailed log of every release and what changed.
+heading: What changed in each release
+lede: Features, fixes, and breaking changes across the shell, SDK, identity, admin, and storage.
 ---
 {% if changelog.length == 0 %}
-<p class="text-gray-500 dark:text-gray-400">Unable to load changelog. Please check back later.</p>
+<p class="text-gray-500 dark:text-gray-400">Changelog is unavailable. Check GitHub or try again later.</p>
 {% endif %}
 <div x-data="{ allOpen: false }">
 <div class="mb-4 flex justify-end">
-  <button type="button" class="text-sm font-medium text-primary-ink dark:text-primary hover:underline" @click="allOpen = !allOpen; $dispatch('toggle-all', { open: allOpen })" x-text="allOpen ? 'Collapse all' : 'Expand all'"></button>
+  <button type="button" class="min-h-11 rounded-md px-2 text-sm font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" @click="allOpen = !allOpen; $dispatch('toggle-all', { open: allOpen })" x-text="allOpen ? 'Collapse all' : 'Expand all'"></button>
 </div>
 <div class="space-y-4">
 {% for release in changelog %}
-  <div class="group rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-white/[0.02] shadow-sm hover:shadow-md transition-shadow overflow-hidden" x-data="{ show: {{ 'true' if loop.first else 'false' }} }" @toggle-all.window="show = $event.detail.open">
+  <div class="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.02]" x-data="{ show: {{ 'true' if loop.first else 'false' }} }" @toggle-all.window="show = $event.detail.open">
     <button
       type="button"
-      class="w-full flex items-center gap-4 px-6 py-3 text-left"
+      class="flex w-full min-h-11 items-center gap-4 px-6 py-3 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       @click="show = !show"
+      :aria-expanded="show.toString()"
+      aria-controls="changelog-{{ loop.index }}"
+      id="changelog-trigger-{{ loop.index }}"
     >
-      <span class="inline-flex items-center justify-center rounded-full bg-primary-ink/10 dark:bg-primary/15 px-3 py-1 text-sm font-bold text-primary-ink dark:text-primary w-24 shrink-0 text-center">v{{ release.version }}</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400 w-28 shrink-0">{{ release.date if release.date else '' }}</span>
+      <span class="inline-flex w-24 shrink-0 items-center justify-center rounded-full bg-primary-ink/10 px-3 py-1 text-sm font-bold tabular-nums text-primary-ink dark:bg-primary/15 dark:text-primary">v{{ release.version }}</span>
+      <span class="w-28 shrink-0 text-sm tabular-nums text-gray-500 dark:text-gray-400">{{ release.date if release.date else '' }}</span>
       <span class="flex-1"></span>
       {% if loop.first %}
-        <span class="inline-flex items-center rounded-full bg-green-50 dark:bg-green-500/10 px-2.5 py-0.5 text-xs font-medium text-green-700 dark:text-green-400 mt-0.5">Latest</span>
+        <span class="mt-0.5 inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700 dark:bg-green-500/10 dark:text-green-400">Latest</span>
       {% endif %}
-      <svg class="size-5 text-gray-400 shrink-0 mt-0.5 transition-transform duration-200" :class="show && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <svg class="mt-0.5 size-5 shrink-0 text-gray-400 transition-transform duration-200 motion-reduce:transition-none" :class="show && 'rotate-180'" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
       </svg>
     </button>
-    <div x-show="show" x-transition.duration.200ms>
-      <div class="border-t border-gray-100 dark:border-gray-800 px-6 pb-4 space-y-4">
+    <div id="changelog-{{ loop.index }}" x-show="show" role="region" aria-labelledby="changelog-trigger-{{ loop.index }}">
+      <div class="space-y-4 border-t border-gray-100 px-6 pb-4 dark:border-gray-800">
         {% for section in release.sections %}
           <div>
-            <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 {{ 'mt-0' if loop.first else 'mt-4' }} mb-2">{{ section.heading }}</h3>
+            <h3 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300 {{ 'mt-0' if loop.first else 'mt-4' }}">{{ section.heading }}</h3>
             <ul class="space-y-2 !mb-0">
               {% for item in section.items %}
-                <li class="flex gap-3 text-sm text-gray-700 dark:text-gray-300 leading-relaxed !mb-0 !p-0" style="list-style:none;margin:0;padding:0">
+                <li class="flex gap-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300 !mb-0 !p-0" style="list-style:none;margin:0;padding:0">
                   <span class="mt-2 size-1 shrink-0 rounded-full bg-gray-300 dark:bg-gray-600"></span>
                   <span>{{ item | safe }}</span>
                 </li>
@@ -52,4 +55,4 @@ lede: A detailed log of every release and what changed.
 {% endfor %}
 </div>
 </div>
-<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Want to see what's coming next? Check out our <a href="/roadmap/">roadmap</a>.</p>
+<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Upcoming work is on the <a href="/roadmap/">roadmap</a>.</p>

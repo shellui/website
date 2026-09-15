@@ -3,13 +3,13 @@ layout: layouts/page.njk
 title: Architecture | Shellui
 description: "Shellui is five open-source pieces: React frontend, identity-service, admin, storage-service, and Files. Swap auth and storage for Supabase if you prefer."
 eyebrow: Developers
-heading: Architecture
-lede: Five open-source pieces that make up a Shellui stack. Use all of them, or keep the frontend and swap authentication and storage for Supabase.
+heading: How the stack fits together
+lede: Five open-source pieces make up a Shellui stack. Use all of them, or keep the frontend and swap authentication and storage for Supabase.
 ---
 {% import "github-repo-button.njk" as repo %}
 {% import "stack-list.njk" as stack %}
 
-<p>Shellui uses a microservice architecture. Each project has its own lifecycle and is managed as an individual repository, but all of them serve the Shellui frontend. Authentication and storage are designed to be replaceable with <a href="https://supabase.com">Supabase</a> if that is already in your stack.</p>
+<p>Each piece has its own repository and lifecycle. Together they serve the Shellui frontend. You can replace authentication and storage with <a href="https://supabase.com">Supabase</a> if that is already in your stack.</p>
 
 {{ stack.heading("Shellui", "Frontend") }}
 <p>The frontend lives in the shellui monorepo, a TypeScript React runtime. <code>@shellui/core</code> owns navigation, layout modes, themes, i18n, modals, and drawers. <code>@shellui/sdk</code> lets apps in iframes talk to the shell. <code>@shellui/cli</code> scaffolds and serves projects. Any stack can run inside the Shellui iframe.</p>
@@ -17,7 +17,7 @@ lede: Five open-source pieces that make up a Shellui stack. Use all of them, or 
 <p>{{ repo.githubRepoButton("shellui/shellui") }}</p>
 
 {{ stack.heading("Authentication", "Backend") }}
-<p>The default backend is identity-service, a Django API for OAuth (GitHub, Google, Microsoft), JWT sessions, and JWKS verification. It ships as a Docker image and is deployed at <a href="https://id.shellui.com">id.shellui.com</a>. You can replace it with Supabase Auth - the shell already supports both.</p>
+<p>The default backend is identity-service, a Django API for OAuth (GitHub, Google, Microsoft), JWT sessions, and JSON Web Key Set (JWKS) verification. It ships as a Docker image and is deployed at <a href="https://id.shellui.com">id.shellui.com</a>. You can replace it with Supabase Auth - the shell already supports both.</p>
 {{ stack.stackList(["Python", "Django", "django-allauth", "Django REST Framework", "Swagger", "ReDoc"]) }}
 <p class="flex flex-wrap gap-3">
   {{ repo.githubRepoButton("shellui/identity-service") }}

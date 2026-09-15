@@ -2,7 +2,7 @@
 name: design-md
 description: Use when building or restyling Shellui website or in-shell pages. Fetch design.md first, then compose with writing-guidelines and web-design-guidelines. Prefer this over inventing a new visual kit.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Design.md
@@ -49,5 +49,5 @@ When asked to add, restyle, or review a Shellui page:
 
 1. Read `design.md`
 2. Reuse layouts in `src/_includes/layouts/` and Plus patterns named in that file
-3. Do not add gradient blobs, equal-weight card grids, em dashes, or a parallel token system
+3. Do not add multi-color blobs, equal-weight card grids, em dashes, or a parallel token system. Soft primary/amber hero ambient is allowed.
 4. Output implementation in this Eleventy + Tailwind repo
