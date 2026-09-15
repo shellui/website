@@ -50,12 +50,18 @@ grep -q '/guidelines/web-design/' "${SITE}/guidelines/index.html" || fail "guide
 grep -q '/design.md' "${SITE}/guidelines/index.html" || fail "guidelines hub missing design.md fetch URL"
 grep -q '/llms.txt' "${SITE}/guidelines/index.html" || fail "guidelines hub missing llms.txt link"
 grep -q '^# Shellui$' "${SITE}/llms.txt" || fail "llms.txt missing H1 project name"
+grep -q '^> ' "${SITE}/llms.txt" || fail "llms.txt missing blockquote summary"
+grep -q '^## Optional$' "${SITE}/llms.txt" || fail "llms.txt missing Optional section"
 grep -q 'https://shellui.com/design.md' "${SITE}/llms.txt" || fail "llms.txt missing design.md"
 grep -q 'https://shellui.ai' "${SITE}/llms.txt" || fail "llms.txt missing shellui.ai"
 grep -q 'npm install -g @shellui/cli' "${SITE}/llms.txt" || fail "llms.txt missing CLI install"
 grep -q 'shellui init' "${SITE}/llms.txt" || fail "llms.txt missing shellui init"
+grep -qE '^- \[.+\]\(.+\): ' "${SITE}/llms.txt" || fail "llms.txt missing annotated link list entries"
 if grep -qiE '<!DOCTYPE|<html' "${SITE}/llms.txt"; then
   fail "llms.txt must be plain text, not HTML"
+fi
+if grep -qiE '\beasy\b|\bsimple\b|\bquick\b|—' "${SITE}/llms.txt"; then
+  fail "llms.txt has banned writing (easy/simple/quick or em dash)"
 fi
 
 grep -q 'Guidelines v' "${SITE}/guidelines/writing/index.html" || fail "writing guidelines page missing version label"

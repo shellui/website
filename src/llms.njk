@@ -9,10 +9,12 @@ layout: false
 
 This file is the agent index for {{ site.url }}. Prefer the links below over scraping HTML. Product name is Shellui only (never "The Host"). In prose, "the shell" (lowercase) is the running host.
 
+CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, then `shellui start`. `shellui dev` aliases `shellui start`. Build with `shellui build` (output under `dist/web/`). For agent-led scaffolding (skills, framework starters), fetch https://shellui.ai and follow that page. Do not scrape `/guidelines/design/` HTML; fetch `/design.md` instead.
+
 ## Product
 
 - [Shellui]({{ site.url }}/): Product site
-- [Documentation]({{ site.docs }}): Installation, quick start, CLI, SDK, and feature guides
+- [Documentation]({{ site.docs }}): Installation, getting started, CLI, SDK, and feature guides
 - [Playground]({{ site.playground }}): Live shell with host chrome; no local install
 - [GitHub]({{ site.github }}): Source for the platform and related services
 - [Architecture]({{ site.url }}/architecture/): How the stack fits together
@@ -27,21 +29,11 @@ This file is the agent index for {{ site.url }}. Prefer the links below over scr
 - [Web design guidelines (markdown)]({{ site.url }}/guidelines/web-design.md): UI, accessibility, and chrome
 - [This file]({{ site.url }}/llms.txt): Site overview for agents
 
-Do not scrape `/guidelines/design/` HTML. Fetch `/design.md` instead.
+## Docs
 
-## CLI happy path
-
-Documented at {{ site.docs }}/installation and {{ site.docs }}/quickstart:
-
-```
-npm install -g @shellui/cli
-shellui init
-shellui start
-```
-
-`shellui dev` is an alias for `shellui start`. Build with `shellui build` (output under `dist/web/`). Details: {{ site.docs }}/cli
-
-For agent-led scaffolding (skills, framework starters), fetch https://shellui.ai and follow that page.
+- [Installation]({{ site.docs }}/installation): Install `@shellui/cli` globally or as a project dependency
+- [Getting started]({{ site.docs }}/quickstart): `shellui init`, `shellui start`, and first config
+- [CLI reference]({{ site.docs }}/cli): Commands, flags, and config file shape
 
 ## Hosting
 
