@@ -1,5 +1,5 @@
 {% set featuresActive = page.url and page.url.slice(0, 10) == '/features/' %}
-{% set developersActive = page.url == '/architecture/' or page.url == '/roadmap/' or page.url == '/changelog/' or (page.url and page.url.slice(0, 12) == '/guidelines/') %}
+{% set developersActive = page.url == '/architecture/' or page.url == '/roadmap/' or page.url == '/changelog/' %}
 
 {% macro navIcon(name) %}
   {% if name == 'layout' %}

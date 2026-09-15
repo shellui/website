@@ -1,6 +1,6 @@
 ---
 title: Web design guidelines
-description: UI, accessibility, and chrome rules for Shellui website, docs, and in-shell apps. The HTML page at /guidelines/web-design/ is the human list - do not scrape it.
+description: UI, accessibility, and chrome rules for Shellui website, docs, and in-shell apps.
 version: 1.1.0
 ---
 
@@ -10,8 +10,8 @@ Agents: load this file. Do not scrape the HTML page. The `version` field in the 
 
 ## How to use this file
 
-- **Humans**: read the list at `/guidelines/web-design/`, or download this markdown
-- **Agents**: read `content/guidelines/web-design.md` in this repo, or fetch `https://shellui.com/guidelines/web-design.md`. Do not scrape the HTML.
+- **Humans**: read the page at `/guidelines/web-design/`, or download this markdown
+- **Agents**: read `content/guidelines/web-design.md` in this repo, or fetch `https://shellui.com/guidelines/web-design.md`
 - **Skill wrapper**: `skills/web-design-guidelines/SKILL.md`
 - **Sibling**: [writing guidelines](/guidelines/writing/) for voice and tone
 - **Compose pages with**: [design.md](/design.md) (`fetch https://shellui.com/design.md`)

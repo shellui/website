@@ -26,8 +26,8 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### 📚 Documentation
 
 - Add versioned guidelines (`content/guidelines/writing.md`, `web-design.md`, and `design.md`, v1.0.0) with agent skills under `skills/`.
-- Publish a `/guidelines/` hub plus topic pages. Writing still renders markdown. Web design is a human rule list at `/guidelines/web-design/`; design is a visual handbook at `/guidelines/design/`. Agents fetch lean markdown (`/guidelines/web-design.md`, `/design.md`).
-- Link guidelines from the Developers nav and footer. Brand assets stay at `/brand-assets/` with a cross-link.
+- Publish a `/guidelines/` hub plus topic pages. Writing and web design render the same markdown. Design is a visual human handbook at `/guidelines/design/`; agents fetch lean `/design.md`.
+- Link guidelines from the footer. Brand assets stay at `/brand-assets/` with a cross-link.
 - Style GFM tables and H4s on markdown guidelines pages. Design swatches, type, and surfaces use shared token data so values cannot drift from `input.css`.
 
 ## [0.4.2] - 2026-09-07

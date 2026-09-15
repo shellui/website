@@ -9,8 +9,6 @@ metadata:
 
 Review files for compliance with Shellui web design guidelines (accessibility, focus, forms, motion, iframe chrome, light/dark).
 
-The HTML page at `/guidelines/web-design/` is a human-readable list. Do not scrape it. Load this markdown.
-
 Inspired by the public web-interface-guidelines pattern from Vercel Labs; the rules here are Shellui-specific (microfrontend host, themes, hyphen preference). Do not copy Vercel branding or dashboard links into Shellui UI.
 
 ## How it works
@@ -42,7 +40,7 @@ Fallback (GitHub):
 https://raw.githubusercontent.com/shellui/website/main/content/guidelines/web-design.md
 ```
 
-The YAML frontmatter `version` field is the public label (for example `Guidelines v1.0.0`). Use that file as the single source of truth.
+The YAML frontmatter `version` field is the public label (for example `Guidelines v1.1.0`). Use that file as the single source of truth.
 
 ## Usage
 

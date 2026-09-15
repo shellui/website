@@ -19,7 +19,7 @@ https://shellui.com/design.md
 | --- | --- | --- | --- |
 | Design (compose pages) | `skills/design-md/SKILL.md` | `content/guidelines/design.md` | Human visual: `/guidelines/design/`. Agents: `/design.md` only. |
 | Writing | `skills/writing-guidelines/SKILL.md` | `content/guidelines/writing.md` | `/guidelines/writing/` |
-| Web design | `skills/web-design-guidelines/SKILL.md` | `content/guidelines/web-design.md` | Human list: `/guidelines/web-design/`. Agents: the markdown only. |
+| Web design | `skills/web-design-guidelines/SKILL.md` | `content/guidelines/web-design.md` | `/guidelines/web-design/` |
 
 Hub: `/guidelines/`. Logos stay on `/brand-assets/`.
 

@@ -20,10 +20,6 @@ const catalog = [
     skillPath: "skills/web-design-guidelines/SKILL.md",
     navLabel: "Web design",
     downloadName: "web-design.md",
-    hubDescription:
-      "Interaction, accessibility, and chrome as a readable list. Agents fetch the markdown checklist.",
-    humanDescription:
-      "Keyboard, focus, forms, motion, and iframe chrome for Shellui website, docs, and hosted apps. This page is the human list. Agents should fetch the markdown - not this HTML.",
   },
   {
     slug: "design",

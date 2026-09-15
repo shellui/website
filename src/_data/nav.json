@@ -23,12 +23,6 @@
       "label": "Changelog",
       "description": "Every release and what changed.",
       "icon": "list"
-    },
-    {
-      "href": "/guidelines/",
-      "label": "Guidelines",
-      "description": "Writing, UI, and review rules for Shellui copy.",
-      "icon": "pen"
     }
   ],
   "features": [
