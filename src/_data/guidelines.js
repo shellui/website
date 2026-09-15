@@ -28,6 +28,10 @@ const catalog = [
     navLabel: "Design",
     downloadName: "design.md",
     publicUrl: "/design.md",
+    hubDescription:
+      "Color, type, and composition for Shellui pages. Visual handbook for humans; agents fetch /design.md.",
+    humanDescription:
+      "Gray canvas, scarce honey gold, evidence over decoration. This page is the visual handbook. Agents should fetch the lean markdown - not this HTML.",
   },
 ];
 
@@ -141,6 +145,8 @@ function loadTopic(entry) {
     version: data.version || "1.0.0",
     title: data.title || entry.navLabel,
     description: data.description || "",
+    hubDescription: entry.hubDescription || data.description || "",
+    humanDescription: entry.humanDescription || data.description || "",
     html: md.render(body),
     toc: extractToc(body),
     downloadUrl: entry.publicUrl || `/guidelines/${entry.downloadName}`,

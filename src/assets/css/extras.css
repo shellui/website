@@ -482,3 +482,33 @@
     transform: translateY(0);
   }
 }
+
+.design-handbook :where(h2) {
+  scroll-margin-top: 6rem;
+}
+
+.design-handbook :where(h3) {
+  scroll-margin-top: 5.5rem;
+}
+
+.design-theme-island {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+.design-swatch-split {
+  @apply grid grid-cols-2 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800;
+}
+
+.design-swatch-split > div {
+  min-height: 4.5rem;
+}
+
+.design-type-row + .design-type-row {
+  @apply mt-8 border-t border-gray-200 pt-8 dark:border-gray-800;
+}
+
+.design-space-bar {
+  @apply h-2 rounded-sm bg-primary;
+}

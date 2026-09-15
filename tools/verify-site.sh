@@ -59,9 +59,18 @@ grep -q 'primary' "${SITE}/design.md" || fail "/design.md missing primary token"
 grep -q '/guidelines/' "${SITE}/brand-assets/index.html" || fail "brand-assets page missing guidelines cross-link"
 grep -q '/brand-assets/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand-assets cross-link"
 grep -q 'parent skill from this repo' "${SITE}/guidelines/index.html" || fail "guidelines hub missing labeled agent skill path"
-grep -q '<table' "${SITE}/guidelines/design/index.html" || fail "design guidelines HTML missing GFM tables"
-grep -q 'prose-table-wrap' "${SITE}/guidelines/design/index.html" || fail "design guidelines tables missing overflow wrap"
-grep -q 'id="color-surfaces-and-tokens"' "${SITE}/guidelines/design/index.html" || fail "design guidelines missing H4 id for token section"
+grep -q 'data-design-swatch="primary"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing primary color swatch"
+grep -q 'data-theme-preview="light"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing light surface preview"
+grep -q 'data-theme-preview="dark"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing dark surface preview"
+grep -q 'id="do-and-dont"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing do/don't section"
+if grep -q 'Act as an excellent' "${SITE}/guidelines/design/index.html"; then
+  fail "design HTML page should not render the agent prompt"
+fi
+grep -q 'Act as an excellent' "${SITE}/design.md" || fail "/design.md missing agent composition prompt"
+grep -q '| `background`' "${SITE}/design.md" || fail "/design.md missing compact token table"
+
+log "Checking design token drift"
+node "${ROOT}/tools/verify-design-tokens.mjs"
 
 # Asset fingerprinting should rewrite CSS references with a cache-busting query
 if ! grep -qE 'assets/css/site\.css\?v=[a-f0-9]{8}' "${SITE}/index.html"; then

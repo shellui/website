@@ -17,7 +17,7 @@ https://shellui.com/design.md
 
 | Topic | Skill | Canonical markdown | Human page |
 | --- | --- | --- | --- |
-| Design (compose pages) | `skills/design-md/SKILL.md` | `content/guidelines/design.md` | `/guidelines/design/` and `/design.md` |
+| Design (compose pages) | `skills/design-md/SKILL.md` | `content/guidelines/design.md` | Human visual: `/guidelines/design/`. Agents: `/design.md` only. |
 | Writing | `skills/writing-guidelines/SKILL.md` | `content/guidelines/writing.md` | `/guidelines/writing/` |
 | Web design | `skills/web-design-guidelines/SKILL.md` | `content/guidelines/web-design.md` | `/guidelines/web-design/` |
 

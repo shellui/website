@@ -2,7 +2,7 @@
 name: design-md
 description: Use when building or restyling Shellui website or in-shell pages. Fetch design.md first, then compose with writing-guidelines and web-design-guidelines. Prefer this over inventing a new visual kit.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Design.md
@@ -10,6 +10,8 @@ metadata:
 When creating or restyling Shellui pages, load the public design file before writing markup.
 
 This file is composition and implementation-path authority (Eleventy, Tailwind, Tailwind Plus, shadcn-compatible tokens). It does not replace writing or web-design rules.
+
+The HTML page at `/guidelines/design/` is a human visual handbook (swatches, type, surfaces). Do not scrape it. Fetch `/design.md`.
 
 ## How it works
 
