@@ -512,3 +512,23 @@
 .design-space-bar {
   @apply h-2 rounded-sm bg-primary;
 }
+
+.guideline-handbook :where(h2) {
+  scroll-margin-top: 6rem;
+}
+
+.guideline-rules {
+  @apply divide-y divide-gray-200 dark:divide-gray-800;
+}
+
+.guideline-rules > li {
+  @apply py-5 first:pt-0 last:pb-0;
+}
+
+.guideline-rules p {
+  @apply max-w-2xl text-base/7 text-gray-600 dark:text-gray-400;
+}
+
+.guideline-rules strong {
+  @apply font-semibold text-gray-900 dark:text-white;
+}

@@ -2,12 +2,14 @@
 name: web-design-guidelines
 description: Use when reviewing Shellui website, docs, or in-shell UI, checking accessibility, auditing layout, or applying the Shellui web design handbook.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Web design guidelines
 
 Review files for compliance with Shellui web design guidelines (accessibility, focus, forms, motion, iframe chrome, light/dark).
+
+The HTML page at `/guidelines/web-design/` is a human-readable list. Do not scrape it. Load this markdown.
 
 Inspired by the public web-interface-guidelines pattern from Vercel Labs; the rules here are Shellui-specific (microfrontend host, themes, hyphen preference). Do not copy Vercel branding or dashboard links into Shellui UI.
 

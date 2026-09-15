@@ -49,6 +49,14 @@ grep -q '/guidelines/web-design/' "${SITE}/guidelines/index.html" || fail "guide
 grep -q '/design.md' "${SITE}/guidelines/index.html" || fail "guidelines hub missing design.md fetch URL"
 grep -q 'Guidelines v' "${SITE}/guidelines/writing/index.html" || fail "writing guidelines page missing version label"
 grep -q 'Guidelines v' "${SITE}/guidelines/web-design/index.html" || fail "web design guidelines page missing version label"
+grep -q 'guideline-rules' "${SITE}/guidelines/web-design/index.html" || fail "web design handbook missing rule list"
+grep -q 'Hit targets are generous' "${SITE}/guidelines/web-design/index.html" || fail "web design handbook missing hit-target rule"
+grep -q 'id="chrome"' "${SITE}/guidelines/web-design/index.html" || fail "web design handbook missing chrome section"
+if grep -q 'Sacrifice grammar for brevity' "${SITE}/guidelines/web-design/index.html"; then
+  fail "web design HTML page should not render the agent review prompt"
+fi
+grep -q 'Sacrifice grammar for brevity' "${SITE}/guidelines/web-design.md" || fail "web-design.md missing agent review prompt"
+grep -q 'Hit targets:' "${SITE}/guidelines/web-design.md" || fail "web-design.md missing compact hit-target rule"
 grep -q 'Guidelines v' "${SITE}/guidelines/design/index.html" || fail "design guidelines page missing version label"
 grep -q '^version:' "${SITE}/guidelines/writing.md" || fail "published writing.md missing version frontmatter"
 grep -q '^version:' "${SITE}/guidelines/web-design.md" || fail "published web-design.md missing version frontmatter"

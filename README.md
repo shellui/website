@@ -28,7 +28,7 @@ writes static files to `_site/`.
 
 ## Guidelines
 
-Canonical rules live in [`content/guidelines/`](content/guidelines/) (version in each file's frontmatter). Humans read `/guidelines/` (hub), `/guidelines/writing/`, `/guidelines/web-design/`, and the visual handbook at `/guidelines/design/`. Agents should load [`skills/guidelines/SKILL.md`](skills/guidelines/SKILL.md) and must not scrape the design HTML. When **building a page**, fetch `/design.md` first (`skills/design-md/SKILL.md`). Logos stay on `/brand-assets/`.
+Canonical rules live in [`content/guidelines/`](content/guidelines/) (version in each file's frontmatter). Humans read `/guidelines/` (hub), `/guidelines/writing/`, the web-design list at `/guidelines/web-design/`, and the visual handbook at `/guidelines/design/`. Agents should load [`skills/guidelines/SKILL.md`](skills/guidelines/SKILL.md) and must not scrape the design or web-design HTML. When **building a page**, fetch `/design.md` first (`skills/design-md/SKILL.md`). Logos stay on `/brand-assets/`.
 
 See [`AGENTS.md`](AGENTS.md) for the short pointer.
 

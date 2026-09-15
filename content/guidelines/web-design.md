@@ -1,7 +1,7 @@
 ---
 title: Web design guidelines
-description: UI, accessibility, and chrome rules for Shellui website, docs, and in-shell apps.
-version: 1.0.0
+description: UI, accessibility, and chrome rules for Shellui website, docs, and in-shell apps. The HTML page at /guidelines/web-design/ is the human list - do not scrape it.
+version: 1.1.0
 ---
 
 These rules cover layout, interaction, and visual language on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Pair them with the [writing guidelines](/guidelines/writing/) for copy. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Keep AI, MCP, and marketplace chrome out of the default UI.
@@ -10,8 +10,8 @@ Agents: load this file. Do not scrape the HTML page. The `version` field in the 
 
 ## How to use this file
 
-- **Humans**: read the page at `/guidelines/web-design/`, or download this markdown
-- **Agents**: read `content/guidelines/web-design.md` in this repo, or fetch `https://shellui.com/guidelines/web-design.md`
+- **Humans**: read the list at `/guidelines/web-design/`, or download this markdown
+- **Agents**: read `content/guidelines/web-design.md` in this repo, or fetch `https://shellui.com/guidelines/web-design.md`. Do not scrape the HTML.
 - **Skill wrapper**: `skills/web-design-guidelines/SKILL.md`
 - **Sibling**: [writing guidelines](/guidelines/writing/) for voice and tone
 - **Compose pages with**: [design.md](/design.md) (`fetch https://shellui.com/design.md`)
@@ -52,6 +52,9 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Never `outline-none` without a focus replacement
 - Use `:focus-visible` over `:focus` (avoid a ring on pointer click)
 - Group focus with `:focus-within` for compound controls
+- Trap focus in dialogs; return it to the trigger on close
+- Hit targets: if the visual control is < 24px, expand the hit area to ≥ 24px; on mobile ≥ 44px
+- Status is not color alone; include a text label
 - Sticky headers, footers, and overlays must not cover the focused element (16 × 4px marketing header; shell top bar in top-bar layout)
 
 ## Forms and input
@@ -62,7 +65,10 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Labels clickable (`htmlFor` or wrapping the control)
 - Disable spellcheck on emails, codes, usernames, tokens (`spellCheck={false}`)
 - Checkboxes and radios: label and control share one hit target (no dead zones)
-- Submit stays enabled until the request starts; spinner during the request
+- Submit stays enabled until the request starts; spinner during the request; keep the original label
+- Do not pre-disable submit on incomplete forms; submitting surfaces errors
+- Do not block keystrokes on typed fields; validate after input
+- Enter submits when a text input is the only control; in `<textarea>`, ⌘/Ctrl+Enter submits
 - Errors inline next to fields; focus the first error on submit
 - Placeholders end with `…` and show an example pattern (`your_access_token_here…`)
 - `autocomplete="off"` on non-auth fields to avoid password-manager triggers
@@ -88,6 +94,9 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Full-bleed layouts need `env(safe-area-inset-*)` for notches
 - Avoid unwanted scrollbars: fix overflow rather than masking it with `overflow-x-hidden` on `body`
 - Flex and grid over JavaScript measurement for layout
+- Nested radii: child ≤ parent, concentric (`rounded-md` inside `rounded-xl`)
+- Design empty, sparse, dense, and error states
+- Inline help before tooltips
 - Iframe apps: don't assume viewport height equals the window. The shell chrome eats space. Prefer `%` / flex inside the iframe, not `100vh`, unless you subtract host chrome
 
 ## Visual language
@@ -149,6 +158,8 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Large arrays `.map()` without virtualization
 - Form inputs without labels
 - Icon buttons without `aria-label`
+- Submit disabled before the user tries (hides validation)
+- Hit targets under 24px (44px on mobile) with no expanded area
 - Hardcoded date/number formats (use `Intl.*`)
 - `autoFocus` without a clear reason
 - Animated GIF when compressed video is suitable
