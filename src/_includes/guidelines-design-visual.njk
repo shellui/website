@@ -1,0 +1,212 @@
+{%- set topicData = guidelines.bySlug.design -%}
+<div class="design-handbook min-w-0">
+  <section id="color" class="scroll-mt-24">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Color</h2>
+    <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
+      Each swatch shows light on the left and dark on the right. Values come from
+      <code class="font-mono text-[0.8rem]">src/_data/designTokens.js</code>
+      and must match
+      <code class="font-mono text-[0.8rem]">input.css</code>.
+    </p>
+
+    {% for group in designTokens.groups %}
+      <div class="mt-10">
+        <h3 class="text-base font-semibold text-gray-900 dark:text-white">{{ group.title }}</h3>
+        <p class="mt-1 max-w-2xl text-sm text-gray-600 dark:text-gray-400">{{ group.lede }}</p>
+        <ul class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 {% if group.id == 'accent' %}lg:grid-cols-2{% else %}lg:grid-cols-4{% endif %}">
+          {% for color in group.colors %}
+            <li
+              class="rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-gray-900 {% if group.id == 'accent' and color.token == 'primary' %}sm:col-span-2{% endif %}"
+              data-design-swatch="{{ color.token }}"
+            >
+              <div class="design-swatch-split{% if color.token == 'primary' %} min-h-36{% endif %}">
+                <div style="background: {{ color.light }}" title="{{ color.token }} light">
+                  <span class="sr-only">Light {{ color.light }}</span>
+                </div>
+                <div class="relative" style="background: {{ color.darkBacking or color.dark }}" title="{{ color.token }} dark">
+                  {% if color.darkBacking %}
+                    <div class="absolute inset-0" style="background: {{ color.dark }}"></div>
+                  {% endif %}
+                  <span class="sr-only">Dark {{ color.dark }}</span>
+                </div>
+              </div>
+              <div class="mt-3 flex items-start justify-between gap-3">
+                <div>
+                  <p class="font-mono text-sm font-medium text-gray-900 dark:text-white">{{ color.token }}</p>
+                  <p class="mt-0.5 text-xs text-gray-600 dark:text-gray-400">{{ color.role }}</p>
+                </div>
+                <p class="shrink-0 text-right font-mono text-[0.7rem] leading-5 text-gray-500 dark:text-gray-400">
+                  <span class="block">{{ color.light }}</span>
+                  <span class="block">{{ color.darkLabel or color.dark }}</span>
+                </p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </section>
+
+  <section id="type" class="mt-16 scroll-mt-24">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Type</h2>
+    <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
+      System font stack. Sentence-case headings. One h1. Rewrite before shrinking the measure.
+    </p>
+    <div class="mt-8 rounded-xl border border-gray-200 bg-white px-5 py-2 dark:border-gray-800 dark:bg-gray-900 sm:px-8">
+      {% for row in designTokens.typeScale %}
+        <div class="design-type-row py-6">
+          <p class="text-xs font-medium tracking-wide text-gray-500 uppercase dark:text-gray-400">{{ row.label }}</p>
+          <p class="mt-3 {{ row.className }}">{{ row.sample }}</p>
+          <p class="mt-2 font-mono text-[0.7rem] text-gray-500 dark:text-gray-400">{{ row.utility }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section id="shape-and-space" class="mt-16 scroll-mt-24">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Shape and space</h2>
+    <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
+      Controls are tighter than cards. Vertical rhythm comes from heading-to-body proximity and larger gaps at section turns.
+    </p>
+    <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 sm:p-6">
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Radius</h3>
+        <ul class="mt-5 space-y-4">
+          {% for radius in designTokens.radii %}
+            <li class="flex items-center gap-4">
+              <div class="size-14 border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-white/5 {{ radius.utility }}"></div>
+              <div>
+                <p class="font-mono text-sm text-gray-900 dark:text-white">{{ radius.utility }}</p>
+                <p class="text-xs text-gray-600 dark:text-gray-400">{{ radius.value }} · {{ radius.use }}</p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 sm:p-6">
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Spacing</h3>
+        <ul class="mt-5 space-y-4">
+          {% for space in designTokens.spacing %}
+            <li>
+              <div class="flex items-center justify-between gap-3">
+                <p class="font-mono text-sm text-gray-900 dark:text-white">{{ space.token }}</p>
+                <p class="text-xs text-gray-600 dark:text-gray-400">{{ space.use }}</p>
+              </div>
+              <div class="mt-2 h-2 overflow-hidden rounded-sm bg-gray-100 dark:bg-white/5">
+                <div class="design-space-bar" style="width: {{ space.value }}"></div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="actions" class="mt-16 scroll-mt-24">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Actions</h2>
+    <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
+      One primary button. The secondary is a text link. Gold stays scarce.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 rounded-xl border border-gray-200 bg-white px-5 py-6 dark:border-gray-800 dark:bg-gray-900 sm:px-8">
+      <a href="{{ site.docs }}" class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Get started</a>
+      <a href="{{ site.github }}" class="text-sm/6 font-semibold text-gray-900 dark:text-white">View on GitHub <span aria-hidden="true">→</span></a>
+      <a href="/guidelines/" class="text-sm font-semibold text-primary-ink underline underline-offset-2 dark:text-primary">Guidelines</a>
+      <span class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground opacity-90">Hover</span>
+      <span class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground outline-2 outline-offset-2 outline-primary">Focus</span>
+    </div>
+  </section>
+
+  <section id="surfaces" class="mt-16 scroll-mt-24">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Surfaces</h2>
+    <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
+      The page is one continuous canvas. These islands lock light and dark tokens so you can compare them without toggling the site theme.
+    </p>
+    <div class="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+      {% for mode in ["light", "dark"] %}
+        <div>
+          <p class="text-xs font-medium tracking-wide text-gray-500 uppercase dark:text-gray-400">{{ mode }}</p>
+          <div
+            class="design-theme-island mt-3 rounded-xl border p-6 shadow-sm"
+            style="{{ designTokens.previewStyle[mode] }}"
+            data-theme-preview="{{ mode }}"
+          >
+            <p class="text-sm font-semibold text-primary-ink">Shellui</p>
+            <p class="mt-2 text-2xl font-semibold tracking-tight text-foreground">Shared authentication</p>
+            <p class="mt-3 text-sm/6 text-muted-foreground">The shell wraps the app with sign-in, admin, and storage so you can ship the product.</p>
+            <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <span class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground">Get started</span>
+              <span class="text-sm font-semibold text-foreground">View on GitHub →</span>
+            </div>
+            <div class="mt-6 rounded-xl border border-border bg-card p-4 text-card-foreground shadow-sm">
+              <p class="text-sm font-semibold">Config</p>
+              <p class="mt-1 font-mono text-xs text-muted-foreground">shellui.config.ts</p>
+            </div>
+            <div class="mt-3 rounded-md bg-muted px-3 py-2 text-xs text-muted-foreground">Quiet well · muted</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section id="composition" class="mt-16 scroll-mt-24">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Composition</h2>
+    <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
+      Start with the reader's job. The first viewport is the argument. Reuse layouts already in this repo before inventing a kit.
+    </p>
+    <ul class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <li class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+        <p class="text-sm font-semibold text-gray-900 dark:text-white">Reader first</p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Identify what they need to understand or decide, the strongest supported answer, and the evidence that earns it.</p>
+      </li>
+      <li class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+        <p class="text-sm font-semibold text-gray-900 dark:text-white">One focal relationship</p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Surround it with a few supporting objects and enough open space. Equal-weight blocks mean redesign.</p>
+      </li>
+      <li class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+        <p class="text-sm font-semibold text-gray-900 dark:text-white">Reuse Plus patterns</p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Centered hero, feature split, two-tier pricing, FAQ list, quiet CTA band. Restyle with these tokens.</p>
+      </li>
+      <li class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+        <p class="text-sm font-semibold text-gray-900 dark:text-white">What ships today</p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Iframe host, SDK, auth, admin, storage, Files. Keep AI and marketplace chrome quiet unless the page is about that surface.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="do-and-dont" class="mt-16 scroll-mt-24">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Do and don't</h2>
+    <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
+      Same material, two compositions. The left reuses the shipped dual-CTA opening. The right is the generic grid this system rejects.
+    </p>
+    <div class="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <figure class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 sm:p-6">
+        <figcaption class="text-sm font-semibold text-gray-900 dark:text-white">Do</figcaption>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">One claim, one primary action, gray canvas, scarce gold.</p>
+        <div class="mt-5 rounded-xl border border-gray-200 bg-gray-50 px-6 py-10 text-center dark:border-gray-800 dark:bg-white/5">
+          <p class="text-sm font-semibold text-primary-ink dark:text-primary">Shellui</p>
+          <p class="mt-3 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Build the app, not the infrastructure</p>
+          <p class="mx-auto mt-3 max-w-sm text-sm text-gray-600 dark:text-gray-400">Shared auth, admin, and storage around your iframe app.</p>
+          <div class="mt-6 flex items-center justify-center gap-x-6">
+            <span class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground">Get started</span>
+            <span class="text-sm font-semibold text-gray-900 dark:text-white">GitHub →</span>
+          </div>
+        </div>
+      </figure>
+      <figure class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900 sm:p-6">
+        <figcaption class="text-sm font-semibold text-gray-900 dark:text-white">Don't</figcaption>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Equal-weight cards, gold headings, and banned marketing words.</p>
+        <div class="mt-5 overflow-hidden rounded-xl border border-gray-200 bg-gray-50 px-4 py-6 dark:border-gray-800 dark:bg-white/5">
+          <p class="text-center text-lg font-bold tracking-widest text-primary uppercase">Unlock the platform</p>
+          <div class="mt-5 grid grid-cols-2 gap-2">
+            {% for label in ["Auth", "Admin", "Storage", "AI"] %}
+              <div class="rounded-lg border border-gray-200 bg-white p-3 text-center dark:border-gray-800 dark:bg-gray-900">
+                <p class="text-xs font-bold tracking-widest text-primary uppercase">{{ label }}</p>
+                <p class="mt-1 text-[0.7rem] text-gray-500">Seamless. Easy.</p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+</div>
