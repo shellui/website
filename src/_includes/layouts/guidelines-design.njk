@@ -29,7 +29,7 @@ layout: layouts/base.njk
         {% for token in ["primary", "primary-ink", "foreground", "muted", "border", "background"] %}
           {%- set color = designTokens.byToken[token] -%}
           <span
-            class="size-6 rounded-full border border-gray-200 dark:border-gray-800"
+            class="size-6 rounded-full border border-gray-300 shadow-[inset_0_0_0_1px_rgb(0_0_0_/_0.06)] dark:border-gray-600 dark:shadow-[inset_0_0_0_1px_rgb(255_255_255_/_0.12)]"
             style="background: {{ color.light }}"
             title="{{ color.token }}"
           ></span>

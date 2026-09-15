@@ -48,6 +48,7 @@ const colors = [
     role: "Quiet wells",
     light: "#f9fafb",
     dark: "rgb(255 255 255 / 0.05)",
+    darkLabel: "white/5",
     darkBacking: "#030712",
     group: "canvas",
   },
