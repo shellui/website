@@ -26,6 +26,15 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### ✨ Feature
 
 - Add `/llms.txt` agent index (product summary, curated links, CLI happy path) and point to it from the guidelines hub.
+- Rebuild `/architecture/` around an interactive stack graph with two views: the full Shellui stack and the Supabase swap. Pan, zoom, keyboard controls, per-view deep links (`?stack=supabase`), and a static fallback when the bundle does not load.
+
+### 🛠 Improvements
+
+- Add React islands: `src/islands/` builds with esbuild to a page-scoped bundle that loads when its mount point scrolls into view. Only `/architecture/` ships one today.
+
+### 📚 Documentation
+
+- design.md v1.3.0 documents the island exception to the Eleventy plus Alpine stack rule.
 
 ## [0.5.0] - 2026-09-15
 

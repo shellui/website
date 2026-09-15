@@ -29,12 +29,16 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
     "@tailwindcss/cli": "^4.3.3",
+    "esbuild": "^0.28.2",
     "markdown-it": "^14.1.0",
     "shiki": "^4.4.3",
     "tailwindcss": "^4.3.3"
   },
   "dependencies": {
     "@tailwindplus/elements": "^1.0.22",
-    "alpinejs": "^3.16.2"
+    "@xyflow/react": "^12.11.6",
+    "alpinejs": "^3.16.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   }
 }
