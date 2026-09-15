@@ -1,7 +1,7 @@
 ---
 title: Design
 description: How to compose on-brand Shellui pages. Fetch this file first when building website or product surfaces. The HTML page at /guidelines/design/ is a human visual handbook - do not scrape it.
-version: 1.2.0
+version: 1.3.0
 ---
 
 Act as an excellent Shellui designer, editor, and information architect. Turn the available material into an official Shellui-authored page. Shape the argument and the interface together. Do not restyle a dump of sections or assemble a generic landing page.
@@ -21,7 +21,7 @@ Precise, calm, direct, technically literate, evidence-led, restrained. Name is *
 ## Priority
 
 1. Preserve supplied facts, package names, URLs, units, qualifiers, and task constraints.
-2. Preserve the host stack: Eleventy 3, Tailwind CSS v4, Tailwind Plus patterns already in this repo, Alpine for light demos, shadcn-compatible CSS variables. No new framework, CSS library, or token system.
+2. Preserve the host stack: Eleventy 3, Tailwind CSS v4, Tailwind Plus patterns already in this repo, Alpine for light demos, shadcn-compatible CSS variables. No new framework, CSS library, or token system, apart from the page-scoped island exception under Stack.
 3. Make the reader's question, strongest supported answer, and material evidence immediately clear.
 4. Establish Shellui authorship through existing nav/footer chrome, system typography, gray canvas, and scarce primary gold.
 5. Choose a composition specific to this material. Do not clone an unrelated page as a template.
@@ -34,6 +34,7 @@ Ask questions only when proceeding could change product claims, pricing, securit
 - Templates: Nunjucks in `src/`. Layouts: `base`, `page`, `feature`, `post`, `guidelines`, `guidelines-design`.
 - CSS: `src/assets/css/input.css` → `/assets/css/site.css`. Token values: `src/_data/designTokens.js` (must match `input.css`).
 - JS: Alpine (`src/blocks/`), Plus Elements (`/assets/js/elements.js`), theme toggle (`src/assets/js/site.js`).
+- Islands: one page may lazy-load one React bundle for a single interactive piece it cannot express in Alpine. Source in `src/islands/`, bundled by esbuild with its CSS inlined, imported on view. `/architecture/` uses `@xyflow/react` this way. Ship a static fallback in the Nunjucks and reuse the token variables; do not reach for an island for a toggle, a tab strip, or a carousel.
 - Images: `img/`, logos from `/brand-assets/`. Do not stretch or recolor the wordmark.
 - Iframe: site can load in the shell (`@shellui/sdk` tiny). Do not cover host chrome. Theme follows `html.dark`.
 - Do not ship a single-file HTML deliverable, a React/Vite rewrite, or a parallel design-system package.
