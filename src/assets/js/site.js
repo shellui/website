@@ -165,7 +165,7 @@ document.addEventListener("alpine:init", () => {
     },
     get command() {
       const match = this.commands.find((item) => item.id === this.selected);
-      return match?.command || "npx shellui@latest init react";
+      return match?.command || "shellui init react";
     },
     select(id) {
       this.selected = id;

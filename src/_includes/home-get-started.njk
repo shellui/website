@@ -1,7 +1,7 @@
 {#
   Get started band: one chrome frame with init (primary), deploy, and agent fetch.
-  Static default is React. Alpine upgrades icon → CLI swap and clipboard copy.
-  Framework slugs match `shellui init` on the CLI develop branch. Simple Icons (CC0) marks.
+  Static default is React. Alpine upgrades chips so only the `shellui init` line swaps.
+  Install line stays `npm install -g @shellui/cli` (docs recommended). Simple Icons (CC0) marks.
 #}
 {% set defaultFramework = frameworks[0] %}
 {% set agentPrompt = "fetch https://shellui.ai to start with Shellui" %}
@@ -26,6 +26,9 @@
   <symbol id="fw-svelte" viewBox="0 0 24 24">
     <path fill="currentColor" d="M10.354 21.125a4.44 4.44 0 0 1-4.765-1.767 4.109 4.109 0 0 1-.703-3.107 3.898 3.898 0 0 1 .134-.522l.105-.321.287.21a7.21 7.21 0 0 0 2.186 1.092l.208.063-.02.208a1.253 1.253 0 0 0 .226.83 1.337 1.337 0 0 0 1.435.533 1.231 1.231 0 0 0 .343-.15l5.59-3.562a1.164 1.164 0 0 0 .524-.778 1.242 1.242 0 0 0-.211-.937 1.338 1.338 0 0 0-1.435-.533 1.23 1.23 0 0 0-.343.15l-2.133 1.36a4.078 4.078 0 0 1-1.135.499 4.44 4.44 0 0 1-4.765-1.766 4.108 4.108 0 0 1-.702-3.108 3.855 3.855 0 0 1 1.742-2.582l5.589-3.563a4.072 4.072 0 0 1 1.135-.499 4.44 4.44 0 0 1 4.765 1.767 4.109 4.109 0 0 1 .703 3.107 3.943 3.943 0 0 1-.134.522l-.105.321-.286-.21a7.204 7.204 0 0 0-2.187-1.093l-.208-.063.02-.207a1.255 1.255 0 0 0-.226-.831 1.337 1.337 0 0 0-1.435-.532 1.231 1.231 0 0 0-.343.15L8.62 9.368a1.162 1.162 0 0 0-.524.778 1.24 1.24 0 0 0 .211.937 1.338 1.338 0 0 0 1.435.533 1.235 1.235 0 0 0 .344-.151l2.132-1.36a4.067 4.067 0 0 1 1.135-.498 4.44 4.44 0 0 1 4.765 1.766 4.108 4.108 0 0 1 .702 3.108 3.857 3.857 0 0 1-1.742 2.583l-5.589 3.562a4.072 4.072 0 0 1-1.135.499m10.358-17.95C18.484-.015 14.082-.96 10.9 1.068L5.31 4.63a6.412 6.412 0 0 0-2.896 4.295 6.753 6.753 0 0 0 .666 4.336 6.43 6.43 0 0 0-.96 2.396 6.833 6.833 0 0 0 1.168 5.167c2.229 3.19 6.63 4.135 9.812 2.108l5.59-3.562a6.41 6.41 0 0 0 2.896-4.295 6.756 6.756 0 0 0-.665-4.336 6.429 6.429 0 0 0 .958-2.396 6.831 6.831 0 0 0-1.167-5.168Z"/>
   </symbol>
+  <symbol id="fw-alpine" viewBox="0 0 24 24">
+    <path fill="currentColor" d="m24 12-5.72 5.746-5.724-5.741 5.724-5.75L24 12zM5.72 6.254 0 12l5.72 5.746h11.44L5.72 6.254z"/>
+  </symbol>
   <symbol id="fw-flutter" viewBox="0 0 24 24">
     <path fill="currentColor" d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/>
   </symbol>
@@ -43,7 +46,7 @@
         Scaffold, deploy, or hand it to an agent.
       </h2>
       <p class="mt-3 text-base text-pretty text-gray-600 dark:text-gray-400">
-        Shellui ships with official starters for the frameworks you already use. Init is one command. Hosting is <code class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[0.85em] dark:bg-gray-800">shellui login</code> then <code class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[0.85em] dark:bg-gray-800">shellui deploy</code>.
+        Install the CLI once, pick a starter, then publish. Hosting is <code class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[0.85em] dark:bg-gray-800">shellui login</code> then <code class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[0.85em] dark:bg-gray-800">shellui deploy</code>.
       </p>
     </div>
 
@@ -58,9 +61,9 @@
       <div class="p-5 sm:p-7 lg:p-8">
         <div>
           <p class="font-mono text-[0.65rem] tracking-wide text-gray-400 uppercase dark:text-gray-500">01 · Init</p>
-          <h3 class="mt-1.5 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Pick a framework</h3>
+          <h3 class="mt-1.5 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Install, then pick a framework</h3>
           <p class="mt-1.5 max-w-2xl text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            The CLI scaffolds the shell plus a starter. Choose a template to see the command.
+            Global install first. Choosing a starter updates only the <code class="font-mono text-[0.85em]">shellui init</code> line.
           </p>
 
           <div
@@ -87,12 +90,13 @@
 
           <div class="cli-pane mt-5 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
             <div class="border-b border-gray-200 px-3 py-1.5 font-mono text-[0.65rem] text-gray-500 dark:border-gray-800">terminal</div>
-            <pre class="overflow-x-auto px-3 py-3 font-mono text-sm leading-relaxed text-gray-900 sm:px-4 dark:text-gray-50"><code><span class="select-none text-gray-400 dark:text-gray-600" aria-hidden="true">$ </span><span x-text="command">{{ defaultFramework.command }}</span></code></pre>
+            <pre class="overflow-x-auto px-3 py-3 font-mono text-sm leading-relaxed text-gray-900 sm:px-4 dark:text-gray-50" aria-live="polite"><code><span class="select-none text-gray-400 dark:text-gray-600" aria-hidden="true">$ </span>npm install -g @shellui/cli
+<span class="select-none text-gray-400 dark:text-gray-600" aria-hidden="true">$ </span><span x-text="command">{{ defaultFramework.command }}</span></code></pre>
           </div>
           <p class="mt-3 text-sm text-gray-500 dark:text-gray-500">
-            Already have the CLI? Same shortcut:
-            <code class="font-mono text-[0.85em]">shellui init <span x-text="selected">{{ defaultFramework.id }}</span></code>.
-            <a href="{{ site.docs }}/quickstart" class="font-medium text-primary-ink hover:underline dark:text-primary">Read the docs</a>
+            <a href="{{ site.docs }}/installation" class="font-medium text-primary-ink hover:underline dark:text-primary">Install the CLI</a>
+            ·
+            <a href="{{ site.docs }}/quickstart" class="font-medium text-primary-ink hover:underline dark:text-primary">Quickstart</a>
           </p>
         </div>
 
