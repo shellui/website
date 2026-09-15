@@ -23,6 +23,12 @@
       "label": "Changelog",
       "description": "Every release and what changed.",
       "icon": "list"
+    },
+    {
+      "href": "/guidelines/",
+      "label": "Writing guidelines",
+      "description": "Voice, tone, and review rules for site copy.",
+      "icon": "pen"
     }
   ],
   "features": [

@@ -9,7 +9,7 @@ The official website for [Shellui](https://shellui.com), the web app development
 - **[Tailwind Plus Elements](https://tailwindcss.com/plus/ui-blocks/documentation/elements)** - licensed interactive HTML (`el-*` custom elements) for Plus UI blocks
 - **[Alpine.js](https://alpinejs.dev/)** - light interactivity in `src/blocks/`
 
-Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are real HTML (no iframes). `content/` is IA notes only and is not published.
+Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are real HTML (no iframes). `content/` is IA notes and is not published, except `content/guidelines/writing.md` (canonical writing guidelines, also copied to `/guidelines/writing.md`).
 
 ## Getting started
 
@@ -25,6 +25,12 @@ npm run build
 ```
 
 writes static files to `_site/`.
+
+## Writing guidelines
+
+Canonical rules live in [`content/guidelines/writing.md`](content/guidelines/writing.md) (version in frontmatter). Humans read `/guidelines/`. Agents should load [`skills/writing-guidelines/SKILL.md`](skills/writing-guidelines/SKILL.md) and that markdown file - not the HTML. Logos stay on `/brand-assets/`.
+
+See [`AGENTS.md`](AGENTS.md) for the short pointer.
 
 ## CI
 

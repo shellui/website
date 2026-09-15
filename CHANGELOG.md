@@ -21,6 +21,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.4.3] - 2026-09-15
+
+### 📚 Documentation
+
+- Add versioned writing guidelines (`content/guidelines/writing.md` v1.0.0) and an agent skill at `skills/writing-guidelines/SKILL.md`.
+- Publish a dedicated `/guidelines/` page that renders the same markdown, with a downloadable copy at `/guidelines/writing.md`.
+- Link writing guidelines from the Developers nav and footer. Brand assets stay at `/brand-assets/` with a cross-link.
+
 ## [0.4.2] - 2026-09-07
 
 ### ✨ Feature

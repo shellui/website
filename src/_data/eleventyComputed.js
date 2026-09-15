@@ -54,6 +54,7 @@ export default {
       roadmap: "Roadmap",
       changelog: "Changelog",
       pricing: "Pricing",
+      guidelines: "Guidelines",
     };
 
     const pageLabel = String(data.title || data.heading || "")

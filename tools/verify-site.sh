@@ -18,6 +18,9 @@ required_files=(
   sitemap.xml
   assets/css/site.css
   assets/js/site.js
+  brand-assets/index.html
+  guidelines/index.html
+  guidelines/writing.md
 )
 
 log "Checking required output files"
@@ -34,6 +37,11 @@ cname="$(tr -d '[:space:]' < "${SITE}/CNAME")"
 
 # Homepage must mention the product name
 grep -q 'Shellui' "${SITE}/index.html" || fail "index.html does not contain 'Shellui'"
+
+grep -q 'Guidelines v' "${SITE}/guidelines/index.html" || fail "guidelines page missing version label"
+grep -q '^version:' "${SITE}/guidelines/writing.md" || fail "published writing.md missing version frontmatter"
+grep -q '/guidelines/' "${SITE}/brand-assets/index.html" || fail "brand-assets page missing guidelines cross-link"
+grep -q '/brand-assets/' "${SITE}/guidelines/index.html" || fail "guidelines page missing brand-assets cross-link"
 
 # Asset fingerprinting should rewrite CSS references with a cache-busting query
 if ! grep -qE 'assets/css/site\.css\?v=[a-f0-9]{8}' "${SITE}/index.html"; then

@@ -240,6 +240,22 @@
   @apply text-gray-900 dark:text-gray-50;
 }
 
+.guidelines-prose > :first-child {
+  margin-top: 0;
+}
+
+.guidelines-prose :where(h2) {
+  scroll-margin-top: 6rem;
+}
+
+.guidelines-prose :where(h3) {
+  scroll-margin-top: 5.5rem;
+}
+
+.guidelines-prose :where(strong) {
+  @apply font-semibold text-gray-900 dark:text-white;
+}
+
 .article-body {
   @apply mt-10 text-gray-600 dark:text-gray-400;
 }
