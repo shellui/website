@@ -1,0 +1,61 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+layout: false
+---
+# Shellui
+
+> Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Audience: developers shipping a product inside that shell.
+
+This file is the agent index for {{ site.url }}. Prefer the links below over scraping HTML. Product name is Shellui only (never "The Host"). In prose, "the shell" (lowercase) is the running host.
+
+## Product
+
+- [Shellui]({{ site.url }}/): Product site
+- [Documentation]({{ site.docs }}): Installation, quick start, CLI, SDK, and feature guides
+- [Playground]({{ site.playground }}): Live shell with host chrome; no local install
+- [GitHub]({{ site.github }}): Source for the platform and related services
+- [Architecture]({{ site.url }}/architecture/): How the stack fits together
+- [Features]({{ site.url }}/features/): Microfrontend, authentication, administration, storage
+
+## Agent surfaces
+
+- [shellui.ai](https://shellui.ai): Agent bootstrap - install skills, install CLI, init, start
+- [Guidelines hub]({{ site.url }}/guidelines/): Writing, web design, and design rules for humans and agents
+- [design.md]({{ site.url }}/design.md): Composition authority when building Shellui pages (`fetch https://shellui.com/design.md`)
+- [Writing guidelines (markdown)]({{ site.url }}/guidelines/writing.md): Voice and review rules
+- [Web design guidelines (markdown)]({{ site.url }}/guidelines/web-design.md): UI, accessibility, and chrome
+- [This file]({{ site.url }}/llms.txt): Site overview for agents
+
+Do not scrape `/guidelines/design/` HTML. Fetch `/design.md` instead.
+
+## CLI happy path
+
+Documented at {{ site.docs }}/installation and {{ site.docs }}/quickstart:
+
+```
+npm install -g @shellui/cli
+shellui init
+shellui start
+```
+
+`shellui dev` is an alias for `shellui start`. Build with `shellui build` (output under `dist/web/`). Details: {{ site.docs }}/cli
+
+For agent-led scaffolding (skills, framework starters), fetch https://shellui.ai and follow that page.
+
+## Hosting
+
+- [shellui.app](https://shellui.app): Hosting for Shellui apps on `*.shellui.app`
+- [shellui.app /llms.txt](https://shellui.app/llms.txt): Hosting overview for agents (`shellui login`, `shellui deploy`)
+
+## Optional
+
+- [Pricing]({{ site.url }}/pricing/)
+- [Brand assets]({{ site.url }}/brand-assets/): Logos and press-kit downloads
+- [Blog]({{ site.url }}/blog/)
+- [Changelog]({{ site.url }}/changelog/)
+- [Roadmap]({{ site.url }}/roadmap/)
+- [Contribute]({{ site.url }}/company/contribute/)
+- [identity-service]({{ site.identityService }})
+- [admin]({{ site.adminPanel }})
+- [storage-service]({{ site.storageService }})

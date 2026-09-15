@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [Unreleased]
+
+### ✨ Feature
+
+- Add `/llms.txt` agent index (product summary, curated links, CLI happy path) and point to it from the guidelines hub.
+
 ## [0.5.0] - 2026-09-15
 
 ### 🛠 Improvements
