@@ -11,7 +11,7 @@ lede: Sign-in lives in the shell. Connect the identity-service or Supabase, prot
 <div class="max-w-2xl">
   <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Sign-in lives in the shell</h2>
   <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Your microfrontend does not ship a login page. The shell owns <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/login</code> and <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/login/callback</code>, stores the session, refreshes tokens, and shares the signed-in user with iframes through the SDK.</p>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The default backend is the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> &mdash; OAuth with GitHub, Google, or Microsoft, JWT sessions, and JWKS so other services can verify tokens. If Supabase Auth is already in your stack, point <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">backend.type</code> at it instead.</p>
+  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The default backend is the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a>: OAuth with GitHub, Google, or Microsoft, JWT sessions, and a JSON Web Key Set (JWKS) so other services can verify tokens. If Supabase Auth is already in your stack, point <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">backend.type</code> at it instead.</p>
 </div>
 
 <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">

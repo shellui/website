@@ -21,6 +21,9 @@ importers:
       '@tailwindcss/cli':
         specifier: ^4.3.3
         version: 4.3.3
+      markdown-it:
+        specifier: ^14.1.0
+        version: 14.3.0
       shiki:
         specifier: ^4.4.3
         version: 4.4.3

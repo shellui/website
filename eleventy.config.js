@@ -176,6 +176,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/assets/css/");
   eleventyConfig.addWatchTarget("src/assets/js/");
   eleventyConfig.addWatchTarget("src/blocks/");
+  eleventyConfig.addWatchTarget("content/guidelines/");
 
   eleventyConfig.addPassthroughCopy({
     CNAME: "CNAME",
@@ -185,6 +186,8 @@ export default async function (eleventyConfig) {
     "src/assets/js": "assets/js",
     "node_modules/alpinejs/dist/cdn.min.js": "assets/js/alpine.min.js",
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
+    "content/guidelines/design.md": "design.md",
+    "content/guidelines": "guidelines",
   });
 
   eleventyConfig.addFilter("readableDate", (date) =>
@@ -223,8 +226,9 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addPairedShortcode("highlight", highlightCode);
 
-  eleventyConfig.addShortcode("figure", (src, alt = "", caption = "") => {
-    const img = `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" class="aspect-video rounded-xl bg-gray-50 object-cover dark:bg-gray-900" />`;
+  eleventyConfig.addShortcode("figure", (src, alt = "", caption = "", width = "", height = "") => {
+    const dims = width && height ? ` width="${escapeAttr(String(width))}" height="${escapeAttr(String(height))}"` : "";
+    const img = `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}"${dims} class="aspect-video rounded-xl bg-gray-50 object-cover dark:bg-gray-900" />`;
     const figcaption = caption
       ? `<figcaption class="mt-4 flex gap-x-2 text-sm/6 text-gray-500 dark:text-gray-400">${figureCaptionIcon}${escapeXml(caption)}</figcaption>`
       : "";
@@ -236,10 +240,10 @@ export default async function (eleventyConfig) {
     (content, author = "", role = "", image = "") => {
       const quote = wrapParagraph(content);
       const photo = image
-        ? `<img src="${escapeAttr(image)}" alt="" class="size-6 flex-none rounded-full bg-gray-50 object-contain p-0.5 dark:bg-gray-900" />`
+        ? `<img src="${escapeAttr(image)}" alt="" width="24" height="24" class="size-6 flex-none rounded-full bg-gray-50 object-contain p-0.5 dark:bg-gray-900" />`
         : "";
       const credit = [author, role].filter(Boolean).length
-        ? `<figcaption class="mt-6 flex gap-x-4">${photo}<div class="text-sm/6">${author ? `<strong class="font-semibold text-gray-900 dark:text-white">${escapeXml(author)}</strong>` : ""}${author && role ? " – " : ""}${role ? escapeXml(role) : ""}</div></figcaption>`
+        ? `<figcaption class="mt-6 flex gap-x-4">${photo}<div class="text-sm/6">${author ? `<strong class="font-semibold text-gray-900 dark:text-white">${escapeXml(author)}</strong>` : ""}${author && role ? " - " : ""}${role ? escapeXml(role) : ""}</div></figcaption>`
         : "";
       return `<figure class="article-quote mt-10 border-l border-primary-ink pl-9 dark:border-primary"><blockquote class="font-semibold text-gray-900 dark:text-white">${quote}</blockquote>${credit}</figure>`;
     },

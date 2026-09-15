@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+---
+{%- set topicData = guidelines.bySlug[topic] -%}
+<article class="page-top px-4 pb-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+    {% include "guidelines-subnav.njk" %}
+
+    <header class="max-w-3xl">
+      <p class="text-sm font-medium text-primary-ink dark:text-primary">Guidelines</p>
+      <div class="mt-3 flex flex-wrap items-center gap-3">
+        <h1 class="text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">{{ topicData.title }}</h1>
+        <span class="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium text-gray-700 dark:border-gray-800 dark:bg-white/5 dark:text-gray-300">Guidelines v{{ topicData.version }}</span>
+      </div>
+      <p class="mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-400">
+        {{ topicData.description }}
+      </p>
+      <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <a href="{{ topicData.downloadUrl }}" download="{{ topicData.downloadName }}" class="font-semibold text-primary-ink hover:opacity-90 dark:text-primary">Download markdown</a>
+        <a href="/brand-assets/" class="text-gray-600 underline-offset-2 hover:underline dark:text-gray-400">Brand assets</a>
+      </div>
+    </header>
+
+    <div class="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-5 sm:p-6 dark:border-gray-800 dark:bg-white/5">
+      <h2 class="text-sm font-semibold text-gray-900 dark:text-white">For agents</h2>
+      <p class="mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+        Load <code class="rounded bg-white px-1.5 py-0.5 font-mono text-[0.8rem] text-gray-800 dark:bg-gray-900 dark:text-gray-200">{{ topicData.skillPath }}</code>, then read this file - not the HTML. Same source as this page.
+      </p>
+      <pre class="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-white px-4 py-3 font-mono text-xs leading-relaxed text-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-200">{{ topicData.sourcePath }}
+https://shellui.com{{ topicData.downloadUrl }}</pre>
+    </div>
+
+    <div class="mt-14 lg:grid lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-16">
+      <nav class="hidden lg:sticky lg:top-24 lg:block lg:self-start" aria-label="On this page">
+        <p class="text-xs font-semibold text-gray-500 dark:text-gray-400">On this page</p>
+        <ol class="mt-3 space-y-2 text-sm">
+          {% for item in topicData.toc %}
+            <li>
+              <a href="#{{ item.id }}" class="text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">{{ item.text }}</a>
+            </li>
+          {% endfor %}
+        </ol>
+      </nav>
+
+      <div class="guidelines-prose prose min-w-0">
+        {{ topicData.html | safe }}
+      </div>
+    </div>
+  </div>
+</article>

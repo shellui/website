@@ -2,7 +2,7 @@
 layout: layouts/page.njk
 title: Legal Notice | Shellui
 description: "Legal notice for shellui.com: Swiss operator details, GitHub Pages hosting, FADP data protection rights, and how to reach us."
-heading: Legal Notice
+heading: Legal notice
 lede: Legal information for this non-commercial website (Switzerland).
 ---
 
@@ -23,9 +23,9 @@ This website is operated on a **non-commercial** basis as an open-source project
 
 Depending on the active setup, logs and technical metadata may be processed by these providers for security, delivery, and operations.
 
-## 3) Data protection notice (Switzerland revDSG/FADP)
+## 3) Data protection notice (Switzerland)
 
-Personal data is processed only as needed to operate this site, respond to requests, and secure the service.
+The Federal Act on Data Protection (FADP; revDSG) applies. Personal data is processed only as needed to operate this site, respond to requests, and secure the service.
 
 ### Categories of data
 

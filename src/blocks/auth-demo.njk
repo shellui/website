@@ -8,18 +8,18 @@
   </div>
   <div class="p-6">
     <div class="mb-4 flex flex-wrap gap-2" role="tablist" aria-label="Authentication methods">
-      <button type="button" class="rounded-lg px-3 py-1.5 text-sm font-medium" :class="tab === 'login' ? 'bg-primary text-primary-foreground' : 'border border-gray-300 text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800'" role="tab" :aria-selected="(tab === 'login').toString()" @click="tab = 'login'">Login</button>
-      <button type="button" class="rounded-lg px-3 py-1.5 text-sm font-medium" :class="tab === 'sso' ? 'bg-primary text-primary-foreground' : 'border border-gray-300 text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800'" role="tab" :aria-selected="(tab === 'sso').toString()" @click="tab = 'sso'">SSO</button>
-      <button type="button" class="rounded-lg px-3 py-1.5 text-sm font-medium" :class="tab === 'identity' ? 'bg-primary text-primary-foreground' : 'border border-gray-300 text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800'" role="tab" :aria-selected="(tab === 'identity').toString()" @click="tab = 'identity'">Identity service</button>
+      <button type="button" class="min-h-11 rounded-md px-3 py-1.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" :class="tab === 'login' ? 'bg-primary text-primary-foreground' : 'border border-gray-300 text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800'" role="tab" :aria-selected="(tab === 'login').toString()" @click="tab = 'login'">Login</button>
+      <button type="button" class="min-h-11 rounded-md px-3 py-1.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" :class="tab === 'sso' ? 'bg-primary text-primary-foreground' : 'border border-gray-300 text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800'" role="tab" :aria-selected="(tab === 'sso').toString()" @click="tab = 'sso'">SSO</button>
+      <button type="button" class="min-h-11 rounded-md px-3 py-1.5 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" :class="tab === 'identity' ? 'bg-primary text-primary-foreground' : 'border border-gray-300 text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800'" role="tab" :aria-selected="(tab === 'identity').toString()" @click="tab = 'identity'">Identity service</button>
     </div>
     <div x-show="tab === 'login'" role="tabpanel">
       <h3 class="mb-2 text-lg font-semibold">Email and password</h3>
-      <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">Shellui ships a sign-in screen as part of the shell. Protected routes redirect here, then return the user to the page they asked for.</p>
+      <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">Shellui ships a sign-in screen as part of the shell. Protected routes redirect here, then return you to the page you asked for.</p>
       <form class="flex max-w-sm flex-col gap-3" action="#" method="get" onsubmit="return false">
         <label class="text-sm font-medium" for="demo-email">Email</label>
-        <input class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50" id="demo-email" name="email" type="email" autocomplete="username" placeholder="you@company.com" />
+        <input class="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50" id="demo-email" name="email" type="email" inputmode="email" autocomplete="username" spellcheck="false" placeholder="you@company.com…" />
         <label class="text-sm font-medium" for="demo-password">Password</label>
-        <input class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50" id="demo-password" name="password" type="password" autocomplete="current-password" />
+        <input class="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50" id="demo-password" name="password" type="password" autocomplete="current-password" />
         <button type="submit" class="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90">Sign in</button>
       </form>
     </div>

@@ -1,7 +1,47 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: light;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: color-mix(in oklab, var(--color-primary) 28%, transparent);
   }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -5rem;
+  z-index: 100;
+  border-radius: 0.375rem;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
 }
 
 /* Circular theme reveal via View Transitions API (tweakcn-style) */
@@ -185,6 +225,10 @@
   @apply mt-[0.5em] mb-[0.6em] text-gray-900 dark:text-white;
 }
 
+.prose :where(h4) {
+  @apply mt-6 mb-2 text-base font-semibold text-gray-900 dark:text-white;
+}
+
 .prose :where(h1) {
   font-size: 2.25rem;
   line-height: 1.2;
@@ -238,6 +282,46 @@
 
 .prose :where(pre code) {
   @apply text-gray-900 dark:text-gray-50;
+}
+
+.prose :where(.prose-table-wrap) {
+  @apply my-6 overflow-x-auto;
+}
+
+.prose :where(table) {
+  @apply w-full border-collapse text-sm tabular-nums;
+}
+
+.prose :where(th) {
+  @apply border border-gray-200 bg-gray-50 px-3 py-2 text-left align-bottom font-semibold text-gray-900 dark:border-gray-800 dark:bg-white/5 dark:text-white;
+}
+
+.prose :where(td) {
+  @apply border border-gray-200 px-3 py-2 align-top text-gray-600 dark:border-gray-800 dark:text-gray-400;
+}
+
+.prose :where(thead th) {
+  white-space: nowrap;
+}
+
+.guidelines-prose > :first-child {
+  margin-top: 0;
+}
+
+.guidelines-prose :where(h2) {
+  scroll-margin-top: 6rem;
+}
+
+.guidelines-prose :where(h3) {
+  scroll-margin-top: 5.5rem;
+}
+
+.guidelines-prose :where(h4) {
+  scroll-margin-top: 5rem;
+}
+
+.guidelines-prose :where(strong) {
+  @apply font-semibold text-gray-900 dark:text-white;
 }
 
 .article-body {
@@ -336,13 +420,15 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px color-mix(in oklab, var(--color-primary) 25%, transparent);
-}
+@media (prefers-reduced-motion: no-preference) {
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px color-mix(in oklab, var(--color-primary) 25%, transparent);
+  }
 
-.dark .feature-card:hover {
-  box-shadow: 0 10px 25px rgb(0 0 0 / 0.3);
+  .dark .feature-card:hover {
+    box-shadow: 0 10px 25px rgb(0 0 0 / 0.3);
+  }
 }
 
 .code-block {
@@ -437,4 +523,34 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.design-handbook :where(h2) {
+  scroll-margin-top: 6rem;
+}
+
+.design-handbook :where(h3) {
+  scroll-margin-top: 5.5rem;
+}
+
+.design-theme-island {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+.design-swatch-split {
+  @apply grid grid-cols-2 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800;
+}
+
+.design-swatch-split > div {
+  min-height: 4.5rem;
+}
+
+.design-type-row + .design-type-row {
+  @apply mt-8 border-t border-gray-200 pt-8 dark:border-gray-800;
+}
+
+.design-space-bar {
+  @apply h-2 rounded-sm bg-primary;
 }

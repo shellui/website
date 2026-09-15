@@ -10,7 +10,7 @@ lede: Staff and company owners open an embedded admin from the account menu. The
 
 <div class="max-w-2xl">
   <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Admin in the shell</h2>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The admin UI is a React app, not a separate product login. Point <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">backend.adminUrl</code> at it &mdash; local Vite or <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="https://admin.shellui.com">admin.shellui.com</a> &mdash; and the shell registers <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/admin</code> for users with <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">isStaff</code> or <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">isCompanyOwner</code>.</p>
+  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The admin UI is a React app, not a separate product login. Point <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">backend.adminUrl</code> at it (local Vite or <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="https://admin.shellui.com">admin.shellui.com</a>) and the shell registers <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/admin</code> for users with <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">isStaff</code> or <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">isCompanyOwner</code>.</p>
   <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">It talks to the same <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> as sign-in. Source lives in the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.adminPanel }}">admin</a> repo. Without <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">adminPathname</code>, the account menu does not show Administration.</p>
 </div>
 
@@ -53,8 +53,8 @@ export default config;
 
 <div class="mt-20">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Built-in tools</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Identity screens ship with the admin app. Storage screens appear when <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">storage.url</code> is set. Staff can open Django admin in a new tab &mdash; it is not framed.</p>
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Directory, logs, tokens, and files</h2>
+    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Identity screens ship with the admin app. Storage screens appear when <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">storage.url</code> is set. Staff can open Django admin in a new tab - it is not framed.</p>
   </div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
