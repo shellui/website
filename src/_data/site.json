@@ -6,6 +6,8 @@
   "author": "Shellui",
   "docs": "https://docs.shellui.com",
   "playground": "https://playground.shellui.com",
+  "hosting": "https://shellui.app",
+  "agent": "https://shellui.ai",
   "github": "https://github.com/shellui",
   "identityService": "https://github.com/shellui/identity-service",
   "adminPanel": "https://github.com/shellui/admin",

@@ -438,3 +438,19 @@
     transform: translateY(0);
   }
 }
+
+.framework-chip[aria-checked="true"] {
+  border-color: color-mix(in oklab, var(--color-primary) 55%, rgb(229 231 235));
+  background-color: color-mix(in oklab, var(--color-primary) 14%, white);
+  color: var(--color-primary-ink);
+}
+
+.dark .framework-chip[aria-checked="true"] {
+  border-color: color-mix(in oklab, var(--color-primary) 45%, rgb(31 41 55));
+  background-color: color-mix(in oklab, var(--color-primary) 16%, rgb(3 7 18));
+  color: var(--color-primary);
+}
+
+#get-started {
+  scroll-margin-top: 5.5rem;
+}

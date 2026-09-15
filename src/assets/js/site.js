@@ -143,3 +143,64 @@ const observer = new IntersectionObserver(
 document.querySelectorAll(".animate-on-scroll").forEach((el) => {
   observer.observe(el);
 });
+
+document.addEventListener("alpine:init", () => {
+  Alpine.data("getStarted", () => ({
+    selected: "react",
+    copied: false,
+    copyTimer: null,
+    prompt: "fetch https://shellui.ai to start with Shellui",
+    commands: [],
+    init() {
+      const node = document.getElementById("get-started-data");
+      if (!node) return;
+      try {
+        const data = JSON.parse(node.textContent);
+        this.selected = data.selected || this.selected;
+        this.prompt = data.prompt || this.prompt;
+        this.commands = Array.isArray(data.commands) ? data.commands : [];
+      } catch {
+        this.commands = [];
+      }
+    },
+    get command() {
+      const match = this.commands.find((item) => item.id === this.selected);
+      return match?.command || "npx shellui@latest init react";
+    },
+    select(id) {
+      this.selected = id;
+    },
+    async copyPrompt() {
+      const text = this.prompt;
+      const markCopied = () => {
+        this.copied = true;
+        clearTimeout(this.copyTimer);
+        this.copyTimer = setTimeout(() => {
+          this.copied = false;
+        }, 1600);
+      };
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+          markCopied();
+          return;
+        }
+      } catch {
+        /* fall through to execCommand */
+      }
+      const field = document.createElement("textarea");
+      field.value = text;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.left = "-9999px";
+      document.body.appendChild(field);
+      field.select();
+      try {
+        document.execCommand("copy");
+        markCopied();
+      } finally {
+        document.body.removeChild(field);
+      }
+    },
+  }));
+});
