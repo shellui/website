@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Handle, Position } from "@xyflow/react";
 
 const HANDLES = [
@@ -30,15 +31,15 @@ function NodeHandles() {
   ]);
 }
 
-export function StackNode({ data }) {
-  const { title, role, description, href, kind, state } = data;
+export const StackNode = memo(function StackNode({ data }) {
+  const { title, role, description, href, kind, fill } = data;
 
   return (
-    <div className="ag-node" data-kind={kind} data-state={state}>
+    <div className="ag-node" data-kind={kind} data-fill={fill || undefined}>
       <NodeHandles />
       <p className="ag-node__head">
         {href ? (
-          <a className="ag-node__title" href={href}>
+          <a className="ag-node__title nodrag nopan" href={href}>
             {title}
           </a>
         ) : (
@@ -49,9 +50,9 @@ export function StackNode({ data }) {
       <p className="ag-node__desc">{description}</p>
     </div>
   );
-}
+});
 
-export function FrameNode({ data }) {
+export const FrameNode = memo(function FrameNode({ data }) {
   return (
     <div className="ag-frame">
       <p className="ag-frame__label">
@@ -60,6 +61,6 @@ export function FrameNode({ data }) {
       </p>
     </div>
   );
-}
+});
 
 export const nodeTypes = { stack: StackNode, frame: FrameNode };

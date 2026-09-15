@@ -1,6 +1,10 @@
 // Single source of truth for the /architecture/ diagram.
 // Eleventy renders the static fallback from this file; the React island
 // (src/islands/architecture-graph/) imports the same module at build time.
+//
+// Positions are hand-placed in flow coordinates. Node positions are relative
+// to the frame they sit in. labelT moves an edge label along its curve so two
+// labels in the same corridor do not collide.
 
 const GROUP_CLIENT = {
   id: "client",
@@ -34,18 +38,16 @@ const APP = {
   title: "Your app",
   role: "Your code",
   kind: "app",
-  description: "Any stack, in an iframe. Loads @shellui/sdk and calls init.",
-  href: "#shell",
 };
 
 const full = {
   id: "full",
   label: "Full Shellui stack",
   summary:
-    "Five Shellui pieces plus the blob store you point storage-service at. The shell hosts every frontend in an iframe and owns the session.",
+    "Five Shellui pieces plus the blob store you point storage-service at. The shell hosts every frontend in an iframe and holds the session.",
   groups: [
-    { ...GROUP_CLIENT, position: { x: 0, y: 0 }, size: { width: 560, height: 476 } },
-    { ...GROUP_INFRA, position: { x: 660, y: 0 }, size: { width: 560, height: 420 } },
+    { ...GROUP_CLIENT, position: { x: 0, y: 0 }, size: { width: 560, height: 484 } },
+    { ...GROUP_INFRA, position: { x: 660, y: 0 }, size: { width: 300, height: 484 } },
   ],
   nodes: [
     {
@@ -56,9 +58,12 @@ const full = {
     },
     {
       ...APP,
+      description:
+        "Any stack, in an iframe. Loads @shellui/sdk, calls init, and reaches files through shellui.storage rather than the REST API.",
+      fill: true,
       parent: "client",
       position: { x: 20, y: 196 },
-      size: { width: 248, height: 116 },
+      size: { width: 248, height: 268 },
     },
     {
       id: "admin",
@@ -79,7 +84,7 @@ const full = {
       description: "Browse, upload, folders, permissions, and share links.",
       href: "#files",
       parent: "client",
-      position: { x: 292, y: 340 },
+      position: { x: 292, y: 348 },
       size: { width: 248, height: 116 },
     },
     {
@@ -91,18 +96,18 @@ const full = {
       href: "#identity-service",
       parent: "infra",
       position: { x: 20, y: 60 },
-      size: { width: 248, height: 120 },
+      size: { width: 260, height: 156 },
     },
     {
       id: "storage",
       title: "storage-service",
       role: "Backend",
       kind: "backend",
-      description: "Supabase-compatible REST, access grants, share links, quotas.",
+      description: "Supabase-compatible REST, access grants, share links, and quotas.",
       href: "#storage-service",
       parent: "infra",
-      position: { x: 20, y: 244 },
-      size: { width: 248, height: 132 },
+      position: { x: 20, y: 272 },
+      size: { width: 260, height: 192 },
     },
     {
       id: "blobs",
@@ -110,9 +115,8 @@ const full = {
       role: "Blobs",
       kind: "store",
       description: "Where storage-service writes the bytes.",
-      parent: "infra",
-      position: { x: 292, y: 258 },
-      size: { width: 248, height: 104 },
+      position: { x: 1000, y: 322 },
+      size: { width: 248, height: 120 },
     },
   ],
   edges: [
@@ -123,6 +127,7 @@ const full = {
       target: "app",
       targetHandle: "top-t",
       label: "iframe + @shellui/sdk",
+      labelT: 0.66,
       bidirectional: true,
     },
     {
@@ -156,6 +161,7 @@ const full = {
       target: "storage",
       targetHandle: "left-t",
       label: "/storage/v1/*",
+      labelT: 0.74,
     },
     {
       id: "admin-identity",
@@ -164,6 +170,7 @@ const full = {
       target: "identity",
       targetHandle: "left2-t",
       label: "users + groups",
+      labelT: 0.33,
     },
     {
       id: "files-storage",
@@ -180,6 +187,7 @@ const full = {
       target: "identity",
       targetHandle: "bottom-t",
       label: "JWKS verify",
+      labelOffset: [0, -18],
     },
     {
       id: "storage-blobs",
@@ -198,22 +206,24 @@ const supabase = {
   summary:
     "Keep the shell and your app. Point backend.type and storage.url at a Supabase project, and identity-service and storage-service leave the diagram.",
   groups: [
-    { ...GROUP_CLIENT, position: { x: 0, y: 0 }, size: { width: 560, height: 392 } },
-    { ...GROUP_SUPABASE, position: { x: 660, y: 0 }, size: { width: 300, height: 420 } },
+    { ...GROUP_CLIENT, position: { x: 0, y: 0 }, size: { width: 560, height: 344 } },
+    { ...GROUP_SUPABASE, position: { x: 660, y: 0 }, size: { width: 300, height: 344 } },
   ],
   nodes: [
     {
       ...SHELL,
-      description: 'Same frontend, with backend.type set to "supabase".',
+      description: 'The same frontend, with backend.type set to "supabase".',
       parent: "client",
       position: { x: 20, y: 60 },
       size: { width: 520, height: 96 },
     },
     {
       ...APP,
+      description:
+        "Any stack, in an iframe. The same @shellui/sdk calls, answered by a different backend.",
       parent: "client",
       position: { x: 20, y: 196 },
-      size: { width: 520, height: 116 },
+      size: { width: 520, height: 128 },
     },
     {
       id: "supabase-auth",
@@ -221,10 +231,9 @@ const supabase = {
       role: "Hosted",
       kind: "managed",
       description: "Replaces identity-service as the sign-in backend.",
-      href: "#identity-service",
       parent: "supabase",
       position: { x: 20, y: 60 },
-      size: { width: 260, height: 120 },
+      size: { width: 260, height: 116 },
     },
     {
       id: "supabase-storage",
@@ -232,10 +241,9 @@ const supabase = {
       role: "Hosted",
       kind: "managed",
       description: "Replaces storage-service behind the same SDK calls.",
-      href: "#storage-service",
       parent: "supabase",
-      position: { x: 20, y: 244 },
-      size: { width: 260, height: 132 },
+      position: { x: 20, y: 208 },
+      size: { width: 260, height: 116 },
     },
   ],
   edges: [
@@ -274,10 +282,22 @@ const supabase = {
   },
 };
 
+function boundsOf(view) {
+  const boxes = [
+    ...view.groups,
+    ...view.nodes.filter((node) => !node.parent),
+  ];
+  return {
+    width: Math.max(...boxes.map((box) => box.position.x + box.size.width)),
+    height: Math.max(...boxes.map((box) => box.position.y + box.size.height)),
+  };
+}
+
 function withConnections(view) {
   const titles = new Map(view.nodes.map((node) => [node.id, node.title]));
   return {
     ...view,
+    bounds: boundsOf(view),
     connections: view.edges.map((edge) => ({
       id: edge.id,
       from: titles.get(edge.source),

@@ -104,7 +104,7 @@
 }
 
 .ag-canvas {
-  height: clamp(340px, 60vh, 540px);
+  height: clamp(360px, 56vh, 460px);
 }
 
 .ag-canvas:focus-visible,
@@ -257,11 +257,15 @@
   box-shadow: none;
 }
 
-.ag-node[data-state="dim"] {
+.ag-node[data-fill] {
+  justify-content: center;
+}
+
+.react-flow__node[data-ag-state="dim"] .ag-node {
   opacity: 0.4;
 }
 
-.ag-node[data-state="active"] {
+.react-flow__node[data-ag-state="active"] .ag-node {
   border-color: var(--color-primary);
 }
 
@@ -351,13 +355,17 @@ a.ag-node__title:focus-visible {
   stroke-width: 1.25;
 }
 
-.ag-root .ag-edge[data-state="active"] {
+.ag-root .ag-edge[data-ag-state="active"] {
   stroke: var(--color-primary);
   stroke-width: 2;
 }
 
-.ag-root .ag-edge[data-state="dim"] {
+.ag-root .ag-edge[data-ag-state="dim"] {
   opacity: 0.25;
+}
+
+.ag-root .react-flow__edgelabel-renderer {
+  z-index: 3;
 }
 
 .ag-edge-label {
@@ -374,12 +382,12 @@ a.ag-node__title:focus-visible {
   pointer-events: none;
 }
 
-.ag-edge-label[data-state="active"] {
+.ag-edge-label[data-ag-state="active"] {
   border-color: color-mix(in oklab, var(--color-primary) 55%, var(--color-border));
   color: var(--color-foreground);
 }
 
-.ag-edge-label[data-state="dim"] {
+.ag-edge-label[data-ag-state="dim"] {
   opacity: 0.25;
 }
 

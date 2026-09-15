@@ -14,7 +14,10 @@ import { nodeTypes } from "./nodes.jsx";
 
 const VIEWS = architectureGraph.views;
 const PAN_STEP = 72;
+const FIT_PADDING = 16;
+const FIT_MIN_ZOOM = 0.62;
 const QUERY_KEY = "stack";
+const ARROW = { type: MarkerType.ArrowClosed, width: 14, height: 14, color: "var(--ag-edge)" };
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -25,18 +28,7 @@ function readViewFromUrl() {
   return VIEWS.some((view) => view.id === requested) ? requested : VIEWS[0].id;
 }
 
-function neighboursOf(view, id) {
-  const linked = new Set();
-  if (!id) return linked;
-  for (const edge of view.edges) {
-    if (edge.source === id) linked.add(edge.target);
-    if (edge.target === id) linked.add(edge.source);
-  }
-  return linked;
-}
-
-function buildNodes(view, activeId) {
-  const linked = neighboursOf(view, activeId);
+function buildNodes(view) {
   const frames = view.groups.map((group) => ({
     id: group.id,
     type: "frame",
@@ -50,59 +42,44 @@ function buildNodes(view, activeId) {
     zIndex: 0,
   }));
 
-  const cards = view.nodes.map((node) => {
-    let state = "idle";
-    if (activeId) {
-      if (node.id === activeId) state = "active";
-      else if (linked.has(node.id)) state = "linked";
-      else state = "dim";
-    }
-    return {
-      id: node.id,
-      type: "stack",
-      parentId: node.parent,
-      extent: "parent",
-      position: node.position,
-      data: {
-        title: node.title,
-        role: node.role,
-        description: node.description,
-        href: node.href,
-        kind: node.kind,
-        state,
-      },
-      style: { width: node.size.width, height: node.size.height },
-      draggable: false,
-      connectable: false,
-      zIndex: 1,
-      ariaLabel: `${node.title}, ${node.role}. ${node.description}`,
-    };
-  });
+  const cards = view.nodes.map((node) => ({
+    id: node.id,
+    type: "stack",
+    parentId: node.parent,
+    extent: node.parent ? "parent" : undefined,
+    position: node.position,
+    data: {
+      title: node.title,
+      role: node.role,
+      description: node.description,
+      href: node.href,
+      kind: node.kind,
+      fill: Boolean(node.fill),
+    },
+    style: { width: node.size.width, height: node.size.height },
+    draggable: false,
+    connectable: false,
+    zIndex: 1,
+    ariaLabel: `${node.title}, ${node.role}. ${node.description}`,
+  }));
 
   return [...frames, ...cards];
 }
 
-function buildEdges(view, activeId) {
-  return view.edges.map((edge) => {
-    const touched = edge.source === activeId || edge.target === activeId;
-    const state = !activeId ? "idle" : touched ? "active" : "dim";
-    const color = state === "active" ? "var(--color-primary)" : "var(--ag-edge)";
-    const marker = { type: MarkerType.ArrowClosed, width: 14, height: 14, color };
-    return {
-      id: edge.id,
-      type: "labeled",
-      source: edge.source,
-      target: edge.target,
-      sourceHandle: edge.sourceHandle,
-      targetHandle: edge.targetHandle,
-      markerEnd: marker,
-      markerStart: edge.bidirectional ? marker : undefined,
-      focusable: false,
-      selectable: false,
-      data: { label: edge.label, state },
-      zIndex: state === "active" ? 2 : 0,
-    };
-  });
+function buildEdges(view) {
+  return view.edges.map((edge) => ({
+    id: edge.id,
+    type: "labeled",
+    source: edge.source,
+    target: edge.target,
+    sourceHandle: edge.sourceHandle,
+    targetHandle: edge.targetHandle,
+    markerEnd: ARROW,
+    markerStart: edge.bidirectional ? ARROW : undefined,
+    focusable: false,
+    selectable: false,
+    data: { label: edge.label, labelT: edge.labelT, labelOffset: edge.labelOffset },
+  }));
 }
 
 function ViewPicker({ viewId, onChange }) {
@@ -135,22 +112,110 @@ function ZoomButton({ label, onClick, children }) {
   );
 }
 
-function Canvas({ view, activeId, setActiveId }) {
-  const { zoomIn, zoomOut, fitView, getViewport, setViewport } = useReactFlow();
+function Canvas({ view }) {
+  const { zoomIn, zoomOut, getViewport, setViewport } = useReactFlow();
   const surfaceRef = useRef(null);
+  const canvasRef = useRef(null);
 
-  const nodes = useMemo(() => buildNodes(view, activeId), [view, activeId]);
-  const edges = useMemo(() => buildEdges(view, activeId), [view, activeId]);
+  const nodes = useMemo(() => buildNodes(view), [view]);
+  const edges = useMemo(() => buildEdges(view), [view]);
 
   const duration = useCallback(() => (prefersReducedMotion() ? 0 : 240), []);
 
-  const fit = useCallback(() => {
-    fitView({ padding: 0.06, minZoom: 0.4, maxZoom: 1, duration: duration() });
-  }, [fitView, duration]);
+  // Highlighting writes data attributes straight to the rendered graph. Routing
+  // it through React state would rebuild the nodes under the pointer, and a tap
+  // that lands between mousedown and mouseup would lose its click target.
+  const highlight = useCallback(
+    (activeId) => {
+      const root = surfaceRef.current;
+      if (!root) return;
+      const linked = new Set();
+      for (const edge of view.edges) {
+        if (edge.source === activeId) linked.add(edge.target);
+        if (edge.target === activeId) linked.add(edge.source);
+      }
+      for (const element of root.querySelectorAll(".react-flow__node-stack[data-id]")) {
+        const id = element.dataset.id;
+        element.dataset.agState = !activeId
+          ? "idle"
+          : id === activeId
+            ? "active"
+            : linked.has(id)
+              ? "linked"
+              : "dim";
+      }
+      for (const element of root.querySelectorAll("[data-edge-id]")) {
+        const edge = view.edges.find((item) => item.id === element.dataset.edgeId);
+        element.dataset.agState = !activeId
+          ? "idle"
+          : edge && (edge.source === activeId || edge.target === activeId)
+            ? "active"
+            : "dim";
+      }
+    },
+    [view],
+  );
+
+  // A graph wider than the canvas is anchored to its left edge rather than
+  // centred, so a phone opens on the browser frame instead of a cropped middle.
+  const fit = useCallback(
+    (animate = true) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const { clientWidth: width, clientHeight: height } = canvas;
+      const { width: contentWidth, height: contentHeight } = view.bounds;
+      const inner = FIT_PADDING * 2;
+      const zoom = Math.min(
+        (width - inner) / contentWidth,
+        (height - inner) / contentHeight,
+        1,
+      );
+      const options = { duration: animate ? duration() : 0 };
+      if (zoom >= FIT_MIN_ZOOM) {
+        setViewport(
+          {
+            x: (width - contentWidth * zoom) / 2,
+            y: (height - contentHeight * zoom) / 2,
+            zoom,
+          },
+          options,
+        );
+        return;
+      }
+      setViewport(
+        {
+          x: FIT_PADDING,
+          y: Math.max(
+            FIT_PADDING,
+            (height - contentHeight * FIT_MIN_ZOOM) / 2,
+          ),
+          zoom: FIT_MIN_ZOOM,
+        },
+        options,
+      );
+    },
+    [view, setViewport, duration],
+  );
 
   useEffect(() => {
-    fit();
-  }, [view, fit]);
+    fit(false);
+    highlight(null);
+  }, [view, fit, highlight]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || typeof ResizeObserver === "undefined") return undefined;
+    let timer = 0;
+    const observer = new ResizeObserver(() => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => fit(false), 150);
+    });
+    observer.observe(canvas);
+    return () => {
+      window.clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [fit]);
 
   const pan = useCallback(
     (dx, dy) => {
@@ -165,7 +230,7 @@ function Canvas({ view, activeId, setActiveId }) {
 
   const onKeyDown = useCallback(
     (event) => {
-      const keys = {
+      const actions = {
         ArrowLeft: () => pan(PAN_STEP, 0),
         ArrowRight: () => pan(-PAN_STEP, 0),
         ArrowUp: () => pan(0, PAN_STEP),
@@ -173,9 +238,9 @@ function Canvas({ view, activeId, setActiveId }) {
         "+": () => zoomIn({ duration: duration() }),
         "=": () => zoomIn({ duration: duration() }),
         "-": () => zoomOut({ duration: duration() }),
-        "0": fit,
+        "0": () => fit(),
       };
-      const action = keys[event.key];
+      const action = actions[event.key];
       if (!action) return;
       event.preventDefault();
       action();
@@ -183,25 +248,20 @@ function Canvas({ view, activeId, setActiveId }) {
     [pan, zoomIn, zoomOut, fit, duration],
   );
 
-  const onFocusCapture = useCallback(
-    (event) => {
-      const card = event.target.closest?.(".react-flow__node");
-      setActiveId(card?.dataset?.id ?? null);
-    },
-    [setActiveId],
-  );
-
   return (
     <div className="ag-surface" ref={surfaceRef}>
       <div
         className="ag-canvas"
+        ref={canvasRef}
         role="application"
         aria-label={`Architecture graph: ${view.label}`}
         aria-describedby="architecture-graph-hint"
         onKeyDown={onKeyDown}
-        onFocusCapture={onFocusCapture}
+        onFocusCapture={(event) =>
+          highlight(event.target.closest?.(".react-flow__node-stack")?.dataset.id ?? null)
+        }
         onBlurCapture={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget)) setActiveId(null);
+          if (!event.currentTarget.contains(event.relatedTarget)) highlight(null);
         }}
       >
         <ReactFlow
@@ -221,9 +281,8 @@ function Canvas({ view, activeId, setActiveId }) {
           zoomOnDoubleClick={false}
           minZoom={0.35}
           maxZoom={1.6}
-          onNodeMouseEnter={(_, node) => setActiveId(node.id)}
-          onNodeMouseLeave={() => setActiveId(null)}
-          proOptions={{ hideAttribution: false }}
+          onNodeMouseEnter={(_, node) => highlight(node.id)}
+          onNodeMouseLeave={() => highlight(null)}
         >
           <Background variant={BackgroundVariant.Dots} gap={22} size={1} />
         </ReactFlow>
@@ -239,7 +298,7 @@ function Canvas({ view, activeId, setActiveId }) {
             <path d="M10 5v10M5 10h10" />
           </svg>
         </ZoomButton>
-        <button type="button" className="ag-control ag-control--text" onClick={fit}>
+        <button type="button" className="ag-control ag-control--text" onClick={() => fit()}>
           Fit view
         </button>
       </div>
@@ -249,12 +308,10 @@ function Canvas({ view, activeId, setActiveId }) {
 
 export default function ArchitectureGraph() {
   const [viewId, setViewId] = useState(readViewFromUrl);
-  const [activeId, setActiveId] = useState(null);
   const view = VIEWS.find((item) => item.id === viewId) ?? VIEWS[0];
 
   const changeView = useCallback((next) => {
     setViewId(next);
-    setActiveId(null);
     const url = new URL(window.location.href);
     if (next === VIEWS[0].id) url.searchParams.delete(QUERY_KEY);
     else url.searchParams.set(QUERY_KEY, next);
@@ -269,12 +326,12 @@ export default function ArchitectureGraph() {
       </div>
 
       <ReactFlowProvider>
-        <Canvas view={view} activeId={activeId} setActiveId={setActiveId} />
+        <Canvas view={view} />
       </ReactFlowProvider>
 
       <p className="ag-hint" id="architecture-graph-hint">
-        Tab to a box to highlight what it talks to. Arrow keys pan, <kbd>+</kbd> and{" "}
-        <kbd>-</kbd> zoom, <kbd>0</kbd> fits the view.
+        Point at a box, or tab to it, to highlight what it talks to. Arrow keys pan,{" "}
+        <kbd>+</kbd> and <kbd>-</kbd> zoom, <kbd>0</kbd> fits the view.
       </p>
 
       <div className="ag-legend">
