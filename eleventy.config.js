@@ -176,6 +176,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/assets/css/");
   eleventyConfig.addWatchTarget("src/assets/js/");
   eleventyConfig.addWatchTarget("src/blocks/");
+  eleventyConfig.addWatchTarget("content/guidelines/");
 
   eleventyConfig.addPassthroughCopy({
     CNAME: "CNAME",
@@ -185,6 +186,8 @@ export default async function (eleventyConfig) {
     "src/assets/js": "assets/js",
     "node_modules/alpinejs/dist/cdn.min.js": "assets/js/alpine.min.js",
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
+    "content/guidelines/design.md": "design.md",
+    "content/guidelines": "guidelines",
   });
 
   eleventyConfig.addFilter("readableDate", (date) =>

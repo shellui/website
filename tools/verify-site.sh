@@ -18,6 +18,15 @@ required_files=(
   sitemap.xml
   assets/css/site.css
   assets/js/site.js
+  brand-assets/index.html
+  guidelines/index.html
+  guidelines/writing/index.html
+  guidelines/web-design/index.html
+  guidelines/writing.md
+  guidelines/web-design.md
+  guidelines/design.md
+  guidelines/design/index.html
+  design.md
 )
 
 log "Checking required output files"
@@ -34,6 +43,39 @@ cname="$(tr -d '[:space:]' < "${SITE}/CNAME")"
 
 # Homepage must mention the product name
 grep -q 'Shellui' "${SITE}/index.html" || fail "index.html does not contain 'Shellui'"
+
+grep -q '/guidelines/writing/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing writing link"
+grep -q '/guidelines/web-design/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing web-design link"
+grep -q '/design.md' "${SITE}/guidelines/index.html" || fail "guidelines hub missing design.md fetch URL"
+grep -q 'Guidelines v' "${SITE}/guidelines/writing/index.html" || fail "writing guidelines page missing version label"
+grep -q 'Guidelines v' "${SITE}/guidelines/web-design/index.html" || fail "web design guidelines page missing version label"
+grep -q 'Hit targets:' "${SITE}/guidelines/web-design/index.html" || fail "web design page missing hit-target rule"
+grep -q 'id="shellui-chrome"' "${SITE}/guidelines/web-design/index.html" || fail "web design page missing chrome section"
+grep -q 'Sacrifice grammar for brevity' "${SITE}/guidelines/web-design/index.html" || fail "web design page should render shared markdown"
+grep -q 'Sacrifice grammar for brevity' "${SITE}/guidelines/web-design.md" || fail "web-design.md missing agent review prompt"
+grep -q 'Hit targets:' "${SITE}/guidelines/web-design.md" || fail "web-design.md missing compact hit-target rule"
+grep -q 'Guidelines v' "${SITE}/guidelines/design/index.html" || fail "design guidelines page missing version label"
+grep -q '^version:' "${SITE}/guidelines/writing.md" || fail "published writing.md missing version frontmatter"
+grep -q '^version:' "${SITE}/guidelines/web-design.md" || fail "published web-design.md missing version frontmatter"
+grep -q '^version:' "${SITE}/design.md" || fail "published /design.md missing version frontmatter"
+grep -q 'Eleventy' "${SITE}/design.md" || fail "/design.md missing Eleventy stack constraint"
+grep -q 'Tailwind Plus' "${SITE}/design.md" || fail "/design.md missing Tailwind Plus guidance"
+grep -q 'primary' "${SITE}/design.md" || fail "/design.md missing primary token"
+grep -q '/guidelines/' "${SITE}/brand-assets/index.html" || fail "brand-assets page missing guidelines cross-link"
+grep -q '/brand-assets/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand-assets cross-link"
+grep -q 'parent skill from this repo' "${SITE}/guidelines/index.html" || fail "guidelines hub missing labeled agent skill path"
+grep -q 'data-design-swatch="primary"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing primary color swatch"
+grep -q 'data-theme-preview="light"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing light surface preview"
+grep -q 'data-theme-preview="dark"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing dark surface preview"
+grep -q 'id="do-and-dont"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing do/don't section"
+if grep -q 'Act as an excellent' "${SITE}/guidelines/design/index.html"; then
+  fail "design HTML page should not render the agent prompt"
+fi
+grep -q 'Act as an excellent' "${SITE}/design.md" || fail "/design.md missing agent composition prompt"
+grep -q '| `background`' "${SITE}/design.md" || fail "/design.md missing compact token table"
+
+log "Checking design token drift"
+node "${ROOT}/tools/verify-design-tokens.mjs"
 
 # Asset fingerprinting should rewrite CSS references with a cache-busting query
 if ! grep -qE 'assets/css/site\.css\?v=[a-f0-9]{8}' "${SITE}/index.html"; then
