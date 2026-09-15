@@ -2,8 +2,8 @@
 <span class="role-badge inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium {% if role == 'Backend' %}bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300{% else %}bg-primary/10 text-primary-ink dark:text-primary{% endif %}">{{ role }}</span>
 {% endmacro %}
 
-{% macro heading(title, role) %}
-<h2 class="flex flex-wrap items-center gap-2.5">{{ title }} {{ roleBadge(role) }}</h2>
+{% macro heading(title, role, id) %}
+<h2 class="flex flex-wrap items-center gap-2.5"{% if id %} id="{{ id }}"{% endif %}>{{ title }} {{ roleBadge(role) }}</h2>
 {% endmacro %}
 
 {% macro stackList(items) %}
