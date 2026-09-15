@@ -57,6 +57,7 @@ export default {
       guidelines: "Guidelines",
       writing: "Writing",
       "web-design": "Web design",
+      design: "Design",
     };
 
     const pageLabel = String(data.title || data.heading || "")

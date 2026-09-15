@@ -24,6 +24,9 @@ required_files=(
   guidelines/web-design/index.html
   guidelines/writing.md
   guidelines/web-design.md
+  guidelines/design.md
+  guidelines/design/index.html
+  design.md
 )
 
 log "Checking required output files"
@@ -43,10 +46,16 @@ grep -q 'Shellui' "${SITE}/index.html" || fail "index.html does not contain 'She
 
 grep -q '/guidelines/writing/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing writing link"
 grep -q '/guidelines/web-design/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing web-design link"
+grep -q '/design.md' "${SITE}/guidelines/index.html" || fail "guidelines hub missing design.md fetch URL"
 grep -q 'Guidelines v' "${SITE}/guidelines/writing/index.html" || fail "writing guidelines page missing version label"
 grep -q 'Guidelines v' "${SITE}/guidelines/web-design/index.html" || fail "web design guidelines page missing version label"
+grep -q 'Guidelines v' "${SITE}/guidelines/design/index.html" || fail "design guidelines page missing version label"
 grep -q '^version:' "${SITE}/guidelines/writing.md" || fail "published writing.md missing version frontmatter"
 grep -q '^version:' "${SITE}/guidelines/web-design.md" || fail "published web-design.md missing version frontmatter"
+grep -q '^version:' "${SITE}/design.md" || fail "published /design.md missing version frontmatter"
+grep -q 'Eleventy' "${SITE}/design.md" || fail "/design.md missing Eleventy stack constraint"
+grep -q 'Tailwind Plus' "${SITE}/design.md" || fail "/design.md missing Tailwind Plus guidance"
+grep -q 'primary' "${SITE}/design.md" || fail "/design.md missing primary token"
 grep -q '/guidelines/' "${SITE}/brand-assets/index.html" || fail "brand-assets page missing guidelines cross-link"
 grep -q '/brand-assets/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand-assets cross-link"
 

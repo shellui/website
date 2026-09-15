@@ -14,6 +14,7 @@ Agents: load this file. Do not scrape the HTML page. The `version` field in the 
 - **Agents**: read `content/guidelines/web-design.md` in this repo, or fetch `https://shellui.com/guidelines/web-design.md`
 - **Skill wrapper**: `skills/web-design-guidelines/SKILL.md`
 - **Sibling**: [writing guidelines](/guidelines/writing/) for voice and tone
+- **Compose pages with**: [design.md](/design.md) (`fetch https://shellui.com/design.md`)
 - **Hub**: [Guidelines](/guidelines/)
 
 Review files against every rule below. Output concise, high-signal findings. Sacrifice grammar for brevity.

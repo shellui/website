@@ -25,8 +25,8 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 📚 Documentation
 
-- Add versioned guidelines (`content/guidelines/writing.md` and `web-design.md`, v1.0.0) with agent skills under `skills/`.
-- Publish a `/guidelines/` hub plus `/guidelines/writing/` and `/guidelines/web-design/` pages that render the same markdown, with downloadable copies at `/guidelines/*.md`.
+- Add versioned guidelines (`content/guidelines/writing.md`, `web-design.md`, and `design.md`, v1.0.0) with agent skills under `skills/`.
+- Publish a `/guidelines/` hub plus topic pages that render the same markdown. `design.md` is also served at `/design.md` for agent fetch.
 - Link guidelines from the Developers nav and footer. Brand assets stay at `/brand-assets/` with a cross-link.
 
 ## [0.4.2] - 2026-09-07

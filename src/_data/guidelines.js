@@ -21,6 +21,14 @@ const catalog = [
     navLabel: "Web design",
     downloadName: "web-design.md",
   },
+  {
+    slug: "design",
+    href: "/guidelines/design/",
+    skillPath: "skills/design-md/SKILL.md",
+    navLabel: "Design",
+    downloadName: "design.md",
+    publicUrl: "/design.md",
+  },
 ];
 
 function parseFrontmatter(raw) {
@@ -117,8 +125,9 @@ function loadTopic(entry) {
     description: data.description || "",
     html: md.render(body),
     toc: extractToc(body),
-    downloadUrl: `/guidelines/${entry.downloadName}`,
+    downloadUrl: entry.publicUrl || `/guidelines/${entry.downloadName}`,
     sourcePath,
+    publicUrl: entry.publicUrl || `/guidelines/${entry.downloadName}`,
   };
 }
 

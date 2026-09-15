@@ -9,7 +9,7 @@ The official website for [Shellui](https://shellui.com), the web app development
 - **[Tailwind Plus Elements](https://tailwindcss.com/plus/ui-blocks/documentation/elements)** - licensed interactive HTML (`el-*` custom elements) for Plus UI blocks
 - **[Alpine.js](https://alpinejs.dev/)** - light interactivity in `src/blocks/`
 
-Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are real HTML (no iframes). `content/` is IA notes and is not published, except `content/guidelines/*.md` (canonical guidelines, copied to `/guidelines/*.md`).
+Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are real HTML (no iframes). `content/` is IA notes and is not published, except `content/guidelines/*.md` (canonical guidelines). `design.md` is also copied to the site root as `/design.md`.
 
 ## Getting started
 
@@ -28,7 +28,7 @@ writes static files to `_site/`.
 
 ## Guidelines
 
-Canonical rules live in [`content/guidelines/`](content/guidelines/) (version in each file's frontmatter). Humans read `/guidelines/` (hub), `/guidelines/writing/`, and `/guidelines/web-design/`. Agents should load [`skills/guidelines/SKILL.md`](skills/guidelines/SKILL.md) plus the topic skill, then the markdown file - not the HTML. Logos stay on `/brand-assets/`.
+Canonical rules live in [`content/guidelines/`](content/guidelines/) (version in each file's frontmatter). Humans read `/guidelines/` (hub), `/guidelines/writing/`, `/guidelines/web-design/`, and `/guidelines/design/`. Agents should load [`skills/guidelines/SKILL.md`](skills/guidelines/SKILL.md). When **building a page**, fetch `/design.md` first (`skills/design-md/SKILL.md`). Logos stay on `/brand-assets/`.
 
 See [`AGENTS.md`](AGENTS.md) for the short pointer.
 

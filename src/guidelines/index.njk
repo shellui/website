@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: Guidelines | Shellui
-description: Writing and web design rules for Shellui website, docs, and in-shell apps. Versioned markdown that agents and humans share.
+description: Writing, web design, and composition rules for Shellui. Versioned markdown that agents and humans share.
 ---
 
 <article class="page-top px-4 pb-20 sm:px-6 lg:px-8">
@@ -12,14 +12,14 @@ description: Writing and web design rules for Shellui website, docs, and in-shel
     <header>
       <h1 class="text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">Guidelines</h1>
       <p class="mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-400">
-        Voice, UI, and review rules for Shellui. Humans read these pages. Agents load the markdown - not the HTML.
+        Voice, UI, and composition rules for Shellui. Humans read these pages. Agents load the markdown - not the HTML.
       </p>
       <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
         Logos and press-kit files stay on <a href="/brand-assets/" class="text-primary-ink underline hover:opacity-90 dark:text-primary">brand assets</a>.
       </p>
     </header>
 
-    <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {% for item in guidelines.topics %}
         <a href="{{ item.href }}" class="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
           <div class="flex items-start justify-between gap-3">
@@ -27,6 +27,9 @@ description: Writing and web design rules for Shellui website, docs, and in-shel
             <span class="shrink-0 rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium text-gray-700 dark:border-gray-800 dark:bg-white/5 dark:text-gray-300">v{{ item.version }}</span>
           </div>
           <p class="mt-3 flex-1 text-sm text-gray-600 dark:text-gray-400">{{ item.description }}</p>
+          {% if item.publicUrl == '/design.md' %}
+            <p class="mt-4 font-mono text-xs text-gray-500 dark:text-gray-400">fetch https://shellui.com/design.md</p>
+          {% endif %}
           <span class="mt-6 text-sm font-semibold text-primary-ink group-hover:underline dark:text-primary">Read {{ item.navLabel | lower }} guidelines</span>
         </a>
       {% endfor %}
@@ -35,8 +38,10 @@ description: Writing and web design rules for Shellui website, docs, and in-shel
     <div class="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-white/5">
       <h2 class="text-base font-semibold text-gray-900 dark:text-white">For agents</h2>
       <p class="mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-        Start with <code class="rounded bg-white px-1.5 py-0.5 font-mono text-[0.8rem] text-gray-800 dark:bg-gray-900 dark:text-gray-200">{{ guidelines.parentSkillPath }}</code>, then load the topic skill and its markdown file.
+        Building a page? Fetch <a href="/design.md" class="font-medium text-primary-ink dark:text-primary">https://shellui.com/design.md</a> first, then the topic skill. Do not scrape HTML.
       </p>
+      <pre class="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-white px-4 py-3 font-mono text-xs leading-relaxed text-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-200">fetch https://shellui.com/design.md
+{{ guidelines.parentSkillPath }}</pre>
       <ul class="mt-4 list-disc space-y-1 pl-5 text-sm text-gray-600 dark:text-gray-400">
         {% for item in guidelines.topics %}
           <li>
