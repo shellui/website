@@ -157,7 +157,7 @@ function Canvas({ view }) {
   );
 
   // A graph wider than the canvas is anchored to its left edge rather than
-  // centred, so a phone opens on the browser frame instead of a cropped middle.
+  // centered, so a phone opens on the browser frame instead of a cropped middle.
   const fit = useCallback(
     (animate = true) => {
       const canvas = canvasRef.current;
