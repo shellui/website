@@ -1,24 +1,26 @@
 ---
-layout: layouts/base.njk
-title: Host chrome | Shellui
-description: Theme, language, and floating chrome actions now live on the Microfrontend host page.
-robots: noindex, follow
+permalink: /features/chrome/
 eleventyExcludeFromCollections: true
-jsonld: false
-hideBreadcrumbs: true
-redirect: /features/microfrontend/#host-chrome
+sitemap: false
+layout: false
 ---
-
-<div class="page-top page-x pb-24">
-  <div class="mx-auto max-w-2xl">
-    <h1 class="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white">Host chrome moved</h1>
-    <p class="mt-6 text-lg text-pretty text-gray-500 dark:text-gray-400">Theme, language, and floating actions now live on the <a class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" href="/features/microfrontend/#host-chrome">Microfrontend host</a> page.</p>
-  </div>
-</div>
-<script>
-  (function () {
-    var hash = window.location.hash;
-    var keep = { "#theming": 1, "#language": 1, "#chrome-actions": 1, "#host-chrome": 1 };
-    window.location.replace(keep[hash] ? "/features/microfrontend/" + hash : "/features/microfrontend/#host-chrome");
-  })();
-</script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting to Microfrontend host</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="{{ site.url }}/features/microfrontend/" />
+    <meta http-equiv="refresh" content="0; url=/features/microfrontend/#host-chrome" />
+    <script>
+      (function () {
+        var hash = window.location.hash;
+        var keep = { "#theming": 1, "#language": 1, "#chrome-actions": 1, "#host-chrome": 1 };
+        location.replace(keep[hash] ? "/features/microfrontend/" + hash : "/features/microfrontend/#host-chrome");
+      })();
+    </script>
+  </head>
+  <body>
+    <p><a href="/features/microfrontend/#host-chrome">Host chrome now lives on Microfrontend host.</a></p>
+  </body>
+</html>
