@@ -29,7 +29,7 @@
     {
       "href": "/features/microfrontend/",
       "label": "Microfrontend",
-      "description": "Iframe hosting, SDK, and layout modes.",
+      "description": "Iframe hosting, SDK, layouts, theme, language, and chrome actions.",
       "icon": "layout"
     },
     {
@@ -49,12 +49,6 @@
       "label": "Storage",
       "description": "Company bucket, file SDK, grants, share links, and quotas.",
       "icon": "storage"
-    },
-    {
-      "href": "/features/chrome/",
-      "label": "Host chrome",
-      "description": "Theme, language, and floating chrome actions.",
-      "icon": "swatch"
     },
     {
       "href": "/features/ship/",

@@ -4,11 +4,11 @@ export default [
     href: "/features/microfrontend/",
     title: "Microfrontend host",
     benefit:
-      "Do not rebuild navigation and overlays for every frontend. Host the app in an iframe and talk over postMessage with @shellui/sdk.",
+      "Do not rebuild navigation, overlays, theme pickers, or floating actions for every frontend. Host the app in an iframe and talk over postMessage with @shellui/sdk.",
     points: [
       "Sidebar, app bar, floating, fullscreen, or windows",
-      "Toasts, dialogs, drawers, and theme from the host",
-      "One shellui.config.json",
+      "Theme, language, and floating actions in the host",
+      "Toasts, dialogs, and drawers from the SDK",
     ],
     visual: "shell-layout",
     cta: "Explore microfrontend",
@@ -54,20 +54,6 @@ export default [
     ],
     visual: "storage",
     cta: "Explore storage",
-  },
-  {
-    id: "chrome",
-    href: "/features/chrome/",
-    title: "Host chrome",
-    benefit:
-      "Do not rebuild theme pickers, locale switchers, or floating actions. The iframe declares intent; the shell renders them.",
-    points: [
-      "Curated OKLCH themes, including Shellui gold",
-      "English and French chrome strings",
-      "Back, title, trailing, and primary floating action via the SDK",
-    ],
-    visual: "chrome",
-    cta: "Explore host chrome",
   },
   {
     id: "desktop",

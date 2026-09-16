@@ -10,11 +10,15 @@ export default {
     return `${path}/`;
   },
   canonical(data) {
-    if (data.canonical) return data.canonical;
     const origin = String(data.site?.url || "https://shellui.com").replace(
       /\/$/,
       "",
     );
+    if (data.redirect) {
+      const path = String(data.redirect).split("#")[0];
+      return `${origin}${path.startsWith("/") ? path : `/${path}`}`;
+    }
+    if (data.canonical) return data.canonical;
     return `${origin}${data.page.url}`;
   },
   metaTitle(data) {
@@ -50,7 +54,6 @@ export default {
       features: "Features",
       blog: "Blog",
       company: "Company",
-      chrome: "Host chrome",
       ship: "Ship",
       architecture: "Architecture",
       roadmap: "Roadmap",
