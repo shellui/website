@@ -55,14 +55,18 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
               Get started
             </a>
             <a
-              href="{{ site.docs }}"
+              href="{{ site.playground }}"
               class="text-sm/6 font-semibold text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Read the docs <span aria-hidden="true">→</span>
+              Open playground <span aria-hidden="true">→</span>
             </a>
           </div>
           <p class="mt-8 text-sm text-gray-500 dark:text-gray-400">
             MIT licensed
+            <span class="mx-2 text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
+            <a href="{{ site.docs }}" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white">Docs</a>
             <span class="mx-2 text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
             <a href="{{ site.github }}" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
           </p>
@@ -135,6 +139,11 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
             See all features
           </a>
         </p>
+
+        <div class="mt-16">
+          {% set playgroundCtaWide = true %}
+          {% include "playground-cta.njk" %}
+        </div>
       </div>
     </section>
 

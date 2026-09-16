@@ -40,30 +40,7 @@ layout: layouts/base.njk
 {% endif %}
 {% if playgroundCta %}
 <div class="px-6 pb-16 sm:pb-24 lg:px-8">
-  <div class="playground-cta relative isolate mx-auto overflow-hidden rounded-xl border border-gray-200 bg-gray-50 px-6 py-6 dark:border-gray-800 dark:bg-gray-900 sm:px-8 sm:py-8 {% if wide %}max-w-7xl{% else %}max-w-2xl{% endif %}">
-    <div class="pointer-events-none absolute -right-16 top-1/2 -z-10 size-56 -translate-y-1/2 rounded-full bg-linear-to-tr from-primary to-amber-200 opacity-25 blur-3xl dark:opacity-15" aria-hidden="true"></div>
-    <div class="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
-      <div class="flex min-w-0 items-center gap-5 text-left">
-        {% include "playground-app-icon.njk" %}
-        <div>
-          <h2 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
-            Try Shellui in the playground
-          </h2>
-          <p class="mt-1 text-sm text-pretty text-gray-600 dark:text-gray-300">
-            Explore a live Shellui app with no install and no scaffolding.
-          </p>
-        </div>
-      </div>
-      <a
-        href="{{ site.playground }}"
-        class="inline-flex shrink-0 items-center rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 dark:focus-visible:outline-white"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Open playground
-        <span aria-hidden="true">&nbsp;→</span>
-      </a>
-    </div>
-  </div>
+  {% set playgroundCtaWide = wide %}
+  {% include "playground-cta.njk" %}
 </div>
 {% endif %}
