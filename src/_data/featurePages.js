@@ -2,71 +2,66 @@ export default [
   {
     id: "microfrontend",
     href: "/features/microfrontend/",
-    title: "Microfrontend host",
-    benefit:
-      "Do not rebuild navigation, overlays, theme pickers, or floating actions for every frontend. Host the app in an iframe and talk over postMessage with @shellui/sdk.",
+    title: "Apps and navigation",
+    benefit: "Bring apps built with different frameworks into one interface. Share navigation, themes, and dialogs through the shell.",
     points: [
-      "Sidebar, app bar, floating, fullscreen, or windows",
-      "Theme, language, and floating actions in the host",
-      "Toasts, dialogs, and drawers from the SDK",
+      "Sidebar, app bar, or fullscreen layouts",
+      "Shared theme and language settings",
+      "Toasts, dialogs, modals, and drawers"
     ],
     visual: "shell-layout",
-    cta: "Explore microfrontend",
+    cta: "Explore apps and navigation"
   },
   {
     id: "authentication",
     href: "/features/authentication/",
     title: "Authentication",
-    benefit:
-      "Do not ship a login page in the iframe. The shell owns /login; identity-service or Supabase Auth issues the tokens.",
+    benefit: "Give your apps a shared sign-in flow. The shell manages the session and makes it available through the SDK.",
     points: [
-      "OAuth with GitHub, Google, or Microsoft",
-      "JWT sessions and JWKS verification",
-      "Public, domain, or invitation-only join",
+      "Connect identity-service or Supabase Auth",
+      "Sign in with supported account providers",
+      "Control who can join your company"
     ],
     visual: "auth",
-    cta: "Explore authentication",
+    cta: "Explore authentication"
   },
   {
     id: "administration",
     href: "/features/administration/",
     title: "Administration",
-    benefit:
-      "Do not run a second admin login. Staff and owners open /admin in the shell and inject sidebar apps from config.",
+    benefit: "Manage accounts and company access from your app. Give staff and company owners a shared place to administer the product.",
     points: [
-      "Users, organization, and join modes",
-      "Groups, logs, tokens, and OAuth clients",
-      "Custom admin navigation",
+      "Manage members and groups",
+      "Review login events and access tokens",
+      "Add your own administration tools"
     ],
     visual: "admin",
-    cta: "Explore administration",
+    cta: "Explore administration"
   },
   {
     id: "storage",
     href: "/features/storage/",
-    title: "Storage",
-    benefit:
-      "Do not build a file browser in the iframe. Apps upload and share through shellui.storage against a company bucket.",
+    title: "File storage",
+    benefit: "Let your apps upload, browse, and share files through a common storage service. Control access and track usage in one place.",
     points: [
-      "Access grants for users, groups, or the company",
-      "Share links with expiry and download caps",
-      "Company and per-user quotas",
+      "File explorer and picker",
+      "Permissions and expiring share links",
+      "Company and per-user storage limits"
     ],
     visual: "storage",
-    cta: "Explore storage",
+    cta: "Explore file storage"
   },
   {
     id: "desktop",
     href: "/features/ship/",
-    title: "Ship the project",
-    benefit:
-      "Do not maintain a separate desktop or hosting stack. One config builds static files, an optional shellui.app preview, or a Tauri wrapper.",
+    title: "Web and desktop",
+    benefit: "Build the shell as static web files, publish a preview, or package it as a desktop app with Tauri.",
     points: [
-      "shellui init, start, build, login, deploy",
-      "Output under dist/web/ and dist/app/",
-      "Optional native desktop with Tauri 2",
+      "Framework starters from the CLI",
+      "Static files for your chosen web host",
+      "Optional desktop builds with Tauri 2"
     ],
     visual: "ship",
-    cta: "Explore how you ship",
-  },
+    cta: "Explore deployment"
+  }
 ];

@@ -28,32 +28,32 @@
   "features": [
     {
       "href": "/features/microfrontend/",
-      "label": "Microfrontend",
-      "description": "Iframe hosting, SDK, layouts, theme, language, and chrome actions.",
+      "label": "Apps & Navigation",
+      "description": "Bring your apps together with shared navigation and interface features.",
       "icon": "layout"
     },
     {
       "href": "/features/authentication/",
       "label": "Authentication",
-      "description": "Sign-in in the shell, join modes, groups, logs, and tokens.",
+      "description": "Share sign-in and manage access across your apps.",
       "icon": "lock"
     },
     {
       "href": "/features/administration/",
       "label": "Administration",
-      "description": "Embedded admin, directory tools, and custom sidebar apps.",
+      "description": "Manage members, company settings, and internal tools.",
       "icon": "cog"
     },
     {
       "href": "/features/storage/",
-      "label": "Storage",
-      "description": "Company bucket, file SDK, grants, share links, and quotas.",
+      "label": "File Storage",
+      "description": "Upload, browse, and share files with controlled access.",
       "icon": "storage"
     },
     {
       "href": "/features/ship/",
-      "label": "Ship",
-      "description": "CLI, static build, shellui.app, and Tauri desktop.",
+      "label": "Web & Desktop",
+      "description": "Build for the web, share a preview, or package a desktop app.",
       "icon": "ship"
     }
   ]
