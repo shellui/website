@@ -2,78 +2,90 @@
 layout: layouts/feature.njk
 wide: true
 title: Storage | Shellui
-description: Attach a private company bucket with storage-service. Apps upload and share files through the SDK, with access grants, share links, and quotas.
+description: "Add file uploads, browsing, and sharing to your Shellui apps. Connect storage-service for file permissions, share links, and storage limits."
 eyebrow: Features
-heading: Storage
-lede: Connect storage-service and the shell owns the company bucket. Iframe apps upload, list, and pick files through the SDK. New files stay private until you share them.
+heading: "File storage your apps can share"
+lede: "Connect storage-service to upload, browse, and share files across your apps. Use the software development kit (SDK) for file operations and the Files app for browsing and selection. Manage access and storage limits at the company level."
 ---
 
-<div class="max-w-2xl">
-  <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">A company bucket in the shell</h2>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.storageService }}">storage-service</a> is a Django API with a Supabase-compatible surface at <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/storage/v1/*</code>. It verifies identity-service JWTs, stores blobs in S3 or on disk, and enforces company and optional per-user quotas.</p>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Embedded apps do not call that API themselves. They use <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui.storage</code>. The SDK posts to the root shell, which runs the request with <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">storage.url</code> and the signed-in user's token.</p>
+<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Connect your apps to a shared file store</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.storageService }}">storage-service</a> backend stores files in Amazon S3-compatible storage or on your server's filesystem. It verifies the signed-in account and enforces company and optional per-user storage limits.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Your apps call <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.storage</code> through the SDK. The shell sends each request to the configured storage service with the signed-in account's access token.</p>
+  </div>
+  <div class="mx-auto w-full max-w-xs">
+    {% include "feature-visual-storage.njk" %}
+  </div>
 </div>
 
 <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
   <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Set storage.url</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Add the storage-service origin. Optionally set <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">filesUrl</code> for the Files explorer and picker.</p>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connect storage</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage.url</code> to your storage service. Add <code class="rounded bg-muted px-1.5 py-0.5 text-sm">filesUrl</code> to connect the Files explorer and picker.</p>
   </div>
   <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Read quota in Settings</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Signed-in users open Settings, then Storage. Hide that page with <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">showInSettings: false</code> if you only want Admin and the SDK.</p>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Check storage usage</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">See current usage in Settings → Storage. You can hide this settings page while keeping storage available in Administration and through the SDK.</p>
   </div>
   <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Call the SDK</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">After <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">init</code>, upload, list, move, and download through <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.storage.from(&quot;company&quot;)</code>.</p>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Work with files</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">After <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">init</code>, upload, list, move, and download through <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.storage.from("company")</code>.</p>
   </div>
 </div>
 
 <div class="mt-8 max-w-3xl">
-  {% highlight "ts", "shellui.config.ts" %}
-import type { ShellUIConfig } from "@shellui/core";
-
-const config: ShellUIConfig = {
-  storage: {
-    url: "http://localhost:8001",
-    filesUrl: "http://localhost:5175/",
-  },
-};
-
-export default config;
-  {% endhighlight %}
+  {% highlight "json", "shellui.config.json" %}
+{
+  "storage": {
+    "url": "http://localhost:8001",
+    "filesUrl": "http://localhost:5175/"
+  }
+}
+    {% endhighlight %}
 </div>
 
-<div class="mt-20">
+{# Future screenshot: Playground Files explorer. Add a real image here when available. #}
+
+<section class="mt-20" aria-labelledby="files-from-iframe">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Files from the iframe</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Methods return <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">{ data, error }</code> and do not throw. Nested folders are path segments. The picker opens the Files app in a shell modal so you can choose files or folders without building a browser.</p>
+    <h2 id="files-from-iframe" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Upload and select files from your app</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Use the SDK to upload, list, move, and download files. Calls return <code class="rounded bg-muted px-1.5 py-0.5 text-sm">{ data, error }</code> so your app can handle failures. The file picker opens the Files app in a shell modal for selecting files or folders.</p>
   </div>
   {% include "storage-sdk-examples.njk" %}
-</div>
+</section>
 
-<div class="mt-20">
+<section class="mt-20" aria-labelledby="private-by-default">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Private by default</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">There is one system bucket per company, named <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">company</code>. New folders and files belong to the creator until you add an access grant. Nested items inherit the parent folder. There is no anonymous public bucket - use a share link for people outside the company.</p>
+    <h2 id="private-by-default" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Control who can access each file</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Each company has a file collection, or bucket, named <code class="rounded bg-muted px-1.5 py-0.5 text-sm">company</code>. New items at the root are private to their creator; items inside folders inherit the folder's permissions. Share selected files and folders with members, or create a share link for someone outside the company.</p>
   </div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Access grants</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Allow or deny <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">read</code>, <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">write</code>, or <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">admin</code> for a user, group, or the whole company, on a folder or a file.</p>
+      <h3 class="text-base font-semibold text-foreground">Access grants</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Grant or deny read, write, or administration access to a file or folder. Apply permissions to individual accounts or the whole company.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Share links</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Secret URLs for one file, with an expiry and/or a download cap. No account required. Revoke them when the review is over.</p>
+      <h3 class="text-base font-semibold text-foreground">Share links</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Share an individual file with a link that needs no account. Set an expiry, a download limit, or both, and revoke the link when access is no longer needed.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Quotas</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">A company total, plus an optional per-user cap. Overflow returns <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">413</code>. Settings shows usage to the signed-in user.</p>
+      <h3 class="text-base font-semibold text-foreground">Quotas</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Set a total storage limit for the company and optional limits per account. The service rejects uploads that exceed those limits, and Settings shows current usage.</p>
     </div>
   </div>
 
-  {% include "storage-access-examples.njk" %}
-</div>
+</section>
 
-<p class="mt-16 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">Next, see how the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/architecture/">architecture</a> pieces (shell, identity, admin, storage, files, and hosting) fit together.</p>
+{% set featureDocs = [
+  { href: site.docs + "/features/storage/", label: "Storage docs" },
+  { href: site.docs + "/features/storage-picker/", label: "Storage picker" },
+  { href: site.storageService, label: "storage-service source", external: true },
+  { href: "/architecture/", label: "System architecture" },
+  { href: "/features/authentication/", label: "Authentication" },
+  { href: site.playground, label: "Playground", external: true }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">See how the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/architecture/">architecture</a> connects the shell to its backend services.</p>

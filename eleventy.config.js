@@ -48,6 +48,10 @@ const ISLANDS = [
     entry: "src/islands/architecture-graph/index.jsx",
     outfile: "_site/assets/js/architecture-graph.island.js",
   },
+  {
+    entry: "src/islands/auth-flow/index.jsx",
+    outfile: "_site/assets/js/auth-flow.island.js",
+  },
 ];
 
 function buildIslands() {

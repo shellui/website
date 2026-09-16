@@ -10,7 +10,7 @@ The official website for [Shellui](https://shellui.com), the web app development
 - **[Alpine.js](https://alpinejs.dev/)** - light interactivity in `src/blocks/`
 - **[esbuild](https://esbuild.github.io/)** - bundles the React islands in `src/islands/`
 
-Islands are the exception to the Alpine rule: one page lazy-loads one React bundle for a single piece it cannot express in Alpine. `/architecture/` uses [`@xyflow/react`](https://reactflow.dev/) for the stack graph. Each island builds to `_site/assets/js/<name>.island.js` with its CSS inlined, and a small loader in `src/assets/js/` imports it when the mount point scrolls into view. Every other page stays on the Eleventy plus Alpine budget. Ship a static fallback in the Nunjucks so the page works without the bundle.
+Islands are the exception to the Alpine rule: one page lazy-loads one React bundle for a single piece it cannot express in Alpine. `/architecture/` uses [`@xyflow/react`](https://reactflow.dev/) for the stack graph. `/features/authentication/` reuses the same library for the identity-service exchange diagram. Each island builds to `_site/assets/js/<name>.island.js` with its CSS inlined, and a small loader in `src/assets/js/` imports it when the mount point scrolls into view. Every other page stays on the Eleventy plus Alpine budget. Ship a static fallback in the Nunjucks so the page works without the bundle.
 
 Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are real HTML (no iframes). `content/` is IA notes and is not published, except `content/guidelines/*.md` (canonical guidelines). `design.md` is also copied to the site root as `/design.md`.
 

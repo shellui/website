@@ -1,143 +1,67 @@
 ---
 layout: layouts/feature.njk
-centered: true
 wide: true
 playgroundCta: true
 hideBreadcrumbs: true
 title: Features | Shellui
-description: "The Shellui host: a microfrontend shell, authentication, an embedded admin, private company file storage, and optional Tauri desktop bundles."
-heading: What the shell ships
-lede: Four host surfaces wrap your application. You bring the iframe app. The same project can also ship as a native desktop app.
+description: "Build web apps with shared navigation, sign-in, administration, and file storage. Explore Shellui, an open-source microfrontend shell."
+heading: "Build your app. Share the essentials."
+lede: "Shellui is an open-source shell that brings your web apps together with shared navigation, sign-in, administration, and file storage. Your apps run inside embedded pages called iframes, using the frameworks you choose."
 ---
 
-<div class="grid gap-6 lg:gap-8">
-  <a
-    href="/features/microfrontend/"
-    class="group grid overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900 lg:grid-cols-2"
-  >
-    <div class="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
-      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Microfrontend</h2>
-      <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Host your app in an iframe. Load the SDK, call init, and talk to the shell over postMessage. Chrome stays in the host: layouts, toasts, dialogs, theme, and language.</p>
-      <ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-        <li>Sidebar, top bar, or window layout</li>
-        <li>Toast, dialog, modal, and drawer from the SDK</li>
-        <li>One <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.config.json</code></li>
-      </ul>
-      <span class="mt-8 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">Explore microfrontend</span>
-    </div>
-    <div class="flex items-center bg-gray-50 p-8 dark:bg-gray-950/60 sm:p-10">
-      <div class="mx-auto w-full max-w-md">
-        {% include "shell-layout-anim.njk" %}
-      </div>
-    </div>
-  </a>
-
-  <a
-    href="/features/authentication/"
-    class="group grid overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900 lg:grid-cols-2"
-  >
-    <div class="order-2 flex items-center bg-gray-50 p-8 dark:bg-gray-950/60 sm:p-10 lg:order-1">
-      <div class="mx-auto w-full max-w-xs">
-        {% include "feature-visual-auth.njk" %}
-      </div>
-    </div>
-    <div class="order-1 flex flex-col justify-center p-8 sm:p-10 lg:order-2 lg:p-12">
-      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Authentication</h2>
-      <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Sign-in lives in the shell. Connect identity-service or Supabase, protect routes, and decide who can join: public, a domain allow list, or invitation only.</p>
-      <ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-        <li>OAuth, JWT sessions, and JSON Web Key Set (JWKS)</li>
-        <li>Groups and login logs</li>
-        <li>Access tokens for users and services</li>
-      </ul>
-      <span class="mt-8 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">Explore authentication</span>
-    </div>
-  </a>
-
-  <a
-    href="/features/administration/"
-    class="group grid overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900 lg:grid-cols-2"
-  >
-    <div class="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
-      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Administration</h2>
-      <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Staff and company owners open an embedded admin from the account menu. Manage the directory there, then inject your own apps into the sidebar from config.</p>
-      <ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-        <li>Users, organization, and join modes</li>
-        <li>Groups, logs, tokens, and OAuth clients</li>
-        <li>Custom admin navigation</li>
-      </ul>
-      <span class="mt-8 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">Explore administration</span>
-    </div>
-    <div class="flex items-center bg-gray-50 p-8 dark:bg-gray-950/60 sm:p-10">
-      <div class="mx-auto w-full max-w-sm">
-        {% include "feature-visual-admin.njk" %}
-      </div>
-    </div>
-  </a>
-
-  <a
-    href="/features/storage/"
-    class="group grid overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900 lg:grid-cols-2"
-  >
-    <div class="order-2 flex items-center bg-gray-50 p-8 dark:bg-gray-950/60 sm:p-10 lg:order-1">
-      <div class="mx-auto w-full max-w-xs">
-        {% include "feature-visual-storage.njk" %}
-      </div>
-    </div>
-    <div class="order-1 flex flex-col justify-center p-8 sm:p-10 lg:order-2 lg:p-12">
-      <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Storage</h2>
-      <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">A company bucket behind the shell. New files stay private until you share them. Iframe apps upload, list, and pick files through <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.storage</code>.</p>
-      <ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-        <li>Access grants for users, groups, or the company</li>
-        <li>Share links with expiry and download caps</li>
-        <li>Company and per-user quotas</li>
-      </ul>
-      <span class="mt-8 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">Explore storage</span>
-    </div>
-  </a>
-</div>
-
-<section id="desktop" class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-800 sm:mt-20 sm:pt-20">
+<div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
   <div class="max-w-2xl">
-    <h2 class="flex items-center gap-3 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
-      {% set tauriIconClass = "size-7 sm:size-8" %}
-      {% include "tauri-icon.njk" %}
-      Desktop app with Tauri
-    </h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">
-      Ship the same shell as a native desktop app. The CLI uses Tauri 2, writes the wrapper into <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/app/</code>, and keeps native project files out of your repo. Static web and desktop share one config and one iframe app.
+    <h2 class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">A shared foundation for your web apps</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Build a customer portal, an internal tool, or a product with several apps. Configure the navigation, layout, and connected services in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. Each app keeps its own interface and uses the Shellui software development kit (SDK) to access shared features.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Start with navigation and a layout, then connect authentication or storage when your project needs them. Shellui is MIT-licensed and free to run. You can host the shell and its services on your own infrastructure.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Explore the features below, or try the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.playground }}">playground</a> in your browser before installing anything.</p>
+    <p class="mt-6 text-sm text-muted-foreground">
+      <a href="/architecture/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Architecture</a>
+      ·
+      <a href="{{ site.docs }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Docs</a>
+      ·
+      <a href="{{ site.playground }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">Playground</a>
+      ·
+      <a href="/changelog/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Changelog</a>
     </p>
   </div>
-
-  <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
-    <div>
-      <h3 class="flex items-center gap-2 text-base font-semibold text-gray-900 dark:text-white">
-        {% set tauriIconClass = "size-4" %}
-        {% include "tauri-icon.njk" %}
-        Commands
-      </h3>
-      <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-        <li><code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui dev --app</code> opens a native window in development</li>
-        <li><code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui build --app</code> emits <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/web/</code> plus a platform bundle under <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/app/</code></li>
-        <li>Pass <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">--bundles</code> for formats such as <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">app,dmg</code> on macOS</li>
-      </ul>
-      <div class="mt-6 max-w-xl">
-        {% highlight "bash", "terminal" %}
-shellui build --app
-        {% endhighlight %}
-      </div>
-    </div>
-    <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">What you bring</h3>
-      <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-        <li>Rust via rustup, plus the usual Tauri platform prerequisites</li>
-        <li>Optional root <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">tauri.conf.json</code> for product name, identifier, and icons</li>
-        <li><code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">port</code> and <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">title</code> from <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.config.json</code> sync into the wrapper</li>
-      </ul>
-      <p class="mt-6 text-sm text-gray-500 dark:text-gray-400">
-        <a href="{{ site.docs }}/tauri/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Ship a desktop app</a>
-        ·
-        <a href="/#config" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">One config file</a>
-      </p>
-    </div>
+  <div>
+    {% include "feature-visual-shell.njk" %}
   </div>
-</section>
+</div>
+
+<div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
+  {% for item in featurePages %}
+    <a
+      id="{{ item.id }}"
+      href="{{ item.href }}"
+      class="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:col-span-2{% if loop.index == 4 %} lg:col-start-2{% endif %}{% if loop.last %} sm:max-w-[calc(50%-0.75rem)] sm:justify-self-center lg:max-w-none lg:justify-self-stretch{% endif %}"
+    >
+      <div class="border-b border-border bg-muted p-4 sm:p-5">
+        <div class="mx-auto w-full max-w-[16rem] {% if item.visual == 'auth' %}max-w-[13rem]{% endif %}">
+          {% if item.visual == "shell-layout" %}
+            {% include "shell-layout-anim.njk" %}
+          {% elif item.visual == "auth" %}
+            {% include "feature-visual-auth.njk" %}
+          {% elif item.visual == "admin" %}
+            {% include "feature-visual-admin.njk" %}
+          {% elif item.visual == "storage" %}
+            {% include "feature-visual-storage.njk" %}
+          {% elif item.visual == "ship" %}
+            {% include "feature-visual-ship.njk" %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="flex flex-1 flex-col p-6">
+        <h2 class="text-xl font-semibold tracking-tight text-pretty text-foreground">{{ item.title }}</h2>
+        <p class="mt-3 text-sm/6 text-muted-foreground">{{ item.benefit }}</p>
+        <ul class="mt-4 space-y-1.5 text-sm text-muted-foreground">
+          {% for point in item.points %}
+            <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
+        <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">{{ item.cta }}</span>
+      </div>
+    </a>
+  {% endfor %}
+</div>

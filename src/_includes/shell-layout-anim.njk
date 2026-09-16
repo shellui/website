@@ -3,7 +3,10 @@
 {% set layoutLabels = {
   loop: "Sidebar, top bar, and window layouts",
   sidebar: "Sidebar layout",
-  topbar: "Top bar layout",
+  "sidebar-inset": "Sidebar inset layout",
+  topbar: "App bar layout",
+  "topbar-inset": "App bar inset layout",
+  floating: "Floating layout",
   window: "Window layout"
 } %}
 <div class="shell-anim {% if isLoop %}shell-anim--layout{% else %}shell-anim--static shell-anim--{{ layoutMode }}{% endif %}" aria-hidden="true">

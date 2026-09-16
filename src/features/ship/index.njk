@@ -1,0 +1,24 @@
+---
+permalink: /features/ship/
+eleventyExcludeFromCollections: true
+sitemap: false
+layout: false
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting to Web and desktop</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="{{ site.url }}/features/web-and-desktop/" />
+    <meta http-equiv="refresh" content="0; url=/features/web-and-desktop/" />
+    <script>
+      (function () {
+        location.replace("/features/web-and-desktop/" + (window.location.hash || ""));
+      })();
+    </script>
+  </head>
+  <body>
+    <p><a href="/features/web-and-desktop/">This page moved to Web and desktop.</a></p>
+  </body>
+</html>

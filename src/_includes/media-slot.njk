@@ -1,0 +1,50 @@
+{# Real screenshot when slotSrc is set; otherwise a labeled dashed slot. #}
+{% set slotKind = slotKind or "screenshot" %}
+{% set slotLabel = slotLabel or "Visual slot" %}
+{% set slotHint = slotHint or "Replace with a real asset" %}
+{% set slotRatio = slotRatio or "video" %}
+{% set slotWidth = slotWidth or 1280 %}
+{% set slotHeight = slotHeight or 656 %}
+{% set slotAlt = slotAlt or slotLabel %}
+{% set slotCaption = slotCaption or "" %}
+{% set ratioClass = "aspect-video" %}
+{% if slotRatio == "square" %}
+  {% set ratioClass = "aspect-square" %}
+{% elif slotRatio == "photo" %}
+  {% set ratioClass = "aspect-4/3" %}
+{% endif %}
+{% if slotSrc %}
+<figure class="overflow-hidden rounded-xl border border-border bg-card">
+  <img
+    src="{{ slotSrc }}"
+    alt="{{ slotAlt }}"
+    width="{{ slotWidth }}"
+    height="{{ slotHeight }}"
+    class="h-auto w-full"
+    loading="lazy"
+    decoding="async"
+  />
+  {% if slotCaption %}
+    <figcaption class="border-t border-border px-4 py-3 text-sm text-muted-foreground">{{ slotCaption }}</figcaption>
+  {% endif %}
+</figure>
+{% elif slotKind == "icon" %}
+<figure class="media-slot flex size-14 shrink-0 flex-col items-center justify-center rounded-lg border border-dashed border-border bg-muted text-center sm:size-16" aria-label="{{ slotLabel }}. {{ slotHint }}">
+  <span class="text-[0.6rem] font-medium text-muted-foreground">Icon</span>
+</figure>
+{% else %}
+<figure class="media-slot {{ ratioClass }} flex min-h-40 flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted px-3 py-3 text-center sm:min-h-48">
+  <p class="text-[0.65rem] font-semibold text-muted-foreground">Screenshot slot</p>
+  <p class="mt-1 text-sm font-medium text-foreground">{{ slotLabel }}</p>
+  <p class="mt-1 text-xs text-muted-foreground">{{ slotHint }}</p>
+</figure>
+{% endif %}
+{% set slotSrc = "" %}
+{% set slotAlt = "" %}
+{% set slotCaption = "" %}
+{% set slotHint = "" %}
+{% set slotLabel = "" %}
+{% set slotKind = "" %}
+{% set slotRatio = "" %}
+{% set slotWidth = "" %}
+{% set slotHeight = "" %}

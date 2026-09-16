@@ -269,12 +269,12 @@ How drafts get checked - by a person or an agent.
 Group by file. Use `file:line` format (clickable in VS Code). Terse findings.
 
 ```text
-## src/features/microfrontend/index.njk
+## src/features/apps-and-navigation/index.njk
 
-src/features/microfrontend/index.njk:18 - banned word "easy"
-src/features/microfrontend/index.njk:24 - em dash in prose; use a hyphen
-src/features/microfrontend/index.njk:31 - "the user" → "you"
-src/features/microfrontend/index.njk:47 - placeholder YOUR_TOKEN → your_access_token_here
+src/features/apps-and-navigation/index.njk:18 - banned word "easy"
+src/features/apps-and-navigation/index.njk:24 - em dash in prose; use a hyphen
+src/features/apps-and-navigation/index.njk:31 - "the user" → "you"
+src/features/apps-and-navigation/index.njk:47 - placeholder YOUR_TOKEN → your_access_token_here
 
 ## src/architecture/index.njk
 

@@ -2,92 +2,143 @@
 layout: layouts/feature.njk
 wide: true
 title: Authentication | Shellui
-description: Sign-in lives in the Shellui shell. Connect identity-service or Supabase, protect routes, set who can join, and issue tokens for users and services.
+description: "Share sign-in and sessions across your Shellui apps. Connect identity-service or Supabase Auth, protect navigation, and manage company access."
 eyebrow: Features
-heading: Authentication
-lede: Sign-in lives in the shell. Connect the identity-service or Supabase, protect routes, and decide who can join - public, a domain allow list, or invitation only.
+heading: "One sign-in flow for your apps"
+lede: "Configure sign-in once in Shellui. The shell manages login, session renewal, and the return to the requested page. Your embedded apps receive the signed-in account through the software development kit (SDK). Choose identity-service or connect an existing Supabase Auth project."
+pageScripts:
+  - /assets/js/auth-flow.js
 ---
 
-<div class="max-w-2xl">
-  <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Sign-in lives in the shell</h2>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Your microfrontend does not ship a login page. The shell owns <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/login</code> and <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/login/callback</code>, stores the session, refreshes tokens, and shares the signed-in user with iframes through the SDK.</p>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The default backend is the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a>: OAuth with GitHub, Google, or Microsoft, JWT sessions, and a JSON Web Key Set (JWKS) so other services can verify tokens. If Supabase Auth is already in your stack, point <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">backend.type</code> at it instead.</p>
-</div>
-
-<div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
-  <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connect a backend</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Set <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">backend</code> in <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.config.ts</code> and enable the login methods you want on the page.</p>
-  </div>
-  <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Protect routes</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Mark navigation with <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">requiresAuth</code>. Signed-out visitors go to login, then back to the page they asked for.</p>
-  </div>
-  <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Login from the iframe</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">OAuth must run in the top window. From an embedded app, call <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.login()</code> so the shell can start the redirect.</p>
-  </div>
-</div>
-
-<div class="mt-8 max-w-3xl">
-  {% highlight "ts", "shellui.config.ts" %}
-import type { ShellUIConfig } from "@shellui/core";
-
-const config: ShellUIConfig = {
-  backend: {
-    type: "shellui",
-    url: "http://localhost:8000",
-    companyId: 1,
-    login: {
-      methods: ["oauth"],
-      oauthProviders: ["github", "google"],
-    },
-  },
-  navigation: [
-    {
-      label: "Billing",
-      path: "billing",
-      url: "https://app.example.com/billing",
-      requiresAuth: true,
-    },
-  ],
-};
-
-export default config;
-  {% endhighlight %}
-</div>
-
-<div class="mt-20">
+<section aria-labelledby="auth-exchange">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Who can join</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">After a successful OAuth login, the company decides whether that person actually gets tokens. Access is per company: the same account can be enabled in one tenant and waiting in another. Configure the mode in admin, or patch it on the identity API.</p>
+    <h2 id="auth-exchange" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">How sign-in works</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">With identity-service, you can sign in using a GitHub, Google, or Microsoft account through OAuth, an authorization protocol. An embedded app calls <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.login()</code> to start the flow in the main browser window. After sign-in and account confirmation, identity-service returns the session to the shell.</p>
+  </div>
+  {% include "auth-flow.njk" %}
+</section>
+
+<section class="mt-20" aria-labelledby="identity-service-does">
+  <div class="max-w-2xl">
+    <h2 id="identity-service-does" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Choose an authentication backend</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> backend checks who you are and whether you can access a company. A company groups the accounts and access rules for your product or organization. Use it for the company access features below, or choose Supabase Auth for an existing Supabase project.</p>
+  </div>
+  <div class="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+    <div>
+      <h3 class="text-base font-semibold text-foreground">OAuth providers</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Connect GitHub, Google, or Microsoft as sign-in providers. Configure provider credentials for each company on identity-service.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Signed session tokens</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">identity-service issues JSON Web Tokens (JWTs) for access and session renewal. In production, it signs tokens with an RSA key and publishes a JSON Web Key Set (JWKS) so your services can verify them.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Company access rules</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Choose open registration, approved email domains, or owner approval. Access applies per company, so the same account can have different memberships.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Approved return addresses</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Register the provider callback on identity-service and approve the addresses your shell can return to after sign-in. The authentication guide covers both settings.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Account administration</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Staff and company owners can manage members, groups, and provider connections in the administration panel.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Supabase Auth</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">If you already use Supabase, connect it as your authentication backend. Available sign-in methods depend on your backend settings; Supabase also supports email magic links.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="connect-and-guard">
+  <div class="max-w-2xl">
+    <h2 id="connect-and-guard" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Connect a backend and guard routes</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Connect your authentication backend and mark navigation items with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">requiresAuth</code>. Shellui asks signed-out visitors to sign in before loading those apps, then returns them to the requested page.</p>
+  </div>
+
+  <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+    <div>
+      <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connect a backend</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">backend</code> in <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.config.json</code> and enable the login methods you want on the page.</p>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Protect routes</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">requiresAuth</code> on the navigation items that need a session. Your backend must also check authentication and permissions for its data.</p>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Sign in from your app</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">From an embedded app, call <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.login()</code> so the shell can start the redirect.</p>
+    </div>
+  </div>
+
+  <div class="mt-8 max-w-3xl">
+    {% highlight "json", "shellui.config.json" %}
+{
+  "backend": {
+    "type": "shellui",
+    "url": "http://localhost:8000",
+    "companyId": 1,
+    "login": {
+      "methods": ["oauth"],
+      "oauthProviders": ["github", "google"]
+    }
+  },
+  "navigation": [
+    {
+      "label": "Billing",
+      "path": "billing",
+      "url": "https://app.example.com/billing",
+      "requiresAuth": true
+    }
+  ]
+}
+    {% endhighlight %}
+  </div>
+</section>
+
+{# Future screenshot: Playground login. Add a real image here when available. #}
+
+<section class="mt-20" aria-labelledby="who-can-join">
+  <div class="max-w-2xl">
+    <h2 id="who-can-join" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Choose who can join</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">A successful provider login confirms an account's identity. Your company access policy decides whether that account can enter your product. Choose a policy in the administration panel's Organization settings.</p>
   </div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Public</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Anyone who authenticates joins with access enabled and receives tokens. The default when you are still opening the doors.</p>
+      <h3 class="text-base font-semibold text-foreground">Public</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Anyone who signs in can join with access enabled. Use this mode when registration is open to everyone.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Domain allow list</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Emails on <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">allowed_email_domains</code> join enabled. Other domains create a disabled membership and owners get notified.</p>
+      <h3 class="text-base font-semibold text-foreground">Approved email domains</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Accounts with an approved email domain join with access enabled. Other accounts wait for approval, and company owners receive a notification.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Invitation only</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">New users land as disabled members. Tokens stay blocked until an owner or staff enables them for that company.</p>
+      <h3 class="text-base font-semibold text-foreground">Invitation only</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">New accounts wait for a staff member or company owner to enable their membership. They cannot receive a session for that company while approval is pending.</p>
     </div>
   </div>
 
-  {% include "auth-access-examples.njk" %}
-</div>
+</section>
 
-<div class="mt-20">
+<section class="mt-20" aria-labelledby="groups-logs-tokens">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Groups, logs, and tokens</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The identity-service keeps a company directory next to the session. Staff and company owners manage groups, read login events, and mint access tokens for people and for services that call your APIs without a browser.</p>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Group names travel on the JWT as <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">user.groups</code>. Login events record success or failure, provider, and privacy-oriented client fields. Personal access tokens are named JWTs you can revoke; mark them read-only when a service only needs to fetch data.</p>
+    <h2 id="groups-logs-tokens" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Manage accounts beyond sign-in</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Manage company groups, review login events, and create access tokens for integrations in the administration panel. These tools use the same identity-service backend as sign-in.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Your APIs can use group information from verified tokens when checking access. Named personal access tokens can be revoked, and read-only tokens are available for integrations that only fetch data.</p>
   </div>
-  {% include "auth-directory-examples.njk" %}
-</div>
+</section>
 
-<p class="mt-16 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">Administration</a> manages users, company access, and operational data.</p>
+{% set featureDocs = [
+  { href: site.docs + "/features/authentication/", label: "Configure authentication" },
+  { href: site.identityService, label: "identity-service source", external: true },
+  { href: "/features/apps-and-navigation/", label: "Apps and navigation" },
+  { href: "/architecture/", label: "System architecture" },
+  { href: "/features/administration/", label: "Administration" },
+  { href: site.playground, label: "Playground", external: true },
+  { href: "/changelog/", label: "Changelog" }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">Administration</a> manages users, company access, and operational data.</p>
