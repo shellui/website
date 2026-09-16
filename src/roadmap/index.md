@@ -27,7 +27,7 @@ lede: Past milestones and upcoming work. Track GitHub milestones for current sta
         <time datetime="2026-01" class="text-sm font-semibold tabular-nums text-primary-ink dark:text-primary">January 2026</time>
         <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Beginning</p>
         <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Shellui starts as an open-source application shell.</p>
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">The shellui.com domain was acquired on January 5 - treat that as the official birthdate.</p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">The shellui.com domain was acquired on January 5th - treat that as the official birthdate.</p>
       </div>
 
       <div class="relative">
