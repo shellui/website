@@ -49,6 +49,18 @@
       "label": "Storage",
       "description": "Company bucket, file SDK, grants, share links, and quotas.",
       "icon": "storage"
+    },
+    {
+      "href": "/features/chrome/",
+      "label": "Host chrome",
+      "description": "Theme, language, and floating chrome actions.",
+      "icon": "swatch"
+    },
+    {
+      "href": "/features/ship/",
+      "label": "Ship",
+      "description": "CLI, static build, shellui.app, and Tauri desktop.",
+      "icon": "ship"
     }
   ]
 }

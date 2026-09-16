@@ -2,30 +2,35 @@
 layout: layouts/feature.njk
 wide: true
 title: Administration | Shellui
-description: Staff and owners open an embedded admin in the shell. Manage users, groups, logs, and tokens, then inject your own apps into the sidebar.
+description: Staff and owners open an embedded admin in the Shellui shell. Manage users, groups, logs, and tokens, then inject your own apps into the sidebar.
 eyebrow: Features
-heading: Administration
-lede: Staff and company owners open an embedded admin from the account menu. The shell hosts it in an iframe. You inject extra apps into the sidebar from config.
+heading: Administration in the shell
+lede: Staff and company owners open an embedded admin from the account menu. The shell hosts it in an iframe at /admin. You inject extra apps into the sidebar from config.
 ---
 
-<div class="max-w-2xl">
-  <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Admin in the shell</h2>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The admin UI is a React app, not a separate product login. Point <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">backend.adminUrl</code> at it (local Vite or <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="https://admin.shellui.com">admin.shellui.com</a>) and the shell registers <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/admin</code> for users with <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">isStaff</code> or <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">isCompanyOwner</code>.</p>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">It talks to the same <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> as sign-in. Source lives in the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.adminPanel }}">admin</a> repo. Without <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">adminPathname</code>, the account menu does not show Administration.</p>
+<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Admin is another iframe, not a second product</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The admin UI is a React app. Point <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminUrl</code> at it (local Vite or <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="https://admin.shellui.com">admin.shellui.com</a>) and the shell registers <code class="rounded bg-muted px-1.5 py-0.5 text-sm">/admin</code> for users with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">isStaff</code> or <code class="rounded bg-muted px-1.5 py-0.5 text-sm">isCompanyOwner</code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">It talks to the same <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> as sign-in. Source lives in the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.adminPanel }}">admin</a> repo. Without <code class="rounded bg-muted px-1.5 py-0.5 text-sm">adminPathname</code>, the account menu does not show Administration.</p>
+  </div>
+  <div class="mx-auto w-full max-w-sm">
+    {% include "feature-visual-admin.njk" %}
+  </div>
 </div>
 
 <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
   <div>
     <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Point at the admin app</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Set <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">adminPathname</code> and <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">adminUrl</code> on a Shellui identity backend.</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminPathname</code> and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminUrl</code> on a Shellui identity backend.</p>
   </div>
   <div>
     <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Sign in as staff or owner</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">The shell guards the route. Members without those flags never load the iframe.</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">The shell guards the route. Members without those flags never load the iframe.</p>
   </div>
   <div>
     <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Open Administration</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">The account menu exposes it. Hash routes inside admin stay in sync with the shell path, such as <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">/admin/users</code>.</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">The account menu exposes it. Hash routes inside admin stay in sync with the shell path, such as <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">/admin/users</code>.</p>
   </div>
 </div>
 
@@ -51,32 +56,41 @@ export default config;
   {% endhighlight %}
 </div>
 
-<div class="mt-20">
+<section class="mt-16" aria-labelledby="admin-screenshot-slot">
+  <h2 id="admin-screenshot-slot" class="sr-only">Admin screenshot slot</h2>
+  {% set slotKind = "screenshot" %}
+  {% set slotLabel = "Playground /admin users" %}
+  {% set slotHint = "16:9 · directory table in host chrome. Not a generated mock." %}
+  {% set slotRatio = "video" %}
+  {% include "media-slot.njk" %}
+</section>
+
+<section class="mt-20" aria-labelledby="directory-surfaces">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Directory, logs, tokens, and files</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Identity screens ship with the admin app. Storage screens appear when <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">storage.url</code> is set. Staff can open Django admin in a new tab - it is not framed.</p>
+    <h2 id="directory-surfaces" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Directory, logs, tokens, and files</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Identity screens ship with the admin app. Storage screens appear when <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage.url</code> is set. Staff can open Django admin in a new tab - it is not framed.</p>
   </div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Users and organization</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Directory, enable or disable membership for this company, and the Organization panel for public, domain, or invitation-only join rules.</p>
+      <h3 class="text-base font-semibold text-foreground">Users and organization</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Directory, enable or disable membership for this company, and the Organization panel for public, domain, or invitation-only join rules.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Groups, logs, and tokens</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Company groups, login events, personal access tokens, and per-company OAuth clients. The same APIs the authentication feature describes.</p>
+      <h3 class="text-base font-semibold text-foreground">Groups, logs, and tokens</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Company groups, login events, personal access tokens, and per-company OAuth clients. The same APIs the authentication feature describes.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Storage</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Files explorer and statistics when storage is configured. Swagger and ReDoc for the storage-service sit next to them.</p>
+      <h3 class="text-base font-semibold text-foreground">Storage</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Files explorer and statistics when storage is configured. Swagger and ReDoc for the storage-service sit next to them.</p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="mt-20">
+<section class="mt-20" aria-labelledby="custom-admin-nav">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Your apps in the sidebar</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The top-level <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">administration</code> block injects a titled section below Dashboard and above Identity. Each item is a <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">NavigationItem</code>: the admin chrome loads <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">url</code> in an iframe, or opens it in a new tab when the target cannot be framed.</p>
+    <h2 id="custom-admin-nav" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Your apps in the sidebar</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The top-level <code class="rounded bg-muted px-1.5 py-0.5 text-sm">administration</code> block injects a titled section below Dashboard and above Identity. Each item is a <code class="rounded bg-muted px-1.5 py-0.5 text-sm">NavigationItem</code>: the admin chrome loads <code class="rounded bg-muted px-1.5 py-0.5 text-sm">url</code> in an iframe, or opens it in a new tab when the target cannot be framed.</p>
   </div>
   <div class="mt-8 max-w-3xl">
     {% highlight "ts", "shellui.config.ts" %}
@@ -96,6 +110,15 @@ const config: ShellUIConfig = {
     {% endhighlight %}
   </div>
   {% include "admin-nav-examples.njk" %}
-</div>
+</section>
 
-<p class="mt-16 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/storage/">Storage</a> attaches object storage, quotas, and the file SDK.</p>
+{% set featureDocs = [
+  { href: site.docs + "/features/administration/", label: "Administration docs" },
+  { href: site.adminPanel, label: "admin source", external: true },
+  { href: "/features/authentication/", label: "Authentication" },
+  { href: "/architecture/", label: "Architecture graph" },
+  { href: site.playground, label: "Playground", external: true }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/storage/">Storage</a> attaches object storage, quotas, and the file SDK.</p>

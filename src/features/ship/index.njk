@@ -1,0 +1,138 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Ship a Shellui project | Shellui
+description: Scaffold with shellui init, describe the host in one config file, build static files to dist/web/, preview on shellui.app, or wrap the same shell with Tauri 2.
+eyebrow: Features
+heading: Ship the same project three ways
+lede: The CLI scaffolds a starter, validates one config file, and builds static files. Host those files yourself, preview them on shellui.app, or add a Tauri 2 desktop wrapper. Homepage bands already show the config sample and the init command - this page is the map.
+---
+
+<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">CLI, config, then a static build</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/cli</code> is the binary <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui</code>. Framework starters from <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui init</code> wire theme and language. <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui start</code> (alias <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui dev</code>) runs the shell around your iframe app.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Prefer <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. TypeScript is the fallback when no JSON or split files are present. The CLI validates against the <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/core</code> schema at load time.</p>
+  </div>
+  <div>
+    {% include "feature-visual-ship.njk" %}
+  </div>
+</div>
+
+<section class="mt-16" aria-labelledby="cli-commands">
+  <div class="max-w-2xl">
+    <h2 id="cli-commands" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Commands you actually run</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Install the CLI globally first, as the docs recommend. Starters include React, Vue, Angular, Next, Nuxt, Svelte, Alpine, and empty.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "bash", "terminal" %}
+npm install -g @shellui/cli
+shellui init react
+shellui start
+shellui build
+    {% endhighlight %}
+  </div>
+  <p class="mt-6 text-sm text-muted-foreground">
+    <a href="/#init" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Homepage: scaffold a starter</a>
+    ·
+    <a href="{{ site.docs }}/cli/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">CLI reference</a>
+  </p>
+</section>
+
+<section class="mt-20" aria-labelledby="one-config">
+  <div class="max-w-2xl">
+    <h2 id="one-config" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">One config file</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Navigation, backend, storage, hosting, and chrome live in that file. Load order is JSON, then split <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.*.config.json</code>, then TypeScript. The homepage already shows a real sample, so this page does not repeat it.</p>
+  </div>
+  <p class="mt-6 text-sm text-muted-foreground">
+    <a href="/#config" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Homepage: one config file</a>
+    ·
+    <a href="{{ site.docs }}/cli/#configuration" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">CLI configuration</a>
+  </p>
+</section>
+
+<section class="mt-20" aria-labelledby="static-files">
+  <div class="max-w-2xl">
+    <h2 id="static-files" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Static files you can host anywhere</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui build</code> writes HTML, CSS, and JavaScript to <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dist/web/</code>. There is no required cloud runtime. Put that directory on the origin you already use.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "bash", "terminal" %}
+shellui build
+    {% endhighlight %}
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="shellui-app">
+  <div class="max-w-2xl">
+    <h2 id="shellui-app" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Optional preview on shellui.app</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui login</code> signs in against identity-service (loopback redirect). <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui deploy</code> uploads <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dist/web/</code> to hosting-service. You get an HTTPS origin on <code class="rounded bg-muted px-1.5 py-0.5 text-sm">*.shellui.app</code>. Previews expire unless you redeploy the same slug.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "bash", "terminal" %}
+shellui login
+shellui deploy
+    {% endhighlight %}
+  </div>
+  <p class="mt-6 text-sm text-muted-foreground">
+    <a href="{{ site.hosting }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">Open shellui.app</a>
+    ·
+    <a href="{{ site.hostingService }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">hosting-service source</a>
+  </p>
+</section>
+
+<section id="desktop" class="mt-20" aria-labelledby="desktop-heading">
+  <div class="max-w-2xl">
+    <h2 id="desktop-heading" class="flex items-center gap-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+      {% set tauriIconClass = "size-7 sm:size-8" %}
+      {% include "tauri-icon.njk" %}
+      Desktop app with Tauri
+    </h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Ship the same shell as a native desktop app. The CLI uses Tauri 2, writes the wrapper into <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dist/app/</code>, and keeps native project files out of your repo. Static web and desktop share one config and one iframe app.</p>
+  </div>
+
+  <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
+    <div>
+      <h3 class="flex items-center gap-2 text-base font-semibold text-foreground">
+        {% set tauriIconClass = "size-4" %}
+        {% include "tauri-icon.njk" %}
+        Commands
+      </h3>
+      <ul class="mt-4 space-y-2 text-sm text-muted-foreground">
+        <li><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui dev --app</code> opens a native window in development</li>
+        <li><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui build --app</code> emits <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">dist/web/</code> plus a platform bundle under <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">dist/app/</code></li>
+        <li>Pass <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">--bundles</code> for formats such as <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app,dmg</code> on macOS</li>
+      </ul>
+      <div class="mt-6 max-w-xl">
+        {% highlight "bash", "terminal" %}
+shellui build --app
+        {% endhighlight %}
+      </div>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">What you bring</h3>
+      <ul class="mt-4 space-y-2 text-sm text-muted-foreground">
+        <li>Rust via rustup, plus the usual Tauri platform prerequisites</li>
+        <li>Optional root <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">tauri.conf.json</code> for product name, identifier, and icons</li>
+        <li><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">port</code> and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">title</code> from <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.config.json</code> sync into the wrapper</li>
+      </ul>
+      <div class="mt-6">
+        {% set slotKind = "screenshot" %}
+        {% set slotLabel = "Tauri desktop window" %}
+        {% set slotHint = "4:3 · native wrapper around the same shell. Not a generated mock." %}
+        {% set slotRatio = "photo" %}
+        {% include "media-slot.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/installation", label: "Install the CLI" },
+  { href: site.docs + "/quickstart", label: "Create a project" },
+  { href: site.docs + "/cli/", label: "CLI reference" },
+  { href: site.docs + "/tauri/", label: "Ship a desktop app" },
+  { href: "/#config", label: "Homepage config band" },
+  { href: "/architecture/", label: "Architecture graph" }
+] %}
+{% include "feature-docs.njk" %}

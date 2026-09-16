@@ -1,0 +1,105 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Host chrome | Shellui
+description: Theme, language, and floating chrome actions stay in the Shellui host. Iframe apps read settings and call the SDK instead of rebuilding pickers and FABs.
+eyebrow: Features
+heading: Host chrome you do not rebuild
+lede: Theme, language, and floating actions belong to the shell. Your iframe reads settings and declares intent. Do not ship a second theme picker or locale switcher unless that iframe is the settings surface.
+---
+
+<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Chrome stays outside the iframe</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The host already draws the sidebar or app bar, toasts, dialogs, drawers, and the account menu. This page covers three more surfaces that teams often rebuild by mistake: theme, language, and floating actions.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">JS starters from <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui init</code> call <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.applyTheme()</code> and listen for language with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/sdk/tiny</code>.</p>
+  </div>
+  <div>
+    {% include "feature-visual-chrome.njk" %}
+  </div>
+</div>
+
+<section class="mt-16" aria-labelledby="theme-screenshot-slot">
+  <h2 id="theme-screenshot-slot" class="sr-only">Theme settings screenshot slot</h2>
+  {% set slotKind = "screenshot" %}
+  {% set slotLabel = "Settings Appearance theme picker" %}
+  {% set slotHint = "16:9 · playground Settings. Not a generated mock." %}
+  {% set slotRatio = "video" %}
+  {% include "media-slot.njk" %}
+</section>
+
+<section class="mt-20" aria-labelledby="theming">
+  <div class="max-w-2xl">
+    <h2 id="theming" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Themes in config, not in the iframe</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Theming follows the shadcn/ui CSS variable model. Tokens are full CSS colors. Prefer OKLCH. There is no live theme editor. Configuration lives in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code> or JSON under <code class="rounded bg-muted px-1.5 py-0.5 text-sm">themesDir</code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui init</code> sets the official palette with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">"theme": "shellui"</code>. <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/core</code> ships curated JSON themes (47, including Shellui, shadcn, and tweakcn palettes). Settings → Appearance scales with how many you enable.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "json", "shellui.config.json" %}
+{
+  "theme": "shellui",
+  "themes": ["shellui", "claude", "shadcn"],
+  "activeTheme": "shellui"
+}
+    {% endhighlight %}
+  </div>
+  <p class="mt-6 max-w-2xl text-sm/6 text-muted-foreground">Read <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">settings.appearance</code> from the SDK. Inline objects and a <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">themesDir</code> folder are documented in the themes guide.</p>
+</section>
+
+<section class="mt-20" aria-labelledby="language">
+  <div class="max-w-2xl">
+    <h2 id="language" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Language is a shell setting</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">language</code> to one code or an array. Built-in UI strings exist for English (<code class="rounded bg-muted px-1.5 py-0.5 text-sm">en</code>) and French (<code class="rounded bg-muted px-1.5 py-0.5 text-sm">fr</code>). Users change the active language in Settings → Language.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Navigation labels, group titles, administration copy, and cookie-consent text accept a string or a <code class="rounded bg-muted px-1.5 py-0.5 text-sm">LocalizedString</code> object. Iframe apps should listen for SDK language / <code class="rounded bg-muted px-1.5 py-0.5 text-sm">SHELLUI_SETTINGS</code> and update their own copy. Layouts are LTR.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "json", "shellui.config.json" %}
+{
+  "language": ["en", "fr"]
+}
+    {% endhighlight %}
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="chrome-actions">
+  <div class="max-w-2xl">
+    <h2 id="chrome-actions" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Floating actions from the SDK</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Apps declare optional back, title, trailing, and primary FAB chrome with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.actions.set</code>. The shell renders them, reserves safe padding, and posts <code class="rounded bg-muted px-1.5 py-0.5 text-sm">SHELLUI_ACTION</code> clicks into that iframe only. Caps: at most 3 trailing visible on desktop (rest in an overflow menu), at most 1 primary.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The shell does not infer actions from the iframe URL. On every in-app route change, call <code class="rounded bg-muted px-1.5 py-0.5 text-sm">set</code> or <code class="rounded bg-muted px-1.5 py-0.5 text-sm">clear</code>. Shell navigation to another app clears that iframe's actions.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "ts", "app.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.actions.set({
+  back: { id: "back", onClick: () => history.back() },
+  title: "Inbox",
+  trailing: [
+    { id: "edit", label: "Edit", onClick: () => {} },
+  ],
+  primary: { id: "compose", icon: "plus", onClick: () => {} },
+});
+    {% endhighlight %}
+  </div>
+  <div class="mt-10">
+    {% set slotKind = "screenshot" %}
+    {% set slotLabel = "Chrome actions over an iframe" %}
+    {% set slotHint = "16:9 · trailing actions and primary FAB. Not a generated mock." %}
+    {% set slotRatio = "video" %}
+    {% include "media-slot.njk" %}
+  </div>
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/features/themes/", label: "Configure themes" },
+  { href: site.docs + "/features/internationalization/", label: "Localize the shell" },
+  { href: site.docs + "/features/chrome-actions/", label: "Floating chrome actions" },
+  { href: "/features/microfrontend/", label: "Microfrontend host" },
+  { href: site.playground, label: "Playground", external: true },
+  { href: "/changelog/", label: "Changelog" }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how you <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/ship/">ship</a> the same project as static files, a preview, or a desktop app.</p>

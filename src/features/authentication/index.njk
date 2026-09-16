@@ -2,35 +2,78 @@
 layout: layouts/feature.njk
 wide: true
 title: Authentication | Shellui
-description: Sign-in lives in the Shellui shell. Connect identity-service or Supabase, protect routes, set who can join, and issue tokens for users and services.
+description: Sign-in lives in the Shellui shell. identity-service (Django) runs OAuth with GitHub, Google, or Microsoft, issues JWTs, and shares the session with your iframe over the SDK. Supabase Auth is the swap.
 eyebrow: Features
-heading: Authentication
-lede: Sign-in lives in the shell. Connect the identity-service or Supabase, protect routes, and decide who can join - public, a domain allow list, or invitation only.
+heading: Authentication in the shell
+lede: Your microfrontend does not ship a login page. The shell owns /login, stores the session, and shares the signed-in user with the iframe. The default backend is identity-service, a Django API. Point backend.type at supabase if Auth is already in your stack.
+pageScripts:
+  - /assets/js/auth-flow.js
 ---
 
-<div class="max-w-2xl">
-  <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Sign-in lives in the shell</h2>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Your microfrontend does not ship a login page. The shell owns <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/login</code> and <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">/login/callback</code>, stores the session, refreshes tokens, and shares the signed-in user with iframes through the SDK.</p>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The default backend is the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a>: OAuth with GitHub, Google, or Microsoft, JWT sessions, and a JSON Web Key Set (JWKS) so other services can verify tokens. If Supabase Auth is already in your stack, point <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">backend.type</code> at it instead.</p>
-</div>
+<section aria-labelledby="auth-exchange">
+  <div class="max-w-2xl">
+    <h2 id="auth-exchange" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">How the iframe, shell, and identity-service talk</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">OAuth must run in the top window. From an embedded app, call <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.login()</code>. The shell starts identity-service authorize. identity-service talks to the provider, confirms the account, then bounces tokens to <code class="rounded bg-muted px-1.5 py-0.5 text-sm">/login/callback</code> in the URL fragment.</p>
+  </div>
+  {% include "auth-flow.njk" %}
+</section>
 
-<div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
-  <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connect a backend</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Set <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">backend</code> in <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.config.ts</code> and enable the login methods you want on the page.</p>
+<section class="mt-20" aria-labelledby="identity-service-does">
+  <div class="max-w-2xl">
+    <h2 id="identity-service-does" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">What identity-service does</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">identity-service is a Django backend for <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.type: "shellui"</code>. It exposes a Shellui-compatible auth API at <code class="rounded bg-muted px-1.5 py-0.5 text-sm">/api/v1/*</code>. Source lives in the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> repo.</p>
   </div>
-  <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Protect routes</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Mark navigation with <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">requiresAuth</code>. Signed-out visitors go to login, then back to the page they asked for.</p>
+  <div class="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+    <div>
+      <h3 class="text-base font-semibold text-foreground">OAuth providers</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">GitHub, Google, and Microsoft. Per-company OAuth clients. A sign-in method picker, even when only one provider is enabled, then an account confirmation screen.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">JWT and JWKS</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Access and refresh tokens. RS256 with <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">GET /.well-known/jwks.json</code> when <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">JWT_PRIVATE_KEY</code> is set. Refresh with <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">grant_type=refresh_token</code>.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Company join modes</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">After a successful provider login, access is per company: public, a domain allow list, or invitation only. The same account can be enabled in one tenant and waiting in another.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Redirect allowlist</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Provider apps register one callback on identity-service. Shell origins must be allowlisted for the fragment bounce. Loopback is always allowed so <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui login</code> works.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Directory APIs</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Staff and owners list users, enable membership, patch company access, and manage OAuth clients. Group names travel on the JWT as <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">user.groups</code>.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Other login methods</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">The shell login page can show <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">magic_link</code>, <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">web3</code>, or <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">password</code> when the backend advertises them. Email magic link is the Supabase path today. identity-service ships OAuth first.</p>
+    </div>
   </div>
-  <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Login from the iframe</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">OAuth must run in the top window. From an embedded app, call <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.login()</code> so the shell can start the redirect.</p>
-  </div>
-</div>
+</section>
 
-<div class="mt-8 max-w-3xl">
-  {% highlight "ts", "shellui.config.ts" %}
+<section class="mt-20" aria-labelledby="connect-and-guard">
+  <div class="max-w-2xl">
+    <h2 id="connect-and-guard" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Connect a backend and guard routes</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend</code> in config. Mark navigation with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">requiresAuth</code>. Signed-out visitors go to login, then back to the page they asked for.</p>
+  </div>
+
+  <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+    <div>
+      <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connect a backend</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">backend</code> in <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.config.json</code> and enable the login methods you want on the page.</p>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Protect routes</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Mark navigation with <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">requiresAuth</code>. The iframe URL does not load until you sign in.</p>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Login from the iframe</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">From an embedded app, call <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.login()</code> so the shell can start the redirect.</p>
+    </div>
+  </div>
+
+  <div class="mt-8 max-w-3xl">
+    {% highlight "ts", "shellui.config.ts" %}
 import type { ShellUIConfig } from "@shellui/core";
 
 const config: ShellUIConfig = {
@@ -54,40 +97,60 @@ const config: ShellUIConfig = {
 };
 
 export default config;
-  {% endhighlight %}
-</div>
+    {% endhighlight %}
+  </div>
+</section>
 
-<div class="mt-20">
+<section class="mt-16" aria-labelledby="login-screenshot-slot">
+  <h2 id="login-screenshot-slot" class="sr-only">Login screenshot slot</h2>
+  {% set slotKind = "screenshot" %}
+  {% set slotLabel = "Playground login" %}
+  {% set slotHint = "16:9 · /login with provider buttons. Not a generated mock." %}
+  {% set slotRatio = "video" %}
+  {% include "media-slot.njk" %}
+</section>
+
+<section class="mt-20" aria-labelledby="who-can-join">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Who can join</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">After a successful OAuth login, the company decides whether that person actually gets tokens. Access is per company: the same account can be enabled in one tenant and waiting in another. Configure the mode in admin, or patch it on the identity API.</p>
+    <h2 id="who-can-join" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Who can join</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">After a successful OAuth login, the company decides whether that person actually gets tokens. Configure the mode in admin Organization, or <code class="rounded bg-muted px-1.5 py-0.5 text-sm">PATCH /api/v1/companies/your_company_id_here/</code>.</p>
   </div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Public</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Anyone who authenticates joins with access enabled and receives tokens. The default when you are still opening the doors.</p>
+      <h3 class="text-base font-semibold text-foreground">Public</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Anyone who authenticates joins with access enabled and receives tokens. The default when you are still opening the doors.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Domain allow list</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Emails on <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">allowed_email_domains</code> join enabled. Other domains create a disabled membership and owners get notified.</p>
+      <h3 class="text-base font-semibold text-foreground">Domain allow list</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Emails on <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">allowed_email_domains</code> join enabled. Other domains create a disabled membership and owners get notified.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Invitation only</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">New users land as disabled members. Tokens stay blocked until an owner or staff enables them for that company.</p>
+      <h3 class="text-base font-semibold text-foreground">Invitation only</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">New users land as disabled members. Tokens stay blocked until an owner or staff enables them for that company.</p>
     </div>
   </div>
 
   {% include "auth-access-examples.njk" %}
-</div>
+</section>
 
-<div class="mt-20">
+<section class="mt-20" aria-labelledby="groups-logs-tokens">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Groups, logs, and tokens</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The identity-service keeps a company directory next to the session. Staff and company owners manage groups, read login events, and mint access tokens for people and for services that call your APIs without a browser.</p>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Group names travel on the JWT as <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">user.groups</code>. Login events record success or failure, provider, and privacy-oriented client fields. Personal access tokens are named JWTs you can revoke; mark them read-only when a service only needs to fetch data.</p>
+    <h2 id="groups-logs-tokens" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Groups, logs, and tokens</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The identity-service keeps a company directory next to the session. Staff and company owners manage groups, read login events, and mint access tokens for people and for services that call your APIs without a browser.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Group names travel on the JWT as <code class="rounded bg-muted px-1.5 py-0.5 text-sm">user.groups</code>. Login events record success or failure, provider, and privacy-oriented client fields. Personal access tokens are named JWTs you can revoke; mark them read-only when a service only needs to fetch data.</p>
   </div>
   {% include "auth-directory-examples.njk" %}
-</div>
+</section>
 
-<p class="mt-16 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">Administration</a> manages users, company access, and operational data.</p>
+{% set featureDocs = [
+  { href: site.docs + "/features/authentication/", label: "Configure authentication" },
+  { href: site.identityService, label: "identity-service source", external: true },
+  { href: "/architecture/", label: "Architecture graph" },
+  { href: "/features/administration/", label: "Administration" },
+  { href: site.playground, label: "Playground", external: true },
+  { href: "/changelog/", label: "Changelog" }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">Administration</a> manages users, company access, and operational data.</p>

@@ -1,0 +1,22 @@
+{# Labeled slot for a future icon or playground screenshot. Not a product mock. #}
+{% set slotKind = slotKind or "screenshot" %}
+{% set slotLabel = slotLabel or "Visual slot" %}
+{% set slotHint = slotHint or "Replace with a real asset" %}
+{% set slotRatio = slotRatio or "video" %}
+{% set ratioClass = "aspect-video" %}
+{% if slotRatio == "square" %}
+  {% set ratioClass = "aspect-square" %}
+{% elif slotRatio == "photo" %}
+  {% set ratioClass = "aspect-4/3" %}
+{% endif %}
+{% if slotKind == "icon" %}
+<figure class="media-slot flex size-14 shrink-0 flex-col items-center justify-center rounded-lg border border-dashed border-border bg-muted text-center sm:size-16" aria-label="{{ slotLabel }}. {{ slotHint }}">
+  <span class="text-[0.6rem] font-medium text-muted-foreground">Icon</span>
+</figure>
+{% else %}
+<figure class="media-slot {{ ratioClass }} flex min-h-40 flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted px-3 py-3 text-center sm:min-h-48">
+  <p class="text-[0.65rem] font-semibold text-muted-foreground">Screenshot slot</p>
+  <p class="mt-1 text-sm font-medium text-foreground">{{ slotLabel }}</p>
+  <p class="mt-1 text-xs text-muted-foreground">{{ slotHint }}</p>
+</figure>
+{% endif %}

@@ -50,6 +50,8 @@ export default {
       features: "Features",
       blog: "Blog",
       company: "Company",
+      chrome: "Host chrome",
+      ship: "Ship",
       architecture: "Architecture",
       roadmap: "Roadmap",
       changelog: "Changelog",

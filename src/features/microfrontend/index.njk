@@ -1,31 +1,35 @@
 ---
 layout: layouts/feature.njk
 wide: true
-title: Microfrontend | Shellui
-description: Host any app in a Shellui iframe. Load the SDK, call init, and talk over postMessage. Use sidebar, top bar, or window layouts plus toasts, dialogs, and themes.
+title: Microfrontend host | Shellui
+description: Host any app in a Shellui iframe. Load @shellui/sdk, call init, and talk over postMessage. Layout, toasts, dialogs, theme, and language stay in the shell.
 eyebrow: Features
-heading: Microfrontend
-lede: Host your application in the Shellui iframe. Load the SDK, call init, and talk to the shell through the postMessage API.
+heading: Microfrontend host
+lede: Your application does not replace the shell. It runs inside an iframe that Shellui hosts. The shell owns navigation, layout, and chrome. Your app owns its UI, in any stack you choose.
 ---
 
-<div class="max-w-2xl">
-  <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Run your app inside the iframe</h2>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">Your app does not replace the shell. It runs inside an iframe that Shellui hosts. The shell owns navigation, layout, and chrome. Your application owns its own UI, in any stack you choose.</p>
-  <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">To connect the two, load <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">@shellui/sdk</code> in the iframe and call <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">init</code>. After that handshake, every message between the app and the shell goes through the <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">postMessage</code> API. The SDK wraps that channel so you do not talk to <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">window.parent</code> by hand.</p>
+<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Run your app inside the iframe</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Load <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/sdk</code> in the iframe and call <code class="rounded bg-muted px-1.5 py-0.5 text-sm">init</code>. After that handshake, every message between the app and the shell goes through <code class="rounded bg-muted px-1.5 py-0.5 text-sm">postMessage</code>. The SDK wraps that channel so you do not talk to <code class="rounded bg-muted px-1.5 py-0.5 text-sm">window.parent</code> by hand.</p>
+  </div>
+  <div>
+    {% include "feature-visual-shell.njk" %}
+  </div>
 </div>
 
 <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
   <div>
     <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Load the SDK</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Include <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">@shellui/sdk</code> in the app that will run inside the iframe.</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Include <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/sdk</code> in the app that will run inside the iframe.</p>
   </div>
   <div>
     <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Call init</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Initialize the SDK so the shell and your application can handshake and agree on the channel.</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Initialize the SDK so the shell and your application can handshake and agree on the channel.</p>
   </div>
   <div>
     <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Use postMessage</p>
-    <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">All further communication travels over <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">postMessage</code>: layout, theme, navigation, and the rest of the shell API.</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">All further communication travels over <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">postMessage</code>: layout, theme, navigation, and the rest of the shell API.</p>
   </div>
 </div>
 
@@ -47,40 +51,60 @@ shellui.sendMessageToParent({
   {% endhighlight %}
 </div>
 
-<div class="mt-20">
+<section class="mt-16" aria-labelledby="playground-host-slot">
+  <h2 id="playground-host-slot" class="sr-only">Playground host screenshot slot</h2>
+  {% set slotKind = "screenshot" %}
+  {% set slotLabel = "Playground shell with iframe app" %}
+  {% set slotHint = "16:9 · host chrome around a real app. Not a generated mock." %}
+  {% set slotRatio = "video" %}
+  {% include "media-slot.njk" %}
+</section>
+
+<section class="mt-20" aria-labelledby="layout-modes">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Sidebar, top bar, or window</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The shell can present the same iframe in three layout modes. Pick one in config; every microfrontend inherits it.</p>
+    <h2 id="layout-modes" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Layout is a shell concern</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Pick <code class="rounded bg-muted px-1.5 py-0.5 text-sm">layout</code> in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. Every microfrontend inherits it. App UI must work in sidebar, app-bar, and windows. Default is <code class="rounded bg-muted px-1.5 py-0.5 text-sm">sidebar</code>.</p>
   </div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
     <div>
       {% set layoutMode = "sidebar" %}
       {% include "shell-layout-anim.njk" %}
-      <h3 class="mt-5 text-base font-semibold text-gray-900 dark:text-white">Sidebar</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">Colored sidebar navigation with the application canvas beside it. The default app chrome.</p>
+      <h3 class="mt-5 text-base font-semibold text-foreground">Sidebar</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Persistent navigation beside the iframe. Also <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">sidebar-inset</code> for a padded main frame.</p>
     </div>
     <div>
       {% set layoutMode = "topbar" %}
       {% include "shell-layout-anim.njk" %}
-      <h3 class="mt-5 text-base font-semibold text-gray-900 dark:text-white">Top bar</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">The sidebar hides and navigation moves to a top bar, giving the iframe more horizontal space.</p>
+      <h3 class="mt-5 text-base font-semibold text-foreground">App bar</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app-bar</code> and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app-bar-inset</code> move navigation to a compact top bar.</p>
     </div>
     <div>
       {% set layoutMode = "window" %}
       {% include "shell-layout-anim.njk" %}
-      <h3 class="mt-5 text-base font-semibold text-gray-900 dark:text-white">Window</h3>
-      <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">The app opens as a desktop window with a title bar and taskbar, alongside other windows.</p>
+      <h3 class="mt-5 text-base font-semibold text-foreground">Windows</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">windows</code> is a proof of concept: taskbar, start menu, one window per nav item. Not recommended for production.</p>
     </div>
   </div>
-</div>
+  <p class="mt-8 max-w-2xl text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">floating</code> is glass chrome over full-bleed content. <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">fullscreen</code> hides nav chrome. Size iframe UI to 100% of the iframe, not <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">100vh</code>.</p>
+</section>
 
-<div class="mt-20">
+<section class="mt-20" aria-labelledby="sdk-chrome">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Toasts, dialogs, and theme from the SDK</h2>
-    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">The shell already owns toasts, dialogs, modals, drawers, theme, and language. From the iframe you call them on <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui</code> after <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">init</code> - no extra overlay stack in your app.</p>
+    <h2 id="sdk-chrome" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Toasts, dialogs, and theme from the SDK</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The shell already owns toasts, dialogs, modals, drawers, theme, and language. From the iframe you call them on <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui</code> after <code class="rounded bg-muted px-1.5 py-0.5 text-sm">init</code> - no extra overlay stack in your app. Floating back, title, trailing, and primary actions are on <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/chrome/">Host chrome</a>.</p>
   </div>
   {% include "shell-sdk-examples.njk" %}
-</div>
+</section>
 
-<p class="mt-16 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/authentication/">Authentication</a> handles sign-in, protected routes, and identity integration.</p>
+{% set featureDocs = [
+  { href: site.docs + "/sdk", label: "SDK reference" },
+  { href: site.docs + "/features/layouts/", label: "Choose a layout" },
+  { href: site.docs + "/features/navigation/", label: "Configure navigation" },
+  { href: "/architecture/", label: "Architecture graph" },
+  { href: "/features/authentication/", label: "Authentication" },
+  { href: site.playground, label: "Playground", external: true }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/authentication/">Authentication</a> handles sign-in, protected routes, and identity-service.</p>
