@@ -101,12 +101,11 @@ export default config;
   </div>
 </section>
 
-<section class="mt-16" aria-labelledby="login-screenshot-slot">
-  <h2 id="login-screenshot-slot" class="sr-only">Login screenshot slot</h2>
-  {% set slotKind = "screenshot" %}
-  {% set slotLabel = "Playground login" %}
-  {% set slotHint = "16:9 · /login with provider buttons. Not a generated mock." %}
-  {% set slotRatio = "video" %}
+<section class="mt-16" aria-labelledby="playground-login">
+  <h2 id="playground-login" class="sr-only">Playground login</h2>
+  {% set slotSrc = "/img/features/authentication-login.png" %}
+  {% set slotAlt = "Playground Welcome back dialog with Continue with GitHub" %}
+  {% set slotCaption = "Playground login: Welcome back with Continue with GitHub." %}
   {% include "media-slot.njk" %}
 </section>
 

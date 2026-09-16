@@ -51,12 +51,11 @@ shellui.sendMessageToParent({
   {% endhighlight %}
 </div>
 
-<section class="mt-16" aria-labelledby="playground-host-slot">
-  <h2 id="playground-host-slot" class="sr-only">Playground host screenshot slot</h2>
-  {% set slotKind = "screenshot" %}
-  {% set slotLabel = "Playground shell with iframe app" %}
-  {% set slotHint = "16:9 · host chrome around a real app. Not a generated mock." %}
-  {% set slotRatio = "video" %}
+<section class="mt-16" aria-labelledby="playground-host">
+  <h2 id="playground-host" class="sr-only">Playground shell with iframe app</h2>
+  {% set slotSrc = "/img/features/microfrontend-host.png" %}
+  {% set slotAlt = "Shellui Playground with sidebar navigation around the iframe home" %}
+  {% set slotCaption = "Playground: sidebar chrome around the iframe home." %}
   {% include "media-slot.njk" %}
 </section>
 
@@ -85,6 +84,16 @@ shellui.sendMessageToParent({
       <h3 class="mt-5 text-base font-semibold text-foreground">Windows</h3>
       <p class="mt-2 text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">windows</code> is a proof of concept: taskbar, start menu, one window per nav item. Not recommended for production.</p>
     </div>
+  </div>
+  <div class="mt-10 grid gap-6 md:grid-cols-2">
+    {% set slotSrc = "/img/features/layouts-sidebar.png" %}
+    {% set slotAlt = "Playground Layout page with sidebar navigation and Sidebar selected" %}
+    {% set slotCaption = "Playground in sidebar layout." %}
+    {% include "media-slot.njk" %}
+    {% set slotSrc = "/img/features/layouts-appbar.png" %}
+    {% set slotAlt = "Playground Layout page with app bar navigation and App bar selected" %}
+    {% set slotCaption = "Playground in app bar layout." %}
+    {% include "media-slot.njk" %}
   </div>
   <p class="mt-8 max-w-2xl text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">floating</code> is glass chrome over full-bleed content. <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">fullscreen</code> hides nav chrome. Size iframe UI to 100% of the iframe, not <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">100vh</code>.</p>
 </section>

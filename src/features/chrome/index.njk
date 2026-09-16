@@ -19,12 +19,11 @@ lede: The shell ships the theme picker, locale switcher, and floating actions. Y
   </div>
 </div>
 
-<section class="mt-16" aria-labelledby="theme-screenshot-slot">
-  <h2 id="theme-screenshot-slot" class="sr-only">Theme settings screenshot slot</h2>
-  {% set slotKind = "screenshot" %}
-  {% set slotLabel = "Settings Appearance theme picker" %}
-  {% set slotHint = "16:9 · playground Settings. Not a generated mock." %}
-  {% set slotRatio = "video" %}
+<section class="mt-16" aria-labelledby="theme-screenshot">
+  <h2 id="theme-screenshot" class="sr-only">Settings Appearance theme picker</h2>
+  {% set slotSrc = "/img/features/chrome-theme.png" %}
+  {% set slotAlt = "Playground Settings Appearance with light, dark, and automatic mode plus color themes" %}
+  {% set slotCaption = "Playground Settings: Appearance theme picker." %}
   {% include "media-slot.njk" %}
 </section>
 
@@ -84,10 +83,9 @@ shellui.actions.set({
     {% endhighlight %}
   </div>
   <div class="mt-10">
-    {% set slotKind = "screenshot" %}
-    {% set slotLabel = "Chrome actions over an iframe" %}
-    {% set slotHint = "16:9 · trailing actions and primary floating action. Not a generated mock." %}
-    {% set slotRatio = "video" %}
+    {% set slotSrc = "/img/features/chrome-floating-actions.png" %}
+    {% set slotAlt = "Playground Inbox with Share, Edit, and Archive trailing actions and a plus floating action" %}
+    {% set slotCaption = "Playground Inbox with trailing chrome actions and a primary floating action." %}
     {% include "media-slot.njk" %}
   </div>
 </section>
