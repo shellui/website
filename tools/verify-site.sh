@@ -115,8 +115,12 @@ grep -q '@shellui/sdk@0.5.0/dist/shellui.tiny.js' "${SITE}/index.html" \
 if grep -qE '@shellui/sdk@0\.5\.0-(beta|alpha)' "${SITE}/index.html"; then
   fail "index.html still pins a beta/alpha @shellui/sdk"
 fi
-grep -q 'Shellui 0.5.0 is the latest release' "${SITE}/changelog/index.html" \
-  || fail "changelog page missing 0.5.0 lede"
+grep -q 'text-2xl font-semibold tracking-tight' "${SITE}/changelog/index.html" \
+  || fail "changelog page missing strong latest-version callout heading"
+grep -q 'View release' "${SITE}/changelog/index.html" \
+  || fail "changelog page missing View release CTA"
+grep -q 'releases/tag/v0.5.0' "${SITE}/changelog/index.html" \
+  || fail "changelog callout must link to the latest GitHub release tag"
 grep -q 'Floating chrome actions' "${SITE}/changelog/index.html" \
   || fail "changelog page missing curated 0.5.0 chrome actions highlight"
 if grep -qiE 'Flutter Web|🗑 Removed|Removed</h3>' "${SITE}/changelog/index.html"; then
