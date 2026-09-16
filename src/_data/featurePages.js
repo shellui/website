@@ -1,7 +1,7 @@
 export default [
   {
-    id: "microfrontend",
-    href: "/features/microfrontend/",
+    id: "apps-and-navigation",
+    href: "/features/apps-and-navigation/",
     title: "Apps and navigation",
     benefit: "Bring apps built with different frameworks into one interface. Share navigation, themes, and dialogs through the shell.",
     points: [
@@ -52,8 +52,8 @@ export default [
     cta: "Explore file storage"
   },
   {
-    id: "desktop",
-    href: "/features/ship/",
+    id: "web-and-desktop",
+    href: "/features/web-and-desktop/",
     title: "Web and desktop",
     benefit: "Build the shell as static web files, publish a preview, or package it as a desktop app with Tauri.",
     points: [

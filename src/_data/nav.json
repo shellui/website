@@ -27,7 +27,7 @@
   ],
   "features": [
     {
-      "href": "/features/microfrontend/",
+      "href": "/features/apps-and-navigation/",
       "label": "Apps & Navigation",
       "description": "Bring your apps together with shared navigation and interface features.",
       "icon": "layout"
@@ -51,7 +51,7 @@
       "icon": "storage"
     },
     {
-      "href": "/features/ship/",
+      "href": "/features/web-and-desktop/",
       "label": "Web & Desktop",
       "description": "Build for the web, share a preview, or package a desktop app.",
       "icon": "ship"
