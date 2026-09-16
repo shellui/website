@@ -23,6 +23,10 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ## [Unreleased]
 
+### ✨ Feature
+
+- Add iOS app icon variants (black, white, gold) to Brand assets for occasional Tauri, store, and marketing use.
+
 ### 🛠 Improvements
 
 - Rewrite the homepage hero around a static-ship claim and a copyable `fetch https://shellui.ai` agent prompt. Restore `shellui init` framework chips (no Flutter), add a separate `shellui.app` deploy band, and drop the FAQ.
