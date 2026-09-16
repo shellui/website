@@ -96,7 +96,7 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
               Microfrontend host
             </h3>
             <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">
-              Load <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">@shellui/sdk</code>, call <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">init</code>, and talk to the shell over <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">postMessage</code>. Layout, toasts, dialogs, theme, and language stay in <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui.config.ts</code>.
+              Load <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">@shellui/sdk</code>, call <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">init</code>, and talk to the shell over <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">postMessage</code>. Layout, toasts, dialogs, theme, and language stay in <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui.config.json</code>.
             </p>
             <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">
               Explore microfrontend
@@ -140,6 +140,8 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
 
     {% include "home-init.njk" %}
 
+    {% include "home-config.njk" %}
+
     {% include "home-deploy.njk" %}
 
     <section id="audience" class="border-t border-gray-200 px-4 py-24 sm:px-6 lg:px-8 dark:border-gray-800">
@@ -149,7 +151,7 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
             Same shell as you grow
           </h2>
           <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-            MIT license, one CLI, one static build. The host does not fork when a second surface or a second team shows up.
+            MIT license, one CLI, one static build. Optional native desktop from the same project. The host does not fork when a second surface or a second team shows up.
           </p>
         </div>
         <dl class="mt-12 max-w-3xl space-y-8">
@@ -164,6 +166,19 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
           <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
             <dt class="text-base font-semibold text-gray-900 dark:text-white">Yours to run</dt>
             <dd class="mt-1 text-base/7 text-gray-600 sm:mt-0 dark:text-gray-400">Build static files, host them where you already ship, or distribute the output yourself.</dd>
+          </div>
+          <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+            <dt class="flex items-center gap-2 text-base font-semibold text-gray-900 dark:text-white">
+              {% set tauriIconClass = "size-4" %}
+              {% include "tauri-icon.njk" %}
+              Native desktop
+            </dt>
+            <dd class="mt-1 text-base/7 text-gray-600 sm:mt-0 dark:text-gray-400">
+              <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui build --app</code> wraps the same shell with Tauri 2. See
+              <a href="/features/#desktop" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Features</a>
+              and the
+              <a href="{{ site.docs }}/tauri/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">desktop docs</a>.
+            </dd>
           </div>
         </dl>
         <p class="mt-12 text-sm/6 text-gray-500 dark:text-gray-400">
