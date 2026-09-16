@@ -26,7 +26,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### ✨ Feature
 
 - Pin the homepage `@shellui/sdk` tiny script to jsDelivr `@0.5.0` (was `0.5.0-beta.3`).
-- Curate the `/changelog/` latest entry for Shellui product 0.5.0: chrome actions, new init frameworks, OKLCH themes, layouts, CLI companion, identity login, host detection, and Flutter removal. Deduplicate messy upstream notes and strip conflict markers.
+- Curate the `/changelog/` latest entry for Shellui product 0.5.0: chrome actions, new init frameworks, OKLCH themes, layouts, CLI companion, identity login, and host detection. Deduplicate messy upstream notes and strip conflict markers.
 
 ### 🛠 Improvements
 

@@ -16,7 +16,8 @@ const CACHE_MAX_AGE_MS = 1000 * 60 * 60; // 1 hour
 /**
  * Curated latest release for the marketing changelog.
  * Upstream main CHANGELOG can carry merge duplicates; the tag can carry conflict markers.
- * Keep this scannable: big features first, then improvements / changed / removed / notable fixes.
+ * Keep this scannable: big features first, then improvements / changed / notable fixes.
+ * Mirror section presence on main (do not invent Removed if upstream dropped it).
  */
 const CURATED = {
   "0.5.0": {
@@ -47,12 +48,6 @@ const CURATED = {
           "CSS variables are full colors (`oklch(...)` / hex) via `var(--token)`. They are no longer HSL channel triples.",
           "Official default theme is **shellui** (gold brand). AI-generated zinc/slate palettes are removed.",
           "`shellui init` injects `theme: \"shellui\"`.",
-        ],
-      },
-      {
-        heading: "🗑 Removed",
-        items: [
-          "**`shellui init` Flutter Web**: removed from the wizard, positional shortcuts, templates, and docs. Shellui has no Dart/Flutter SDK, so the starter could not integrate theme, i18n, or the SDK handshake.",
         ],
       },
       {

@@ -119,7 +119,8 @@ grep -q 'Shellui 0.5.0 is the latest release' "${SITE}/changelog/index.html" \
   || fail "changelog page missing 0.5.0 lede"
 grep -q 'Floating chrome actions' "${SITE}/changelog/index.html" \
   || fail "changelog page missing curated 0.5.0 chrome actions highlight"
-grep -q 'Flutter Web' "${SITE}/changelog/index.html" \
-  || fail "changelog page missing Flutter removal note"
+if grep -qiE 'Flutter Web|🗑 Removed|Removed</h3>' "${SITE}/changelog/index.html"; then
+  fail "changelog page must not show a Removed / Flutter section for 0.5.0"
+fi
 
 printf 'OK: _site/ looks ready to deploy\n'
