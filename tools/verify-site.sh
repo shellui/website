@@ -109,4 +109,22 @@ if ! grep -qE 'assets/css/site\.css\?v=[a-f0-9]{8}' "${SITE}/index.html"; then
   fail "index.html missing fingerprinted site.css (?v=hash) — build may not have run in production mode"
 fi
 
+log "Checking Shellui 0.5.0 release pins"
+grep -q '@shellui/sdk@0.5.0/dist/shellui.tiny.js' "${SITE}/index.html" \
+  || fail "index.html must pin @shellui/sdk@0.5.0 (no beta/alpha)"
+if grep -qE '@shellui/sdk@0\.5\.0-(beta|alpha)' "${SITE}/index.html"; then
+  fail "index.html still pins a beta/alpha @shellui/sdk"
+fi
+grep -q 'text-2xl font-semibold tracking-tight' "${SITE}/changelog/index.html" \
+  || fail "changelog page missing strong latest-version callout heading"
+grep -q 'View release' "${SITE}/changelog/index.html" \
+  || fail "changelog page missing View release CTA"
+grep -q 'releases/tag/v0.5.0' "${SITE}/changelog/index.html" \
+  || fail "changelog callout must link to the latest GitHub release tag"
+grep -q 'Floating chrome actions' "${SITE}/changelog/index.html" \
+  || fail "changelog page missing curated 0.5.0 chrome actions highlight"
+if grep -qiE 'Flutter Web|🗑 Removed|Removed</h3>' "${SITE}/changelog/index.html"; then
+  fail "changelog page must not show a Removed / Flutter section for 0.5.0"
+fi
+
 printf 'OK: _site/ looks ready to deploy\n'
