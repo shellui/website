@@ -1,0 +1,62 @@
+<section id="config" class="border-t border-gray-200 px-4 py-24 sm:px-6 lg:px-8 dark:border-gray-800">
+  <div class="mx-auto max-w-7xl">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
+        One config file
+      </h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+        Navigation, backend, storage, hosting, and chrome live in <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui.config.json</code>. Prefer JSON. TypeScript (<code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui.config.ts</code>) is the fallback when no JSON or split files are present. The CLI validates against the <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">@shellui/core</code> schema at load time.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_16rem] lg:items-start lg:gap-12">
+      <div class="min-w-0">
+        {% highlight "json", "shellui.config.json" %}
+{
+  "$schema": "./node_modules/@shellui/core/schemas/shellui.config.schema.json",
+  "port": 4000,
+  "title": "My Shellui App",
+  "backend": {
+    "type": "supabase",
+    "url": "http://localhost:54321"
+  },
+  "navigation": [
+    {
+      "label": "Home",
+      "path": "home",
+      "url": "http://localhost:4000/",
+      "icon": "/icons/home.svg"
+    }
+  ]
+}
+        {% endhighlight %}
+      </div>
+      <dl class="space-y-5 text-sm/6">
+        <div>
+          <dt class="font-semibold text-gray-900 dark:text-white"><code class="font-mono text-[0.8rem]">$schema</code></dt>
+          <dd class="mt-1 text-gray-600 dark:text-gray-400">Editor autocomplete and validation.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-gray-900 dark:text-white"><code class="font-mono text-[0.8rem]">port</code> / <code class="font-mono text-[0.8rem]">title</code></dt>
+          <dd class="mt-1 text-gray-600 dark:text-gray-400">Dev server port and chrome title.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-gray-900 dark:text-white"><code class="font-mono text-[0.8rem]">backend</code></dt>
+          <dd class="mt-1 text-gray-600 dark:text-gray-400">Provider (<code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui</code>, <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">supabase</code>, or none) and API base URL.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-gray-900 dark:text-white"><code class="font-mono text-[0.8rem]">navigation</code></dt>
+          <dd class="mt-1 text-gray-600 dark:text-gray-400">Sidebar items and iframe URLs. Each item needs <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">label</code>, <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">path</code>, and <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">url</code>.</dd>
+        </div>
+      </dl>
+    </div>
+
+    <p class="mt-8 text-sm text-gray-500 dark:text-gray-400">
+      <a href="{{ site.docs }}/cli/#configuration" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">CLI configuration</a>
+      ·
+      <a href="{{ site.docs }}/quickstart/#write-the-config-by-hand" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Write the config by hand</a>
+      ·
+      Schema: <code class="rounded bg-gray-100 px-1 py-0.5 font-mono text-[0.8rem] dark:bg-gray-800">@shellui/core/schemas/shellui.config.schema.json</code>
+    </p>
+  </div>
+</section>
