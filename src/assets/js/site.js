@@ -148,3 +148,61 @@ const observer = new IntersectionObserver(
 document.querySelectorAll(".animate-on-scroll").forEach((el) => {
   observer.observe(el);
 });
+
+function copyText(text) {
+  const write = async () => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    throw new Error("clipboard unavailable");
+  };
+  return write().catch(() => {
+    const field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.left = "-9999px";
+    document.body.appendChild(field);
+    field.select();
+    try {
+      document.execCommand("copy");
+    } finally {
+      document.body.removeChild(field);
+    }
+  });
+}
+
+document.querySelectorAll("[data-copy]").forEach((button) => {
+  let timer = null;
+  const label = button.querySelector("[data-copy-label]");
+  const status = document.querySelector("[data-copy-status]");
+  const idle = label?.textContent || "Copy";
+  button.addEventListener("click", () => {
+    const text = button.getAttribute("data-copy") || "";
+    if (!text) return;
+    copyText(text).then(() => {
+      button.setAttribute("aria-label", "Copied to clipboard");
+      if (label) label.textContent = "Copied";
+      if (status) status.textContent = "Copied";
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        button.setAttribute("aria-label", "Copy agent prompt");
+        if (label) label.textContent = idle;
+        if (status) status.textContent = "";
+      }, 1600);
+    });
+  });
+});
+
+const frameworkPicker = document.querySelector("[data-framework-picker]");
+if (frameworkPicker) {
+  const commandNode = frameworkPicker.querySelector("[data-init-command]");
+  frameworkPicker.addEventListener("change", (event) => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement)) return;
+    if (!commandNode) return;
+    const command = input.getAttribute("data-command");
+    if (command) commandNode.textContent = command;
+  });
+}

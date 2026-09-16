@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [Unreleased]
+
+### 🛠 Improvements
+
+- Rewrite the homepage hero around a static-ship claim and a copyable `fetch https://shellui.ai` agent prompt. Restore `shellui init` framework chips (no Flutter), add a separate `shellui.app` deploy band, and drop the FAQ.
+
 ## [0.5.0] - 2026-09-16
 
 ### ✨ Feature

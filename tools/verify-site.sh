@@ -74,6 +74,28 @@ if grep -qiE '\beasy\b|\bsimple\b|\bquick\b|—' "${SITE}/llms.txt"; then
 fi
 grep -q 'rel="describedby" href="/llms.txt"' "${SITE}/index.html" || fail "site head missing llms.txt describedby link"
 
+log "Checking homepage conversion paths"
+grep -q 'fetch https://shellui.ai to start with Shellui' "${SITE}/index.html" \
+  || fail "index.html missing copyable shellui.ai agent prompt"
+grep -q 'npm install -g @shellui/cli' "${SITE}/index.html" \
+  || fail "index.html missing global CLI install"
+grep -q 'shellui init react' "${SITE}/index.html" \
+  || fail "index.html missing shellui init react"
+grep -q 'shellui login' "${SITE}/index.html" \
+  || fail "index.html missing shellui login"
+grep -q 'shellui deploy' "${SITE}/index.html" \
+  || fail "index.html missing shellui deploy"
+grep -q 'shellui.app' "${SITE}/index.html" \
+  || fail "index.html missing shellui.app hosting"
+grep -q 'dist/web/' "${SITE}/index.html" \
+  || fail "index.html missing static dist/web/ ship path"
+if grep -q 'Questions developers ask' "${SITE}/index.html"; then
+  fail "index.html still includes the homepage FAQ"
+fi
+if grep -qiE 'Flutter' "${SITE}/index.html"; then
+  fail "index.html must not list Flutter as an init framework"
+fi
+
 grep -q 'Guidelines v' "${SITE}/guidelines/writing/index.html" || fail "writing guidelines page missing version label"
 grep -q 'Guidelines v' "${SITE}/guidelines/web-design/index.html" || fail "web design guidelines page missing version label"
 grep -q 'Hit targets:' "${SITE}/guidelines/web-design/index.html" || fail "web design page missing hit-target rule"
