@@ -9,5 +9,6 @@ When reviewing, writing, or building Shellui website, docs, or in-shell UI, foll
 - Writing: [`skills/writing-guidelines/SKILL.md`](skills/writing-guidelines/SKILL.md) → [`content/guidelines/writing.md`](content/guidelines/writing.md) → `/guidelines/writing/`
 - Web design: [`skills/web-design-guidelines/SKILL.md`](skills/web-design-guidelines/SKILL.md) → [`content/guidelines/web-design.md`](content/guidelines/web-design.md) → `/guidelines/web-design/`
 - Hub: `/guidelines/`
+- Site overview for agents: `/llms.txt`
 
 Logos and press-kit downloads stay on `/brand-assets/`.

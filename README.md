@@ -8,6 +8,9 @@ The official website for [Shellui](https://shellui.com), the web app development
 - **[Tailwind CSS v4](https://tailwindcss.com/)** - compiled at build time (no CDN)
 - **[Tailwind Plus Elements](https://tailwindcss.com/plus/ui-blocks/documentation/elements)** - licensed interactive HTML (`el-*` custom elements) for Plus UI blocks
 - **[Alpine.js](https://alpinejs.dev/)** - light interactivity in `src/blocks/`
+- **[esbuild](https://esbuild.github.io/)** - bundles the React islands in `src/islands/`
+
+Islands are the exception to the Alpine rule: one page lazy-loads one React bundle for a single piece it cannot express in Alpine. `/architecture/` uses [`@xyflow/react`](https://reactflow.dev/) for the stack graph. Each island builds to `_site/assets/js/<name>.island.js` with its CSS inlined, and a small loader in `src/assets/js/` imports it when the mount point scrolls into view. Every other page stays on the Eleventy plus Alpine budget. Ship a static fallback in the Nunjucks so the page works without the bundle.
 
 Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are real HTML (no iframes). `content/` is IA notes and is not published, except `content/guidelines/*.md` (canonical guidelines). `design.md` is also copied to the site root as `/design.md`.
 
@@ -28,7 +31,7 @@ writes static files to `_site/`.
 
 ## Guidelines
 
-Canonical rules live in [`content/guidelines/`](content/guidelines/) (version in each file's frontmatter). Humans read `/guidelines/` (hub), `/guidelines/writing/`, `/guidelines/web-design/`, and the visual handbook at `/guidelines/design/`. Agents should load [`skills/guidelines/SKILL.md`](skills/guidelines/SKILL.md) and must not scrape the design HTML. When **building a page**, fetch `/design.md` first (`skills/design-md/SKILL.md`). Logos stay on `/brand-assets/`.
+Canonical rules live in [`content/guidelines/`](content/guidelines/) (version in each file's frontmatter). Humans read `/guidelines/` (hub), `/guidelines/writing/`, `/guidelines/web-design/`, and the visual handbook at `/guidelines/design/`. Agents should load [`skills/guidelines/SKILL.md`](skills/guidelines/SKILL.md) and must not scrape the design HTML. When **building a page**, fetch `/design.md` first (`skills/design-md/SKILL.md`). Site overview for agents: `/llms.txt`. Logos stay on `/brand-assets/`.
 
 See [`AGENTS.md`](AGENTS.md) for the short pointer.
 

@@ -13,6 +13,7 @@
     {% endif %}
     <meta name="author" content="{{ site.author }}" />
     <link rel="canonical" href="{{ canonical }}" />
+    <link rel="describedby" href="/llms.txt" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} Blog" href="{{ site.rss | absoluteUrl(site.url) }}" />
     <meta property="og:type" content="{% if tags and 'blog' in tags %}article{% else %}website{% endif %}" />
     <meta property="og:title" content="{{ ogTitle or metaTitle }}" />
@@ -59,9 +60,14 @@
       {{ content | safe }}
     </main>
     {% include "footer.njk" %}
-    <script src="https://cdn.jsdelivr.net/npm/@shellui/sdk@0.5.0-beta.3/dist/shellui.tiny.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@shellui/sdk@0.5.0/dist/shellui.tiny.js"></script>
     <script src="/assets/js/alpine.min.js" defer></script>
     <script src="/assets/js/elements.js" type="module"></script>
     <script src="/assets/js/site.js" defer></script>
+    {% if pageScripts %}
+      {% for src in pageScripts %}
+        <script src="{{ src }}" type="module"></script>
+      {% endfor %}
+    {% endif %}
   </body>
 </html>
