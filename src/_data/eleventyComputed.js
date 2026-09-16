@@ -50,6 +50,8 @@ export default {
       features: "Features",
       blog: "Blog",
       company: "Company",
+      "apps-and-navigation": "Apps and navigation",
+      "web-and-desktop": "Web and desktop",
       architecture: "Architecture",
       roadmap: "Roadmap",
       changelog: "Changelog",
