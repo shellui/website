@@ -148,3 +148,83 @@ const observer = new IntersectionObserver(
 document.querySelectorAll(".animate-on-scroll").forEach((el) => {
   observer.observe(el);
 });
+
+function copyText(text) {
+  const write = async () => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    throw new Error("clipboard unavailable");
+  };
+  return write().catch(() => {
+    const field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.left = "-9999px";
+    document.body.appendChild(field);
+    field.select();
+    try {
+      document.execCommand("copy");
+    } finally {
+      document.body.removeChild(field);
+    }
+  });
+}
+
+function markCopied(button) {
+  const label = button.querySelector("[data-copy-label]");
+  const status = document.querySelector("[data-copy-status]");
+  const idle = button.getAttribute("data-copy-idle") || label?.textContent || "Copy";
+  button.setAttribute("data-copy-idle", idle);
+  button.setAttribute("aria-label", "Copied to clipboard");
+  if (label) label.textContent = "Copied";
+  if (status) status.textContent = "Copied";
+  clearTimeout(Number(button.getAttribute("data-copy-timer") || 0));
+  const timer = setTimeout(() => {
+    button.setAttribute("aria-label", "Copy agent prompt");
+    if (label) label.textContent = idle;
+    if (status) status.textContent = "";
+  }, 1600);
+  button.setAttribute("data-copy-timer", String(timer));
+}
+
+function copyButtonFromEvent(event) {
+  let node = event.target;
+  if (node && node.nodeType === 3) node = node.parentElement;
+  if (!node || typeof node.closest !== "function") return null;
+  return node.closest("[data-copy]");
+}
+
+function handleCopyButton(button) {
+  if (!button) return;
+  const text = button.getAttribute("data-copy") || "";
+  if (!text) return;
+  markCopied(button);
+  copyText(text).catch(() => {});
+}
+
+window.shelluiCopyPrompt = function (button) {
+  handleCopyButton(button);
+};
+
+document.addEventListener(
+  "click",
+  (event) => {
+    handleCopyButton(copyButtonFromEvent(event));
+  },
+  true,
+);
+
+const frameworkPicker = document.querySelector("[data-framework-picker]");
+if (frameworkPicker) {
+  const commandNode = frameworkPicker.querySelector("[data-init-command]");
+  frameworkPicker.addEventListener("change", (event) => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement)) return;
+    if (!commandNode) return;
+    const command = input.getAttribute("data-command");
+    if (command) commandNode.textContent = command;
+  });
+}

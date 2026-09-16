@@ -70,22 +70,6 @@
       "description": {{ metaDescription | dump | safe }},
       "author": { "@id": "{{ site.url }}/#organization" }
     }
-    ,{
-      "@type": "FAQPage",
-      "@id": "{{ site.url }}/#faq",
-      "mainEntity": [
-        {% for item in faq %}
-        {
-          "@type": "Question",
-          "name": {{ item.question | dump | safe }},
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": {{ item.answer | dump | safe }}
-          }
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]
-    }
     {% endif %}
   ]
 }

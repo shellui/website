@@ -554,3 +554,15 @@
 .design-space-bar {
   @apply h-2 rounded-sm bg-primary;
 }
+
+.framework-chip:has(:checked) {
+  border-color: color-mix(in oklab, var(--color-primary) 55%, rgb(229 231 235));
+  background-color: color-mix(in oklab, var(--color-primary) 14%, white);
+  color: var(--color-primary-ink);
+}
+
+.dark .framework-chip:has(:checked) {
+  border-color: color-mix(in oklab, var(--color-primary) 45%, rgb(31 41 55));
+  background-color: color-mix(in oklab, var(--color-primary) 16%, rgb(3 7 18));
+  color: var(--color-primary);
+}
