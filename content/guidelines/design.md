@@ -1,7 +1,7 @@
 ---
 title: Design
 description: How to compose on-brand Shellui pages. Fetch this file first when building website or product surfaces. The HTML page at /guidelines/design/ is a human visual handbook - do not scrape it.
-version: 1.3.0
+version: 1.3.1
 ---
 
 Act as an excellent Shellui designer, editor, and information architect. Turn the available material into an official Shellui-authored page. Shape the argument and the interface together. Do not restyle a dump of sections or assemble a generic landing page.
@@ -39,7 +39,7 @@ Ask questions only when proceeding could change product claims, pricing, securit
 - Iframe: site can load in the shell (`@shellui/sdk` tiny). Do not cover host chrome. Theme follows `html.dark`.
 - Do not ship a single-file HTML deliverable, a React/Vite rewrite, or a parallel design-system package.
 
-Chrome to reuse: `nav.njk` (fixed `h-16`), `footer.njk`, `logo.njk`. Main padding: `.page-top`. Do not add a second header, mega-footer, announcement bar, or extra theme switcher.
+Chrome to reuse: `nav.njk` (fixed `h-16`), `footer.njk`, `logo.njk`. Main padding: `.page-top` (below the fixed header) and `.page-x` (horizontal gutters). Do not add a second header, mega-footer, announcement bar, or extra theme switcher.
 
 ## Tokens
 
@@ -61,7 +61,7 @@ Gray canvas. Honey gold is the action color. A soft primary wash behind the home
 
 Existing pages may still use `bg-white dark:bg-gray-950`. Same palette. New work should use token names.
 
-Type: system font. One `h1` (`text-4xl font-bold md:text-5xl` inner pages, or `font-semibold tracking-tight` on feature openings). Lede `text-lg text-muted-foreground`. Section `text-2xl` / `text-3xl font-semibold tracking-tight`. Body `text-base/7`. Measure ~60-70 characters. Button: `rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground`. Secondary is a text link. Gold is scarce. Widths: `max-w-7xl` feature chrome, `max-w-5xl` guidelines, `max-w-3xl` reading prose. Padding `px-4 sm:px-6 lg:px-8`. Section steps `.page-top`, `mt-10`, `mt-16`.
+Type: system font. One `h1` (`text-4xl font-bold md:text-5xl` inner pages, or `font-semibold tracking-tight` on feature openings). Lede `text-lg text-muted-foreground`. Section `text-2xl` / `text-3xl font-semibold tracking-tight`. Body `text-base/7`. Measure ~60-70 characters. Button: `rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground`. Secondary is a text link. Gold is scarce. Widths: `max-w-7xl` feature chrome, `max-w-5xl` guidelines, `max-w-3xl` reading prose. Horizontal shell: `.page-x` (`px-4 sm:px-6 lg:px-8`) on the outer band only; keep `max-w-*` children without horizontal padding so header, body, and footer share one content edge. Section steps `.page-top`, `mt-10`, `mt-16`.
 
 ## Reuse
 

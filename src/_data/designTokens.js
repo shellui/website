@@ -165,9 +165,8 @@ export default {
     },
   ],
   spacing: [
-    { token: "px-4", value: "1rem", use: "Page padding (mobile)" },
-    { token: "px-6", value: "1.5rem", use: "Page padding (sm)" },
-    { token: "px-8", value: "2rem", use: "Page padding (lg)" },
+    { token: "page-x", value: "px-4 → px-8", use: "Outer horizontal gutters" },
+    { token: "page-top", value: "pt-20 → pt-32", use: "Clear fixed header" },
     { token: "mt-10", value: "2.5rem", use: "Section step" },
     { token: "mt-16", value: "4rem", use: "Larger section turn" },
   ],

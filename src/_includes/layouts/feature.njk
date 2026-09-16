@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 ---
 {% if centered %}
-<div class="bg-white px-6 py-24 pt-32 sm:py-32 sm:pt-40 lg:px-8 dark:bg-gray-950">
+<div class="bg-white page-x py-24 pt-32 sm:py-32 sm:pt-40 dark:bg-gray-950">
   <div class="mx-auto max-w-2xl text-center">
     {% include "breadcrumbs.njk" %}
     {% if eyebrow %}
@@ -14,14 +14,14 @@ layout: layouts/base.njk
     {% endif %}
   </div>
 </div>
-<article class="px-6 {% if playgroundCta %}pb-8{% else %}pb-24{% endif %} lg:px-8">
+<article class="page-x {% if playgroundCta %}pb-8{% else %}pb-24{% endif %}">
   <div class="{% if wide %}mx-auto max-w-7xl{% else %}prose mx-auto max-w-2xl{% endif %}">
     {{ content | safe }}
   </div>
 </article>
 {% else %}
-<div class="page-top bg-white pb-16 sm:pb-20 dark:bg-gray-950">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="page-top page-x bg-white pb-16 sm:pb-20 dark:bg-gray-950">
+  <div class="mx-auto max-w-7xl">
     <div class="lg:max-w-2xl">
       {% include "breadcrumbs.njk" %}
       {% if eyebrow %}
@@ -39,7 +39,7 @@ layout: layouts/base.njk
 </div>
 {% endif %}
 {% if playgroundCta %}
-<div class="px-6 pb-16 sm:pb-24 lg:px-8">
+<div class="page-x pb-16 sm:pb-24">
   {% set playgroundCtaWide = wide %}
   {% include "playground-cta.njk" %}
 </div>

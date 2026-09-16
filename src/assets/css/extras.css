@@ -82,6 +82,11 @@
   @apply pt-20 md:pt-24 lg:pt-32;
 }
 
+/* Horizontal shell gutters. Put on the outer band; keep max-w-* children undpadded so chrome and content share one edge. */
+.page-x {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
 [x-cloak] {
   display: none !important;
 }
