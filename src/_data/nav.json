@@ -1,12 +1,6 @@
 {
   "developers": [
     {
-      "href": "https://docs.shellui.com",
-      "label": "Documentation",
-      "description": "Guides, references, and API docs.",
-      "icon": "book"
-    },
-    {
       "href": "/architecture/",
       "label": "Architecture",
       "description": "How the Shellui stack fits together.",
@@ -17,6 +11,12 @@
       "label": "Roadmap",
       "description": "Upcoming work and milestones.",
       "icon": "map"
+    },
+    {
+      "href": "https://docs.shellui.com",
+      "label": "Documentation",
+      "description": "Guides, references, and API docs.",
+      "icon": "book"
     },
     {
       "href": "/changelog/",

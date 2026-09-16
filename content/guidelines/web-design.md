@@ -1,7 +1,7 @@
 ---
 title: Web design guidelines
 description: UI, accessibility, and chrome rules for Shellui website, docs, and in-shell apps.
-version: 1.1.0
+version: 1.1.1
 ---
 
 These rules cover layout, interaction, and visual language on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Pair them with the [writing guidelines](/guidelines/writing/) for copy. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Keep AI, MCP, and marketplace chrome out of the default UI.
@@ -30,7 +30,7 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Authentication, admin (`/admin`), and Files are shell surfaces. Deep-link them; don't clone their navigation
 - Theme and locale live in the shell. Read them; don't ship a second theme picker in the app unless the app is the settings surface
 - Prefer existing Tailwind tokens. Primary accent is honey-gold (`--color-primary`, `--color-primary-ink`). Don't invent a second brand color
-- Marketing site chrome: fixed header (`h-16`), `page-top` padding, footer. Sticky in-page UI must clear the header
+- Marketing site chrome: fixed header (`h-16`), `.page-top` and `.page-x` gutters, footer. Put `.page-x` on the outer band and keep `max-w-*` children undpadded so they align with the header. Sticky in-page UI must clear the header
 - Logos and marks: download from [Brand assets](/brand-assets/). Don't stretch, recolor, or swap in a different wordmark
 
 ## Accessibility and focus
@@ -101,7 +101,7 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 
 ## Visual language
 
-- Density: developer-facing, not crowded. Match existing `page-top`, `max-w-5xl` / `max-w-3xl` prose, `rounded-xl` cards, and gray borders already on brand-assets and feature pages
+- Density: developer-facing, not crowded. Match existing `page-top`, `page-x`, `max-w-5xl` / `max-w-3xl` prose, `rounded-xl` cards, and gray borders already on brand-assets and feature pages
 - Light and dark are both first-class. Preview every screen in both. Marketing site: `html.dark` plus `localStorage.theme`. Product: `@shellui/core` theme
 - `color-scheme: dark` on `html` when the dark theme is active (fixes scrollbar and native controls)
 - `theme-color` meta matches the page background

@@ -4,7 +4,7 @@ title: Shellui | The web app development platform
 description: Shellui is an open-source microfrontend shell. Shared navigation, authentication, administration, and storage wrap your iframe app. The build is a static site you can host or deploy.
 ---
     {% set agentPrompt = "fetch https://shellui.ai to start with Shellui" %}
-    <div class="relative isolate px-4 page-top sm:px-6 lg:px-8">
+    <div class="relative isolate page-x page-top">
       <div class="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
         <div
           class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-30 bg-linear-to-tr from-primary to-amber-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] dark:opacity-20"
@@ -55,14 +55,20 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
               Get started
             </a>
             <a
-              href="{{ site.docs }}"
+              href="{{ site.playground }}"
               class="text-sm/6 font-semibold text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Read the docs <span aria-hidden="true">→</span>
+              Open playground <span aria-hidden="true">→</span>
             </a>
           </div>
           <p class="mt-8 text-sm text-gray-500 dark:text-gray-400">
             MIT licensed
+            <span class="mx-2 text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
+            Self hosted
+            <span class="mx-2 text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
+            <a href="{{ site.docs }}" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white">Docs</a>
             <span class="mx-2 text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
             <a href="{{ site.github }}" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
           </p>
@@ -76,7 +82,7 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
       </div>
     </div>
 
-    <section id="features" class="relative z-10 px-4 py-24 sm:px-6 lg:px-8">
+    <section id="features" class="relative z-10 page-x py-24">
       <div class="mx-auto max-w-7xl">
         <div class="max-w-2xl">
           <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
@@ -135,6 +141,11 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
             See all features
           </a>
         </p>
+
+        <div class="mt-16">
+          {% set playgroundCtaWide = true %}
+          {% include "playground-cta.njk" %}
+        </div>
       </div>
     </section>
 
@@ -144,7 +155,7 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
 
     {% include "home-deploy.njk" %}
 
-    <section id="audience" class="border-t border-gray-200 px-4 py-24 sm:px-6 lg:px-8 dark:border-gray-800">
+    <section id="audience" class="border-t border-gray-200 page-x py-24 dark:border-gray-800">
       <div class="mx-auto max-w-7xl">
         <div class="max-w-2xl">
           <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">

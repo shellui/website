@@ -5,7 +5,7 @@ description: Shellui is free forever under the MIT licence. Use the full platfor
 hideBreadcrumbs: true
 ---
 
-<div class="relative isolate bg-white px-4 page-top pb-24 sm:px-6 sm:pb-32 lg:px-8 dark:bg-gray-950">
+<div class="relative isolate bg-white page-x page-top pb-24 sm:pb-32 dark:bg-gray-950">
   <div class="mx-auto max-w-4xl text-center">
     <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl dark:text-white">Free under the MIT license</h1>
   </div>
