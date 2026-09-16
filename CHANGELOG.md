@@ -36,6 +36,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 - design.md v1.3.0 documents the island exception to the Eleventy plus Alpine stack rule.
 - Add hosting-service to `/architecture/` (Docker image behind shellui.app) as the sixth stack piece, last in the graph and reference list.
+- Keep Files and hosting-service (shellui.app all-in temporary deploys of the Browser group) in both architecture graph views; Supabase view shows the official mark on that project frame.
 - Pin the homepage `@shellui/sdk` tiny script to jsDelivr `@0.5.0` (was `0.5.0-beta.3`).
 - Curate the `/changelog/` latest entry for Shellui product 0.5.0: chrome actions, new init frameworks, OKLCH themes, layouts, CLI companion, identity login, and host detection. Deduplicate messy upstream notes and strip conflict markers.
 

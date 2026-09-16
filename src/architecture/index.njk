@@ -2,10 +2,10 @@
 layout: layouts/feature.njk
 wide: true
 title: Architecture | Shellui
-description: "Shellui is six open-source pieces: React frontend, identity-service, admin, storage-service, Files, and hosting-service. Trace them in an interactive graph, or swap auth and storage for Supabase."
+description: "Shellui is six open-source pieces: React frontend, identity-service, admin, storage-service, Files, and hosting-service. Trace them in an interactive graph, or keep Files and swap auth and storage for Supabase."
 eyebrow: Developers
 heading: How the stack fits together
-lede: Six open-source pieces make up a Shellui stack. Use all of them, or keep the frontend and swap authentication and storage for Supabase.
+lede: Six open-source pieces make up a Shellui stack. Use all of them, or keep the shell, your app, and Files, and swap authentication and storage for Supabase.
 pageScripts:
   - /assets/js/architecture-graph.js
 ---
@@ -13,7 +13,7 @@ pageScripts:
 {% import "stack-list.njk" as stack %}
 
 <div class="prose">
-  <p>Each piece has its own repository and lifecycle. Together they serve the Shellui frontend. The graph below draws the same stack twice: every Shellui service, then the version that uses <a href="https://supabase.com">Supabase</a> for authentication and storage.</p>
+  <p>Each piece has its own repository and lifecycle. Together they serve the Shellui frontend. The graph below draws the same stack twice: every Shellui service, then the version that uses <a href="https://supabase.com">Supabase</a> for authentication and storage. Files stays in both views.</p>
 </div>
 
 <section class="mt-10" aria-labelledby="map-the-stack">
@@ -64,14 +64,19 @@ pageScripts:
             <td>Held in your Supabase project</td>
           </tr>
           <tr>
+            <th scope="row">Files</th>
+            <td>Files app via <code>filesUrl</code>, against storage-service</td>
+            <td>Same Files app against Supabase Storage</td>
+          </tr>
+          <tr>
             <th scope="row">Admin at <code>/admin</code></th>
             <td>The admin app, set with <code>adminUrl</code></td>
             <td>Registers on a Shellui identity backend only</td>
           </tr>
           <tr>
             <th scope="row">Hosting</th>
-            <td>hosting-service Docker image at <a href="https://shellui.app">shellui.app</a></td>
-            <td>Verifies identity-service JWTs, so it stays with the full stack</td>
+            <td>hosting-service in your infrastructure; all-in temporary deploy of the Browser group at <a href="https://shellui.app">shellui.app</a></td>
+            <td>Same all-in temporary deploy at <a href="https://shellui.app">shellui.app</a></td>
           </tr>
         </tbody>
       </table>
@@ -108,12 +113,12 @@ pageScripts:
   </p>
 
   {{ stack.heading("Files", "Frontend", "files") }}
-  <p>Files is a React file manager app embedded in the administration iframe. It handles browsing, upload, download, folders, permissions, and share links. It is static files available at <a href="https://files.shellui.com">files.shellui.com</a>.</p>
+  <p>Files is a React file manager app. Set <code>filesUrl</code> and it handles browsing, upload, download, folders, permissions, and share links against storage-service or Supabase Storage. On the full stack it also embeds in the admin iframe. It is static files available at <a href="https://files.shellui.com">files.shellui.com</a>.</p>
   {{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind"]) }}
   <p>{{ repo.githubRepoButton("shellui/files") }}</p>
 
-  {{ stack.heading("hosting-service", "Backend", "hosting-service") }}
-  <p>The hosting-service is a Django API that deploys and serves Shellui apps. It ships as a Docker image and is available as <a href="https://shellui.app">shellui.app</a>.</p>
+  {{ stack.heading("hosting-service", "All-in temporary deploy", "hosting-service") }}
+  <p>The hosting-service is a Django API that deploys the whole Browser group as static files - the shell, your app, and Files - under one temporary URL. It ships as a Docker image in your infrastructure and is available as <a href="https://shellui.app">shellui.app</a>. Use it in either stack while you try the product.</p>
   {{ stack.stackList(["Python", "Django", "Django REST Framework", "django-storages", "Swagger", "ReDoc"]) }}
   <p class="flex flex-wrap gap-3">
     {{ repo.githubRepoButton("shellui/hosting-service") }}

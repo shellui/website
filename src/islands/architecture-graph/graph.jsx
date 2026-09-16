@@ -33,7 +33,7 @@ function buildNodes(view) {
     id: group.id,
     type: "frame",
     position: group.position,
-    data: { title: group.title, subtitle: group.subtitle },
+    data: { title: group.title, subtitle: group.subtitle, logo: group.logo },
     style: { width: group.size.width, height: group.size.height },
     draggable: false,
     selectable: false,
@@ -55,6 +55,7 @@ function buildNodes(view) {
       href: node.href,
       kind: node.kind,
       fill: Boolean(node.fill),
+      logo: node.logo,
     },
     style: { width: node.size.width, height: node.size.height },
     draggable: false,
@@ -125,14 +126,23 @@ function Canvas({ view }) {
   // Highlighting writes data attributes straight to the rendered graph. Routing
   // it through React state would rebuild the nodes under the pointer, and a tap
   // that lands between mousedown and mouseup would lose its click target.
+  // Edges that target a frame (for example hosting → Browser) also light up
+  // every stack card inside that frame so an all-in deploy reads as one unit.
   const highlight = useCallback(
     (activeId) => {
       const root = surfaceRef.current;
       if (!root) return;
+      const groupIds = new Set(view.groups.map((group) => group.id));
       const linked = new Set();
       for (const edge of view.edges) {
         if (edge.source === activeId) linked.add(edge.target);
         if (edge.target === activeId) linked.add(edge.source);
+      }
+      for (const id of [...linked]) {
+        if (!groupIds.has(id)) continue;
+        for (const node of view.nodes) {
+          if (node.parent === id) linked.add(node.id);
+        }
       }
       for (const element of root.querySelectorAll(".react-flow__node-stack[data-id]")) {
         const id = element.dataset.id;
@@ -143,6 +153,14 @@ function Canvas({ view }) {
             : linked.has(id)
               ? "linked"
               : "dim";
+      }
+      for (const element of root.querySelectorAll(".react-flow__node-frame[data-id]")) {
+        const id = element.dataset.id;
+        element.dataset.agState = !activeId
+          ? "idle"
+          : id === activeId || linked.has(id)
+            ? "linked"
+            : "dim";
       }
       for (const element of root.querySelectorAll("[data-edge-id]")) {
         const edge = view.edges.find((item) => item.id === element.dataset.edgeId);
@@ -281,6 +299,7 @@ function Canvas({ view }) {
           zoomOnDoubleClick={false}
           minZoom={0.35}
           maxZoom={1.6}
+          proOptions={{ hideAttribution: true }}
           onNodeMouseEnter={(_, node) => highlight(node.id)}
           onNodeMouseLeave={() => highlight(null)}
         >
