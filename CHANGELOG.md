@@ -25,7 +25,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 🛠 Improvements
 
-- Rewrite the homepage hero around a static-ship claim and a copyable `fetch https://shellui.ai` agent prompt. Restore `shellui init` framework chips (no Flutter), add a separate `shellui.app` deploy band, and drop the FAQ.
+- Rewrite the homepage hero around a static-ship claim and a copyable `fetch https://shellui.ai` agent prompt. Restore `shellui init` framework chips (no Flutter), add a separate `shellui.app` deploy band, and drop the FAQ. Frame init as starting your app; the shell wraps it.
 - Refresh the site footer: oversized cropped Shellui mark as a low-opacity watermark, clearer link hierarchy, and Playground / Hosting links.
 
 ## [0.5.0] - 2026-09-16
