@@ -5,9 +5,9 @@ wide: true
 playgroundCta: true
 hideBreadcrumbs: true
 title: Features | Shellui
-description: "The Shellui host: a microfrontend shell, authentication, an embedded admin, and private company file storage."
+description: "The Shellui host: a microfrontend shell, authentication, an embedded admin, private company file storage, and optional Tauri desktop bundles."
 heading: What the shell ships
-lede: Four host surfaces wrap your application. You bring the iframe app.
+lede: Four host surfaces wrap your application. You bring the iframe app. The same project can also ship as a native desktop app.
 ---
 
 <div class="grid gap-6 lg:gap-8">
@@ -21,7 +21,7 @@ lede: Four host surfaces wrap your application. You bring the iframe app.
       <ul class="mt-6 space-y-2 text-sm text-gray-600 dark:text-gray-400">
         <li>Sidebar, top bar, or window layout</li>
         <li>Toast, dialog, modal, and drawer from the SDK</li>
-        <li>One <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.config.ts</code></li>
+        <li>One <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.config.json</code></li>
       </ul>
       <span class="mt-8 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">Explore microfrontend</span>
     </div>
@@ -95,3 +95,41 @@ lede: Four host surfaces wrap your application. You bring the iframe app.
     </div>
   </a>
 </div>
+
+<section id="desktop" class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-800 sm:mt-20 sm:pt-20">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Desktop app with Tauri</h2>
+    <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">
+      Ship the same shell as a native desktop app. The CLI uses Tauri 2, writes the wrapper into <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/app/</code>, and keeps native project files out of your repo. Static web and desktop share one config and one iframe app.
+    </p>
+  </div>
+
+  <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
+    <div>
+      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Commands</h3>
+      <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li><code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui dev --app</code> opens a native window in development</li>
+        <li><code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui build --app</code> emits <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/web/</code> plus a platform bundle under <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/app/</code></li>
+        <li>Pass <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">--bundles</code> for formats such as <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">app,dmg</code> on macOS</li>
+      </ul>
+      <div class="mt-6 max-w-xl">
+        {% highlight "bash", "terminal" %}
+shellui build --app
+        {% endhighlight %}
+      </div>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-gray-900 dark:text-white">What you bring</h3>
+      <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        <li>Rust via rustup, plus the usual Tauri platform prerequisites</li>
+        <li>Optional root <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">tauri.conf.json</code> for product name, identifier, and icons</li>
+        <li><code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">port</code> and <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">title</code> from <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui.config.json</code> sync into the wrapper</li>
+      </ul>
+      <p class="mt-6 text-sm text-gray-500 dark:text-gray-400">
+        <a href="{{ site.docs }}/tauri/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Ship a desktop app</a>
+        ·
+        <a href="/#config" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">One config file</a>
+      </p>
+    </div>
+  </div>
+</section>

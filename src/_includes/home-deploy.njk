@@ -2,10 +2,10 @@
   <div class="mx-auto max-w-7xl">
     <div class="max-w-2xl">
       <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
-        Ship a static site
+        Ship static files, or a native app
       </h2>
       <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-        <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui build</code> writes a static application to <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/web/</code>. Host those files on any static origin, or deploy a preview with the CLI. Hosting on <a href="{{ site.hosting }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">shellui.app</a> is optional.
+        <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui build</code> writes a static application to <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/web/</code>. Add <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">--app</code> to also bundle a Tauri 2 desktop wrapper under <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/app/</code>. Hosting on <a href="{{ site.hosting }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">shellui.app</a> is optional.
       </p>
     </div>
 
@@ -39,6 +39,22 @@
           Open shellui.app <span aria-hidden="true">→</span>
         </a>
       </div>
+    </div>
+
+    <div class="mt-12 max-w-3xl border-t border-gray-200 pt-10 dark:border-gray-800">
+      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Optional: native desktop with Tauri</h3>
+      <p class="mt-2 text-base/7 text-gray-600 dark:text-gray-400">
+        The same project can ship a desktop app. The CLI uses Tauri 2, generates the wrapper under <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/app/</code>, and does not ask you to commit native project files. Requires Rust and platform build tools.
+      </p>
+      <div class="cli-pane mt-6 overflow-hidden rounded-xl border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
+        <div class="border-b border-gray-200 px-3 py-1.5 font-mono text-[0.65rem] text-gray-500 dark:border-gray-800">terminal</div>
+        <pre class="overflow-x-auto px-3 py-3 font-mono text-sm leading-relaxed text-gray-900 sm:px-4 dark:text-gray-50"><code><span class="select-none text-gray-400 dark:text-gray-600" aria-hidden="true">$ </span>shellui build --app</code></pre>
+      </div>
+      <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
+        <a href="/features/#desktop" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Features: desktop app</a>
+        ·
+        <a href="{{ site.docs }}/tauri/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Ship a desktop app</a>
+      </p>
     </div>
   </div>
 </section>
