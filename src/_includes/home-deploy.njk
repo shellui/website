@@ -42,12 +42,20 @@
     </div>
 
     <div class="mt-12 max-w-3xl border-t border-gray-200 pt-10 dark:border-gray-800">
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Optional: native desktop with Tauri</h3>
+      <h3 class="flex items-center gap-2 text-base font-semibold text-gray-900 dark:text-white">
+        {% set tauriIconClass = "size-5" %}
+        {% include "tauri-icon.njk" %}
+        Optional: native desktop with Tauri
+      </h3>
       <p class="mt-2 text-base/7 text-gray-600 dark:text-gray-400">
         The same project can ship a desktop app. The CLI uses Tauri 2, generates the wrapper under <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/app/</code>, and does not ask you to commit native project files. Requires Rust and platform build tools.
       </p>
       <div class="cli-pane mt-6 overflow-hidden rounded-xl border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
-        <div class="border-b border-gray-200 px-3 py-1.5 font-mono text-[0.65rem] text-gray-500 dark:border-gray-800">terminal</div>
+        <div class="flex items-center gap-2 border-b border-gray-200 px-3 py-1.5 font-mono text-[0.65rem] text-gray-500 dark:border-gray-800">
+          {% set tauriIconClass = "size-3.5" %}
+          {% include "tauri-icon.njk" %}
+          <span>terminal</span>
+        </div>
         <pre class="overflow-x-auto px-3 py-3 font-mono text-sm leading-relaxed text-gray-900 sm:px-4 dark:text-gray-50"><code><span class="select-none text-gray-400 dark:text-gray-600" aria-hidden="true">$ </span>shellui build --app</code></pre>
       </div>
       <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">

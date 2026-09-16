@@ -98,7 +98,11 @@ lede: Four host surfaces wrap your application. You bring the iframe app. The sa
 
 <section id="desktop" class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-800 sm:mt-20 sm:pt-20">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">Desktop app with Tauri</h2>
+    <h2 class="flex items-center gap-3 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
+      {% set tauriIconClass = "size-7 sm:size-8" %}
+      {% include "tauri-icon.njk" %}
+      Desktop app with Tauri
+    </h2>
     <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">
       Ship the same shell as a native desktop app. The CLI uses Tauri 2, writes the wrapper into <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/app/</code>, and keeps native project files out of your repo. Static web and desktop share one config and one iframe app.
     </p>
@@ -106,7 +110,11 @@ lede: Four host surfaces wrap your application. You bring the iframe app. The sa
 
   <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
     <div>
-      <h3 class="text-base font-semibold text-gray-900 dark:text-white">Commands</h3>
+      <h3 class="flex items-center gap-2 text-base font-semibold text-gray-900 dark:text-white">
+        {% set tauriIconClass = "size-4" %}
+        {% include "tauri-icon.njk" %}
+        Commands
+      </h3>
       <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
         <li><code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui dev --app</code> opens a native window in development</li>
         <li><code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui build --app</code> emits <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/web/</code> plus a platform bundle under <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/app/</code></li>

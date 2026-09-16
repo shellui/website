@@ -168,7 +168,11 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
             <dd class="mt-1 text-base/7 text-gray-600 sm:mt-0 dark:text-gray-400">Build static files, host them where you already ship, or distribute the output yourself.</dd>
           </div>
           <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
-            <dt class="text-base font-semibold text-gray-900 dark:text-white">Native desktop</dt>
+            <dt class="flex items-center gap-2 text-base font-semibold text-gray-900 dark:text-white">
+              {% set tauriIconClass = "size-4" %}
+              {% include "tauri-icon.njk" %}
+              Native desktop
+            </dt>
             <dd class="mt-1 text-base/7 text-gray-600 sm:mt-0 dark:text-gray-400">
               <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui build --app</code> wraps the same shell with Tauri 2. See
               <a href="/features/#desktop" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Features</a>
