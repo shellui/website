@@ -52,30 +52,49 @@ shellui.toast({
 <section class="mt-20" aria-labelledby="layout-modes">
   <div class="max-w-2xl">
     <h2 id="layout-modes" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Choose a layout for your product</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">layout</code> in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code> to choose how navigation surrounds your apps. The sidebar is the default. Design your app to fit its iframe so it adapts to the layout you choose.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">layout</code> in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. Every embedded app inherits it. Default is <code class="rounded bg-muted px-1.5 py-0.5 text-sm">sidebar</code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Production layouts are <code class="rounded bg-muted px-1.5 py-0.5 text-sm">sidebar</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">sidebar-inset</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">app-bar</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">app-bar-inset</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">floating</code>. Design the app to fill its iframe so it follows the layout you pick.</p>
   </div>
 
-  <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
+  <div class="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 md:gap-6 lg:gap-8">
     <div>
       {% set layoutMode = "sidebar" %}
       {% include "shell-layout-anim.njk" %}
       <h3 class="mt-5 text-base font-semibold text-foreground">Sidebar</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Keep navigation visible beside your app. Choose <code class="rounded bg-muted px-1.5 py-0.5 text-sm">sidebar-inset</code> to add space around the main content.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Persistent navigation beside the iframe. Config value: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">sidebar</code>.</p>
+    </div>
+    <div>
+      {% set layoutMode = "sidebar-inset" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-foreground">Sidebar inset</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Same sidebar with a padded, rounded frame around the app. Config value: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">sidebar-inset</code>.</p>
     </div>
     <div>
       {% set layoutMode = "topbar" %}
       {% include "shell-layout-anim.njk" %}
       <h3 class="mt-5 text-base font-semibold text-foreground">App bar</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app-bar</code> and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app-bar-inset</code> move navigation to a compact top bar.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Compact top navigation. Config value: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app-bar</code>.</p>
+    </div>
+    <div>
+      {% set layoutMode = "topbar-inset" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-foreground">App bar inset</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Top bar with the same padded frame. Config value: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app-bar-inset</code>.</p>
+    </div>
+    <div>
+      {% set layoutMode = "floating" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-foreground">Floating</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Glass chrome over full-bleed content. Desktop uses a floating sidebar; smaller viewports use a bottom tab bar. Config value: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">floating</code>.</p>
     </div>
     <div>
       {% set layoutMode = "window" %}
       {% include "shell-layout-anim.njk" %}
       <h3 class="mt-5 text-base font-semibold text-foreground">Windows</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">windows</code> is a proof of concept: taskbar, start menu, one window per nav item. Not recommended for production.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Taskbar and one window per nav item. Proof of concept; not for production. Config value: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">windows</code>.</p>
     </div>
   </div>
-  <p class="mt-8 max-w-2xl text-sm/6 text-muted-foreground">For full-width content, choose <code class="rounded bg-muted px-1.5 py-0.5 text-sm">floating</code> navigation or hide navigation with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">fullscreen</code>.</p>
+  <p class="mt-8 max-w-2xl text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">fullscreen</code> hides navigation chrome. Size iframe UI to 100% of the iframe, not <code class="rounded bg-muted px-1.5 py-0.5 text-sm">100vh</code>.</p>
 </section>
 
 <section class="mt-20" aria-labelledby="sdk-chrome">

@@ -796,6 +796,62 @@
   height: 1.45rem;
 }
 
+.shell-anim--sidebar-inset .shell-anim__content,
+.shell-anim--topbar-inset .shell-anim__content {
+  margin: 0.4rem;
+  padding: 6% 8%;
+  border-radius: 0.45rem;
+  background: rgb(255 255 255);
+  box-shadow: 0 0 0 1px rgb(17 24 39 / 0.06);
+}
+
+.dark .shell-anim--sidebar-inset .shell-anim__content,
+.dark .shell-anim--topbar-inset .shell-anim__content {
+  background: rgb(17 24 39);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08);
+}
+
+.shell-anim--topbar-inset .shell-anim__sidebar {
+  width: 0;
+}
+
+.shell-anim--topbar-inset .shell-anim__topbar {
+  height: 1.45rem;
+}
+
+.shell-anim--floating .shell-anim__body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.shell-anim--floating .shell-anim__sidebar {
+  position: absolute;
+  z-index: 3;
+  inset: 0.4rem auto 0.4rem 0.4rem;
+  width: 27%;
+  border-radius: 0.55rem;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.28),
+    0 8px 20px rgb(0 0 0 / 0.16);
+}
+
+.shell-anim--floating .shell-anim__topbar {
+  height: 0;
+}
+
+.shell-anim--floating .shell-anim__main {
+  background: rgb(255 255 255);
+}
+
+.dark .shell-anim--floating .shell-anim__main {
+  background: rgb(3 7 18);
+}
+
+.shell-anim--floating .shell-anim__content {
+  padding-left: calc(27% + 0.9rem);
+}
+
 .shell-anim--window .shell-anim__sidebar {
   width: 0;
 }

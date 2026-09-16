@@ -5,7 +5,7 @@ export default [
     title: "Apps and navigation",
     benefit: "Bring apps built with different frameworks into one interface. Share navigation, themes, and dialogs through the shell.",
     points: [
-      "Sidebar, app bar, or fullscreen layouts",
+      "Sidebar, sidebar inset, app bar, or floating layouts",
       "Shared theme and language settings",
       "Toasts, dialogs, modals, and drawers"
     ],
