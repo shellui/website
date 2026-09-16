@@ -4,12 +4,28 @@ title: Changelog | Shellui
 description: "Release notes for each Shellui version: features, fixes, and breaking changes across the shell, SDK, identity, admin, and storage."
 eyebrow: Developers
 heading: What changed in each release
-lede: Features, fixes, and breaking changes across the shell, SDK, identity, admin, and storage.
+lede: Shellui 0.5.0 is the latest release. Features, fixes, and breaking changes across the shell, SDK, identity, admin, and storage.
+prose: false
 ---
+<div class="flex flex-col gap-4 rounded-xl border border-gray-200 bg-gray-50 p-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6 dark:border-gray-800 dark:bg-white/5">
+  <div class="min-w-0">
+    <p class="text-base text-gray-900 dark:text-white">v0.5.0 · 16 September 2026</p>
+    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Chrome actions SDK, new <code class="rounded bg-gray-100 px-1 py-0.5 text-xs dark:bg-gray-800">shellui init</code> frameworks, OKLCH themes, inset layouts, CLI companion, and identity-hosted login.</p>
+  </div>
+  <a
+    href="https://github.com/shellui/shellui/releases/tag/v0.5.0"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex shrink-0 items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+  >
+    GitHub release
+  </a>
+</div>
+
 {% if changelog.length == 0 %}
-<p class="text-gray-500 dark:text-gray-400">Changelog is unavailable. Check GitHub or try again later.</p>
+<p class="mt-10 text-gray-500 dark:text-gray-400">Changelog is unavailable. Check GitHub or try again later.</p>
 {% endif %}
-<div x-data="{ allOpen: false }">
+<div class="mt-10" x-data="{ allOpen: false }">
 <div class="mb-4 flex justify-end">
   <button type="button" class="min-h-11 rounded-md px-2 text-sm font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" @click="allOpen = !allOpen; $dispatch('toggle-all', { open: allOpen })" x-text="allOpen ? 'Collapse all' : 'Expand all'"></button>
 </div>
@@ -39,9 +55,9 @@ lede: Features, fixes, and breaking changes across the shell, SDK, identity, adm
         {% for section in release.sections %}
           <div>
             <h3 class="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300 {{ 'mt-0' if loop.first else 'mt-4' }}">{{ section.heading }}</h3>
-            <ul class="space-y-2 !mb-0">
+            <ul class="space-y-2">
               {% for item in section.items %}
-                <li class="flex gap-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300 !mb-0 !p-0" style="list-style:none;margin:0;padding:0">
+                <li class="flex gap-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
                   <span class="mt-2 size-1 shrink-0 rounded-full bg-gray-300 dark:bg-gray-600"></span>
                   <span>{{ item | safe }}</span>
                 </li>
@@ -55,4 +71,4 @@ lede: Features, fixes, and breaking changes across the shell, SDK, identity, adm
 {% endfor %}
 </div>
 </div>
-<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Upcoming work is on the <a href="/roadmap/">roadmap</a>.</p>
+<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Upcoming work is on the <a href="/roadmap/" class="text-primary-ink hover:underline dark:text-primary">roadmap</a>. Full notes also live on <a href="https://github.com/shellui/shellui/blob/main/CHANGELOG.md" class="text-primary-ink hover:underline dark:text-primary" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>

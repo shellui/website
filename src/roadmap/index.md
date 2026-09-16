@@ -36,6 +36,13 @@ lede: Past milestones and upcoming work. Track GitHub milestones for current sta
         <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Full-time work on Shellui toward a production release.</p>
       </div>
 
+      <div class="relative">
+        <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full bg-primary-ink ring-4 ring-white dark:bg-primary dark:ring-gray-950"></div>
+        <time datetime="2026-09" class="text-sm font-semibold tabular-nums text-primary-ink dark:text-primary">September 2026</time>
+        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.5 - Pixel Perfect</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Chrome actions SDK, OKLCH themes, inset layouts, CLI companion, and new <code class="rounded bg-gray-100 px-1 py-0.5 text-sm dark:bg-gray-800">shellui init</code> frameworks. See the <a href="/changelog/">changelog</a>.</p>
+      </div>
+
     </div>
 
     <div class="relative mt-4 pl-8">
@@ -43,13 +50,6 @@ lede: Past milestones and upcoming work. Track GitHub milestones for current sta
     </div>
 
     <div class="relative mt-4 space-y-12 border-l-2 border-dashed border-gray-300 pl-8 dark:border-gray-700">
-
-      <div class="relative">
-        <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full border-2 border-gray-400 bg-white dark:border-gray-500 dark:bg-gray-950"></div>
-        <time datetime="2026-Q3" class="text-sm font-semibold tabular-nums text-gray-500 dark:text-gray-400">Q3 2026</time>
-        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.5 - Pixel Perfect</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Host and admin UI aligned to one visual system across screens.</p>
-      </div>
 
       <div class="relative">
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full border-2 border-gray-400 bg-white dark:border-gray-500 dark:bg-gray-950"></div>
