@@ -21,25 +21,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
-## [Unreleased]
-
-### ✨ Feature
-
-- Add iOS app icon variants (black, white, gold) to Brand assets for occasional Tauri, store, and marketing use.
-
-### 🛠 Improvements
-
-- Rename feature page URLs to match their titles: `/features/apps-and-navigation/` and `/features/web-and-desktop/`. Keep `/features/microfrontend/` and `/features/ship/` as redirects.
-- Rewrite the homepage hero around a static-ship claim and a copyable `fetch https://shellui.ai` agent prompt. Restore `shellui init` framework chips (no Flutter), add a separate `shellui.app` deploy band, and drop the FAQ.
-- Put the playground back on the homepage: secondary hero CTA plus the shared playground band after features (try before you scaffold).
-- Add Self hosted to the homepage hero trust line beside MIT licensed.
-- Reorder the Developers nav: Architecture, Roadmap, Documentation, Changelog (desktop, mobile, and footer).
-- Align site-wide horizontal gutters: add `.page-x`, put padding on the outer band only, and keep `max-w-*` children undpadded so the header matches page and footer content edges.
-- Refresh the site footer: oversized cropped Shellui mark as a low-opacity watermark, clearer link hierarchy, and Playground / Hosting links.
-
-### 📚 Documentation
-
-- design.md v1.3.1 and web-design.md v1.1.1 document `.page-x` and the outer-band padding rule.
 
 ## [0.5.0] - 2026-09-16
 
