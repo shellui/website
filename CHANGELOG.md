@@ -35,6 +35,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### 📚 Documentation
 
 - design.md v1.3.0 documents the island exception to the Eleventy plus Alpine stack rule.
+- Add hosting-service to `/architecture/` (Docker image behind shellui.app) as the sixth stack piece, last in the graph and reference list.
 
 ## [0.5.0] - 2026-09-15
 

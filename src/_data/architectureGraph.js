@@ -44,7 +44,7 @@ const full = {
   id: "full",
   label: "Full Shellui stack",
   summary:
-    "Five Shellui pieces plus the blob store you point storage-service at. The shell hosts every frontend in an iframe and holds the session.",
+    "Six Shellui pieces plus the blob store you point storage-service at. The shell hosts every frontend in an iframe and holds the session.",
   groups: [
     { ...GROUP_CLIENT, position: { x: 0, y: 0 }, size: { width: 560, height: 484 } },
     { ...GROUP_INFRA, position: { x: 660, y: 0 }, size: { width: 300, height: 484 } },
@@ -117,6 +117,16 @@ const full = {
       description: "Where storage-service writes the bytes.",
       position: { x: 1000, y: 322 },
       size: { width: 248, height: 120 },
+    },
+    {
+      id: "hosting",
+      title: "hosting-service",
+      role: "Backend",
+      kind: "backend",
+      description: "Docker image that deploys and serves Shellui apps at shellui.app.",
+      href: "#hosting-service",
+      position: { x: 660, y: 520 },
+      size: { width: 588, height: 112 },
     },
   ],
   edges: [
@@ -195,6 +205,15 @@ const full = {
       sourceHandle: "right-s",
       target: "blobs",
       targetHandle: "left-t",
+    },
+    {
+      id: "hosting-identity",
+      source: "hosting",
+      sourceHandle: "top-s",
+      target: "identity",
+      targetHandle: "bottom-t",
+      label: "JWKS verify",
+      labelT: 0.4,
     },
   ],
   omitted: null,
@@ -278,6 +297,7 @@ const supabase = {
     items: [
       "identity-service and storage-service, replaced by the two Supabase services",
       "admin and Files, which register on a Shellui identity backend",
+      "hosting-service, which verifies identity-service JWTs",
     ],
   },
 };

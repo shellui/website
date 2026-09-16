@@ -2,10 +2,10 @@
 layout: layouts/feature.njk
 wide: true
 title: Architecture | Shellui
-description: "Shellui is five open-source pieces: React frontend, identity-service, admin, storage-service, and Files. Trace them in an interactive graph, or swap auth and storage for Supabase."
+description: "Shellui is six open-source pieces: React frontend, identity-service, admin, storage-service, Files, and hosting-service. Trace them in an interactive graph, or swap auth and storage for Supabase."
 eyebrow: Developers
 heading: How the stack fits together
-lede: Five open-source pieces make up a Shellui stack. Use all of them, or keep the frontend and swap authentication and storage for Supabase.
+lede: Six open-source pieces make up a Shellui stack. Use all of them, or keep the frontend and swap authentication and storage for Supabase.
 pageScripts:
   - /assets/js/architecture-graph.js
 ---
@@ -68,6 +68,11 @@ pageScripts:
             <td>The admin app, set with <code>adminUrl</code></td>
             <td>Registers on a Shellui identity backend only</td>
           </tr>
+          <tr>
+            <th scope="row">Hosting</th>
+            <td>hosting-service Docker image at <a href="https://shellui.app">shellui.app</a></td>
+            <td>Verifies identity-service JWTs, so it stays with the full stack</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -106,4 +111,12 @@ pageScripts:
   <p>Files is a React file manager app embedded in the administration iframe. It handles browsing, upload, download, folders, permissions, and share links. It is static files available at <a href="https://files.shellui.com">files.shellui.com</a>.</p>
   {{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind"]) }}
   <p>{{ repo.githubRepoButton("shellui/files") }}</p>
+
+  {{ stack.heading("hosting-service", "Backend", "hosting-service") }}
+  <p>The hosting-service is a Django API that deploys and serves Shellui apps. It ships as a Docker image and is available as <a href="https://shellui.app">shellui.app</a>.</p>
+  {{ stack.stackList(["Python", "Django", "Django REST Framework", "django-storages", "Swagger", "ReDoc"]) }}
+  <p class="flex flex-wrap gap-3">
+    {{ repo.githubRepoButton("shellui/hosting-service") }}
+    {{ repo.dockerImageButton("shellui/hosting-service") }}
+  </p>
 </div>
