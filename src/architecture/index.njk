@@ -1,43 +1,127 @@
 ---
-layout: layouts/page.njk
+layout: layouts/feature.njk
+wide: true
 title: Architecture | Shellui
-description: "Shellui is five open-source pieces: React frontend, identity-service, admin, storage-service, and Files. Swap auth and storage for Supabase if you prefer."
+description: "Shellui is six open-source pieces: React frontend, identity-service, admin, storage-service, Files, and hosting-service. Trace them in an interactive graph, or keep Files and swap auth and storage for Supabase."
 eyebrow: Developers
 heading: How the stack fits together
-lede: Five open-source pieces make up a Shellui stack. Use all of them, or keep the frontend and swap authentication and storage for Supabase.
+lede: Six open-source pieces make up a Shellui stack. Use all of them, or keep the shell, your app, and Files, and swap authentication and storage for Supabase.
+pageScripts:
+  - /assets/js/architecture-graph.js
 ---
 {% import "github-repo-button.njk" as repo %}
 {% import "stack-list.njk" as stack %}
 
-<p>Each piece has its own repository and lifecycle. Together they serve the Shellui frontend. You can replace authentication and storage with <a href="https://supabase.com">Supabase</a> if that is already in your stack.</p>
+<div class="prose">
+  <p>Each piece has its own repository and lifecycle. Together they serve the Shellui frontend. The graph below draws the same stack twice: every Shellui service, then the version that uses <a href="https://supabase.com">Supabase</a> for authentication and storage. Files stays in both views.</p>
+</div>
 
-{{ stack.heading("Shellui", "Frontend") }}
-<p>The frontend lives in the shellui monorepo, a TypeScript React runtime. <code>@shellui/core</code> owns navigation, layout modes, themes, i18n, modals, and drawers. <code>@shellui/sdk</code> lets apps in iframes talk to the shell. <code>@shellui/cli</code> scaffolds and serves projects. Any stack can run inside the Shellui iframe.</p>
-{{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind", "Workbox", "Roarr", "Sentry"]) }}
-<p>{{ repo.githubRepoButton("shellui/shellui") }}</p>
+<section class="mt-10" aria-labelledby="map-the-stack">
+  <div class="prose">
+    <h2 id="map-the-stack">Map the stack</h2>
+    <p>Pick a stack, then follow one box at a time. Pointing at a box or tabbing to it highlights what that box talks to, and each box title links to its section further down. Every arrow is also written out under the graph.</p>
+  </div>
+  {% include "architecture-graph.njk" %}
+</section>
 
-{{ stack.heading("Authentication", "Backend") }}
-<p>The default backend is identity-service, a Django API for OAuth (GitHub, Google, Microsoft), JWT sessions, and JSON Web Key Set (JWKS) verification. It ships as a Docker image and is deployed at <a href="https://id.shellui.com">id.shellui.com</a>. You can replace it with Supabase Auth - the shell already supports both.</p>
-{{ stack.stackList(["Python", "Django", "django-allauth", "Django REST Framework", "Swagger", "ReDoc"]) }}
-<p class="flex flex-wrap gap-3">
-  {{ repo.githubRepoButton("shellui/identity-service") }}
-  {{ repo.dockerImageButton("shellui/identity-service") }}
-</p>
+<section class="mt-16" aria-labelledby="what-supabase-replaces">
+  <div class="prose">
+    <h2 id="what-supabase-replaces">What Supabase replaces</h2>
+    <p>The shell and your app stay the same in both views. <code>backend.type</code> and <code>storage.url</code> in <code>shellui.config.ts</code> decide which backend answers.</p>
+    <div class="prose-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Piece</th>
+            <th scope="col">Full Shellui stack</th>
+            <th scope="col">Shellui + Supabase</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Shell frontend</th>
+            <td><code>@shellui/core</code></td>
+            <td><code>@shellui/core</code></td>
+          </tr>
+          <tr>
+            <th scope="row">Your app</th>
+            <td>Iframe with <code>@shellui/sdk</code></td>
+            <td>Iframe with <code>@shellui/sdk</code></td>
+          </tr>
+          <tr>
+            <th scope="row">Sign-in</th>
+            <td>identity-service, <code>backend.type: "shellui"</code></td>
+            <td>Supabase Auth, <code>backend.type: "supabase"</code></td>
+          </tr>
+          <tr>
+            <th scope="row">Storage calls</th>
+            <td>storage-service at <code>/storage/v1/*</code></td>
+            <td>Supabase Storage at <code>/storage/v1/*</code></td>
+          </tr>
+          <tr>
+            <th scope="row">Blobs</th>
+            <td>S3 or the local filesystem</td>
+            <td>Held in your Supabase project</td>
+          </tr>
+          <tr>
+            <th scope="row">Files</th>
+            <td>Files app via <code>filesUrl</code>, against storage-service</td>
+            <td>Same Files app against Supabase Storage</td>
+          </tr>
+          <tr>
+            <th scope="row">Admin at <code>/admin</code></th>
+            <td>The admin app, set with <code>adminUrl</code></td>
+            <td>Registers on a Shellui identity backend only</td>
+          </tr>
+          <tr>
+            <th scope="row">Hosting</th>
+            <td>hosting-service in your infrastructure; all-in temporary deploy of the Browser group at <a href="https://shellui.app">shellui.app</a></td>
+            <td>Same all-in temporary deploy at <a href="https://shellui.app">shellui.app</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Embedded apps never call the storage API directly. They call <code>shellui.storage</code>, the SDK posts to the root shell, and the shell runs the request against <code>storage.url</code> with the signed-in user's token. That indirection is why the same app code works in both views.</p>
+  </div>
+</section>
 
-{{ stack.heading("Administration", "Frontend") }}
-<p>The admin panel is a Vite + React app embedded in the shell at <code>/admin</code>. It manages users, company access, and operational data. It is static files currently deployed at <a href="https://admin.shellui.com">admin.shellui.com</a>.</p>
-{{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind"]) }}
-<p>{{ repo.githubRepoButton("shellui/admin") }}</p>
+<div class="prose mt-16">
+  {{ stack.heading("Shellui shell", "Frontend", "shell") }}
+  <p>The frontend lives in the shellui monorepo, a TypeScript React runtime. <code>@shellui/core</code> owns navigation, layout modes, themes, i18n, modals, and drawers. <code>@shellui/sdk</code> lets apps in iframes talk to the shell. <code>@shellui/cli</code> scaffolds and serves projects. Any stack can run inside the Shellui iframe.</p>
+  {{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind", "Workbox", "Roarr", "Sentry"]) }}
+  <p>{{ repo.githubRepoButton("shellui/shellui") }}</p>
 
-{{ stack.heading("Storage", "Backend") }}
-<p>The storage-service is a Django API with a Supabase-compatible Storage REST surface. Blobs go to S3 or the local filesystem. It ships as a Docker image and is deployed at <a href="https://storage.shellui.com">storage.shellui.com</a>. You can replace it with Supabase Storage.</p>
-{{ stack.stackList(["Python", "Django", "Django REST Framework", "django-storages", "Swagger", "ReDoc"]) }}
-<p class="flex flex-wrap gap-3">
-  {{ repo.githubRepoButton("shellui/storage-service") }}
-  {{ repo.dockerImageButton("shellui/storage-service") }}
-</p>
+  {{ stack.heading("identity-service", "Backend", "identity-service") }}
+  <p>The default authentication backend is identity-service, a Django API for OAuth (GitHub, Google, Microsoft), JWT sessions, and JSON Web Key Set (JWKS) verification. It ships as a Docker image and is deployed at <a href="https://id.shellui.com">id.shellui.com</a>. You can replace it with Supabase Auth - the shell already supports both.</p>
+  {{ stack.stackList(["Python", "Django", "django-allauth", "Django REST Framework", "Swagger", "ReDoc"]) }}
+  <p class="flex flex-wrap gap-3">
+    {{ repo.githubRepoButton("shellui/identity-service") }}
+    {{ repo.dockerImageButton("shellui/identity-service") }}
+  </p>
 
-{{ stack.heading("Files", "Frontend") }}
-<p>Files is a React file manager app embedded in the administration iframe. It handles browsing, upload, download, folders, permissions, and share links. It is static files available at <a href="https://files.shellui.com">files.shellui.com</a>.</p>
-{{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind"]) }}
-<p>{{ repo.githubRepoButton("shellui/files") }}</p>
+  {{ stack.heading("admin", "Frontend", "admin") }}
+  <p>The admin panel is a Vite + React app embedded in the shell at <code>/admin</code>. It manages users, company access, and operational data, and it reads the same identity-service as sign-in. It is static files currently deployed at <a href="https://admin.shellui.com">admin.shellui.com</a>.</p>
+  {{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind"]) }}
+  <p>{{ repo.githubRepoButton("shellui/admin") }}</p>
+
+  {{ stack.heading("storage-service", "Backend", "storage-service") }}
+  <p>The storage-service is a Django API with a Supabase-compatible Storage REST surface at <code>/storage/v1/*</code>. It verifies identity-service JWTs and writes blobs to S3 or the local filesystem. It ships as a Docker image and is deployed at <a href="https://storage.shellui.com">storage.shellui.com</a>. You can replace it with Supabase Storage.</p>
+  {{ stack.stackList(["Python", "Django", "Django REST Framework", "django-storages", "Swagger", "ReDoc"]) }}
+  <p class="flex flex-wrap gap-3">
+    {{ repo.githubRepoButton("shellui/storage-service") }}
+    {{ repo.dockerImageButton("shellui/storage-service") }}
+  </p>
+
+  {{ stack.heading("Files", "Frontend", "files") }}
+  <p>Files is a React file manager app. Set <code>filesUrl</code> and it handles browsing, upload, download, folders, permissions, and share links against storage-service or Supabase Storage. On the full stack it also embeds in the admin iframe. It is static files available at <a href="https://files.shellui.com">files.shellui.com</a>.</p>
+  {{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind"]) }}
+  <p>{{ repo.githubRepoButton("shellui/files") }}</p>
+
+  {{ stack.heading("hosting-service", "All-in temporary deploy", "hosting-service") }}
+  <p>The hosting-service is a Django API that deploys the whole Browser group as static files - the shell, your app, and Files - under one temporary URL. It ships as a Docker image in your infrastructure and is available as <a href="https://shellui.app">shellui.app</a>. Use it in either stack while you try the product.</p>
+  {{ stack.stackList(["Python", "Django", "Django REST Framework", "django-storages", "Swagger", "ReDoc"]) }}
+  <p class="flex flex-wrap gap-3">
+    {{ repo.githubRepoButton("shellui/hosting-service") }}
+    {{ repo.dockerImageButton("shellui/hosting-service") }}
+  </p>
+</div>

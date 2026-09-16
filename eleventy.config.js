@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { IdAttributePlugin } from "@11ty/eleventy";
+import * as esbuild from "esbuild";
 import { createHighlighter } from "shiki";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
@@ -37,6 +38,34 @@ function buildCss() {
   execSync(
     "npx @tailwindcss/cli -i ./src/assets/css/input.css -o ./_site/assets/css/site.css --minify",
     { stdio: "inherit", cwd: root },
+  );
+}
+
+// Islands are self-contained React bundles loaded on demand by a page. CSS is
+// inlined into the bundle so no other page pays for the stylesheet.
+const ISLANDS = [
+  {
+    entry: "src/islands/architecture-graph/index.jsx",
+    outfile: "_site/assets/js/architecture-graph.island.js",
+  },
+];
+
+function buildIslands() {
+  return Promise.all(
+    ISLANDS.map(({ entry, outfile }) =>
+      esbuild.build({
+        entryPoints: [path.join(root, entry)],
+        outfile: path.join(root, outfile),
+        bundle: true,
+        format: "esm",
+        target: ["es2022"],
+        jsx: "automatic",
+        minify: true,
+        legalComments: "none",
+        loader: { ".css": "text" },
+        define: { "process.env.NODE_ENV": '"production"' },
+      }),
+    ),
   );
 }
 
@@ -176,6 +205,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget("src/assets/css/");
   eleventyConfig.addWatchTarget("src/assets/js/");
   eleventyConfig.addWatchTarget("src/blocks/");
+  eleventyConfig.addWatchTarget("src/islands/");
   eleventyConfig.addWatchTarget("content/guidelines/");
 
   eleventyConfig.addPassthroughCopy({
@@ -273,6 +303,7 @@ export default async function (eleventyConfig) {
   );
 
   eleventyConfig.on("eleventy.before", buildCss);
+  eleventyConfig.on("eleventy.before", buildIslands);
 
   eleventyConfig.on("eleventy.after", ({ dir }) => {
     if (hashAssets) fingerprintSite(dir.output);

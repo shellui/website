@@ -21,10 +21,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
-## [0.5.0] - 2026-09-16
+## [0.5.0] - 2026-MM-DD
 
 ### ✨ Feature
 
+- Add `/llms.txt` agent index (product summary, curated links, CLI happy path) and point to it from the guidelines hub.
+- Rebuild `/architecture/` around an interactive stack graph with two views: the full Shellui stack and the Supabase swap. Pan, zoom, keyboard controls, per-view deep links (`?stack=supabase`), and a static fallback when the bundle does not load.
+
+### 🛠 Improvements
+
+- Add React islands: `src/islands/` builds with esbuild to a page-scoped bundle that loads when its mount point scrolls into view. Only `/architecture/` ships one today.
+
+### 📚 Documentation
+
+- design.md v1.3.0 documents the island exception to the Eleventy plus Alpine stack rule.
+- Add hosting-service to `/architecture/` (Docker image behind shellui.app) as the sixth stack piece, last in the graph and reference list.
+- Keep Files and hosting-service (shellui.app all-in temporary deploys of the Browser group) in both architecture graph views; Supabase view shows the official mark on that project frame.
 - Pin the homepage `@shellui/sdk` tiny script to jsDelivr `@0.5.0` (was `0.5.0-beta.3`).
 - Curate the `/changelog/` latest entry for Shellui product 0.5.0: chrome actions, new init frameworks, OKLCH themes, layouts, CLI companion, identity login, and host detection. Deduplicate messy upstream notes and strip conflict markers.
 
