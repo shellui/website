@@ -1,11 +1,11 @@
 ---
 layout: layouts/feature.njk
 wide: true
-title: Ship a Shellui project | Shellui
+title: Ship the project | Shellui
 description: Scaffold with shellui init, describe the host in one config file, build static files to dist/web/, preview on shellui.app, or wrap the same shell with Tauri 2.
 eyebrow: Features
 heading: Ship the same project three ways
-lede: The CLI scaffolds a starter, validates one config file, and builds static files. Host those files yourself, preview them on shellui.app, or add a Tauri 2 desktop wrapper. Homepage bands already show the config sample and the init command - this page is the map.
+lede: The CLI scaffolds a starter, validates one config file, and builds static files. Host those files yourself, preview them on shellui.app, or add a Tauri 2 desktop wrapper.
 ---
 
 <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -42,7 +42,7 @@ shellui build
 <section class="mt-20" aria-labelledby="one-config">
   <div class="max-w-2xl">
     <h2 id="one-config" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">One config file</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Navigation, backend, storage, hosting, and chrome live in that file. Load order is JSON, then split <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.*.config.json</code>, then TypeScript. The homepage already shows a real sample, so this page does not repeat it.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">That file holds navigation, backend, storage, hosting, and chrome. Navigation lists iframe apps and which routes need a session; backend points at identity-service or Supabase. Storage and hosting URLs sit next to theme, language, and chrome actions, and load order is JSON, then split <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.*.config.json</code>, then TypeScript.</p>
   </div>
   <p class="mt-6 text-sm text-muted-foreground">
     <a href="/#config" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Homepage: one config file</a>

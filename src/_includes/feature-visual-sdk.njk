@@ -1,0 +1,15 @@
+{# Diagram: iframe SDK handshake. Distinct from the hub shell-vs-iframe sketch. #}
+<div class="overflow-hidden rounded-xl border border-border bg-card p-4" aria-hidden="true">
+  <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-3">
+    <div class="rounded-lg border border-dashed border-primary/50 bg-background px-3 py-4 text-center">
+      <p class="text-[0.7rem] font-semibold text-foreground">Your app</p>
+      <p class="mt-1 font-mono text-[0.65rem] text-muted-foreground">init()</p>
+    </div>
+    <p class="min-w-0 text-center font-mono text-[0.6rem] leading-tight text-muted-foreground">postMessage</p>
+    <div class="rounded-lg border border-border bg-muted px-3 py-4 text-center">
+      <p class="text-[0.7rem] font-semibold text-foreground">the shell</p>
+      <p class="mt-1 font-mono text-[0.65rem] text-muted-foreground">@shellui/core</p>
+    </div>
+  </div>
+  <p class="mt-3 text-center text-[0.65rem] text-muted-foreground">layout · theme · toasts · dialogs</p>
+</div>

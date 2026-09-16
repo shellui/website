@@ -12,7 +12,8 @@ lede: "Your application stays the product. It runs in an iframe, in the stack yo
 <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
   <div class="max-w-2xl">
     <h2 class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">You keep the product. The host keeps the chrome.</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Enterprise teams, startups, and solo developers use the same split. The iframe is yours. Shared surfaces live in <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/core</code>, the iframe reaches them with <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/sdk</code>, and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/cli</code> scaffolds the project.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The iframe is yours. Shared surfaces live in <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/core</code>, the iframe reaches them with <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/sdk</code>, and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/cli</code> scaffolds the project.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Enterprise teams verify JWTs with a JSON Web Key Set (JWKS), set public, domain, or invitation-only join, and self-host the stack. Startups run <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui init</code> and preview on <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.hosting }}" target="_blank" rel="noopener noreferrer">shellui.app</a>. Solo developers keep an MIT license and try the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.playground }}" target="_blank" rel="noopener noreferrer">playground</a> with no install.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">Each page states the benefit, then how the host does it, then the docs.</p>
     <p class="mt-6 text-sm text-muted-foreground">
       <a href="/architecture/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Architecture</a>
@@ -54,14 +55,7 @@ lede: "Your application stays the product. It runs in an iframe, in the stack yo
         </div>
       </div>
       <div class="flex flex-1 flex-col p-6">
-        <div class="flex items-start gap-3">
-          {% set slotKind = "icon" %}
-          {% set slotLabel = item.iconLabel %}
-          {% set slotHint = "SVG · 1:1" %}
-          {% set slotRatio = "square" %}
-          {% include "media-slot.njk" %}
-          <h2 class="min-w-0 pt-1 text-xl font-semibold tracking-tight text-pretty text-foreground">{{ item.title }}</h2>
-        </div>
+        <h2 class="text-xl font-semibold tracking-tight text-pretty text-foreground">{{ item.title }}</h2>
         <p class="mt-3 text-sm/6 text-muted-foreground">{{ item.benefit }}</p>
         <ul class="mt-4 space-y-1.5 text-sm text-muted-foreground">
           {% for point in item.points %}

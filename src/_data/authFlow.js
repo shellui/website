@@ -29,7 +29,7 @@ const oauth = {
   id: "oauth",
   label: "OAuth sign-in",
   summary:
-    "The iframe asks the shell to start login. The shell talks to identity-service. identity-service talks to GitHub, Google, or Microsoft, then bounces tokens back to the shell in a URL fragment.",
+    "The iframe asks the shell to start login, then the shell talks to identity-service. identity-service talks to GitHub, Google, or Microsoft, then redirects to the shell with tokens in a URL fragment.",
   bounds: { width: 1120, height: 360 },
   groups: [],
   nodes: [
@@ -124,12 +124,12 @@ const oauth = {
     {
       id: "c1",
       from: "Your app",
-      to: "Shell",
+      to: "the shell",
       label: "shellui.login() so OAuth runs in the top window",
     },
     {
       id: "c2",
-      from: "Shell",
+      from: "the shell",
       to: "identity-service",
       label: "GET /api/v1/authorize with company_id and redirect_to",
     },
@@ -148,12 +148,12 @@ const oauth = {
     {
       id: "c5",
       from: "identity-service",
-      to: "Shell",
-      label: "Bounce to /login/callback with tokens in the URL fragment",
+      to: "the shell",
+      label: "Redirect to /login/callback with tokens in the URL fragment",
     },
     {
       id: "c6",
-      from: "Shell",
+      from: "the shell",
       to: "Your app",
       label: "SDK settings: signed-in user and access token",
     },
@@ -171,7 +171,7 @@ const session = {
   id: "session",
   label: "Tokens after login",
   summary:
-    "The shell stores access and refresh JWTs, refreshes them while the tab is open, and shares the session with the iframe. Other services verify those tokens against identity-service JWKS.",
+    "The shell stores access and refresh JWTs, refreshes them while the tab is open, and shares the session with the iframe. Other services verify those tokens against a JSON Web Key Set (JWKS) on identity-service.",
   bounds: { width: 1120, height: 400 },
   groups: [],
   nodes: [
@@ -205,13 +205,13 @@ const session = {
     },
     {
       id: "admin",
-      title: "admin",
-      role: "Frontend",
+      title: "Admin panel",
+      role: "/admin",
       kind: "frontend",
       href: "/features/administration/",
-      description: "Staff and owners call the same identity API from /admin.",
+      description: "A route on the shell, not a separate SPA. Staff and owners call the same identity API.",
       position: { x: 872, y: 40 },
-      size: { width: 232, height: 160 },
+      size: { width: 232, height: 176 },
     },
   ],
   edges: [
@@ -261,26 +261,26 @@ const session = {
   connections: [
     {
       id: "s1",
-      from: "Shell",
+      from: "the shell",
       to: "Your app",
       bidirectional: true,
       label: "SDK settings carry user and accessToken",
     },
     {
       id: "s2",
-      from: "Shell",
+      from: "the shell",
       to: "identity-service",
       label: "grant_type=refresh_token and GET /api/v1/user",
     },
     {
       id: "s3",
-      from: "admin",
+      from: "Admin panel (/admin)",
       to: "identity-service",
       label: "Users, groups, tokens, OAuth clients, company access",
     },
     {
       id: "s4",
-      from: "Shell",
+      from: "the shell",
       to: "storage-service",
       label: "shellui.storage runs as the signed-in user",
     },

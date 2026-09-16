@@ -2,10 +2,10 @@
 layout: layouts/feature.njk
 wide: true
 title: Host chrome | Shellui
-description: Theme, language, and floating chrome actions stay in the Shellui host. Iframe apps read settings and call the SDK instead of rebuilding pickers and FABs.
+description: Theme, language, and floating chrome actions stay in the Shellui host. Iframe apps read settings and call the SDK instead of rebuilding pickers and action buttons.
 eyebrow: Features
-heading: Host chrome you do not rebuild
-lede: Theme, language, and floating actions belong to the shell. Your iframe reads settings and declares intent. Do not ship a second theme picker or locale switcher unless that iframe is the settings surface.
+heading: Theme, language, and floating actions
+lede: The shell ships the theme picker, locale switcher, and floating actions. Your iframe reads settings and declares intent. Do not ship a second theme picker or locale switcher unless that iframe is the settings surface.
 ---
 
 <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -64,8 +64,8 @@ lede: Theme, language, and floating actions belong to the shell. Your iframe rea
 <section class="mt-20" aria-labelledby="chrome-actions">
   <div class="max-w-2xl">
     <h2 id="chrome-actions" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Floating actions from the SDK</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Apps declare optional back, title, trailing, and primary FAB chrome with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.actions.set</code>. The shell renders them, reserves safe padding, and posts <code class="rounded bg-muted px-1.5 py-0.5 text-sm">SHELLUI_ACTION</code> clicks into that iframe only. Caps: at most 3 trailing visible on desktop (rest in an overflow menu), at most 1 primary.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">The shell does not infer actions from the iframe URL. On every in-app route change, call <code class="rounded bg-muted px-1.5 py-0.5 text-sm">set</code> or <code class="rounded bg-muted px-1.5 py-0.5 text-sm">clear</code>. Shell navigation to another app clears that iframe's actions.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Apps declare optional back, title, trailing, and primary floating action chrome with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.actions.set</code>. The shell renders them, reserves safe padding, and posts <code class="rounded bg-muted px-1.5 py-0.5 text-sm">SHELLUI_ACTION</code> clicks into that iframe only. Caps: at most 3 trailing visible on desktop (rest in an overflow menu), at most 1 primary.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The shell does not infer actions from the iframe URL. On every in-app route change, call <code class="rounded bg-muted px-1.5 py-0.5 text-sm">set</code> or <code class="rounded bg-muted px-1.5 py-0.5 text-sm">clear</code>. Navigating the shell to another app clears that iframe's actions.</p>
   </div>
   <div class="mt-8 max-w-3xl">
     {% highlight "ts", "app.ts" %}
@@ -86,7 +86,7 @@ shellui.actions.set({
   <div class="mt-10">
     {% set slotKind = "screenshot" %}
     {% set slotLabel = "Chrome actions over an iframe" %}
-    {% set slotHint = "16:9 · trailing actions and primary FAB. Not a generated mock." %}
+    {% set slotHint = "16:9 · trailing actions and primary floating action. Not a generated mock." %}
     {% set slotRatio = "video" %}
     {% include "media-slot.njk" %}
   </div>

@@ -2,10 +2,10 @@
 layout: layouts/feature.njk
 wide: true
 title: Authentication | Shellui
-description: Sign-in lives in the Shellui shell. identity-service (Django) runs OAuth with GitHub, Google, or Microsoft, issues JWTs, and shares the session with your iframe over the SDK. Supabase Auth is the swap.
+description: Sign-in lives in the Shellui shell. identity-service (Django) runs OAuth with GitHub, Google, or Microsoft, issues JWTs, and publishes a JSON Web Key Set (JWKS) so other services can verify them. Supabase Auth is the swap.
 eyebrow: Features
 heading: Authentication in the shell
-lede: Your microfrontend does not ship a login page. The shell owns /login, stores the session, and shares the signed-in user with the iframe. The default backend is identity-service, a Django API. Point backend.type at supabase if Auth is already in your stack.
+lede: The shell owns /login so your iframe app does not ship a login page. It stores the session and shares the signed-in user over the SDK. The default backend is identity-service, a Django API; set backend.type to supabase if Auth is already in your stack.
 pageScripts:
   - /assets/js/auth-flow.js
 ---
@@ -13,7 +13,7 @@ pageScripts:
 <section aria-labelledby="auth-exchange">
   <div class="max-w-2xl">
     <h2 id="auth-exchange" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">How the iframe, shell, and identity-service talk</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">OAuth must run in the top window. From an embedded app, call <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.login()</code>. The shell starts identity-service authorize. identity-service talks to the provider, confirms the account, then bounces tokens to <code class="rounded bg-muted px-1.5 py-0.5 text-sm">/login/callback</code> in the URL fragment.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">OAuth must run in the top window, so an embedded app calls <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.login()</code> and the shell starts identity-service authorize. identity-service talks to the provider, confirms the account, then redirects to <code class="rounded bg-muted px-1.5 py-0.5 text-sm">/login/callback</code> with tokens in the URL fragment.</p>
   </div>
   {% include "auth-flow.njk" %}
 </section>
@@ -30,7 +30,7 @@ pageScripts:
     </div>
     <div>
       <h3 class="text-base font-semibold text-foreground">JWT and JWKS</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Access and refresh tokens. RS256 with <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">GET /.well-known/jwks.json</code> when <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">JWT_PRIVATE_KEY</code> is set. Refresh with <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">grant_type=refresh_token</code>.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Access and refresh tokens are RS256 JWTs. Other services verify them with a JSON Web Key Set (JWKS) at <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">GET /.well-known/jwks.json</code> when <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">JWT_PRIVATE_KEY</code> is set. Refresh with <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">grant_type=refresh_token</code>.</p>
     </div>
     <div>
       <h3 class="text-base font-semibold text-foreground">Company join modes</h3>
@@ -38,7 +38,7 @@ pageScripts:
     </div>
     <div>
       <h3 class="text-base font-semibold text-foreground">Redirect allowlist</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Provider apps register one callback on identity-service. Shell origins must be allowlisted for the fragment bounce. Loopback is always allowed so <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui login</code> works.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Provider apps register one callback on identity-service. The shell origin must be allowlisted so identity-service can redirect tokens in the URL fragment. Loopback is always allowed so <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui login</code> works.</p>
     </div>
     <div>
       <h3 class="text-base font-semibold text-foreground">Directory APIs</h3>
@@ -146,6 +146,7 @@ export default config;
 {% set featureDocs = [
   { href: site.docs + "/features/authentication/", label: "Configure authentication" },
   { href: site.identityService, label: "identity-service source", external: true },
+  { href: "/features/microfrontend/", label: "Microfrontend host" },
   { href: "/architecture/", label: "Architecture graph" },
   { href: "/features/administration/", label: "Administration" },
   { href: site.playground, label: "Playground", external: true },

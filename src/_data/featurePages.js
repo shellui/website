@@ -4,14 +4,13 @@ export default [
     href: "/features/microfrontend/",
     title: "Microfrontend host",
     benefit:
-      "Your app runs in an iframe. Load @shellui/sdk, call init, and talk over postMessage.",
+      "Do not rebuild navigation and overlays for every frontend. Host the app in an iframe and talk over postMessage with @shellui/sdk.",
     points: [
       "Sidebar, app bar, floating, fullscreen, or windows",
       "Toasts, dialogs, drawers, and theme from the host",
       "One shellui.config.json",
     ],
     visual: "shell-layout",
-    iconLabel: "Microfrontend icon",
     cta: "Explore microfrontend",
   },
   {
@@ -19,14 +18,13 @@ export default [
     href: "/features/authentication/",
     title: "Authentication",
     benefit:
-      "Sign-in lives in the shell. identity-service (or Supabase Auth) issues tokens the iframe never has to mint.",
+      "Do not ship a login page in the iframe. The shell owns /login; identity-service or Supabase Auth issues the tokens.",
     points: [
       "OAuth with GitHub, Google, or Microsoft",
       "JWT sessions and JWKS verification",
       "Public, domain, or invitation-only join",
     ],
     visual: "auth",
-    iconLabel: "Authentication icon",
     cta: "Explore authentication",
   },
   {
@@ -34,14 +32,13 @@ export default [
     href: "/features/administration/",
     title: "Administration",
     benefit:
-      "Staff and company owners open /admin in the shell. Inject your own sidebar apps from config.",
+      "Do not run a second admin login. Staff and owners open /admin in the shell and inject sidebar apps from config.",
     points: [
       "Users, organization, and join modes",
       "Groups, logs, tokens, and OAuth clients",
       "Custom admin navigation",
     ],
     visual: "admin",
-    iconLabel: "Administration icon",
     cta: "Explore administration",
   },
   {
@@ -49,14 +46,13 @@ export default [
     href: "/features/storage/",
     title: "Storage",
     benefit:
-      "A company bucket behind the shell. Apps upload and share through shellui.storage.",
+      "Do not build a file browser in the iframe. Apps upload and share through shellui.storage against a company bucket.",
     points: [
       "Access grants for users, groups, or the company",
       "Share links with expiry and download caps",
       "Company and per-user quotas",
     ],
     visual: "storage",
-    iconLabel: "Storage icon",
     cta: "Explore storage",
   },
   {
@@ -64,14 +60,13 @@ export default [
     href: "/features/chrome/",
     title: "Host chrome",
     benefit:
-      "Theme, language, and floating actions stay in the host. The iframe declares intent; the shell renders chrome.",
+      "Do not rebuild theme pickers, locale switchers, or floating actions. The iframe declares intent; the shell renders them.",
     points: [
       "Curated OKLCH themes, including Shellui gold",
       "English and French chrome strings",
-      "Back, title, trailing, and primary FAB via the SDK",
+      "Back, title, trailing, and primary floating action via the SDK",
     ],
     visual: "chrome",
-    iconLabel: "Host chrome icon",
     cta: "Explore host chrome",
   },
   {
@@ -79,14 +74,13 @@ export default [
     href: "/features/ship/",
     title: "Ship the project",
     benefit:
-      "The same config builds static files, an optional shellui.app preview, or a Tauri desktop wrapper.",
+      "Do not maintain a separate desktop or hosting stack. One config builds static files, an optional shellui.app preview, or a Tauri wrapper.",
     points: [
       "shellui init, start, build, login, deploy",
       "Output under dist/web/ and dist/app/",
       "Optional native desktop with Tauri 2",
     ],
     visual: "ship",
-    iconLabel: "Ship icon",
     cta: "Explore how you ship",
   },
 ];
