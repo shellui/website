@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Roadmap | Shellui
-description: "Shellui public roadmap: Pixel Perfect, Smart Shell AI APIs, a microfrontend marketplace, and v1.0 Horizon. Track progress on GitHub."
+description: "Shellui public roadmap: from January 2026 birth through POC, shipped v0.5, upcoming Smart Shell (MCP admin and local AI), marketplace, and v1.0 Horizon."
 eyebrow: Developers
 heading: What's shipping next
 lede: Past milestones and upcoming work. Track GitHub milestones for current status.
@@ -25,15 +25,23 @@ lede: Past milestones and upcoming work. Track GitHub milestones for current sta
       <div class="relative">
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full bg-primary-ink ring-4 ring-white dark:bg-primary dark:ring-gray-950"></div>
         <time datetime="2026-01" class="text-sm font-semibold tabular-nums text-primary-ink dark:text-primary">January 2026</time>
-        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Creation of the project</p>
+        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Beginning</p>
         <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Shellui starts as an open-source application shell.</p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">The shellui.com domain was acquired on January 5 - treat that as the official birthdate.</p>
       </div>
 
       <div class="relative">
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full bg-primary-ink ring-4 ring-white dark:bg-primary dark:ring-gray-950"></div>
         <time datetime="2026-08" class="text-sm font-semibold tabular-nums text-primary-ink dark:text-primary">August 2026</time>
-        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Going full time</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Full-time work on Shellui toward a production release.</p>
+        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">POC</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Basic features are in place. Decision to go full time on Shellui.</p>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full bg-primary-ink ring-4 ring-white dark:bg-primary dark:ring-gray-950"></div>
+        <time datetime="2026-09" class="text-sm font-semibold tabular-nums text-primary-ink dark:text-primary">September 2026</time>
+        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.5.0 - Pixel Perfect</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Host and admin UI aligned to one visual system across screens.</p>
       </div>
 
     </div>
@@ -46,16 +54,10 @@ lede: Past milestones and upcoming work. Track GitHub milestones for current sta
 
       <div class="relative">
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full border-2 border-gray-400 bg-white dark:border-gray-500 dark:bg-gray-950"></div>
-        <time datetime="2026-Q3" class="text-sm font-semibold tabular-nums text-gray-500 dark:text-gray-400">Q3 2026</time>
-        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.5 - Pixel Perfect</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Host and admin UI aligned to one visual system across screens.</p>
-      </div>
-
-      <div class="relative">
-        <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full border-2 border-gray-400 bg-white dark:border-gray-500 dark:bg-gray-950"></div>
         <time datetime="2026-Q4" class="text-sm font-semibold tabular-nums text-gray-500 dark:text-gray-400">Q4 2026</time>
         <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.6 - Smart Shell</p>
-        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Local AI APIs so Shellui developers can prompt without running extra infrastructure, using a bring-your-own-key model.</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Full Model Context Protocol (MCP) admin.</p>
+        <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Local AI for apps in the iframe: on-device and shell-local models through a Prompt API-shaped SDK and Settings AI.</p>
       </div>
 
       <div class="relative">
