@@ -40,7 +40,7 @@ lede: Past milestones and upcoming work. Track GitHub milestones for current sta
       <div class="relative">
         <div class="absolute -left-[calc(2rem+5px)] top-1 size-2.5 rounded-full bg-primary-ink ring-4 ring-white dark:bg-primary dark:ring-gray-950"></div>
         <time datetime="2026-09" class="text-sm font-semibold tabular-nums text-primary-ink dark:text-primary">September 2026</time>
-        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.5.0 - Pixel Perfect</p>
+        <p class="mt-1 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">v0.5 - Pixel Perfect</p>
         <p class="mt-1 text-base text-gray-600 dark:text-gray-400">Host and admin UI aligned to one visual system across screens.</p>
       </div>
 
