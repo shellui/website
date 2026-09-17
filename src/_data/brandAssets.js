@@ -7,9 +7,11 @@ const assetsDir = path.join(root, "../../img/brand-assets");
 
 const groups = [
   { name: "Icon mark", bases: ["logo"] },
-  { name: "Primary logo", bases: ["shellui_logo"] },
-  { name: "Transparent background", bases: ["shellui_transparent_logo"] },
-  { name: "Documentation", bases: ["shellui_doc_logo"] },
+  {
+    name: "Logos",
+    bases: ["shellui_logo", "shellui_transparent_logo", "shellui_doc_logo"],
+    columns: 3,
+  },
   {
     name: "iOS icons",
     caption: "iOS / app icons for occasional use (Tauri, stores, marketing).",
@@ -32,7 +34,9 @@ const omittedBases = new Set([
 
 const labels = {
   logo: "Shellui mark",
-  shellui_doc_logo: "Documentation logo",
+  shellui_logo: "Primary",
+  shellui_transparent_logo: "Transparent",
+  shellui_doc_logo: "Documentation",
   shellui_ios_icon_black: "iOS icon (black)",
   shellui_ios_icon_white: "iOS icon (white)",
   shellui_ios_icon_gold: "iOS icon (gold)",
