@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### 🛠 Improvements
 
-- Brand assets: show each logo once with SVG and PNG downloads on the same card; use checkerboard preview wells (near-white in light mode, mid-dark for light marks) so dark and light logos stay readable. Drop Documentation, Playground, and Files marks from the press kit.
+- Brand assets: show each logo once with SVG and PNG downloads on the same card; use checkerboard preview wells (near-white in light mode, mid-dark for light marks) so dark and light logos stay readable. Keep the Documentation logo; drop Playground and Files marks and the Documentation wordmark from the press kit.
 
 <!---
 ## [Unreleased] - yyyy-mm-dd
