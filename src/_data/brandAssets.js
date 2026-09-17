@@ -9,9 +9,6 @@ const groups = [
   { name: "Icon mark", bases: ["logo"] },
   { name: "Primary logo", bases: ["shellui_logo"] },
   { name: "Transparent background", bases: ["shellui_transparent_logo"] },
-  { name: "Documentation", bases: ["shellui_doc_logo", "shellui_documentation_logo"] },
-  { name: "Playground", bases: ["shellui_playground_logo", "shellui_playground_text_logo"] },
-  { name: "Files", bases: ["shellui_files_text_logo"] },
   {
     name: "iOS icons",
     caption: "iOS / app icons for occasional use (Tauri, stores, marketing).",
@@ -24,23 +21,26 @@ const groups = [
   },
 ];
 
+/** Product sub-brand files kept in the repo but not offered in the press kit. */
+const omittedBases = new Set([
+  "shellui_doc_logo",
+  "shellui_documentation_logo",
+  "shellui_playground_logo",
+  "shellui_playground_text_logo",
+  "shellui_files_text_logo",
+]);
+
 const labels = {
   logo: "Shellui mark",
-  shellui_documentation_logo: "Documentation wordmark",
-  shellui_playground_text_logo: "Playground wordmark",
-  shellui_files_text_logo: "Files wordmark",
   shellui_ios_icon_black: "iOS icon (black)",
   shellui_ios_icon_white: "iOS icon (white)",
   shellui_ios_icon_gold: "iOS icon (gold)",
 };
 
-/** Dark / black artwork needs a mid light preview (not white). */
+/** Dark / black artwork needs a light preview (not pure white). */
 const lightArtwork = new Set([
   "logo",
   "shellui_transparent_logo",
-  "shellui_documentation_logo",
-  "shellui_playground_text_logo",
-  "shellui_files_text_logo",
   "shellui_ios_icon_black",
   "shellui_ios_icon_gold",
 ]);
@@ -114,7 +114,7 @@ const grouped = groups
 
 const usedBases = new Set(groups.flatMap((group) => group.bases));
 const otherItems = [...assetsByBase.entries()]
-  .filter(([base]) => !usedBases.has(base))
+  .filter(([base]) => !usedBases.has(base) && !omittedBases.has(base))
   .map(([, asset]) => asset);
 
 if (otherItems.length > 0) {
