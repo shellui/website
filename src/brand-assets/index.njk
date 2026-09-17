@@ -36,25 +36,29 @@ description: Download official Shellui logos in SVG and PNG for articles, talks,
         <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2{% if group.columns == 3 %} lg:grid-cols-3{% endif %}">
           {% for asset in group.items %}
             <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
-              <div class="flex aspect-[16/10] items-center justify-center p-8 {% if asset.preview == 'light' %}bg-gray-50 bg-[linear-gradient(45deg,#f3f4f6_25%,transparent_25%,transparent_75%,#f3f4f6_75%,#f3f4f6),linear-gradient(45deg,#f3f4f6_25%,transparent_25%,transparent_75%,#f3f4f6_75%,#f3f4f6)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% elif asset.preview == 'dark' %}bg-gray-950 bg-[linear-gradient(45deg,#1f2937_25%,transparent_25%,transparent_75%,#1f2937_75%,#1f2937),linear-gradient(45deg,#1f2937_25%,transparent_25%,transparent_75%,#1f2937_75%,#1f2937)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% else %}bg-[linear-gradient(45deg,#f3f4f6_25%,transparent_25%,transparent_75%,#f3f4f6_75%,#f3f4f6),linear-gradient(45deg,#f3f4f6_25%,transparent_25%,transparent_75%,#f3f4f6_75%,#f3f4f6)] bg-[length:16px_16px] bg-[position:0_0,8px_8px] dark:bg-[linear-gradient(45deg,#1f2937_25%,transparent_25%,transparent_75%,#1f2937_75%,#1f2937),linear-gradient(45deg,#1f2937_25%,transparent_25%,transparent_75%,#1f2937_75%,#1f2937)] dark:bg-[length:16px_16px] dark:bg-[position:0_0,8px_8px]{% endif %}">
-                <img src="{{ asset.href }}" alt="{{ asset.label }} ({{ asset.ext }})" width="320" height="200" class="max-h-24 max-w-full object-contain" loading="lazy" />
+              {# Mid-tone previews: dark marks on gray-200/300, light marks on gray-600/700 (not white / near-black). #}
+              <div class="flex aspect-[16/10] items-center justify-center p-8 {% if asset.preview == 'light' %}bg-gray-200 bg-[linear-gradient(45deg,#d1d5db_25%,transparent_25%,transparent_75%,#d1d5db_75%,#d1d5db),linear-gradient(45deg,#d1d5db_25%,transparent_25%,transparent_75%,#d1d5db_75%,#d1d5db)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% elif asset.preview == 'dark' %}bg-gray-600 bg-[linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151),linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% else %}bg-gray-200 bg-[linear-gradient(45deg,#d1d5db_25%,transparent_25%,transparent_75%,#d1d5db_75%,#d1d5db),linear-gradient(45deg,#d1d5db_25%,transparent_25%,transparent_75%,#d1d5db_75%,#d1d5db)] bg-[length:16px_16px] bg-[position:0_0,8px_8px] dark:bg-gray-600 dark:bg-[linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151),linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151)] dark:bg-[length:16px_16px] dark:bg-[position:0_0,8px_8px]{% endif %}">
+                <img src="{{ asset.href }}" alt="{{ asset.label }}" width="320" height="200" class="max-h-24 max-w-full object-contain" loading="lazy" />
               </div>
               <div class="border-t border-gray-200 px-4 py-4 dark:border-gray-800">
                 <div class="flex items-start justify-between gap-3">
                   <div>
                     <p class="font-medium text-gray-900 dark:text-white">{{ asset.label }}</p>
-                    <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-400">{{ asset.file }}</p>
+                    <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-400">{{ asset.exts }}</p>
                   </div>
-                  <span class="shrink-0 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">{{ asset.ext }}</span>
                 </div>
-                <a
-                  href="{{ asset.href }}"
-                  download="{{ asset.file }}"
-                  class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-ink hover:opacity-90 dark:text-primary"
-                >
-                  Download
-                  <span aria-hidden="true">&darr;</span>
-                </a>
+                <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                  {% for format in asset.formats %}
+                    <a
+                      href="{{ format.href }}"
+                      download="{{ format.file }}"
+                      class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-ink hover:opacity-90 dark:text-primary"
+                    >
+                      Download {{ format.ext }}
+                      <span aria-hidden="true">&darr;</span>
+                    </a>
+                  {% endfor %}
+                </div>
               </div>
             </div>
           {% endfor %}

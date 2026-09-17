@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### 🛠 Improvements
+
+- Brand assets: show each logo once with SVG and PNG downloads on the same card; use mid-tone preview backgrounds so dark and light marks stay readable.
+
 <!---
 ## [Unreleased] - yyyy-mm-dd
 

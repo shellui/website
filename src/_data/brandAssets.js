@@ -34,6 +34,7 @@ const labels = {
   shellui_ios_icon_gold: "iOS icon (gold)",
 };
 
+/** Dark / black artwork needs a mid light preview (not white). */
 const lightArtwork = new Set([
   "logo",
   "shellui_transparent_logo",
@@ -44,7 +45,10 @@ const lightArtwork = new Set([
   "shellui_ios_icon_gold",
 ]);
 
+/** White / light artwork needs a mid dark preview (not near-black). */
 const darkArtwork = new Set(["shellui_ios_icon_white"]);
+
+const extOrder = { SVG: 0, PNG: 1 };
 
 function formatLabel(baseName) {
   if (labels[baseName]) return labels[baseName];
@@ -60,6 +64,10 @@ function previewFor(baseName) {
   return "auto";
 }
 
+function sortFormats(a, b) {
+  return (extOrder[a.ext] ?? 99) - (extOrder[b.ext] ?? 99) || a.ext.localeCompare(b.ext);
+}
+
 const files = fs.readdirSync(assetsDir).filter((file) => !file.startsWith("."));
 
 const assetsByBase = new Map();
@@ -67,22 +75,30 @@ const assetsByBase = new Map();
 for (const file of files) {
   const ext = path.extname(file).slice(1).toUpperCase();
   const baseName = path.basename(file, path.extname(file));
+  const format = {
+    file,
+    href: `/img/brand-assets/${file}`,
+    ext,
+  };
 
-  assetsByBase.set(baseName, [
-    ...(assetsByBase.get(baseName) ?? []),
-    {
-      file,
-      href: `/img/brand-assets/${file}`,
-      ext,
+  const existing = assetsByBase.get(baseName);
+  if (existing) {
+    existing.formats.push(format);
+  } else {
+    assetsByBase.set(baseName, {
       baseName,
       label: formatLabel(baseName),
       preview: previewFor(baseName),
-    },
-  ]);
+      formats: [format],
+    });
+  }
 }
 
-for (const items of assetsByBase.values()) {
-  items.sort((a, b) => a.ext.localeCompare(b.ext));
+for (const asset of assetsByBase.values()) {
+  asset.formats.sort(sortFormats);
+  // Prefer SVG for on-page preview when both exist.
+  asset.href = asset.formats[0].href;
+  asset.exts = asset.formats.map((format) => format.ext).join(" · ");
 }
 
 const grouped = groups
@@ -90,14 +106,16 @@ const grouped = groups
     name: group.name,
     caption: group.caption ?? null,
     columns: group.columns ?? 2,
-    items: group.bases.flatMap((base) => assetsByBase.get(base) ?? []),
+    items: group.bases
+      .map((base) => assetsByBase.get(base))
+      .filter(Boolean),
   }))
   .filter((group) => group.items.length > 0);
 
 const usedBases = new Set(groups.flatMap((group) => group.bases));
 const otherItems = [...assetsByBase.entries()]
   .filter(([base]) => !usedBases.has(base))
-  .flatMap(([, items]) => items);
+  .map(([, asset]) => asset);
 
 if (otherItems.length > 0) {
   grouped.push({ name: "Other", caption: null, columns: 2, items: otherItems });
