@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### 🛠 Improvements
 
-- Brand assets: show each logo once with SVG and PNG downloads on the same card; use mid-tone preview backgrounds so dark and light marks stay readable.
+- Brand assets: show each logo once with SVG and PNG downloads on the same card; use checkerboard preview wells (near-white in light mode, mid-dark for light marks) so dark and light logos stay readable.
 
 <!---
 ## [Unreleased] - yyyy-mm-dd
