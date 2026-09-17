@@ -9,8 +9,12 @@ const groups = [
   { name: "Icon mark", bases: ["logo"] },
   {
     name: "Logos",
-    bases: ["shellui_logo", "shellui_transparent_logo", "shellui_doc_logo"],
-    columns: 3,
+    bases: [
+      "shellui_logo",
+      "shellui_transparent_logo",
+      "shellui_doc_logo",
+      "shellui_playground_logo",
+    ],
   },
   {
     name: "iOS icons",
@@ -27,7 +31,6 @@ const groups = [
 /** Product sub-brand files kept in the repo but not offered in the press kit. */
 const omittedBases = new Set([
   "shellui_documentation_logo",
-  "shellui_playground_logo",
   "shellui_playground_text_logo",
   "shellui_files_text_logo",
 ]);
@@ -37,6 +40,7 @@ const labels = {
   shellui_logo: "Primary",
   shellui_transparent_logo: "Transparent",
   shellui_doc_logo: "Documentation",
+  shellui_playground_logo: "Playground",
   shellui_ios_icon_black: "iOS icon (black)",
   shellui_ios_icon_white: "iOS icon (white)",
   shellui_ios_icon_gold: "iOS icon (gold)",
