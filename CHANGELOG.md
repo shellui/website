@@ -33,6 +33,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 🛠 Improvements
 
+- Changelog deploy: fetch shellui/shellui CHANGELOG on every build via GitHub releases API (`npm run fetch:changelog` / `prebuild`); bypass disk cache in CI. Homepage hero badge and changelog callout use latest product release, not `site.version`.
 - Brand assets: show each logo once with SVG and PNG downloads on the same card; use checkerboard preview wells (near-white in light mode, mid-dark for light marks) so dark and light logos stay readable. Group Primary, Transparent, Documentation, and Playground under Logos; omit Files and the Documentation / Playground wordmarks from the press kit.
 
 ## [0.5.0] - 2026-09-16

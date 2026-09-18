@@ -151,8 +151,17 @@ grep -q 'text-2xl font-semibold tracking-tight' "${SITE}/changelog/index.html" \
   || fail "changelog page missing strong latest-version callout heading"
 grep -q 'View release' "${SITE}/changelog/index.html" \
   || fail "changelog page missing View release CTA"
-grep -q 'releases/tag/v0.5.0' "${SITE}/changelog/index.html" \
-  || fail "changelog callout must link to the latest GitHub release tag"
+latest_product_version="$(
+  grep -oE 'releases/tag/v[0-9]+\.[0-9]+\.[0-9]+' "${SITE}/changelog/index.html" \
+    | head -1 \
+    | sed 's|releases/tag/v||'
+)"
+[[ -n "${latest_product_version}" ]] \
+  || fail "changelog callout must link to a GitHub release tag"
+grep -q "v${latest_product_version} is out" "${SITE}/index.html" \
+  || fail "homepage badge must show latest product release v${latest_product_version} (not website package version)"
+grep -q "Changelog for ${latest_product_version}" "${SITE}/index.html" \
+  || fail "homepage footer must link to changelog for product v${latest_product_version}"
 grep -q 'Floating chrome actions' "${SITE}/changelog/index.html" \
   || fail "changelog page missing curated 0.5.0 chrome actions highlight"
 if grep -qiE 'Flutter Web|🗑 Removed|Removed</h3>' "${SITE}/changelog/index.html"; then
