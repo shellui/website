@@ -2,7 +2,7 @@
   "name": "Shellui",
   "url": "https://shellui.com",
   "description": "Shellui is the open-source web app development platform: a microfrontend shell with authentication, administration, storage, and shared UI.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": "Shellui",
   "docs": "https://docs.shellui.com",
   "playground": "https://playground.shellui.com",
