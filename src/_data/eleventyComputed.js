@@ -1,4 +1,8 @@
 export default {
+  /** Latest shellui/shellui product release (from /changelog/ data, not site.version). */
+  productVersion(data) {
+    return data.changelog?.[0]?.version ?? null;
+  },
   permalink(data) {
     if (typeof data.permalink === "string" || data.permalink === false) {
       return data.permalink;

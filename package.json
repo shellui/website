@@ -7,6 +7,8 @@
   "scripts": {
     "start": "eleventy --serve",
     "dev": "eleventy --serve",
+    "fetch:changelog": "node ./tools/fetch-changelog.mjs",
+    "prebuild": "npm run fetch:changelog",
     "build": "rm -rf _site && eleventy",
     "verify": "./tools/verify-site.sh",
     "verify:security": "node ./tools/verify-changelog-sanitize.mjs",
