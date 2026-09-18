@@ -57,6 +57,16 @@ GitHub Actions (`.github/workflows/pages.yml`) builds `_site/` and deploys to Gi
 
 Missing URLs are served from `_site/404.html`. GitHub Pages only uses that filename at the site root (not `/404/index.html`).
 
+### Security headers
+
+GitHub Pages cannot emit CSP, HSTS, or other response headers. Put Cloudflare (or another proxy) in front of the custom domain and apply the values in [`infra/security-headers.json`](infra/security-headers.json). Rollout checklist: [`docs/deploy-security-headers.md`](docs/deploy-security-headers.md). Verify after edge config:
+
+```bash
+./tools/verify-security-headers.sh
+```
+
+Dependabot watches `package-lock.json` and GitHub Actions (`.github/dependabot.yml`). Nunjucks autoescape and intentional raw HTML are documented in [`docs/security-html-policy.md`](docs/security-html-policy.md).
+
 ## License
 
 MIT - see [LICENSE](LICENSE).
