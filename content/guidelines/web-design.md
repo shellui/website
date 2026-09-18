@@ -131,7 +131,7 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - No layout reads in render (`getBoundingClientRect`, `offsetHeight`, `offsetWidth`, `scrollTop`)
 - Batch DOM reads and writes; don't interleave
 - Prefer uncontrolled inputs; controlled inputs must be cheap per keystroke
-- `preconnect` for CDN and asset origins you actually use (jsDelivr for `@shellui/sdk` on this site)
+- Self-host third-party scripts when practical (`@shellui/sdk` tiny ships from `/assets/js/`). Use Subresource Integrity if you must load from a CDN
 - Critical fonts: preload with `font-display: swap`. This marketing site uses the system stack - don't add a webfont without a reason
 - Prefer compressed video over animated GIF; provide a still alternative
 - Short decorative loops: muted video, `prefers-reduced-motion` media condition, still fallback

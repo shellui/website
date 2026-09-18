@@ -45,7 +45,7 @@ See [`infra/cloudflare/worker-security-headers.js`](../infra/cloudflare/worker-s
 
 The policy in `infra/security-headers.json` matches the current site:
 
-- `@shellui/sdk` from `cdn.jsdelivr.net` (see `src/_includes/layouts/base.njk`)
+- Self-hosted `@shellui/sdk` tiny at `/assets/js/shellui.tiny.js` (see `src/_includes/layouts/base.njk`)
 - Inline boot script for theme / `color-scheme` (needs `'unsafe-inline'` until nonced)
 - Self-hosted Alpine, Elements, site JS, CSS, and React islands
 
