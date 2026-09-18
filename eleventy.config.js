@@ -204,6 +204,10 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addPlugin(IdAttributePlugin);
 
+  // Escape template variables by default; use | safe only for trusted build-time HTML
+  // (see docs/security-html-policy.md).
+  eleventyConfig.setNunjucksEnvironmentOptions({ autoescape: true });
+
   eleventyConfig.ignores.add("src/blocks/**");
 
   eleventyConfig.addWatchTarget("src/assets/css/");

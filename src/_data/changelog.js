@@ -61,8 +61,18 @@ const CURATED = {
   },
 };
 
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function inlineMarkdown(text) {
-  return text
+  const escaped = escapeHtml(text);
+  return escaped
     .replace(
       /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
       '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>',

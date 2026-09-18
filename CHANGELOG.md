@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### 🔒 Security
+
+- Document GitHub Pages header limitation and add Cloudflare edge config (`infra/security-headers.json`, Transform Rules checklist, optional Worker). Verification: `tools/verify-security-headers.sh` and weekly `security-headers` workflow.
+- Enable Dependabot for npm and GitHub Actions; standardize on npm (`package-lock.json`) and remove `pnpm-lock.yaml`.
+- Enable Nunjucks autoescape; escape changelog inline HTML at build time; document intentional `| safe` usage in `docs/security-html-policy.md`.
+
 ### 🛠 Improvements
 
 - Brand assets: show each logo once with SVG and PNG downloads on the same card; use checkerboard preview wells (near-white in light mode, mid-dark for light marks) so dark and light logos stay readable. Group Primary, Transparent, Documentation, and Playground under Logos; omit Files and the Documentation / Playground wordmarks from the press kit.
