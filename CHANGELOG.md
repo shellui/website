@@ -21,6 +21,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.5.1] - 2026-09-18
+
+### 🔒 Security
+
+- Document GitHub Pages header limitation and add Cloudflare edge config (`infra/security-headers.json`, Transform Rules checklist, optional Worker). Verification: `tools/verify-security-headers.sh` and weekly `security-headers` workflow.
+- Enable Dependabot for npm and GitHub Actions; standardize on npm (`package-lock.json`) and remove `pnpm-lock.yaml`.
+- Enable Nunjucks autoescape; escape changelog inline HTML at build time; document intentional `| safe` usage in `docs/security-html-policy.md`.
+- Self-host `@shellui/sdk@0.5.0` tiny (`/assets/js/shellui.tiny.js`) instead of loading from jsDelivr without Subresource Integrity.
+- Pin upstream changelog fetch to shellui tag `v0.5.0` (commit `a0c1c907`) and escape HTML in build-time markdown rendering so remote release notes cannot inject script.
+
+### 🛠 Improvements
+
+- Brand assets: show each logo once with SVG and PNG downloads on the same card; use checkerboard preview wells (near-white in light mode, mid-dark for light marks) so dark and light logos stay readable. Group Primary, Transparent, Documentation, and Playground under Logos; omit Files and the Documentation / Playground wordmarks from the press kit.
 
 ## [0.5.0] - 2026-09-16
 

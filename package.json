@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "The official website for Shellui, the web app development platform.",
   "private": true,
   "type": "module",
@@ -9,6 +9,7 @@
     "dev": "eleventy --serve",
     "build": "rm -rf _site && eleventy",
     "verify": "./tools/verify-site.sh",
+    "verify:security": "node ./tools/verify-changelog-sanitize.mjs",
     "pre-release": "./tools/pre-release-check.sh"
   },
   "repository": {
@@ -35,6 +36,7 @@
     "tailwindcss": "^4.3.3"
   },
   "dependencies": {
+    "@shellui/sdk": "^0.5.0",
     "@tailwindplus/elements": "^1.0.22",
     "@xyflow/react": "^12.11.6",
     "alpinejs": "^3.16.2",

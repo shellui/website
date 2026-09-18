@@ -1,0 +1,28 @@
+name: Verify security headers
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: URL to check (default shellui.com)
+        required: false
+        default: https://shellui.com/
+  schedule:
+    # Weekly sanity check after edge config is applied
+    - cron: "0 12 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  headers:
+    name: Production security headers
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify response headers
+        run: |
+          chmod +x ./tools/verify-security-headers.sh
+          ./tools/verify-security-headers.sh "${{ github.event.inputs.url || 'https://shellui.com/' }}"

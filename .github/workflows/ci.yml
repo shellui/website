@@ -74,6 +74,11 @@ jobs:
         run: |
           set -euo pipefail
 
+          if [[ -f pnpm-lock.yaml ]] || [[ -f yarn.lock ]]; then
+            echo '::error::Use npm only (package-lock.json) — remove pnpm-lock.yaml / yarn.lock'
+            exit 1
+          fi
+
           if git ls-files --error-unmatch .env >/dev/null 2>&1; then
             echo '::error::.env is tracked by git — remove it from the repository'
             exit 1

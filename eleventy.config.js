@@ -204,6 +204,10 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addPlugin(IdAttributePlugin);
 
+  // Escape template variables by default; use | safe only for trusted build-time HTML
+  // (see docs/security-html-policy.md).
+  eleventyConfig.setNunjucksEnvironmentOptions({ autoescape: true });
+
   eleventyConfig.ignores.add("src/blocks/**");
 
   eleventyConfig.addWatchTarget("src/assets/css/");
@@ -219,6 +223,7 @@ export default async function (eleventyConfig) {
     "apple-touch-icon.png": "apple-touch-icon.png",
     "src/assets/js": "assets/js",
     "node_modules/alpinejs/dist/cdn.min.js": "assets/js/alpine.min.js",
+    "node_modules/@shellui/sdk/dist/shellui.tiny.js": "assets/js/shellui.tiny.js",
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
     "content/guidelines/design.md": "design.md",
     "content/guidelines": "guidelines",
