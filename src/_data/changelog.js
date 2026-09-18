@@ -1,9 +1,16 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import {
+  assertSafeChangelogHtml,
+  inlineMarkdown,
+  linkTickets,
+  rewriteDocsLinks,
+} from "../../tools/changelog-markdown.mjs";
 
-const CHANGELOG_URL =
-  "https://raw.githubusercontent.com/shellui/shellui/refs/heads/main/CHANGELOG.md";
+/** Pinned upstream source (tag v0.5.0). Update when marketing site tracks a new release. */
+const CHANGELOG_REF = "a0c1c907b9b2506df4e0f09fdad7c1ac6c8c0a61";
+const CHANGELOG_URL = `https://raw.githubusercontent.com/shellui/shellui/${CHANGELOG_REF}/CHANGELOG.md`;
 
 const GITHUB_REPO = "shellui/shellui";
 const DOCS_BASE = "https://docs.shellui.com";
@@ -61,35 +68,16 @@ const CURATED = {
   },
 };
 
-function inlineMarkdown(text) {
-  return text
-    .replace(
-      /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
-      '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>',
-    )
-    .replace(
-      /`([^`]+)`/g,
-      '<code class="text-xs bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">$1</code>',
-    )
-    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
-}
-
-function linkTickets(text) {
-  return text.replace(
-    /\(#(\d+)\)/g,
-    `(<a href="https://github.com/${GITHUB_REPO}/issues/$1">#$1</a>)`,
+function renderItem(text) {
+  const html = linkTickets(
+    inlineMarkdown(rewriteDocsLinks(text), {
+      docsBase: DOCS_BASE,
+      githubRepo: GITHUB_REPO,
+    }),
+    GITHUB_REPO,
   );
-}
-
-function rewriteDocsLinks(text) {
-  return text.replace(
-    /\]\(\.\/docs\/([^)#]+)(?:\.md)?(#[^)]*)?\)/g,
-    (_match, path, hash = "") => {
-      const clean = String(path).replace(/\.md$/i, "").replace(/\/+$/, "");
-      return `](${DOCS_BASE}/${clean}/${hash})`;
-    },
-  );
+  assertSafeChangelogHtml(html);
+  return html;
 }
 
 function stripConflictMarkers(md) {
@@ -140,9 +128,7 @@ function formatSectionHeading(raw) {
 }
 
 function renderItems(items) {
-  return items.map((item) =>
-    inlineMarkdown(linkTickets(rewriteDocsLinks(item))),
-  );
+  return items.map((item) => renderItem(item));
 }
 
 function dedupeSections(sections) {
@@ -205,8 +191,8 @@ function parseChangelog(md) {
     }
 
     if (currentSection && /^- /.test(line)) {
-      const body = rewriteDocsLinks(line.replace(/^- /, "").trim());
-      currentSection.items.push(inlineMarkdown(linkTickets(body)));
+      const body = line.replace(/^- /, "").trim();
+      currentSection.items.push(renderItem(body));
     }
   }
 

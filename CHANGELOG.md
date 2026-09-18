@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### 🔒 Security
+
+- Self-host `@shellui/sdk@0.5.0` tiny (`/assets/js/shellui.tiny.js`) instead of loading from jsDelivr without Subresource Integrity.
+- Pin upstream changelog fetch to shellui tag `v0.5.0` (commit `a0c1c907`) and escape HTML in build-time markdown rendering so remote release notes cannot inject script.
+
 ### 🛠 Improvements
 
 - Brand assets: show each logo once with SVG and PNG downloads on the same card; use checkerboard preview wells (near-white in light mode, mid-dark for light marks) so dark and light logos stay readable. Group Primary, Transparent, Documentation, and Playground under Logos; omit Files and the Documentation / Playground wordmarks from the press kit.

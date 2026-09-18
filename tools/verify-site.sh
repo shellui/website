@@ -131,11 +131,21 @@ if ! grep -qE 'assets/css/site\.css\?v=[a-f0-9]{8}' "${SITE}/index.html"; then
   fail "index.html missing fingerprinted site.css (?v=hash) — build may not have run in production mode"
 fi
 
-log "Checking Shellui 0.5.0 release pins"
-grep -q '@shellui/sdk@0.5.0/dist/shellui.tiny.js' "${SITE}/index.html" \
-  || fail "index.html must pin @shellui/sdk@0.5.0 (no beta/alpha)"
+log "Checking Shellui 0.5.0 release pins and security"
+[[ -f "${SITE}/assets/js/shellui.tiny.js" ]] \
+  || fail "missing self-hosted assets/js/shellui.tiny.js"
+grep -q '/assets/js/shellui.tiny.js' "${SITE}/index.html" \
+  || fail "index.html must load self-hosted shellui.tiny.js"
+if grep -qE 'cdn\.jsdelivr\.net/npm/@shellui/sdk' "${SITE}/index.html"; then
+  fail "index.html must not load @shellui/sdk from jsDelivr"
+fi
 if grep -qE '@shellui/sdk@0\.5\.0-(beta|alpha)' "${SITE}/index.html"; then
   fail "index.html still pins a beta/alpha @shellui/sdk"
+fi
+node "${ROOT}/tools/verify-changelog-sanitize.mjs"
+changelog_main="$(sed -n '/<main id="main-content"/,/<\/main>/p' "${SITE}/changelog/index.html")"
+if printf '%s' "${changelog_main}" | grep -qiE '<script\b|onerror=|href=[^>]*javascript:'; then
+  fail "changelog main content must not contain unsanitized script/event-handler markup"
 fi
 grep -q 'text-2xl font-semibold tracking-tight' "${SITE}/changelog/index.html" \
   || fail "changelog page missing strong latest-version callout heading"

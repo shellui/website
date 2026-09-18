@@ -219,6 +219,7 @@ export default async function (eleventyConfig) {
     "apple-touch-icon.png": "apple-touch-icon.png",
     "src/assets/js": "assets/js",
     "node_modules/alpinejs/dist/cdn.min.js": "assets/js/alpine.min.js",
+    "node_modules/@shellui/sdk/dist/shellui.tiny.js": "assets/js/shellui.tiny.js",
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
     "content/guidelines/design.md": "design.md",
     "content/guidelines": "guidelines",
