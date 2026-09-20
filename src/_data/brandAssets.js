@@ -6,7 +6,7 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const assetsDir = path.join(root, "../../img/brand-assets");
 
 const groups = [
-  { name: "Icon mark", bases: ["shellui_mark"] },
+  { name: "Shellui mark", bases: ["shellui_mark"] },
   {
     name: "Logos",
     bases: ["shellui_transparent_logo", "shellui_wireframe_logo"],
@@ -36,7 +36,7 @@ const omittedBases = new Set([
 ]);
 
 const labels = {
-  shellui_mark: "Shellui mark",
+  shellui_mark: "Wordmark",
   shellui_transparent_logo: "Transparent",
   shellui_wireframe_logo: "Wireframe",
   shellui_icon_black: "Icon (black)",
@@ -60,7 +60,7 @@ const darkArtwork = new Set(["shellui_icon_white", "shellui_ios_icon_white"]);
 
 /** Inline SVG preview so stroke/fill can follow CSS text color (light/dark). */
 const currentColorArtwork = {
-  shellui_mark: { spriteId: "logo-shellui", viewBox: "0 0 1650 495" },
+  shellui_mark: { spriteId: "logo-shellui", viewBox: "0 0 1024 270" },
   shellui_transparent_logo: { spriteId: "logo-shellui-mark", viewBox: "0 0 1080 1080" },
   shellui_wireframe_logo: { spriteId: "logo-shellui-mark-wireframe", viewBox: "0 0 1080 1080" },
 };
