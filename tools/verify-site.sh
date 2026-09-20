@@ -158,10 +158,14 @@ latest_product_version="$(
 )"
 [[ -n "${latest_product_version}" ]] \
   || fail "changelog callout must link to a GitHub release tag"
-grep -q "v${latest_product_version} is out" "${SITE}/index.html" \
-  || fail "homepage badge must show latest product release v${latest_product_version} (not website package version)"
-grep -q "Changelog for ${latest_product_version}" "${SITE}/index.html" \
-  || fail "homepage footer must link to changelog for product v${latest_product_version}"
+# Homepage badge uses major.minor (implies .x), not the full patch release.
+latest_product_series="$(printf '%s' "${latest_product_version}" | grep -oE '^[0-9]+\.[0-9]+')"
+[[ -n "${latest_product_series}" ]] \
+  || fail "could not derive major.minor series from v${latest_product_version}"
+grep -q "v${latest_product_series} is out" "${SITE}/index.html" \
+  || fail "homepage badge must show latest product series v${latest_product_series} (not website package version)"
+grep -q "Changelog for ${latest_product_series}" "${SITE}/index.html" \
+  || fail "homepage footer must link to changelog for product series v${latest_product_series}"
 grep -q 'Floating chrome actions' "${SITE}/changelog/index.html" \
   || fail "changelog page missing curated 0.5.0 chrome actions highlight"
 if grep -qiE 'Flutter Web|🗑 Removed|Removed</h3>' "${SITE}/changelog/index.html"; then
