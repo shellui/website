@@ -40,7 +40,7 @@ description: Download official Shellui logos in SVG and PNG for articles, talks,
               <div class="flex aspect-[16/10] items-center justify-center p-8 {% if asset.preview == 'light' %}bg-gray-100 bg-[linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb),linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% elif asset.preview == 'dark' %}bg-gray-600 bg-[linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151),linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% else %}bg-gray-100 bg-[linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb),linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb)] bg-[length:16px_16px] bg-[position:0_0,8px_8px] dark:bg-gray-600 dark:bg-[linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151),linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151)] dark:bg-[length:16px_16px] dark:bg-[position:0_0,8px_8px]{% endif %}">
                 {% if asset.currentColor %}
                   <svg
-                    class="h-24 w-auto max-w-full text-gray-900 dark:text-white"
+                    class="{{ asset.previewClass }} text-gray-900 dark:text-white"
                     viewBox="{{ asset.viewBox }}"
                     role="img"
                     aria-label="{{ asset.label }}"

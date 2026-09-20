@@ -60,9 +60,19 @@ const darkArtwork = new Set(["shellui_icon_white", "shellui_ios_icon_white"]);
 
 /** Inline SVG preview so stroke/fill can follow CSS text color (light/dark). */
 const currentColorArtwork = {
-  shellui_mark: { spriteId: "logo-shellui", viewBox: "0 0 1024 270" },
-  shellui_transparent_logo: { spriteId: "logo-shellui-mark", viewBox: "0 0 1080 1080" },
-  shellui_wireframe_logo: { spriteId: "logo-shellui-mark-wireframe", viewBox: "0 0 1080 1080" },
+  shellui_mark: {
+    spriteId: "logo-shellui",
+    viewBox: "0 0 1024 270",
+    previewClass: "mt-4 -ml-5 h-12 w-auto max-w-[55%]",
+  },
+  shellui_transparent_logo: {
+    spriteId: "logo-shellui-mark",
+    viewBox: "0 0 1080 1080",
+  },
+  shellui_wireframe_logo: {
+    spriteId: "logo-shellui-mark-wireframe",
+    viewBox: "0 0 1080 1080",
+  },
 };
 
 const extOrder = { SVG: 0, PNG: 1 };
@@ -82,7 +92,10 @@ function previewFor(baseName) {
 }
 
 function sortFormats(a, b) {
-  return (extOrder[a.ext] ?? 99) - (extOrder[b.ext] ?? 99) || a.ext.localeCompare(b.ext);
+  return (
+    (extOrder[a.ext] ?? 99) - (extOrder[b.ext] ?? 99) ||
+    a.ext.localeCompare(b.ext)
+  );
 }
 
 const files = fs.readdirSync(assetsDir).filter((file) => !file.startsWith("."));
@@ -109,6 +122,8 @@ for (const file of files) {
       currentColor: Boolean(currentColorArtwork[baseName]),
       spriteId: currentColorArtwork[baseName]?.spriteId ?? null,
       viewBox: currentColorArtwork[baseName]?.viewBox ?? null,
+      previewClass:
+        currentColorArtwork[baseName]?.previewClass ?? "h-24 w-auto max-w-full",
       formats: [format],
     });
   }
@@ -126,9 +141,7 @@ const grouped = groups
     name: group.name,
     caption: group.caption ?? null,
     columns: group.columns ?? 2,
-    items: group.bases
-      .map((base) => assetsByBase.get(base))
-      .filter(Boolean),
+    items: group.bases.map((base) => assetsByBase.get(base)).filter(Boolean),
   }))
   .filter((group) => group.items.length > 0);
 
