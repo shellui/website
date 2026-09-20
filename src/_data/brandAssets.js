@@ -12,9 +12,11 @@ const groups = [
     bases: [
       "shellui_logo",
       "shellui_transparent_logo",
+      "shellui_wireframe_logo",
       "shellui_doc_logo",
       "shellui_playground_logo",
     ],
+
   },
   {
     name: "iOS icons",
@@ -39,8 +41,10 @@ const labels = {
   logo: "Shellui mark",
   shellui_logo: "Primary",
   shellui_transparent_logo: "Transparent",
+  shellui_wireframe_logo: "Wireframe",
   shellui_doc_logo: "Documentation",
   shellui_playground_logo: "Playground",
+
   shellui_ios_icon_black: "iOS icon (black)",
   shellui_ios_icon_white: "iOS icon (white)",
   shellui_ios_icon_gold: "iOS icon (gold)",
@@ -56,6 +60,10 @@ const lightArtwork = new Set([
 
 /** White / light artwork needs a mid dark preview (not near-black). */
 const darkArtwork = new Set(["shellui_ios_icon_white"]);
+
+/** Inline SVG preview so stroke/fill can follow CSS text color (light/dark). */
+const currentColorArtwork = new Set(["shellui_wireframe_logo"]);
+
 
 const extOrder = { SVG: 0, PNG: 1 };
 
@@ -98,6 +106,7 @@ for (const file of files) {
       baseName,
       label: formatLabel(baseName),
       preview: previewFor(baseName),
+      currentColor: currentColorArtwork.has(baseName),
       formats: [format],
     });
   }

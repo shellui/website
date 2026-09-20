@@ -38,7 +38,18 @@ description: Download official Shellui logos in SVG and PNG for articles, talks,
             <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
               {# Checkerboard transparency wells: light marks on mid-dark; dark marks on near-white (not pure white). #}
               <div class="flex aspect-[16/10] items-center justify-center p-8 {% if asset.preview == 'light' %}bg-gray-100 bg-[linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb),linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% elif asset.preview == 'dark' %}bg-gray-600 bg-[linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151),linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% else %}bg-gray-100 bg-[linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb),linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb)] bg-[length:16px_16px] bg-[position:0_0,8px_8px] dark:bg-gray-600 dark:bg-[linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151),linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151)] dark:bg-[length:16px_16px] dark:bg-[position:0_0,8px_8px]{% endif %}">
-                <img src="{{ asset.href }}" alt="{{ asset.label }}" width="320" height="200" class="max-h-24 max-w-full object-contain" loading="lazy" />
+                {% if asset.currentColor %}
+                  <svg
+                    class="h-24 w-auto max-w-full text-gray-900 dark:text-white"
+                    viewBox="0 0 1080 1080"
+                    role="img"
+                    aria-label="{{ asset.label }}"
+                  >
+                    <use href="#logo-shellui-mark-wireframe" />
+                  </svg>
+                {% else %}
+                  <img src="{{ asset.href }}" alt="{{ asset.label }}" width="320" height="200" class="max-h-24 max-w-full object-contain" loading="lazy" />
+                {% endif %}
               </div>
               <div class="border-t border-gray-200 px-4 py-4 dark:border-gray-800">
                 <div class="flex items-start justify-between gap-3">
