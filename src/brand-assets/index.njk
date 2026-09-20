@@ -41,11 +41,11 @@ description: Download official Shellui logos in SVG and PNG for articles, talks,
                 {% if asset.currentColor %}
                   <svg
                     class="h-24 w-auto max-w-full text-gray-900 dark:text-white"
-                    viewBox="0 0 1080 1080"
+                    viewBox="{{ asset.viewBox }}"
                     role="img"
                     aria-label="{{ asset.label }}"
                   >
-                    <use href="#logo-shellui-mark-wireframe" />
+                    <use href="#{{ asset.spriteId }}" />
                   </svg>
                 {% else %}
                   <img src="{{ asset.href }}" alt="{{ asset.label }}" width="320" height="200" class="max-h-24 max-w-full object-contain" loading="lazy" />
