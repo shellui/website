@@ -5,5 +5,4 @@ import { lazyMountGraphIsland } from "./graph-island.js";
 lazyMountGraphIsland({
   containerSelector: "[data-auth-flow]",
   islandUrl: "/assets/js/auth-flow.island.js",
-  loadingLabel: "Loading authentication diagram…",
 });

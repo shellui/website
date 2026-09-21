@@ -5,5 +5,4 @@ import { lazyMountGraphIsland } from "./graph-island.js";
 lazyMountGraphIsland({
   containerSelector: "[data-architecture-graph]",
   islandUrl: "/assets/js/architecture-graph.island.js",
-  loadingLabel: "Loading architecture diagram…",
 });

@@ -1,24 +1,13 @@
+{% from "graph-ssr.njk" import shell, noscriptFallback %}
 <div class="architecture-graph mt-8" data-architecture-graph>
-  <div data-graph-fallback>
-    <div class="grid gap-6 sm:grid-cols-2">
-      {% for view in architectureGraph.views %}
-        <section class="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
-          <h3 class="text-sm font-semibold text-gray-900 dark:text-white">{{ view.label }}</h3>
-          <p class="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">{{ view.summary }}</p>
-          <ul class="mt-4 space-y-1.5 text-sm/6 text-gray-600 dark:text-gray-400">
-            {% for connection in view.connections %}
-              <li class="min-w-0">
-                <span class="font-medium text-gray-900 dark:text-white">{{ connection.from }} {% if connection.bidirectional %}&harr;{% else %}&rarr;{% endif %} {{ connection.to }}</span>
-                {% if connection.label %}<span class="font-mono text-xs break-words">{{ connection.label }}</span>{% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-          {% if view.omitted %}
-            <p class="mt-4 text-sm/6 text-gray-600 dark:text-gray-400"><span class="font-semibold text-gray-900 dark:text-white">{{ view.omitted.title }}:</span> {{ view.omitted.items | join("; ") }}.</p>
-          {% endif %}
-        </section>
-      {% endfor %}
-    </div>
+  {{ noscriptFallback(architectureGraph.views, { legendOrdered: false }) }}
+  <div data-graph-mount>
+    {{ shell(architectureGraph.views, {
+      pickerLegend: "Stack",
+      pickerName: "architecture-stack-ssr",
+      loadingLabel: "Loading architecture diagram…",
+      legendTitle: "Connections in this view",
+      legendOrdered: false
+    }) }}
   </div>
-  <div data-graph-mount hidden></div>
 </div>
