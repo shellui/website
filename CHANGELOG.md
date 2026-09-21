@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.5.2] - 2026-09-21
+
+### 🐛 Bug Fixes
+
+- React Flow graphs on Architecture / Authentication no longer flash blank on load (reserved skeleton until ready).
+
 ## [0.5.1] - 2026-09-18
 
 ### 🔒 Security

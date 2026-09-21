@@ -1,24 +1,13 @@
+{% from "graph-ssr.njk" import shell, noscriptFallback %}
 <div class="architecture-graph mt-8" data-auth-flow>
-  <div data-graph-fallback>
-    <div class="grid gap-6 sm:grid-cols-2">
-      {% for view in authFlow.views %}
-        <section class="rounded-xl border border-border bg-card p-5">
-          <h3 class="text-sm font-semibold text-foreground">{{ view.label }}</h3>
-          <p class="mt-2 text-sm/6 text-muted-foreground">{{ view.summary }}</p>
-          <ol class="mt-4 list-decimal space-y-1.5 pl-4 text-sm/6 text-muted-foreground">
-            {% for connection in view.connections %}
-              <li class="min-w-0">
-                <span class="font-medium text-foreground">{{ connection.from }} {% if connection.bidirectional %}&harr;{% else %}&rarr;{% endif %} {{ connection.to }}</span>
-                {% if connection.label %}<span class="font-mono text-xs break-words"> {{ connection.label }}</span>{% endif %}
-              </li>
-            {% endfor %}
-          </ol>
-          {% if view.omitted %}
-            <p class="mt-4 text-sm/6 text-muted-foreground"><span class="font-semibold text-foreground">{{ view.omitted.title }}:</span> {{ view.omitted.items | join("; ") }}.</p>
-          {% endif %}
-        </section>
-      {% endfor %}
-    </div>
+  {{ noscriptFallback(authFlow.views, { legendOrdered: true }) }}
+  <div data-graph-mount>
+    {{ shell(authFlow.views, {
+      pickerLegend: "Flow",
+      pickerName: "auth-flow-ssr",
+      loadingLabel: "Loading authentication diagram…",
+      legendTitle: "Exchange in this view",
+      legendOrdered: true
+    }) }}
   </div>
-  <div data-graph-mount hidden></div>
 </div>
