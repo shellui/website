@@ -544,6 +544,19 @@
   border-color: var(--color-border);
 }
 
+/* React Flow island: reserve graph chrome before the bundle paints */
+.ag-graph-pending {
+  min-height: calc(5.5rem + clamp(360px, 56vh, 460px));
+}
+
+.ag-graph-pending__shell {
+  margin-top: 3.25rem;
+  height: clamp(360px, 56vh, 460px);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background: color-mix(in oklab, var(--color-muted) 88%, transparent);
+}
+
 .design-swatch-split {
   @apply grid grid-cols-2 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800;
 }

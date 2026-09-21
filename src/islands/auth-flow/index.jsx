@@ -14,7 +14,7 @@ function injectStyles() {
   document.head.append(style);
 }
 
-export function mount(target) {
+export function mount(target, { onReady } = {}) {
   injectStyles();
-  createRoot(target).render(<AuthFlow />);
+  createRoot(target).render(<AuthFlow onReady={onReady} />);
 }
