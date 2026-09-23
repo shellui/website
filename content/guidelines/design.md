@@ -1,7 +1,7 @@
 ---
 title: Design
 description: How to compose on-brand Shellui pages. Fetch this file first when building website or product surfaces. The HTML page at /guidelines/design/ is a human visual handbook - do not scrape it.
-version: 1.5.0
+version: 1.5.1
 ---
 
 Act as an excellent Shellui designer, editor, and information architect. Turn the available material into an official Shellui-authored page. Shape the argument and the interface together. Do not restyle a dump of sections or assemble a generic landing page.
@@ -74,7 +74,7 @@ CSS: `src/assets/css/patterns.css` (imported from `input.css`). Includes `.su-si
 | Layer | What it frames | Utilities |
 | --- | --- | --- |
 | **Site canvas** | Full page: vertical guides at `max-w-7xl` edges | `.su-site-canvas` on `main` |
-| **Section band** | Major horizontal bands (hero, features, init, footer) | `.su-section-band` + band rule + optional blueprint stage |
+| **Section band** | Major horizontal bands (hero, features, init, footer) | `.su-section-band` + band rule (no default grid fill) |
 | **Content column box** | The layout column for a page (`max-w-7xl` / `5xl` / `3xl` / `2xl`) | `.su-column-box` + `.su-frame-corners` or `.su-frame-brackets` + corner marks |
 | **Leaf content** | Cards, FAQ rows, CTAs, code demos inside the column | Normal components; no per-card frame |
 
@@ -84,9 +84,9 @@ Structure **sections and content columns**, not every small tile. One box around
 
 - Hairline **horizontal rules** between major sections, aligned to the same max width as content.
 - **Corner registration** on section content columns (not on individual feature cards).
-- **Vertical column guides** on wide pages, aligned to `.page-x` / `max-w-7xl`.
-- **Soft blueprint** behind large structural stages (hero, feature splits, guidelines wells, muted bands) via `.su-section-band__stage`.
-- Homepage bands (features, init, config, deploy, audience) and inner pages (page header + body column) all use the same helpers.
+- **Vertical column guides** on wide pages, aligned to `.page-x` / `max-w-7xl` (`.su-site-canvas`; column lines, not a tiled grid).
+- Default structure is **lines + boxes** only. Do not paint a blueprint grid behind every section.
+- Homepage bands and inner pages share the same section/column helpers without a tiled fill on each band.
 
 ### Still do not
 
@@ -94,9 +94,9 @@ Structure **sections and content columns**, not every small tile. One box around
 - Do not stack a full card border, a corner frame, and a heavy shadow on the same object.
 - Do not gold-tint ink or add multi-color glows.
 
-### Surfaces (canonical)
+### Blueprint grid (optional accent)
 
-**`.su-pattern-blueprint`** default. Hairline rules (1px) + ≤1px dots at intersections. Cell `--su-cell: 28px`.
+**`.su-pattern-blueprint`** is a **rare stage accent**, not default wallpaper. Use at most one or two intentional moments site-wide (for example the homepage hero stage). Hairline rules (1px) + ≤1px dots at intersections. Cell `--su-cell: 28px`. Set **`wireframeStageClass`** only when calling `su-wireframe-stage.njk`; do not attach blueprint to every `.su-section-band__stage`.
 
 | Role | Light | Dark | Modifier |
 | --- | --- | --- | --- |
@@ -105,7 +105,7 @@ Structure **sections and content columns**, not every small tile. One box around
 | Empty / large fields | ~2.8% | ~3.4% | `.is-empty` |
 | Dense cell (16px) | well or quieter | same | `.is-dense` |
 
-Supporting: **`.su-pattern-dots`**, **`.su-pattern-columns`**. Use **`.is-overlay`** on stages over the page canvas.
+**`.su-pattern-columns`** on `.su-site-canvas` is the usual vertical guide (not a full grid). Supporting: **`.su-pattern-dots`**. Handbook swatches may show blueprint samples; live pages default to frames and rules only.
 
 ### Registration frames (canonical)
 

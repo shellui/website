@@ -1,2 +1,4 @@
-{# Optional: wireframeStageClass e.g. su-pattern-blueprint is-overlay is-well #}
-<div class="su-section-band__stage {{ wireframeStageClass | default('su-pattern-blueprint is-overlay is-empty') }}" aria-hidden="true"></div>
+{# Set wireframeStageClass only for rare blueprint accents (e.g. homepage hero). #}
+{% if wireframeStageClass %}
+<div class="su-section-band__stage {{ wireframeStageClass }}" aria-hidden="true"></div>
+{% endif %}

@@ -177,7 +177,7 @@
     </ul>
 
     <h3 class="mt-12 text-base font-semibold text-gray-900 dark:text-white">Multi-section page schematic</h3>
-    <p class="mt-1 max-w-2xl text-sm text-gray-600 dark:text-gray-400">Section shell (band rule + stage) plus one content column box per band. Leaf cards stay plain inside the column.</p>
+    <p class="mt-1 max-w-2xl text-sm text-gray-600 dark:text-gray-400">Band rules and column boxes on every band; blueprint grid is an optional accent (hero only in this schematic). Leaf cards stay plain inside the column.</p>
     <div class="mt-5 overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
       <div class="relative bg-background p-4 sm:p-6">
         <div class="su-site-canvas su-site-canvas--demo" aria-hidden="true">
@@ -187,13 +187,15 @@
           </div>
         </div>
         {% for band in [
-          { "label": "Hero band", "stage": "su-pattern-blueprint is-overlay", "frame": "corners" },
-          { "label": "Feature band", "stage": "su-pattern-blueprint is-overlay is-well", "frame": "corners" },
-          { "label": "CTA band", "stage": "su-pattern-blueprint is-overlay is-empty", "frame": "brackets" }
+          { "label": "Hero band", "accent": true, "frame": "corners" },
+          { "label": "Feature band", "accent": false, "frame": "corners" },
+          { "label": "CTA band", "accent": false, "frame": "brackets" }
         ] %}
           <div class="su-section-band relative mt-3 first:mt-0">
             <div class="su-layout-band-rule" aria-hidden="true"><div class="su-layout-band-rule__inset su-layout-band-rule__inset--7xl"></div></div>
-            <div class="su-section-band__stage {{ band.stage }}" aria-hidden="true"></div>
+            {% if band.accent %}
+              <div class="su-section-band__stage su-pattern-blueprint is-overlay" aria-hidden="true"></div>
+            {% endif %}
             <div class="mx-auto max-w-md su-column-box {% if band.frame == 'corners' %}su-frame-corners{% else %}su-frame-brackets{% endif %} px-3 py-4 sm:px-4">
               {% if band.frame == "corners" %}
                 {% include "su-frame-marks.njk" %}
