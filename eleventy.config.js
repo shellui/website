@@ -218,6 +218,7 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({
     CNAME: "CNAME",
+    ".well-known": ".well-known",
     img: "img",
     "favicon.ico": "favicon.ico",
     "apple-touch-icon.png": "apple-touch-icon.png",

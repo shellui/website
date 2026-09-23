@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [Unreleased]
+
+### 🏗 Chore
+
+- Publish Microsoft identity association at `/.well-known/microsoft-identity-association.json` for Azure app registration domain verification.
+
 ## [0.5.2] - 2026-09-21
 
 ### 🐛 Bug Fixes
