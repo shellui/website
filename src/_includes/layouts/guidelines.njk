@@ -2,8 +2,13 @@
 layout: layouts/base.njk
 ---
 {%- set topicData = guidelines.bySlug[topic] -%}
-<article class="page-top page-x pb-20">
-  <div class="mx-auto max-w-5xl">
+<article class="su-section-band page-top page-x pb-20">
+  {% set wireframeBandWidth = "5xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay is-well" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="mx-auto max-w-5xl su-column-box su-frame-corners px-4 py-8 sm:px-6 sm:py-10">
+    {% include "su-frame-marks.njk" %}
     {% include "guidelines-subnav.njk" %}
 
     <header class="max-w-3xl">

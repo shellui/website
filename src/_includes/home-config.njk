@@ -1,5 +1,10 @@
-<section id="config" class="border-t border-gray-200 px-4 py-24 sm:px-6 lg:px-8 dark:border-gray-800">
-  <div class="mx-auto max-w-7xl">
+<section id="config" class="su-section-band border-t border-gray-200 page-x py-24 dark:border-gray-800">
+  {% set wireframeBandWidth = "7xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="mx-auto max-w-7xl su-column-box su-frame-corners px-4 sm:px-6">
+    {% include "su-frame-marks.njk" %}
     <div class="max-w-2xl">
       <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
         One config file

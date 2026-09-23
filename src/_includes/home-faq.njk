@@ -1,5 +1,10 @@
-<section id="faq" class="bg-white page-x dark:bg-gray-950">
-  <div class="mx-auto max-w-7xl py-24 sm:pt-32 lg:py-40">
+<section id="faq" class="su-section-band bg-white page-x dark:bg-gray-950">
+  {% set wireframeBandWidth = "7xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay is-well" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="mx-auto max-w-7xl su-column-box su-frame-corners px-4 py-24 sm:px-6 sm:pt-32 lg:py-40">
+    {% include "su-frame-marks.njk" %}
     <div class="lg:grid lg:grid-cols-12 lg:gap-8">
       <div class="lg:col-span-5">
         <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">Questions developers ask</h2>

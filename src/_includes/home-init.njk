@@ -1,8 +1,13 @@
 {% set defaultFramework = frameworks[0] %}
 {% include "framework-icons.njk" %}
 
-<section id="init" class="border-t border-gray-200 bg-gray-50 page-x py-24 dark:border-gray-800 dark:bg-gray-900/40">
-  <div class="mx-auto max-w-7xl">
+<section id="init" class="su-section-band su-section-band--well border-t border-gray-200 bg-gray-50 page-x py-24 dark:border-gray-800 dark:bg-gray-900/40">
+  {% set wireframeBandWidth = "7xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay is-well" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="mx-auto max-w-7xl su-column-box su-frame-corners px-4 sm:px-6">
+    {% include "su-frame-marks.njk" %}
     <div class="max-w-2xl">
       <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
         Scaffold your app. Shellui wraps it.

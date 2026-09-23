@@ -2,8 +2,13 @@
 layout: layouts/base.njk
 ---
 {% if centered %}
-<div class="bg-white page-x py-24 pt-32 sm:py-32 sm:pt-40 dark:bg-gray-950">
-  <div class="mx-auto max-w-2xl text-center">
+<div class="su-section-band bg-white page-x py-24 pt-32 sm:py-32 sm:pt-40 dark:bg-gray-950">
+  {% set wireframeBandWidth = "2xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="mx-auto max-w-2xl su-column-box su-frame-corners px-4 py-10 text-center sm:px-6">
+    {% include "su-frame-marks.njk" %}
     {% include "breadcrumbs.njk" %}
     {% if eyebrow %}
       <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ eyebrow }}</p>
@@ -14,14 +19,24 @@ layout: layouts/base.njk
     {% endif %}
   </div>
 </div>
-<article class="page-x {% if playgroundCta %}pb-8{% else %}pb-24{% endif %}">
-  <div class="{% if wide %}mx-auto max-w-7xl{% else %}prose mx-auto max-w-2xl{% endif %}">
+<article class="su-section-band page-x {% if playgroundCta %}pb-8{% else %}pb-24{% endif %}">
+  {% set wireframeBandWidth = wide and "7xl" or "2xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay is-well" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="{% if wide %}mx-auto max-w-7xl su-column-box su-frame-corners px-4 py-10 sm:px-6 sm:py-12{% else %}prose mx-auto max-w-2xl su-column-box su-frame-corners px-4 py-10 sm:px-6{% endif %}">
+    {% include "su-frame-marks.njk" %}
     {{ content | safe }}
   </div>
 </article>
 {% else %}
-<div class="page-top page-x bg-white pb-16 sm:pb-20 dark:bg-gray-950">
-  <div class="mx-auto max-w-7xl">
+<div class="su-section-band page-top page-x bg-white pb-16 sm:pb-20 dark:bg-gray-950">
+  {% set wireframeBandWidth = "7xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="mx-auto max-w-7xl su-column-box su-frame-corners px-4 py-10 sm:px-6 sm:py-12">
+    {% include "su-frame-marks.njk" %}
     <div class="lg:max-w-2xl">
       {% include "breadcrumbs.njk" %}
       {% if eyebrow %}
@@ -39,8 +54,14 @@ layout: layouts/base.njk
 </div>
 {% endif %}
 {% if playgroundCta %}
-<div class="page-x pb-16 sm:pb-24">
-  {% set playgroundCtaWide = wide %}
-  {% include "playground-cta.njk" %}
+<div class="su-section-band page-x pb-16 sm:pb-24">
+  {% set wireframeBandWidth = "7xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay is-empty" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="mx-auto max-w-7xl">
+    {% set playgroundCtaWide = wide %}
+    {% include "playground-cta.njk" %}
+  </div>
 </div>
 {% endif %}

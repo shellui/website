@@ -11,17 +11,23 @@
   --su-bracket: 14px;
   --su-bracket-w: 1px;
 
-  --su-ink-hero: 0.035;
-  --su-ink-well: 0.055;
-  --su-ink-empty: 0.022;
-  --su-ink-dot: 0.04;
+  --su-ink-hero: 0.048;
+  --su-ink-well: 0.062;
+  --su-ink-empty: 0.028;
+  --su-ink-dot: 0.05;
+  --su-max-7xl: 80rem;
+  --su-max-5xl: 64rem;
+  --su-max-3xl: 48rem;
+  --su-max-2xl: 42rem;
+  --su-rule-ink: color-mix(in srgb, var(--color-border) 88%, transparent);
 }
 
 .dark {
-  --su-ink-hero: 0.045;
-  --su-ink-well: 0.065;
-  --su-ink-empty: 0.028;
-  --su-ink-dot: 0.05;
+  --su-ink-hero: 0.058;
+  --su-ink-well: 0.072;
+  --su-ink-empty: 0.034;
+  --su-ink-dot: 0.058;
+  --su-rule-ink: color-mix(in srgb, var(--color-border) 92%, transparent);
 }
 
 @layer components {
@@ -102,7 +108,7 @@
   .su-layout-scaffold__column {
     margin-inline: auto;
     height: 100%;
-    max-width: 80rem; /* max-w-7xl */
+    max-width: var(--su-max-7xl);
   }
 
   .su-layout-scaffold__register {
@@ -128,8 +134,101 @@
 
   .su-layout-band-rule__inset {
     margin-inline: auto;
-    max-width: 80rem;
-    border-top: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
+    max-width: var(--su-max-7xl);
+    border-top: 1px solid var(--su-rule-ink);
+  }
+
+  .su-layout-band-rule--bottom {
+    top: auto;
+    bottom: 0;
+  }
+
+  .su-layout-band-rule--bottom .su-layout-band-rule__inset {
+    border-top: none;
+    border-bottom: 1px solid var(--su-rule-ink);
+  }
+
+  .su-layout-band-rule__inset--7xl {
+    max-width: var(--su-max-7xl);
+  }
+
+  .su-layout-band-rule__inset--5xl {
+    max-width: var(--su-max-5xl);
+  }
+
+  .su-layout-band-rule__inset--3xl {
+    max-width: var(--su-max-3xl);
+  }
+
+  .su-layout-band-rule__inset--2xl {
+    max-width: var(--su-max-2xl);
+  }
+
+  /* Site-wide artboard column guides (main canvas) */
+  .su-site-main {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .su-site-canvas {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: -30;
+    overflow: hidden;
+  }
+
+  .su-site-canvas__inset {
+    position: absolute;
+    inset: 0;
+  }
+
+  .su-site-canvas__column {
+    margin-inline: auto;
+    height: 100%;
+    max-width: var(--su-max-7xl);
+    min-height: 100%;
+  }
+
+  .su-site-canvas__edges {
+    position: absolute;
+    inset: 0;
+    margin-inline: auto;
+    max-width: var(--su-max-7xl);
+    border-inline: 1px solid var(--su-rule-ink);
+  }
+
+  .su-site-canvas--demo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* Section band: horizontal rules + optional blueprint stage */
+  .su-section-band {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .su-section-band__stage {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+  }
+
+  .su-section-band--well .su-section-band__stage {
+    opacity: 1;
+  }
+
+  /* Content column box: layout frame around a max-w region (not leaf cards) */
+  .su-column-box {
+    position: relative;
+  }
+
+  .su-column-box.su-frame-corners {
+    --_frame-ink: var(--su-rule-ink);
+    --_mark-ink: color-mix(in srgb, var(--color-foreground) 52%, transparent);
   }
 
   .su-frame-corners {

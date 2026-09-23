@@ -151,8 +151,7 @@
   <section id="patterns" class="mt-16 scroll-mt-24">
     <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Patterns</h2>
     <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
-      Layout wireframe only: structure the page, never dress content. Blueprint and column guides align to real
-      <code class="font-mono text-[0.8rem]">max-w-*</code> columns at whisper-quiet ink. Do not wrap cards, CTAs, or prose in frames. Utilities live in
+      Site-wide boxy wireframe: section bands, column boxes, and column guides from shared layouts. Structure regions on the artboard, not every leaf card. Ink is whisper to soft. Utilities live in
       <code class="font-mono text-[0.8rem]">patterns.css</code>. Never tint pattern ink with gold.
     </p>
 
@@ -160,9 +159,9 @@
     <p class="mt-1 max-w-2xl text-sm text-gray-600 dark:text-gray-400">Default cell 28px. Hairline rules and ≤1px dots at intersections only.</p>
     <ul class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {% for sample in [
-        { "class": "su-pattern-blueprint", "title": "Blueprint", "code": ".su-pattern-blueprint · hero ~3.5% / ~4.5% dark" },
-        { "class": "su-pattern-blueprint is-well", "title": "Blueprint well", "code": ".is-well · ~5.5% / ~6.5% dark" },
-        { "class": "su-pattern-blueprint is-empty", "title": "Blueprint empty", "code": ".is-empty · ~2.2% / ~2.8% dark" },
+        { "class": "su-pattern-blueprint", "title": "Blueprint", "code": ".su-pattern-blueprint · ~4.8% / ~5.8% dark" },
+        { "class": "su-pattern-blueprint is-well", "title": "Blueprint well", "code": ".is-well · ~6.2% / ~7.2% dark" },
+        { "class": "su-pattern-blueprint is-empty", "title": "Blueprint empty", "code": ".is-empty · ~2.8% / ~3.4% dark" },
         { "class": "su-pattern-blueprint is-dense is-well", "title": "Dense well", "code": ".is-dense · 16px cell" },
         { "class": "su-pattern-dots", "title": "Dot field", "code": ".su-pattern-dots · optional" },
         { "class": "su-pattern-columns", "title": "Column guides", "code": ".su-pattern-columns · optional" }
@@ -177,32 +176,47 @@
       {% endfor %}
     </ul>
 
-    <h3 class="mt-12 text-base font-semibold text-gray-900 dark:text-white">Layout registration</h3>
-    <p class="mt-1 max-w-2xl text-sm text-gray-600 dark:text-gray-400">Section or page corners only, aligned to the same max width as content. Not for feature cards or CTAs.</p>
+    <h3 class="mt-12 text-base font-semibold text-gray-900 dark:text-white">Multi-section page schematic</h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-600 dark:text-gray-400">Section shell (band rule + stage) plus one content column box per band. Leaf cards stay plain inside the column.</p>
     <div class="mt-5 overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
-      <div class="su-layout-scaffold relative min-h-56 bg-background p-6 sm:p-8">
-        <div class="su-layout-scaffold__inset min-h-48" aria-hidden="true">
-          <div class="su-layout-scaffold__column relative min-h-full">
-            <div class="absolute inset-0 su-pattern-blueprint is-overlay"></div>
-            <div class="absolute inset-0 su-pattern-columns is-overlay"></div>
+      <div class="relative bg-background p-4 sm:p-6">
+        <div class="su-site-canvas su-site-canvas--demo" aria-hidden="true">
+          <div class="su-site-canvas__inset">
+            <div class="su-site-canvas__column su-pattern-columns is-overlay"></div>
+            <div class="su-site-canvas__edges"></div>
           </div>
         </div>
-        <div class="su-layout-scaffold__register min-h-48" aria-hidden="true">
-          <div class="su-layout-scaffold__column relative min-h-full su-frame-brackets">
-            {% include "su-frame-brackets.njk" %}
+        {% for band in [
+          { "label": "Hero band", "stage": "su-pattern-blueprint is-overlay", "frame": "corners" },
+          { "label": "Feature band", "stage": "su-pattern-blueprint is-overlay is-well", "frame": "corners" },
+          { "label": "CTA band", "stage": "su-pattern-blueprint is-overlay is-empty", "frame": "brackets" }
+        ] %}
+          <div class="su-section-band relative mt-3 first:mt-0">
+            <div class="su-layout-band-rule" aria-hidden="true"><div class="su-layout-band-rule__inset su-layout-band-rule__inset--7xl"></div></div>
+            <div class="su-section-band__stage {{ band.stage }}" aria-hidden="true"></div>
+            <div class="mx-auto max-w-md su-column-box {% if band.frame == 'corners' %}su-frame-corners{% else %}su-frame-brackets{% endif %} px-3 py-4 sm:px-4">
+              {% if band.frame == "corners" %}
+                {% include "su-frame-marks.njk" %}
+              {% else %}
+                {% include "su-frame-brackets.njk" %}
+              {% endif %}
+              <p class="text-[0.65rem] font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-400">{{ band.label }}</p>
+              <div class="mt-2 h-8 border border-dashed border-gray-200 bg-white/60 dark:border-gray-700 dark:bg-gray-950/40">
+                <p class="px-2 py-1.5 text-[0.65rem] text-gray-500 dark:text-gray-400">Leaf content (no extra frame)</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="relative mx-auto max-w-md pt-6 text-center">
-          <p class="text-xs font-medium tracking-wide text-gray-500 uppercase dark:text-gray-400">Hero stage (schematic)</p>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Pattern sits on the artboard; copy and actions stay inside, undecorated.</p>
-        </div>
+        {% endfor %}
       </div>
-      <div class="grid grid-cols-1 gap-px border-t border-gray-200 bg-gray-200 dark:border-gray-800 dark:bg-gray-800 sm:grid-cols-2">
+      <div class="grid grid-cols-1 gap-px border-t border-gray-200 bg-gray-200 dark:border-gray-800 dark:bg-gray-800 sm:grid-cols-3">
         <div class="bg-white px-4 py-3 dark:bg-gray-900">
-          <p class="font-mono text-[0.65rem] text-gray-500 dark:text-gray-400">.su-frame-corners · page/section</p>
+          <p class="font-mono text-[0.65rem] text-gray-500 dark:text-gray-400">.su-section-band</p>
         </div>
         <div class="bg-white px-4 py-3 dark:bg-gray-900">
-          <p class="font-mono text-[0.65rem] text-gray-500 dark:text-gray-400">.su-frame-brackets · page/section</p>
+          <p class="font-mono text-[0.65rem] text-gray-500 dark:text-gray-400">.su-column-box</p>
+        </div>
+        <div class="bg-white px-4 py-3 dark:bg-gray-900">
+          <p class="font-mono text-[0.65rem] text-gray-500 dark:text-gray-400">.su-site-canvas</p>
         </div>
       </div>
     </div>

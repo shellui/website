@@ -1,5 +1,10 @@
-<section id="deploy" class="page-x py-24">
-  <div class="mx-auto max-w-7xl">
+<section id="deploy" class="su-section-band page-x py-24">
+  {% set wireframeBandWidth = "7xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay is-empty" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="mx-auto max-w-7xl su-column-box su-frame-brackets px-4 py-2 sm:px-6">
+    {% include "su-frame-brackets.njk" %}
     <div class="max-w-2xl">
       <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
         Ship static files, or a native app

@@ -22,7 +22,8 @@ description: Shellui is an open-source web app development platform. Navigation,
           style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
         ></div>
       </div>
-      <div class="mx-auto max-w-2xl py-16 sm:py-20">
+      <div class="mx-auto max-w-2xl su-column-box su-frame-corners px-4 py-16 sm:px-6 sm:py-20">
+        {% include "su-frame-marks.njk" %}
         <div class="mb-6 flex justify-center sm:mb-8">
           <div class="relative flex items-center gap-x-3 rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
             v{{ productVersion }} is out
@@ -93,9 +94,13 @@ description: Shellui is an open-source web app development platform. Navigation,
       </div>
     </div>
 
-    <section id="features" class="relative z-10 page-x py-24">
-      <div class="su-layout-band-rule" aria-hidden="true"><div class="su-layout-band-rule__inset"></div></div>
-      <div class="mx-auto max-w-7xl">
+    <section id="features" class="su-section-band relative z-10 page-x py-24">
+      {% set wireframeBandWidth = "7xl" %}
+      {% include "su-wireframe-band-top.njk" %}
+      {% set wireframeStageClass = "su-pattern-blueprint is-overlay is-well" %}
+      {% include "su-wireframe-stage.njk" %}
+      <div class="mx-auto max-w-7xl su-column-box su-frame-corners px-4 sm:px-6">
+        {% include "su-frame-marks.njk" %}
         <div class="max-w-2xl">
           <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
             A shared foundation for your apps
@@ -173,8 +178,13 @@ description: Shellui is an open-source web app development platform. Navigation,
 
     {% include "home-deploy.njk" %}
 
-    <section id="audience" class="border-t border-gray-200 page-x py-24 dark:border-gray-800">
-      <div class="mx-auto max-w-7xl">
+    <section id="audience" class="su-section-band page-x py-24">
+      {% set wireframeBandWidth = "7xl" %}
+      {% include "su-wireframe-band-top.njk" %}
+      {% set wireframeStageClass = "su-pattern-blueprint is-overlay is-empty" %}
+      {% include "su-wireframe-stage.njk" %}
+      <div class="mx-auto max-w-7xl su-column-box su-frame-corners px-4 sm:px-6">
+        {% include "su-frame-marks.njk" %}
         <div class="max-w-2xl">
           <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
             Same shell as you grow

@@ -55,7 +55,8 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
     {% include "logo-sprite.njk" %}
     {% include "nav.njk" %}
-    <main id="main-content" class="relative z-10 flex-1" tabindex="-1">
+    <main id="main-content" class="su-site-main relative z-10 flex-1" tabindex="-1">
+      {% include "site-wireframe-canvas.njk" %}
       {{ content | safe }}
     </main>
     {% include "footer.njk" %}

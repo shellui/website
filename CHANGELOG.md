@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### ✨ Feature
 
-- Design guidelines v1.4.0: whisper-quiet technical pattern system (blueprint surfaces, corner frames, brackets) documented in `design.md`, visual handbook at `/guidelines/design/#patterns`, and CSS utilities in `patterns.css`.
-- Homepage light pass: layout wireframe on the hero stage (blueprint + column guides, optional section brackets at `max-w-7xl`), band rule before features; no frames on content cards or prose.
+- Design guidelines v1.5.0: site-wide boxy wireframe (section bands, content column boxes, site canvas column guides) documented in `design.md`, handbook schematic at `/guidelines/design/#patterns`, and layout helpers in `patterns.css` applied from `base`, `page`, `feature`, `guidelines`, and `post`.
+- Homepage and inner pages inherit hairline section rules, blueprint stages, and corner registration on content columns (`max-w-7xl` / `5xl` / `3xl`); leaf cards stay unframed.
 
 <!---
 ## [Unreleased] - yyyy-mm-dd

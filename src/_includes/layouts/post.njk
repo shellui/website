@@ -1,8 +1,13 @@
 ---
 layout: layouts/base.njk
 ---
-<article class="page-top page-x bg-white pb-24 sm:pb-32 dark:bg-gray-950">
-  <div class="mx-auto max-w-3xl text-base/7 text-gray-700 dark:text-gray-300">
+<article class="su-section-band page-top page-x bg-white pb-24 sm:pb-32 dark:bg-gray-950">
+  {% set wireframeBandWidth = "3xl" %}
+  {% include "su-wireframe-band-top.njk" %}
+  {% set wireframeStageClass = "su-pattern-blueprint is-overlay" %}
+  {% include "su-wireframe-stage.njk" %}
+  <div class="mx-auto max-w-3xl su-column-box su-frame-corners px-4 py-8 text-base/7 text-gray-700 sm:px-6 sm:py-10 dark:text-gray-300">
+    {% include "su-frame-marks.njk" %}
     {% include "breadcrumbs.njk" %}
     {% if category %}
       <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ category }}</p>

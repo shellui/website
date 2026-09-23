@@ -1,7 +1,7 @@
 ---
 title: Design
 description: How to compose on-brand Shellui pages. Fetch this file first when building website or product surfaces. The HTML page at /guidelines/design/ is a human visual handbook - do not scrape it.
-version: 1.4.0
+version: 1.5.0
 ---
 
 Act as an excellent Shellui designer, editor, and information architect. Turn the available material into an official Shellui-authored page. Shape the argument and the interface together. Do not restyle a dump of sections or assemble a generic landing page.
@@ -61,59 +61,65 @@ Gray canvas. Honey gold is the action color. A soft primary wash behind the home
 
 Existing pages may still use `bg-white dark:bg-gray-950`. Same palette. New work should use token names.
 
-## Patterns (layout wireframe)
+## Patterns (site-wide boxy wireframe)
 
-Pattern system = **layout wireframe**. Structure the page. Never dress content.
+Pattern system = **layout wireframe** as a **site-wide structural language**. Pages should read like a drafted artboard: hairline rules, rectangular regions, registration marks, column guides. Apply from shared layouts (`base`, `page`, `feature`, `guidelines`, `post`) so every route inherits the language, not only the homepage hero.
 
-Utilities echo the real layout grid (`.page-x`, `max-w-7xl`, section bands): an invisible artboard overlay aligned to columns, not a card style or marketing texture on prose, CTAs, feature tiles, FAQs, or demos.
+Pattern ink is **whisper to soft**: visible lines and boxes for those who look, but type and hierarchy still win the squint test. Never tint pattern ink with gold. Never animate grids or dots.
 
-Pattern ink is **whisper-quiet**: structure for those who look, not a texture that announces itself. Squint test: hierarchy and type win; the pattern barely registers.
+CSS: `src/assets/css/patterns.css` (imported from `input.css`). Includes `.su-site-canvas` (main column guides), `.su-section-band`, `.su-section-band__stage`, `.su-column-box`, `.su-layout-band-rule`, `.su-layout-scaffold`, and surface/frame utilities. Partials: `site-wireframe-canvas.njk`, `su-wireframe-band-top.njk`, `su-wireframe-stage.njk`, `su-frame-marks.njk`.
 
-CSS: `src/assets/css/patterns.css` (imported from `input.css`). Values use `--color-foreground`, `--color-background`, and `--color-border`, with ink opacities on `:root` and `.dark`. Scaffold helpers: `.su-layout-scaffold`, `.su-layout-scaffold__inset`, `.su-layout-scaffold__column`, `.su-layout-scaffold__register`, `.su-layout-band-rule`. Never tint pattern ink with `primary` gold. Never animate grids or dots.
+### Section shell vs leaf content
 
-### Do (layout scaffolding)
+| Layer | What it frames | Utilities |
+| --- | --- | --- |
+| **Site canvas** | Full page: vertical guides at `max-w-7xl` edges | `.su-site-canvas` on `main` |
+| **Section band** | Major horizontal bands (hero, features, init, footer) | `.su-section-band` + band rule + optional blueprint stage |
+| **Content column box** | The layout column for a page (`max-w-7xl` / `5xl` / `3xl` / `2xl`) | `.su-column-box` + `.su-frame-corners` or `.su-frame-brackets` + corner marks |
+| **Leaf content** | Cards, FAQ rows, CTAs, code demos inside the column | Normal components; no per-card frame |
 
-- Page and section scaffolding: outer `max-w-*` edges, column guides, band boundaries.
-- **`.su-pattern-blueprint`** or **`.su-pattern-columns`** behind large structural areas (hero stage, space between bands) with **`.is-overlay`** on the page canvas.
-- **`.su-frame-corners`** or **`.su-frame-brackets`** at **section or page** corners only (registration on the mat around a region). Optional and rare.
-- Quiet rules that align with the same widths as shipped content (`max-w-7xl` feature chrome, `max-w-5xl` guidelines, `max-w-3xl` prose).
+Structure **sections and content columns**, not every small tile. One box around the reading/feature column is correct; a second frame on each card inside it is noise.
 
-### Do not (content decoration)
+### Boxy layout language (do)
 
-- Do not wrap feature cards, FAQ items, CTAs, prose blocks, or demo widgets in frame utilities.
-- Do not put corner squares on individual content tiles.
+- Hairline **horizontal rules** between major sections, aligned to the same max width as content.
+- **Corner registration** on section content columns (not on individual feature cards).
+- **Vertical column guides** on wide pages, aligned to `.page-x` / `max-w-7xl`.
+- **Soft blueprint** behind large structural stages (hero, feature splits, guidelines wells, muted bands) via `.su-section-band__stage`.
+- Homepage bands (features, init, config, deploy, audience) and inner pages (page header + body column) all use the same helpers.
+
+### Still do not
+
+- Do not wrap every leaf card, FAQ row, or button in its own ornate frame.
 - Do not stack a full card border, a corner frame, and a heavy shadow on the same object.
-- Frames are layout chrome, not component chrome.
+- Do not gold-tint ink or add multi-color glows.
 
 ### Surfaces (canonical)
 
-Default structural surface: **`.su-pattern-blueprint`**. Hairline horizontal and vertical rules (1px) plus a tiny dot (≤1px) at intersections only. Cell size `--su-cell: 28px`. Pattern ink is foreground at low opacity:
+**`.su-pattern-blueprint`** default. Hairline rules (1px) + ≤1px dots at intersections. Cell `--su-cell: 28px`.
 
 | Role | Light | Dark | Modifier |
 | --- | --- | --- | --- |
-| Hero / default | ~3.5% | ~4.5% | (base class) |
-| Well | ~5.5% | ~6.5% | `.is-well` |
-| Empty / large fields | ~2.2% | ~2.8% | `.is-empty` |
-| Dense cell (16px) | well ink or quieter | same | `.is-dense` on tiny structural wells only |
+| Hero / default | ~4.8% | ~5.8% | (base) |
+| Well | ~6.2% | ~7.2% | `.is-well` |
+| Empty / large fields | ~2.8% | ~3.4% | `.is-empty` |
+| Dense cell (16px) | well or quieter | same | `.is-dense` |
 
-Supporting utilities (document briefly): **`.su-pattern-dots`** (intersections only), **`.su-pattern-columns`** (vertical guides aligned to hero columns).
+Supporting: **`.su-pattern-dots`**, **`.su-pattern-columns`**. Use **`.is-overlay`** on stages over the page canvas.
 
 ### Registration frames (canonical)
 
 | Utility | Layout role |
 | --- | --- |
-| **`.su-frame-corners`** | Section or page registration: hairline border + ~6px corner squares. |
-| **`.su-frame-brackets`** | Section or page passe-partout: 1px L-brackets at region corners, no full border. |
-| **`.su-frame-dashed`** | Optional; rare structural callouts in docs. Not for marketing cards. |
-
-Corner marks use `.su-mark` children (tl/tr/bl/br); brackets use `.su-bracket`. Frame ink stays at border-level softness.
+| **`.su-frame-corners`** | Content column box: hairline border + ~6px corner squares. |
+| **`.su-frame-brackets`** | Alternate column or section registration (L-brackets). |
+| **`.su-frame-dashed`** | Optional docs-only structural callouts. |
 
 ### Pattern rules
 
-- Do not animate blueprint, dots, or columns.
-- Do not gold-tint grid ink, dots, rules, or corner marks.
+- Site-wide language from layouts; do not hand-paint one route only.
 - Gold stays on actions and CTAs only.
-- Passe-partout metaphor: the user's app is the artwork; Shellui is the mat around regions, not a frame on every block.
+- Passe-partout metaphor: Shellui frames **regions** on the artboard; the user's app remains the artwork inside.
 
 Type: system font. One `h1` (`text-4xl font-bold md:text-5xl` inner pages, or `font-semibold tracking-tight` on feature openings). Lede `text-lg text-muted-foreground`. Section `text-2xl` / `text-3xl font-semibold tracking-tight`. Body `text-base/7`. Measure ~60-70 characters. Button: `rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground`. Secondary is a text link. Gold is scarce. Widths: `max-w-7xl` feature chrome, `max-w-5xl` guidelines, `max-w-3xl` reading prose. Horizontal shell: `.page-x` (`px-4 sm:px-6 lg:px-8`) on the outer band only; keep `max-w-*` children without horizontal padding so header, body, and footer share one content edge. Section steps `.page-top`, `mt-10`, `mt-16`.
 
