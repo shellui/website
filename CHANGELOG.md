@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+
+### ✨ Feature
+
+- Design guidelines v1.4.0: whisper-quiet technical pattern system (blueprint surfaces, corner frames, brackets) documented in `design.md`, visual handbook at `/guidelines/design/#patterns`, and CSS utilities in `patterns.css`.
+- Homepage light pass: layout wireframe on the hero stage (blueprint + column guides, optional section brackets at `max-w-7xl`), band rule before features; no frames on content cards or prose.
+
 <!---
 ## [Unreleased] - yyyy-mm-dd
 

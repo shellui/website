@@ -48,7 +48,7 @@ description: News, release notes, and architecture notes from the Shellui team a
                   {% if post.data.category %}
                     <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 dark:bg-gray-900 dark:text-gray-400">{{ post.data.category }}</span>
                   {% endif %}
-                  <span class="text-gray-500 dark:text-gray-400">{{ post | readingTime }} min read</span>
+                  <span class="text-gray-500 dark:text-gray-400">{{ post.data.description | readingTime }} min read</span>
                 </div>
                 <div class="group relative max-w-xl">
                   <h2 class="mt-2 text-2xl font-semibold tracking-tight text-pretty text-gray-900 group-hover:text-gray-600 dark:text-white dark:group-hover:text-gray-300">

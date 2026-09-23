@@ -148,6 +148,66 @@
     </div>
   </section>
 
+  <section id="patterns" class="mt-16 scroll-mt-24">
+    <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Patterns</h2>
+    <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">
+      Layout wireframe only: structure the page, never dress content. Blueprint and column guides align to real
+      <code class="font-mono text-[0.8rem]">max-w-*</code> columns at whisper-quiet ink. Do not wrap cards, CTAs, or prose in frames. Utilities live in
+      <code class="font-mono text-[0.8rem]">patterns.css</code>. Never tint pattern ink with gold.
+    </p>
+
+    <h3 class="mt-10 text-base font-semibold text-gray-900 dark:text-white">Blueprint surfaces</h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-600 dark:text-gray-400">Default cell 28px. Hairline rules and ≤1px dots at intersections only.</p>
+    <ul class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {% for sample in [
+        { "class": "su-pattern-blueprint", "title": "Blueprint", "code": ".su-pattern-blueprint · hero ~3.5% / ~4.5% dark" },
+        { "class": "su-pattern-blueprint is-well", "title": "Blueprint well", "code": ".is-well · ~5.5% / ~6.5% dark" },
+        { "class": "su-pattern-blueprint is-empty", "title": "Blueprint empty", "code": ".is-empty · ~2.2% / ~2.8% dark" },
+        { "class": "su-pattern-blueprint is-dense is-well", "title": "Dense well", "code": ".is-dense · 16px cell" },
+        { "class": "su-pattern-dots", "title": "Dot field", "code": ".su-pattern-dots · optional" },
+        { "class": "su-pattern-columns", "title": "Column guides", "code": ".su-pattern-columns · optional" }
+      ] %}
+        <li class="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+          <div class="{{ sample.class }} min-h-28" aria-hidden="true"></div>
+          <div class="border-t border-gray-200 px-3 py-2.5 dark:border-gray-800">
+            <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ sample.title }}</p>
+            <p class="mt-0.5 font-mono text-[0.65rem] text-gray-500 dark:text-gray-400">{{ sample.code }}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <h3 class="mt-12 text-base font-semibold text-gray-900 dark:text-white">Layout registration</h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-600 dark:text-gray-400">Section or page corners only, aligned to the same max width as content. Not for feature cards or CTAs.</p>
+    <div class="mt-5 overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+      <div class="su-layout-scaffold relative min-h-56 bg-background p-6 sm:p-8">
+        <div class="su-layout-scaffold__inset min-h-48" aria-hidden="true">
+          <div class="su-layout-scaffold__column relative min-h-full">
+            <div class="absolute inset-0 su-pattern-blueprint is-overlay"></div>
+            <div class="absolute inset-0 su-pattern-columns is-overlay"></div>
+          </div>
+        </div>
+        <div class="su-layout-scaffold__register min-h-48" aria-hidden="true">
+          <div class="su-layout-scaffold__column relative min-h-full su-frame-brackets">
+            {% include "su-frame-brackets.njk" %}
+          </div>
+        </div>
+        <div class="relative mx-auto max-w-md pt-6 text-center">
+          <p class="text-xs font-medium tracking-wide text-gray-500 uppercase dark:text-gray-400">Hero stage (schematic)</p>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Pattern sits on the artboard; copy and actions stay inside, undecorated.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 gap-px border-t border-gray-200 bg-gray-200 dark:border-gray-800 dark:bg-gray-800 sm:grid-cols-2">
+        <div class="bg-white px-4 py-3 dark:bg-gray-900">
+          <p class="font-mono text-[0.65rem] text-gray-500 dark:text-gray-400">.su-frame-corners · page/section</p>
+        </div>
+        <div class="bg-white px-4 py-3 dark:bg-gray-900">
+          <p class="font-mono text-[0.65rem] text-gray-500 dark:text-gray-400">.su-frame-brackets · page/section</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="composition" class="mt-16 scroll-mt-24">
     <h2 class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl dark:text-white">Composition</h2>
     <p class="mt-3 max-w-2xl text-base/7 text-gray-600 dark:text-gray-400">

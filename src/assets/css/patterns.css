@@ -1,0 +1,252 @@
+/**
+ * Shellui technical pattern system (surfaces + frames).
+ * Pattern ink = foreground at whisper-quiet opacity. Never primary gold.
+ * Geometry from the reviewed pattern board; opacities tuned discrete for production.
+ */
+
+:root {
+  --su-cell: 28px;
+  --su-cell-dense: 16px;
+  --su-corner: 6px;
+  --su-bracket: 14px;
+  --su-bracket-w: 1px;
+
+  --su-ink-hero: 0.035;
+  --su-ink-well: 0.055;
+  --su-ink-empty: 0.022;
+  --su-ink-dot: 0.04;
+}
+
+.dark {
+  --su-ink-hero: 0.045;
+  --su-ink-well: 0.065;
+  --su-ink-empty: 0.028;
+  --su-ink-dot: 0.05;
+}
+
+@layer components {
+  .su-pattern-blueprint {
+    --_cell: var(--su-cell);
+    --_ink: color-mix(in srgb, var(--color-foreground) calc(var(--su-ink-hero) * 100%), transparent);
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(circle, var(--_ink) 0.5px, transparent 0.5px),
+      linear-gradient(var(--_ink) 1px, transparent 1px),
+      linear-gradient(90deg, var(--_ink) 1px, transparent 1px);
+    background-size:
+      var(--_cell) var(--_cell),
+      var(--_cell) var(--_cell),
+      var(--_cell) var(--_cell);
+    background-position:
+      -0.5px -0.5px,
+      0 0,
+      0 0;
+  }
+
+  .su-pattern-blueprint.is-overlay {
+    background-color: transparent;
+  }
+
+  .su-pattern-blueprint.is-dense {
+    --_cell: var(--su-cell-dense);
+    --_ink: color-mix(in srgb, var(--color-foreground) calc(var(--su-ink-well) * 100%), transparent);
+  }
+
+  .su-pattern-blueprint.is-empty {
+    --_ink: color-mix(in srgb, var(--color-foreground) calc(var(--su-ink-empty) * 100%), transparent);
+  }
+
+  .su-pattern-blueprint.is-well {
+    --_ink: color-mix(in srgb, var(--color-foreground) calc(var(--su-ink-well) * 100%), transparent);
+  }
+
+  .su-pattern-dots {
+    --_cell: var(--su-cell);
+    --_ink: color-mix(in srgb, var(--color-foreground) calc(var(--su-ink-dot) * 100%), transparent);
+    background-color: var(--color-background);
+    background-image: radial-gradient(circle, var(--_ink) 0.5px, transparent 0.5px);
+    background-size: var(--_cell) var(--_cell);
+    background-position: calc(var(--_cell) / 2) calc(var(--_cell) / 2);
+  }
+
+  .su-pattern-dots.is-dense {
+    --_cell: var(--su-cell-dense);
+    --_ink: color-mix(in srgb, var(--color-foreground) calc(var(--su-ink-well) * 100%), transparent);
+  }
+
+  .su-pattern-columns {
+    --_cell: calc(var(--su-cell) * 2);
+    --_ink: color-mix(in srgb, var(--color-foreground) calc(var(--su-ink-hero) * 100%), transparent);
+    background-color: var(--color-background);
+    background-image: linear-gradient(90deg, var(--_ink) 1px, transparent 1px);
+    background-size: var(--_cell) 100%;
+    background-position: 0 0;
+  }
+
+  .su-pattern-columns.is-overlay {
+    background-color: transparent;
+  }
+
+  /* Layout wireframe: align guides and registration to .page-x + max-w-* columns */
+  .su-layout-scaffold {
+    position: relative;
+  }
+
+  .su-layout-scaffold__inset {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: -18;
+  }
+
+  .su-layout-scaffold__column {
+    margin-inline: auto;
+    height: 100%;
+    max-width: 80rem; /* max-w-7xl */
+  }
+
+  .su-layout-scaffold__register {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: -17;
+  }
+
+  .su-layout-scaffold__register .su-frame-brackets,
+  .su-layout-scaffold__register .su-frame-corners {
+    height: 100%;
+    min-height: inherit;
+  }
+
+  .su-layout-band-rule {
+    pointer-events: none;
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 0;
+  }
+
+  .su-layout-band-rule__inset {
+    margin-inline: auto;
+    max-width: 80rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
+  }
+
+  .su-frame-corners {
+    --_c: var(--su-corner);
+    --_frame-ink: color-mix(in srgb, var(--color-border) 92%, transparent);
+    --_mark-ink: color-mix(in srgb, var(--color-foreground) 42%, transparent);
+    position: relative;
+    border: 1px solid var(--_frame-ink);
+  }
+
+  .su-frame-corners .su-mark {
+    position: absolute;
+    width: var(--_c);
+    height: var(--_c);
+    background: var(--_mark-ink);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .su-frame-corners .su-mark.tl {
+    top: calc(var(--_c) / -2);
+    left: calc(var(--_c) / -2);
+  }
+
+  .su-frame-corners .su-mark.tr {
+    top: calc(var(--_c) / -2);
+    right: calc(var(--_c) / -2);
+  }
+
+  .su-frame-corners .su-mark.bl {
+    bottom: calc(var(--_c) / -2);
+    left: calc(var(--_c) / -2);
+  }
+
+  .su-frame-corners .su-mark.br {
+    bottom: calc(var(--_c) / -2);
+    right: calc(var(--_c) / -2);
+  }
+
+  .su-frame-brackets {
+    --_len: var(--su-bracket);
+    --_w: var(--su-bracket-w);
+    --_bracket-ink: color-mix(in srgb, var(--color-foreground) 38%, transparent);
+    position: relative;
+    border: none;
+  }
+
+  .su-frame-brackets .su-bracket {
+    position: absolute;
+    width: var(--_len);
+    height: var(--_len);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .su-frame-brackets .su-bracket.tl {
+    top: 0;
+    left: 0;
+    border-top: var(--_w) solid var(--_bracket-ink);
+    border-left: var(--_w) solid var(--_bracket-ink);
+  }
+
+  .su-frame-brackets .su-bracket.tr {
+    top: 0;
+    right: 0;
+    border-top: var(--_w) solid var(--_bracket-ink);
+    border-right: var(--_w) solid var(--_bracket-ink);
+  }
+
+  .su-frame-brackets .su-bracket.bl {
+    bottom: 0;
+    left: 0;
+    border-bottom: var(--_w) solid var(--_bracket-ink);
+    border-left: var(--_w) solid var(--_bracket-ink);
+  }
+
+  .su-frame-brackets .su-bracket.br {
+    bottom: 0;
+    right: 0;
+    border-bottom: var(--_w) solid var(--_bracket-ink);
+    border-right: var(--_w) solid var(--_bracket-ink);
+  }
+
+  .su-frame-dashed {
+    --_dash-ink: color-mix(in srgb, var(--color-border) 88%, transparent);
+    --_dot-ink: color-mix(in srgb, var(--color-foreground) 35%, transparent);
+    position: relative;
+    border: 1px dashed var(--_dash-ink);
+  }
+
+  .su-frame-dashed .su-dot {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--_dot-ink);
+    border-radius: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .su-frame-dashed .su-dot.tl {
+    top: -1.5px;
+    left: -1.5px;
+  }
+
+  .su-frame-dashed .su-dot.tr {
+    top: -1.5px;
+    right: -1.5px;
+  }
+
+  .su-frame-dashed .su-dot.bl {
+    bottom: -1.5px;
+    left: -1.5px;
+  }
+
+  .su-frame-dashed .su-dot.br {
+    bottom: -1.5px;
+    right: -1.5px;
+  }
+}

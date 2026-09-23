@@ -4,7 +4,18 @@ title: Shellui | The web app development platform
 description: Shellui is an open-source web app development platform. Navigation, authentication, administration, and storage are built in so your team ships sooner without rebuilding basic features.
 ---
     {% set agentPrompt = "fetch https://shellui.ai to start with Shellui" %}
-    <div class="relative isolate page-x page-top">
+    <div class="su-layout-scaffold relative isolate page-x page-top">
+      <div class="su-layout-scaffold__inset min-h-[32rem] sm:min-h-[36rem]" aria-hidden="true">
+        <div class="su-layout-scaffold__column relative min-h-full">
+          <div class="absolute inset-0 su-pattern-blueprint is-overlay"></div>
+          <div class="absolute inset-0 su-pattern-columns is-overlay"></div>
+        </div>
+      </div>
+      <div class="su-layout-scaffold__register min-h-[32rem] sm:min-h-[36rem]" aria-hidden="true">
+        <div class="su-layout-scaffold__column relative min-h-full su-frame-brackets">
+          {% include "su-frame-brackets.njk" %}
+        </div>
+      </div>
       <div class="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
         <div
           class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-30 bg-linear-to-tr from-primary to-amber-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] dark:opacity-20"
@@ -83,6 +94,7 @@ description: Shellui is an open-source web app development platform. Navigation,
     </div>
 
     <section id="features" class="relative z-10 page-x py-24">
+      <div class="su-layout-band-rule" aria-hidden="true"><div class="su-layout-band-rule__inset"></div></div>
       <div class="mx-auto max-w-7xl">
         <div class="max-w-2xl">
           <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">

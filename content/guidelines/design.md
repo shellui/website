@@ -1,7 +1,7 @@
 ---
 title: Design
 description: How to compose on-brand Shellui pages. Fetch this file first when building website or product surfaces. The HTML page at /guidelines/design/ is a human visual handbook - do not scrape it.
-version: 1.3.1
+version: 1.4.0
 ---
 
 Act as an excellent Shellui designer, editor, and information architect. Turn the available material into an official Shellui-authored page. Shape the argument and the interface together. Do not restyle a dump of sections or assemble a generic landing page.
@@ -61,6 +61,60 @@ Gray canvas. Honey gold is the action color. A soft primary wash behind the home
 
 Existing pages may still use `bg-white dark:bg-gray-950`. Same palette. New work should use token names.
 
+## Patterns (layout wireframe)
+
+Pattern system = **layout wireframe**. Structure the page. Never dress content.
+
+Utilities echo the real layout grid (`.page-x`, `max-w-7xl`, section bands): an invisible artboard overlay aligned to columns, not a card style or marketing texture on prose, CTAs, feature tiles, FAQs, or demos.
+
+Pattern ink is **whisper-quiet**: structure for those who look, not a texture that announces itself. Squint test: hierarchy and type win; the pattern barely registers.
+
+CSS: `src/assets/css/patterns.css` (imported from `input.css`). Values use `--color-foreground`, `--color-background`, and `--color-border`, with ink opacities on `:root` and `.dark`. Scaffold helpers: `.su-layout-scaffold`, `.su-layout-scaffold__inset`, `.su-layout-scaffold__column`, `.su-layout-scaffold__register`, `.su-layout-band-rule`. Never tint pattern ink with `primary` gold. Never animate grids or dots.
+
+### Do (layout scaffolding)
+
+- Page and section scaffolding: outer `max-w-*` edges, column guides, band boundaries.
+- **`.su-pattern-blueprint`** or **`.su-pattern-columns`** behind large structural areas (hero stage, space between bands) with **`.is-overlay`** on the page canvas.
+- **`.su-frame-corners`** or **`.su-frame-brackets`** at **section or page** corners only (registration on the mat around a region). Optional and rare.
+- Quiet rules that align with the same widths as shipped content (`max-w-7xl` feature chrome, `max-w-5xl` guidelines, `max-w-3xl` prose).
+
+### Do not (content decoration)
+
+- Do not wrap feature cards, FAQ items, CTAs, prose blocks, or demo widgets in frame utilities.
+- Do not put corner squares on individual content tiles.
+- Do not stack a full card border, a corner frame, and a heavy shadow on the same object.
+- Frames are layout chrome, not component chrome.
+
+### Surfaces (canonical)
+
+Default structural surface: **`.su-pattern-blueprint`**. Hairline horizontal and vertical rules (1px) plus a tiny dot (≤1px) at intersections only. Cell size `--su-cell: 28px`. Pattern ink is foreground at low opacity:
+
+| Role | Light | Dark | Modifier |
+| --- | --- | --- | --- |
+| Hero / default | ~3.5% | ~4.5% | (base class) |
+| Well | ~5.5% | ~6.5% | `.is-well` |
+| Empty / large fields | ~2.2% | ~2.8% | `.is-empty` |
+| Dense cell (16px) | well ink or quieter | same | `.is-dense` on tiny structural wells only |
+
+Supporting utilities (document briefly): **`.su-pattern-dots`** (intersections only), **`.su-pattern-columns`** (vertical guides aligned to hero columns).
+
+### Registration frames (canonical)
+
+| Utility | Layout role |
+| --- | --- |
+| **`.su-frame-corners`** | Section or page registration: hairline border + ~6px corner squares. |
+| **`.su-frame-brackets`** | Section or page passe-partout: 1px L-brackets at region corners, no full border. |
+| **`.su-frame-dashed`** | Optional; rare structural callouts in docs. Not for marketing cards. |
+
+Corner marks use `.su-mark` children (tl/tr/bl/br); brackets use `.su-bracket`. Frame ink stays at border-level softness.
+
+### Pattern rules
+
+- Do not animate blueprint, dots, or columns.
+- Do not gold-tint grid ink, dots, rules, or corner marks.
+- Gold stays on actions and CTAs only.
+- Passe-partout metaphor: the user's app is the artwork; Shellui is the mat around regions, not a frame on every block.
+
 Type: system font. One `h1` (`text-4xl font-bold md:text-5xl` inner pages, or `font-semibold tracking-tight` on feature openings). Lede `text-lg text-muted-foreground`. Section `text-2xl` / `text-3xl font-semibold tracking-tight`. Body `text-base/7`. Measure ~60-70 characters. Button: `rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground`. Secondary is a text link. Gold is scarce. Widths: `max-w-7xl` feature chrome, `max-w-5xl` guidelines, `max-w-3xl` reading prose. Horizontal shell: `.page-x` (`px-4 sm:px-6 lg:px-8`) on the outer band only; keep `max-w-*` children without horizontal padding so header, body, and footer share one content edge. Section steps `.page-top`, `mt-10`, `mt-16`.
 
 ## Reuse
@@ -98,6 +152,7 @@ Passes: frame the job → choose composition → apply this visual system → in
 - Multi-color glows, stripes, glass, ornamental shadows. Soft primary/amber hero ambient is allowed (see Reuse)
 - Generic centered hero plus equal-weight card grid
 - Nested cards, or borders used to repair weak hierarchy
+- Loud pattern ink, animated grids, or gold used on dots, rules, or corner marks
 - Arbitrary icon tiles, logo clouds, fake screenshots
 - A second theme picker, second nav, or host chrome rebuilt in an iframe
 - Leading a shipping-product page with AI / MCP / marketplace atmosphere

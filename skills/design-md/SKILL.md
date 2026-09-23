@@ -2,7 +2,7 @@
 name: design-md
 description: Use when building or restyling Shellui website or in-shell pages. Fetch design.md first, then compose with writing-guidelines and web-design-guidelines. Prefer this over inventing a new visual kit.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # Design.md
@@ -19,7 +19,7 @@ The HTML page at `/guidelines/design/` is a human visual handbook (swatches, typ
 2. If the work includes copy, also load `skills/writing-guidelines/SKILL.md`
 3. If the work includes UI, a11y, or iframe chrome, also load `skills/web-design-guidelines/SKILL.md`
 4. Prefer shipped Tailwind Plus patterns and existing layouts over new components
-5. Use shadcn-compatible tokens from `src/assets/css/input.css`
+5. Use shadcn-compatible tokens from `src/assets/css/input.css` and pattern utilities from `src/assets/css/patterns.css` (whisper-quiet blueprint and frames; never gold pattern ink)
 
 ## Source
 
@@ -49,5 +49,5 @@ When asked to add, restyle, or review a Shellui page:
 
 1. Read `design.md`
 2. Reuse layouts in `src/_includes/layouts/` and Plus patterns named in that file
-3. Do not add multi-color blobs, equal-weight card grids, em dashes, or a parallel token system. Soft primary/amber hero ambient is allowed.
+3. Do not add multi-color blobs, equal-weight card grids, em dashes, animated grids, gold-tinted pattern ink, or a parallel token system. Soft primary/amber hero ambient is allowed. Patterns are layout wireframe only (see Patterns in design.md): never frame content cards or CTAs.
 4. Output implementation in this Eleventy + Tailwind repo
