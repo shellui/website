@@ -5,12 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
-
-### ✨ Feature
-
-- Full-site localization: French (`/fr/`), German (`/de/`), and Italian (`/it/`) mirrors of the marketing site with hreflang, locale-aware chrome, language switcher, and sitemap coverage. English stays at unprefixed URLs. See `docs/I18N.md`.
-
 <!---
 ## [Unreleased] - yyyy-mm-dd
 
@@ -26,6 +20,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
+
+## [0.5.3] - 2026-09-23
+
+### ✨ Feature
+
+- Full-site localization: French (`/fr/`), German (`/de/`), and Italian (`/it/`) mirrors of the marketing site with hreflang, locale-aware chrome, language switcher, and sitemap coverage. English stays at unprefixed URLs. See `docs/I18N.md`.
 
 ## [0.5.2] - 2026-09-21
 
