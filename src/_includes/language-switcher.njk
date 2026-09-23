@@ -1,0 +1,41 @@
+{% set current = lang or 'en' %}
+<div class="relative" x-data="{ open: false }" @keydown.escape.window="open = false">
+  <button
+    type="button"
+    class="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+    :aria-expanded="open.toString()"
+    aria-haspopup="listbox"
+    @click="open = !open"
+  >
+    <span class="sr-only">{{ nav.labels.language }}:</span>
+    <span aria-hidden="true">{{ i18n.getLocale(current).nativeLabel }}</span>
+    <svg class="size-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+    </svg>
+  </button>
+  <div
+    x-show="open"
+    x-cloak
+    x-transition
+    @click.outside="open = false"
+    class="absolute right-0 z-20 mt-2 w-44 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-800 dark:bg-gray-900"
+    role="listbox"
+    :aria-label="nav.labels.language"
+  >
+    {% for link in alternateLanguages %}
+      {% if link.hreflang != 'x-default' %}
+        {% set loc = i18n.getLocale(link.hreflang) %}
+        <a
+          href="{{ link.path }}"
+          class="block px-3 py-2 text-sm {% if link.hreflang == current %}font-semibold text-gray-900 dark:text-white{% else %}text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800/80{% endif %}"
+          role="option"
+          {% if link.hreflang == current %}aria-current="true"{% endif %}
+          hreflang="{{ link.hreflang }}"
+          @click="open = false"
+        >
+          {{ loc.nativeLabel }}
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

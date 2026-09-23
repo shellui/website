@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { IdAttributePlugin } from "@11ty/eleventy";
+import { localizeHref } from "./src/_data/i18n.js";
 import * as esbuild from "esbuild";
 import { createHighlighter } from "shiki";
 
@@ -227,6 +228,12 @@ export default async function (eleventyConfig) {
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
     "content/guidelines/design.md": "design.md",
     "content/guidelines": "guidelines",
+    "content/locales/fr/guidelines": "fr/guidelines",
+    "content/locales/de/guidelines": "de/guidelines",
+    "content/locales/it/guidelines": "it/guidelines",
+    "content/locales/fr/guidelines/design.md": "fr/design.md",
+    "content/locales/de/guidelines/design.md": "de/design.md",
+    "content/locales/it/guidelines/design.md": "it/design.md",
   });
 
   eleventyConfig.addFilter("readableDate", (date) =>
@@ -246,8 +253,17 @@ export default async function (eleventyConfig) {
   );
 
   eleventyConfig.addFilter("readingTime", (post) => {
-    const content = typeof post === "string" ? post : post?.templateContent;
-    return readingTimeMinutes(content);
+    try {
+      const content =
+        typeof post === "string"
+          ? post
+          : typeof post?.templateContent === "string"
+            ? post.templateContent
+            : "";
+      return readingTimeMinutes(content);
+    } catch {
+      return 1;
+    }
   });
 
   eleventyConfig.addFilter("xmlEscape", escapeXml);
@@ -262,6 +278,10 @@ export default async function (eleventyConfig) {
     const origin = String(base || "").replace(/\/$/, "");
     return `${origin}${url.startsWith("/") ? url : `/${url}`}`;
   });
+
+  eleventyConfig.addFilter("localizeHref", (href, lang) =>
+    localizeHref(href, lang || "en"),
+  );
 
   eleventyConfig.addPairedShortcode("highlight", highlightCode);
 

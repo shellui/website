@@ -1,0 +1,132 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Web e desktop | Shellui
+description: "Crea un progetto Shellui, compila file web statici, pubblica un'anteprima su shellui.app o impacchetta la shell come app desktop con Tauri."
+eyebrow: Funzionalità
+heading: "Da progetto locale a web e desktop"
+lede: "Crea un progetto con la CLI Shellui, poi compila la shell per il web. Hosta i file statici, condividi un'anteprima su shellui.app o impacchetta la stessa shell come app desktop con Tauri 2."
+---
+
+<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Parti dal framework che preferisci</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Esegui <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui init</code> per creare un progetto con il framework scelto. Gli starter JavaScript includono integrazione tema e lingua. In sviluppo, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui start</code> avvia la shell e il dev server dell'app configurata.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Configura navigazione, aspetto e servizi collegati in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. La CLI valida questo file prima di avviare o compilare la shell.</p>
+  </div>
+  <div>
+    {% include "feature-visual-ship.njk" %}
+  </div>
+</div>
+
+<section class="mt-16" aria-labelledby="cli-commands">
+  <div class="max-w-2xl">
+    <h2 id="cli-commands" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Crea ed esegui un progetto</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Installa la CLI, poi crea un progetto React con i comandi sotto. Puoi anche scegliere Vue, Angular, Next, Nuxt, Svelte, Alpine o una shell vuota.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "bash", "terminal" %}
+npm install -g @shellui/cli
+shellui init react ./my-app
+cd my-app
+shellui start
+    {% endhighlight %}
+  </div>
+  <p class="mt-6 text-sm text-muted-foreground">
+    <a href="/#init" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Esplora gli starter per framework</a>
+    ·
+    <a href="{{ site.docs }}/cli/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Riferimento CLI</a>
+  </p>
+</section>
+
+<section class="mt-20" aria-labelledby="one-config">
+  <div class="max-w-2xl">
+    <h2 id="one-config" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Un solo file di configurazione</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Usa <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code> per elencare gli URL delle app, scegliere un layout e collegare autenticazione e storage. Lo stesso file definisce tema, lingue e hosting della shell. Tieni le credenziali dei servizi sul backend: la configurazione della shell è pubblica.</p>
+  </div>
+  <p class="mt-6 text-sm text-muted-foreground">
+    <a href="/#config" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Vedi una configurazione di esempio</a>
+    ·
+    <a href="{{ site.docs }}/cli/#configuration" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Configurazione CLI</a>
+  </p>
+</section>
+
+<section class="mt-20" aria-labelledby="static-files">
+  <div class="max-w-2xl">
+    <h2 id="static-files" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">File statici da hostare ovunque</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Esegui <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui build</code> per generare HTML, CSS e JavaScript della shell in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dist/web/</code>. Distribuisci quella directory su un host statico. Le app integrate e i backend collegati mantengono i propri requisiti di build e hosting.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "bash", "terminal" %}
+shellui build
+    {% endhighlight %}
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="shellui-app">
+  <div class="max-w-2xl">
+    <h2 id="shellui-app" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Anteprima opzionale su shellui.app</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Configura <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting.url</code> per la tua istanza di hosting-service, poi accedi e distribuisci con i comandi sotto. Il servizio shellui.app ti dà un indirizzo di anteprima da condividere. Le anteprime scadono dopo sette giorni salvo ridistribuire lo stesso nome.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "bash", "terminal" %}
+shellui login
+shellui deploy
+    {% endhighlight %}
+  </div>
+  <p class="mt-6 text-sm text-muted-foreground">
+    <a href="{{ site.hosting }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">Apri shellui.app</a>
+    ·
+    <a href="{{ site.hostingService }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">Sorgente hosting-service</a>
+  </p>
+</section>
+
+<section id="desktop" class="mt-20" aria-labelledby="desktop-heading">
+  <div class="max-w-2xl">
+    <h2 id="desktop-heading" class="flex items-center gap-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+      {% set tauriIconClass = "size-7 sm:size-8" %}
+      {% include "tauri-icon.njk" %}
+      App desktop con Tauri
+    </h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Impacchetta la shell come app desktop con Tauri 2, che mostra la tua interfaccia web in una finestra nativa. Web e desktop usano la stessa configurazione Shellui. La CLI genera i file di progetto desktop e l'output di build sotto <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dist/app/</code>.</p>
+  </div>
+
+  <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-16">
+    <div>
+      <h3 class="flex items-center gap-2 text-base font-semibold text-foreground">
+        {% set tauriIconClass = "size-4" %}
+        {% include "tauri-icon.njk" %}
+        Comandi di build
+      </h3>
+      <ul class="mt-4 space-y-2 text-sm text-muted-foreground">
+        <li><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui dev --app</code> apre una finestra nativa in sviluppo</li>
+        <li><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui build --app</code> produce <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">dist/web/</code> più un bundle di piattaforma sotto <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">dist/app/</code></li>
+        <li>Passa <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">--bundles</code> per formati come <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app,dmg</code> su macOS</li>
+      </ul>
+      <div class="mt-6 max-w-xl">
+        {% highlight "bash", "terminal" %}
+shellui build --app
+        {% endhighlight %}
+      </div>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Requisiti di build desktop</h3>
+      <ul class="mt-4 space-y-2 text-sm text-muted-foreground">
+        <li>Rust e i <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.docs }}/tauri/">prerequisiti di piattaforma Tauri</a></li>
+        <li>Opzionale <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">tauri.conf.json</code> alla root per nome prodotto, identifier e icone</li>
+        <li><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">port</code> e <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">title</code> da <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.config.json</code> si sincronizzano nel wrapper</li>
+      </ul>
+      {# Future screenshot: Tauri desktop window. #}
+    </div>
+  </div>
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/installation", label: "Installa la CLI" },
+  { href: site.docs + "/quickstart", label: "Crea un progetto" },
+  { href: site.docs + "/cli/", label: "Riferimento CLI" },
+  { href: site.docs + "/tauri/", label: "Distribuisci un'app desktop" },
+  { href: "/#config", label: "Configurazione di esempio" },
+  { href: "/architecture/", label: "Architettura di sistema" }
+] %}
+{% include "feature-docs.njk" %}

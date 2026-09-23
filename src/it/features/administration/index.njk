@@ -1,0 +1,118 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Amministrazione | Shellui
+description: "Gestisci membri, gruppi, token di accesso e impostazioni aziendali in Shellui. Aggiungi strumenti di amministrazione accanto alle schermate integrate."
+eyebrow: Funzionalità
+heading: "Gestisci il prodotto da un unico posto"
+lede: "Offri a staff e titolari dell'organizzazione un pannello di amministrazione condiviso in Shellui. Gestisci membership, attività di accesso e accesso all'organizzazione. Aggiungi strumenti accanto alle schermate integrate."
+---
+
+<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Apri l'amministrazione all'interno della tua app</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Collega l'<a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.adminPanel }}">app di amministrazione Shellui</a> con <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminUrl</code> e imposta il percorso con <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminPathname</code>. Staff e titolari dell'organizzazione possono aprire Amministrazione dal menu account.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Il pannello usa il backend <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> e la sessione Shellui esistente. Ospita tu l'app admin oppure usa <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="https://admin.shellui.com">admin.shellui.com</a>.</p>
+  </div>
+  <div class="mx-auto w-full max-w-sm">
+    {% include "feature-visual-admin.njk" %}
+  </div>
+</div>
+
+<div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Collegare l'app di amministratore</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">admin Nome del testo </code> e <code class="rotondato bg-muted px-1 py-0.5 text-[0.8rem]"adminUrl</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Iscriviti come personale o proprietario</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Il segreto rende l'amministrazione a disposizione del personale e dei proprietari aziendali. Il backend di identità controlla i permessi sulle richieste di amministrazione.</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Amministrazione aperta</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Aprire il pannello dal menu dell'account. Gli schermi individuali hanno URL di shell come <code class="rounded bg-muted px-1.5 py-0.5 text-sm"> /admin/users</p>
+  </div>
+</div>
+
+<div class="mt-8 max-w-3xl">
+  {% highlight "json", "shellui.config.json" %}
+{
+  "backend": {
+    "type": "shellui",
+    "url": "http://localhost:8000",
+    "companyId": 1,
+    "adminPathname": "/admin",
+    "adminUrl": "http://localhost:5174",
+    "login": {
+      "methods": ["oauth"],
+      "oauthProviders": ["github"]
+    }
+  }
+}
+    {% endhighlight %}
+</div>
+
+{# Future screenshot: Playground /admin users. Add a real image here when available. #}
+
+<section class="mt-20" aria-labelledby="directory-surfaces">
+  <div class="max-w-2xl">
+    <h2 id="directory-surfaces" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Strumenti di amministrazione ogni giorno</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Gestisci account e impostazioni aziendali attraverso gli schermi di identità integrati. Collegare lo storage per aggiungere la navigazione dei file e le statistiche di utilizzo.</p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Ricerca e organizzazione</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Visualizza la directory dei membri, abilita o disattiva l'accesso e viene chi può aderire attraverso le impostazioni dell'Organizzazione.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Gruppi, tronchi e gettoni</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Organizzare i membri in gruppi, rivedere gli eventi di login, e gestire i token di accesso personale e le connessioni dei fornitori firmatari.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Stoccaggio</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Sfoglia i file aziendali e controlla l'utilizzo di storage quando un servizio di archiviazione è collegato.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="custom-admin-nav">
+  <div class="max-w-2xl">
+    <h2 id="custom-admin-nav" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Aggiungere gli strumenti necessari al vostro team</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Aggiungi fatturazione, supporto, o altri strumenti interni alla barra laterale di admin attraverso la classe <code="rotondata bg-muted px-1,5 py-0.5 text-sm"> amministrazione configurazione Shellui incorpora ogni strumento per autorizzazione. Per gli strumenti che bloccano l'integrazione, impostare <code class="rounded bg-muted px-1.5 py-0.5 text-sm">openIn: "external" </code> per aprire una nuova scheda.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "json", "shellui.config.json" %}
+{
+  "administration": {
+    "title": {
+      "en": "Applications",
+      "fr": "Applications"
+    },
+    "navigation": [
+      {
+        "label": {
+          "en": "Billing",
+          "fr": "Facturation"
+        },
+        "path": "billing",
+        "url": "https://billing.example.com/",
+        "icon": "/icons/billing.svg"
+      }
+    ]
+  }
+}
+    {% endhighlight %}
+  </div>
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/features/administration/", label: "Documentazione amministrazione" },
+  { href: site.adminPanel, label: "Sorgente admin", external: true },
+  { href: "/features/authentication/", label: "Autenticazione" },
+  { href: "/architecture/", label: "Architettura di sistema" },
+  { href: site.playground, label: "Playground", external: true }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Quindi, vedi come <a class="font-medium text-primary-ink underline-offset-2 dark:text-primary" href="/features/storage/">file storage</p>

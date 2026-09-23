@@ -1,0 +1,100 @@
+---
+layout: layouts/page.njk
+title: Feuille de route | Shellui
+description: "Feuille de route publique Shellui : démarrage janvier 2026, v0.5 Pixel Perfect livrée, puis Smart Shell, marketplace et v1.0 Horizon."
+eyebrow: Développeurs
+heading: Prochaines livraisons
+lede: Jalons passés et prochaines releases du shell. Le suivi des issues en direct reste sur GitHub.
+prose: false
+---
+
+<div class="flex flex-col gap-4 rounded-xl border border-border bg-muted p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+  <p class="text-base text-muted-foreground">Shellui est sous licence MIT. Les jalons ouverts sur GitHub montrent ce qui est en cours.</p>
+  <a href="https://github.com/shellui/shellui/milestones" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-md border border-border bg-card px-4 py-2.5 text-sm font-medium text-foreground no-underline hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+    <svg class="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" clip-rule="evenodd" />
+    </svg>
+    Voir les jalons
+  </a>
+</div>
+
+<section class="mt-14" aria-labelledby="roadmap-shipped">
+  <h2 id="roadmap-shipped" class="scroll-mt-24 text-2xl font-semibold tracking-tight text-pretty text-foreground">Livré</h2>
+  <p class="mt-2 text-base text-muted-foreground">De la première inscription de domaine à la release actuelle.</p>
+
+  <ol class="relative mt-8 ml-1 list-none space-y-10 border-l border-primary-ink/30 dark:border-primary/30">
+    <li class="relative pl-8">
+      <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full bg-primary-ink ring-4 ring-background dark:bg-primary" aria-hidden="true"></span>
+      <div class="flex flex-col gap-1 sm:flex-row sm:gap-6">
+        <time datetime="2026-01" class="shrink-0 text-sm font-semibold tabular-nums text-primary-ink dark:text-primary sm:w-36">Janvier 2026</time>
+        <div class="min-w-0">
+          <p class="text-lg font-semibold tracking-tight text-pretty text-foreground">Domaine et démarrage</p>
+          <p class="mt-1 text-base/7 text-muted-foreground">Shellui démarre comme shell microfrontend open source. Le domaine shellui.com a été enregistré le 5 janvier.</p>
+        </div>
+      </div>
+    </li>
+    <li class="relative pl-8">
+      <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full bg-primary-ink ring-4 ring-background dark:bg-primary" aria-hidden="true"></span>
+      <div class="flex flex-col gap-1 sm:flex-row sm:gap-6">
+        <time datetime="2026-08" class="shrink-0 text-sm font-semibold tabular-nums text-primary-ink dark:text-primary sm:w-36">Août 2026</time>
+        <div class="min-w-0">
+          <p class="text-lg font-semibold tracking-tight text-pretty text-foreground">Preuve de concept</p>
+          <p class="mt-1 text-base/7 text-muted-foreground">Le shell fonctionne de bout en bout avec navigation, authentification, admin et stockage. Le développement passe à temps plein.</p>
+        </div>
+      </div>
+    </li>
+    <li class="relative pl-8">
+      <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full bg-primary-ink ring-4 ring-background dark:bg-primary" aria-hidden="true"></span>
+      <div class="flex flex-col gap-1 sm:flex-row sm:gap-6">
+        <time datetime="2026-09" class="shrink-0 text-sm font-semibold tabular-nums text-primary-ink dark:text-primary sm:w-36">Septembre 2026</time>
+        <div class="min-w-0">
+          <p class="text-lg font-semibold tracking-tight text-pretty text-foreground">v0.5 - Pixel Perfect</p>
+          <p class="mt-1 text-base/7 text-muted-foreground">L'hôte et l'interface admin partagent un même système visuel sur tous les écrans. C'est la release actuelle.</p>
+        </div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="mt-16" aria-labelledby="roadmap-upcoming">
+  <h2 id="roadmap-upcoming" class="scroll-mt-24 text-2xl font-semibold tracking-tight text-pretty text-foreground">À venir</h2>
+  <p class="mt-2 text-base text-muted-foreground">Releases planifiées. Les dates sont des objectifs, pas des engagements.</p>
+
+  <ol class="relative mt-8 ml-1 list-none space-y-10 border-l border-dashed border-border">
+    <li class="relative pl-8">
+      <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full border-2 border-muted-foreground/50 bg-background" aria-hidden="true"></span>
+      <div class="flex flex-col gap-1 sm:flex-row sm:gap-6">
+        <time datetime="2026-10" class="shrink-0 text-sm font-semibold tabular-nums text-muted-foreground sm:w-36">T4 2026</time>
+        <div class="min-w-0">
+          <p class="text-lg font-semibold tracking-tight text-pretty text-foreground">v0.6 - Smart Shell</p>
+          <p class="mt-1 text-base/7 text-muted-foreground">Admin Model Context Protocol (MCP) dans le shell. IA locale pour les apps dans l'iframe : modèles on-device et locaux au shell via le SDK et le panneau IA des paramètres.</p>
+        </div>
+      </div>
+    </li>
+    <li class="relative pl-8">
+      <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full border-2 border-muted-foreground/50 bg-background" aria-hidden="true"></span>
+      <div class="flex flex-col gap-1 sm:flex-row sm:gap-6">
+        <time datetime="2026-11" class="shrink-0 text-sm font-semibold tabular-nums text-muted-foreground sm:w-36">T4 2026</time>
+        <div class="min-w-0">
+          <p class="text-lg font-semibold tracking-tight text-pretty text-foreground">v0.7 - Marketplace</p>
+          <p class="mt-1 text-base/7 text-muted-foreground">Un catalogue pour découvrir et installer des applications microfrontend dans une instance Shellui.</p>
+        </div>
+      </div>
+    </li>
+    <li class="relative pl-8">
+      <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full border-2 border-muted-foreground/50 bg-background" aria-hidden="true"></span>
+      <div class="flex flex-col gap-1 sm:flex-row sm:gap-6">
+        <time datetime="2027-01" class="shrink-0 text-sm font-semibold tabular-nums text-muted-foreground sm:w-36">T1 2027</time>
+        <div class="min-w-0">
+          <p class="text-lg font-semibold tracking-tight text-pretty text-foreground">v1.0 - Horizon</p>
+          <p class="mt-1 text-base/7 text-muted-foreground">Stable 1.0 : le shell livré est complet côté fonctionnalités, avec des API que vous pouvez figer.</p>
+        </div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="mt-16 border-t border-border pt-10" aria-labelledby="roadmap-help">
+  <h2 id="roadmap-help" class="scroll-mt-24 text-2xl font-semibold tracking-tight text-pretty text-foreground">Comment aider</h2>
+  <p class="mt-3 text-base/7 text-muted-foreground"><a href="/company/contact/" class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary">Écrire à l'équipe</a> ou lire <a href="/company/contribute/" class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary">comment contribuer</a>.</p>
+</section>

@@ -1,0 +1,118 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Administration | Shellui
+description: "Gérez membres, groupes, jetons d'accès et paramètres entreprise dans Shellui. Ajoutez vos propres outils d'administration aux écrans intégrés."
+eyebrow: Fonctionnalités
+heading: "Administrez votre produit depuis un seul endroit"
+lede: "Offrez au personnel et aux responsables d'entreprise un panneau d'administration partagé dans Shellui. Gérez les appartenances, consultez l'activité de connexion et configurez l'accès entreprise. Ajoutez vos propres outils aux côtés des écrans intégrés."
+---
+
+<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Ouvrir l'administration dans votre application</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Connectez l'<a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.adminPanel }}">application admin Shellui</a> via <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminUrl</code> et définissez sa route avec <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminPathname</code>. Le personnel et les responsables d'entreprise peuvent alors ouvrir Administration depuis le menu compte.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Le panneau utilise votre backend <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> et la session Shellui existante. Hébergez l'application admin vous-même ou utilisez <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="https://admin.shellui.com">admin.shellui.com</a>.</p>
+  </div>
+  <div class="mx-auto w-full max-w-sm">
+    {% include "feature-visual-admin.njk" %}
+  </div>
+</div>
+
+<div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connecter l'application admin</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Définissez <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminPathname</code> et <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminUrl</code> sur un backend d'identité Shellui.</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Se connecter en tant que personnel ou responsable</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Le shell rend l'administration disponible au personnel et aux responsables d'entreprise. Le backend d'identité vérifie les permissions sur les requêtes d'administration.</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Ouvrir Administration</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Ouvrez le panneau depuis le menu compte. Chaque écran a des URL shell comme <code class="rounded bg-muted px-1.5 py-0.5 text-sm">/admin/users</code>.</p>
+  </div>
+</div>
+
+<div class="mt-8 max-w-3xl">
+  {% highlight "json", "shellui.config.json" %}
+{
+  "backend": {
+    "type": "shellui",
+    "url": "http://localhost:8000",
+    "companyId": 1,
+    "adminPathname": "/admin",
+    "adminUrl": "http://localhost:5174",
+    "login": {
+      "methods": ["oauth"],
+      "oauthProviders": ["github"]
+    }
+  }
+}
+    {% endhighlight %}
+</div>
+
+{# Future screenshot: Playground /admin users. Add a real image here when available. #}
+
+<section class="mt-20" aria-labelledby="directory-surfaces">
+  <div class="max-w-2xl">
+    <h2 id="directory-surfaces" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Outils d'administration courants</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Gérez comptes et paramètres entreprise via les écrans d'identité intégrés. Connectez le stockage pour ajouter la navigation de fichiers et les statistiques d'usage.</p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Utilisateurs et organisation</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Consultez l'annuaire des membres, activez ou désactivez l'accès et choisissez qui peut rejoindre via les paramètres Organisation.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Groupes, journaux et jetons</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Organisez les membres en groupes, consultez les événements de connexion et gérez les jetons d'accès personnels et les connexions fournisseur.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Stockage</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Parcourez les fichiers entreprise et vérifiez l'usage de stockage lorsqu'un service de stockage est connecté.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="custom-admin-nav">
+  <div class="max-w-2xl">
+    <h2 id="custom-admin-nav" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Ajouter les outils dont votre équipe a besoin</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Ajoutez facturation, support ou autres outils internes à la barre latérale admin via la configuration <code class="rounded bg-muted px-1.5 py-0.5 text-sm">administration</code>. Shellui intègre chaque outil par défaut. Pour les outils qui bloquent l'intégration, définissez <code class="rounded bg-muted px-1.5 py-0.5 text-sm">openIn: "external"</code> pour ouvrir un nouvel onglet.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "json", "shellui.config.json" %}
+{
+  "administration": {
+    "title": {
+      "en": "Applications",
+      "fr": "Applications"
+    },
+    "navigation": [
+      {
+        "label": {
+          "en": "Billing",
+          "fr": "Facturation"
+        },
+        "path": "billing",
+        "url": "https://billing.example.com/",
+        "icon": "/icons/billing.svg"
+      }
+    ]
+  }
+}
+    {% endhighlight %}
+  </div>
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/features/administration/", label: "Documentation administration" },
+  { href: site.adminPanel, label: "code source admin", external: true },
+  { href: "/features/authentication/", label: "Authentification" },
+  { href: "/architecture/", label: "Architecture système" },
+  { href: site.playground, label: "Playground", external: true }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Ensuite, découvrez comment le <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/storage/">stockage de fichiers</a> ajoute téléversements, partage et quotas à vos applications.</p>

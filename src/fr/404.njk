@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+permalink: /fr/404.html
+eleventyExcludeFromCollections: true
+sitemap: false
+jsonld: false
+hideBreadcrumbs: true
+robots: noindex, follow
+title: Page introuvable | Shellui
+description: Cette page n'existe pas. Retournez à l'accueil, parcourez les fonctionnalités ou contactez l'équipe Shellui.
+---
+<div class="relative isolate page-x page-top">
+  <div class="mx-auto flex max-w-2xl flex-col items-center py-16 text-center sm:py-24">
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">404</p>
+    <h1 class="mt-3 text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl dark:text-white">
+      Page introuvable
+    </h1>
+    <p class="mt-8 text-lg text-pretty text-gray-600 sm:text-xl/8 dark:text-gray-400">
+      Ce chemin n'existe pas dans le shell. Il a peut-être été déplacé, ou n'a jamais existé.
+    </p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
+      <a
+        href="/"
+        class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      >
+        Retour à l'accueil
+      </a>
+      <a href="/company/contact/" class="text-sm/6 font-semibold text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-white">
+        Nous contacter <span aria-hidden="true">→</span>
+      </a>
+    </div>
+    <ul class="mt-16 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-400">
+      <li>
+        <a href="/features/" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white">Fonctionnalités</a>
+      </li>
+      <li>
+        <a href="{{ site.docs }}" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white">Documentation</a>
+      </li>
+      <li>
+        <a href="/blog/" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white">Blog</a>
+      </li>
+      <li>
+        <a href="/pricing/" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white">Tarifs</a>
+      </li>
+    </ul>
+  </div>
+</div>

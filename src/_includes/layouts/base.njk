@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.locale or 'en' }}" class="h-full">
+<html lang="{{ htmlLang }}" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -12,6 +12,9 @@
     {% endif %}
     <meta name="author" content="{{ site.author }}" />
     <link rel="canonical" href="{{ canonical }}" />
+    {% for link in alternateLanguages %}
+      <link rel="alternate" hreflang="{{ link.hreflang }}" href="{{ link.url }}" />
+    {% endfor %}
     <link rel="describedby" href="/llms.txt" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} Blog" href="{{ site.rss | absoluteUrl(site.url) }}" />
     <meta property="og:type" content="{% if tags and 'blog' in tags %}article{% else %}website{% endif %}" />
@@ -19,7 +22,15 @@
     <meta property="og:description" content="{{ ogDescription or metaDescription }}" />
     <meta property="og:url" content="{{ canonical }}" />
     <meta property="og:site_name" content="{{ site.name }}" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="{{ ogLocale }}" />
+    {% for link in alternateLanguages %}
+      {% if link.hreflang != 'x-default' %}
+        {% set altLocale = i18n.getLocale(link.hreflang) %}
+        {% if altLocale.ogLocale != ogLocale %}
+          <meta property="og:locale:alternate" content="{{ altLocale.ogLocale }}" />
+        {% endif %}
+      {% endif %}
+    {% endfor %}
     {% if ogImage %}
       <meta property="og:image" content="{{ ogImage }}" />
       <meta name="twitter:image" content="{{ ogImage }}" />
@@ -52,7 +63,7 @@
     {% endif %}
   </head>
   <body class="flex min-h-full flex-col bg-white text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-50">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link">{{ ui.skipToContent }}</a>
     {% include "logo-sprite.njk" %}
     {% include "nav.njk" %}
     <main id="main-content" class="relative z-10 flex-1" tabindex="-1">

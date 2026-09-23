@@ -2,35 +2,33 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import MarkdownIt from "markdown-it";
+import { localizedPath } from "./i18n.js";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const contentDir = path.join(root, "../../content/guidelines");
+const localeContentRoot = path.join(root, "../../content/locales");
 
 const catalog = [
   {
     slug: "writing",
-    href: "/guidelines/writing/",
     skillPath: "skills/writing-guidelines/SKILL.md",
     navLabel: "Writing",
     downloadName: "writing.md",
   },
   {
     slug: "web-design",
-    href: "/guidelines/web-design/",
     skillPath: "skills/web-design-guidelines/SKILL.md",
     navLabel: "Web design",
     downloadName: "web-design.md",
   },
   {
     slug: "design",
-    href: "/guidelines/design/",
     skillPath: "skills/design-md/SKILL.md",
     navLabel: "Design",
     downloadName: "design.md",
-    publicUrl: "/design.md",
-    hubDescription:
+    hubDescriptionEn:
       "Color, type, and composition for Shellui pages. Visual handbook for humans; agents fetch /design.md.",
-    humanDescription:
+    humanDescriptionEn:
       "Gray canvas, scarce honey gold, evidence over decoration. This page is the visual handbook. Agents should fetch the lean markdown - not this HTML.",
   },
 ];
@@ -136,29 +134,56 @@ const md = new MarkdownIt({
 md.use(headingPlugin);
 md.use(tableWrapPlugin);
 
-function loadTopic(entry) {
-  const sourcePath = `content/guidelines/${entry.slug}.md`;
-  const raw = fs.readFileSync(path.join(contentDir, `${entry.slug}.md`), "utf8");
+function markdownPath(lang, slug) {
+  if (lang === "en") {
+    return path.join(contentDir, `${slug}.md`);
+  }
+  const localized = path.join(localeContentRoot, lang, "guidelines", `${slug}.md`);
+  if (fs.existsSync(localized)) return localized;
+  return path.join(contentDir, `${slug}.md`);
+}
+
+function loadTopic(entry, lang) {
+  const filePath = markdownPath(lang, entry.slug);
+  const sourcePath =
+    lang === "en"
+      ? `content/guidelines/${entry.slug}.md`
+      : `content/locales/${lang}/guidelines/${entry.slug}.md`;
+  const raw = fs.readFileSync(filePath, "utf8");
   const { data, body } = parseFrontmatter(raw);
+  const href = localizedPath(lang, `/guidelines/${entry.slug}/`);
+  const downloadPath =
+    entry.slug === "design" && lang === "en"
+      ? "/design.md"
+      : entry.slug === "design"
+        ? localizedPath(lang, "/design.md")
+        : localizedPath(lang, `/guidelines/${entry.downloadName}`);
   return {
     ...entry,
+    href,
+    navLabel: data.title || entry.navLabel,
     version: data.version || "1.0.0",
     title: data.title || entry.navLabel,
     description: data.description || "",
-    hubDescription: entry.hubDescription || data.description || "",
-    humanDescription: entry.humanDescription || data.description || "",
+    hubDescription:
+      data.hubDescription || entry.hubDescriptionEn || data.description || "",
+    humanDescription:
+      data.humanDescription || entry.humanDescriptionEn || data.description || "",
     html: md.render(body),
     toc: extractToc(body),
-    downloadUrl: entry.publicUrl || `/guidelines/${entry.downloadName}`,
+    downloadUrl: downloadPath,
     sourcePath,
-    publicUrl: entry.publicUrl || `/guidelines/${entry.downloadName}`,
+    publicUrl: downloadPath,
   };
 }
 
-const topics = catalog.map(loadTopic);
+export function loadGuidelines(lang = "en") {
+  const topics = catalog.map((entry) => loadTopic(entry, lang));
+  return {
+    topics,
+    bySlug: Object.fromEntries(topics.map((topic) => [topic.slug, topic])),
+    parentSkillPath: "skills/guidelines/SKILL.md",
+  };
+}
 
-export default {
-  topics,
-  bySlug: Object.fromEntries(topics.map((topic) => [topic.slug, topic])),
-  parentSkillPath: "skills/guidelines/SKILL.md",
-};
+export default loadGuidelines("en");

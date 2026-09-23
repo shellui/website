@@ -1,0 +1,189 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: App e navigazione | Shellui
+description: "Unisci web app con Shellui. Condividi navigazione, layout, temi, lingua e dialoghi tra app integrate."
+eyebrow: Funzionalità
+heading: "Le tue app, un'interfaccia condivisa"
+lede: "Porta web app costruite in modo indipendente nella stessa navigazione e layout. Shellui carica ogni app in un iframe, così mantieni framework e workflow di deploy. Usa l'SDK per collegare l'app alle funzionalità condivise dell'interfaccia."
+---
+
+<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Collega la tua app al guscio</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Aggiungi <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/sdk </code> alla tua app incorporata e chiama <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.init() La tua app può quindi aprire una finestra di dialogo, mostrare una notifica, o navigare attraverso la shell. L'SDK gestisce la comunicazione tra l'iframe e la sua finestra madre. La tua app deve consentire iframe embedding.</p>
+  </div>
+  <div>
+    {% include "feature-visual-sdk.njk" %}
+  </div>
+</div>
+
+<div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Caricare il SDK</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Includere <code class="rotondato bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/sdk</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Invio</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Inizializzare il SDK per collegare l'app alla shell e ricevere le sue impostazioni.</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Chiamare le funzionalità condivise</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Utilizzare il SDK per mostrare le notifiche, aprire le finestre di dialogo e navigare tra le applicazioni.</p>
+  </div>
+</div>
+
+<div class="mt-8 max-w-3xl">
+  {% highlight "ts", "app.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.toast({
+  title: "Connected to Shellui",
+  description: "This notification appears in the shell.",
+  type: "success",
+});
+  {% endhighlight %}
+</div>
+
+{# Future screenshot: Playground shell with iframe app. Add a real image here when available. #}
+
+<section class="mt-20" aria-labelledby="layout-modes">
+  <div class="max-w-2xl">
+    <h2 id="layout-modes" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Scegli un layout per il tuo prodotto</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">layout </code> in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json Ogni app incorporata lo eredita. Default è <code class="rounded bg-muted px-1,5 py-0.5 text-sm">sidebar </code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">I layout di produzione sono <code class="rounded bg-muted px-1,5 py-0.5 text-sm" <sidebar <XT0000XTK>, <code class="rounded bg-1,5 px-1.5 py-0.5 text-sm" Progettare l'applicazione per riempire il suo iframe in modo da seguire il layout che si sceglie.</p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 md:gap-6 lg:gap-8">
+    <div>
+      {% set layoutMode = "sidebar" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-foreground">Barra laterale</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Navigazione persistente accanto all'iframe. Valore di configurazione: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">sidebar</p>
+    </div>
+    <div>
+      {% set layoutMode = "sidebar-inset" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-foreground">Inserire la barra laterale</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Stessa barra laterale, con un vassoio cromato che avvolge una cornice arrotondata. Valore di configurazione: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">sidebar-inset</p>
+    </div>
+    <div>
+      {% set layoutMode = "topbar" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-foreground">App bar</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Navigazione superiore compatta. Valore di configurazione: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app-bar</p>
+    </div>
+    <div>
+      {% set layoutMode = "topbar-inset" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-foreground">Barra dell'app inset</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Barra superiore con lo stesso vassoio cromato intorno all'app. Valore di configurazione: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">app-bar-inset</p>
+    </div>
+    <div>
+      {% set layoutMode = "floating" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-foreground">Floating</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Vetro cromato su contenuto pieno di emorragia. Desktop utilizza una barra laterale galleggiante; le viewport più piccole utilizzano una barra di linguetta inferiore. Valore di conflitto: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">floating</p>
+    </div>
+    <div>
+      {% set layoutMode = "window" %}
+      {% include "shell-layout-anim.njk" %}
+      <h3 class="mt-5 text-base font-semibold text-foreground">Windows</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Barra delle applicazioni e una finestra per elemento nav. Prova del concetto; non per la produzione. Valore di configurazione: <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">windows</p>
+    </div>
+  </div>
+  <p class="mt-8 max-w-2xl text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">fullscreen</code> hides navigation chrome. Size iframe UI to 100% of the iframe, not <code class="rounded bg-muted px-1.5 py-0.5 text-sm">100vh</code>.</p>
+</section>
+
+<section class="mt-20" aria-labelledby="sdk-chrome">
+  <div class="max-w-2xl">
+    <h2 id="sdk-chrome" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Mostra finestre di dialogo e notifiche attraverso la shell</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Aprire toast, dialoghi, modali e cassetti dalla tua app usando <code class="rotondato bg-muted px-1.5 py-0.5 text-sm">@shellui/sdk Shellui li rende al di fuori dell'iframe, in modo da poter utilizzare l'intera area shell. Gli esempi qui sotto mostrano le chiamate disponibili.</p>
+  </div>
+  {% include "shell-sdk-examples.njk" %}
+</section>
+
+<section id="host-chrome" class="mt-20 scroll-mt-24" aria-labelledby="host-chrome-heading">
+  <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    <div class="max-w-2xl">
+      <h2 id="host-chrome-heading" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Tema, lingua e azioni galleggianti</h2>
+      <p class="mt-4 text-base/7 text-muted-foreground">Lasciate che la gente scelga il loro tema e la lingua una volta nelle impostazioni della shell. Le tue applicazioni possono leggere quelle preferenze tramite SDK e aggiornare la propria interfaccia. Le azioni specifiche dell'app possono apparire sopra il contenuto o come un pulsante galleggiante.</p>
+      <p class="mt-4 text-base/7 text-muted-foreground">Gli starter del framework JavaScript da <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui init Utilizzare l'SDK completo quando l'applicazione ha anche bisogno di finestre di dialogo, autenticazione o archiviazione.</p>
+    </div>
+    <div>
+      {% include "feature-visual-chrome.njk" %}
+    </div>
+  </div>
+</section>
+
+{# Future screenshot: Settings Appearance theme picker. Add a real image here when available. #}
+
+<section class="mt-20" aria-labelledby="theming">
+  <div class="max-w-2xl">
+    <h2 id="theming" class="scroll-mt-24 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Abbina il guscio al tuo marchio</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Scegliere un tema integrato o definire i propri colori utilizzando il modello variabile shadcn/ui CSS. Memorizza il tuo tema in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json </code> o caricare i file a tema da <code class="rounded bg-muted px-1.5 py-0.5 text-sm">themesDir±/code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Abilitare diversi temi per permettere alle persone di passare tra loro in Impostazioni → Aspetto. Questo esempio inizia con il tema Shellui e rende disponibili altre due palette.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "json", "shellui.config.json" %}
+{
+  "theme": "shellui",
+  "themes": ["shellui", "claude", "shadcn"],
+  "activeTheme": "shellui"
+}
+    {% endhighlight %}
+  </div>
+  <p class="mt-6 max-w-2xl text-sm/6 text-muted-foreground">Usa l'SDK per applicare i colori selezionati nella tua app. La <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.docs }}/features/themes/">guida ai temi</a> copre palette personalizzate e file tema.</p>
+</section>
+
+<section class="mt-20" aria-labelledby="language">
+  <div class="max-w-2xl">
+    <h2 id="language" class="scroll-mt-24 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Mantenere le impostazioni di lingua coerente</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Scegli le lingue disponibili in Impostazioni → Lingua. L'interfaccia di shell integrata supporta inglese e francese. Questa configurazione consente entrambi.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Traduci le etichette di navigazione e altri testi configurabili con una classe <code="rotondata bg-muted px-1,5 py-0.5 text-sm"> LocalizedString </code> oggetto. Le tue applicazioni ascoltano per i cambiamenti linguistici tramite SDK e forniscono le proprie traduzioni. I layout di Shell attualmente utilizzano la direzione di testo da sinistra a destra.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "json", "shellui.config.json" %}
+{
+  "language": ["en", "fr"]
+}
+    {% endhighlight %}
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="chrome-actions">
+  <div class="max-w-2xl">
+    <h2 id="chrome-actions" class="scroll-mt-24 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Aggiungi azioni per la schermata corrente</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Utilizzare <code class="rotondato bg-muted px-1,5 py-0.5 text-sm">shellui.actions.set Shellui rende i controlli e invia clic alla tua app. L'esempio seguente aggiunge un pulsante posteriore e un titolo di pagina.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Aggiornare le azioni quando l'applicazione cambia schermi, o chiamare <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.actions.clear() Passare a un'altra app attraverso la shell cancella automaticamente le azioni dell'app precedente.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "ts", "app.ts" %}
+import { shellui } from "@shellui/sdk";
+
+await shellui.init();
+
+shellui.actions.set({
+  back: { id: "back", onClick: () => history.back() },
+  title: "Inbox",
+});
+    {% endhighlight %}
+  </div>
+  {# Future screenshot: Chrome actions over an iframe. #}
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/sdk", label: "Riferimento SDK" },
+  { href: site.docs + "/features/layouts/", label: "Scegli un layout" },
+  { href: site.docs + "/features/themes/", label: "Configura i temi" },
+  { href: site.docs + "/features/internationalization/", label: "Localizza la shell" },
+  { href: site.docs + "/features/chrome-actions/", label: "Azioni chrome flottanti" },
+  { href: "/architecture/", label: "Architettura di sistema" },
+  { href: "/features/authentication/", label: "Autenticazione" },
+  { href: site.playground, label: "Playground", external: true }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">In seguito, vedere come <a classe="font-medium text-primary-ink underline-offset-2 dark:text-primary" href="/features/authentication/">Authentication</p>

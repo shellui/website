@@ -1,0 +1,26 @@
+---
+permalink: /it/features/chrome/
+eleventyExcludeFromCollections: true
+sitemap: false
+layout: false
+---
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <title>Reindirizzamento ad App e navigazione</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="{{ site.url }}/features/apps-and-navigation/" />
+    <meta http-equiv="refresh" content="0; url=/features/apps-and-navigation/#host-chrome" />
+    <script>
+      (function () {
+        var hash = window.location.hash;
+        var keep = { "#theming": 1, "#language": 1, "#chrome-actions": 1, "#host-chrome": 1 };
+        location.replace(keep[hash] ? "/features/apps-and-navigation/" + hash : "/features/apps-and-navigation/#host-chrome");
+      })();
+    </script>
+  </head>
+  <body>
+    <p><a href="/features/apps-and-navigation/#host-chrome">L'host chrome è ora in App e navigazione.</a></p>
+  </body>
+</html>

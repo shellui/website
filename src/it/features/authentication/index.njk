@@ -1,0 +1,144 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Autenticazione | Shellui
+description: "Condividi accesso e sessioni tra le app Shellui. Collega identity-service o Supabase Auth, proteggi la navigazione e gestisci l'accesso all'organizzazione."
+eyebrow: Funzionalità
+heading: "Un flusso di accesso per le tue app"
+lede: "Configura l'accesso una volta in Shellui. La shell gestisce login, rinnovo sessione e ritorno alla pagina richiesta. Le app integrate ricevono l'account autenticato tramite l'SDK. Scegli identity-service o collega un progetto Supabase Auth esistente."
+pageScripts:
+  - /assets/js/auth-flow.js
+---
+
+<section aria-labelledby="auth-exchange">
+  <div class="max-w-2xl">
+    <h2 id="auth-exchange" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Come funziona l'accesso</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Con identity-service puoi accedere con un account GitHub, Google o Microsoft tramite OAuth, un protocollo di autorizzazione. Un'app integrata chiama <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.login()</code> per avviare il flusso nella finestra principale del browser. Dopo l'accesso e la conferma dell'account, identity-service restituisce la sessione alla shell.</p>
+  </div>
+  {% include "auth-flow.njk" %}
+</section>
+
+<section class="mt-20" aria-labelledby="identity-service-does">
+  <div class="max-w-2xl">
+    <h2 id="identity-service-does" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Scegli un backend di autenticazione</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Il backend <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> verifica chi sei e se puoi accedere a un'organizzazione. Un'organizzazione raggruppa gli account e le regole di accesso del tuo prodotto. Usalo per le funzionalità di accesso descritte sotto, oppure scegli Supabase Auth per un progetto Supabase esistente.</p>
+  </div>
+  <div class="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Provider OAuth</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Collega GitHub, Google o Microsoft come provider di accesso. Configura le credenziali del provider per ogni organizzazione su identity-service.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Token di sessione firmati</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">identity-service emette JSON Web Token (JWT) per l'accesso e il rinnovo della sessione. In produzione firma i token con una chiave RSA e pubblica un JSON Web Key Set (JWKS) così i tuoi servizi possono verificarli.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Regole di accesso all'organizzazione</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Scegli registrazione aperta, domini email approvati o approvazione del titolare. L'accesso vale per organizzazione, quindi lo stesso account può avere membership diverse.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Indirizzi di ritorno approvati</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Registra il callback del provider su identity-service e approva gli indirizzi a cui la shell può tornare dopo l'accesso. La guida all'autenticazione copre entrambe le impostazioni.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Amministrazione account</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Staff e titolari dell'organizzazione possono gestire membri, gruppi e connessioni ai provider nel pannello di amministrazione.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Supabase Auth</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Se usi già Supabase, collegalo come backend di autenticazione. I metodi di accesso disponibili dipendono dalle impostazioni del backend; Supabase supporta anche magic link via email.</p>
+    </div>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="connect-and-guard">
+  <div class="max-w-2xl">
+    <h2 id="connect-and-guard" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Collega un backend e proteggi i percorsi</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Collega il backend di autenticazione e contrassegna le voci di navigazione con <code class="rounded bg-muted px-1.5 py-0.5 text-sm">requiresAuth</code>. Shellui chiede ai visitatori non autenticati di accedere prima di caricare quelle app, poi li riporta alla pagina richiesta.</p>
+  </div>
+
+  <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+    <div>
+      <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Collega un backend</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Imposta <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">backend</code> in <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.config.json</code> e abilita i metodi di login che ti servono.</p>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Proteggi i percorsi</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Imposta <code class="rounded bg-muted px-1.5 py-0.5 text-sm">requiresAuth</code> sulle voci di navigazione che richiedono una sessione. Il backend deve anche verificare autenticazione e permessi sui dati.</p>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Accedi dall'app</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Da un'app integrata, chiama <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.login()</code> così la shell avvia il redirect.</p>
+    </div>
+  </div>
+
+  <div class="mt-8 max-w-3xl">
+    {% highlight "json", "shellui.config.json" %}
+{
+  "backend": {
+    "type": "shellui",
+    "url": "http://localhost:8000",
+    "companyId": 1,
+    "login": {
+      "methods": ["oauth"],
+      "oauthProviders": ["github", "google"]
+    }
+  },
+  "navigation": [
+    {
+      "label": "Billing",
+      "path": "billing",
+      "url": "https://app.example.com/billing",
+      "requiresAuth": true
+    }
+  ]
+}
+    {% endhighlight %}
+  </div>
+</section>
+
+{# Future screenshot: Playground login. Add a real image here when available. #}
+
+<section class="mt-20" aria-labelledby="who-can-join">
+  <div class="max-w-2xl">
+    <h2 id="who-can-join" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Scegli chi può entrare</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Un accesso riuscito con il provider conferma l'identità dell'account. La policy di accesso dell'organizzazione decide se quell'account può usare il prodotto. Scegli una policy nelle impostazioni Organizzazione del pannello di amministrazione.</p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Pubblico</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Chi accede può entrare con accesso abilitato. Usa questa modalità quando la registrazione è aperta a tutti.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Domini email approvati</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Gli account con un dominio email approvato entrano con accesso abilitato. Gli altri restano in attesa di approvazione e i titolari ricevono una notifica.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Solo invito</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">I nuovi account aspettano che staff o titolare abilitino la membership. Non possono ottenere una sessione per quell'organizzazione finché l'approvazione è in sospeso.</p>
+    </div>
+  </div>
+
+</section>
+
+<section class="mt-20" aria-labelledby="groups-logs-tokens">
+  <div class="max-w-2xl">
+    <h2 id="groups-logs-tokens" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Gestisci gli account oltre l'accesso</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Gestisci gruppi dell'organizzazione, rivedi eventi di login e crea token di accesso per integrazioni nel pannello di amministrazione. Questi strumenti usano lo stesso backend identity-service dell'accesso.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Le tue API possono usare le informazioni di gruppo dai token verificati quando controlli l'accesso. I personal access token nominati si possono revocare; esistono token read-only per integrazioni che leggono solo dati.</p>
+  </div>
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/features/authentication/", label: "Configurare l'autenticazione" },
+  { href: site.identityService, label: "Sorgente identity-service", external: true },
+  { href: "/features/apps-and-navigation/", label: "App e navigazione" },
+  { href: "/architecture/", label: "Architettura di sistema" },
+  { href: "/features/administration/", label: "Amministrazione" },
+  { href: site.playground, label: "Playground", external: true },
+  { href: "/changelog/", label: "Changelog" }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Poi scopri come <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">Amministrazione</a> gestisce utenti, accesso all'organizzazione e dati operativi.</p>

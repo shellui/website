@@ -1,0 +1,2 @@
+/** @typedef {object} LocaleBundle */
+export {};

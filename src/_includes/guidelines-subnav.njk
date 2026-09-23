@@ -1,15 +1,15 @@
-{%- set guidelinesPath = page.url -%}
+{% set overviewHref = '/guidelines/' | localizeHref(lang) %}
 <nav class="mb-8 flex flex-wrap gap-x-5 gap-y-2 border-b border-gray-200 pb-4 text-sm dark:border-gray-800" aria-label="Guidelines">
   <a
-    href="/guidelines/"
-    class="{% if guidelinesPath == '/guidelines/' %}font-semibold text-gray-900 dark:text-white{% else %}text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
-    {% if guidelinesPath == '/guidelines/' %}aria-current="page"{% endif %}
-  >Overview</a>
+    href="{{ overviewHref }}"
+    class="{% if englishPath == '/guidelines/' %}font-semibold text-gray-900 dark:text-white{% else %}text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
+    {% if englishPath == '/guidelines/' %}aria-current="page"{% endif %}
+  >{{ ui.guidelinesHub.overview }}</a>
   {% for item in guidelines.topics %}
     <a
       href="{{ item.href }}"
-      class="{% if guidelinesPath == item.href %}font-semibold text-gray-900 dark:text-white{% else %}text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
-      {% if guidelinesPath == item.href %}aria-current="page"{% endif %}
+      class="{% if englishPath == i18n.englishPathFromUrl(item.href) %}font-semibold text-gray-900 dark:text-white{% else %}text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white{% endif %}"
+      {% if englishPath == i18n.englishPathFromUrl(item.href) %}aria-current="page"{% endif %}
     >{{ item.navLabel }}</a>
   {% endfor %}
 </nav>

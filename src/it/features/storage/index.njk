@@ -1,0 +1,91 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Storage | Shellui
+description: "Aggiungi upload, browsing e condivisione file alle app Shellui. Collega storage-service per permessi, link di condivisione e limiti di storage."
+eyebrow: Funzionalità
+heading: "Storage file condiviso tra le app"
+lede: "Collega storage-service per caricare, sfogliare e condividere file tra le app. Usa l'SDK per le operazioni sui file e l'app Files per browsing e selezione. Gestisci accesso e limiti a livello di organizzazione."
+---
+
+<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Collegare le app a un file store condiviso</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Il backend <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.storageService }}">storage-service</a> salva i file su storage compatibile Amazon S3 o sul filesystem del server. Verifica l'account autenticato e applica limiti di storage per organizzazione e, opzionalmente, per utente.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Le tue app chiamano <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.storage</code> tramite l'SDK. La shell inoltra ogni richiesta al servizio configurato con il token di accesso dell'account autenticato.</p>
+  </div>
+  <div class="mx-auto w-full max-w-xs">
+    {% include "feature-visual-storage.njk" %}
+  </div>
+</div>
+
+<div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Collegare lo storage</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Imposta <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage.url</code> sul tuo servizio di storage. Aggiungi <code class="rounded bg-muted px-1.5 py-0.5 text-sm">filesUrl</code> per collegare l'app Files e il picker.</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Controllare l'utilizzo di storage</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Vedere l'uso corrente in Impostazioni → Storage. Puoi nascondere questa pagina delle impostazioni mantenendo lo storage disponibile in Amministrazione e tramite SDK.</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Lavorare con i file</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Dopo <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">init</code>, carica, elenca, sposta e scarica con <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.storage.from("company")</code>.</p>
+  </div>
+</div>
+
+<div class="mt-8 max-w-3xl">
+  {% highlight "json", "shellui.config.json" %}
+{
+  "storage": {
+    "url": "http://localhost:8001",
+    "filesUrl": "http://localhost:5175/"
+  }
+}
+    {% endhighlight %}
+</div>
+
+{# Future screenshot: Playground Files explorer. Add a real image here when available. #}
+
+<section class="mt-20" aria-labelledby="files-from-iframe">
+  <div class="max-w-2xl">
+    <h2 id="files-from-iframe" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Carica e seleziona i file dall'app</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Usa l'SDK per caricare, elencare, spostare e scaricare file. Le chiamate restituiscono <code class="rounded bg-muted px-1.5 py-0.5 text-sm">{ data, error }</code> così l'app può gestire gli errori. Il file picker apre l'app Files in un modale della shell per selezionare file o cartelle.</p>
+  </div>
+  {% include "storage-sdk-examples.njk" %}
+</section>
+
+<section class="mt-20" aria-labelledby="private-by-default">
+  <div class="max-w-2xl">
+    <h2 id="private-by-default" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Controllo che può accedere a ogni file</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Ogni organizzazione ha una raccolta di file, o bucket, chiamata <code class="rounded bg-muted px-1.5 py-0.5 text-sm">company</code>. I nuovi elementi alla radice sono privati per chi li crea; quelli nelle cartelle ereditano i permessi della cartella. Condividi file e cartelle con i membri, oppure crea un link per chi è fuori dall'organizzazione.</p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Permessi di accesso</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Concedi o nega l'accesso di lettura, scrittura o amministrazione a un file o cartella. Applicare le autorizzazioni ai singoli account o all'intera azienda.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Link di condivisione</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Condividi un file individuale con un link che non ha bisogno di account. Impostare una scadenza, un limite di download, o entrambi, e revocare il link quando l'accesso non è più necessario.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Quota</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Impostare un limite di archiviazione totale per l'azienda e limiti facoltativi per conto. Il servizio rifiuta gli upload che superano tali limiti e Impostazioni mostra l'utilizzo corrente.</p>
+    </div>
+  </div>
+
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/features/storage/", label: "Documentazione storage" },
+  { href: site.docs + "/features/storage-picker/", label: "Storage picker" },
+  { href: site.storageService, label: "Sorgente storage-service", external: true },
+  { href: "/architecture/", label: "Architettura di sistema" },
+  { href: "/features/authentication/", label: "Autenticazione" },
+  { href: site.playground, label: "Playground", external: true }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Scopri come l'<a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/architecture/">architettura</a> collega la shell ai servizi backend.</p>

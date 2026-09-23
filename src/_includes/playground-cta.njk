@@ -6,10 +6,10 @@
       {% include "playground-app-icon.njk" %}
       <div>
         <h2 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
-          Try Shellui in the playground
+          {{ includes.playgroundCta.title }}
         </h2>
         <p class="mt-1 text-sm text-pretty text-gray-600 dark:text-gray-300">
-          Explore a live Shellui app with no install and no scaffolding.
+          {{ includes.playgroundCta.body }}
         </p>
       </div>
     </div>
@@ -19,7 +19,7 @@
       target="_blank"
       rel="noopener noreferrer"
     >
-      Open playground
+      {{ includes.playgroundCta.cta }}
       <span aria-hidden="true">&nbsp;→</span>
     </a>
   </div>

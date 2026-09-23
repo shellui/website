@@ -1,0 +1,91 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Stockage | Shellui
+description: "Ajoutez téléversements, navigation et partage de fichiers à vos applications Shellui. Connectez storage-service pour permissions, liens de partage et quotas."
+eyebrow: Fonctionnalités
+heading: "Un stockage de fichiers partagé entre vos applications"
+lede: "Connectez storage-service pour téléverser, parcourir et partager des fichiers entre vos applications. Utilisez le kit de développement logiciel (SDK) pour les opérations sur fichiers et l'application Files pour la navigation et la sélection. Gérez l'accès et les quotas au niveau entreprise."
+---
+
+<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Connecter vos applications à un stockage partagé</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Le backend <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.storageService }}">storage-service</a> stocke les fichiers dans un stockage compatible Amazon S3 ou sur le système de fichiers de votre serveur. Il vérifie le compte connecté et applique les quotas entreprise et, en option, par utilisateur.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Vos applications appellent <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.storage</code> via le SDK. Le shell envoie chaque requête au service de stockage configuré avec le jeton d'accès du compte connecté.</p>
+  </div>
+  <div class="mx-auto w-full max-w-xs">
+    {% include "feature-visual-storage.njk" %}
+  </div>
+</div>
+
+<div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connecter le stockage</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Définissez <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage.url</code> vers votre service de stockage. Ajoutez <code class="rounded bg-muted px-1.5 py-0.5 text-sm">filesUrl</code> pour connecter l'explorateur et le sélecteur Files.</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Vérifier l'usage de stockage</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Consultez l'usage actuel dans Paramètres → Stockage. Vous pouvez masquer cette page de paramètres tout en conservant le stockage dans Administration et via le SDK.</p>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Travailler avec les fichiers</p>
+    <p class="mt-2 text-sm/6 text-muted-foreground">Après <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">init</code>, téléversez, listez, déplacez et téléchargez via <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.storage.from("company")</code>.</p>
+  </div>
+</div>
+
+<div class="mt-8 max-w-3xl">
+  {% highlight "json", "shellui.config.json" %}
+{
+  "storage": {
+    "url": "http://localhost:8001",
+    "filesUrl": "http://localhost:5175/"
+  }
+}
+    {% endhighlight %}
+</div>
+
+{# Future screenshot: Playground Files explorer. Add a real image here when available. #}
+
+<section class="mt-20" aria-labelledby="files-from-iframe">
+  <div class="max-w-2xl">
+    <h2 id="files-from-iframe" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Téléverser et sélectionner des fichiers depuis votre app</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Utilisez le SDK pour téléverser, lister, déplacer et télécharger des fichiers. Les appels renvoient <code class="rounded bg-muted px-1.5 py-0.5 text-sm">{ data, error }</code> pour que votre application gère les échecs. Le sélecteur de fichiers ouvre l'application Files dans une modale shell pour choisir fichiers ou dossiers.</p>
+  </div>
+  {% include "storage-sdk-examples.njk" %}
+</section>
+
+<section class="mt-20" aria-labelledby="private-by-default">
+  <div class="max-w-2xl">
+    <h2 id="private-by-default" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Contrôler qui accède à chaque fichier</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Chaque entreprise a une collection de fichiers, ou bucket, nommée <code class="rounded bg-muted px-1.5 py-0.5 text-sm">company</code>. Les éléments à la racine sont privés à leur créateur ; ceux dans un dossier héritent des permissions du dossier. Partagez fichiers et dossiers sélectionnés avec des membres, ou créez un lien de partage pour une personne hors entreprise.</p>
+  </div>
+
+  <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Octrois d'accès</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Accordez ou refusez lecture, écriture ou administration sur un fichier ou dossier. Appliquez les permissions à des comptes individuels ou à toute l'entreprise.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Liens de partage</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Partagez un fichier avec un lien sans compte requis. Définissez une expiration, une limite de téléchargements ou les deux, et révoquez le lien lorsque l'accès n'est plus nécessaire.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-foreground">Quotas</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Fixez une limite de stockage totale pour l'entreprise et des limites optionnelles par compte. Le service refuse les téléversements qui dépassent ces limites ; Paramètres affiche l'usage actuel.</p>
+    </div>
+  </div>
+
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/features/storage/", label: "Documentation stockage" },
+  { href: site.docs + "/features/storage-picker/", label: "Sélecteur de stockage" },
+  { href: site.storageService, label: "code source storage-service", external: true },
+  { href: "/architecture/", label: "Architecture système" },
+  { href: "/features/authentication/", label: "Authentification" },
+  { href: site.playground, label: "Playground", external: true }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Découvrez comment l'<a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/architecture/">architecture</a> relie le shell à ses services backend.</p>

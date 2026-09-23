@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+title: Linee guida | Shellui
+description: Regole di scrittura, web design e composizione per Shellui. Markdown versionato condiviso da agenti e persone.
+hideBreadcrumbs: true
+---
+
+<article class="page-top page-x pb-20">
+  <div class="mx-auto max-w-5xl">
+    {% include "guidelines-subnav.njk" %}
+
+    <header>
+      <h1 class="text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">Linee guida</h1>
+      <p class="mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-400">
+        Regole di voce, UI e composizione per Shellui. Scrittura e web design sono markdown in pagina. Design è un manuale visivo; gli agenti caricano comunque il file snello.
+      </p>
+      <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
+        Logo e file press kit restano su <a href="/brand-assets/" class="text-primary-ink underline hover:opacity-90 dark:text-primary">brand assets</a>.
+      </p>
+    </header>
+
+    <div class="mt-10 divide-y divide-gray-200 border-y border-gray-200 dark:divide-gray-800 dark:border-gray-800">
+      {% for item in guidelines.topics %}
+        <a href="{{ item.href }}" class="group flex flex-col gap-2 py-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+          <div class="min-w-0">
+            <div class="flex flex-wrap items-center gap-3">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-white">{{ item.navLabel }}</h2>
+              <span class="shrink-0 rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium tabular-nums text-gray-700 dark:border-gray-800 dark:bg-white/5 dark:text-gray-300">v{{ item.version }}</span>
+            </div>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ item.hubDescription }}</p>
+            {% if item.publicUrl == '/design.md' %}
+              <p class="mt-2 font-mono text-xs text-gray-500 dark:text-gray-400">fetch https://shellui.com/design.md</p>
+            {% endif %}
+          </div>
+          <span class="shrink-0 text-sm font-semibold text-primary-ink group-hover:underline dark:text-primary">Leggi {{ item.navLabel | lower }}</span>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-white/5">
+      <h2 class="text-base font-semibold text-gray-900 dark:text-white">Per gli agenti</h2>
+      <p class="mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+        Mappa del sito per gli agenti: <a href="/llms.txt" class="font-medium text-primary-ink dark:text-primary">/llms.txt</a>.
+        Costruisci una pagina? Carica <a href="/design.md" class="font-medium text-primary-ink dark:text-primary">https://shellui.com/design.md</a> per primo, poi la skill del topic. Non fare scraping dell'HTML.
+      </p>
+      <pre class="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-white px-4 py-3 font-mono text-xs leading-relaxed text-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-200"># 1. Carica il file di composizione
+https://shellui.com/design.md
+
+# 2. Poi carica la skill padre da questo repo
+{{ guidelines.parentSkillPath }}</pre>
+      <ul class="mt-4 list-disc space-y-1 pl-5 text-sm text-gray-600 dark:text-gray-400">
+        {% for item in guidelines.topics %}
+          <li>
+            <span class="font-medium text-gray-900 dark:text-white">{{ item.navLabel }}</span>:
+            <code class="font-mono text-[0.8rem]">{{ item.skillPath }}</code>
+            →
+            <code class="font-mono text-[0.8rem]">{{ item.sourcePath }}</code>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</article>

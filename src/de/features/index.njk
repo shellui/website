@@ -1,0 +1,67 @@
+---
+layout: layouts/feature.njk
+wide: true
+playgroundCta: true
+hideBreadcrumbs: true
+title: Funktionen | Shellui
+description: "Baue Web-Apps mit gemeinsamer Navigation, Anmeldung, Administration und Storage. Entdecke Shellui – eine Open-Source-Microfrontend-Shell."
+heading: "Baue deine App. Teile das Wesentliche."
+lede: "Shellui ist eine Open-Source-Shell, die Deine Web-Apps mit gemeinsamer Navigation, Anmeldung, Verwaltung und Dateispeicherung kombiniert. Deine Apps laufen auf eingebetteten Seiten namens iframes und verwenden die von dir ausgewählten Frameworks."
+---
+
+<div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">A shared foundation for your web apps</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Build a customer portal, an internal tool, or a product with several apps. Configure the navigation, layout, and connected services in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. Each app keeps its own interface and uses the Shellui software development kit (SDK) to access shared features.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Start with navigation and a layout, then connect authentication or storage when your project needs them. Shellui is MIT-licensed and free to run. You can host the shell and its services on your own infrastructure.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Explore the features below, or try the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.playground }}">playground</a> in your browser before installing anything.</p>
+    <p class="mt-6 text-sm text-muted-foreground">
+      <a href="/architecture/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Architecture</a>
+      ·
+      <a href="{{ site.docs }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Docs</a>
+      ·
+      <a href="{{ site.playground }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">Playground</a>
+      ·
+      <a href="/changelog/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Changelog</a>
+    </p>
+  </div>
+  <div>
+    {% include "feature-visual-shell.njk" %}
+  </div>
+</div>
+
+<div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
+  {% for item in featurePages %}
+    <a
+      id="{{ item.id }}"
+      href="{{ item.href }}"
+      class="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:col-span-2{% if loop.index == 4 %} lg:col-start-2{% endif %}{% if loop.last %} sm:max-w-[calc(50%-0.75rem)] sm:justify-self-center lg:max-w-none lg:justify-self-stretch{% endif %}"
+    >
+      <div class="border-b border-border bg-muted p-4 sm:p-5">
+        <div class="mx-auto w-full max-w-[16rem] {% if item.visual == 'auth' %}max-w-[13rem]{% endif %}">
+          {% if item.visual == "shell-layout" %}
+            {% include "shell-layout-anim.njk" %}
+          {% elif item.visual == "auth" %}
+            {% include "feature-visual-auth.njk" %}
+          {% elif item.visual == "admin" %}
+            {% include "feature-visual-admin.njk" %}
+          {% elif item.visual == "storage" %}
+            {% include "feature-visual-storage.njk" %}
+          {% elif item.visual == "ship" %}
+            {% include "feature-visual-ship.njk" %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="flex flex-1 flex-col p-6">
+        <h2 class="text-xl font-semibold tracking-tight text-pretty text-foreground">{{ item.title }}</h2>
+        <p class="mt-3 text-sm/6 text-muted-foreground">{{ item.benefit }}</p>
+        <ul class="mt-4 space-y-1.5 text-sm text-muted-foreground">
+          {% for point in item.points %}
+            <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
+        <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">{{ item.cta }}</span>
+      </div>
+    </a>
+  {% endfor %}
+</div>

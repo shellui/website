@@ -1,0 +1,209 @@
+---
+layout: layouts/base.njk
+title: Shellui | Die Web-App-Entwicklungsplattform
+description: Shellui ist eine Open-Source-Web-App-Entwicklungsplattform. Navigation, Authentifizierung, Administration und Storage sind eingebaut – dein Team liefert schneller, ohne Grundfunktionen neu zu bauen.
+---
+    {% set agentPrompt = "fetch https://shellui.ai to start with Shellui" %}
+    <div class="relative isolate page-x page-top">
+      <div class="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+        <div
+          class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-30 bg-linear-to-tr from-primary to-amber-200 opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem] dark:opacity-20"
+          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+        ></div>
+      </div>
+      <div class="mx-auto max-w-2xl py-16 sm:py-20">
+        <div class="mb-6 flex justify-center sm:mb-8">
+          <div class="relative flex items-center gap-x-3 rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
+            v{{ productVersion }} is out
+            <span class="h-4 w-px bg-gray-900/10 dark:bg-white/20" aria-hidden="true"></span>
+            <a href="/changelog/" class="font-semibold text-primary-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">
+              <span class="absolute inset-0" aria-hidden="true"></span>Read the changelog
+            </a>
+          </div>
+        </div>
+        <div class="text-center">
+          <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl lg:text-7xl dark:text-white">
+            Ship sooner without rebuilding basic features
+          </h1>
+          <p class="mt-8 text-lg text-pretty text-gray-600 sm:text-xl/8 dark:text-gray-400">
+            Shellui is an open-source web app platform with navigation, authentication, administration, and storage built in. Your product stays center stage - your team skips rebuilding the basics and gets to market faster.
+          </p>
+          <div class="mt-10 text-left">
+            <p class="text-center text-sm font-medium text-gray-600 dark:text-gray-400">Give this instruction to your agent.</p>
+            <div class="agent-prompt mt-3 flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white sm:flex-row sm:items-stretch dark:border-gray-800 dark:bg-gray-900">
+              <p class="min-w-0 flex-1 select-all overflow-x-auto px-4 py-3 font-mono text-sm text-gray-900 sm:py-2.5 dark:text-gray-50">{{ agentPrompt }}</p>
+              <button
+                type="button"
+                class="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-2 border-t border-gray-200 px-4 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:border-t-0 sm:border-l dark:border-gray-800 dark:text-white dark:hover:bg-gray-800"
+                data-copy="{{ agentPrompt }}"
+                aria-label="Copy agent prompt"
+                onclick="window.shelluiCopyPrompt && window.shelluiCopyPrompt(this)"
+              >
+                <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <span data-copy-label>Copy</span>
+              </button>
+            </div>
+            <p class="sr-only" data-copy-status aria-live="polite"></p>
+          </div>
+          <div class="mt-8 flex items-center justify-center gap-x-6">
+            <a
+              href="#init"
+              class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Get started
+            </a>
+            <a
+              href="{{ site.playground }}"
+              class="text-sm/6 font-semibold text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open playground <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="mt-8 text-sm text-gray-500 dark:text-gray-400">
+            MIT licensed
+            <span class="mx-2 text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
+            Self hosted
+            <span class="mx-2 text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
+            <a href="{{ site.docs }}" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white">Docs</a>
+            <span class="mx-2 text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
+            <a href="{{ site.github }}" class="hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+          </p>
+        </div>
+      </div>
+      <div class="pointer-events-none absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div
+          class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-primary to-amber-200 opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem] dark:opacity-20"
+          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+        ></div>
+      </div>
+    </div>
+
+    <section id="features" class="relative z-10 page-x py-24">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
+            A shared foundation for your apps
+          </h2>
+          <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+            Bring your apps together with shared navigation, sign-in, administration, and file storage. Choose the features your product needs.
+          </p>
+        </div>
+
+        <a
+          href="/features/apps-and-navigation/"
+          class="group mt-12 grid overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900 lg:grid-cols-2"
+        >
+          <div class="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+            <h3 class="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
+              Apps and navigation
+            </h3>
+            <p class="mt-4 text-base/7 text-gray-600 dark:text-gray-400">
+              Combine apps built with different frameworks in one interface. Shellui handles the surrounding navigation and layout. Connect each app to shared dialogs, notifications, and settings through the SDK.
+            </p>
+            <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">
+              Explore apps and navigation
+            </span>
+          </div>
+          <div class="flex min-h-64 items-center bg-gray-50 p-8 dark:bg-gray-950/60 sm:min-h-80 sm:p-10">
+            <div class="mx-auto w-full max-w-md">
+              {% include "shell-layout-anim.njk" %}
+            </div>
+          </div>
+        </a>
+
+        <ul class="mt-6 divide-y divide-gray-200 border-y border-gray-200 dark:divide-gray-800 dark:border-gray-800">
+          <li>
+            <a href="/features/authentication/" class="group flex flex-col gap-1 py-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex-row sm:items-baseline sm:gap-8">
+              <span class="shrink-0 text-base font-semibold text-gray-900 dark:text-white sm:w-44">Authentication</span>
+              <span class="min-w-0 text-base/7 text-gray-600 dark:text-gray-400">Share one sign-in flow across your apps. Connect identity-service or Supabase Auth and choose which pages require a session.</span>
+            </a>
+          </li>
+          <li>
+            <a href="/features/storage/" class="group flex flex-col gap-1 py-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex-row sm:items-baseline sm:gap-8">
+              <span class="shrink-0 text-base font-semibold text-gray-900 dark:text-white sm:w-44">Storage</span>
+              <span class="min-w-0 text-base/7 text-gray-600 dark:text-gray-400">Upload, browse, and share files through the SDK. Control access with file permissions, share links, and storage limits.</span>
+            </a>
+          </li>
+          <li>
+            <a href="/features/administration/" class="group flex flex-col gap-1 py-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex-row sm:items-baseline sm:gap-8">
+              <span class="shrink-0 text-base font-semibold text-gray-900 dark:text-white sm:w-44">Administration</span>
+              <span class="min-w-0 text-base/7 text-gray-600 dark:text-gray-400">Manage members, company access, and login activity from the administration panel. Add your own internal tools to its sidebar.</span>
+            </a>
+          </li>
+          <li>
+            <a href="/features/web-and-desktop/" class="group flex flex-col gap-1 py-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex-row sm:items-baseline sm:gap-8">
+              <span class="shrink-0 text-base font-semibold text-gray-900 dark:text-white sm:w-44">Web and desktop</span>
+              <span class="min-w-0 text-base/7 text-gray-600 dark:text-gray-400">Build the shell as static web files, share a preview on shellui.app, or package it as a desktop app with Tauri.</span>
+            </a>
+          </li>
+        </ul>
+
+        <p class="mt-8">
+          <a href="/features/" class="text-sm/6 font-semibold text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">
+            See all features
+          </a>
+        </p>
+
+        <div class="mt-16">
+          {% set playgroundCtaWide = true %}
+          {% include "playground-cta.njk" %}
+        </div>
+      </div>
+    </section>
+
+    {% include "home-init.njk" %}
+
+    {% include "home-config.njk" %}
+
+    {% include "home-deploy.njk" %}
+
+    <section id="audience" class="border-t border-gray-200 page-x py-24 dark:border-gray-800">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
+            Same shell as you grow
+          </h2>
+          <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+            MIT license, one CLI, one static build. Optional native desktop from the same project. The host does not fork when a second surface or a second team shows up.
+          </p>
+        </div>
+        <dl class="mt-12 max-w-3xl space-y-8">
+          <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+            <dt class="text-base font-semibold text-gray-900 dark:text-white">Shared chrome</dt>
+            <dd class="mt-1 text-base/7 text-gray-600 sm:mt-0 dark:text-gray-400">Several frontends, one product shell. Each surface keeps its own stack.</dd>
+          </div>
+          <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+            <dt class="text-base font-semibold text-gray-900 dark:text-white">Host extras</dt>
+            <dd class="mt-1 text-base/7 text-gray-600 sm:mt-0 dark:text-gray-400">Navigation, auth, admin, and files ship with the shell so your app stays the product.</dd>
+          </div>
+          <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+            <dt class="text-base font-semibold text-gray-900 dark:text-white">Yours to run</dt>
+            <dd class="mt-1 text-base/7 text-gray-600 sm:mt-0 dark:text-gray-400">Build static files, host them where you already ship, or distribute the output yourself.</dd>
+          </div>
+          <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+            <dt class="flex items-center gap-2 text-base font-semibold text-gray-900 dark:text-white">
+              {% set tauriIconClass = "size-4" %}
+              {% include "tauri-icon.njk" %}
+              Native desktop
+            </dt>
+            <dd class="mt-1 text-base/7 text-gray-600 sm:mt-0 dark:text-gray-400">
+              <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui build --app</code> wraps the same shell with Tauri 2. See
+              <a href="/features/web-and-desktop/#desktop" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Features</a>
+              and the
+              <a href="{{ site.docs }}/tauri/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">desktop docs</a>.
+            </dd>
+          </div>
+        </dl>
+        <p class="mt-12 text-sm/6 text-gray-500 dark:text-gray-400">
+          <a href="/architecture/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Architecture</a>
+          ·
+          <a href="{{ site.docs }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Documentation</a>
+          ·
+          <a href="/changelog/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Changelog for {{ productVersion }}</a>
+        </p>
+      </div>
+    </section>

@@ -5,20 +5,20 @@
   <div class="mx-auto max-w-7xl">
     <div class="max-w-2xl">
       <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
-        Scaffold your app. Shellui wraps it.
+        {{ includes.homeInit.title }}
       </h2>
       <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-        Your frontend stays the product in the iframe. <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui init</code> scaffolds a starter wired for theme and language. <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui start</code> runs the shell around that app.
+        {{ includes.homeInit.lede | replace('shellui init', '<code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui init</code>') | replace('shellui start', '<code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui start</code>') | safe }}
       </p>
     </div>
 
     <div class="mt-12 max-w-3xl" data-framework-picker>
-      <p class="text-base font-semibold text-gray-900 dark:text-white">Pick a starter</p>
+      <p class="text-base font-semibold text-gray-900 dark:text-white">{{ includes.homeInit.pickStarter }}</p>
       <p class="mt-2 text-base/7 text-gray-600 dark:text-gray-400">
-        Choosing a chip updates only the <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui init</code> line. Install the CLI globally first, as the docs recommend.
+        {{ includes.homeInit.pickStarterHelp | replace('shellui init', '<code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui init</code>') | safe }}
       </p>
 
-      <div class="mt-5 flex flex-wrap gap-2" role="radiogroup" aria-label="Framework starters">
+      <div class="mt-5 flex flex-wrap gap-2" role="radiogroup" aria-label="{{ includes.homeInit.startersLabel }}">
         {% for item in frameworks %}
           <label class="framework-chip inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-md border border-gray-200 bg-white px-3 text-sm font-medium text-gray-700 transition-colors hover:border-gray-300 hover:bg-gray-50 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary dark:border-gray-800 dark:bg-gray-900 dark:text-gray-200 dark:hover:border-gray-700 dark:hover:bg-gray-800">
             <input
@@ -45,14 +45,14 @@
       </div>
 
       <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
-        <a href="{{ site.docs }}/installation" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Install the CLI</a>
+        <a href="{{ site.docs }}/installation" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">{{ includes.homeInit.installCli }}</a>
         ·
-        <a href="{{ site.docs }}/framework-starters" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Framework starters</a>
+        <a href="{{ site.docs }}/framework-starters" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">{{ includes.homeInit.frameworkStarters }}</a>
         ·
-        <a href="{{ site.docs }}/quickstart" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Create a project</a>
+        <a href="{{ site.docs }}/quickstart" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">{{ includes.homeInit.createProject }}</a>
       </p>
       <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        For another stack, run <code class="rounded bg-gray-100 px-1 py-0.5 font-mono text-[0.8rem] dark:bg-gray-800">shellui init empty</code> and point Home at your own iframe app.
+        {{ includes.homeInit.emptyHelp | replace('shellui init empty', '<code class="rounded bg-gray-100 px-1 py-0.5 font-mono text-[0.8rem] dark:bg-gray-800">shellui init empty</code>') | safe }}
       </p>
     </div>
   </div>

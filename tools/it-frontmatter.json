@@ -1,0 +1,100 @@
+{
+  "404.njk": {
+    "title": "Pagina non trovata | Shellui",
+    "description": "Questa pagina non esiste. Torna alla home, esplora le funzionalità o contatta il team Shellui."
+  },
+  "architecture/index.njk": {
+    "title": "Architettura | Shellui",
+    "description": "Shellui è composto da sei pezzi open source: frontend React, identity-service, admin, storage-service, Files e hosting-service. Seguili in un grafo interattivo, oppure tieni Files e sostituisci auth e storage con Supabase.",
+    "eyebrow": "Sviluppatori",
+    "heading": "Come si incastra lo stack",
+    "lede": "Sei componenti open source formano uno stack Shellui. Usali tutti, oppure tieni shell, app e Files e sostituisci autenticazione e storage con Supabase."
+  },
+  "blog/index.njk": {
+    "title": "Blog | Shellui",
+    "heading": "Dal blog",
+    "lede": "Notizie e note sulla piattaforma di sviluppo web app.",
+    "description": "Notizie, note di rilascio e note di architettura dal team Shellui sulla piattaforma open source di sviluppo web app."
+  },
+  "blog/introducing-shellui.md": {
+    "title": "Presentazione di Shellui | Shellui",
+    "heading": "Presentazione di Shellui",
+    "lede": "Shellui è una piattaforma open source per web app - una shell condivisa intorno al prodotto così rilasci l'app, non l'host chrome.",
+    "description": "Annuncio di Shellui, shell microfrontend open source con auth, layout, temi e i18n. v0.3.0 è sperimentale e usata su progetti reali."
+  },
+  "brand-assets/index.njk": {
+    "title": "Brand assets | Shellui",
+    "description": "Scarica i logo ufficiali Shellui in SVG e PNG per articoli, talk e pagine partner. Nessun permesso per uso editoriale o della community."
+  },
+  "changelog/index.njk": {
+    "title": "Changelog | Shellui",
+    "description": "Note di rilascio per ogni versione Shellui: funzionalità, correzioni e breaking change per shell, SDK, identity, admin e storage.",
+    "eyebrow": "Sviluppatori",
+    "heading": "Cosa è cambiato in ogni release",
+    "lede": "Funzionalità, correzioni e breaking change per shell, SDK, identity, admin e storage."
+  },
+  "company/index.njk": {
+    "title": "Chi siamo | Shellui",
+    "description": "Shellui è una piattaforma web app open source da Zurigo. Sebastien Barbier l'ha creata perché i team smettano di rifare auth, admin e lo stesso boilerplate.",
+    "heading": "Informazioni su Shellui",
+    "lede": "Una piattaforma open source per lo sviluppo di web app da Zurigo."
+  },
+  "company/legal/index.md": {
+    "title": "Note legali | Shellui",
+    "description": "Note legali per shellui.com: dati dell'operatore svizzero, hosting GitHub Pages, diritti FADP e come contattarci.",
+    "heading": "Note legali",
+    "lede": "Informazioni legali per questo sito non commerciale (Svizzera)."
+  },
+  "features/index.njk": {
+    "title": "Funzionalità | Shellui",
+    "description": "Costruisci web app con navigazione, accesso, amministrazione e storage condivisi. Esplora Shellui, shell microfrontend open source.",
+    "heading": "Costruisci la tua app. Condividi l'essenziale.",
+    "lede": "Shellui è una shell open source che unisce le web app con navigazione, accesso, amministrazione e storage condivisi. Le app girano in iframe con i framework che scegli."
+  },
+  "features/authentication/index.njk": {
+    "title": "Autenticazione | Shellui",
+    "description": "Condividi accesso e sessioni tra le app Shellui. Collega identity-service o Supabase Auth, proteggi la navigazione e gestisci l'accesso all'organizzazione.",
+    "eyebrow": "Funzionalità",
+    "heading": "Un flusso di accesso per le tue app",
+    "lede": "Configura l'accesso una volta in Shellui. La shell gestisce login, rinnovo sessione e ritorno alla pagina richiesta. Le app integrate ricevono l'account autenticato tramite l'SDK. Scegli identity-service o collega un progetto Supabase Auth esistente."
+  },
+  "features/administration/index.njk": {
+    "title": "Amministrazione | Shellui",
+    "description": "Gestisci membri, gruppi, token di accesso e impostazioni aziendali in Shellui. Aggiungi strumenti di amministrazione accanto alle schermate integrate.",
+    "eyebrow": "Funzionalità",
+    "heading": "Gestisci il prodotto da un unico posto",
+    "lede": "Offri a staff e titolari dell'organizzazione un pannello di amministrazione condiviso in Shellui. Gestisci membership, attività di accesso e accesso all'organizzazione. Aggiungi strumenti accanto alle schermate integrate."
+  },
+  "features/storage/index.njk": {
+    "title": "Storage | Shellui",
+    "description": "Aggiungi upload, browsing e condivisione file alle app Shellui. Collega storage-service per permessi, link di condivisione e limiti di storage.",
+    "eyebrow": "Funzionalità",
+    "heading": "Storage file condiviso tra le app",
+    "lede": "Collega storage-service per caricare, sfogliare e condividere file tra le app. Usa l'SDK per le operazioni sui file e l'app Files per browsing e selezione. Gestisci accesso e limiti a livello di organizzazione."
+  },
+  "features/apps-and-navigation/index.njk": {
+    "title": "App e navigazione | Shellui",
+    "description": "Unisci web app con Shellui. Condividi navigazione, layout, temi, lingua e dialoghi tra app integrate.",
+    "eyebrow": "Funzionalità",
+    "heading": "Le tue app, un'interfaccia condivisa",
+    "lede": "Porta web app costruite in modo indipendente nella stessa navigazione e layout. Shellui carica ogni app in un iframe, così mantieni framework e workflow di deploy. Usa l'SDK per collegare l'app alle funzionalità condivise dell'interfaccia."
+  },
+  "features/web-and-desktop/index.njk": {
+    "title": "Web e desktop | Shellui",
+    "description": "Crea un progetto Shellui, compila file web statici, pubblica un'anteprima su shellui.app o impacchetta la shell come app desktop con Tauri.",
+    "eyebrow": "Funzionalità",
+    "heading": "Da progetto locale a web e desktop",
+    "lede": "Crea un progetto con la CLI Shellui, poi compila la shell per il web. Hosta i file statici, condividi un'anteprima su shellui.app o impacchetta la stessa shell come app desktop con Tauri 2."
+  },
+  "pricing/index.md": {
+    "title": "Prezzi | Shellui",
+    "description": "Shellui è gratis per sempre con licenza MIT. Usa l'intera piattaforma senza costi, o ingaggia un esperto per architettura, lavoro su misura e supporto."
+  },
+  "roadmap/index.njk": {
+    "title": "Roadmap | Shellui",
+    "description": "Roadmap pubblica Shellui: inizio gennaio 2026, v0.5 Pixel Perfect rilasciata, poi Smart Shell, marketplace e v1.0 Horizon.",
+    "eyebrow": "Sviluppatori",
+    "heading": "Cosa arriva dopo",
+    "lede": "Milestone passate e prossime release per la shell. Il tracking live resta su GitHub."
+  }
+}

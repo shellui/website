@@ -1,0 +1,127 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Architettura | Shellui
+description: "Shellui è composto da sei pezzi open source: frontend React, identity-service, admin, storage-service, Files e hosting-service. Seguili in un grafo interattivo, oppure tieni Files e sostituisci auth e storage con Supabase."
+eyebrow: Sviluppatori
+heading: "Come si incastra lo stack"
+lede: "Sei componenti open source formano uno stack Shellui. Usali tutti, oppure tieni shell, app e Files e sostituisci autenticazione e storage con Supabase."
+pageScripts:
+  - /assets/js/architecture-graph.js
+---
+{% import "github-repo-button.njk" as repo %}
+{% import "stack-list.njk" as stack %}
+
+<div class="prose">
+  <p>Ogni pezzo ha il suo repository e il suo ciclo di vita. Insieme servono il frontend Shellui. Il grafico seguente disegna lo stesso stack due volte: ogni servizio Shellui, quindi la versione che utilizza <a href="https://supabase.com">Supabase </a> per l'autenticazione e lo storage. I file rimangono in entrambe le viste.</p>
+</div>
+
+<section class="mt-10" aria-labelledby="map-the-stack">
+  <div class="prose">
+    <h2 id="map-the-stack">Mappa dello stack</h2>
+    <p>Scegli una pila, poi segui una scatola alla volta. Puntare a una scatola o tabbing a esso evidenzia ciò che quella scatola parla, e ogni titolo casella link alla sua sezione più in basso. Ogni freccia è anche scritta sotto il grafico.</p>
+  </div>
+  {% include "architecture-graph.njk" %}
+</section>
+
+<section class="mt-16" aria-labelledby="what-supabase-replaces">
+  <div class="prose">
+    <h2 id="what-supabase-replaces">Che Supabase sostituisce</h2>
+    <p>La shell e la tua app rimangono uguali in entrambe le viste. <code> backend.type </code> e <code>storage.url </code> in <code>shellui.config.ts </code> decidere quali risposte backend.</p>
+    <div class="prose-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Pezzo</th>
+            <th scope="col">Full Shellui stack</th>
+            <th scope="col">Shellui + Supabase</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Shell frontend</th>
+            <td><code>@shellui/core</code></td>
+            <td><code>@shellui/core</code></td>
+          </tr>
+          <tr>
+            <th scope="row">La tua app</th>
+            <td>Iframe con <code>@shellui/sdk</td>
+            <td>Iframe con <code>@shellui/sdk</td>
+          </tr>
+          <tr>
+            <th scope="row">Iscrizione</th>
+            <td>identity-service, <code> backend.type: "shellui"</td>
+            <td>Supabase Auth, <code>backend.type: "supabase"</td>
+          </tr>
+          <tr>
+            <th scope="row">Chiamate di stoccaggio</th>
+            <td>servizio di archiviazione a <code>/storage/v1/*</td>
+            <td>Memorizzazione della base <code>/storage/v1/*</td>
+          </tr>
+          <tr>
+            <th scope="row">Blocchi</th>
+            <td>S3 o il filesystem locale</td>
+            <td>Tenuto nel vostro progetto Supabase</td>
+          </tr>
+          <tr>
+            <th scope="row">File</th>
+            <td>File app via <code>filesUrl </code>, contro storage-service</td>
+            <td>Stessa applicazione File contro Supabase Storage</td>
+          </tr>
+          <tr>
+            <th scope="row">admin a <code>/admin</th>
+            <td>L'app di amministrazione, impostata con <code>adminUrl</td>
+            <td>Registra su un backend di identità Shellui solo</td>
+          </tr>
+          <tr>
+            <th scope="row">Hosting</th>
+            <td>hosting-service nella vostra infrastruttura; distribuzione temporanea all-in del gruppo Browser a <a href="https://shellui.app">shellui.app</td>
+            <td>Stessa distribuzione temporanea a <a href="https://shellui.app">shellui.app</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Le applicazioni integrate non chiamano mai l'API di archiviazione direttamente. Essi chiamano <code>shellui.storage </code>, i messaggi SDK alla shell radice, e la shell esegue la richiesta contro <code>storage.url </code> con il token dell'utente firmato. Questa indiretta è il motivo per cui lo stesso codice app funziona in entrambe le viste.</p>
+  </div>
+</section>
+
+<div class="prose mt-16">
+  {{ stack.heading("shellui", "Frontend", "shell") }}
+  <p>Il frontend vive nel monorepo shellui, un runtime di TypeScript React. <code>@shellui/core±/code> possiede navigazione, modalità di layout, temi, i18n, modals e cassetti. <code>@shellui/sdk±/code> consente alle app in iframe di parlare con la shell. <code>@shellui/cli Qualsiasi stack può essere eseguito all'interno dell'iframe Shellui.</p>
+  {{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind", "Workbox", "Roarr", "Sentry"]) }}
+  <p>{{ repo.githubRepoButton("shellui/shellui") }}</p>
+
+  {{ stack.heading("identity-service", "Backend", "identity-service") }}
+  <p>Il backend di autenticazione predefinito è l'identity-service, un Django API per OAuth (GitHub, Google, Microsoft), sessioni JWT e la verifica JSON Web Key Set (JWKS). Naviga come immagine Docker ed è distribuito a <a href="https://id.shellui.com">id.shellui.com È possibile sostituirlo con Supabase Auth - la shell già supporta entrambi.</p>
+  {{ stack.stackList(["Python", "Django", "django-allauth", "Django REST Framework", "Swagger", "ReDoc"]) }}
+  <p class="flex flex-wrap gap-3">
+    {{ repo.githubRepoButton("shellui/identity-service") }}
+    {{ repo.dockerImageButton("shellui/identity-service") }}
+  </p>
+
+  {{ stack.heading("admin", "Frontend", "admin") }}
+  <p>Il pannello di amministrazione è un'applicazione Vite + React incorporata nella shell a <code>/admin Gestisce gli utenti, l'accesso dell'azienda e i dati operativi, e legge lo stesso identity-service come sign-in. Si tratta di file statici attualmente utilizzati a <a href="https://admin.shellui.com">admin.shellui.com</p>
+  {{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind"]) }}
+  <p>{{ repo.githubRepoButton("shellui/admin") }}</p>
+
+  {{ stack.heading("storage-service", "Backend", "storage-service") }}
+  <p>Il servizio di storage è un'API Django con una superficie REST di storage compatibile con Supabase a <code>/storage/v1/* Verifica JWTs di identity-service e scrive blobs a S3 o il filesystem locale. Naviga come immagine Docker ed è distribuito a <a href="https://storage.shellui.com">storage.shellui.com È possibile sostituirlo con Supabase Storage.</p>
+  {{ stack.stackList(["Python", "Django", "Django REST Framework", "django-storages", "Swagger", "ReDoc"]) }}
+  <p class="flex flex-wrap gap-3">
+    {{ repo.githubRepoButton("shellui/storage-service") }}
+    {{ repo.dockerImageButton("shellui/storage-service") }}
+  </p>
+
+  {{ stack.heading("files", "Frontend", "files") }}
+  <p>I file sono un React file manager app. Impostare <code>filesUrl </code> e gestisce la navigazione, il caricamento, il download, le cartelle, le autorizzazioni e condividere i link contro storage-service o Supabase Storage. Sullo stack completo si incorpora anche nel iframe di amministrazione. Sono file statici disponibili su <a href="https://files.shellui.com">files.shellui.com</p>
+  {{ stack.stackList(["TypeScript", "React", "React Router", "shadcn", "Tailwind"]) }}
+  <p>{{ repo.githubRepoButton("shellui/files") }}</p>
+
+  {{ stack.heading("hosting-service", "All-in temporary deploy", "hosting-service") }}
+  <p>L'hosting-service è un'API Django che distribuisce l'intero gruppo Browser come file statici - la shell, l'app e i file - in un URL temporaneo. Naviga come immagine Docker nella vostra infrastruttura ed è disponibile come <a href="https://shellui.app">shellui.app Utilizzare in entrambi i stack mentre si prova il prodotto.</p>
+  {{ stack.stackList(["Python", "Django", "Django REST Framework", "django-storages", "Swagger", "ReDoc"]) }}
+  <p class="flex flex-wrap gap-3">
+    {{ repo.githubRepoButton("shellui/hosting-service") }}
+    {{ repo.dockerImageButton("shellui/hosting-service") }}
+  </p>
+</div>

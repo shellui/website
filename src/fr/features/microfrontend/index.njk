@@ -1,0 +1,24 @@
+---
+permalink: /fr/features/microfrontend/
+eleventyExcludeFromCollections: true
+sitemap: false
+layout: false
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirection vers Applications et navigation</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="{{ site.url }}/features/apps-and-navigation/" />
+    <meta http-equiv="refresh" content="0; url=/features/apps-and-navigation/" />
+    <script>
+      (function () {
+        location.replace("/features/apps-and-navigation/" + (window.location.hash || ""));
+      })();
+    </script>
+  </head>
+  <body>
+    <p><a href="/features/apps-and-navigation/">Cette page a été déplacée vers Applications et navigation.</a></p>
+  </body>
+</html>

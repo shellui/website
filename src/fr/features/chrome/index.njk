@@ -1,0 +1,26 @@
+---
+permalink: /fr/features/chrome/
+eleventyExcludeFromCollections: true
+sitemap: false
+layout: false
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirection vers Applications et navigation</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="{{ site.url }}/features/apps-and-navigation/" />
+    <meta http-equiv="refresh" content="0; url=/features/apps-and-navigation/#host-chrome" />
+    <script>
+      (function () {
+        var hash = window.location.hash;
+        var keep = { "#theming": 1, "#language": 1, "#chrome-actions": 1, "#host-chrome": 1 };
+        location.replace(keep[hash] ? "/features/apps-and-navigation/" + hash : "/features/apps-and-navigation/#host-chrome");
+      })();
+    </script>
+  </head>
+  <body>
+    <p><a href="/features/apps-and-navigation/#host-chrome">Le chrome hôte se trouve désormais sur Applications et navigation.</a></p>
+  </body>
+</html>
