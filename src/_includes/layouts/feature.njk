@@ -44,3 +44,12 @@ layout: layouts/base.njk
   {% include "playground-cta.njk" %}
 </div>
 {% endif %}
+{% if newsletterSignup and site.newsletter.key %}
+<section id="newsletter" class="page-x pb-16 sm:pb-24">
+  <div class="mx-auto max-w-7xl border-t border-gray-200 pt-16 sm:pt-24 dark:border-gray-800">
+    {% set newsletterVariant = "split" %}
+    {% set newsletterId = "features-newsletter" %}
+    {% include "newsletter-signup.njk" %}
+  </div>
+</section>
+{% endif %}

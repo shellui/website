@@ -18,5 +18,9 @@
   "linkedin": "https://www.linkedin.com/company/shellui",
   "docker": "https://hub.docker.com/u/shellui",
   "locale": "en",
-  "rss": "/blog/feed.xml"
+  "rss": "/blog/feed.xml",
+  "newsletter": {
+    "endpoint": "https://email.shellui.com",
+    "key": ""
+  }
 }

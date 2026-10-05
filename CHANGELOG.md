@@ -23,6 +23,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+<<<<<<< Updated upstream
+=======
+## [Unreleased]
+
+### ✨ Feature
+
+- Newsletter sign-up. A `/newsletter/` page, linked from the footer, explains what an issue contains and how addresses are handled, and has the form. The home page, the contact page and the end of the features page each get a sign-up section. The form posts the address to email-service, which sends a confirmation email; people who confirm land on `/newsletter/confirmed/`. The sections stay hidden until `newsletter.key` is set in `src/_data/site.json`; until then the `/newsletter/` page says sign-up opens soon. The CSP `connect-src` allows `https://email.shellui.com`.
+
+## [0.5.2] - 2026-09-21
+
+### 🐛 Bug Fixes
+
+- React Flow graphs on Architecture / Authentication no longer flash blank on load (reserved skeleton until ready).
+
+>>>>>>> Stashed changes
 ## [0.5.1] - 2026-09-18
 
 ### 🔒 Security

@@ -207,3 +207,13 @@ description: Shellui is an open-source microfrontend shell. Shared navigation, a
         </p>
       </div>
     </section>
+
+    {% if site.newsletter.key %}
+      <section id="newsletter" class="border-t border-gray-200 page-x py-24 dark:border-gray-800">
+        <div class="mx-auto max-w-7xl">
+          {% set newsletterVariant = "details" %}
+          {% set newsletterId = "home-newsletter" %}
+          {% include "newsletter-signup.njk" %}
+        </div>
+      </section>
+    {% endif %}

@@ -1,0 +1,105 @@
+---
+layout: layouts/base.njk
+title: Newsletter | Shellui
+description: Shellui releases, new features, guides, and roadmap news by email, about once a month. Confirm your address, unsubscribe anytime.
+---
+<div class="relative isolate page-top page-x pb-24">
+  <div class="mx-auto max-w-7xl">
+    {% include "breadcrumbs.njk" %}
+    <div class="grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-2">
+      <div class="max-w-xl">
+        <h1 class="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">The Shellui newsletter</h1>
+        <p class="mt-6 text-lg text-pretty text-muted-foreground sm:text-xl/8">
+          New releases, what changed, and what is coming next, about once a month. Written by the team that builds Shellui.
+        </p>
+        <div class="mt-8 max-w-md">
+          {% set newsletterVariant = "form" %}
+          {% set newsletterId = "page-newsletter" %}
+          {% include "newsletter-signup.njk" %}
+        </div>
+      </div>
+      <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-3">
+        <div class="flex flex-col items-start">
+          <div class="rounded-md bg-muted p-2 ring-1 ring-border">
+            <svg class="size-6 text-foreground" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+            </svg>
+          </div>
+          <dt class="mt-4 text-base font-semibold text-foreground">About once a month</dt>
+          <dd class="mt-2 text-base/7 text-muted-foreground">One issue when there is something worth reading, usually around a release.</dd>
+        </div>
+        <div class="flex flex-col items-start">
+          <div class="rounded-md bg-muted p-2 ring-1 ring-border">
+            <svg class="size-6 text-foreground" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 0 1 3.15 0V15M6.9 7.575a1.575 1.575 0 1 0-3.15 0v8.175a6.75 6.75 0 0 0 6.75 6.75h2.018a5.25 5.25 0 0 0 3.712-1.538l1.732-1.732a5.25 5.25 0 0 0 1.538-3.712l.003-2.024a.668.668 0 0 1 .198-.471 1.575 1.575 0 1 0-2.228-2.228 3.818 3.818 0 0 0-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0 1 16.35 15m.002 0h-.002" />
+            </svg>
+          </div>
+          <dt class="mt-4 text-base font-semibold text-foreground">No spam</dt>
+          <dd class="mt-2 text-base/7 text-muted-foreground">You confirm your address first. Every issue has an unsubscribe link.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<section class="border-t border-gray-200 page-x py-24 dark:border-gray-800">
+  <div class="mx-auto max-w-7xl">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">What is in an issue</h2>
+      <p class="mt-4 text-lg text-muted-foreground">The changelog lists every change. The newsletter tells you which ones matter and what to do about them.</p>
+    </div>
+    <dl class="mt-12 max-w-3xl space-y-8">
+      <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+        <dt class="text-base font-semibold text-foreground">Releases</dt>
+        <dd class="mt-1 text-base/7 text-muted-foreground sm:mt-0">What shipped in each Shellui version, with upgrade notes when your project needs a change.</dd>
+      </div>
+      <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+        <dt class="text-base font-semibold text-foreground">New features</dt>
+        <dd class="mt-1 text-base/7 text-muted-foreground sm:mt-0">Shell, SDK, and service features as they land, with links to the docs.</dd>
+      </div>
+      <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+        <dt class="text-base font-semibold text-foreground">Guides</dt>
+        <dd class="mt-1 text-base/7 text-muted-foreground sm:mt-0">Patterns for building apps inside the shell, from <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.config.json</code> to deployment.</dd>
+      </div>
+      <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+        <dt class="text-base font-semibold text-foreground">Roadmap</dt>
+        <dd class="mt-1 text-base/7 text-muted-foreground sm:mt-0">What the team is working on next, before it reaches the changelog.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="border-t border-gray-200 page-x py-24 dark:border-gray-800">
+  <div class="mx-auto max-w-7xl">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">Your address</h2>
+      <p class="mt-4 text-lg text-muted-foreground">No account needed. Only your email address.</p>
+    </div>
+    <dl class="mt-12 max-w-3xl space-y-8">
+      <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+        <dt class="text-base font-semibold text-foreground">You confirm first</dt>
+        <dd class="mt-1 text-base/7 text-muted-foreground sm:mt-0">After you sign up, you get one email with a confirmation link, valid for 48 hours. Nothing else arrives until you click it.</dd>
+      </div>
+      <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+        <dt class="text-base font-semibold text-foreground">Your language</dt>
+        <dd class="mt-1 text-base/7 text-muted-foreground sm:mt-0">Issues are written in English, with a French version when there is one. You get the language your browser asked for when you signed up.</dd>
+      </div>
+      <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+        <dt class="text-base font-semibold text-foreground">Leave anytime</dt>
+        <dd class="mt-1 text-base/7 text-muted-foreground sm:mt-0">Every issue has an unsubscribe link, and most mail apps show their own unsubscribe button for it. No sign-in needed.</dd>
+      </div>
+      <div class="sm:grid sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8">
+        <dt class="text-base font-semibold text-foreground">Removed after</dt>
+        <dd class="mt-1 text-base/7 text-muted-foreground sm:mt-0">Seven days after you unsubscribe, your address is removed. Only a one-way hash stays, so a later import cannot add you back.</dd>
+      </div>
+    </dl>
+    <p class="mt-12 text-sm/6 text-muted-foreground">
+      Want it sooner? Every release is in the
+      <a href="/changelog/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">changelog</a>,
+      and posts are in the
+      <a href="{{ site.rss }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">blog feed</a>.
+      Questions go to
+      <a href="/company/contact/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">contact</a>.
+    </p>
+  </div>
+</section>
