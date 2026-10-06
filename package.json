@@ -41,7 +41,7 @@
     "@shellui/sdk": "^0.5.2",
     "@tailwindplus/elements": "^1.0.22",
     "@xyflow/react": "^12.11.6",
-    "alpinejs": "^3.17.3",
+    "alpinejs": "^3.17.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   }
