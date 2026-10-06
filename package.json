@@ -40,7 +40,7 @@
   "dependencies": {
     "@shellui/sdk": "^0.5.3",
     "@tailwindplus/elements": "^1.0.22",
-    "@xyflow/react": "^12.11.6",
+    "@xyflow/react": "^12.12.0",
     "alpinejs": "^3.17.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
