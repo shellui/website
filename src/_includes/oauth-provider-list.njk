@@ -8,8 +8,19 @@
         height="24"
         loading="lazy"
         decoding="async"
-        class="size-6 shrink-0 brightness-0 dark:invert"
+        class="size-6 shrink-0{% if provider.darkFile %} dark:hidden{% endif %}"
       />
+      {% if provider.darkFile %}
+        <img
+          src="/img/providers/{{ provider.darkFile }}.svg"
+          alt=""
+          width="24"
+          height="24"
+          loading="lazy"
+          decoding="async"
+          class="hidden size-6 shrink-0 dark:block"
+        />
+      {% endif %}
       <span class="min-w-0 truncate text-sm font-medium text-foreground">{{ provider.name }}</span>
     </li>
   {% endfor %}
