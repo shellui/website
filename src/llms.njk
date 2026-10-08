@@ -5,7 +5,7 @@ layout: false
 ---
 # Shellui
 
-> Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Built for developers shipping a product inside that shell.
+> Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, storage, and email. Built for developers shipping a product inside that shell.
 
 This file is the agent index for {{ site.url }}. Prefer the links below over scraping HTML. Product name is Shellui only (never "The Host"). In prose, "the shell" (lowercase) is the running host.
 
@@ -18,10 +18,11 @@ CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, th
 - [Playground]({{ site.playground }}): Live shell with host chrome; no local install
 - [GitHub]({{ site.github }}): Source for the platform and related services
 - [Architecture]({{ site.url }}/architecture/): How the stack fits together
-- [Features]({{ site.url }}/features/): Overview of apps and navigation, authentication, administration, file storage, and web and desktop
+- [Features]({{ site.url }}/features/): Overview of apps and navigation, authentication, administration, email, file storage, and web and desktop
 - [Apps and navigation]({{ site.url }}/features/apps-and-navigation/): Shared layouts, themes, language, and chrome
-- [Authentication]({{ site.url }}/features/authentication/): Shared sign-in and access
-- [Administration]({{ site.url }}/features/administration/): Members, groups, and company tools
+- [Authentication]({{ site.url }}/features/authentication/): OAuth, SAML, SCIM, magic links, and company access
+- [Administration]({{ site.url }}/features/administration/): Members, email, webhooks, and company tools
+- [Email]({{ site.url }}/features/email/): Sign-in mail, event mail, newsletters, and broadcasts
 - [File storage]({{ site.url }}/features/storage/): Uploads, sharing, and limits
 - [Web and desktop]({{ site.url }}/features/web-and-desktop/): Static web build, preview hosting, and Tauri
 
@@ -58,3 +59,4 @@ CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, th
 - [admin]({{ site.adminPanel }}): Admin panel source
 - [storage-service]({{ site.storageService }}): Storage backend source
 - [hosting-service]({{ site.hostingService }}): Hosting backend source (Docker image behind {{ site.hosting }})
+- [email-service]({{ site.emailService }}): Email backend source (templates, newsletters, and sign-in mail)

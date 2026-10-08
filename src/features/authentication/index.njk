@@ -2,58 +2,99 @@
 layout: layouts/feature.njk
 wide: true
 title: Authentication | Shellui
-description: "Share sign-in and sessions across your Shellui apps. Connect identity-service or Supabase Auth, protect navigation, and manage company access."
+description: "Share sign-in across your Shellui apps. OAuth, OpenID Connect, SAML single sign-on, SCIM, magic links, and invitations on identity-service, or connect Supabase Auth."
 eyebrow: Features
 heading: "One sign-in flow for your apps"
-lede: "Configure sign-in once in Shellui. The shell manages login, session renewal, and the return to the requested page. Your embedded apps receive the signed-in account through the software development kit (SDK). Choose identity-service or connect an existing Supabase Auth project."
+lede: "Configure sign-in once in Shellui. The shell manages login, session renewal, and the return to the requested page. Your embedded apps receive the signed-in account through the software development kit (SDK). Choose identity-service, or connect an existing Supabase Auth project."
 pageScripts:
   - /assets/js/auth-flow.js
 ---
 
 <section aria-labelledby="auth-exchange">
   <div class="max-w-2xl">
-    <h2 id="auth-exchange" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">How sign-in works</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">With identity-service, you can sign in using a GitHub, Google, or Microsoft account through OAuth, an authorization protocol. An embedded app calls <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.login()</code> to start the flow in the main browser window. After sign-in and account confirmation, identity-service returns the session to the shell.</p>
+    <h2 id="auth-exchange" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">How sign-in works</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">With identity-service, you sign in with OAuth 2.0, OpenID Connect, Security Assertion Markup Language (SAML) 2.0, or a magic link. An embedded app calls <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.login()</code> to start the flow in the main browser window. After sign-in and account confirmation, identity-service returns the session to the shell.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">If you do not enable an OAuth method, the login page sends a magic link. It shows "Check your email" and waits 60s before another send. Sign-in mail can go through <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/email/">email-service</a>, on a queue that bulk mail does not share.</p>
   </div>
   {% include "auth-flow.njk" %}
 </section>
 
+<section class="mt-20" aria-labelledby="oauth-providers">
+  <div class="max-w-2xl">
+    <h2 id="oauth-providers" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">15 OAuth providers</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">You can turn on 15 OAuth 2.0 and OpenID Connect providers. Company owners add each one from the catalog in <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/#oauth-setup">Administration</a>. Register the identity-service callback at the provider, not your shell's login URL.</p>
+  </div>
+
+  <div class="mt-10">
+    <h3 class="text-base font-semibold text-pretty text-foreground">Social and developer accounts</h3>
+    <p class="mt-2 max-w-2xl text-sm/6 text-muted-foreground">You sign in with an account you already have at one of these providers:</p>
+    {% set providers = oauthProviders.social %}
+    {% set providersMore = true %}
+    {% include "oauth-provider-list.njk" %}
+    {% set providersMore = false %}
+  </div>
+
+  <div class="mt-10">
+    <h3 class="text-base font-semibold text-pretty text-foreground">Company identity providers</h3>
+    <p class="mt-2 max-w-2xl text-sm/6 text-muted-foreground">These providers belong to the company, such as its Okta org or Keycloak realm. identity-service does not link these sign-ins to an existing account by email. The OpenID Connect entry accepts any standards-compliant issuer. Choose from these providers:</p>
+    {% set providers = oauthProviders.company %}
+    {% include "oauth-provider-list.njk" %}
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="enterprise-sign-in">
+  <div class="max-w-2xl">
+    <h2 id="enterprise-sign-in" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Enterprise sign-in</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Workforce sign-in can use SAML single sign-on (SSO) and System for Cross-domain Identity Management (SCIM). You configure both per company, alongside the OAuth providers above.</p>
+  </div>
+  <div class="mt-10 grid gap-10 md:grid-cols-2 md:gap-16">
+    <div>
+      <h3 class="text-base font-semibold text-pretty text-foreground">SAML 2.0 single sign-on</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">A company can register several SAML identity providers. Each one has metadata, a callback, login, and optional logout at <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">/api/v1/saml/your_organization_slug/</code>.</p>
+    </div>
+    <div>
+      <h3 class="text-base font-semibold text-pretty text-foreground">SCIM provisioning</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Company owners create a SCIM token in Administration, see the secret once, and can revoke it. Your identity provider uses that token to provision and deprovision members of the company.</p>
+    </div>
+  </div>
+</section>
+
 <section class="mt-20" aria-labelledby="identity-service-does">
   <div class="max-w-2xl">
-    <h2 id="identity-service-does" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Choose an authentication backend</h2>
+    <h2 id="identity-service-does" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Choose an authentication backend</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">The <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> backend checks who you are and whether you can access a company. A company groups the accounts and access rules for your product or organization. Use it for the company access features below, or choose Supabase Auth for an existing Supabase project.</p>
   </div>
   <div class="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
     <div>
-      <h3 class="text-base font-semibold text-foreground">OAuth providers</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Connect GitHub, Google, or Microsoft as sign-in providers. Configure provider credentials for each company on identity-service.</p>
+      <h3 class="text-base font-semibold text-pretty text-foreground">OAuth providers</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Connect any of the 15 providers, including Okta, Auth0, Keycloak, and OpenID Connect. Company owners store the credentials on identity-service.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-foreground">Signed session tokens</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">identity-service issues JSON Web Tokens (JWTs) for access and session renewal. In production, it signs tokens with an RSA key and publishes a JSON Web Key Set (JWKS) so your services can verify them.</p>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Signed session tokens</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">identity-service issues JSON Web Tokens (JWTs) for access and session renewal. In production, it signs tokens with an RSA key and publishes a JSON Web Key Set (JWKS). Your services verify tokens with that key set.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-foreground">Company access rules</h3>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Company access rules</h3>
       <p class="mt-2 text-sm/6 text-muted-foreground">Choose open registration, approved email domains, or owner approval. Access applies per company, so the same account can have different memberships.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-foreground">Approved return addresses</h3>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Approved return addresses</h3>
       <p class="mt-2 text-sm/6 text-muted-foreground">Register the provider callback on identity-service and approve the addresses your shell can return to after sign-in. The authentication guide covers both settings.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-foreground">Account administration</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Staff and company owners can manage members, groups, and provider connections in the administration panel.</p>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Account administration</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Staff and company owners manage members, invitations, groups, and provider connections in the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">administration panel</a>.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-foreground">Supabase Auth</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">If you already use Supabase, connect it as your authentication backend. Available sign-in methods depend on your backend settings; Supabase also supports email magic links.</p>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Supabase Auth</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">If you already use Supabase, connect it as your authentication backend. The sign-in methods you get depend on that project's settings.</p>
     </div>
   </div>
 </section>
 
 <section class="mt-20" aria-labelledby="connect-and-guard">
   <div class="max-w-2xl">
-    <h2 id="connect-and-guard" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Connect a backend and guard routes</h2>
+    <h2 id="connect-and-guard" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Connect a backend and guard routes</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Connect your authentication backend and mark navigation items with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">requiresAuth</code>. Shellui asks signed-out visitors to sign in before loading those apps, then returns them to the requested page.</p>
   </div>
 
@@ -68,7 +109,7 @@ pageScripts:
     </div>
     <div>
       <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Sign in from your app</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">From an embedded app, call <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.login()</code> so the shell can start the redirect.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">From an embedded app, call <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">init</code> from <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/sdk</code> first, then <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.login()</code>.</p>
     </div>
   </div>
 
@@ -97,48 +138,67 @@ pageScripts:
   </div>
 </section>
 
-{# Future screenshot: Playground login. Add a real image here when available. #}
-
 <section class="mt-20" aria-labelledby="who-can-join">
   <div class="max-w-2xl">
-    <h2 id="who-can-join" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Choose who can join</h2>
+    <h2 id="who-can-join" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Choose who can join</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">A successful provider login confirms an account's identity. Your company access policy decides whether that account can enter your product. Choose a policy in the administration panel's Organization settings.</p>
   </div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
     <div>
-      <h3 class="text-base font-semibold text-foreground">Public</h3>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Public</h3>
       <p class="mt-2 text-sm/6 text-muted-foreground">Anyone who signs in can join with access enabled. Use this mode when registration is open to everyone.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-foreground">Approved email domains</h3>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Approved email domains</h3>
       <p class="mt-2 text-sm/6 text-muted-foreground">Accounts with an approved email domain join with access enabled. Other accounts wait for approval, and company owners receive a notification.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-foreground">Invitation only</h3>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Invitation only</h3>
       <p class="mt-2 text-sm/6 text-muted-foreground">New accounts wait for a staff member or company owner to enable their membership. They cannot receive a session for that company while approval is pending.</p>
     </div>
   </div>
 
+  <div class="mt-10 max-w-2xl">
+    <h3 class="text-base font-semibold text-pretty text-foreground">Email invitations</h3>
+    <p class="mt-2 text-base/7 text-muted-foreground">Staff and company owners can invite someone by email, then list, revoke, or delete that invitation. Revoking it blocks sign-in for that address until you send a new invitation. identity-service can email the invitation itself, or a webhook rule can take that send over.</p>
+  </div>
 </section>
 
-<section class="mt-20" aria-labelledby="groups-logs-tokens">
+<section class="mt-20" aria-labelledby="your-account">
   <div class="max-w-2xl">
-    <h2 id="groups-logs-tokens" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Manage accounts beyond sign-in</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Manage company groups, review login events, and create access tokens for integrations in the administration panel. These tools use the same identity-service backend as sign-in.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">Your APIs can use group information from verified tokens when checking access. Named personal access tokens can be revoked, and read-only tokens are available for integrations that only fetch data.</p>
+    <h2 id="your-account" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Manage your own account</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">In Settings, under your user account, you can edit your display name and delete your account. Deletion removes you from the current company. Shellui deletes the account when no company link remains. You cannot remove a company's last owner.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Staff and company owners still manage groups and personal access tokens in Administration. OAuth and SAML sign-in do not overwrite a name you already set.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="event-log">
+  <div class="max-w-2xl">
+    <h2 id="event-log" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Keep an event log</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">identity-service stores catalog events and sign-ins in one event log. Each company sets <code class="rounded bg-muted px-1.5 py-0.5 text-sm">data_retention_days</code>, and a scheduled job deletes older rows. Administration lists the log for identity, storage, and hosting, and it warns when stored events are past that period.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="sign-in-privacy">
+  <div class="max-w-2xl">
+    <h2 id="sign-in-privacy" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Keep sign-in details private</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">A magic-link webhook never includes the sign-in link or the token. identity-service always sends that email itself, and only to the address that requested it. Access logs record the path without the query string, so tokens and codes stay out of the log.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Staff and superuser accounts do not get a magic link. They receive a short notice to sign in with their usual method.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">A company metrics response includes only that company's series. Platform-wide series stay on the staff metrics endpoint. Webhook rules, delivery logs, and the event log are on <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/#webhooks">Administration</a>.</p>
   </div>
 </section>
 
 {% set featureDocs = [
   { href: site.docs + "/features/authentication/", label: "Configure authentication" },
+  { href: site.docs + "/identity/", label: "identity-service docs" },
   { href: site.identityService, label: "identity-service source", external: true },
-  { href: "/features/apps-and-navigation/", label: "Apps and navigation" },
-  { href: "/architecture/", label: "System architecture" },
   { href: "/features/administration/", label: "Administration" },
+  { href: "/features/email/", label: "Email" },
+  { href: "/architecture/", label: "System architecture" },
   { href: site.playground, label: "Playground", external: true },
   { href: "/changelog/", label: "Changelog" }
 ] %}
 {% include "feature-docs.njk" %}
 
-<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">Administration</a> manages users, company access, and operational data.</p>
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">Administration</a> manages members, email, webhooks, and company access.</p>

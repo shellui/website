@@ -1,4 +1,11 @@
 export default {
+  /** Latest shellui/shellui product series (major.minor from /changelog/, implies .x). */
+  productVersion(data) {
+    const full = data.changelog?.[0]?.version ?? null;
+    if (!full) return null;
+    const match = String(full).match(/^(\d+)\.(\d+)/);
+    return match ? `${match[1]}.${match[2]}` : full;
+  },
   permalink(data) {
     if (typeof data.permalink === "string" || data.permalink === false) {
       return data.permalink;
@@ -52,6 +59,7 @@ export default {
       company: "Company",
       "apps-and-navigation": "Apps and navigation",
       "web-and-desktop": "Web and desktop",
+      email: "Email",
       architecture: "Architecture",
       roadmap: "Roadmap",
       changelog: "Changelog",

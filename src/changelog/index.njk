@@ -15,7 +15,9 @@ prose: false
     {% if latest.date %}
       <p class="mt-1 text-sm tabular-nums text-gray-500 dark:text-gray-400">{{ latest.date | readableDate }}</p>
     {% endif %}
-    <p class="mt-2 text-base text-gray-600 dark:text-gray-400">Chrome actions SDK, new <code class="rounded bg-gray-100 px-1 py-0.5 text-xs dark:bg-gray-800">shellui init</code> frameworks, OKLCH themes, inset layouts, CLI companion, and identity-hosted login.</p>
+    {% if latest.summary %}
+      <p class="mt-2 text-base text-gray-600 dark:text-gray-400">{{ latest.summary }}</p>
+    {% endif %}
   </div>
   <a
     href="https://github.com/shellui/shellui/releases/tag/v{{ latest.version }}"
@@ -81,4 +83,4 @@ prose: false
 {% endfor %}
 </div>
 </div>
-<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Upcoming work is on the <a href="/roadmap/" class="text-primary-ink hover:underline dark:text-primary">roadmap</a>. Full notes also live on <a href="https://github.com/shellui/shellui/blob/main/CHANGELOG.md" class="text-primary-ink hover:underline dark:text-primary" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Product releases from <a href="https://github.com/shellui/shellui" class="text-primary-ink hover:underline dark:text-primary" target="_blank" rel="noopener noreferrer">shellui/shellui</a> (the homepage badge uses this version, not the website package). Upcoming work is on the <a href="/roadmap/" class="text-primary-ink hover:underline dark:text-primary">roadmap</a>. Full notes also live on <a href="https://github.com/shellui/shellui/blob/main/CHANGELOG.md" class="text-primary-ink hover:underline dark:text-primary" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>

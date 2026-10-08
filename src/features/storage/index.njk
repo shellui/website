@@ -78,11 +78,21 @@ lede: "Connect storage-service to upload, browse, and share files across your ap
 
 </section>
 
+<section class="mt-20" aria-labelledby="storage-events">
+  <div class="max-w-2xl">
+    <h2 id="storage-events" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Events, webhooks, and email</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">When you set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">EMAIL_SERVICE_API_KEY</code>, storage posts events to email-service and stores every event for the event log. Webhook and email bodies omit tokens, sign-in links, signed URLs, and other secrets. Company owners manage the rules in <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/#webhooks">Administration</a>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The storage image runs webhook retries every minute and an hourly data purge. It does not need cron. In production, set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">REDIS_URL</code> or the container does not start. Scheduler metrics stay on the staff metrics endpoint.</p>
+  </div>
+</section>
+
 {% set featureDocs = [
   { href: site.docs + "/features/storage/", label: "Storage docs" },
   { href: site.docs + "/features/storage-picker/", label: "Storage picker" },
   { href: site.storageService, label: "storage-service source", external: true },
   { href: "/architecture/", label: "System architecture" },
+  { href: "/features/email/", label: "Email" },
+  { href: "/features/administration/#webhooks", label: "Webhooks" },
   { href: "/features/authentication/", label: "Authentication" },
   { href: site.playground, label: "Playground", external: true }
 ] %}

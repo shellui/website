@@ -1,6 +1,7 @@
 // Single source of truth for the /features/authentication/ exchange diagram.
-// Eleventy renders the static fallback from this file; the React island
-// (src/islands/auth-flow/) imports the same module at build time.
+// Eleventy renders the SSR graph chrome (and a <noscript> text fallback) from
+// this file; the React island (src/islands/auth-flow/) imports the same module
+// at build time and hydrates the interactive canvas over that shell.
 
 const APP = {
   id: "app",
@@ -53,10 +54,10 @@ const oauth = {
     },
     {
       id: "idp",
-      title: "GitHub, Google, Microsoft",
+      title: "OAuth provider",
       role: "Identity provider",
       kind: "managed",
-      description: "Authenticates the account and returns to the registered identity-service callback.",
+      description: "One of the 15 providers for this company, including any OpenID Connect issuer.",
       position: { x: 872, y: 100 },
       size: { width: 232, height: 160 },
     },

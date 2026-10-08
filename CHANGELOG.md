@@ -5,27 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
-
 <!---
 ## [Unreleased] - yyyy-mm-dd
 
-### ✨ Feature – for new features
-### 🛠 Improvements – for general improvements
-### 🚨 Changed – for changes in existing functionality
-### ⚠️ Deprecated – for soon-to-be removed features
-### 📚 Documentation – for documentation update
-### 🗑 Removed – for removed features
-### 🐛 Bug Fixes – for any bug fixes
-### 🔒 Security – in case of vulnerabilities
-### 🏗 Chore – for tidying code
+### ✨ Feature - for new features
+### 🛠 Improvements - for general improvements
+### 🚨 Changed - for changes in existing functionality
+### ⚠️ Deprecated - for soon-to-be removed features
+### 📚 Documentation - for documentation update
+### 🗑 Removed - for removed features
+### 🐛 Bug Fixes - for any bug fixes
+### 🔒 Security - in case of vulnerabilities
+### 🏗 Chore - for tidying code
 
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
-<<<<<<< Updated upstream
-=======
 ## [Unreleased]
+
+### 📚 Documentation
+
+- Shellui 0.6 marketing pages. The product changelog leads with v0.6.0, including the breaking SDK `init` handshake. Authentication, administration, storage, and web and desktop cover the release, and `/features/email/` documents email-service.
 
 ### ✨ Feature
 
@@ -37,7 +37,6 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 - React Flow graphs on Architecture / Authentication no longer flash blank on load (reserved skeleton until ready).
 
->>>>>>> Stashed changes
 ## [0.5.1] - 2026-09-18
 
 ### 🔒 Security
@@ -50,6 +49,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 🛠 Improvements
 
+- Changelog deploy: fetch shellui/shellui CHANGELOG on every build via GitHub releases API (`npm run fetch:changelog` / `prebuild`); bypass disk cache in CI. Homepage hero badge and changelog callout use latest product release, not `site.version`.
 - Brand assets: show each logo once with SVG and PNG downloads on the same card; use checkerboard preview wells (near-white in light mode, mid-dark for light marks) so dark and light logos stay readable. Group Primary, Transparent, Documentation, and Playground under Logos; omit Files and the Documentation / Playground wordmarks from the press kit.
 
 ## [0.5.0] - 2026-09-16
