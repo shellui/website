@@ -23,6 +23,6 @@
   "rss": "/blog/feed.xml",
   "newsletter": {
     "endpoint": "https://email.shellui.com",
-    "key": "nl_BoQBZiFzz2HaMjXBYFugglZV"
+    "key": ""
   }
 }

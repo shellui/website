@@ -25,7 +25,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### ✨ Feature
 
-- Newsletter sign-up is enabled at `/newsletter/`, and on the home, contact, and features pages. Confirmation mail goes through email-service.
+- Newsletter sign-up at `/newsletter/`, and on the home, contact, and features pages, turns on once a list key is set. Confirmation mail goes through email-service.
 
 ### 📚 Documentation
 
@@ -40,10 +40,6 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### 🐛 Bug Fixes
 
 - Changelog merge keeps the 0.6 notes and the newsletter entry, newest first.
-
-### 🏗 Chore
-
-- The secret scan allows the public newsletter list key in site data.
 
 ## [0.5.2] - 2026-09-21
 
