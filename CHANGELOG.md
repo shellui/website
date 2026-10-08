@@ -41,6 +41,10 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 - Changelog merge keeps the 0.6 notes and the newsletter entry, newest first.
 
+### 🏗 Chore
+
+- The secret scan allows the public newsletter list key in site data.
+
 ## [0.5.2] - 2026-09-21
 
 ### 🐛 Bug Fixes
