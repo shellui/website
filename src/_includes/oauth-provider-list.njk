@@ -24,4 +24,7 @@
       <span class="min-w-0 truncate text-sm font-medium text-foreground">{{ provider.name }}</span>
     </li>
   {% endfor %}
+  {% if providersMore %}
+    <li class="flex min-w-0 items-center py-1.5 text-sm text-muted-foreground">… and more to come</li>
+  {% endif %}
 </ul>

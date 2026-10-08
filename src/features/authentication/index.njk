@@ -29,7 +29,9 @@ pageScripts:
     <h3 class="text-base font-semibold text-pretty text-foreground">Social and developer accounts</h3>
     <p class="mt-2 max-w-2xl text-sm/6 text-muted-foreground">You sign in with an account you already have at one of these providers:</p>
     {% set providers = oauthProviders.social %}
+    {% set providersMore = true %}
     {% include "oauth-provider-list.njk" %}
+    {% set providersMore = false %}
   </div>
 
   <div class="mt-10">
