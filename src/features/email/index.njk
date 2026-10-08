@@ -1,0 +1,117 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: Email | Shellui
+description: "Send Shellui sign-in mail, event mail, newsletters, and broadcasts. React Email templates, Resend or SMTP, and a separate queue for sign-in."
+eyebrow: Features
+heading: "Send your product's email"
+lede: "email-service sends magic links, invitations, event notices, broadcasts, and newsletters. You choose Resend or SMTP, the standard mail protocol. Sign-in mail uses its own queue, so a broadcast does not delay it."
+---
+
+<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <h2 class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Connect email to the shell</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">email.url</code> in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. The shell exposes that block to apps as <code class="rounded bg-muted px-1.5 py-0.5 text-sm">settings.email</code>. Administration calls email-service with the signed-in account's token. If <code class="rounded bg-muted px-1.5 py-0.5 text-sm">url</code> is missing, it uses <code class="rounded bg-muted px-1.5 py-0.5 text-sm">https://email.shellui.com</code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">identity-service sends magic links and invitations through email-service when <code class="rounded bg-muted px-1.5 py-0.5 text-sm">EMAIL_SERVICE_API_KEY</code> is set. Without that key, it uses SMTP. Storage and hosting post their events the same way.</p>
+  </div>
+  <div class="mx-auto w-full max-w-sm">
+    {% include "feature-visual-email.njk" %}
+  </div>
+</div>
+
+<div class="mt-8 max-w-3xl">
+  {% highlight "json", "shellui.config.json" %}
+{
+  "email": {
+    "url": "https://email.shellui.com",
+    "showInAdmin": true
+  }
+}
+  {% endhighlight %}
+</div>
+
+<section class="mt-20" aria-labelledby="lanes">
+  <div class="max-w-2xl">
+    <h2 id="lanes" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">A separate queue for sign-in mail</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">email-service keeps three queues: auth, transactional, and bulk. Each queue has its own worker. Magic links, invitations, and the staff notice use the auth queue. A newsletter or broadcast does not delay that mail.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Auth-queue mail goes to exactly one recipient. Staff accounts get a fixed notice, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">identity.auth.magic_link.staff_blocked</code>, instead of a magic link. You cannot change that notice from a company account.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="templates">
+  <div class="max-w-2xl">
+    <h2 id="templates" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">40 React Email designs</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The template library has 40 React Email designs in five sets:</p>
+    <ul class="mt-4 max-w-md list-disc space-y-2 pl-5 text-base/7 text-muted-foreground">
+      <li>Barebone</li>
+      <li>Matte</li>
+      <li>Protocol</li>
+      <li>Arcane</li>
+      <li>Studio</li>
+    </ul>
+    <p class="mt-4 text-base/7 text-muted-foreground">You can add company templates. You edit a design in the React Email editor as JavaScript Object Notation (JSON). email-service composes Hypertext Markup Language (HTML) and the plain-text part when you save.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">A library design can be recolored with a Shellui theme. email-service serves the library images and fonts from <code class="rounded bg-muted px-1.5 py-0.5 text-sm">EMAIL_PUBLIC_URL</code>. Images and fonts in that HTML load from that host.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="translations">
+  <div class="max-w-2xl">
+    <h2 id="translations" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Translate once, send per recipient</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Each template has one layout. You set the subject, preheader, and text per language. A send uses the recipient's language.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">If a block has no translation, the send uses the default language for that block. Event mail from the catalog includes English and French subjects.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="rules">
+  <div class="max-w-2xl">
+    <h2 id="rules" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Email rules next to webhook rules</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">You can attach several email rules to one event. Each rule sends its own editable copy of a library design. The same events can also have webhook rules in <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/#webhooks">Administration</a>. Suggested events cover identity, storage, and hosting.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Sign-in events have a built-in rule you cannot delete or disable. You cannot add extra rules or extra recipients on those events. Put a sign-in link only in a link target, not in the rest of the copy.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="providers">
+  <div class="max-w-2xl">
+    <h2 id="providers" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Choose Resend or SMTP</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Resend is the default. You can connect an SMTP server instead. email-service encrypts per-company credentials at rest and masks them in application programming interface (API) responses. You can send a test message.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">When a company has not set a provider, Shellui's own mail uses the platform provider. Resend can also report delivery, bounces, complaints, and unsubscribes. Those events update message status and the suppression list.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="newsletters">
+  <div class="max-w-2xl">
+    <h2 id="newsletters" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Newsletters with a confirmed sign-up</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Public lists use double opt-in. A person confirms by email before they join. email-service rate-limits sign-up, the form includes a honeypot, and you can require Cloudflare Turnstile.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Each list has its own unsubscribe link. You can import and export a list as comma-separated values (CSV).</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="broadcasts">
+  <div class="max-w-2xl">
+    <h2 id="broadcasts" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Broadcast to a company audience</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Send one email to members from identity-service. Filter by groups, roles, access, join date, and last seen. Each recipient gets their own language. email-service delivers through Resend Broadcasts or the bulk queue.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="email-webhooks">
+  <div class="max-w-2xl">
+    <h2 id="email-webhooks" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Webhooks for mail events</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">email-service posts signed webhooks for message events, unsubscribes, and newsletter events. Signing and retries match the other Shellui services. The image runs the scheduler itself:</p>
+    <ul class="mt-4 max-w-md list-disc space-y-2 pl-5 text-base/7 text-muted-foreground">
+      <li>Webhook retries</li>
+      <li>A queue sweep every minute</li>
+      <li>An hourly purge</li>
+    </ul>
+  </div>
+</section>
+
+{% set featureDocs = [
+  { href: site.docs + "/email/", label: "email-service docs" },
+  { href: site.emailService, label: "email-service source", external: true },
+  { href: "/features/administration/#webhooks", label: "Webhooks in Administration" },
+  { href: "/features/authentication/", label: "Authentication" },
+  { href: site.docs + "/identity/n8n", label: "n8n guide" }
+] %}
+{% include "feature-docs.njk" %}
+
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/storage/">file storage</a> adds uploads, sharing, and storage limits to your apps.</p>

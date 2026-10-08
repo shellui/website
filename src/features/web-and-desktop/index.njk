@@ -65,7 +65,7 @@ shellui build
 
 <section class="mt-20" aria-labelledby="shellui-app">
   <div class="max-w-2xl">
-    <h2 id="shellui-app" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Optional preview on shellui.app</h2>
+    <h2 id="shellui-app" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Optional preview on shellui.app</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Configure <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting.url</code> for your hosting-service instance, then sign in and deploy with the commands below. The shellui.app service gives you a preview address to share. Previews expire after seven days unless you redeploy the same preview name.</p>
   </div>
   <div class="mt-8 max-w-3xl">
@@ -74,10 +74,13 @@ shellui login
 shellui deploy
     {% endhighlight %}
   </div>
+  <p class="mt-4 text-base/7 text-muted-foreground">hosting-service sends signed webhooks for its events, with the same retries as identity, storage, and email. Company owners manage those rules under <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/#webhooks">Email and webhooks</a> in Administration.</p>
   <p class="mt-6 text-sm text-muted-foreground">
     <a href="{{ site.hosting }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">Open shellui.app</a>
     ·
     <a href="{{ site.hostingService }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">hosting-service source</a>
+    ·
+    <a href="/features/administration/#webhooks" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Webhooks</a>
   </p>
 </section>
 

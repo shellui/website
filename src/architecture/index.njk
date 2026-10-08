@@ -92,7 +92,9 @@ pageScripts:
   <p>{{ repo.githubRepoButton("shellui/shellui") }}</p>
 
   {{ stack.heading("identity-service", "Backend", "identity-service") }}
-  <p>The default authentication backend is identity-service, a Django API for OAuth (GitHub, Google, Microsoft), JWT sessions, and JSON Web Key Set (JWKS) verification. It ships as a Docker image and is deployed at <a href="https://id.shellui.com">id.shellui.com</a>. You can replace it with Supabase Auth - the shell already supports both.</p>
+  <p>The default authentication backend is identity-service, a Django API. It covers 15 OAuth 2.0 and OpenID Connect providers, Security Assertion Markup Language (SAML) 2.0, and magic links. It issues JSON Web Token (JWT) sessions and publishes a JSON Web Key Set (JWKS).</p>
+  <p>It ships as a Docker image, and Shellui runs one at <a href="https://id.shellui.com">id.shellui.com</a>. You can replace it with Supabase Auth. The shell already works with both.</p>
+  <p>The image runs its scheduler itself, so webhook retries and data retention do not need cron. It also publishes metrics in Prometheus format.</p>
   {{ stack.stackList(["Python", "Django", "django-allauth", "Django REST Framework", "Swagger", "ReDoc"]) }}
   <p class="flex flex-wrap gap-3">
     {{ repo.githubRepoButton("shellui/identity-service") }}

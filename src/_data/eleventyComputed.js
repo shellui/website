@@ -59,6 +59,7 @@ export default {
       company: "Company",
       "apps-and-navigation": "Apps and navigation",
       "web-and-desktop": "Web and desktop",
+      email: "Email",
       architecture: "Architecture",
       roadmap: "Roadmap",
       changelog: "Changelog",

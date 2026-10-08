@@ -1,0 +1,16 @@
+<ul class="mt-4 grid grid-cols-1 gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
+  {% for provider in providers %}
+    <li class="flex min-w-0 items-center gap-3 py-1.5">
+      <img
+        src="/img/providers/{{ provider.file }}.svg"
+        alt=""
+        width="24"
+        height="24"
+        loading="lazy"
+        decoding="async"
+        class="size-6 shrink-0 brightness-0 dark:invert"
+      />
+      <span class="min-w-0 truncate text-sm font-medium text-foreground">{{ provider.name }}</span>
+    </li>
+  {% endfor %}
+</ul>

@@ -108,7 +108,7 @@ const full = {
       title: "identity-service",
       role: "Backend",
       kind: "backend",
-      description: "OAuth sign-in, JWT sessions, and a JWKS endpoint.",
+      description: "OAuth, SAML, magic links, and signed session tokens.",
       href: "#identity-service",
       parent: "infra",
       position: { x: 20, y: 60 },
