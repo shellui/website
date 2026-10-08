@@ -5,6 +5,7 @@
     sent: "Check your inbox and click the link to confirm.",
     invalid: "Enter a valid email address.",
     rate_limited: "Too many sign-ups from here. Try again in an hour.",
+    unavailable: "Sign-up is unavailable right now. Try again later.",
     error: "Could not sign you up right now. Try again later.",
   };
 
@@ -17,6 +18,8 @@
     function show(key) {
       const failed = key !== "sending" && key !== "sent";
       status.textContent = MESSAGES[key];
+      status.classList.toggle("text-muted-foreground", key === "sending");
+      status.classList.toggle("text-foreground", key === "sent");
       status.classList.toggle("text-red-600", failed);
       status.classList.toggle("dark:text-red-400", failed);
       input.setAttribute("aria-invalid", key === "invalid" ? "true" : "false");
@@ -46,9 +49,14 @@
           return;
         }
         const body = await response.json().catch(() => ({}));
-        if (response.status === 429) show("rate_limited");
+        if (response.status === 429 || body.error_code === "rate_limited") show("rate_limited");
         else if (body.error_code === "validation_failed") show("invalid");
-        else show("error");
+        else if (
+          body.error_code === "newsletter_unavailable" ||
+          body.error_code === "turnstile_unavailable"
+        ) {
+          show("unavailable");
+        } else show("error");
       } catch {
         show("error");
       } finally {

@@ -21,15 +21,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
-## [Unreleased]
-
-### 📚 Documentation
-
-- Shellui 0.6 marketing pages. The product changelog leads with v0.6.0, including the breaking SDK `init` handshake. Authentication, administration, storage, and web and desktop cover the release, and `/features/email/` documents email-service.
+## [0.6.0] - 2026-10-08
 
 ### ✨ Feature
 
-- Newsletter sign-up. A `/newsletter/` page, linked from the footer, explains what an issue contains and how addresses are handled, and has the form. The home page, the contact page and the end of the features page each get a sign-up section. The form posts the address to email-service, which sends a confirmation email; people who confirm land on `/newsletter/confirmed/`. The sections stay hidden until `newsletter.key` is set in `src/_data/site.json`; until then the `/newsletter/` page says sign-up opens soon. The CSP `connect-src` allows `https://email.shellui.com`.
+- Newsletter sign-up is enabled at `/newsletter/`, and on the home, contact, and features pages. Confirmation mail goes through email-service.
+
+### 📚 Documentation
+
+- Email page for sign-in mail, event mail, newsletters, and broadcasts.
+- Authentication covers SCIM, SAML, and 15 OAuth providers, with brand-color marks.
+- Webhooks and n8n are documented for identity, storage, hosting, and email.
+- Architecture adds email-service beside identity, storage, and hosting.
+- Pricing Free plan lists email, newsletters, and broadcasts.
+- Features menu uses two columns on desktop.
+- Product changelog and the homepage badge lead with Shellui 0.6.
+
+### 🐛 Bug Fixes
+
+- Changelog merge keeps the 0.6 notes and the newsletter entry, newest first.
 
 ## [0.5.2] - 2026-09-21
 
