@@ -2,10 +2,10 @@
 layout: layouts/feature.njk
 wide: true
 title: Architecture | Shellui
-description: "Shellui is six open-source pieces: React frontend, identity-service, admin, storage-service, Files, and hosting-service. Trace them in an interactive graph, or keep Files and swap auth and storage for Supabase."
+description: "Shellui is seven open-source pieces: React frontend, identity-service, admin, storage-service, Files, hosting-service, and email-service. Trace them in an interactive graph, or keep Files and swap auth and storage for Supabase."
 eyebrow: Developers
 heading: How the stack fits together
-lede: Six open-source pieces make up a Shellui stack. Use all of them, or keep the shell, your app, and Files, and swap authentication and storage for Supabase.
+lede: Seven open-source pieces make up a Shellui stack. Use every piece, or keep the shell, your app, and Files and swap authentication and storage for Supabase.
 pageScripts:
   - /assets/js/architecture-graph.js
 ---
@@ -13,7 +13,7 @@ pageScripts:
 {% import "stack-list.njk" as stack %}
 
 <div class="prose">
-  <p>Each piece has its own repository and lifecycle. Together they serve the Shellui frontend. The graph below draws the same stack twice: every Shellui service, then the version that uses <a href="https://supabase.com">Supabase</a> for authentication and storage. Files stays in both views.</p>
+  <p>Each piece has its own repository and lifecycle, and together they serve the Shellui frontend. The graph draws every Shellui service, then the same shell with <a href="https://supabase.com">Supabase</a> for authentication and storage. Files and email-service stay in both views.</p>
 </div>
 
 <section class="mt-10" aria-labelledby="map-the-stack">
@@ -27,7 +27,7 @@ pageScripts:
 <section class="mt-16" aria-labelledby="what-supabase-replaces">
   <div class="prose">
     <h2 id="what-supabase-replaces">What Supabase replaces</h2>
-    <p>The shell and your app stay the same in both views. <code>backend.type</code> and <code>storage.url</code> in <code>shellui.config.ts</code> decide which backend answers.</p>
+    <p>The shell and your app stay the same in both views. <code>backend.type</code> and <code>storage.url</code> in <code>shellui.config.ts</code> decide which backend answers. Supabase does not replace email-service.</p>
     <div class="prose-table-wrap">
       <table>
         <thead>
@@ -78,6 +78,11 @@ pageScripts:
             <td>hosting-service in your infrastructure; all-in temporary deploy of the Browser group at <a href="https://shellui.app">shellui.app</a></td>
             <td>Same all-in temporary deploy at <a href="https://shellui.app">shellui.app</a></td>
           </tr>
+          <tr>
+            <th scope="row">Email</th>
+            <td>email-service. Identity, storage, and hosting post events. The company uses Resend or SMTP.</td>
+            <td>Same service for hosting events. Supabase Auth and Storage do not call it.</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -92,7 +97,9 @@ pageScripts:
   <p>{{ repo.githubRepoButton("shellui/shellui") }}</p>
 
   {{ stack.heading("identity-service", "Backend", "identity-service") }}
-  <p>The default authentication backend is identity-service, a Django API for OAuth (GitHub, Google, Microsoft), JWT sessions, and JSON Web Key Set (JWKS) verification. It ships as a Docker image and is deployed at <a href="https://id.shellui.com">id.shellui.com</a>. You can replace it with Supabase Auth - the shell already supports both.</p>
+  <p>The default authentication backend is identity-service, a Django API. It covers 15 OAuth 2.0 and OpenID Connect providers, Security Assertion Markup Language (SAML) 2.0, and magic links. It issues JSON Web Token (JWT) sessions and publishes a JSON Web Key Set (JWKS).</p>
+  <p>It ships as a Docker image, and Shellui runs one at <a href="https://id.shellui.com">id.shellui.com</a>. You can replace it with Supabase Auth. The shell already works with both.</p>
+  <p>The image runs its scheduler itself, so webhook retries and data retention do not need cron. It also publishes metrics in Prometheus format.</p>
   {{ stack.stackList(["Python", "Django", "django-allauth", "Django REST Framework", "Swagger", "ReDoc"]) }}
   <p class="flex flex-wrap gap-3">
     {{ repo.githubRepoButton("shellui/identity-service") }}
@@ -123,5 +130,15 @@ pageScripts:
   <p class="flex flex-wrap gap-3">
     {{ repo.githubRepoButton("shellui/hosting-service") }}
     {{ repo.dockerImageButton("shellui/hosting-service") }}
+  </p>
+
+  {{ stack.heading("email-service", "Backend", "email-service") }}
+  <p>email-service is a Django API that sends Shellui mail. identity-service, storage-service, and hosting-service call it when <code>EMAIL_SERVICE_API_KEY</code> is set. An event applies that company's email rules. identity-service can also send sign-in mail directly.</p>
+  <p>The company brings its own provider, Resend or SMTP, the standard mail protocol. Mail goes out on three lanes, and each lane has its own worker. Sign-in mail uses the auth lane. Newsletters and broadcasts use the bulk lane, and other event mail uses the transactional lane.</p>
+  <p>It ships as a Docker image, and Shellui runs one at <a href="https://email.shellui.com">email.shellui.com</a>. The admin app manages rules, templates, and the provider. You can run the same image yourself.</p>
+  {{ stack.stackList(["Python", "Django", "Django REST Framework", "Celery", "React Email", "Swagger", "ReDoc"]) }}
+  <p class="flex flex-wrap gap-3">
+    {{ repo.githubRepoButton("shellui/email-service") }}
+    {{ repo.dockerImageButton("shellui/email-service") }}
   </p>
 </div>

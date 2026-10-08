@@ -2,10 +2,10 @@
 layout: layouts/feature.njk
 wide: true
 title: Administration | Shellui
-description: "Manage members, groups, access tokens, and company settings inside Shellui. Add your own administration tools alongside the built-in screens."
+description: "Manage members, email, webhooks, SCIM, and company settings inside Shellui. Add your own administration tools alongside the built-in screens."
 eyebrow: Features
 heading: "Manage your product from one place"
-lede: "Give staff and company owners a shared administration panel inside Shellui. Manage membership, review sign-in activity, and configure company access. Add your own tools alongside the built-in screens."
+lede: "Give staff and company owners a shared administration panel inside Shellui. Manage membership, email, webhooks, and company access. Add your own tools alongside the built-in screens."
 ---
 
 <div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
@@ -57,22 +57,62 @@ lede: "Give staff and company owners a shared administration panel inside Shellu
 <section class="mt-20" aria-labelledby="directory-surfaces">
   <div class="max-w-2xl">
     <h2 id="directory-surfaces" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Everyday administration tools</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Manage accounts and company settings through the built-in identity screens. Connect storage to add file browsing and usage statistics.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Manage accounts, sign-in, and company settings through the built-in screens. Connect storage to add file browsing and usage statistics. Connect <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/email/">email-service</a> to add the Email section.</p>
   </div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
     <div>
-      <h3 class="text-base font-semibold text-foreground">Users and organization</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">View the member directory, enable or disable access, and choose who can join through the Organization settings.</p>
+      <h3 id="users" class="text-base font-semibold text-pretty text-foreground">Users and invitations</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">View the member directory, invite someone by email, and remove a member from the company. Staff and superuser flags stay in Django admin. You cannot edit them here.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-foreground">Groups, logs, and tokens</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Organize members into groups, review login events, and manage personal access tokens and sign-in provider connections.</p>
+      <h3 id="oauth-setup" class="text-base font-semibold text-pretty text-foreground">OAuth setup</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Company owners add a sign-in provider from the catalog. The screen shows the callback URL and the redirect allowlist. System for Cross-domain Identity Management (SCIM) tokens are created here too. You see the secret once, and you can revoke it.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-foreground">Storage</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Browse company files and check storage usage when a storage service is connected.</p>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Storage and the event log</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Browse company files when storage is connected. Identity, storage, and hosting each have a log list and a detail page. The dashboard warns when stored events are older than the company retention period.</p>
     </div>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="webhooks">
+  <div class="max-w-2xl">
+    <h2 id="webhooks" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">One webhook system</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">identity-service, storage-service, hosting-service, and email-service send signed webhooks. Company owners manage rules and delivery logs for identity, storage, and hosting in this panel. email-service adds webhooks for messages, unsubscribes, and newsletter events. Open these screens from <strong>Email and webhooks</strong>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Each delivery is signed in the Standard Webhooks style. You see the signing secret once, when you create or rotate it. A later view of the rule shows only a hint of the secret. The service image retries failed deliveries every minute, so you do not add cron.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Point a rule at an n8n Webhook node. You can send a test event from Administration while you connect the workflow. Older addresses that used <code class="rounded bg-muted px-1.5 py-0.5 text-sm">#/actions</code> redirect to the webhook pages.</p>
+    <p class="mt-6 text-sm text-muted-foreground">
+      <a href="{{ site.docs }}/identity/n8n" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">n8n guide</a>
+      ·
+      <a href="/features/email/#rules" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Email rules</a>
+      ·
+      <a href="/features/authentication/#sign-in-privacy" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Sign-in privacy</a>
+    </p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="email-admin">
+  <div class="max-w-2xl">
+    <h2 id="email-admin" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Email in the same panel</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The Email section has a template library, provider settings, statistics, broadcasts, and newsletters. You write an event email once, translate it in place, and recolor it with a Shellui theme. Preview and draft sends use catalog example values. You cannot paste a literal sign-in URL into a sign-in template.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The panel calls email-service with the identity JSON Web Token (JWT). The default origin is <code class="rounded bg-muted px-1.5 py-0.5 text-sm">https://email.shellui.com</code>, or <code class="rounded bg-muted px-1.5 py-0.5 text-sm">email.url</code> from the shell config. Provider saves omit credentials you did not change. You can set the application programming interface (API) key, and later reads omit it.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="operations">
+  <div class="max-w-2xl">
+    <h2 id="operations" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Run the services without cron</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The identity, storage, and email images start a scheduler beside the web server. It retries webhooks every minute and purges expired data on an hourly run. hosting-service retries webhooks the same way.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The scheduler uses Redis (<code class="rounded bg-muted px-1.5 py-0.5 text-sm">REDIS_URL</code>), an in-memory store, for its lock. It skips a run when another container already holds that lock, so two replicas do not run the same job. A production container does not start without <code class="rounded bg-muted px-1.5 py-0.5 text-sm">REDIS_URL</code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Only staff read scheduled-job health on the dashboard:</p>
+    <ul class="mt-4 max-w-md list-disc space-y-2 pl-5 text-base/7 text-muted-foreground">
+      <li>Healthy</li>
+      <li>Overdue</li>
+      <li>Failing</li>
+      <li>Disabled</li>
+    </ul>
+    <p class="mt-4 text-base/7 text-muted-foreground">Company metrics in Prometheus, the metrics format, include only that company. Staff, or a token with global access, can still read the full series. Sign-in links stay out of webhook bodies and access logs.</p>
   </div>
 </section>
 
@@ -110,9 +150,11 @@ lede: "Give staff and company owners a shared administration panel inside Shellu
   { href: site.docs + "/features/administration/", label: "Administration docs" },
   { href: site.adminPanel, label: "admin source", external: true },
   { href: "/features/authentication/", label: "Authentication" },
+  { href: "/features/email/", label: "Email" },
+  { href: site.docs + "/identity/n8n", label: "n8n guide" },
   { href: "/architecture/", label: "System architecture" },
   { href: site.playground, label: "Playground", external: true }
 ] %}
 {% include "feature-docs.njk" %}
 
-<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/storage/">file storage</a> adds uploads, sharing, and storage limits to your apps.</p>
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/email/">email</a> sends sign-in mail, newsletters, and broadcasts.</p>

@@ -2,11 +2,12 @@
 layout: layouts/feature.njk
 wide: true
 playgroundCta: true
+newsletterSignup: true
 hideBreadcrumbs: true
 title: Features | Shellui
 description: "Build web apps with shared navigation, sign-in, administration, and file storage. Explore Shellui, an open-source microfrontend shell."
 heading: "Build your app. Share the essentials."
-lede: "Shellui is an open-source shell that brings your web apps together with shared navigation, sign-in, administration, and file storage. Your apps run inside embedded pages called iframes, using the frameworks you choose."
+lede: "Shellui is an open-source shell that brings your web apps together with shared navigation, sign-in, administration, email, and file storage. Your apps run inside embedded pages called iframes, using the frameworks you choose."
 ---
 
 <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
@@ -35,7 +36,7 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
     <a
       id="{{ item.id }}"
       href="{{ item.href }}"
-      class="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:col-span-2{% if loop.index == 4 %} lg:col-start-2{% endif %}{% if loop.last %} sm:max-w-[calc(50%-0.75rem)] sm:justify-self-center lg:max-w-none lg:justify-self-stretch{% endif %}"
+      class="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:col-span-2"
     >
       <div class="border-b border-border bg-muted p-4 sm:p-5">
         <div class="mx-auto w-full max-w-[16rem] {% if item.visual == 'auth' %}max-w-[13rem]{% endif %}">
@@ -47,6 +48,8 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
             {% include "feature-visual-admin.njk" %}
           {% elif item.visual == "storage" %}
             {% include "feature-visual-storage.njk" %}
+          {% elif item.visual == "email" %}
+            {% include "feature-visual-email.njk" %}
           {% elif item.visual == "ship" %}
             {% include "feature-visual-ship.njk" %}
           {% endif %}
@@ -65,3 +68,28 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
     </a>
   {% endfor %}
 </div>
+
+<section class="mt-20" aria-labelledby="webhooks">
+  <div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+    <div class="max-w-2xl">
+      <h2 id="webhooks" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">One webhook system</h2>
+      <p class="mt-4 text-base/7 text-muted-foreground">identity-service, storage-service, hosting-service, and email-service send signed webhooks. You write the rules in Administration, and you can point a rule at an n8n workflow. You see the signing secret once. The service image retries failed deliveries every minute, so you do not add cron.</p>
+      <p class="mt-6 text-sm text-muted-foreground">
+        <a href="/features/administration/#webhooks" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Webhooks in Administration</a>
+        ·
+        <a href="{{ site.docs }}/identity/n8n" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">n8n guide</a>
+        ·
+        <a href="/features/email/#rules" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Email rules</a>
+      </p>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-foreground">The same on every service:</p>
+      <ul class="mt-4 max-w-md space-y-4 text-sm/6 text-muted-foreground">
+        <li><span class="font-medium text-foreground">Standard Webhooks</span>: each delivery includes <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">webhook-id</code>, <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">webhook-timestamp</code>, and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">webhook-signature</code>.</li>
+        <li><span class="font-medium text-foreground">Retries</span>: the image retries failed deliveries every minute, up to 8 attempts.</li>
+        <li><span class="font-medium text-foreground">n8n</span>: use a Webhook node as the receiver, and send a test event from Administration.</li>
+        <li><span class="font-medium text-foreground">Sign-in links</span>: webhook bodies do not include a magic link or its token.</li>
+      </ul>
+    </div>
+  </div>
+</section>

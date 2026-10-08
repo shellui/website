@@ -7,9 +7,11 @@ on:
         description: URL to check (default shellui.com)
         required: false
         default: https://shellui.com/
-  schedule:
-    # Weekly sanity check after edge config is applied
-    - cron: "0 12 * * 1"
+  # Weekly schedule paused: shellui.com is served directly by GitHub Pages,
+  # which cannot send these headers. Run manually until a proxy (for example
+  # Cloudflare) adds them, then restore:
+  # schedule:
+  #   - cron: "0 12 * * 1"
 
 permissions:
   contents: read

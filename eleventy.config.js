@@ -246,8 +246,18 @@ export default async function (eleventyConfig) {
   );
 
   eleventyConfig.addFilter("readingTime", (post) => {
-    const content = typeof post === "string" ? post : post?.templateContent;
-    return readingTimeMinutes(content);
+    if (typeof post === "string") return readingTimeMinutes(post);
+    try {
+      return readingTimeMinutes(post?.templateContent);
+    } catch (err) {
+      if (err?.name !== "TemplateContentPrematureUseError") throw err;
+      // The blog index can render before the post, so read the source file.
+      const inputPath =
+        post?.inputPath || post?.page?.inputPath || post?.data?.page?.inputPath;
+      if (!inputPath) return 1;
+      const raw = fs.readFileSync(inputPath, "utf8").replace(/^---[\s\S]*?---/, "");
+      return readingTimeMinutes(raw);
+    }
   });
 
   eleventyConfig.addFilter("xmlEscape", escapeXml);

@@ -16,3 +16,11 @@ prose: false
     contact@shellui.com
   </a>
 </div>
+
+{% if site.newsletter.key %}
+  <div class="mt-16 border-t border-gray-200 pt-16 dark:border-gray-800">
+    {% set newsletterVariant = "stacked" %}
+    {% set newsletterId = "contact-newsletter" %}
+    {% include "newsletter-signup.njk" %}
+  </div>
+{% endif %}

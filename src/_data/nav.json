@@ -35,14 +35,20 @@
     {
       "href": "/features/authentication/",
       "label": "Authentication",
-      "description": "Share sign-in and manage access across your apps.",
+      "description": "OAuth, SAML, SCIM, and company access.",
       "icon": "lock"
     },
     {
       "href": "/features/administration/",
       "label": "Administration",
-      "description": "Manage members, company settings, and internal tools.",
+      "description": "Members, email, webhooks, and company settings.",
       "icon": "cog"
+    },
+    {
+      "href": "/features/email/",
+      "label": "Email",
+      "description": "Sign-in mail, newsletters, and broadcasts.",
+      "icon": "mail"
     },
     {
       "href": "/features/storage/",

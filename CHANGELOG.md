@@ -8,18 +8,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 <!---
 ## [Unreleased] - yyyy-mm-dd
 
-### ✨ Feature – for new features
-### 🛠 Improvements – for general improvements
-### 🚨 Changed – for changes in existing functionality
-### ⚠️ Deprecated – for soon-to-be removed features
-### 📚 Documentation – for documentation update
-### 🗑 Removed – for removed features
-### 🐛 Bug Fixes – for any bug fixes
-### 🔒 Security – in case of vulnerabilities
-### 🏗 Chore – for tidying code
+### ✨ Feature - for new features
+### 🛠 Improvements - for general improvements
+### 🚨 Changed - for changes in existing functionality
+### ⚠️ Deprecated - for soon-to-be removed features
+### 📚 Documentation - for documentation update
+### 🗑 Removed - for removed features
+### 🐛 Bug Fixes - for any bug fixes
+### 🔒 Security - in case of vulnerabilities
+### 🏗 Chore - for tidying code
 
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
+
+## [0.6.0] - 2026-10-08
+
+### ✨ Feature
+
+- Newsletter sign-up at `/newsletter/`, and on the home, contact, and features pages, turns on once a list key is set. Confirmation mail goes through email-service.
+
+### 📚 Documentation
+
+- Email page for sign-in mail, event mail, newsletters, and broadcasts.
+- Authentication covers SCIM, SAML, and 15 OAuth providers, with brand-color marks.
+- Webhooks and n8n are documented for identity, storage, hosting, and email.
+- Architecture adds email-service beside identity, storage, and hosting.
+- Pricing Free plan lists email, newsletters, and broadcasts.
+- Features menu uses two columns on desktop.
+- Product changelog and the homepage badge lead with Shellui 0.6.
+
+### 🐛 Bug Fixes
+
+- Changelog merge keeps the 0.6 notes and the newsletter entry, newest first.
 
 ## [0.5.2] - 2026-09-21
 

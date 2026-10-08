@@ -1,5 +1,5 @@
 /**
- * Product changelog for /changelog/ — sourced from shellui/shellui at build time.
+ * Product changelog for /changelog/, sourced from shellui/shellui at build time.
  * Website package version lives in site.json / package.json (not used for marketing badges).
  */
 import {
@@ -17,6 +17,47 @@ const DOCS_BASE = "https://docs.shellui.com";
  * Uncurated versions still render from upstream parse.
  */
 const CURATED = {
+  "0.6.0": {
+    date: "2026-10-07",
+    summary:
+      "Edit your name, sign in with a magic link, expose email settings to apps, and call init before the shell sends settings.",
+    sections: [
+      {
+        heading: "✨ Feature",
+        items: [
+          "**Account management**: Edit your name and delete your account from Settings, under user account, on the Shellui identity backend.",
+          "**Magic link login**: The login page uses a magic link when no method is set, shows \"Check your email\", and waits 60s before another send.",
+          "**Email service**: Optional `email.url` and `email.showInAdmin` in `shellui.config` reach apps as `settings.email`.",
+        ],
+      },
+      {
+        heading: "🛠 Improvements",
+        items: [
+          "**Transfers**: Uploads share one progress toaster, and downloads continue after you leave Settings.",
+        ],
+      },
+      {
+        heading: "🚨 Changed",
+        items: [
+          "**Iframe handshake (breaking)**: Call `init` from `@shellui/sdk` first, because the shell sends settings only after that request and only to frames that are ready.",
+        ],
+      },
+      {
+        heading: "📚 Documentation",
+        items: [
+          "**Agent guidelines**: Root `AGENTS.md` links the Shellui writing and design guidelines.",
+        ],
+      },
+      {
+        heading: "🐛 Bug Fixes",
+        items: [
+          "**Session restore**: Reloading keeps you signed in during local development, and the shell shows a loading state while the session restores.",
+          "**Toasts**: Bottom toast lists no longer block clicks on the page behind them.",
+          "**Staff magic links**: A staff account that opens an old email link sees \"Sign in with your usual sign-in method instead.\"",
+        ],
+      },
+    ],
+  },
   "0.5.0": {
     date: "2026-09-16",
     summary:
@@ -269,12 +310,33 @@ function ensureCuratedPresent(releases) {
   return [...extras, ...releases];
 }
 
+function versionParts(version) {
+  return String(version)
+    .split(".")
+    .map((part) => Number.parseInt(part, 10) || 0);
+}
+
+function compareReleasesNewestFirst(a, b) {
+  const av = versionParts(a.version);
+  const bv = versionParts(b.version);
+  const length = Math.max(av.length, bv.length);
+  for (let index = 0; index < length; index += 1) {
+    const delta = (bv[index] || 0) - (av[index] || 0);
+    if (delta) return delta;
+  }
+  return 0;
+}
+
+function orderReleases(releases) {
+  return [...releases].sort(compareReleasesNewestFirst);
+}
+
 export default async function () {
   try {
     const { md } = await fetchChangelogMarkdown();
-    return ensureCuratedPresent(applyCurated(parseChangelog(md)));
+    return orderReleases(ensureCuratedPresent(applyCurated(parseChangelog(md))));
   } catch (err) {
     console.warn(`[changelog] Build without upstream data: ${err.message}`);
-    return ensureCuratedPresent([]);
+    return orderReleases(ensureCuratedPresent([]));
   }
 }

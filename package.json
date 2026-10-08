@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "The official website for Shellui, the web app development platform.",
   "private": true,
   "type": "module",
@@ -40,7 +40,7 @@
   "dependencies": {
     "@shellui/sdk": "^0.5.3",
     "@tailwindplus/elements": "^1.0.22",
-    "@xyflow/react": "^12.11.6",
+    "@xyflow/react": "^12.12.0",
     "alpinejs": "^3.17.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
