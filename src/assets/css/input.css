@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./extras.css";
+@import "./graph-chrome.css";
 @import "./shell-layout-anim.css";
 
 @source "../../**/*.{njk,md,html,js}";

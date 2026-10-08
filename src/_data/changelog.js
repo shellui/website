@@ -1,34 +1,26 @@
-import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+/**
+ * Product changelog for /changelog/ — sourced from shellui/shellui at build time.
+ * Website package version lives in site.json / package.json (not used for marketing badges).
+ */
 import {
   assertSafeChangelogHtml,
   inlineMarkdown,
   linkTickets,
   rewriteDocsLinks,
 } from "../../tools/changelog-markdown.mjs";
+import { fetchChangelogMarkdown, GITHUB_REPO } from "../../tools/changelog-fetch.mjs";
 
-/** Pinned upstream source (tag v0.5.0). Update when marketing site tracks a new release. */
-const CHANGELOG_REF = "a0c1c907b9b2506df4e0f09fdad7c1ac6c8c0a61";
-const CHANGELOG_URL = `https://raw.githubusercontent.com/shellui/shellui/${CHANGELOG_REF}/CHANGELOG.md`;
-
-const GITHUB_REPO = "shellui/shellui";
 const DOCS_BASE = "https://docs.shellui.com";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const CACHE_DIR = join(__dirname, "..", "..", ".cache");
-const CACHE_FILE = join(CACHE_DIR, "changelog.md");
-const CACHE_MAX_AGE_MS = 1000 * 60 * 60; // 1 hour
-
 /**
- * Curated latest release for the marketing changelog.
- * Upstream main CHANGELOG can carry merge duplicates; the tag can carry conflict markers.
- * Keep this scannable: big features first, then improvements / changed / notable fixes.
- * Mirror section presence on main (do not invent Removed if upstream dropped it).
+ * Curated overlays for selected releases (optional summary + scannable sections).
+ * Uncurated versions still render from upstream parse.
  */
 const CURATED = {
   "0.5.0": {
     date: "2026-09-16",
+    summary:
+      "Chrome actions SDK, new shellui init frameworks, OKLCH themes, inset layouts, CLI companion, and identity-hosted login.",
     sections: [
       {
         heading: "✨ Feature",
@@ -98,7 +90,6 @@ function stripConflictMarkers(md) {
       continue;
     }
     if (skipping) continue;
-    // Drop conflict-garbled lines that start with "# **" (commented bullets)
     if (/^#\s+\*\*/.test(line.trim())) continue;
     out.push(line);
   }
@@ -129,6 +120,34 @@ function formatSectionHeading(raw) {
 
 function renderItems(items) {
   return items.map((item) => renderItem(item));
+}
+
+function plainTextFromItem(htmlOrMd) {
+  return String(htmlOrMd)
+    .replace(/<[^>]+>/g, "")
+    .replace(/\*\*/g, "")
+    .replace(/`/g, "")
+    .trim();
+}
+
+function buildSummary(sections, curatedSummary) {
+  if (curatedSummary) return curatedSummary;
+
+  const featureSection = sections.find((s) => /feature/i.test(s.heading));
+  const items = featureSection?.items ?? sections[0]?.items ?? [];
+  const highlights = items
+    .slice(0, 4)
+    .map(plainTextFromItem)
+    .map((text) => {
+      const bold = text.match(/^([^:]+):/);
+      return (bold ? bold[1] : text.split(".")[0]).trim();
+    })
+    .filter(Boolean);
+
+  if (highlights.length === 0) return "";
+  if (highlights.length === 1) return highlights[0];
+  const last = highlights.pop();
+  return `${highlights.join(", ")}, and ${last}`;
 }
 
 function dedupeSections(sections) {
@@ -206,14 +225,21 @@ function parseChangelog(md) {
 function applyCurated(releases) {
   return releases.map((release) => {
     const curated = CURATED[release.version];
-    if (!curated) return release;
+    if (!curated) {
+      return {
+        ...release,
+        summary: buildSummary(release.sections),
+      };
+    }
+    const sections = curated.sections.map((section) => ({
+      heading: section.heading,
+      items: renderItems(section.items),
+    }));
     return {
       version: release.version,
       date: curated.date || release.date,
-      sections: curated.sections.map((section) => ({
-        heading: section.heading,
-        items: renderItems(section.items),
-      })),
+      sections,
+      summary: buildSummary(sections, curated.summary),
       curated: true,
     };
   });
@@ -228,75 +254,27 @@ function ensureCuratedPresent(releases) {
 
   const extras = missing.map((version) => {
     const curated = CURATED[version];
+    const sections = curated.sections.map((section) => ({
+      heading: section.heading,
+      items: renderItems(section.items),
+    }));
     return {
       version,
       date: curated.date,
-      sections: curated.sections.map((section) => ({
-        heading: section.heading,
-        items: renderItems(section.items),
-      })),
+      sections,
+      summary: buildSummary(sections, curated.summary),
       curated: true,
     };
   });
   return [...extras, ...releases];
 }
 
-function readCache() {
-  try {
-    if (!existsSync(CACHE_FILE)) return null;
-    return readFileSync(CACHE_FILE, "utf-8");
-  } catch {
-    return null;
-  }
-}
-
-function isCacheFresh() {
-  try {
-    if (!existsSync(CACHE_FILE)) return false;
-    const age = Date.now() - statSync(CACHE_FILE).mtimeMs;
-    return age < CACHE_MAX_AGE_MS;
-  } catch {
-    return false;
-  }
-}
-
-function writeCache(md) {
-  try {
-    mkdirSync(CACHE_DIR, { recursive: true });
-    writeFileSync(CACHE_FILE, md, "utf-8");
-  } catch (err) {
-    console.warn(`[changelog] Could not write cache: ${err.message}`);
-  }
-}
-
 export default async function () {
-  let md = null;
-
-  if (isCacheFresh()) {
-    md = readCache();
-    if (md) {
-      console.log("[changelog] Using cached changelog (< 1h old)");
-    }
+  try {
+    const { md } = await fetchChangelogMarkdown();
+    return ensureCuratedPresent(applyCurated(parseChangelog(md)));
+  } catch (err) {
+    console.warn(`[changelog] Build without upstream data: ${err.message}`);
+    return ensureCuratedPresent([]);
   }
-
-  if (!md) {
-    try {
-      const res = await fetch(CHANGELOG_URL);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      md = await res.text();
-      writeCache(md);
-      console.log("[changelog] Fetched from GitHub and cached");
-    } catch (err) {
-      console.warn(`[changelog] Could not fetch: ${err.message}`);
-      md = readCache();
-      if (md) {
-        console.log("[changelog] Falling back to stale cache");
-      } else {
-        console.warn("[changelog] No cache available");
-        return ensureCuratedPresent([]);
-      }
-    }
-  }
-
-  return ensureCuratedPresent(applyCurated(parseChangelog(md)));
 }

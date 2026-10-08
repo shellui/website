@@ -1,6 +1,7 @@
 // Single source of truth for the /architecture/ diagram.
-// Eleventy renders the static fallback from this file; the React island
-// (src/islands/architecture-graph/) imports the same module at build time.
+// Eleventy renders the SSR graph chrome (and a <noscript> text fallback) from
+// this file; the React island (src/islands/architecture-graph/) imports the
+// same module at build time and hydrates the interactive canvas over that shell.
 //
 // Positions are hand-placed in flow coordinates. Node positions are relative
 // to the frame they sit in. labelT moves an edge label along its curve so two

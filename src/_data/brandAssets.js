@@ -6,15 +6,15 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const assetsDir = path.join(root, "../../img/brand-assets");
 
 const groups = [
-  { name: "Icon mark", bases: ["logo"] },
+  { name: "Shellui mark", bases: ["shellui_mark"] },
   {
     name: "Logos",
-    bases: [
-      "shellui_logo",
-      "shellui_transparent_logo",
-      "shellui_doc_logo",
-      "shellui_playground_logo",
-    ],
+    bases: ["shellui_transparent_logo", "shellui_wireframe_logo"],
+  },
+  {
+    name: "Icons",
+    bases: ["shellui_icon_black", "shellui_icon_white", "shellui_icon_gold"],
+    columns: 3,
   },
   {
     name: "iOS icons",
@@ -36,11 +36,12 @@ const omittedBases = new Set([
 ]);
 
 const labels = {
-  logo: "Shellui mark",
-  shellui_logo: "Primary",
+  shellui_mark: "Wordmark",
   shellui_transparent_logo: "Transparent",
-  shellui_doc_logo: "Documentation",
-  shellui_playground_logo: "Playground",
+  shellui_wireframe_logo: "Wireframe",
+  shellui_icon_black: "Icon (black)",
+  shellui_icon_white: "Icon (white)",
+  shellui_icon_gold: "Icon (gold)",
   shellui_ios_icon_black: "iOS icon (black)",
   shellui_ios_icon_white: "iOS icon (white)",
   shellui_ios_icon_gold: "iOS icon (gold)",
@@ -48,14 +49,31 @@ const labels = {
 
 /** Dark / black artwork needs a light preview (not pure white). */
 const lightArtwork = new Set([
-  "logo",
-  "shellui_transparent_logo",
+  "shellui_icon_black",
+  "shellui_icon_gold",
   "shellui_ios_icon_black",
   "shellui_ios_icon_gold",
 ]);
 
 /** White / light artwork needs a mid dark preview (not near-black). */
-const darkArtwork = new Set(["shellui_ios_icon_white"]);
+const darkArtwork = new Set(["shellui_icon_white", "shellui_ios_icon_white"]);
+
+/** Inline SVG preview so stroke/fill can follow CSS text color (light/dark). */
+const currentColorArtwork = {
+  shellui_mark: {
+    spriteId: "logo-shellui",
+    viewBox: "0 0 1024 270",
+    previewClass: "mt-4 -ml-5 h-12 w-auto max-w-[55%]",
+  },
+  shellui_transparent_logo: {
+    spriteId: "logo-shellui-mark",
+    viewBox: "0 0 1080 1080",
+  },
+  shellui_wireframe_logo: {
+    spriteId: "logo-shellui-mark-wireframe",
+    viewBox: "0 0 1080 1080",
+  },
+};
 
 const extOrder = { SVG: 0, PNG: 1 };
 
@@ -74,7 +92,10 @@ function previewFor(baseName) {
 }
 
 function sortFormats(a, b) {
-  return (extOrder[a.ext] ?? 99) - (extOrder[b.ext] ?? 99) || a.ext.localeCompare(b.ext);
+  return (
+    (extOrder[a.ext] ?? 99) - (extOrder[b.ext] ?? 99) ||
+    a.ext.localeCompare(b.ext)
+  );
 }
 
 const files = fs.readdirSync(assetsDir).filter((file) => !file.startsWith("."));
@@ -98,6 +119,11 @@ for (const file of files) {
       baseName,
       label: formatLabel(baseName),
       preview: previewFor(baseName),
+      currentColor: Boolean(currentColorArtwork[baseName]),
+      spriteId: currentColorArtwork[baseName]?.spriteId ?? null,
+      viewBox: currentColorArtwork[baseName]?.viewBox ?? null,
+      previewClass:
+        currentColorArtwork[baseName]?.previewClass ?? "h-24 w-auto max-w-full",
       formats: [format],
     });
   }
@@ -115,9 +141,7 @@ const grouped = groups
     name: group.name,
     caption: group.caption ?? null,
     columns: group.columns ?? 2,
-    items: group.bases
-      .map((base) => assetsByBase.get(base))
-      .filter(Boolean),
+    items: group.bases.map((base) => assetsByBase.get(base)).filter(Boolean),
   }))
   .filter((group) => group.items.length > 0);
 

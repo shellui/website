@@ -11,6 +11,8 @@ import {
 import architectureGraph from "../../_data/architectureGraph.js";
 import { edgeTypes } from "./edges.jsx";
 import { nodeTypes } from "./nodes.jsx";
+import { CanvasSkeleton } from "./skeleton.jsx";
+import { useGraphReady } from "./use-graph-ready.js";
 
 const VIEWS = architectureGraph.views;
 const PAN_STEP = 72;
@@ -35,6 +37,9 @@ function buildNodes(view) {
     position: group.position,
     data: { title: group.title, subtitle: group.subtitle, logo: group.logo },
     style: { width: group.size.width, height: group.size.height },
+    width: group.size.width,
+    height: group.size.height,
+    measured: { width: group.size.width, height: group.size.height },
     draggable: false,
     selectable: false,
     focusable: false,
@@ -58,6 +63,9 @@ function buildNodes(view) {
       logo: node.logo,
     },
     style: { width: node.size.width, height: node.size.height },
+    width: node.size.width,
+    height: node.size.height,
+    measured: { width: node.size.width, height: node.size.height },
     draggable: false,
     connectable: false,
     zIndex: 1,
@@ -113,7 +121,7 @@ function ZoomButton({ label, onClick, children }) {
   );
 }
 
-function Canvas({ view }) {
+function Canvas({ view, onReady }) {
   const { zoomIn, zoomOut, getViewport, setViewport } = useReactFlow();
   const surfaceRef = useRef(null);
   const canvasRef = useRef(null);
@@ -215,16 +223,25 @@ function Canvas({ view }) {
     [view, setViewport, duration],
   );
 
-  useEffect(() => {
+  const prepare = useCallback(() => {
     fit(false);
     highlight(null);
-  }, [view, fit, highlight]);
+  }, [fit, highlight]);
+
+  const ready = useGraphReady(onReady, { prepare });
+
+  useEffect(() => {
+    if (!ready) return;
+    fit(false);
+    highlight(null);
+  }, [view, fit, highlight, ready]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || typeof ResizeObserver === "undefined") return undefined;
     let timer = 0;
     const observer = new ResizeObserver(() => {
+      if (!ready) return;
       window.clearTimeout(timer);
       timer = window.setTimeout(() => fit(false), 150);
     });
@@ -233,7 +250,7 @@ function Canvas({ view }) {
       window.clearTimeout(timer);
       observer.disconnect();
     };
-  }, [fit]);
+  }, [fit, ready]);
 
   const pan = useCallback(
     (dx, dy) => {
@@ -271,9 +288,11 @@ function Canvas({ view }) {
       <div
         className="ag-canvas"
         ref={canvasRef}
+        data-ag-pending={ready ? undefined : ""}
         role="application"
         aria-label={`Architecture graph: ${view.label}`}
         aria-describedby="architecture-graph-hint"
+        aria-busy={ready ? undefined : true}
         onKeyDown={onKeyDown}
         onFocusCapture={(event) =>
           highlight(event.target.closest?.(".react-flow__node-stack")?.dataset.id ?? null)
@@ -282,6 +301,7 @@ function Canvas({ view }) {
           if (!event.currentTarget.contains(event.relatedTarget)) highlight(null);
         }}
       >
+        {ready ? null : <CanvasSkeleton label="Loading architecture diagram…" />}
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -306,7 +326,7 @@ function Canvas({ view }) {
           <Background variant={BackgroundVariant.Dots} gap={22} size={1} />
         </ReactFlow>
       </div>
-      <div className="ag-controls">
+      <div className="ag-controls" hidden={!ready}>
         <ZoomButton label="Zoom out" onClick={() => zoomOut({ duration: duration() })}>
           <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
             <path d="M5 10h10" />
@@ -325,7 +345,7 @@ function Canvas({ view }) {
   );
 }
 
-export default function ArchitectureGraph() {
+export default function ArchitectureGraph({ onReady }) {
   const [viewId, setViewId] = useState(readViewFromUrl);
   const view = VIEWS.find((item) => item.id === viewId) ?? VIEWS[0];
 
@@ -345,7 +365,7 @@ export default function ArchitectureGraph() {
       </div>
 
       <ReactFlowProvider>
-        <Canvas view={view} />
+        <Canvas view={view} onReady={onReady} />
       </ReactFlowProvider>
 
       <p className="ag-hint" id="architecture-graph-hint">

@@ -1,0 +1,97 @@
+{#
+  Server-rendered graph chrome that matches the React island layout so the page
+  keeps its height from first paint. The island replaces this node on mount.
+#}
+{% macro shell(views, opts) %}
+  {% set view = views[0] %}
+  <div class="ag-root" data-graph-ssr aria-busy="true">
+    <div class="ag-toolbar">
+      <fieldset class="ag-picker" disabled>
+        <legend class="ag-picker__legend">{{ opts.pickerLegend }}</legend>
+        <div class="ag-picker__options">
+          {% for item in views %}
+            <label class="ag-picker__option">
+              <input type="radio" name="{{ opts.pickerName }}" value="{{ item.id }}"{% if loop.first %} checked{% endif %} disabled />
+              <span>{{ item.label }}</span>
+            </label>
+          {% endfor %}
+        </div>
+      </fieldset>
+      <p class="ag-summary">{{ view.summary }}</p>
+    </div>
+
+    <div class="ag-surface">
+      <div class="ag-canvas ag-canvas--ssr" role="status">
+        <span class="sr-only">{{ opts.loadingLabel }}</span>
+        <div class="ag-skeleton__pulse" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <p class="ag-hint">
+      Point at a box, or tab to it, to highlight what it talks to. Arrow keys pan,
+      <kbd>+</kbd> and <kbd>-</kbd> zoom, <kbd>0</kbd> fits the view.
+    </p>
+
+    <div class="ag-legend">
+      <h3 class="ag-legend__title">{{ opts.legendTitle }}</h3>
+      {% if opts.legendOrdered %}
+        <ol class="ag-legend__list">
+      {% else %}
+        <ul class="ag-legend__list">
+      {% endif %}
+        {% for connection in view.connections %}
+          <li>
+            <span class="ag-legend__pair">
+              {{ connection.from }} {% if connection.bidirectional %}↔{% else %}→{% endif %} {{ connection.to }}
+            </span>
+            {% if connection.label %}
+              <span class="ag-legend__label">{{ connection.label }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      {% if opts.legendOrdered %}
+        </ol>
+      {% else %}
+        </ul>
+      {% endif %}
+      {% if view.omitted %}
+        <p class="ag-legend__note">
+          <span class="ag-legend__note-title">{{ view.omitted.title }}:</span>
+          {{ view.omitted.items | join("; ") }}.
+        </p>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro noscriptFallback(views, opts) %}
+  <noscript>
+    <div class="grid gap-6 sm:grid-cols-2">
+      {% for view in views %}
+        <section class="rounded-xl border border-border bg-card p-5">
+          <h3 class="text-sm font-semibold text-foreground">{{ view.label }}</h3>
+          <p class="mt-2 text-sm/6 text-muted-foreground">{{ view.summary }}</p>
+          {% if opts.legendOrdered %}
+            <ol class="mt-4 list-decimal space-y-1.5 pl-4 text-sm/6 text-muted-foreground">
+          {% else %}
+            <ul class="mt-4 space-y-1.5 text-sm/6 text-muted-foreground">
+          {% endif %}
+            {% for connection in view.connections %}
+              <li class="min-w-0">
+                <span class="font-medium text-foreground">{{ connection.from }} {% if connection.bidirectional %}&harr;{% else %}&rarr;{% endif %} {{ connection.to }}</span>
+                {% if connection.label %}<span class="font-mono text-xs break-words"> {{ connection.label }}</span>{% endif %}
+              </li>
+            {% endfor %}
+          {% if opts.legendOrdered %}
+            </ol>
+          {% else %}
+            </ul>
+          {% endif %}
+          {% if view.omitted %}
+            <p class="mt-4 text-sm/6 text-muted-foreground"><span class="font-semibold text-foreground">{{ view.omitted.title }}:</span> {{ view.omitted.items | join("; ") }}.</p>
+          {% endif %}
+        </section>
+      {% endfor %}
+    </div>
+  </noscript>
+{% endmacro %}
