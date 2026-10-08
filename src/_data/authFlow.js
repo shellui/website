@@ -57,7 +57,7 @@ const oauth = {
       title: "OAuth provider",
       role: "Identity provider",
       kind: "managed",
-      description: "One of the 15 providers you turned on for the company, including any OpenID Connect issuer.",
+      description: "One of the 15 providers for this company, including any OpenID Connect issuer.",
       position: { x: 872, y: 100 },
       size: { width: 232, height: 160 },
     },
