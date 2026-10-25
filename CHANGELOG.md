@@ -21,12 +21,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
-## [0.6.1] - 2026-10-25
+## [0.7.0] - Unreleased
 
 ### ✨ Feature
 
-- Publish Shellui brand kit v1 (PDF) and brand assets v1 (ZIP) at `/brand-assets/`, with unzipped logo, icon, Open Graph, social, and email files for direct download. Kit copy matches site guidelines (system UI font on the web, Inter in generated images, `30s` durations, `rounded-md` controls, print-only gold tint).
-- Add `/guidelines/brand/` and `content/guidelines/brand.md` with links to the kit and asset archive.
+- Publish Shellui brand kit v1 (PDF) and brand assets v1 (ZIP), with unzipped logo, icon, Open Graph, social, and email files at stable `/brand-assets/*` paths. Brand kit source lives under `tools/brand-kit/` and reads `tokens/tokens.json`.
+- Guidelines v2.0.0: hub with cards; Brand (downloads on `#downloads`), Foundations (generated tokens), Writing, Interface (merged design + web design), Print, and guidelines changelog. Agent surfaces: `/llms-full.txt`, trimmed `/design.md`, full `/guidelines/interface.md`, forever `/guidelines/web-design.md` copy.
+- Self-hosted Inter on shellui.com (preload, swap, Latin subset). Text gold `#8A6300` / `#E8B84A` in dark mode via generated tokens.
+- Open Graph images for guideline pages (`tools/og/generate.mjs`).
+
+### 🚨 Changed
+
+- Legacy URLs (`/brand-assets/`, `/product/brand-assets/`, `/guidelines/design/`, `/guidelines/web-design/`) use HTML fallback redirects (`noindex`, canonical, `location.replace` with hash preserved). GitHub Pages serves the site directly (no edge 301s). Sitemap lists canonical guideline URLs only.
+- Remove duplicated `website/skills/` (skills live in `shellui/skills` only).
+
+### 📚 Documentation
+
+- Review screenshots: `docs/guidelines-screens/` (hub and each guideline page, light and dark).
 
 ## [0.6.0] - 2026-10-08
 

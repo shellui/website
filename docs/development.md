@@ -16,7 +16,7 @@ Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are r
 
 ## Guidelines
 
-Canonical rules live in [`content/guidelines/`](../content/guidelines/) (version in each file's frontmatter). Humans read `/guidelines/` (hub), `/guidelines/writing/`, `/guidelines/web-design/`, the visual handbook at `/guidelines/design/`, and `/guidelines/brand/`. Agents should load [`skills/guidelines/SKILL.md`](../skills/guidelines/SKILL.md) and must not scrape the design HTML. When **building a page**, fetch `/design.md` first (`skills/design-md/SKILL.md`). Site overview for agents: `/llms.txt`. Logos stay on `/brand-assets/`.
+Canonical rules live in [`content/guidelines/`](../content/guidelines/) (v2.0.0 in frontmatter). Humans read `/guidelines/` (hub), Brand, Foundations, Writing, Interface, and Print. Agents fetch `/design.md` (alias), `/llms.txt`, and `/llms-full.txt`. Skills live in the `shellui/skills` repo only. Tokens: `tokens/tokens.json`. Downloads: `/guidelines/brand/#downloads` (legacy `/brand-assets/` HTML fallback redirect; files stay under `/brand-assets/*`).
 
 See [`AGENTS.md`](../AGENTS.md) for the short pointer.
 

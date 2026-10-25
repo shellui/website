@@ -1,23 +1,59 @@
 ---
-title: Web design guidelines
-description: UI, accessibility, and chrome rules for Shellui website, docs, and in-shell apps.
-version: 1.1.1
+title: Web design guidelines (alias)
+description: Forever alias for Interface. Canonical page is /guidelines/interface/.
+version: 2.0.0
+updated: 2026-10-25
+canonical: /guidelines/interface/
 ---
 
-These rules cover layout, interaction, and visual language on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Pair them with the [writing guidelines](/guidelines/writing/) for copy. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Keep AI, MCP, and marketplace chrome out of the default UI.
+Stable alias for agents and bookmarks. **Canonical Interface handbook:** [`/guidelines/interface/`](/guidelines/interface/) and [`interface.md`](https://shellui.com/guidelines/interface.md).
 
-Agents: load this file. Do not scrape the HTML page. The `version` field in the frontmatter is the public "Guidelines v…" label.
+When **composing pages**, prefer [`design.md`](https://shellui.com/design.md) first, then fetch the full file below for UI, accessibility, and chrome detail.
+
+
+Interface rules cover layout, interaction, and composition on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Pair with [Writing](/guidelines/writing/) for copy and [Foundations](/guidelines/foundations/) for tokens. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Keep AI, MCP, and marketplace chrome out of the default UI.
+
+Agents: load this file or `/design.md` (stable alias). Do not scrape HTML handbooks. The `version` field in frontmatter is the public "Guidelines v…" label.
 
 ## How to use this file
 
-- **Humans**: read the page at `/guidelines/web-design/`, or download this markdown
-- **Agents**: read `content/guidelines/web-design.md` in this repo, or fetch `https://shellui.com/guidelines/web-design.md`
-- **Skill wrapper**: `skills/web-design-guidelines/SKILL.md`
-- **Sibling**: [writing guidelines](/guidelines/writing/) for voice and tone
-- **Compose pages with**: [design.md](/design.md) (`fetch https://shellui.com/design.md`)
+- **Humans**: `/guidelines/interface/`
+- **Agents**: `https://shellui.com/guidelines/interface.md` or `https://shellui.com/design.md`
+- **Writing**: [writing.md](/guidelines/writing/) for voice, punctuation, and banned words
+- **Tokens**: [foundations.md](/guidelines/foundations/) and [tokens.json](/guidelines/generated/tokens.json)
+- **Brand logos**: [brand.md](/guidelines/brand/) only
 - **Hub**: [Guidelines](/guidelines/)
 
 Review files against every rule below. Output concise, high-signal findings. Sacrifice grammar for brevity.
+
+## Product
+
+Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Audience: developers shipping a product inside that shell.
+
+Precise, calm, direct, technically literate, evidence-led, restrained. Name is **Shellui** only. Never "The Host". In prose, "the shell" (lowercase) is the running host. Lead with what ships today (iframe host, `@shellui/sdk`, identity-service or Supabase Auth, `/admin`, storage, Files). Keep AI, MCP, marketplace, and app-store chrome quiet unless the page is about that surface.
+
+## Priority (when building pages)
+
+1. Preserve supplied facts, package names, URLs, units, qualifiers, and task constraints.
+2. Preserve the host stack: Eleventy 3, Tailwind CSS v4, Tailwind Plus patterns already in this repo, Alpine for light demos, shadcn-compatible CSS variables. No new framework, CSS library, or parallel token system apart from the page-scoped island exception under Stack.
+3. Make the reader's question, strongest supported answer, and material evidence immediately clear.
+4. Establish Shellui authorship through existing nav/footer chrome, Inter typography, gray canvas, and scarce primary gold.
+5. Choose a composition specific to this material. Do not clone an unrelated page as a template.
+6. Refine responsive behavior and details without weakening the hierarchy.
+
+Ask questions only when proceeding could change product claims, pricing, security, or CTAs. Otherwise omit the unknown, label it, and proceed.
+
+## Stack
+
+- Templates: Nunjucks in `src/`. Layouts: `base`, `page`, `feature`, `post`, `guidelines`, `guidelines-foundations`.
+- CSS: `src/assets/css/input.css` → `/assets/css/site.css`. Token values: generated from `tokens/tokens.json` into `src/_data/designTokens.js` and `input.css`.
+- JS: Alpine (`src/blocks/`), Plus Elements (`/assets/js/elements.js`), theme toggle (`src/assets/js/site.js`).
+- Islands: one page may lazy-load one React bundle for a single interactive piece it cannot express in Alpine. Source in `src/islands/`, bundled by esbuild with its CSS inlined. Ship a static fallback in Nunjucks and reuse token variables.
+- Images: `img/`, logos from [Brand downloads](/guidelines/brand/#downloads). Do not stretch or recolor the wordmark.
+- Iframe: site can load in the shell (`@shellui/sdk` tiny). Do not cover host chrome. Theme follows `html.dark`.
+- Do not ship a single-file HTML deliverable, a React/Vite rewrite, or a parallel design-system package.
+
+Chrome to reuse: `nav.njk` (fixed `h-16`), `footer.njk`, `logo.njk`. Main padding: `.page-top` (below the fixed header) and `.page-x` (horizontal gutters). Do not add a second header, mega-footer, announcement bar, or extra theme switcher.
 
 ## Shellui chrome
 
@@ -29,9 +65,9 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Do not cover the shell header, nav, or toast region. Fixed app bars need an offset for host chrome
 - Authentication, admin (`/admin`), and Files are shell surfaces. Deep-link them; don't clone their navigation
 - Theme and locale live in the shell. Read them; don't ship a second theme picker in the app unless the app is the settings surface
-- Prefer existing Tailwind tokens. Primary accent is honey-gold (`--color-primary`, `--color-primary-ink`). Don't invent a second brand color
-- Marketing site chrome: fixed header (`h-16`), `.page-top` and `.page-x` gutters, footer. Put `.page-x` on the outer band and keep `max-w-*` children undpadded so they align with the header. Sticky in-page UI must clear the header
-- Logos and marks: download from [Brand assets](/brand-assets/). Don't stretch, recolor, or swap in a different wordmark
+- Prefer existing Tailwind tokens from [Foundations](/guidelines/foundations/). Primary accent is honey gold (`--color-primary`, `--color-primary-ink`). Do not invent a second brand color
+- Marketing site chrome: fixed header (`h-16`), `.page-top` and `.page-x` gutters, footer. Put `.page-x` on the outer band and keep `max-w-*` children unpadded so they align with the header. Sticky in-page UI must clear the header
+- Logos and marks: see [Brand](/guidelines/brand/). Do not stretch, recolor, or swap in a different wordmark
 
 ## Accessibility and focus
 
@@ -75,6 +111,44 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Warn before navigation with unsaved changes (`beforeunload` or a router guard)
 - Auth fields belong in the shell when the app is hosted. Don't duplicate sign-in UI in the iframe unless you are replacing the identity backend
 
+## Reuse
+
+Prefer shipped Tailwind Plus patterns. Paste into Nunjucks or `{% demo %}`. Restyle with Shellui tokens. Native `<dialog>` / `el-dialog` on this site; shell SDK for toasts inside a hosted app.
+
+| Job | File | Pattern |
+| --- | --- | --- |
+| Product opening | `src/index.njk` | Centered hero, dual CTA |
+| Nav | `src/_includes/nav.njk` | Flyouts, Alpine, no new menu library |
+| Feature split | `src/features/index.md`, `layouts/feature.njk` | Two-column, one dominant piece |
+| Pricing | `src/pricing/index.md` | Two-tier |
+| Article | `layouts/post.njk` | Narrow measure |
+| Inner page | `layouts/page.njk`, `guidelines.njk` | Breadcrumb, h1, lede, prose |
+| Code | `{% highlight %}` | Shiki |
+| Demo | `src/blocks/*.njk` | Real HTML, no iframe |
+
+**Shellui brand ambient** is allowed: a soft primary / amber wash (`blur-3xl`, `from-primary to-amber-200`) behind the homepage hero or a quiet CTA. Static is fine. Reject multi-color blobs, logo clouds, gradient fields, testimonial marquees, and fake dashboards. Gradients elsewhere are not allowed except this wash.
+
+## Compose
+
+First viewport is the argument, not a masthead plus setup. Start with the reader's job. Executive path (identity, headings, one action) and audit path (commands, config, tables) are both required. Copy follows [Writing](/guidelines/writing/).
+
+One page-level throughline. One focal relationship per reading moment. Squint: one dominant claim. If every block has equal weight, redesign. Never fill an evidence gap with panels, icons, or effects.
+
+Passes: frame the job → choose composition → apply Foundations tokens → inspect both themes. Deliver the implementation, not a score.
+
+## Reject (visual)
+
+- All-caps tracked eyebrows as decoration
+- Multi-color glows, stripes, glass, ornamental shadows (soft primary/amber hero ambient is allowed)
+- Generic centered hero plus equal-weight card grid
+- Nested cards, or borders used to repair weak hierarchy
+- Arbitrary icon tiles, logo clouds, fake screenshots
+- A second theme picker, second nav, or host chrome rebuilt in an iframe
+- Leading a shipping-product page with AI / MCP / marketplace atmosphere
+- Authoring-process narration in page copy
+
+Voice rejects (banned words, dashes): [Writing](/guidelines/writing/).
+
 ## Motion, touch, and layout
 
 - Honor `prefers-reduced-motion` (reduced variant or disable). The marketing theme reveal already disables under that media query - match it
@@ -101,13 +175,13 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 
 ## Visual language
 
-- Density: developer-facing, not crowded. Match existing `page-top`, `page-x`, `max-w-5xl` / `max-w-3xl` prose, `rounded-xl` cards, and gray borders already on brand-assets and feature pages
+- Density: developer-facing, not crowded. Match existing `page-top`, `page-x`, `max-w-5xl` / `max-w-3xl` prose, `rounded-xl` cards, and gray borders on feature pages
 - Light and dark are both first-class. Preview every screen in both. Marketing site: `html.dark` plus `localStorage.theme`. Product: `@shellui/core` theme
 - `color-scheme: dark` on `html` when the dark theme is active (fixes scrollbar and native controls)
 - `theme-color` meta matches the page background
 - Native `<select>`: explicit `background-color` and `color` (Windows dark mode)
 - Ellipsis `…`, not three dots `...`. Loading states: `Loading…`, `Saving…`
-- Prefer hyphen `-` for a pause in UI copy. Ban em dashes (`—`) and en dashes (`–`) used as punctuation. Ordinary hyphens stay
+- Punctuation and banned words: [Writing guidelines](/guidelines/writing/) owns them. UI copy follows the same rules
 - Straight quotes in source. Don't convert to curly quotes by hand
 - `font-variant-numeric: tabular-nums` for number columns and comparisons
 - `text-wrap: balance` or `text-pretty` on headings (prevents widows)
@@ -132,7 +206,7 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Batch DOM reads and writes; don't interleave
 - Prefer uncontrolled inputs; controlled inputs must be cheap per keystroke
 - Self-host third-party scripts when practical (`@shellui/sdk` tiny ships from `/assets/js/`). Use Subresource Integrity if you must load from a CDN
-- Critical fonts: preload with `font-display: swap`. This marketing site uses the system stack - don't add a webfont without a reason
+- Critical fonts: Inter is self-hosted with preload and `font-display: swap`. Do not add a second webfont without a reason
 - Prefer compressed video over animated GIF; provide a still alternative
 - Short decorative loops: muted video, `prefers-reduced-motion` media condition, still fallback
 - URL reflects state - filters, tabs, pagination, expanded panels in query params. Deep-link stateful UI
@@ -164,7 +238,7 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - `autoFocus` without a clear reason
 - Animated GIF when compressed video is suitable
 - Gesture-only action without tap/click and keyboard alternative
-- Em dashes in UI copy; "fixing" ordinary hyphens
+- Em dashes or en dashes as punctuation in UI copy (see Writing)
 - Rebuilding shell toasts, dialogs, or nav inside the iframe
 - `100vh` layouts that sit under host chrome
 - A second theme picker in a hosted app
@@ -176,21 +250,17 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 
 Group by file. Use `file:line` format (clickable in VS Code). Terse findings.
 
-```text
-## src/guidelines/index.njk
+    #### Example (guidelines hub)
 
-src/guidelines/index.njk:12 - icon button missing aria-label
-src/guidelines/index.njk:40 - heading target missing scroll-margin-top
-src/guidelines/index.njk:58 - animation missing prefers-reduced-motion
+    src/guidelines/index.njk:12 - icon button missing aria-label
+    src/guidelines/index.njk:40 - heading target missing scroll-margin-top
 
-## src/assets/css/extras.css
+    #### Example (CSS)
 
-src/assets/css/extras.css:22 - transition: all → list properties
-src/assets/css/extras.css:41 - outline-none without focus-visible replacement
+    src/assets/css/extras.css:22 - transition: all → list properties
 
-## src/_includes/nav.njk
+    #### Example (pass)
 
-✓ pass
-```
+    src/_includes/nav.njk - pass
 
 State issue + location. Skip explanation unless the fix is non-obvious. No preamble.
