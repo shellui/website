@@ -7,7 +7,9 @@
 #}
 {%- set nlId = newsletterId or "newsletter" -%}
 {%- set nlTag = "h" ~ (newsletterHeadingLevel or 2) -%}
-{%- set nlAction = site.newsletter.endpoint ~ "/api/v1/public/newsletters/" ~ site.newsletter.key ~ "/subscribe" -%}
+{%- set nlList = newsletterList or site.newsletter -%}
+{%- set nlAction = nlList.endpoint ~ "/api/v1/public/newsletters/" ~ nlList.key ~ "/subscribe" -%}
+{%- set nlButton = newsletterButton or "Subscribe" -%}
 
 {%- macro nlForm(id, action, extraClass) -%}
   <form class="newsletter-form {{ extraClass }}" action="{{ action }}" method="post" novalidate>
@@ -32,7 +34,7 @@
         type="submit"
         class="flex-none rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60"
       >
-        Subscribe
+        {{ nlButton }}
       </button>
     </div>
     <p id="{{ id }}-status" class="mt-3 min-h-6 text-sm/6 text-muted-foreground" role="status" aria-live="polite"></p>
@@ -50,7 +52,7 @@
 
 {% if newsletterVariant == "form" %}
   <div class="relative">
-    {% if site.newsletter.key %}
+    {% if nlList.key %}
       {{ nlForm(nlId, nlAction, "") }}
     {% else %}
       {{ nlUnavailable("") }}
