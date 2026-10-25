@@ -12,7 +12,7 @@ lede: "Give staff and company owners a shared administration panel inside Shellu
   <div class="max-w-2xl">
     <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Open administration inside your app</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Connect the <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.adminPanel }}">Shellui admin app</a> through <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminUrl</code> and set its route with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminPathname</code>. Staff and company owners can then open Administration from the account menu.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">The panel uses your <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.identityService }}">identity-service</a> backend and the existing Shellui session. Host the admin app yourself or use <a class="font-medium text-primary-ink underline underline-offset-2" href="https://admin.shellui.com">admin.shellui.com</a>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The panel uses your <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.identityService }}">identity-service</a> backend and the existing Shellui session. Host the admin app yourself as static files.</p>
   </div>
   <div class="mx-auto w-full max-w-sm">
     {% include "feature-visual-admin.njk" %}

@@ -57,7 +57,7 @@ const HOSTING = {
   role: "All-in temporary deploy",
   kind: "hosting",
   description:
-    "shellui.app: one temporary URL for the whole Browser group - shell, your app, and Files.",
+    "One temporary URL for the whole Browser group: shell, your app, and Files.",
   href: "#hosting-service",
 };
 
@@ -65,7 +65,7 @@ const full = {
   id: "full",
   label: "Full Shellui stack",
   summary:
-    "Seven Shellui pieces, plus the blob store and the company's mail provider. Browser pieces are static files. hosting-service on shellui.app is the all-in temporary deploy for that whole tab.",
+    "Seven Shellui pieces, plus the blob store and the company's mail provider. Browser pieces are static files. hosting-service is the all-in temporary deploy for that whole tab.",
   groups: [
     { ...GROUP_CLIENT, position: { x: 0, y: 0 }, size: { width: 560, height: 484 } },
     { ...GROUP_INFRA, position: { x: 660, y: 0 }, size: { width: 620, height: 520 } },
