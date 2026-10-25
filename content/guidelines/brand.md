@@ -20,7 +20,7 @@ The kit matches how shellui.com is built today:
 - **Typography**: the website uses the system UI font stack. Logos, Open Graph images, and social templates in the asset zip use Inter.
 - **Durations**: write seconds as `30s`, not spelled-out words.
 - **Controls**: site chrome uses `rounded-md` corner radius on buttons and inputs.
-- **Gold tint**: honey gold wash in the PDF is for print samples only, not web backgrounds.
+- **Gold tint**: use flat gold backgrounds in print and social images (Open Graph). The soft honey gold wash is for the website only.
 
 ## How to use this file
 

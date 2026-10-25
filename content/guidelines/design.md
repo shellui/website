@@ -43,7 +43,7 @@ Chrome to reuse: `nav.njk` (fixed `h-16`), `footer.njk`, `logo.njk`. Main paddin
 
 ## Tokens
 
-Gray canvas. Honey gold is the action color. A soft primary wash behind the homepage hero is brand ambient, not a gold field. Prefer token utilities (`bg-background`, `text-foreground`, `border-border`, `bg-muted`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `text-primary-ink`, `bg-card`). In dark, gold text is `dark:text-primary` because `primary-ink` is not remapped.
+Gray canvas. Honey gold is the action color. A soft primary wash behind the homepage hero is brand ambient, not a gold field. Prefer token utilities (`bg-background`, `text-foreground`, `border-border`, `bg-muted`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `text-primary-ink`, `bg-card`). `text-primary-ink` remaps in dark mode; do not add `dark:text-primary` beside it.
 
 | Token | Light | Dark | Role |
 | --- | --- | --- | --- |
@@ -55,7 +55,7 @@ Gray canvas. Honey gold is the action color. A soft primary wash behind the home
 | `card` | `#ffffff` | `#111827` | Raised surface |
 | `primary` | `#e3a512` | `#e8b84a` | Accent / buttons |
 | `primary-foreground` | `#1a1408` | `#1a1408` | Text on gold |
-| `primary-ink` | `#c4920a` | use `primary` | Gold text on light |
+| `primary-ink` | `#8a6300` | `#e8b84a` | Gold text links and labels |
 | `ring` | `#e3a512` | `#e8b84a` | Focus |
 | radius | `rounded-xl` cards (`0.75rem`); `rounded-md` controls (`0.375rem`) | same | Shape |
 

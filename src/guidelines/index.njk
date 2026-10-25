@@ -15,7 +15,7 @@ hideBreadcrumbs: true
         Voice, UI, and composition rules for Shellui. Writing and web design are markdown on the page. Design is a visual handbook; agents still fetch the lean file.
       </p>
       <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
-        Logos and press-kit files stay on <a href="/brand-assets/" class="text-primary-ink underline hover:opacity-90 dark:text-primary">brand assets</a>.
+        Logos and press-kit files stay on <a href="/brand-assets/" class="text-primary-ink underline hover:opacity-90">brand assets</a>.
       </p>
     </header>
 
@@ -32,7 +32,7 @@ hideBreadcrumbs: true
               <p class="mt-2 font-mono text-xs text-gray-500 dark:text-gray-400">fetch https://shellui.com/design.md</p>
             {% endif %}
           </div>
-          <span class="shrink-0 text-sm font-semibold text-primary-ink group-hover:underline dark:text-primary">Read {{ item.navLabel | lower }}</span>
+          <span class="shrink-0 text-sm font-semibold text-primary-ink group-hover:underline">Read {{ item.navLabel | lower }}</span>
         </a>
       {% endfor %}
     </div>
@@ -40,8 +40,8 @@ hideBreadcrumbs: true
     <div class="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-white/5">
       <h2 class="text-base font-semibold text-gray-900 dark:text-white">For agents</h2>
       <p class="mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-        Site map for agents: <a href="/llms.txt" class="font-medium text-primary-ink dark:text-primary">/llms.txt</a>.
-        Building a page? Fetch <a href="/design.md" class="font-medium text-primary-ink dark:text-primary">https://shellui.com/design.md</a> first, then the topic skill. Do not scrape HTML.
+        Site map for agents: <a href="/llms.txt" class="font-medium text-primary-ink">/llms.txt</a>.
+        Building a page? Fetch <a href="/design.md" class="font-medium text-primary-ink">https://shellui.com/design.md</a> first, then the topic skill. Do not scrape HTML.
       </p>
       <pre class="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-white px-4 py-3 font-mono text-xs leading-relaxed text-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-200"># 1. Fetch the composition file
 https://shellui.com/design.md

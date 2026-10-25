@@ -21,6 +21,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.6.2] - 2026-10-25
+
+### 🐛 Bug Fixes
+
+- Remap `primary-ink` to `#8a6300` on light backgrounds and `#e8b84a` in dark mode so gold text meets WCAG AA without per-page `dark:text-primary` overrides.
+
+### 📚 Documentation
+
+- Correct brand guidelines: flat gold backgrounds for print and Open Graph; soft honey gold wash allowed on the website.
+- Fix `undpadded` typo in web-design guidelines (`unpadded`).
+
 ## [0.6.1] - 2026-10-25
 
 ### ✨ Feature

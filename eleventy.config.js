@@ -295,7 +295,7 @@ export default async function (eleventyConfig) {
       const credit = [author, role].filter(Boolean).length
         ? `<figcaption class="mt-6 flex gap-x-4">${photo}<div class="text-sm/6">${author ? `<strong class="font-semibold text-gray-900 dark:text-white">${escapeXml(author)}</strong>` : ""}${author && role ? " - " : ""}${role ? escapeXml(role) : ""}</div></figcaption>`
         : "";
-      return `<figure class="article-quote mt-10 border-l border-primary-ink pl-9 dark:border-primary"><blockquote class="font-semibold text-gray-900 dark:text-white">${quote}</blockquote>${credit}</figure>`;
+      return `<figure class="article-quote mt-10 border-l border-primary-ink pl-9"><blockquote class="font-semibold text-gray-900 dark:text-white">${quote}</blockquote>${credit}</figure>`;
     },
   );
 

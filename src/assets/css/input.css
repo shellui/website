@@ -9,7 +9,7 @@
 @theme {
   --color-primary: #e3a512;
   --color-primary-foreground: #1a1408;
-  --color-primary-ink: #c4920a;
+  --color-primary-ink: #8a6300;
   --color-background: #ffffff;
   --color-foreground: #111827;
   --color-muted: #f9fafb;
@@ -34,6 +34,7 @@
 @layer theme {
   .dark {
     --color-primary: #e8b84a;
+    --color-primary-ink: #e8b84a;
     --color-ring: #e8b84a;
     --color-background: #030712;
     --color-foreground: #f9fafb;

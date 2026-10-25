@@ -42,9 +42,9 @@
 {%- macro nlUnavailable(extraClass) -%}
   <p class="{{ extraClass }} text-sm/6 text-muted-foreground">
     Sign-up opens soon. Until then, follow releases in the
-    <a href="/changelog/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">changelog</a>
+    <a href="/changelog/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">changelog</a>
     or the
-    <a href="{{ site.rss }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">blog feed</a>.
+    <a href="{{ site.rss }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">blog feed</a>.
   </p>
 {%- endmacro -%}
 
@@ -103,7 +103,7 @@
       {% endif %}
       <p class="text-sm/6 text-muted-foreground">
         About once a month. Unsubscribe anytime.
-        <a href="/newsletter/" class="font-semibold text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">About the newsletter</a>
+        <a href="/newsletter/" class="font-semibold text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">About the newsletter</a>
       </p>
     </div>
   </div>
@@ -112,7 +112,7 @@
     <{{ nlTag }} class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Get Shellui news by email</{{ nlTag }}>
     <p class="mt-3 text-base/7 text-muted-foreground">
       Releases and product news, about once a month. Unsubscribe anytime.
-      <a href="/newsletter/" class="font-semibold text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">About the newsletter</a>
+      <a href="/newsletter/" class="font-semibold text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">About the newsletter</a>
     </p>
     {% if site.newsletter.key %}
       {{ nlForm(nlId, nlAction, "mt-6 max-w-md") }}

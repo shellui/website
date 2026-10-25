@@ -30,7 +30,7 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Authentication, admin (`/admin`), and Files are shell surfaces. Deep-link them; don't clone their navigation
 - Theme and locale live in the shell. Read them; don't ship a second theme picker in the app unless the app is the settings surface
 - Prefer existing Tailwind tokens. Primary accent is honey-gold (`--color-primary`, `--color-primary-ink`). Don't invent a second brand color
-- Marketing site chrome: fixed header (`h-16`), `.page-top` and `.page-x` gutters, footer. Put `.page-x` on the outer band and keep `max-w-*` children undpadded so they align with the header. Sticky in-page UI must clear the header
+- Marketing site chrome: fixed header (`h-16`), `.page-top` and `.page-x` gutters, footer. Put `.page-x` on the outer band and keep `max-w-*` children unpadded so they align with the header. Sticky in-page UI must clear the header
 - Logos and marks: download from [Brand assets](/brand-assets/). Don't stretch, recolor, or swap in a different wordmark
 
 ## Accessibility and focus

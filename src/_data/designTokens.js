@@ -15,10 +15,9 @@ const colors = [
   },
   {
     token: "primary-ink",
-    role: "Gold text on light; in dark use primary",
-    light: "#c4920a",
+    role: "Gold text on light and dark surfaces",
+    light: "#8a6300",
     dark: "#e8b84a",
-    darkIsAlias: "primary",
     group: "accent",
   },
   {
