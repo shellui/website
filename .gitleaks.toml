@@ -7,4 +7,4 @@ useDefault = true
 description = "Public email-service newsletter list key. The nl_ value is a client-side list id, not a credential."
 condition = "AND"
 paths = ['''src/_data/site\.json''']
-regexes = ['''nl_[A-Za-z0-9]+''']
+regexes = ['''nl_[A-Za-z0-9_-]+''']

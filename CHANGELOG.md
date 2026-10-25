@@ -25,6 +25,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### ✨ Feature
 
+- Newsletter sign-up is back on at `/newsletter/` and on the home, contact, and features pages.
 - Top bar adds "Log in" (dashboard) and "Join waitlist" (`/waitlist/`, double opt-in through email-service once a list key is set).
 - Publish Shellui brand kit v1 (PDF) and brand assets v1 (ZIP), with unzipped logo, icon, Open Graph, social, and email files at stable `/brand-assets/*` paths. Brand kit source lives under `tools/brand-kit/` and reads `tokens/tokens.json`.
 - Guidelines v2.0.0: hub with cards; Brand (downloads on `#downloads`), Foundations (generated tokens), Writing, Interface (merged design + web design), Print, and guidelines changelog. Agent surfaces: `/llms-full.txt`, trimmed `/design.md`, full `/guidelines/interface.md`, forever `/guidelines/web-design.md` copy.
