@@ -33,6 +33,14 @@ const catalog = [
     humanDescription:
       "Gray canvas, scarce honey gold, evidence over decoration. This page is the visual handbook. Agents should fetch the lean markdown - not this HTML.",
   },
+  {
+    slug: "brand",
+    href: "/guidelines/brand/",
+    navLabel: "Brand",
+    downloadName: "brand.md",
+    hubDescription:
+      "Brand kit v1: logo usage, color, type, and production files. PDF handbook plus a zip of logos, OG images, and social templates.",
+  },
 ];
 
 function parseFrontmatter(raw) {

@@ -20,8 +20,9 @@ https://shellui.com/design.md
 | Design (compose pages) | `skills/design-md/SKILL.md` | `content/guidelines/design.md` | Human visual: `/guidelines/design/`. Agents: `/design.md` only. |
 | Writing | `skills/writing-guidelines/SKILL.md` | `content/guidelines/writing.md` | `/guidelines/writing/` |
 | Web design | `skills/web-design-guidelines/SKILL.md` | `content/guidelines/web-design.md` | `/guidelines/web-design/` |
+| Brand | (this hub) | `content/guidelines/brand.md` | `/guidelines/brand/` |
 
-Hub: `/guidelines/`. Logos stay on `/brand-assets/`. Site overview for agents: `/llms.txt`.
+Hub: `/guidelines/`. Logos and the brand kit stay on `/brand-assets/`. Site overview for agents: `/llms.txt`.
 
 Published markdown (after deploy):
 
@@ -29,6 +30,7 @@ Published markdown (after deploy):
 https://shellui.com/design.md
 https://shellui.com/guidelines/writing.md
 https://shellui.com/guidelines/web-design.md
+https://shellui.com/guidelines/brand.md
 https://shellui.com/llms.txt
 ```
 
