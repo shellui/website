@@ -37,10 +37,6 @@ Cloudflare dashboard → **Rules** → **Transform Rules** → **Modify Response
 
 Copy values verbatim from the JSON file so the repo stays the single source of truth.
 
-### Option B — Worker (same headers, more control)
-
-See [`infra/cloudflare/worker-security-headers.js`](../infra/cloudflare/worker-security-headers.js). Route `shellui.com/*` through the worker, fetch from the GitHub Pages origin, and append headers from the shared JSON.
-
 ## CSP notes
 
 The policy in `infra/security-headers.json` matches the current site:

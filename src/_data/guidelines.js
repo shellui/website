@@ -8,38 +8,53 @@ const contentDir = path.join(root, "../../content/guidelines");
 
 const catalog = [
   {
-    slug: "writing",
-    href: "/guidelines/writing/",
-    skillPath: "skills/writing-guidelines/SKILL.md",
-    navLabel: "Writing",
-    downloadName: "writing.md",
-  },
-  {
-    slug: "web-design",
-    href: "/guidelines/web-design/",
-    skillPath: "skills/web-design-guidelines/SKILL.md",
-    navLabel: "Web design",
-    downloadName: "web-design.md",
-  },
-  {
-    slug: "design",
-    href: "/guidelines/design/",
-    skillPath: "skills/design-md/SKILL.md",
-    navLabel: "Design",
-    downloadName: "design.md",
-    publicUrl: "/design.md",
-    hubDescription:
-      "Color, type, and composition for Shellui pages. Visual handbook for humans; agents fetch /design.md.",
-    humanDescription:
-      "Gray canvas, scarce honey gold, evidence over decoration. This page is the visual handbook. Agents should fetch the lean markdown - not this HTML.",
-  },
-  {
     slug: "brand",
     href: "/guidelines/brand/",
     navLabel: "Brand",
     downloadName: "brand.md",
     hubDescription:
-      "Brand kit v1: logo usage, color, type, and production files. PDF handbook plus a zip of logos, OG images, and social templates.",
+      "Name, one-liner, logo usage, voice summary, and downloadable logos, kit PDF, and zip.",
+  },
+  {
+    slug: "foundations",
+    href: "/guidelines/foundations/",
+    navLabel: "Foundations",
+    downloadName: "foundations.md",
+    hubDescription:
+      "Color, type, spacing, and radius tokens for web and print. Generated from tokens.json.",
+    visualHandbook: true,
+  },
+  {
+    slug: "writing",
+    href: "/guidelines/writing/",
+    navLabel: "Writing",
+    downloadName: "writing.md",
+    hubDescription: "Voice, structure, punctuation, and banned words (sole owner).",
+  },
+  {
+    slug: "interface",
+    href: "/guidelines/interface/",
+    navLabel: "Interface",
+    downloadName: "interface.md",
+    publicUrl: "/guidelines/interface.md",
+    hubDescription:
+      "Composition, chrome, layout, accessibility, and visual language for web and in-shell apps.",
+    agentAliasUrl: "/design.md",
+  },
+  {
+    slug: "print",
+    href: "/guidelines/print/",
+    navLabel: "Print",
+    downloadName: "print.md",
+    hubDescription: "Print grid, IBM Plex, folios, Pantone, paper, flat color.",
+  },
+  {
+    slug: "changelog",
+    href: "/guidelines/changelog/",
+    navLabel: "Changelog",
+    downloadName: "changelog.md",
+    hubDescription: "Version history for all public guideline topics.",
+    hubOnly: false,
   },
 ];
 
@@ -98,6 +113,7 @@ function extractToc(body) {
     const text = match[2]
       .replace(/\*\*|__/g, "")
       .replace(/`/g, "")
+      .replace(/\s*\{#.+?\}\s*$/, "")
       .trim();
     toc.push({ text, id: slugify(text) });
   }
@@ -150,16 +166,18 @@ function loadTopic(entry) {
   const { data, body } = parseFrontmatter(raw);
   return {
     ...entry,
-    version: data.version || "1.0.0",
+    version: data.version || "2.0.0",
     title: data.title || entry.navLabel,
     description: data.description || "",
     hubDescription: entry.hubDescription || data.description || "",
     humanDescription: entry.humanDescription || data.description || "",
     html: md.render(body),
+    rawBody: body.trim(),
     toc: extractToc(body),
     downloadUrl: entry.publicUrl || `/guidelines/${entry.downloadName}`,
     sourcePath,
     publicUrl: entry.publicUrl || `/guidelines/${entry.downloadName}`,
+    ogImage: entry.ogImage || `/brand-assets/og/guidelines-${entry.slug}.png`,
   };
 }
 
@@ -168,5 +186,6 @@ const topics = catalog.map(loadTopic);
 export default {
   topics,
   bySlug: Object.fromEntries(topics.map((topic) => [topic.slug, topic])),
-  parentSkillPath: "skills/guidelines/SKILL.md",
+  parentSkillPath: "shellui/skills/skills/guidelines/SKILL.md",
+  versionsNote: "All guideline topics are 2.0.0 in this release.",
 };

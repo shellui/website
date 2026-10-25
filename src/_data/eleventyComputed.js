@@ -65,6 +65,9 @@ export default {
       writing: "Writing",
       "web-design": "Web design",
       design: "Design",
+      interface: "Interface",
+      foundations: "Foundations",
+      print: "Print",
     };
 
     const pageLabel = String(data.title || data.heading || "")

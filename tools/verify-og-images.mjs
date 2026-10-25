@@ -75,6 +75,7 @@ const pngByHash = new Map();
 
 for (const rel of htmlFiles) {
   const html = fs.readFileSync(path.join(site, rel), "utf8");
+  if (/<meta http-equiv="refresh"/i.test(html) && /name="robots" content="noindex/i.test(html)) continue;
   if (!html.includes('property="og:image"')) {
     fail(`${rel} missing og:image meta tag`);
   }
