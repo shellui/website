@@ -42,8 +42,8 @@
     "gray-matter": "^4.0.3",
     "markdown-it": "^15.0.2",
     "satori": "^0.63.2",
-    "shiki": "^4.4.3",
     "sharp": "^0.34.5",
+    "shiki": "^4.4.3",
     "tailwindcss": "^4.3.3"
   },
   "dependencies": {
@@ -51,7 +51,7 @@
     "@tailwindplus/elements": "^1.0.22",
     "@xyflow/react": "^12.12.0",
     "alpinejs": "^3.17.4",
-    "react": "^19.3.0",
+    "react": "^19.3.1",
     "react-dom": "^19.3.1"
   }
 }
