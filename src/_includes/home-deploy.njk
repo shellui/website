@@ -5,39 +5,20 @@
         Ship static files, or a native app
       </h2>
       <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-        <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui build</code> writes a static application to <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/web/</code>. Add <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">--app</code> to also bundle a Tauri 2 desktop wrapper under <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/app/</code>. Hosting on <a href="{{ site.hosting }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" target="_blank" rel="noopener noreferrer">shellui.app</a> is optional.
+        <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">shellui build</code> writes a static application to <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/web/</code>. Add <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">--app</code> to also bundle a Tauri 2 desktop wrapper under <code class="rounded bg-gray-100 px-1.5 py-0.5 text-sm dark:bg-gray-800">dist/app/</code>.
       </p>
     </div>
 
-    <div class="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
+    <div class="mt-12 max-w-3xl">
       <div>
         <h3 class="text-base font-semibold text-gray-900 dark:text-white">Host the files yourself</h3>
         <p class="mt-2 text-base/7 text-gray-600 dark:text-gray-400">
-          The production output is HTML, CSS, and JavaScript - not a required cloud runtime. Put <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/web/</code> on the origin you already use, or keep running it on your own machines.
+          The production output is HTML, CSS, and JavaScript, with no required cloud runtime. Put <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">dist/web/</code> on the origin you already use, or keep running it on your own machines.
         </p>
         <div class="cli-pane mt-6 overflow-hidden rounded-xl border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
           <div class="border-b border-gray-200 px-3 py-1.5 font-mono text-[0.65rem] text-gray-500 dark:border-gray-800">terminal</div>
           <pre class="overflow-x-auto px-3 py-3 font-mono text-sm leading-relaxed text-gray-900 sm:px-4 dark:text-gray-50"><code><span class="select-none text-gray-400 dark:text-gray-600" aria-hidden="true">$ </span>shellui build</code></pre>
         </div>
-      </div>
-      <div>
-        <h3 class="text-base font-semibold text-gray-900 dark:text-white">Deploy a preview on shellui.app</h3>
-        <p class="mt-2 text-base/7 text-gray-600 dark:text-gray-400">
-          Log in once, then upload the static build. You get an HTTPS origin on <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">*.shellui.app</code>.
-        </p>
-        <div class="cli-pane mt-6 overflow-hidden rounded-xl border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950">
-          <div class="border-b border-gray-200 px-3 py-1.5 font-mono text-[0.65rem] text-gray-500 dark:border-gray-800">terminal</div>
-          <pre class="overflow-x-auto px-3 py-3 font-mono text-sm leading-relaxed text-gray-900 sm:px-4 dark:text-gray-50"><code><span class="select-none text-gray-400 dark:text-gray-600" aria-hidden="true">$ </span>shellui login
-<span class="select-none text-gray-400 dark:text-gray-600" aria-hidden="true">$ </span>shellui deploy</code></pre>
-        </div>
-        <a
-          href="{{ site.hosting }}"
-          class="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open shellui.app <span aria-hidden="true">→</span>
-        </a>
       </div>
     </div>
 

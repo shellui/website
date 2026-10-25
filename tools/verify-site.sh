@@ -99,12 +99,9 @@ grep -q 'npm install -g @shellui/cli' "${SITE}/index.html" \
   || fail "index.html missing global CLI install"
 grep -q 'shellui init react' "${SITE}/index.html" \
   || fail "index.html missing shellui init react"
-grep -q 'shellui login' "${SITE}/index.html" \
-  || fail "index.html missing shellui login"
-grep -q 'shellui deploy' "${SITE}/index.html" \
-  || fail "index.html missing shellui deploy"
-grep -q 'shellui.app' "${SITE}/index.html" \
-  || fail "index.html missing shellui.app hosting"
+if grep -rq 'shellui\.app' "${SITE}" --include='*.html' --include='*.txt'; then
+  fail "output links to unavailable shellui.app"
+fi
 grep -q 'dist/web/' "${SITE}/index.html" \
   || fail "index.html missing static dist/web/ ship path"
 if grep -q 'Questions developers ask' "${SITE}/index.html"; then

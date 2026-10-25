@@ -2,10 +2,10 @@
 layout: layouts/feature.njk
 wide: true
 title: "Web and desktop deployment | Shellui"
-description: "Create a Shellui project, build static web files, publish a preview on shellui.app, or package the shell as a desktop app with Tauri."
+description: "Create a Shellui project, build static web files, or package the shell as a desktop app with Tauri."
 eyebrow: Features
 heading: "From a local project to web and desktop"
-lede: "Create a project with the Shellui command-line interface (CLI), then build the shell for the web. Host the static files yourself, share a preview on shellui.app, or package the same shell as a desktop app with Tauri 2."
+lede: "Create a project with the Shellui command-line interface (CLI), then build the shell for the web. Host the static files yourself, or package the same shell as a desktop app with Tauri 2."
 ---
 
 <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -65,8 +65,8 @@ shellui build
 
 <section class="mt-20" aria-labelledby="shellui-app">
   <div class="max-w-2xl">
-    <h2 id="shellui-app" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Optional preview on shellui.app</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Configure <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting.url</code> for your hosting-service instance, then sign in and deploy with the commands below. The shellui.app service gives you a preview address to share. Previews expire after seven days unless you redeploy the same preview name.</p>
+    <h2 id="shellui-app" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Optional preview with hosting-service</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Configure <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting.url</code> for your hosting-service instance, then sign in and deploy with the commands below. Your hosting-service instance gives you a preview address to share. Previews expire after seven days unless you redeploy the same preview name.</p>
   </div>
   <div class="mt-8 max-w-3xl">
     {% highlight "bash", "terminal" %}
@@ -76,8 +76,6 @@ shellui deploy
   </div>
   <p class="mt-4 text-base/7 text-muted-foreground">hosting-service sends signed webhooks for its events, with the same retries as identity, storage, and email. Company owners manage those rules under <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/administration/#webhooks">Email and webhooks</a> in Administration.</p>
   <p class="mt-6 text-sm text-muted-foreground">
-    <a href="{{ site.hosting }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" target="_blank" rel="noopener noreferrer">Open shellui.app</a>
-    ·
     <a href="{{ site.hostingService }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" target="_blank" rel="noopener noreferrer">hosting-service source</a>
     ·
     <a href="/features/administration/#webhooks" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Webhooks</a>
