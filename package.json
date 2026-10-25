@@ -8,9 +8,13 @@
     "start": "eleventy --serve",
     "dev": "eleventy --serve",
     "fetch:changelog": "node ./tools/fetch-changelog.mjs",
-    "prebuild": "npm run fetch:changelog",
+    "generate:tokens": "node ./tools/generate-tokens.mjs",
+    "generate:guidelines": "node ./tools/generate-guidelines.mjs",
+    "generate:og": "node ./tools/og/guidelines.mjs",
+    "prebuild": "npm run fetch:changelog && npm run generate:guidelines && npm run generate:tokens && npm run generate:og",
     "build": "rm -rf _site && eleventy",
     "verify": "./tools/verify-site.sh",
+    "og:audit": "node ./tools/og/list-rendered-titles.mjs",
     "verify:security": "node ./tools/verify-changelog-sanitize.mjs",
     "pre-release": "./tools/pre-release-check.sh"
   },
@@ -31,10 +35,15 @@
   "homepage": "https://github.com/shellui/website#readme",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
+    "@fontsource/inter": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/cli": "^4.3.3",
     "esbuild": "^0.28.2",
+    "gray-matter": "^4.0.3",
     "markdown-it": "^15.0.2",
+    "satori": "^0.63.2",
     "shiki": "^4.4.3",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.3.3"
   },
   "dependencies": {

@@ -20,10 +20,11 @@
     <meta property="og:url" content="{{ canonical }}" />
     <meta property="og:site_name" content="{{ site.name }}" />
     <meta property="og:locale" content="en_US" />
-    {% if ogImage %}
-      <meta property="og:image" content="{{ ogImage }}" />
-      <meta name="twitter:image" content="{{ ogImage }}" />
-    {% endif %}
+    <meta property="og:image" content="{{ ogImage }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{ ogImageAlt }}" />
+    <meta name="twitter:image" content="{{ ogImage }}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ ogTitle or metaTitle }}" />
     <meta name="twitter:description" content="{{ ogDescription or metaDescription }}" />
@@ -31,6 +32,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="preload" href="/assets/fonts/inter/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/assets/css/site.css" />
     <script>
       (function () {

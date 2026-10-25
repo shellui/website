@@ -5,11 +5,11 @@ layout: false
 ---
 # Shellui
 
-> Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, storage, and email. Built for developers shipping a product inside that shell.
+> {{ brand.oneLiner }}
 
 This file is the agent index for {{ site.url }}. Prefer the links below over scraping HTML. Product name is Shellui only (never "The Host"). In prose, "the shell" (lowercase) is the running host.
 
-CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, then `shellui start`. `shellui dev` aliases `shellui start`. Build with `shellui build` (output under `dist/web/`). For agent-led scaffolding (skills, framework starters), fetch [shellui.ai](https://shellui.ai) and follow that page. Do not scrape `/guidelines/design/` HTML; fetch `/design.md` instead.
+CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, then `shellui start`. `shellui dev` aliases `shellui start`. Build with `shellui build` (output under `dist/web/`). For agent-led scaffolding (skills, framework starters), fetch [shellui.ai](https://shellui.ai) and follow that page.
 
 ## Product
 
@@ -19,21 +19,19 @@ CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, th
 - [GitHub]({{ site.github }}): Source for the platform and related services
 - [Architecture]({{ site.url }}/architecture/): How the stack fits together
 - [Features]({{ site.url }}/features/): Overview of apps and navigation, authentication, administration, email, file storage, and web and desktop
-- [Apps and navigation]({{ site.url }}/features/apps-and-navigation/): Shared layouts, themes, language, and chrome
-- [Authentication]({{ site.url }}/features/authentication/): OAuth, SAML, SCIM, magic links, and company access
-- [Administration]({{ site.url }}/features/administration/): Members, email, webhooks, and company tools
-- [Email]({{ site.url }}/features/email/): Sign-in mail, event mail, newsletters, and broadcasts
-- [File storage]({{ site.url }}/features/storage/): Uploads, sharing, and limits
-- [Web and desktop]({{ site.url }}/features/web-and-desktop/): Static web build, preview hosting, and Tauri
 
 ## Agent surfaces
 
 - [shellui.ai](https://shellui.ai): Agent bootstrap - install skills, install CLI, init, start
-- [Guidelines hub]({{ site.url }}/guidelines/): Writing, web design, design, and brand rules for humans and agents
-- [Brand guidelines (markdown)]({{ site.url }}/guidelines/brand.md): Brand kit v1 and asset downloads
-- [design.md]({{ site.url }}/design.md): Composition authority when building Shellui pages (`fetch https://shellui.com/design.md`)
-- [Writing guidelines (markdown)]({{ site.url }}/guidelines/writing.md): Voice and review rules
-- [Web design guidelines (markdown)]({{ site.url }}/guidelines/web-design.md): UI, accessibility, and chrome
+- [Guidelines hub]({{ site.url }}/guidelines/): Brand, foundations, writing, interface, and print
+- [llms-full.txt]({{ site.url }}/llms-full.txt): All guideline markdown concatenated
+- [design.md]({{ site.url }}/design.md): Composition alias when building pages (`fetch https://shellui.com/design.md`)
+- [interface.md]({{ site.url }}/guidelines/interface.md): Full interface rules
+- [foundations.md]({{ site.url }}/guidelines/foundations.md): Design tokens
+- [writing.md]({{ site.url }}/guidelines/writing.md): Voice and review rules
+- [brand.md]({{ site.url }}/guidelines/brand.md): Identity and downloads
+- [print.md]({{ site.url }}/guidelines/print.md): Print production rules
+- [web-design.md]({{ site.url }}/guidelines/web-design.md): Forever alias for interface.md
 
 ## Docs
 
@@ -50,14 +48,11 @@ CLI path (from the docs): `npm install -g @shellui/cli`, then `shellui init`, th
 ## Optional
 
 - [Pricing]({{ site.url }}/pricing/)
-- [Brand assets]({{ site.url }}/brand-assets/): Logos and press-kit downloads
+- [Brand downloads]({{ site.url }}/guidelines/brand/#downloads): Logos, kit PDF, and zip
 - [Blog]({{ site.url }}/blog/)
 - [Changelog]({{ site.url }}/changelog/)
+- [Guidelines changelog]({{ site.url }}/guidelines/changelog/)
 - [Roadmap]({{ site.url }}/roadmap/)
 - [Newsletter]({{ site.url }}/newsletter/): Releases and product news by email, about once a month
 - [Contribute]({{ site.url }}/company/contribute/)
 - [identity-service]({{ site.identityService }}): Auth backend source
-- [admin]({{ site.adminPanel }}): Admin panel source
-- [storage-service]({{ site.storageService }}): Storage backend source
-- [hosting-service]({{ site.hostingService }}): Hosting backend source (Docker image behind {{ site.hosting }})
-- [email-service]({{ site.emailService }}): Email backend source (templates, newsletters, and sign-in mail)

@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { generateOgImages } from "./tools/og/generate.mjs";
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -228,6 +229,8 @@ export default async function (eleventyConfig) {
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
     "content/guidelines/design.md": "design.md",
     "content/guidelines": "guidelines",
+    "content/guidelines/generated": "guidelines/generated",
+    "src/assets/fonts": "assets/fonts",
   });
 
   eleventyConfig.addFilter("readableDate", (date) =>
@@ -325,8 +328,11 @@ export default async function (eleventyConfig) {
   eleventyConfig.on("eleventy.before", buildCss);
   eleventyConfig.on("eleventy.before", buildIslands);
 
-  eleventyConfig.on("eleventy.after", ({ dir }) => {
-    if (hashAssets) fingerprintSite(dir.output);
+  eleventyConfig.on("eleventy.after", async ({ dir, results }) => {
+    if (hashAssets) {
+      await generateOgImages(dir.output, results || []);
+      fingerprintSite(dir.output);
+    }
   });
 
   eleventyConfig.setServerOptions({
