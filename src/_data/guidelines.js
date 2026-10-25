@@ -177,7 +177,7 @@ function loadTopic(entry) {
     downloadUrl: entry.publicUrl || `/guidelines/${entry.downloadName}`,
     sourcePath,
     publicUrl: entry.publicUrl || `/guidelines/${entry.downloadName}`,
-    ogImage: entry.ogImage || `/brand-assets/og/og-guidelines-${entry.slug}.png`,
+    ogImage: entry.ogImage || `/brand-assets/og/guidelines-${entry.slug}.png`,
   };
 }
 

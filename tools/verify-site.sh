@@ -157,6 +157,9 @@ fi
 grep -q '/guidelines/changelog/' "${SITE}/guidelines/index.html" || fail "guidelines pages should link to changelog"
 grep -q 'Changelog' "${SITE}/guidelines/writing/index.html" || fail "guidelines subnav missing Changelog link"
 
+log "Checking Open Graph images"
+node "${ROOT}/tools/verify-og-images.mjs"
+
 log "Checking design token drift"
 node "${ROOT}/tools/verify-design-tokens.mjs"
 node "${ROOT}/tools/verify-gold-hex.mjs"

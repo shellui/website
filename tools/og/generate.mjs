@@ -1,44 +1,84 @@
-#!/usr/bin/env node
-/**
- * Generate og:image PNGs for guideline pages (1200×630).
- */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import sharp from "sharp";
-import tokens from "../../tokens/tokens.json" with { type: "json" };
+import { readLayoutFromFile } from "./front-matter.mjs";
+import { mergePageDataForOg } from "./page-data.mjs";
+import { resolveOgMeta, shouldGenerateOgForTemplate } from "./resolve-meta.mjs";
+import { renderOgPng } from "./render.mjs";
+import { hasGluedSentenceBoundary } from "./text.mjs";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const outDir = path.join(root, "brand-assets/og");
 
-const pages = [
-  { slug: "guidelines-brand", label: "Brand", subtitle: "Identity and downloads" },
-  { slug: "guidelines-foundations", label: "Foundations", subtitle: "Design tokens" },
-  { slug: "guidelines-interface", label: "Interface", subtitle: "Composition and chrome" },
-  { slug: "guidelines-print", label: "Print", subtitle: "Grid, Plex, Pantone" },
-  { slug: "guidelines-writing", label: "Writing", subtitle: "Voice and review" },
-];
+/**
+ * Generate OG PNGs for Eleventy template results into outputDir/og/.
+ * Always re-renders PNGs at build time (no read-from-cache) so output matches current templates.
+ */
+export async function generateOgImages(outputDir, templates) {
+  const ogDir = path.join(outputDir, "og");
+  fs.mkdirSync(ogDir, { recursive: true });
 
-const gold = tokens.gold.brand.$value;
-const ink = tokens.canvas.foreground.$value;
-const muted = tokens.canvas.mutedForeground.$value;
+  let generated = 0;
+  let skipped = 0;
 
-function svgFor({ label, subtitle }) {
-  return `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#ffffff"/>
-  <rect x="72" y="72" width="48" height="6" rx="3" fill="${gold}"/>
-  <text x="72" y="200" font-family="Inter, system-ui, sans-serif" font-size="56" font-weight="600" fill="${ink}">${label}</text>
-  <text x="72" y="260" font-family="Inter, system-ui, sans-serif" font-size="28" fill="${muted}">${subtitle}</text>
-  <text x="72" y="558" font-family="Inter, system-ui, sans-serif" font-size="22" fill="${muted}">shellui.com/guidelines/</text>
-</svg>`;
+  const seen = new Set();
+  const audit = [];
+
+  for (const template of templates) {
+    const layoutFromFile = readLayoutFromFile(template.inputPath);
+    if (!shouldGenerateOgForTemplate(template, layoutFromFile)) {
+      skipped += 1;
+      continue;
+    }
+
+    const data = await mergePageDataForOg(template);
+    const meta = resolveOgMeta(data);
+    if (meta.useCustomImage) {
+      skipped += 1;
+      continue;
+    }
+
+    if (hasGluedSentenceBoundary(meta.title)) {
+      throw new Error(`OG title has glued sentence boundary for ${meta.url}: ${meta.title}`);
+    }
+    if (hasGluedSentenceBoundary(meta.description)) {
+      throw new Error(
+        `OG description has glued sentence boundary for ${meta.url}: ${meta.description}`,
+      );
+    }
+
+    const outFile = path.join(ogDir, `${path.basename(meta.path)}`);
+    if (seen.has(outFile)) continue;
+    seen.add(outFile);
+
+    const png = await renderOgPng(meta);
+    fs.writeFileSync(outFile, png);
+    generated += 1;
+
+    audit.push({
+      url: meta.url,
+      template: meta.template,
+      title: meta.title,
+      description: meta.description || "",
+    });
+
+    const pageTitle = data.title ? String(data.title).replace(/\s*\|\s*Shellui\s*$/i, "").trim() : "";
+    if (
+      meta.title === "Shellui" &&
+      pageTitle &&
+      pageTitle.toLowerCase() !== "shellui"
+    ) {
+      throw new Error(
+        `OG title fell back to "Shellui" for ${meta.url} (page title: ${data.title}). Check front matter merge.`,
+      );
+    }
+  }
+
+  audit.sort((a, b) => a.url.localeCompare(b.url));
+  console.log(`[og] Generated ${generated} Open Graph images (${skipped} skipped):`);
+  for (const row of audit) {
+    console.log(`[og]   ${row.url}  [${row.template}]  ${row.title}`);
+    console.log(`[og]       description: ${row.description || "(empty)"}`);
+  }
+
+  return { generated, skipped, cached: 0, audit };
 }
-
-fs.mkdirSync(outDir, { recursive: true });
-
-for (const page of pages) {
-  const file = path.join(outDir, `${page.slug}.png`);
-  const svg = svgFor(page);
-  await sharp(Buffer.from(svg)).png().toFile(file);
-}
-
-console.log(`OK: wrote ${pages.length} guideline og images to brand-assets/og/`);

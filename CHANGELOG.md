@@ -28,7 +28,8 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 - Publish Shellui brand kit v1 (PDF) and brand assets v1 (ZIP), with unzipped logo, icon, Open Graph, social, and email files at stable `/brand-assets/*` paths. Brand kit source lives under `tools/brand-kit/` and reads `tokens/tokens.json`.
 - Guidelines v2.0.0: hub with cards; Brand (downloads on `#downloads`), Foundations (generated tokens), Writing, Interface (merged design + web design), Print, and guidelines changelog. Agent surfaces: `/llms-full.txt`, trimmed `/design.md`, full `/guidelines/interface.md`, forever `/guidelines/web-design.md` copy.
 - Self-hosted Inter on shellui.com (preload, swap, Latin subset). Text gold `#8A6300` / `#E8B84A` in dark mode via generated tokens.
-- Open Graph images for guideline pages (`tools/og/generate.mjs`).
+- Open Graph images for guideline pages (`tools/og/guidelines.mjs`).
+- Generate per-page Open Graph images at build time (1200×630, brand kit v1 templates via Satori and resvg). Every public page gets `og:image`, dimensions, and alt text; `npm run verify` checks PNG presence, size, and copy quality.
 
 ### 🚨 Changed
 
@@ -38,6 +39,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### 📚 Documentation
 
 - Review screenshots: `docs/guidelines-screens/` (hub and each guideline page, light and dark).
+- Document the Open Graph build pipeline in `docs/development.md` and sample PNGs under `docs/og-samples/`.
 
 ## [0.6.0] - 2026-10-08
 

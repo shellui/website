@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { generateOgImages } from "./tools/og/generate.mjs";
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -327,8 +328,11 @@ export default async function (eleventyConfig) {
   eleventyConfig.on("eleventy.before", buildCss);
   eleventyConfig.on("eleventy.before", buildIslands);
 
-  eleventyConfig.on("eleventy.after", ({ dir }) => {
-    if (hashAssets) fingerprintSite(dir.output);
+  eleventyConfig.on("eleventy.after", async ({ dir, results }) => {
+    if (hashAssets) {
+      await generateOgImages(dir.output, results || []);
+      fingerprintSite(dir.output);
+    }
   });
 
   eleventyConfig.setServerOptions({
