@@ -19,6 +19,11 @@
   "docker": "https://hub.docker.com/u/shellui",
   "locale": "en",
   "rss": "/blog/feed.xml",
+  "dashboard": "https://dashboard.shellui.com",
+  "waitlist": {
+    "endpoint": "https://email.shellui.com",
+    "key": ""
+  },
   "newsletter": {
     "endpoint": "https://email.shellui.com",
     "key": ""
