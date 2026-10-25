@@ -21,14 +21,7 @@ layout: layouts/base.njk
       </div>
     </header>
 
-    <div class="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-5 sm:p-6 dark:border-gray-800 dark:bg-white/5">
-      <h2 class="text-sm font-semibold text-gray-900 dark:text-white">For agents</h2>
-      <p class="mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-        Read this markdown file - not the HTML. Skills live in the <code class="font-mono text-[0.8rem]">shellui/skills</code> repo (see hub).
-      </p>
-      <pre class="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-white px-4 py-3 font-mono text-xs leading-relaxed text-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-200">{{ topicData.sourcePath }}
-https://shellui.com{{ topicData.downloadUrl }}</pre>
-    </div>
+    {% include "guidelines-agent-fetch.njk" %}
 
     <div class="mt-14 lg:grid lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-16">
       <nav class="hidden lg:sticky lg:top-24 lg:block lg:self-start" aria-label="On this page">

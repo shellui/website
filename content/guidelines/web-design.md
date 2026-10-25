@@ -11,18 +11,9 @@ Stable alias for agents and bookmarks. **Canonical Interface handbook:** [`/guid
 When **composing pages**, prefer [`design.md`](https://shellui.com/design.md) first, then fetch the full file below for UI, accessibility, and chrome detail.
 
 
-Interface rules cover layout, interaction, and composition on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Pair with [Writing](/guidelines/writing/) for copy and [Foundations](/guidelines/foundations/) for tokens. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Keep AI, MCP, and marketplace chrome out of the default UI.
+Layout, interaction, and composition rules for [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Use [Writing](/guidelines/writing/) for copy and [Foundations](/guidelines/foundations/) for color and type values. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Keep AI, MCP, and marketplace chrome out of the default UI.
 
-Agents: load this file or `/design.md` (stable alias). Do not scrape HTML handbooks. The `version` field in frontmatter is the public "Guidelines v…" label.
-
-## How to use this file
-
-- **Humans**: `/guidelines/interface/`
-- **Agents**: `https://shellui.com/guidelines/interface.md` or `https://shellui.com/design.md`
-- **Writing**: [writing.md](/guidelines/writing/) for voice, punctuation, and banned words
-- **Tokens**: [foundations.md](/guidelines/foundations/) and [tokens.json](/guidelines/generated/tokens.json)
-- **Brand logos**: [brand.md](/guidelines/brand/) only
-- **Hub**: [Guidelines](/guidelines/)
+For a shorter agent file when composing pages, fetch [`design.md`](https://shellui.com/design.md). The full rule set is this page.
 
 Review files against every rule below. Output concise, high-signal findings. Sacrifice grammar for brevity.
 
@@ -46,7 +37,7 @@ Ask questions only when proceeding could change product claims, pricing, securit
 ## Stack
 
 - Templates: Nunjucks in `src/`. Layouts: `base`, `page`, `feature`, `post`, `guidelines`, `guidelines-foundations`.
-- CSS: `src/assets/css/input.css` → `/assets/css/site.css`. Token values: generated from `tokens/tokens.json` into `src/_data/designTokens.js` and `input.css`.
+- CSS: `src/assets/css/input.css` → `/assets/css/site.css`. Color and radius values match [Foundations](/guidelines/foundations/).
 - JS: Alpine (`src/blocks/`), Plus Elements (`/assets/js/elements.js`), theme toggle (`src/assets/js/site.js`).
 - Islands: one page may lazy-load one React bundle for a single interactive piece it cannot express in Alpine. Source in `src/islands/`, bundled by esbuild with its CSS inlined. Ship a static fallback in Nunjucks and reuse token variables.
 - Images: `img/`, logos from [Brand downloads](/guidelines/brand/#downloads). Do not stretch or recolor the wordmark.
@@ -79,7 +70,7 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Decorative icons need `aria-hidden="true"`
 - Async updates (toasts, validation) need `aria-live="polite"`. Shell toasts already live in the host - use the SDK, don't mount a second live region that fights the host
 - Semantic HTML (`header`, `nav`, `main`, `footer`) before ARIA
-- Headings hierarchical `h1`–`h6`; one `h1` per page
+- Headings hierarchical from `h1` to `h6`; one `h1` per page
 - Include a skip link to main content on long chrome (shell and marketing header)
 - `scroll-margin-top` on heading anchors so the fixed header does not cover the target
 - Meaningful media needs captions, transcripts, or descriptions
@@ -147,7 +138,7 @@ Passes: frame the job → choose composition → apply Foundations tokens → in
 - Leading a shipping-product page with AI / MCP / marketplace atmosphere
 - Authoring-process narration in page copy
 
-Voice rejects (banned words, dashes): [Writing](/guidelines/writing/).
+Voice and punctuation: [Writing](/guidelines/writing/).
 
 ## Motion, touch, and layout
 
@@ -181,7 +172,7 @@ Voice rejects (banned words, dashes): [Writing](/guidelines/writing/).
 - `theme-color` meta matches the page background
 - Native `<select>`: explicit `background-color` and `color` (Windows dark mode)
 - Ellipsis `…`, not three dots `...`. Loading states: `Loading…`, `Saving…`
-- Punctuation and banned words: [Writing guidelines](/guidelines/writing/) owns them. UI copy follows the same rules
+- Punctuation and word choice: follow [Writing](/guidelines/writing/)
 - Straight quotes in source. Don't convert to curly quotes by hand
 - `font-variant-numeric: tabular-nums` for number columns and comparisons
 - `text-wrap: balance` or `text-pretty` on headings (prevents widows)

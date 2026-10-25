@@ -9,18 +9,9 @@ related: /guidelines/interface/, /guidelines/brand/
 
 These rules cover copy on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and in-product strings that developers read. Lead with what Shellui ships today: a microfrontend shell with shared navigation, authentication, administration, and storage. Keep AI, MCP, and marketplace ideas quiet unless the page is actually about that surface.
 
-Agents: load this file. Do not scrape the HTML page. The `version` field in the frontmatter is the public "Guidelines v…" label.
-
-## How to use this file
-
-- **Humans**: read the page at `/guidelines/writing/`, or download this markdown
-- **Agents**: read `content/guidelines/writing.md` in this repo, or fetch `https://shellui.com/guidelines/writing.md`
-- **Skill wrapper**: `skills/writing-guidelines/SKILL.md`
-- **Sibling**: [Interface](/guidelines/interface/) for UI, accessibility, and chrome
-- **Compose pages with**: [design.md](/design.md) (`fetch https://shellui.com/design.md`) or [interface.md](/guidelines/interface.md)
-- **Hub**: [Guidelines](/guidelines/)
-
 Review files against every rule below. Output concise, high-signal findings. Sacrifice grammar for brevity.
+
+Related: [Interface](/guidelines/interface/) for layout and UI, [design.md](/design.md) when composing pages, [Guidelines hub](/guidelines/).
 
 ## Brand
 

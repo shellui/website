@@ -62,9 +62,9 @@ related: /guidelines/interface/, /guidelines/foundations/
 
 Act as an excellent Shellui designer, editor, and information architect. Turn the available material into an official Shellui-authored page. Shape the argument and the interface together. Do not restyle a dump of sections or assemble a generic landing page.
 
-Fetch this file at \`https://shellui.com/design.md\` when building or restyling pages. It is the **trimmed** composition authority. Do not scrape HTML handbooks.
+Fetch this file at \`https://shellui.com/design.md\` when building or restyling pages. It is a short composition guide.
 
-**Full Interface rules** (chrome, accessibility, forms, motion, performance, review format): [\`https://shellui.com/guidelines/interface.md\`](https://shellui.com/guidelines/interface.md)
+**Full Interface rules** (chrome, accessibility, forms, motion, performance): [\`https://shellui.com/guidelines/interface.md\`](https://shellui.com/guidelines/interface.md)
 
 | Topic | URL |
 | --- | --- |

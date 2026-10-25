@@ -1,22 +1,22 @@
 ---
 title: Foundations
-description: Shellui design tokens for color, type, spacing, and radius on web and in print. Generated tables stay in sync with tokens/tokens.json.
+description: Color, type, spacing, and corner radius shared across Shellui web and print.
 version: 2.0.0
 updated: 2026-10-25
 canonical: /guidelines/foundations/
 related: /guidelines/interface/, /guidelines/print/, /design.md
 ---
 
-Foundations are the shared numbers: color, type, spacing, and radius. Values on this page are generated from [`tokens/tokens.json`](https://github.com/shellui/website/blob/develop/tokens/tokens.json) at build time. If a hex here disagrees with prose elsewhere, trust this page.
+Foundations are the shared numbers behind Shellui surfaces: color, type, spacing, and corner radius. The tables on this page match what ships on shellui.com. If a hex here disagrees with another page, use the values here.
 
-- **Web**: Inter on screen (self-hosted on shellui.com). Token utilities in Tailwind (`bg-primary`, `text-primary-ink`, and the rest).
-- **Print**: IBM Plex Sans and Plex Mono. See [Print](/guidelines/print/) for grid, folios, and Pantone.
-- **Interface**: how to compose pages with these tokens. See [Interface](/guidelines/interface/).
+- **Web**: Inter on screen. Use the token utilities in Tailwind (`bg-primary`, `text-primary-ink`, and the rest).
+- **Print**: IBM Plex Sans and Plex Mono. See [Print](/guidelines/print/) for layout, page numbers, and Pantone.
+- **Interface**: how pages are composed with these values. See [Interface](/guidelines/interface/).
 
 ## Downloads
 
-- [tokens.json](/guidelines/generated/tokens.json): W3C Design Tokens source
-- [tokens.css](/guidelines/generated/tokens.css): `:root` variables for light theme
+- [Design tokens (JSON)](/guidelines/generated/tokens.json): machine-readable color and radius values
+- [Design tokens (CSS)](/guidelines/generated/tokens.css): light-theme CSS variables
 
 ## Color tokens (web)
 
@@ -45,8 +45,8 @@ Brand gold `#E3A512` is for fills, rules, and the logo, not body text. Text gold
 | --- | --- | --- | --- |
 | Brand gold | `#E3A512` | 124 C (7405 U uncoated) | Fills, rules, logo |
 | Text gold | `#8A6300` | 4027 C | Links and gold text on light |
-| Text gold (dark) | `#E8B84A` | — | Links and gold text on dark |
-| On gold | `#1A1408` | — | Text on gold buttons |
+| Text gold (dark) | `#E8B84A` | n/a | Links and gold text on dark |
+| On gold | `#1A1408` | n/a | Text on gold buttons |
 
 Verify coated and uncoated Pantone against a physical swatch before the first print run.
 

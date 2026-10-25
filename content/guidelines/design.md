@@ -9,9 +9,9 @@ related: /guidelines/interface/, /guidelines/foundations/
 
 Act as an excellent Shellui designer, editor, and information architect. Turn the available material into an official Shellui-authored page. Shape the argument and the interface together. Do not restyle a dump of sections or assemble a generic landing page.
 
-Fetch this file at `https://shellui.com/design.md` when building or restyling pages. It is the **trimmed** composition authority. Do not scrape HTML handbooks.
+Fetch this file at `https://shellui.com/design.md` when building or restyling pages. It is a short composition guide.
 
-**Full Interface rules** (chrome, accessibility, forms, motion, performance, review format): [`https://shellui.com/guidelines/interface.md`](https://shellui.com/guidelines/interface.md)
+**Full Interface rules** (chrome, accessibility, forms, motion, performance): [`https://shellui.com/guidelines/interface.md`](https://shellui.com/guidelines/interface.md)
 
 | Topic | URL |
 | --- | --- |
@@ -63,7 +63,7 @@ Ask questions only when proceeding could change product claims, pricing, securit
 ## Stack
 
 - Templates: Nunjucks in `src/`. Layouts: `base`, `page`, `feature`, `post`, `guidelines`, `guidelines-foundations`.
-- CSS: `src/assets/css/input.css` → `/assets/css/site.css`. Token values: generated from `tokens/tokens.json` into `src/_data/designTokens.js` and `input.css`.
+- CSS: `src/assets/css/input.css` → `/assets/css/site.css`. Color and radius values match [Foundations](/guidelines/foundations/).
 - JS: Alpine (`src/blocks/`), Plus Elements (`/assets/js/elements.js`), theme toggle (`src/assets/js/site.js`).
 - Islands: one page may lazy-load one React bundle for a single interactive piece it cannot express in Alpine. Source in `src/islands/`, bundled by esbuild with its CSS inlined. Ship a static fallback in Nunjucks and reuse token variables.
 - Images: `img/`, logos from [Brand downloads](/guidelines/brand/#downloads). Do not stretch or recolor the wordmark.
@@ -108,4 +108,4 @@ Passes: frame the job → choose composition → apply Foundations tokens → in
 - Leading a shipping-product page with AI / MCP / marketplace atmosphere
 - Authoring-process narration in page copy
 
-Voice rejects (banned words, dashes): [Writing](/guidelines/writing/).
+Voice and punctuation: [Writing](/guidelines/writing/).

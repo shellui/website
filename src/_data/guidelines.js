@@ -13,7 +13,7 @@ const catalog = [
     navLabel: "Brand",
     downloadName: "brand.md",
     hubDescription:
-      "Name, one-liner, logo usage, voice summary, and downloadable logos, kit PDF, and zip.",
+      "Name, logo, colors, and voice, plus the brand kit PDF, asset zip, and logo files.",
   },
   {
     slug: "foundations",
@@ -21,7 +21,7 @@ const catalog = [
     navLabel: "Foundations",
     downloadName: "foundations.md",
     hubDescription:
-      "Color, type, spacing, and radius tokens for web and print. Generated from tokens.json.",
+      "Shared color, type, spacing, and corner radius for the website and print.",
     visualHandbook: true,
   },
   {
@@ -29,7 +29,7 @@ const catalog = [
     href: "/guidelines/writing/",
     navLabel: "Writing",
     downloadName: "writing.md",
-    hubDescription: "Voice, structure, punctuation, and banned words (sole owner).",
+    hubDescription: "Voice, structure, and punctuation for Shellui copy.",
   },
   {
     slug: "interface",
@@ -38,7 +38,7 @@ const catalog = [
     downloadName: "interface.md",
     publicUrl: "/guidelines/interface.md",
     hubDescription:
-      "Composition, chrome, layout, accessibility, and visual language for web and in-shell apps.",
+      "Layout, components, accessibility, and visual language for web and in-shell apps.",
     agentAliasUrl: "/design.md",
   },
   {
@@ -46,7 +46,7 @@ const catalog = [
     href: "/guidelines/print/",
     navLabel: "Print",
     downloadName: "print.md",
-    hubDescription: "Print grid, IBM Plex, folios, Pantone, paper, flat color.",
+    hubDescription: "Grids, type, color, Pantone, and paper for PDFs and collateral.",
   },
   {
     slug: "changelog",
@@ -186,6 +186,5 @@ const topics = catalog.map(loadTopic);
 export default {
   topics,
   bySlug: Object.fromEntries(topics.map((topic) => [topic.slug, topic])),
-  parentSkillPath: "shellui/skills/skills/guidelines/SKILL.md",
   versionsNote: "All guideline topics are 2.0.0 in this release.",
 };

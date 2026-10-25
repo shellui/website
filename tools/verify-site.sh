@@ -135,7 +135,9 @@ grep -q '/guidelines/interface/' "${SITE}/guidelines/web-design/index.html" || f
 grep -q '/guidelines/brand/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand link"
 grep -q 'id="downloads"' "${SITE}/guidelines/brand/index.html" || fail "brand page missing downloads section"
 grep -q '/brand-assets/shellui-brand-kit-v1.pdf' "${SITE}/guidelines/brand/index.html" || fail "brand page missing kit PDF link"
-grep -q 'shellui/skills' "${SITE}/guidelines/index.html" || fail "guidelines hub must point skills to shellui/skills repo"
+grep -q 'Agents can fetch' "${SITE}/guidelines/writing/index.html" || fail "guidelines page missing agent fetch copy"
+grep -q 'data-copy=' "${SITE}/guidelines/writing/index.html" || fail "guidelines page missing markdown URL copy button"
+grep -q 'Downloads' "${SITE}/guidelines/index.html" || fail "guidelines hub missing Downloads card"
 grep -q 'Inter' "${SITE}/guidelines/foundations/index.html" || fail "foundations must document Inter on screen"
 if grep -q 'Act as an excellent' "${SITE}/guidelines/interface/index.html"; then
   fail "interface HTML page should not render the full agent prompt (use design.md)"
@@ -160,6 +162,7 @@ grep -q 'Changelog' "${SITE}/guidelines/writing/index.html" || fail "guidelines 
 log "Checking design token drift"
 node "${ROOT}/tools/verify-design-tokens.mjs"
 node "${ROOT}/tools/verify-gold-hex.mjs"
+node "${ROOT}/tools/verify-guidelines-prose.mjs"
 node "${ROOT}/tools/check-links.mjs"
 
 # Asset fingerprinting should rewrite CSS references with a cache-busting query

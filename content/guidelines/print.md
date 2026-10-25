@@ -1,18 +1,18 @@
 ---
 title: Print
-description: Print layout, typography, color, and paper for Shellui brand materials. Flat color, IBM Plex, Pantone references for brand gold.
+description: Layout, typography, color, and paper for Shellui brand materials in print and PDF.
 version: 2.0.0
 updated: 2026-10-25
 canonical: /guidelines/print/
 related: /guidelines/brand/, /guidelines/foundations/
 ---
 
-Print rules for PDFs, decks, and collateral. The downloadable [brand kit PDF](/brand-assets/shellui-brand-kit-v1.pdf) is a rendered handbook plus samples; this page is the searchable source agents and humans fetch as markdown.
+Rules for PDFs, decks, and printed collateral. The [brand kit PDF](/brand-assets/shellui-brand-kit-v1.pdf) shows samples; this page is the reference you can search and link.
 
 ## Grid and margins
 
 - **Page size**: A4 for the brand kit
-- **Margins**: 20 mm on top and sides, 22 mm on the bottom (room for the folio)
+- **Margins**: 20 mm on top and sides, 22 mm on the bottom (room for the page number)
 - **Grid**: 12 columns, 6 mm gutter, 2 mm baseline unit for spacing steps
 - **Feature layout**: label column (3) plus content column (9), 8 mm apart
 
@@ -25,7 +25,7 @@ Dark pages are allowed anywhere in a document, including covers. Keep generous m
 
 ## Page numbers
 
-- Folio on **body pages only**, bottom right, tabular numerals
+- Page numbers on **body pages only**, bottom right, tabular numerals
 - **No page numbers on covers** or section dividers that read as covers
 - Running head on body pages; covers carry title art only
 
@@ -59,9 +59,3 @@ Ask your print vendor to match `#E3A512` and `#8A6300` with ink drawdowns, not o
 ## Logo in print
 
 Logo usage, clear space, and misuse pairs live in [Brand](/guidelines/brand/). Use official files from [Downloads](/guidelines/brand/#downloads). No lockups in v1: wordmark and mark stay separate.
-
-## How to use this file
-
-- **Humans**: `/guidelines/print/`
-- **Agents**: fetch `https://shellui.com/guidelines/print.md`
-- **Hub**: [Guidelines](/guidelines/)

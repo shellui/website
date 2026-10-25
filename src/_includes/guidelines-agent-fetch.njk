@@ -1,0 +1,24 @@
+{%- set mdPath = markdownPath | default(topicData.downloadUrl) -%}
+{%- set mdFull = site.url + mdPath -%}
+<div class="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-5 sm:p-6 dark:border-gray-800 dark:bg-white/5">
+  <h2 class="text-sm font-semibold text-gray-900 dark:text-white">For agents</h2>
+  <p class="mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+    Agents can fetch this page as markdown.
+  </p>
+  <div class="agent-prompt mt-4 flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white sm:flex-row sm:items-stretch dark:border-gray-800 dark:bg-gray-950">
+    <p class="min-w-0 flex-1 select-all overflow-x-auto px-4 py-3 font-mono text-xs leading-relaxed text-gray-800 sm:py-2.5 dark:text-gray-200">{{ mdFull }}</p>
+    <button
+      type="button"
+      class="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-2 border-t border-gray-200 px-4 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:border-t-0 sm:border-l dark:border-gray-800 dark:text-white dark:hover:bg-gray-800"
+      data-copy="{{ mdFull }}"
+      aria-label="Copy markdown URL"
+      onclick="window.shelluiCopyPrompt && window.shelluiCopyPrompt(this)"
+    >
+      <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+      </svg>
+      <span data-copy-label>Copy</span>
+    </button>
+  </div>
+  <p class="sr-only" data-copy-status aria-live="polite"></p>
+</div>

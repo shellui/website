@@ -7,7 +7,7 @@ canonical: /guidelines/brand/
 related: /guidelines/foundations/, /guidelines/print/, /guidelines/writing/
 ---
 
-Brand is identity: name, one-liner, logo, color summary, and production files. Token numbers live in [Foundations](/guidelines/foundations/). Print grid and Pantone live in [Print](/guidelines/print/). Voice and punctuation live in [Writing](/guidelines/writing/).
+Brand covers who Shellui is on the page: name, one-liner, logo, color, and voice. Numbers and type scales live in [Foundations](/guidelines/foundations/). Print production rules live in [Print](/guidelines/print/). Full copy rules live in [Writing](/guidelines/writing/).
 
 ## Name and one-liner
 
@@ -41,9 +41,3 @@ Production files stay at stable URLs under `/brand-assets/` (hotlinked in the ki
 - [Brand assets v1 (ZIP)](/brand-assets/shellui-brand-assets-v1.zip): logos, icons, Open Graph images, social banners, email signature
 
 Individual logos, icons, and social templates are listed on this page in the download grid below the prose.
-
-## How to use this file
-
-- **Humans**: `/guidelines/brand/`
-- **Agents**: `https://shellui.com/guidelines/brand.md`
-- **Hub**: [Guidelines](/guidelines/)
