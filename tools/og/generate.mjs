@@ -3,14 +3,22 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { readLayoutFromFile } from "./front-matter.mjs";
+import { mergePageDataForOg } from "./page-data.mjs";
 import { resolveOgMeta, shouldGenerateOgForTemplate } from "./resolve-meta.mjs";
 import { renderOgPng } from "./render.mjs";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const cacheDir = path.join(root, ".cache/og");
 
+/** Bump when renderer output shape changes to invalidate stale cache entries. */
+const CACHE_VERSION = 4;
+
 function payloadHash(meta) {
-  return createHash("sha256").update(JSON.stringify(meta)).digest("hex").slice(0, 16);
+  return createHash("sha256")
+    .update(`${CACHE_VERSION}:`)
+    .update(JSON.stringify(meta))
+    .digest("hex")
+    .slice(0, 16);
 }
 
 function readCache(hash) {
@@ -47,8 +55,8 @@ export async function generateOgImages(outputDir, templates) {
       continue;
     }
 
-    const data = template.data || {};
-    const meta = resolveOgMeta({ ...data, page: { url: template.url } });
+    const data = await mergePageDataForOg(template);
+    const meta = resolveOgMeta(data);
     if (meta.useCustomImage) {
       skipped += 1;
       continue;
@@ -59,10 +67,11 @@ export async function generateOgImages(outputDir, templates) {
     seen.add(outFile);
 
     const hash = payloadHash({
+      path: meta.path,
       template: meta.template,
       title: meta.title,
       description: meta.description,
-      sectionLabel: meta.sectionLabel,
+      headerText: meta.headerText,
       category: meta.category,
       badge: meta.badge,
       blogMeta: meta.blogMeta,

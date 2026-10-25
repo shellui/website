@@ -2,6 +2,7 @@
 /**
  * Fail if a public HTML page lacks og:image or the PNG is missing / wrong size.
  */
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -35,16 +36,27 @@ function pngDimensions(buffer) {
   return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
 }
 
-function extractOgImage(html) {
-  const match = html.match(/<meta\s+property="og:image"\s+content="([^"]+)"/i);
-  return match?.[1] || null;
+function extractMeta(html, property) {
+  const re = new RegExp(
+    `<meta\\s+property="${property}"\\s+content="([^"]+)"`,
+    "i",
+  );
+  return html.match(re)?.[1] || "";
 }
 
-function ogPathFromUrl(contentUrl, siteOrigin = "https://shellui.com") {
+function extractOgImage(html) {
+  return extractMeta(html, "og:image");
+}
+
+function ogAssetPath(contentUrl, siteOrigin = "https://shellui.com") {
   const url = contentUrl.startsWith("http") ? contentUrl : `${siteOrigin}${contentUrl}`;
-  const pathPart = url.replace(siteOrigin, "").split("?")[0];
-  if (!pathPart.startsWith("/og/")) return pathPart;
-  return pathPart;
+  return url.replace(siteOrigin, "").split("?")[0];
+}
+
+function stripSiteSuffix(title) {
+  return String(title || "")
+    .replace(/\s*\|\s*Shellui\s*$/i, "")
+    .trim();
 }
 
 function fail(message) {
@@ -58,6 +70,7 @@ if (!fs.existsSync(site)) {
 
 const htmlFiles = walkHtml(site).filter((rel) => !SKIP_FILES.has(rel));
 let checked = 0;
+const pngByHash = new Map();
 
 for (const rel of htmlFiles) {
   const html = fs.readFileSync(path.join(site, rel), "utf8");
@@ -66,12 +79,13 @@ for (const rel of htmlFiles) {
   }
   const ogUrl = extractOgImage(html);
   if (!ogUrl) fail(`${rel} has empty og:image`);
-  const assetPath = ogPathFromUrl(ogUrl).replace(/^\//, "");
+  const assetPath = ogAssetPath(ogUrl).replace(/^\//, "");
   const file = path.join(site, assetPath);
   if (!fs.existsSync(file)) {
     fail(`${rel} references missing OG image ${assetPath}`);
   }
-  const dims = pngDimensions(fs.readFileSync(file));
+  const pngBuffer = fs.readFileSync(file);
+  const dims = pngDimensions(pngBuffer);
   if (!dims || dims.width !== 1200 || dims.height !== 630) {
     fail(`${rel} OG image ${assetPath} must be 1200×630 (got ${dims?.width ?? "?"}×${dims?.height ?? "?"})`);
   }
@@ -81,10 +95,39 @@ for (const rel of htmlFiles) {
   if (!html.includes('property="og:image:height" content="630"')) {
     fail(`${rel} missing og:image:height`);
   }
-  if (!html.includes('property="og:image:alt"')) {
+  const ogAlt = extractMeta(html, "og:image:alt");
+  if (!ogAlt) {
     fail(`${rel} missing og:image:alt`);
   }
+
+  const ogTitle = stripSiteSuffix(extractMeta(html, "og:title") || html.match(/<title>([^<]+)<\/title>/i)?.[1]);
+  const altLead = ogAlt.split(".")[0]?.trim();
+  if (
+    ogTitle &&
+    ogTitle.toLowerCase() !== "shellui" &&
+    (altLead === "Shellui" || altLead?.toLowerCase() === "shellui")
+  ) {
+    fail(
+      `${rel} OG alt looks generic ("${altLead}") but page title is "${ogTitle}" — metadata may not reach the renderer`,
+    );
+  }
+
+  const digest = createHash("sha256").update(pngBuffer).digest("hex");
+  const owners = pngByHash.get(digest) || [];
+  owners.push({ rel, assetPath });
+  pngByHash.set(digest, owners);
+
   checked += 1;
 }
 
-console.log(`OK: verified OG images on ${checked} HTML pages`);
+for (const [digest, owners] of pngByHash) {
+  const uniqueAssets = new Set(owners.map((o) => o.assetPath));
+  if (uniqueAssets.size > 1) {
+    const sample = owners.map((o) => `${o.rel} → ${o.assetPath}`).join("; ");
+    fail(
+      `byte-identical OG PNG shared by different pages (${sample.slice(0, 400)}${sample.length > 400 ? "…" : ""})`,
+    );
+  }
+}
+
+console.log(`OK: verified OG images on ${checked} HTML pages (${pngByHash.size} unique PNGs)`);

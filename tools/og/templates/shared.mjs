@@ -4,63 +4,62 @@ import { markDataUri } from "../mark.mjs";
 
 const h = React.createElement;
 
-export function DecorativeShapes({ variant = "light" }) {
-  const fill = variant === "dark" ? "#111827" : COLORS.gray200;
-  const fill2 = variant === "dark" ? "#1F2937" : COLORS.gray100;
+export function MarkWatermark({ variant = "light" }) {
+  const primary = variant === "dark" ? "watermarkDark" : "watermarkLight";
+  const secondary = variant === "dark" ? "watermarkDark" : "watermarkLight2";
   return h(
     React.Fragment,
     null,
-    h("div", {
+    h("img", {
+      src: markDataUri(secondary),
+      width: 560,
+      height: 775,
+      alt: "",
       style: {
         position: "absolute",
-        right: -80,
-        top: 40,
-        width: 520,
-        height: 520,
-        borderRadius: 140,
-        background: fill2,
-        transform: "rotate(-12deg)",
+        right: -40,
+        top: -60,
+        transform: "rotate(-8deg)",
       },
     }),
-    h("div", {
+    h("img", {
+      src: markDataUri(primary),
+      width: 520,
+      height: 720,
+      alt: "",
       style: {
         position: "absolute",
-        right: 40,
-        bottom: -120,
-        width: 420,
-        height: 420,
-        borderRadius: 120,
-        background: fill,
-        transform: "rotate(18deg)",
+        right: 80,
+        bottom: -200,
+        transform: "rotate(14deg)",
       },
     }),
   );
 }
 
-export function HeaderRow({ markVariant = "ink", label, labelColor = COLORS.ink, dividerColor = COLORS.gray200 }) {
+export function HeaderRow({
+  markVariant = "ink",
+  label = "shellui.com",
+  labelColor = COLORS.ink,
+  dividerColor = COLORS.gray200,
+}) {
   return h(
     "div",
     { style: { display: "flex", alignItems: "center", gap: 16 } },
     h("img", { src: markDataUri(markVariant), width: 28, height: 38, alt: "" }),
-    label
-      ? h(
-          React.Fragment,
-          null,
-          h("div", { style: { width: 1, height: 28, background: dividerColor } }),
-          h(
-            "span",
-            {
-              style: {
-                fontSize: 22,
-                fontWeight: 500,
-                color: labelColor,
-                letterSpacing: "-0.02em",
-              },
-            },
-            label,
-          ),
-        )
-      : null,
+    h("div", { style: { width: 1, height: 28, background: dividerColor } }),
+    h(
+      "span",
+      {
+        style: {
+          fontSize: 22,
+          fontWeight: 500,
+          color: labelColor,
+          letterSpacing: "-0.02em",
+        },
+      },
+      label,
+    ),
   );
 }
 
@@ -113,7 +112,7 @@ export function ShellFrame({ variant = "light", children }) {
         fontFamily: "Inter",
       },
     },
-    h(DecorativeShapes, { variant }),
+    h(MarkWatermark, { variant }),
     h(
       "div",
       {
@@ -138,5 +137,27 @@ export function FooterWordmark({ text, color = COLORS.ink }) {
     "span",
     { style: { fontSize: 24, fontWeight: 700, color, letterSpacing: "-0.02em" } },
     text,
+  );
+}
+
+export function GoldDotPill({ label, variant = "light" }) {
+  const border = variant === "dark" ? "#374151" : COLORS.gray200;
+  const bg = variant === "dark" ? "#111827" : COLORS.white;
+  const text = variant === "dark" ? "#D1D5DB" : COLORS.gray700;
+  return h(
+    "div",
+    {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "10px 18px",
+        borderRadius: 999,
+        border: `1px solid ${border}`,
+        background: bg,
+      },
+    },
+    h("div", { style: { width: 10, height: 10, borderRadius: 999, background: COLORS.gold } }),
+    h("span", { style: { fontSize: 18, fontWeight: 500, color: text } }, label),
   );
 }

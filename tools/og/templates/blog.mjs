@@ -13,7 +13,7 @@ export function BlogTemplate(meta) {
     { variant: "dark" },
     h(HeaderRow, {
       markVariant: "goldOnDark",
-      label: "Blog",
+      label: meta.headerText || "Blog",
       labelColor: COLORS.white,
       dividerColor: "#374151",
     }),

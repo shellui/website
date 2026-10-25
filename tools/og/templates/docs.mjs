@@ -1,16 +1,16 @@
 import React from "react";
 import { COLORS } from "../constants.mjs";
 import { titleMetrics } from "../text.mjs";
-import { HeaderRow, ShellFrame, TitleBlock, FooterWordmark } from "./shared.mjs";
+import { HeaderRow, ShellFrame, TitleBlock, FooterWordmark, GoldDotPill } from "./shared.mjs";
 
 const h = React.createElement;
 
 export function DocsTemplate(meta) {
-  const { fontSize, text } = titleMetrics(meta.title, { baseSize: 52 });
+  const { fontSize, text } = titleMetrics(meta.title, { baseSize: 52, maxChars: 80 });
   return h(
     ShellFrame,
     { variant: "light" },
-    h(HeaderRow, { label: meta.sectionLabel || "Docs" }),
+    h(HeaderRow, { label: meta.headerText || "Docs" }),
     h(
       "div",
       { style: { display: "flex", flex: 1, alignItems: "center" } },
@@ -20,26 +20,18 @@ export function DocsTemplate(meta) {
         titleColor: COLORS.ink,
         descColor: COLORS.gray700,
         titleSize: fontSize,
+        maxWidth: 780,
       }),
     ),
     h(
       "div",
-      { style: { display: "flex", alignItems: "flex-end", justifyContent: "space-between" } },
+      { style: { display: "flex", alignItems: "center", justifyContent: "space-between" } },
       h(FooterWordmark, { text: meta.footerUrl }),
       meta.category
-        ? h(
-            "span",
-            {
-              style: {
-                fontSize: 20,
-                fontWeight: 500,
-                color: COLORS.gray500,
-                letterSpacing: "0.04em",
-              },
-            },
-            meta.category,
-          )
-        : null,
+        ? h(GoldDotPill, { label: meta.category })
+        : meta.badge
+          ? h(GoldDotPill, { label: meta.badge })
+          : null,
     ),
   );
 }

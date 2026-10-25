@@ -131,6 +131,7 @@ export function resolveOgMeta(data) {
     title,
     description,
     path,
+    headerText: "shellui.com",
     eyebrow: data.eyebrow ? sanitizeText(data.eyebrow) : null,
     sectionLabel: null,
     category: null,
@@ -159,11 +160,13 @@ export function resolveOgMeta(data) {
 
   if (template === "docs") {
     meta.sectionLabel = docsHeaderLabel(url);
+    meta.headerText = meta.sectionLabel;
     meta.category = docsCategory(url);
     meta.footerUrl = "shellui.com";
   }
 
   if (template === "blog") {
+    meta.headerText = "Blog";
     meta.sectionLabel = "Blog";
     meta.blogMeta = {
       author: sanitizeText(data.author || data.site?.author || "Shellui"),
@@ -173,18 +176,22 @@ export function resolveOgMeta(data) {
   }
 
   if (template === "changelog") {
+    meta.headerText = "Changelog";
     meta.sectionLabel = "Changelog";
     meta.changelog = changelogPayload(data);
     meta.footerUrl = "shellui.com/changelog";
-    if (meta.changelog.version && !data.ogTitle) {
-      meta.title = truncateText(
-        data.changelog?.[0]?.summary || title,
-        72,
-      );
+    const latest = data.changelog?.[0];
+    if (data.ogTitle) {
+      meta.title = sanitizeText(data.ogTitle);
+    } else if (latest?.summary) {
+      meta.title = truncateText(latest.summary, 72);
+    } else {
+      meta.title = sanitizeText(data.title || title);
     }
   }
 
   if (template === "default" && url === "/blog/") {
+    meta.headerText = "Blog";
     meta.sectionLabel = "Blog";
   }
 

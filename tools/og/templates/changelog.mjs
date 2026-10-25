@@ -15,7 +15,7 @@ export function ChangelogTemplate(meta) {
     h(
       "div",
       { style: { display: "flex", flexDirection: "column", gap: 20 } },
-      h(HeaderRow, { label: "Changelog" }),
+      h(HeaderRow, { label: meta.headerText || "Changelog" }),
       cl.version
         ? h(
             "div",
@@ -51,8 +51,9 @@ export function ChangelogTemplate(meta) {
       },
       h(TitleBlock, {
         title: text,
-        description: null,
+        description: meta.description || null,
         titleColor: COLORS.ink,
+        descColor: COLORS.gray700,
         titleSize: fontSize,
         maxWidth: 900,
       }),
