@@ -5,7 +5,7 @@
     {% for item in featureDocs %}
       <li>
         <a
-          class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary"
+          class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           href="{{ item.href }}"
           {% if item.external %}target="_blank" rel="noopener noreferrer"{% endif %}
         >{{ item.label }}</a>

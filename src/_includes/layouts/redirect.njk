@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <title>{{ title or "Page moved" }}</title>
+    <link rel="canonical" href="{{ redirect | absoluteUrl(site.url) }}" />
+    <meta http-equiv="refresh" content="0;url={{ redirect }}" />
+    <script>
+      location.replace("{{ redirect }}");
+    </script>
+  </head>
+  <body>
+    <p><a href="{{ redirect }}">Continue to the new page</a></p>
+  </body>
+</html>

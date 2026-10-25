@@ -39,7 +39,7 @@ prose: false
 {% endif %}
 <div class="mt-10" x-data="{ allOpen: false }">
 <div class="mb-4 flex justify-end">
-  <button type="button" class="min-h-11 rounded-md px-2 text-sm font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" @click="allOpen = !allOpen; $dispatch('toggle-all', { open: allOpen })" x-text="allOpen ? 'Collapse all' : 'Expand all'"></button>
+  <button type="button" class="min-h-11 rounded-md px-2 text-sm font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" @click="allOpen = !allOpen; $dispatch('toggle-all', { open: allOpen })" x-text="allOpen ? 'Collapse all' : 'Expand all'"></button>
 </div>
 <div class="space-y-4">
 {% for release in changelog %}
@@ -52,7 +52,7 @@ prose: false
       aria-controls="changelog-{{ loop.index }}"
       id="changelog-trigger-{{ loop.index }}"
     >
-      <span class="inline-flex w-24 shrink-0 items-center justify-center rounded-full bg-primary-ink/10 px-3 py-1 text-sm font-bold tabular-nums text-primary-ink dark:bg-primary/15 dark:text-primary">v{{ release.version }}</span>
+      <span class="inline-flex w-24 shrink-0 items-center justify-center rounded-full bg-primary-ink/10 px-3 py-1 text-sm font-bold tabular-nums text-primary-ink dark:bg-primary/15">v{{ release.version }}</span>
       <span class="w-28 shrink-0 text-sm tabular-nums text-gray-500 dark:text-gray-400">{{ release.date if release.date else '' }}</span>
       <span class="flex-1"></span>
       {% if loop.first %}
@@ -83,4 +83,4 @@ prose: false
 {% endfor %}
 </div>
 </div>
-<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Product releases from <a href="https://github.com/shellui/shellui" class="text-primary-ink hover:underline dark:text-primary" target="_blank" rel="noopener noreferrer">shellui/shellui</a> (the homepage badge uses this version, not the website package). Upcoming work is on the <a href="/roadmap/" class="text-primary-ink hover:underline dark:text-primary">roadmap</a>. Full notes also live on <a href="https://github.com/shellui/shellui/blob/main/CHANGELOG.md" class="text-primary-ink hover:underline dark:text-primary" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+<p class="mt-10 text-sm text-gray-500 dark:text-gray-400">Product releases from <a href="https://github.com/shellui/shellui" class="text-primary-ink hover:underline" target="_blank" rel="noopener noreferrer">shellui/shellui</a> (the homepage badge uses this version, not the website package). Upcoming work is on the <a href="/roadmap/" class="text-primary-ink hover:underline">roadmap</a>. Full notes also live on <a href="https://github.com/shellui/shellui/blob/main/CHANGELOG.md" class="text-primary-ink hover:underline" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>

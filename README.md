@@ -1,72 +1,60 @@
 # Shellui Website
 
-The official website for [Shellui](https://shellui.com), the web app development platform.
+The source of [shellui.com](https://shellui.com) and the home of the Shellui guidelines.
 
-## Stack
+[![CI](https://github.com/shellui/website/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/shellui/website/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-- **[Eleventy 3](https://www.11ty.dev/)** - static HTML pages
-- **[Tailwind CSS v4](https://tailwindcss.com/)** - compiled at build time (no CDN)
-- **[Tailwind Plus Elements](https://tailwindcss.com/plus/ui-blocks/documentation/elements)** - licensed interactive HTML (`el-*` custom elements) for Plus UI blocks
-- **[Alpine.js](https://alpinejs.dev/)** - light interactivity in `src/blocks/`
-- **[esbuild](https://esbuild.github.io/)** - bundles the React islands in `src/islands/`
+A static site built with [Eleventy](https://www.11ty.dev/), [Tailwind CSS](https://tailwindcss.com/) and [Alpine.js](https://alpinejs.dev/), with a few React islands bundled by esbuild. It also publishes the canonical [writing](https://shellui.com/guidelines/writing/), [web design](https://shellui.com/guidelines/web-design/) and [design](https://shellui.com/guidelines/design/) guidelines, as pages for people and as markdown for agents.
 
-Islands are the exception to the Alpine rule: one page lazy-loads one React bundle for a single piece it cannot express in Alpine. `/architecture/` uses [`@xyflow/react`](https://reactflow.dev/) for the stack graph. `/features/authentication/` reuses the same library for the identity-service exchange diagram. Each island builds to `_site/assets/js/<name>.island.js` with its CSS inlined, and a small loader in `src/assets/js/` imports it when the mount point scrolls into view. Every other page stays on the Eleventy plus Alpine budget. Ship a static fallback in the Nunjucks so the page works without the bundle.
-
-Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are real HTML (no iframes). `content/` is IA notes and is not published, except `content/guidelines/*.md` (canonical guidelines). `design.md` is also copied to the site root as `/design.md`.
-
-## Getting started
+## Get started
 
 ```bash
+git clone https://github.com/shellui/website.git
+cd website
 npm install
 npm start
 ```
 
-Open the local URL Eleventy prints (usually `http://localhost:8080`).
-
-```bash
-npm run build
-```
-
-writes static files to `_site/`.
+Open the local URL Eleventy prints, usually [http://localhost:8080](http://localhost:8080). `npm run build` writes the static site to `_site/`.
 
 ## Guidelines
 
-Canonical rules live in [`content/guidelines/`](content/guidelines/) (version in each file's frontmatter). Humans read `/guidelines/` (hub), `/guidelines/writing/`, `/guidelines/web-design/`, and the visual handbook at `/guidelines/design/`. Agents should load [`skills/guidelines/SKILL.md`](skills/guidelines/SKILL.md) and must not scrape the design HTML. When **building a page**, fetch `/design.md` first (`skills/design-md/SKILL.md`). Site overview for agents: `/llms.txt`. Logos stay on `/brand-assets/`.
+The guidelines source lives in [`content/guidelines/`](content/guidelines/), with the version in each file's frontmatter. Agents read the markdown, never the HTML:
 
-See [`AGENTS.md`](AGENTS.md) for the short pointer.
+- [shellui.com/guidelines/writing.md](https://shellui.com/guidelines/writing.md)
+- [shellui.com/guidelines/web-design.md](https://shellui.com/guidelines/web-design.md)
+- [shellui.com/design.md](https://shellui.com/design.md)
 
-## CI
+The matching agent skills are in [`skills/`](skills/) and in [shellui/skills](https://github.com/shellui/skills).
 
-GitHub Actions run on every pull request and on pushes to `develop` / `main`:
-
-| Workflow | When | What |
-| --- | --- | --- |
-| `ci.yml` | PRs + pushes to `develop`/`main` | `npm ci`, production build, `_site` smoke checks, secret scan, `npm audit`, naming/hygiene, markdown link check |
-| `pre-release.yml` | PRs into `main` (and manual dispatch) | `package.json` ↔ `CHANGELOG.md` version alignment, no active Unreleased section, full build + verify |
-
-Locally:
+## Development
 
 ```bash
 npm run build && npm run verify
-npm run pre-release          # same checks as the develop → main gate
+npm run pre-release   # same checks as the develop to main gate
 ```
 
-## Deploy
+Every push to `main` deploys `_site/` to GitHub Pages. The stack, the islands, CI, deploy and security headers are in [docs/development.md](docs/development.md). Changes are in [CHANGELOG.md](CHANGELOG.md).
 
-GitHub Actions (`.github/workflows/pages.yml`) builds `_site/` and deploys to GitHub Pages on push to `main`. After the first merge, set the repository Pages source to **GitHub Actions** (not “Deploy from branch”).
+## Contributing
 
-Missing URLs are served from `_site/404.html`. GitHub Pages only uses that filename at the site root (not `/404/index.html`).
+Open an issue or a pull request against `develop`. Coding agents start with [AGENTS.md](AGENTS.md).
 
-### Security headers
+## Shellui projects
 
-GitHub Pages cannot emit CSP, HSTS, or other response headers. Put Cloudflare (or another proxy) in front of the custom domain and apply the values in [`infra/security-headers.json`](infra/security-headers.json). Rollout checklist: [`docs/deploy-security-headers.md`](docs/deploy-security-headers.md). Verify after edge config:
-
-```bash
-./tools/verify-security-headers.sh
-```
-
-Dependabot watches `package-lock.json` and GitHub Actions (`.github/dependabot.yml`). Nunjucks autoescape and intentional raw HTML are documented in [`docs/security-html-policy.md`](docs/security-html-policy.md).
+| Project | What it does |
+| --- | --- |
+| [shellui](https://github.com/shellui/shellui) | The shell, CLI and SDK |
+| [admin](https://github.com/shellui/admin) | Administration app inside the shell |
+| [files](https://github.com/shellui/files) | File explorer for storage-service |
+| [identity-service](https://github.com/shellui/identity-service) | Sign-in, companies and tokens |
+| [storage-service](https://github.com/shellui/storage-service) | File storage |
+| [hosting-service](https://github.com/shellui/hosting-service) | Deploys and serves Shellui apps |
+| [email-service](https://github.com/shellui/email-service) | Templates and sends email |
+| [skills](https://github.com/shellui/skills) | Agent Skills for coding agents |
+| [playground](https://github.com/shellui/playground) | Live demo of the shell |
 
 ## License
 
-MIT - see [LICENSE](LICENSE).
+[MIT](LICENSE)
