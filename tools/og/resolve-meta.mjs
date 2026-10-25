@@ -1,4 +1,4 @@
-import { sanitizeText, truncateText, formatBlogDate } from "./text.mjs";
+import { sanitizeText, truncateText, truncateDescription, formatBlogDate } from "./text.mjs";
 
 const SECTION_LABELS = {
   features: "Features",
@@ -47,7 +47,7 @@ function displayTitle(data) {
 
 function displayDescription(data) {
   const raw = data.ogDescription || data.lede || data.description || data.site?.description || "";
-  return truncateText(raw, 160);
+  return truncateDescription(raw, 160);
 }
 
 function resolveTemplate(url, data) {
@@ -105,14 +105,17 @@ function changelogPayload(data) {
         .replace(/\[[^\]]+\]\([^)]+\)/g, "")
         .trim();
       const short = plain.split(/[:.]/)[0]?.trim();
-      if (short && short.length <= 42) tags.push(short);
+      if (!short || short.length > 42) continue;
+      const key = short.toLowerCase();
+      if (tags.some((t) => t.toLowerCase() === key)) continue;
+      tags.push(short);
     }
     if (tags.length >= 4) break;
   }
   return {
     version: latest.version,
     date: latest.date,
-    tags,
+    tags: tags.length >= 2 ? tags : [],
   };
 }
 
@@ -184,29 +187,18 @@ export function resolveOgMeta(data) {
     const latest = data.changelog?.[0];
     if (data.ogTitle) {
       meta.title = sanitizeText(data.ogTitle);
-    } else if (latest?.summary) {
-      const summary = String(latest.summary);
-      const repeated = /(.{8,}?),\s*\1/.test(summary);
-      meta.title = repeated
-        ? truncateText(
-            String(latest.sections?.[0]?.items?.[0] || summary)
-              .replace(/\*\*/g, "")
-              .replace(/<[^>]+>/g, "")
-              .split(".")[0]
-              .trim(),
-            72,
-          )
-        : truncateText(summary, 72);
-    } else if (latest?.sections?.[0]?.items?.[0]) {
-      const plain = String(latest.sections[0].items[0])
-        .replace(/\*\*/g, "")
-        .replace(/<[^>]+>/g, "")
-        .split(".")[0]
-        .trim();
-      meta.title = truncateText(plain, 72);
+    } else if (latest?.version) {
+      meta.title = `Shellui v${latest.version}`;
     } else {
       meta.title = sanitizeText(data.title || title);
     }
+    const summaryRaw =
+      data.ogDescription ||
+      data.lede ||
+      data.description ||
+      (latest?.summary && !String(latest.summary).includes(":") ? latest.summary : "") ||
+      "";
+    meta.description = truncateDescription(summaryRaw, 160);
   }
 
   if (template === "default" && url === "/blog/") {
@@ -214,6 +206,7 @@ export function resolveOgMeta(data) {
     meta.sectionLabel = "Blog";
   }
 
+  meta.alt = `${meta.title}. ${meta.description}`.slice(0, 200);
   return meta;
 }
 

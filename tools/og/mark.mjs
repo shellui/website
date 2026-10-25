@@ -29,7 +29,7 @@ export function markDataUri(variant = "ink") {
   } else if (variant === "gold" || variant === "goldOnDark") {
     uri = svgDataUri(markSvgWithFill(variant === "goldOnDark" ? "#E8B84A" : "#E3A512"));
   } else if (variant === "watermarkLight") {
-    uri = svgDataUri(markSvgWithFill("#D1D5DB"));
+    uri = svgDataUri(markSvgWithFill("#F3F3F4"));
   } else if (variant === "watermarkDark") {
     uri = svgDataUri(markSvgWithFill("#111827"));
   } else {

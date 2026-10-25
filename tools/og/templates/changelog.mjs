@@ -25,7 +25,11 @@ export function ChangelogTemplate(meta) {
       { style: { display: "flex", flexDirection: "column", gap: 16, flexShrink: 0 } },
       h(HeaderRow, { label: "shellui.com" }),
       cl.version
-        ? h(GoldDotPill, { label: `v${cl.version}` })
+        ? h(
+            "div",
+            { style: { alignSelf: "flex-start" } },
+            h(GoldDotPill, { label: `v${cl.version}` }),
+          )
         : null,
     ),
     h(
