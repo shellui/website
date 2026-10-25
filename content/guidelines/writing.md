@@ -185,6 +185,7 @@ await init({
 - Playground: [playground.shellui.com](https://playground.shellui.com)
 - Source: [github.com/shellui](https://github.com/shellui)
 - Brand files: [shellui.com/brand-assets](https://shellui.com/brand-assets/)
+- Brand kit and rules: [shellui.com/guidelines/brand](https://shellui.com/guidelines/brand/)
 - Do not invent dashboard deep links. Link to the real path (`/admin`, docs page, GitHub repo)
 
 ## What to mention (and what to skip)

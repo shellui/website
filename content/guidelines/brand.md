@@ -13,6 +13,15 @@ The Shellui brand kit v1 is the canonical reference for logo usage, color, typog
 
 Individual logos and marks for quick use stay on [Brand assets](/brand-assets/).
 
+## Type and UI (site alignment)
+
+The kit matches how shellui.com is built today:
+
+- **Typography**: the website uses the system UI font stack. Logos, Open Graph images, and social templates in the asset zip use Inter.
+- **Durations**: write seconds as `30s`, not spelled-out words.
+- **Controls**: site chrome uses `rounded-md` corner radius on buttons and inputs.
+- **Gold tint**: honey gold wash in the PDF is for print samples only, not web backgrounds.
+
 ## How to use this file
 
 - **Humans**: read the page at `/guidelines/brand/`, or download this markdown
