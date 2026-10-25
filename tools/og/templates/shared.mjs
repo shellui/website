@@ -1,40 +1,24 @@
 import React from "react";
-import { COLORS, MARGINS } from "../constants.mjs";
+import { COLORS, OG_HEIGHT, OG_WIDTH, MARGINS } from "../constants.mjs";
 import { markDataUri } from "../mark.mjs";
 
 const h = React.createElement;
 
+/** Large brand mark watermark bleeding off the right edge (kit og-default). */
 export function MarkWatermark({ variant = "light" }) {
-  const primary = variant === "dark" ? "watermarkDark" : "watermarkLight";
-  const secondary = variant === "dark" ? "watermarkDark" : "watermarkLight2";
-  return h(
-    React.Fragment,
-    null,
-    h("img", {
-      src: markDataUri(secondary),
-      width: 560,
-      height: 775,
-      alt: "",
-      style: {
-        position: "absolute",
-        right: -40,
-        top: -60,
-        transform: "rotate(-8deg)",
-      },
-    }),
-    h("img", {
-      src: markDataUri(primary),
-      width: 520,
-      height: 720,
-      alt: "",
-      style: {
-        position: "absolute",
-        right: 80,
-        bottom: -200,
-        transform: "rotate(14deg)",
-      },
-    }),
-  );
+  const fill = variant === "dark" ? "watermarkDark" : "watermarkLight";
+  return h("img", {
+    src: markDataUri(fill),
+    width: 720,
+    height: 996,
+    alt: "",
+    style: {
+      position: "absolute",
+      right: -200,
+      top: -80,
+      opacity: variant === "dark" ? 0.35 : 1,
+    },
+  });
 }
 
 export function HeaderRow({
@@ -45,7 +29,7 @@ export function HeaderRow({
 }) {
   return h(
     "div",
-    { style: { display: "flex", alignItems: "center", gap: 16 } },
+    { style: { display: "flex", alignItems: "center", gap: 16, flexShrink: 0 } },
     h("img", { src: markDataUri(markVariant), width: 28, height: 38, alt: "" }),
     h("div", { style: { width: 1, height: 28, background: dividerColor } }),
     h(
@@ -63,17 +47,31 @@ export function HeaderRow({
   );
 }
 
-export function TitleBlock({ title, description, titleColor, descColor, titleSize = 56, maxWidth = 720 }) {
+export function TitleBlock({
+  title,
+  description,
+  titleColor,
+  descColor,
+  titleSize = 60,
+  maxWidth = 760,
+}) {
   return h(
     "div",
-    { style: { display: "flex", flexDirection: "column", gap: 20, maxWidth } },
+    {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 22,
+        maxWidth,
+      },
+    },
     h(
       "div",
       {
         style: {
           fontSize: titleSize,
           fontWeight: 700,
-          lineHeight: 1.08,
+          lineHeight: 1.06,
           letterSpacing: "-0.03em",
           color: titleColor,
         },
@@ -85,9 +83,9 @@ export function TitleBlock({ title, description, titleColor, descColor, titleSiz
           "div",
           {
             style: {
-              fontSize: 26,
+              fontSize: 24,
               fontWeight: 400,
-              lineHeight: 1.35,
+              lineHeight: 1.4,
               color: descColor,
             },
           },
@@ -103,9 +101,10 @@ export function ShellFrame({ variant = "light", children }) {
     "div",
     {
       style: {
+        width: OG_WIDTH,
+        height: OG_HEIGHT,
         display: "flex",
-        width: "100%",
-        height: "100%",
+        flexDirection: "column",
         background: bg,
         position: "relative",
         overflow: "hidden",
@@ -120,15 +119,51 @@ export function ShellFrame({ variant = "light", children }) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          width: "100%",
-          height: "100%",
+          width: OG_WIDTH,
+          height: OG_HEIGHT,
           padding: `${MARGINS.y}px ${MARGINS.x}px`,
+          boxSizing: "border-box",
           position: "relative",
           zIndex: 1,
         },
       },
       children,
     ),
+  );
+}
+
+export function MainContent({ children }) {
+  return h(
+    "div",
+    {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        flexGrow: 1,
+        flexShrink: 1,
+        paddingTop: 40,
+        paddingBottom: 24,
+        minHeight: 0,
+      },
+    },
+    children,
+  );
+}
+
+export function FooterRow({ children }) {
+  return h(
+    "div",
+    {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexShrink: 0,
+        width: "100%",
+      },
+    },
+    children,
   );
 }
 
@@ -155,6 +190,7 @@ export function GoldDotPill({ label, variant = "light" }) {
         borderRadius: 999,
         border: `1px solid ${border}`,
         background: bg,
+        flexShrink: 0,
       },
     },
     h("div", { style: { width: 10, height: 10, borderRadius: 999, background: COLORS.gold } }),

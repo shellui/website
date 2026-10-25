@@ -11,6 +11,7 @@
     "prebuild": "npm run fetch:changelog",
     "build": "rm -rf _site && eleventy",
     "verify": "./tools/verify-site.sh",
+    "og:audit": "node ./tools/og/list-rendered-titles.mjs",
     "verify:security": "node ./tools/verify-changelog-sanitize.mjs",
     "pre-release": "./tools/pre-release-check.sh"
   },

@@ -8,35 +8,10 @@ import { resolveOgMeta, shouldGenerateOgForTemplate } from "./resolve-meta.mjs";
 import { renderOgPng } from "./render.mjs";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const cacheDir = path.join(root, ".cache/og");
-
-/** Bump when renderer output shape changes to invalidate stale cache entries. */
-const CACHE_VERSION = 4;
-
-function payloadHash(meta) {
-  return createHash("sha256")
-    .update(`${CACHE_VERSION}:`)
-    .update(JSON.stringify(meta))
-    .digest("hex")
-    .slice(0, 16);
-}
-
-function readCache(hash) {
-  const file = path.join(cacheDir, `${hash}.png`);
-  if (fs.existsSync(file)) return fs.readFileSync(file);
-  return null;
-}
-
-function writeCache(hash, buffer) {
-  fs.mkdirSync(cacheDir, { recursive: true });
-  fs.writeFileSync(path.join(cacheDir, `${hash}.png`), buffer);
-}
 
 /**
  * Generate OG PNGs for Eleventy template results into outputDir/og/.
- * @param {string} outputDir
- * @param {Array} templates
- * @returns {Promise<{ generated: number, skipped: number, cached: number }>}
+ * Always re-renders PNGs at build time (no read-from-cache) so output matches current templates.
  */
 export async function generateOgImages(outputDir, templates) {
   const ogDir = path.join(outputDir, "og");
@@ -44,9 +19,9 @@ export async function generateOgImages(outputDir, templates) {
 
   let generated = 0;
   let skipped = 0;
-  let cached = 0;
 
   const seen = new Set();
+  const audit = [];
 
   for (const template of templates) {
     const layoutFromFile = readLayoutFromFile(template.inputPath);
@@ -66,29 +41,34 @@ export async function generateOgImages(outputDir, templates) {
     if (seen.has(outFile)) continue;
     seen.add(outFile);
 
-    const hash = payloadHash({
-      path: meta.path,
+    const png = await renderOgPng(meta);
+    fs.writeFileSync(outFile, png);
+    generated += 1;
+
+    audit.push({
+      url: meta.url,
       template: meta.template,
       title: meta.title,
-      description: meta.description,
-      headerText: meta.headerText,
-      category: meta.category,
-      badge: meta.badge,
-      blogMeta: meta.blogMeta,
-      changelog: meta.changelog,
-      footerUrl: meta.footerUrl,
+      description: meta.description ? "yes" : "no",
     });
 
-    let png = readCache(hash);
-    if (png) {
-      cached += 1;
-    } else {
-      png = await renderOgPng(meta);
-      writeCache(hash, png);
-      generated += 1;
+    const pageTitle = data.title ? String(data.title).replace(/\s*\|\s*Shellui\s*$/i, "").trim() : "";
+    if (
+      meta.title === "Shellui" &&
+      pageTitle &&
+      pageTitle.toLowerCase() !== "shellui"
+    ) {
+      throw new Error(
+        `OG title fell back to "Shellui" for ${meta.url} (page title: ${data.title}). Check front matter merge.`,
+      );
     }
-    fs.writeFileSync(outFile, png);
   }
 
-  return { generated, skipped, cached };
+  audit.sort((a, b) => a.url.localeCompare(b.url));
+  console.log(`[og] Generated ${generated} Open Graph images (${skipped} skipped):`);
+  for (const row of audit) {
+    console.log(`[og]   ${row.url}  [${row.template}]  ${row.title}`);
+  }
+
+  return { generated, skipped, cached: 0, audit };
 }

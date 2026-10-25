@@ -17,7 +17,11 @@ async function loadGlobalData() {
       let changelog = [];
       try {
         const mod = await import(path.join(root, "src/_data/changelog.js"));
-        changelog = mod.default ?? mod;
+        let loaded = mod.default ?? mod;
+        if (typeof loaded === "function") {
+          loaded = await loaded();
+        }
+        changelog = Array.isArray(loaded) ? loaded : [];
       } catch {
         changelog = [];
       }

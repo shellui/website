@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import React from "react";
 import satori from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { OG_WIDTH, OG_HEIGHT } from "./constants.mjs";
@@ -61,7 +62,17 @@ function pickTemplate(meta) {
 
 export async function renderOgPng(meta) {
   const fonts = await loadFonts();
-  const element = pickTemplate(meta);
+  const element = React.createElement(
+    "div",
+    {
+      style: {
+        width: OG_WIDTH,
+        height: OG_HEIGHT,
+        display: "flex",
+      },
+    },
+    pickTemplate(meta),
+  );
   const svg = await satori(element, {
     width: OG_WIDTH,
     height: OG_HEIGHT,

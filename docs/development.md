@@ -19,7 +19,7 @@ Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are r
 Every page that uses `layouts/base.njk` gets a **1200×630** PNG at build time (`/og/<slug>.png`), styled from brand kit v1 (default, docs, blog, and changelog templates). [Satori](https://github.com/vercel/satori) renders React markup to SVG; `@resvg/resvg-js` rasterizes it. Inter comes from `@fontsource/inter`.
 
 - **Metadata**: `tools/og/page-data.mjs` merges each template’s source front matter (via gray-matter) with Eleventy data before `resolve-meta.mjs` picks the template and copy. Overrides: `ogTemplate`, `ogTitle`, `ogDescription`, or `ogImage` (custom URL skips generation). Cache keys always include the page path so identical fallback copy cannot reuse one PNG across pages.
-- **Build hook**: `eleventy.after` calls `tools/og/generate.mjs`. Content hashes are cached under `.cache/og/` so unchanged pages skip re-render.
+- **Build hook**: `eleventy.after` calls `tools/og/generate.mjs`, which **re-renders every PNG** (no cache reads) and logs `[og] <url> [template] <title>` for all 27 pages. Refresh committed samples with `./tools/regenerate-og-samples.sh`.
 - **Head tags**: `base.njk` emits `og:image`, dimensions, alt text, and Twitter card fields; `eleventyComputed.js` sets absolute image URLs.
 - **Verify**: `npm run verify` runs `tools/verify-og-images.mjs` (missing meta, missing PNG, or wrong dimensions fail the build).
 

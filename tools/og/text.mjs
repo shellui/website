@@ -17,13 +17,13 @@ export function truncateText(text, maxLen) {
   return `${cut.trim()}…`;
 }
 
-export function titleMetrics(title, { maxChars = 72, baseSize = 56 } = {}) {
+export function titleMetrics(title, { maxChars = 72, baseSize = 60 } = {}) {
   let fontSize = baseSize;
   const len = title.length;
-  if (len > 48) fontSize = 48;
-  if (len > 64) fontSize = 42;
-  if (len > 80) fontSize = 36;
-  if (len > 96) fontSize = 32;
+  if (len > 52) fontSize = 56;
+  if (len > 68) fontSize = 48;
+  if (len > 88) fontSize = 42;
+  if (len > 104) fontSize = 36;
   const limit = fontSize <= 36 ? maxChars + 20 : maxChars;
   return {
     fontSize,

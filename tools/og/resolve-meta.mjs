@@ -40,8 +40,9 @@ export function ogImagePathFromUrl(url) {
 
 function displayTitle(data) {
   if (data.ogTitle) return sanitizeText(data.ogTitle);
+  if (data.title) return sanitizeText(data.title);
   if (data.heading) return sanitizeText(data.heading);
-  return sanitizeText(data.title || data.site?.name || "Shellui");
+  return sanitizeText(data.site?.name || "Shellui");
 }
 
 function displayDescription(data) {
@@ -184,7 +185,25 @@ export function resolveOgMeta(data) {
     if (data.ogTitle) {
       meta.title = sanitizeText(data.ogTitle);
     } else if (latest?.summary) {
-      meta.title = truncateText(latest.summary, 72);
+      const summary = String(latest.summary);
+      const repeated = /(.{8,}?),\s*\1/.test(summary);
+      meta.title = repeated
+        ? truncateText(
+            String(latest.sections?.[0]?.items?.[0] || summary)
+              .replace(/\*\*/g, "")
+              .replace(/<[^>]+>/g, "")
+              .split(".")[0]
+              .trim(),
+            72,
+          )
+        : truncateText(summary, 72);
+    } else if (latest?.sections?.[0]?.items?.[0]) {
+      const plain = String(latest.sections[0].items[0])
+        .replace(/\*\*/g, "")
+        .replace(/<[^>]+>/g, "")
+        .split(".")[0]
+        .trim();
+      meta.title = truncateText(plain, 72);
     } else {
       meta.title = sanitizeText(data.title || title);
     }
