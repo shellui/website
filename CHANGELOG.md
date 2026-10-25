@@ -35,7 +35,6 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 🚨 Changed
 
-- Pricing page labels the free option as self-hosted and links to the quickstart and installation docs.
 - Remove links to unavailable hosted services and most service hostnames from copy and `llms.txt`.
 - Legacy URLs (`/brand-assets/`, `/product/brand-assets/`, `/guidelines/design/`, `/guidelines/web-design/`) use HTML fallback redirects (`noindex`, canonical, `location.replace` with hash preserved). GitHub Pages serves the site directly (no edge 301s). Sitemap lists canonical guideline URLs only.
 - Remove duplicated `website/skills/` (skills live in `shellui/skills` only).

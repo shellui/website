@@ -12,12 +12,12 @@ hideBreadcrumbs: true
   <p class="mx-auto mt-6 max-w-2xl text-center text-lg text-pretty text-gray-600 sm:text-xl/8 dark:text-gray-400">Shellui is free to use, modify, and distribute. Paid help is architecture, custom work, and support - not a hosted plan or usage meter.</p>
   <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
     <div class="rounded-xl rounded-t-xl bg-white p-8 ring-1 ring-gray-900/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-tr-none lg:rounded-bl-xl dark:bg-white/5 dark:ring-white/10">
-      <h2 id="tier-free" class="text-base/7 font-semibold text-primary-ink">Free, self-hosted</h2>
+      <h2 id="tier-free" class="text-base/7 font-semibold text-primary-ink">Open source</h2>
       <p class="mt-4 flex items-baseline gap-x-2">
         <span class="text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">Free</span>
         <span class="text-base text-gray-500 dark:text-gray-400">forever</span>
       </p>
-      <p class="mt-6 text-base/7 text-gray-600 dark:text-gray-400">You run Shellui on your own infrastructure under the MIT license: shell, SDK, identity, admin, storage, and email. Start with the <a href="{{ site.docs }}/quickstart" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">quickstart</a> or the <a href="{{ site.docs }}/installation" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">installation guide</a>.</p>
+      <p class="mt-6 text-base/7 text-gray-600 dark:text-gray-400">The full source: shell, SDK, identity, admin, storage, and email. MIT licensed.</p>
       <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 dark:text-gray-400 sm:mt-10">
         <li class="flex gap-x-3">
           <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink">
