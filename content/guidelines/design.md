@@ -1,16 +1,63 @@
 ---
 title: Design
-description: How to compose on-brand Shellui pages. Fetch this file first when building website or product surfaces. The HTML page at /guidelines/design/ is a human visual handbook - do not scrape it.
-version: 1.3.1
+description: Stable agent alias for Interface plus Foundations token summary. Fetch this file first when building Shellui pages.
+version: 2.0.0
+updated: 2026-10-25
+canonical: /design.md
+related: /guidelines/interface/, /guidelines/foundations/
 ---
 
 Act as an excellent Shellui designer, editor, and information architect. Turn the available material into an official Shellui-authored page. Shape the argument and the interface together. Do not restyle a dump of sections or assemble a generic landing page.
 
-Fetch this file at `https://shellui.com/design.md`. It is the composition authority for agents. Humans use `/guidelines/design/` for swatches and examples. It does not replace the writing or web-design handbooks.
+Fetch this file at `https://shellui.com/design.md`. It is the composition authority for agents. Humans use `/guidelines/interface/` and `/guidelines/foundations/`. Full rules live in [interface.md](/guidelines/interface.md).
 
 - Writing: `https://shellui.com/guidelines/writing.md`
-- Web design: `https://shellui.com/guidelines/web-design.md`
-- Skills: `skills/design-md/SKILL.md`, then writing and web-design skills as needed
+- Foundations (tokens): `https://shellui.com/guidelines/foundations.md`
+- Brand (logos): `https://shellui.com/guidelines/brand.md`
+- Print: `https://shellui.com/guidelines/print.md`
+
+## Tokens (summary)
+
+Gray canvas. Honey gold is the action color. A soft primary wash behind the homepage hero is brand ambient, not a gold field. Prefer token utilities (`bg-background`, `text-foreground`, `border-border`, `bg-muted`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `text-primary-ink`, `bg-card`). `primary-ink` remaps in dark mode.
+
+<!-- tokens:begin -->
+| Token | Light | Dark | Role |
+| --- | --- | --- | --- |
+| `primary` | `#e3a512` | `#e8b84a` | Accent / buttons |
+| `primary-foreground` | `#1a1408` | `#1a1408` | Text on gold |
+| `primary-ink` | `#8a6300` | `#e8b84a` | Gold text on light; remaps on dark |
+| `ring` | `#e3a512` | `#e8b84a` | Focus |
+| `background` | `#ffffff` | `#030712` | Page canvas |
+| `foreground` | `#111827` | `#f9fafb` | Primary text |
+| `muted` | `#f9fafb` | `rgb(255 255 255 / 0.05)` | Quiet wells |
+| `muted-foreground` | `#4b5563` | `#9ca3af` | Secondary text |
+| `border` | `#e5e7eb` | `#1f2937` | Rules, cards |
+| `card` | `#ffffff` | `#111827` | Raised surface |
+| `card-foreground` | `#111827` | `#f9fafb` | Text on card |
+| radius | `rounded-xl` cards (`0.75rem`); `rounded-md` controls (`0.375rem`) | same | Shape |
+<!-- tokens:end -->
+
+Type: Inter on screen. One `h1` per page. Lede `text-lg text-muted-foreground`. Body `text-base/7`. Button: `rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground`. Gold is scarce. Widths: `max-w-7xl` feature chrome, `max-w-5xl` guidelines, `max-w-3xl` reading prose. Horizontal shell: `.page-x` on the outer band only.
+
+## Interface (full rules)
+
+The sections below mirror `/guidelines/interface.md` for offline agents. Prefer fetching interface.md when online.
+
+
+Interface rules cover layout, interaction, and composition on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Pair with [Writing](/guidelines/writing/) for copy and [Foundations](/guidelines/foundations/) for tokens. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Keep AI, MCP, and marketplace chrome out of the default UI.
+
+Agents: load this file or `/design.md` (stable alias). Do not scrape HTML handbooks. The `version` field in frontmatter is the public "Guidelines v…" label.
+
+## How to use this file
+
+- **Humans**: `/guidelines/interface/`
+- **Agents**: `https://shellui.com/guidelines/interface.md` or `https://shellui.com/design.md`
+- **Writing**: [writing.md](/guidelines/writing/) for voice, punctuation, and banned words
+- **Tokens**: [foundations.md](/guidelines/foundations/) and [tokens.json](/guidelines/generated/tokens.json)
+- **Brand logos**: [brand.md](/guidelines/brand/) only
+- **Hub**: [Guidelines](/guidelines/)
+
+Review files against every rule below. Output concise, high-signal findings. Sacrifice grammar for brevity.
 
 ## Product
 
@@ -18,12 +65,12 @@ Shellui is an open-source web app development platform: a microfrontend shell wi
 
 Precise, calm, direct, technically literate, evidence-led, restrained. Name is **Shellui** only. Never "The Host". In prose, "the shell" (lowercase) is the running host. Lead with what ships today (iframe host, `@shellui/sdk`, identity-service or Supabase Auth, `/admin`, storage, Files). Keep AI, MCP, marketplace, and app-store chrome quiet unless the page is about that surface.
 
-## Priority
+## Priority (when building pages)
 
 1. Preserve supplied facts, package names, URLs, units, qualifiers, and task constraints.
-2. Preserve the host stack: Eleventy 3, Tailwind CSS v4, Tailwind Plus patterns already in this repo, Alpine for light demos, shadcn-compatible CSS variables. No new framework, CSS library, or token system, apart from the page-scoped island exception under Stack.
+2. Preserve the host stack: Eleventy 3, Tailwind CSS v4, Tailwind Plus patterns already in this repo, Alpine for light demos, shadcn-compatible CSS variables. No new framework, CSS library, or parallel token system apart from the page-scoped island exception under Stack.
 3. Make the reader's question, strongest supported answer, and material evidence immediately clear.
-4. Establish Shellui authorship through existing nav/footer chrome, system typography, gray canvas, and scarce primary gold.
+4. Establish Shellui authorship through existing nav/footer chrome, Inter typography, gray canvas, and scarce primary gold.
 5. Choose a composition specific to this material. Do not clone an unrelated page as a template.
 6. Refine responsive behavior and details without weakening the hierarchy.
 
@@ -31,37 +78,71 @@ Ask questions only when proceeding could change product claims, pricing, securit
 
 ## Stack
 
-- Templates: Nunjucks in `src/`. Layouts: `base`, `page`, `feature`, `post`, `guidelines`, `guidelines-design`.
-- CSS: `src/assets/css/input.css` → `/assets/css/site.css`. Token values: `src/_data/designTokens.js` (must match `input.css`).
+- Templates: Nunjucks in `src/`. Layouts: `base`, `page`, `feature`, `post`, `guidelines`, `guidelines-foundations`.
+- CSS: `src/assets/css/input.css` → `/assets/css/site.css`. Token values: generated from `tokens/tokens.json` into `src/_data/designTokens.js` and `input.css`.
 - JS: Alpine (`src/blocks/`), Plus Elements (`/assets/js/elements.js`), theme toggle (`src/assets/js/site.js`).
-- Islands: one page may lazy-load one React bundle for a single interactive piece it cannot express in Alpine. Source in `src/islands/`, bundled by esbuild with its CSS inlined, imported on view. `/architecture/` uses `@xyflow/react` this way. Ship a static fallback in the Nunjucks and reuse the token variables; do not reach for an island for a toggle, a tab strip, or a carousel.
-- Images: `img/`, logos from `/brand-assets/`. Do not stretch or recolor the wordmark.
+- Islands: one page may lazy-load one React bundle for a single interactive piece it cannot express in Alpine. Source in `src/islands/`, bundled by esbuild with its CSS inlined. Ship a static fallback in Nunjucks and reuse token variables.
+- Images: `img/`, logos from [Brand downloads](/guidelines/brand/#downloads). Do not stretch or recolor the wordmark.
 - Iframe: site can load in the shell (`@shellui/sdk` tiny). Do not cover host chrome. Theme follows `html.dark`.
 - Do not ship a single-file HTML deliverable, a React/Vite rewrite, or a parallel design-system package.
 
 Chrome to reuse: `nav.njk` (fixed `h-16`), `footer.njk`, `logo.njk`. Main padding: `.page-top` (below the fixed header) and `.page-x` (horizontal gutters). Do not add a second header, mega-footer, announcement bar, or extra theme switcher.
 
-## Tokens
+## Shellui chrome
 
-Gray canvas. Honey gold is the action color. A soft primary wash behind the homepage hero is brand ambient, not a gold field. Prefer token utilities (`bg-background`, `text-foreground`, `border-border`, `bg-muted`, `text-muted-foreground`, `bg-primary`, `text-primary-foreground`, `text-primary-ink`, `bg-card`). In dark, gold text is `dark:text-primary` because `primary-ink` is not remapped.
+The product is a microfrontend shell. The host owns shared chrome; the iframe owns the app.
 
-| Token | Light | Dark | Role |
-| --- | --- | --- | --- |
-| `background` | `#ffffff` | `#030712` | Page canvas |
-| `foreground` | `#111827` | `#f9fafb` | Primary text |
-| `muted` | `#f9fafb` | `rgb(255 255 255 / 0.05)` | Quiet wells |
-| `muted-foreground` | `#4b5563` | `#9ca3af` | Secondary text |
-| `border` | `#e5e7eb` | `#1f2937` | Rules, cards |
-| `card` | `#ffffff` | `#111827` | Raised surface |
-| `primary` | `#e3a512` | `#e8b84a` | Accent / buttons |
-| `primary-foreground` | `#1a1408` | `#1a1408` | Text on gold |
-| `primary-ink` | `#c4920a` | use `primary` | Gold text on light |
-| `ring` | `#e3a512` | `#e8b84a` | Focus |
-| radius | `rounded-xl` cards (`0.75rem`); `rounded-md` controls (`0.375rem`) | same | Shape |
+- Host chrome: sidebar, top bar, or window layout, plus toasts, dialogs, drawers, theme, and language. Do not rebuild those inside the iframe
+- Iframe apps talk to the shell with `@shellui/sdk` (`init`, postMessage). Do not reach into host DOM
+- Layout mode is a shell concern (`shellui.config.ts`). App UI must work in sidebar, top-bar, and window layouts
+- Do not cover the shell header, nav, or toast region. Fixed app bars need an offset for host chrome
+- Authentication, admin (`/admin`), and Files are shell surfaces. Deep-link them; don't clone their navigation
+- Theme and locale live in the shell. Read them; don't ship a second theme picker in the app unless the app is the settings surface
+- Prefer existing Tailwind tokens from [Foundations](/guidelines/foundations/). Primary accent is honey gold (`--color-primary`, `--color-primary-ink`). Do not invent a second brand color
+- Marketing site chrome: fixed header (`h-16`), `.page-top` and `.page-x` gutters, footer. Put `.page-x` on the outer band and keep `max-w-*` children unpadded so they align with the header. Sticky in-page UI must clear the header
+- Logos and marks: see [Brand](/guidelines/brand/). Do not stretch, recolor, or swap in a different wordmark
 
-Existing pages may still use `bg-white dark:bg-gray-950`. Same palette. New work should use token names.
+## Accessibility and focus
 
-Type: system font. One `h1` (`text-4xl font-bold md:text-5xl` inner pages, or `font-semibold tracking-tight` on feature openings). Lede `text-lg text-muted-foreground`. Section `text-2xl` / `text-3xl font-semibold tracking-tight`. Body `text-base/7`. Measure ~60-70 characters. Button: `rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground`. Secondary is a text link. Gold is scarce. Widths: `max-w-7xl` feature chrome, `max-w-5xl` guidelines, `max-w-3xl` reading prose. Horizontal shell: `.page-x` (`px-4 sm:px-6 lg:px-8`) on the outer band only; keep `max-w-*` children without horizontal padding so header, body, and footer share one content edge. Section steps `.page-top`, `mt-10`, `mt-16`.
+- Icon-only buttons need `aria-label`
+- Form controls need a `<label>` or `aria-label`
+- Interactive elements need keyboard handlers (`onKeyDown` / `onKeyUp` where click is not enough)
+- `<button>` for actions; `<a>` for navigation. Never a `<div>` with a click handler
+- Images need `alt` (or `alt=""` if decorative)
+- Decorative icons need `aria-hidden="true"`
+- Async updates (toasts, validation) need `aria-live="polite"`. Shell toasts already live in the host - use the SDK, don't mount a second live region that fights the host
+- Semantic HTML (`header`, `nav`, `main`, `footer`) before ARIA
+- Headings hierarchical `h1`–`h6`; one `h1` per page
+- Include a skip link to main content on long chrome (shell and marketing header)
+- `scroll-margin-top` on heading anchors so the fixed header does not cover the target
+- Meaningful media needs captions, transcripts, or descriptions
+- Media controls need keyboard support; hide decorative media from assistive tech
+- Interactive elements need visible focus: `focus-visible:ring-*` or equivalent
+- Never `outline-none` without a focus replacement
+- Use `:focus-visible` over `:focus` (avoid a ring on pointer click)
+- Group focus with `:focus-within` for compound controls
+- Trap focus in dialogs; return it to the trigger on close
+- Hit targets: if the visual control is < 24px, expand the hit area to ≥ 24px; on mobile ≥ 44px
+- Status is not color alone; include a text label
+- Sticky headers, footers, and overlays must not cover the focused element (16 × 4px marketing header; shell top bar in top-bar layout)
+
+## Forms and input
+
+- Inputs need `autocomplete` and a meaningful `name`
+- Use the correct `type` (`email`, `tel`, `url`, `number`) and `inputmode`
+- Never block paste (`onPaste` + `preventDefault`)
+- Labels clickable (`htmlFor` or wrapping the control)
+- Disable spellcheck on emails, codes, usernames, tokens (`spellCheck={false}`)
+- Checkboxes and radios: label and control share one hit target (no dead zones)
+- Submit stays enabled until the request starts; spinner during the request; keep the original label
+- Do not pre-disable submit on incomplete forms; submitting surfaces errors
+- Do not block keystrokes on typed fields; validate after input
+- Enter submits when a text input is the only control; in `<textarea>`, ⌘/Ctrl+Enter submits
+- Errors inline next to fields; focus the first error on submit
+- Placeholders end with `…` and show an example pattern (`your_access_token_here…`)
+- `autocomplete="off"` on non-auth fields to avoid password-manager triggers
+- Warn before navigation with unsaved changes (`beforeunload` or a router guard)
+- Auth fields belong in the shell when the app is hosted. Don't duplicate sign-in UI in the iframe unless you are replacing the identity backend
 
 ## Reuse
 
@@ -71,31 +152,27 @@ Prefer shipped Tailwind Plus patterns. Paste into Nunjucks or `{% demo %}`. Rest
 | --- | --- | --- |
 | Product opening | `src/index.njk` | Centered hero, dual CTA |
 | Nav | `src/_includes/nav.njk` | Flyouts, Alpine, no new menu library |
-| Feature split | `src/features/index.njk`, `layouts/feature.njk` | Two-column, one dominant piece |
+| Feature split | `src/features/index.md`, `layouts/feature.njk` | Two-column, one dominant piece |
 | Pricing | `src/pricing/index.md` | Two-tier |
-| FAQ | `src/_includes/home-faq.njk` | Split heading + definitions |
 | Article | `layouts/post.njk` | Narrow measure |
 | Inner page | `layouts/page.njk`, `guidelines.njk` | Breadcrumb, h1, lede, prose |
-| CTA band | `layouts/feature.njk` | One quiet band |
 | Code | `{% highlight %}` | Shiki |
 | Demo | `src/blocks/*.njk` | Real HTML, no iframe |
 
-**Shellui brand ambient** is allowed: a soft primary / amber wash (`blur-3xl`, `from-primary to-amber-200`) behind the homepage hero or a quiet CTA. Static is fine. Reject multi-color blobs, logo clouds, gradient fields, testimonial marquees, and fake dashboards.
+**Shellui brand ambient** is allowed: a soft primary / amber wash (`blur-3xl`, `from-primary to-amber-200`) behind the homepage hero or a quiet CTA. Static is fine. Reject multi-color blobs, logo clouds, gradient fields, testimonial marquees, and fake dashboards. Gradients elsewhere are not allowed except this wash.
 
 ## Compose
 
-First viewport is the argument, not a masthead plus setup. Start with the reader's job. Executive path (identity, headings, one action) and audit path (commands, config, tables) are both required. Copy follows writing guidelines (hyphens, no em dashes, no `easy` / `simple` / `quick`).
+First viewport is the argument, not a masthead plus setup. Start with the reader's job. Executive path (identity, headings, one action) and audit path (commands, config, tables) are both required. Copy follows [Writing](/guidelines/writing/).
 
 One page-level throughline. One focal relationship per reading moment. Squint: one dominant claim. If every block has equal weight, redesign. Never fill an evidence gap with panels, icons, or effects.
 
-Passes: frame the job → choose composition → apply this visual system → inspect both themes. Deliver the implementation, not a score.
+Passes: frame the job → choose composition → apply Foundations tokens → inspect both themes. Deliver the implementation, not a score.
 
-## Reject
+## Reject (visual)
 
 - All-caps tracked eyebrows as decoration
-- Em dashes or en dashes as punctuation
-- `easy`, `simple`, `quick`, `seamless`, `unlock`, `leverage`
-- Multi-color glows, stripes, glass, ornamental shadows. Soft primary/amber hero ambient is allowed (see Reuse)
+- Multi-color glows, stripes, glass, ornamental shadows (soft primary/amber hero ambient is allowed)
 - Generic centered hero plus equal-weight card grid
 - Nested cards, or borders used to repair weak hierarchy
 - Arbitrary icon tiles, logo clouds, fake screenshots
@@ -103,8 +180,120 @@ Passes: frame the job → choose composition → apply this visual system → in
 - Leading a shipping-product page with AI / MCP / marketplace atmosphere
 - Authoring-process narration in page copy
 
-Restraint is precise hierarchy, readable type, scarce gold, and evidence - not empty margins.
+Voice rejects (banned words, dashes): [Writing](/guidelines/writing/).
 
-## A11y
+## Motion, touch, and layout
 
-Landmarks, one `h1`, ordered headings, native controls, visible `focus-visible` rings. WCAG AA. Source order is reading order. `min-w-0` on flex/grid children. Details: `https://shellui.com/guidelines/web-design.md`.
+- Honor `prefers-reduced-motion` (reduced variant or disable). The marketing theme reveal already disables under that media query - match it
+- Animate `transform` and `opacity` only (compositor-friendly)
+- Never `transition: all`; list properties explicitly
+- Set the correct `transform-origin`
+- SVG: transforms on a `<g>` wrapper with `transform-box: fill-box; transform-origin: center`
+- Animations interruptible - respond to input mid-animation
+- Autoplay motion longer than 5 seconds needs pause, stop, or hide controls
+- Muted decorative loops must stop under `prefers-reduced-motion`
+- `touch-action: manipulation` (prevents double-tap zoom delay)
+- Set `-webkit-tap-highlight-color` intentionally
+- `overscroll-behavior: contain` in modals, drawers, and sheets - including shell drawers
+- During drag: disable text selection, `inert` on dragged elements
+- Drag, swipe, pinch, and path gestures need tap/click and keyboard alternatives unless the gesture is the whole point
+- `autoFocus` sparingly - desktop only, single primary input; avoid on mobile
+- Full-bleed layouts need `env(safe-area-inset-*)` for notches
+- Avoid unwanted scrollbars: fix overflow rather than masking it with `overflow-x-hidden` on `body`
+- Flex and grid over JavaScript measurement for layout
+- Nested radii: child ≤ parent, concentric (`rounded-md` inside `rounded-xl`)
+- Design empty, sparse, dense, and error states
+- Inline help before tooltips
+- Iframe apps: don't assume viewport height equals the window. The shell chrome eats space. Prefer `%` / flex inside the iframe, not `100vh`, unless you subtract host chrome
+
+## Visual language
+
+- Density: developer-facing, not crowded. Match existing `page-top`, `page-x`, `max-w-5xl` / `max-w-3xl` prose, `rounded-xl` cards, and gray borders on feature pages
+- Light and dark are both first-class. Preview every screen in both. Marketing site: `html.dark` plus `localStorage.theme`. Product: `@shellui/core` theme
+- `color-scheme: dark` on `html` when the dark theme is active (fixes scrollbar and native controls)
+- `theme-color` meta matches the page background
+- Native `<select>`: explicit `background-color` and `color` (Windows dark mode)
+- Ellipsis `…`, not three dots `...`. Loading states: `Loading…`, `Saving…`
+- Punctuation and banned words: [Writing guidelines](/guidelines/writing/) owns them. UI copy follows the same rules
+- Straight quotes in source. Don't convert to curly quotes by hand
+- `font-variant-numeric: tabular-nums` for number columns and comparisons
+- `text-wrap: balance` or `text-pretty` on headings (prevents widows)
+- Text containers handle long content: `truncate`, `line-clamp-*`, or `break-words`
+- Flex children need `min-w-0` to allow truncation
+- Handle empty states - don't render broken UI for empty strings or arrays
+- User-generated content: anticipate short, average, and very long inputs
+- Buttons and links need a `hover:` state. Hover, active, and focus should increase contrast, not flatten it
+- Copy in the UI follows the [writing guidelines](/guidelines/writing/): active voice, sentence-case page headings, Title Case nav labels, specific button verbs ("Save token", not "Continue")
+- Numerals for counts: "8 apps", not "eight"
+- Error messages include the next step, not only the problem
+- `&` over "and" only where space is tight (nav, buttons)
+- Brand name **Shellui** never translates: `translate="no"` on the wordmark in HTML where auto-translate would garble it
+
+## Performance and state
+
+- `<img>` needs explicit `width` and `height` (prevents layout shift)
+- Below-fold images: `loading="lazy"`
+- Above-fold critical images: `fetchpriority="high"`
+- Large lists (more than 50 items): virtualize or `content-visibility: auto`
+- No layout reads in render (`getBoundingClientRect`, `offsetHeight`, `offsetWidth`, `scrollTop`)
+- Batch DOM reads and writes; don't interleave
+- Prefer uncontrolled inputs; controlled inputs must be cheap per keystroke
+- Self-host third-party scripts when practical (`@shellui/sdk` tiny ships from `/assets/js/`). Use Subresource Integrity if you must load from a CDN
+- Critical fonts: Inter is self-hosted with preload and `font-display: swap`. Do not add a second webfont without a reason
+- Prefer compressed video over animated GIF; provide a still alternative
+- Short decorative loops: muted video, `prefers-reduced-motion` media condition, still fallback
+- URL reflects state - filters, tabs, pagination, expanded panels in query params. Deep-link stateful UI
+- Links are real links (`<a>`), so Cmd/Ctrl+click and middle-click work
+- Destructive actions need a confirmation modal or an undo window - never immediate
+- Dates and times: `Intl.DateTimeFormat`, not hardcoded strings
+- Numbers and currency: `Intl.NumberFormat`
+- Detect language via `Accept-Language` / `navigator.languages`, not IP. The shell already owns locale
+- Hydration: inputs with `value` need `onChange` (or `defaultValue` if uncontrolled)
+- Date/time rendering: guard against server/client mismatch
+- `suppressHydrationWarning` only where it is truly required
+- Eleventy pages are static HTML. Don't hydrate a whole marketing page for a theme toggle - keep Alpine/JS scoped
+
+## Anti-patterns (flag these)
+
+- `user-scalable=no` or `maximum-scale=1` disabling zoom
+- `onPaste` with `preventDefault`
+- `transition: all`
+- `outline-none` without a focus-visible replacement
+- Click handler navigation without an `<a href>`
+- `<div>` or `<span>` with click handlers that should be `<button>` or `<a>`
+- Images without dimensions
+- Large arrays `.map()` without virtualization
+- Form inputs without labels
+- Icon buttons without `aria-label`
+- Submit disabled before the user tries (hides validation)
+- Hit targets under 24px (44px on mobile) with no expanded area
+- Hardcoded date/number formats (use `Intl.*`)
+- `autoFocus` without a clear reason
+- Animated GIF when compressed video is suitable
+- Gesture-only action without tap/click and keyboard alternative
+- Em dashes or en dashes as punctuation in UI copy (see Writing)
+- Rebuilding shell toasts, dialogs, or nav inside the iframe
+- `100vh` layouts that sit under host chrome
+- A second theme picker in a hosted app
+- Shipping-product UI that leads with AI, MCP, or marketplace chrome
+- Missing dark-theme styles (`dark:` or theme tokens)
+- Focus or headings hidden under the fixed marketing header or shell top bar
+
+## Review output
+
+Group by file. Use `file:line` format (clickable in VS Code). Terse findings.
+
+    #### Example (guidelines hub)
+
+    src/guidelines/index.njk:12 - icon button missing aria-label
+    src/guidelines/index.njk:40 - heading target missing scroll-margin-top
+
+    #### Example (CSS)
+
+    src/assets/css/extras.css:22 - transition: all → list properties
+
+    #### Example (pass)
+
+    src/_includes/nav.njk - pass
+
+State issue + location. Skip explanation unless the fix is non-obvious. No preamble.

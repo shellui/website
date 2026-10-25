@@ -22,9 +22,26 @@ const SECURITY_HEADERS = {
 /** @type {string} GitHub Pages origin for shellui/website */
 const PAGES_ORIGIN = "https://shellui.github.io";
 
+/** Permanent redirects (guidelines v2). Applied at the edge for real 301s. */
+const REDIRECTS = new Map([
+  ["/brand-assets/", "/guidelines/brand/#downloads"],
+  ["/brand-assets", "/guidelines/brand/#downloads"],
+  ["/product/brand-assets/", "/guidelines/brand/#downloads"],
+  ["/product/brand-assets", "/guidelines/brand/#downloads"],
+  ["/guidelines/design/", "/guidelines/interface/"],
+  ["/guidelines/design", "/guidelines/interface/"],
+  ["/guidelines/web-design/", "/guidelines/interface/"],
+  ["/guidelines/web-design", "/guidelines/interface/"],
+  ["/guidelines/web-design.md", "/guidelines/interface.md"],
+]);
+
 export default {
   async fetch(request) {
     const url = new URL(request.url);
+    const dest = REDIRECTS.get(url.pathname);
+    if (dest) {
+      return Response.redirect(new URL(dest, url.origin).toString(), 301);
+    }
     const originUrl = `${PAGES_ORIGIN}${url.pathname}${url.search}`;
 
     const originRequest = new Request(originUrl, {

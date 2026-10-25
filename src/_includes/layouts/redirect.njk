@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ title or "Redirect" }}</title>
+    <link rel="canonical" href="{{ redirect | absoluteUrl(site.url) }}" />
+    <meta http-equiv="refresh" content="0; url={{ redirect }}" />
+    <script>location.replace("{{ redirect }}");</script>
+  </head>
+  <body>
+    <p><a href="{{ redirect }}">Continue to {{ redirect }}</a></p>
+  </body>
+</html>

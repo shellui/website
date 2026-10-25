@@ -228,6 +228,8 @@ export default async function (eleventyConfig) {
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
     "content/guidelines/design.md": "design.md",
     "content/guidelines": "guidelines",
+    "content/guidelines/generated": "guidelines/generated",
+    "src/assets/fonts": "assets/fonts",
   });
 
   eleventyConfig.addFilter("readableDate", (date) =>
