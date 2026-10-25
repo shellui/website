@@ -6,6 +6,7 @@ import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { hasGluedSentenceBoundary } from "./og/text.mjs";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const site = path.join(root, "_site");
@@ -101,6 +102,18 @@ for (const rel of htmlFiles) {
   }
 
   const ogTitle = stripSiteSuffix(extractMeta(html, "og:title") || html.match(/<title>([^<]+)<\/title>/i)?.[1]);
+  const ogDescription = extractMeta(html, "og:description");
+
+  for (const [label, value] of [
+    ["og:title", ogTitle],
+    ["og:description", ogDescription],
+    ["og:image:alt", ogAlt],
+  ]) {
+    if (value && hasGluedSentenceBoundary(value)) {
+      fail(`${rel} ${label} has glued sentence boundary (missing space): ${value.slice(0, 120)}`);
+    }
+  }
+
   const altLead = ogAlt.split(".")[0]?.trim();
   if (
     ogTitle &&

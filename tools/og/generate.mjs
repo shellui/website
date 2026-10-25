@@ -1,4 +1,3 @@
-import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -6,6 +5,7 @@ import { readLayoutFromFile } from "./front-matter.mjs";
 import { mergePageDataForOg } from "./page-data.mjs";
 import { resolveOgMeta, shouldGenerateOgForTemplate } from "./resolve-meta.mjs";
 import { renderOgPng } from "./render.mjs";
+import { hasGluedSentenceBoundary } from "./text.mjs";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
@@ -37,6 +37,15 @@ export async function generateOgImages(outputDir, templates) {
       continue;
     }
 
+    if (hasGluedSentenceBoundary(meta.title)) {
+      throw new Error(`OG title has glued sentence boundary for ${meta.url}: ${meta.title}`);
+    }
+    if (hasGluedSentenceBoundary(meta.description)) {
+      throw new Error(
+        `OG description has glued sentence boundary for ${meta.url}: ${meta.description}`,
+      );
+    }
+
     const outFile = path.join(ogDir, `${path.basename(meta.path)}`);
     if (seen.has(outFile)) continue;
     seen.add(outFile);
@@ -49,7 +58,7 @@ export async function generateOgImages(outputDir, templates) {
       url: meta.url,
       template: meta.template,
       title: meta.title,
-      description: meta.description ? "yes" : "no",
+      description: meta.description || "",
     });
 
     const pageTitle = data.title ? String(data.title).replace(/\s*\|\s*Shellui\s*$/i, "").trim() : "";
@@ -68,6 +77,7 @@ export async function generateOgImages(outputDir, templates) {
   console.log(`[og] Generated ${generated} Open Graph images (${skipped} skipped):`);
   for (const row of audit) {
     console.log(`[og]   ${row.url}  [${row.template}]  ${row.title}`);
+    console.log(`[og]       description: ${row.description || "(empty)"}`);
   }
 
   return { generated, skipped, cached: 0, audit };

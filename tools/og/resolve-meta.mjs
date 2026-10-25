@@ -46,7 +46,12 @@ function displayTitle(data) {
 }
 
 function displayDescription(data) {
-  const raw = data.ogDescription || data.lede || data.description || data.site?.description || "";
+  const raw =
+    data.ogDescription ||
+    data.description ||
+    data.lede ||
+    data.site?.description ||
+    "";
   return truncateDescription(raw, 160);
 }
 
