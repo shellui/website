@@ -4,11 +4,9 @@
 
 When reviewing, writing, or building Shellui website, docs, or in-shell UI, follow the versioned handbooks. Read the markdown. Do not scrape the HTML.
 
-- Parent skill: [`skills/guidelines/SKILL.md`](skills/guidelines/SKILL.md)
-- **Building a page**: fetch [`/design.md`](https://shellui.com/design.md) first (`skills/design-md/SKILL.md` → [`content/guidelines/design.md`](content/guidelines/design.md)). Do not scrape `/guidelines/design/`.
-- Writing: [`skills/writing-guidelines/SKILL.md`](skills/writing-guidelines/SKILL.md) → [`content/guidelines/writing.md`](content/guidelines/writing.md) → `/guidelines/writing/`
-- Web design: [`skills/web-design-guidelines/SKILL.md`](skills/web-design-guidelines/SKILL.md) → [`content/guidelines/web-design.md`](content/guidelines/web-design.md) → `/guidelines/web-design/`
-- Hub: `/guidelines/`
-- Site overview for agents: `/llms.txt`
-
-Logos and press-kit downloads stay on `/brand-assets/`.
+- Parent skill: `shellui/skills` → `skills/guidelines/SKILL.md` (not duplicated in this repo)
+- **Building a page**: fetch [`/design.md`](https://shellui.com/design.md) first (alias for Interface + Foundations summary)
+- Hub: `/guidelines/` with Brand, Foundations, Writing, Interface, and Print
+- Tokens: `tokens/tokens.json` → `/guidelines/foundations/`
+- Site overview: `/llms.txt` and `/llms-full.txt`
+- Logos and kit downloads: `/guidelines/brand/#downloads` (legacy `/brand-assets/` HTML redirect; file paths under `/brand-assets/*` unchanged)

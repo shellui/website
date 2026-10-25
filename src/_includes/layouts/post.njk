@@ -5,7 +5,7 @@ layout: layouts/base.njk
   <div class="mx-auto max-w-3xl text-base/7 text-gray-700 dark:text-gray-300">
     {% include "breadcrumbs.njk" %}
     {% if category %}
-      <p class="text-base/7 font-semibold text-primary-ink dark:text-primary">{{ category }}</p>
+      <p class="text-base/7 font-semibold text-primary-ink">{{ category }}</p>
     {% endif %}
     <h1 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{{ heading or title }}</h1>
     <p class="mt-3 text-sm/5 text-gray-500 dark:text-gray-400">

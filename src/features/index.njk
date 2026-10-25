@@ -15,15 +15,15 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
     <h2 class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">A shared foundation for your web apps</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Build a customer portal, an internal tool, or a product with several apps. Configure the navigation, layout, and connected services in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. Each app keeps its own interface and uses the Shellui software development kit (SDK) to access shared features.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">Start with navigation and a layout, then connect authentication or storage when your project needs them. Shellui is MIT-licensed and free to run. You can host the shell and its services on your own infrastructure.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">Explore the features below, or try the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.playground }}">playground</a> in your browser before installing anything.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Explore the features below, or try the <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.playground }}">playground</a> in your browser before installing anything.</p>
     <p class="mt-6 text-sm text-muted-foreground">
-      <a href="/architecture/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Architecture</a>
+      <a href="/architecture/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Architecture</a>
       ·
-      <a href="{{ site.docs }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Docs</a>
+      <a href="{{ site.docs }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Docs</a>
       ·
-      <a href="{{ site.playground }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary" target="_blank" rel="noopener noreferrer">Playground</a>
+      <a href="{{ site.playground }}" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" target="_blank" rel="noopener noreferrer">Playground</a>
       ·
-      <a href="/changelog/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Changelog</a>
+      <a href="/changelog/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Changelog</a>
     </p>
   </div>
   <div>
@@ -63,7 +63,7 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
             <li>{{ point }}</li>
           {% endfor %}
         </ul>
-        <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline dark:text-primary">{{ item.cta }}</span>
+        <span class="mt-6 inline-flex items-center text-sm font-medium text-primary-ink group-hover:underline">{{ item.cta }}</span>
       </div>
     </a>
   {% endfor %}
@@ -75,11 +75,11 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
       <h2 id="webhooks" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">One webhook system</h2>
       <p class="mt-4 text-base/7 text-muted-foreground">identity-service, storage-service, hosting-service, and email-service send signed webhooks. You write the rules in Administration, and you can point a rule at an n8n workflow. You see the signing secret once. The service image retries failed deliveries every minute, so you do not add cron.</p>
       <p class="mt-6 text-sm text-muted-foreground">
-        <a href="/features/administration/#webhooks" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Webhooks in Administration</a>
+        <a href="/features/administration/#webhooks" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Webhooks in Administration</a>
         ·
-        <a href="{{ site.docs }}/identity/n8n" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">n8n guide</a>
+        <a href="{{ site.docs }}/identity/n8n" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">n8n guide</a>
         ·
-        <a href="/features/email/#rules" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Email rules</a>
+        <a href="/features/email/#rules" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Email rules</a>
       </p>
     </div>
     <div>

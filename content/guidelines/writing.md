@@ -1,7 +1,10 @@
 ---
 title: Writing guidelines
 description: Voice, tone, and review rules for Shellui website and docs prose.
-version: 1.0.0
+version: 2.0.0
+updated: 2026-10-25
+canonical: /guidelines/writing/
+related: /guidelines/interface/, /guidelines/brand/
 ---
 
 These rules cover copy on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and in-product strings that developers read. Lead with what Shellui ships today: a microfrontend shell with shared navigation, authentication, administration, and storage. Keep AI, MCP, and marketplace ideas quiet unless the page is actually about that surface.
@@ -13,8 +16,8 @@ Agents: load this file. Do not scrape the HTML page. The `version` field in the 
 - **Humans**: read the page at `/guidelines/writing/`, or download this markdown
 - **Agents**: read `content/guidelines/writing.md` in this repo, or fetch `https://shellui.com/guidelines/writing.md`
 - **Skill wrapper**: `skills/writing-guidelines/SKILL.md`
-- **Sibling**: [web design guidelines](/guidelines/web-design/) for UI, accessibility, and chrome
-- **Compose pages with**: [design.md](/design.md) (`fetch https://shellui.com/design.md`)
+- **Sibling**: [Interface](/guidelines/interface/) for UI, accessibility, and chrome
+- **Compose pages with**: [design.md](/design.md) (`fetch https://shellui.com/design.md`) or [interface.md](/guidelines/interface.md)
 - **Hub**: [Guidelines](/guidelines/)
 
 Review files against every rule below. Output concise, high-signal findings. Sacrifice grammar for brevity.
@@ -23,10 +26,10 @@ Review files against every rule below. Output concise, high-signal findings. Sac
 
 - The product name is **Shellui** only. Never "The Host". Never raise the last two letters or camel-case the name; packages and repos stay lowercase (`@shellui/sdk`, `shellui/identity-service`)
 - In prose, "the shell" (lowercase) is the running host around the iframe app. That is a common noun, not a second brand
-- Default one-liner: Shellui is an open-source web app development platform - a microfrontend shell that wraps your application with shared navigation, authentication, storage, and administration
+- Default one-liner: Shellui is an open-source web app development platform: a microfrontend shell that wraps your application with shared navigation, authentication, storage, and administration (defined once in [Brand](/guidelines/brand/))
 - Audience is developers shipping a product inside that shell, not generic "users" or "teams exploring AI"
 - Surfaces: [docs.shellui.com](https://docs.shellui.com) for docs, [playground.shellui.com](https://playground.shellui.com) to try it, [GitHub](https://github.com/shellui) for source. Mention [shellui.ai](https://shellui.ai) only when the page is about that property
-- Visual downloads (logos, marks, wordmarks) live on [Brand assets](/brand-assets/). Do not mix logo-usage rules into product docs
+- Logo usage lives on [Brand](/guidelines/brand/) only. Do not mix logo rules into product docs
 
 ## Voice and tone
 
@@ -185,6 +188,7 @@ await init({
 - Playground: [playground.shellui.com](https://playground.shellui.com)
 - Source: [github.com/shellui](https://github.com/shellui)
 - Brand files: [shellui.com/brand-assets](https://shellui.com/brand-assets/)
+- Brand kit and rules: [shellui.com/guidelines/brand](https://shellui.com/guidelines/brand/)
 - Do not invent dashboard deep links. Link to the real path (`/admin`, docs page, GitHub repo)
 
 ## What to mention (and what to skip)
