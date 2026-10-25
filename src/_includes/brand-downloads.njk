@@ -1,0 +1,55 @@
+<section id="downloads" class="mt-16 scroll-mt-24 border-t border-gray-200 pt-12 dark:border-gray-800">
+  <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Logo and file downloads</h2>
+  <p class="mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+    Stable URLs under <code class="font-mono text-xs">/brand-assets/</code> for hotlinks and the brand kit. Prefer SVG; use PNG where vectors are unsupported.
+  </p>
+
+  {% for group in brandAssets %}
+    <section class="mt-12">
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{ group.name }}</h3>
+      {% if group.caption %}
+        <p class="mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">{{ group.caption }}</p>
+      {% endif %}
+      <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2{% if group.columns == 3 %} lg:grid-cols-3{% endif %}">
+        {% for asset in group.items %}
+          <div class="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
+            <div class="flex aspect-[16/10] items-center justify-center p-8 {% if asset.preview == 'light' %}bg-gray-100 bg-[linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb),linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% elif asset.preview == 'dark' %}bg-gray-600 bg-[linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151),linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151)] bg-[length:16px_16px] bg-[position:0_0,8px_8px]{% else %}bg-gray-100 bg-[linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb),linear-gradient(45deg,#e5e7eb_25%,transparent_25%,transparent_75%,#e5e7eb_75%,#e5e7eb)] bg-[length:16px_16px] bg-[position:0_0,8px_8px] dark:bg-gray-600 dark:bg-[linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151),linear-gradient(45deg,#374151_25%,transparent_25%,transparent_75%,#374151_75%,#374151)] dark:bg-[length:16px_16px] dark:bg-[position:0_0,8px_8px]{% endif %}">
+              {% if asset.currentColor %}
+                <svg
+                  class="{{ asset.previewClass }} text-gray-900 dark:text-white"
+                  viewBox="{{ asset.viewBox }}"
+                  role="img"
+                  aria-label="{{ asset.label }}"
+                >
+                  <use href="#{{ asset.spriteId }}" />
+                </svg>
+              {% else %}
+                <img src="{{ asset.href }}" alt="{{ asset.label }}" width="320" height="200" class="max-h-24 max-w-full object-contain" loading="lazy" />
+              {% endif %}
+            </div>
+            <div class="border-t border-gray-200 px-4 py-4 dark:border-gray-800">
+              <p class="font-medium text-gray-900 dark:text-white">{{ asset.label }}</p>
+              <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-400">{{ asset.exts }}</p>
+              <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                {% for format in asset.formats %}
+                  <a
+                    href="{{ format.href }}"
+                    download="{{ format.file }}"
+                    class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-ink hover:opacity-90"
+                  >
+                    Download {{ format.ext }}
+                    <span aria-hidden="true">&darr;</span>
+                  </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+
+  <p class="mt-12 text-sm text-gray-500 dark:text-gray-400">
+    Questions about brand usage? <a href="/company/contact/" class="text-primary-ink underline hover:opacity-90">Get in touch</a>.
+  </p>
+</section>

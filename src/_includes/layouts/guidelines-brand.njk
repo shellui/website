@@ -1,0 +1,40 @@
+---
+layout: layouts/base.njk
+---
+{%- set topicData = guidelines.bySlug.brand -%}
+<article class="page-top page-x pb-20">
+  <div class="mx-auto max-w-5xl">
+    {% include "guidelines-subnav.njk" %}
+
+    <header class="max-w-3xl">
+      <p class="text-sm font-medium text-primary-ink">Guidelines</p>
+      <div class="mt-3 flex flex-wrap items-center gap-3">
+        <h1 class="text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">{{ topicData.title }}</h1>
+        <span class="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium text-gray-700 dark:border-gray-800 dark:bg-white/5 dark:text-gray-300">Guidelines v{{ topicData.version }}</span>
+      </div>
+      <p class="mt-4 max-w-3xl text-lg text-gray-600 dark:text-gray-400">{{ topicData.description }}</p>
+      <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <a href="{{ topicData.downloadUrl }}" download="{{ topicData.downloadName }}" class="font-semibold text-primary-ink hover:opacity-90">Download markdown</a>
+        <a href="#downloads" class="text-gray-600 underline-offset-2 hover:underline dark:text-gray-400">Jump to downloads</a>
+      </div>
+    </header>
+
+    <div class="mt-14 lg:grid lg:grid-cols-[12rem_minmax(0,1fr)] lg:gap-16">
+      <nav class="hidden lg:sticky lg:top-24 lg:block lg:self-start" aria-label="On this page">
+        <p class="text-xs font-semibold text-gray-500 dark:text-gray-400">On this page</p>
+        <ol class="mt-3 space-y-2 text-sm">
+          {% for item in topicData.toc %}
+            <li>
+              <a href="#{{ item.id }}" class="text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">{{ item.text }}</a>
+            </li>
+          {% endfor %}
+        </ol>
+      </nav>
+
+      <div class="min-w-0">
+        <div class="guidelines-prose prose min-w-0">{{ topicData.html | safe }}</div>
+        {% include "brand-downloads.njk" %}
+      </div>
+    </div>
+  </div>
+</article>

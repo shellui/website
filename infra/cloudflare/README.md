@@ -1,9 +1,8 @@
 # Cloudflare edge config
 
-shellui.com is built on GitHub Pages. Response security headers live here at the CDN edge, not in `_site/`.
+shellui.com is served **directly by GitHub Pages** today (`server: GitHub.com`). Response security headers are not available from Pages alone; if you add Cloudflare (or another proxy) in front of the custom domain, apply headers from the shared JSON.
 
 - Canonical header values: [`../security-headers.json`](../security-headers.json)
 - Rollout checklist: [`../../docs/deploy-security-headers.md`](../../docs/deploy-security-headers.md)
-- Optional Worker: [`worker-security-headers.js`](worker-security-headers.js)
 
-Apply headers with **Transform Rules** (preferred) or the Worker script. Keep `infra/security-headers.json` updated when the site's third-party dependencies change.
+Use **Transform Rules** (Modify Response Header) when a proxy is in place. Guideline URL moves use **HTML fallback redirects** in the repo (meta refresh, `location.replace`, `noindex`), not edge 301s.

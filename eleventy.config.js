@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { generateOgImages } from "./tools/og/generate.mjs";
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -218,6 +219,7 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({
     CNAME: "CNAME",
+    "brand-assets": "brand-assets",
     img: "img",
     "favicon.ico": "favicon.ico",
     "apple-touch-icon.png": "apple-touch-icon.png",
@@ -227,6 +229,8 @@ export default async function (eleventyConfig) {
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
     "content/guidelines/design.md": "design.md",
     "content/guidelines": "guidelines",
+    "content/guidelines/generated": "guidelines/generated",
+    "src/assets/fonts": "assets/fonts",
   });
 
   eleventyConfig.addFilter("readableDate", (date) =>
@@ -294,7 +298,7 @@ export default async function (eleventyConfig) {
       const credit = [author, role].filter(Boolean).length
         ? `<figcaption class="mt-6 flex gap-x-4">${photo}<div class="text-sm/6">${author ? `<strong class="font-semibold text-gray-900 dark:text-white">${escapeXml(author)}</strong>` : ""}${author && role ? " - " : ""}${role ? escapeXml(role) : ""}</div></figcaption>`
         : "";
-      return `<figure class="article-quote mt-10 border-l border-primary-ink pl-9 dark:border-primary"><blockquote class="font-semibold text-gray-900 dark:text-white">${quote}</blockquote>${credit}</figure>`;
+      return `<figure class="article-quote mt-10 border-l border-primary-ink pl-9"><blockquote class="font-semibold text-gray-900 dark:text-white">${quote}</blockquote>${credit}</figure>`;
     },
   );
 
@@ -324,8 +328,11 @@ export default async function (eleventyConfig) {
   eleventyConfig.on("eleventy.before", buildCss);
   eleventyConfig.on("eleventy.before", buildIslands);
 
-  eleventyConfig.on("eleventy.after", ({ dir }) => {
-    if (hashAssets) fingerprintSite(dir.output);
+  eleventyConfig.on("eleventy.after", async ({ dir, results }) => {
+    if (hashAssets) {
+      await generateOgImages(dir.output, results || []);
+      fingerprintSite(dir.output);
+    }
   });
 
   eleventyConfig.setServerOptions({
