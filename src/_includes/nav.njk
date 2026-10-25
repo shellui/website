@@ -123,7 +123,7 @@
             x-transition:leave="transition ease-in duration-75 motion-reduce:transition-none"
             x-transition:leave-start="translate-y-0 opacity-100"
             x-transition:leave-end="translate-y-1 opacity-0"
-            class="absolute left-0 z-10 mt-2 max-h-[calc(100dvh-5rem)] w-[min(40rem,calc(100vw-2rem))] -translate-x-[50px] overflow-y-auto overscroll-contain rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-white/10 dark:shadow-none"
+            class="absolute left-0 z-10 mt-2 max-h-[calc(100dvh-5rem)] w-[min(40rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-white/10 dark:shadow-none"
           >
             <div class="grid grid-cols-2 gap-1 p-2">
               {% for item in nav.features %}
@@ -179,7 +179,7 @@
             x-transition:leave="transition ease-in duration-75 motion-reduce:transition-none"
             x-transition:leave-start="translate-y-0 opacity-100"
             x-transition:leave-end="translate-y-1 opacity-0"
-            class="absolute left-0 z-10 mt-2 w-screen max-w-sm -translate-x-[50px] overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-white/10 dark:shadow-none"
+            class="absolute left-0 z-10 mt-2 w-screen max-w-sm overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 dark:bg-gray-900 dark:ring-white/10 dark:shadow-none"
           >
             <div class="p-2">
               {% for item in nav.developers %}
@@ -216,13 +216,13 @@
       <div class="flex flex-1 items-center justify-end gap-x-2 lg:flex-none lg:justify-self-end">
         <button
           type="button"
-          class="theme-toggle hidden size-11 items-center justify-center rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:inline-flex dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+          class="theme-toggle hidden size-8 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:inline-flex"
           aria-label="Toggle dark mode"
         >
-          <svg class="h-5 w-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="size-4 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
           </svg>
-          <svg class="hidden h-5 w-5 dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="hidden size-4 dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
         </button>
