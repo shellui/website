@@ -190,8 +190,14 @@ export function resolveOgMeta(data) {
     meta.changelog = changelogPayload(data);
     meta.footerUrl = "shellui.com/changelog";
     const latest = data.changelog?.[0];
+    const websiteVersion = String(data.site?.version || "").replace(/^v/i, "");
+    if (websiteVersion) {
+      meta.changelog = { ...meta.changelog, version: websiteVersion };
+    }
     if (data.ogTitle) {
       meta.title = sanitizeText(data.ogTitle);
+    } else if (websiteVersion) {
+      meta.title = `Shellui v${websiteVersion}`;
     } else if (latest?.version) {
       meta.title = `Shellui v${latest.version}`;
     } else {

@@ -21,12 +21,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
-## [0.6.1] - 2026-10-25
+## [0.7.0] - Unreleased
 
 ### ✨ Feature
 
 - Publish Shellui brand kit v1 (PDF) and brand assets v1 (ZIP) at `/brand-assets/`, with unzipped logo, icon, Open Graph, social, and email files for direct download. Kit copy matches site guidelines (system UI font on the web, Inter in generated images, `30s` durations, `rounded-md` controls, print-only gold tint).
 - Add `/guidelines/brand/` and `content/guidelines/brand.md` with links to the kit and asset archive.
+- Generate per-page Open Graph images at build time (1200×630, brand kit v1 templates via Satori and resvg). Every public page gets `og:image`, dimensions, and alt text; `npm run verify` checks PNG presence, size, and copy quality.
+
+### 📚 Documentation
+
+- Document the Open Graph build pipeline in `docs/development.md` and sample PNGs under `docs/og-samples/`.
 
 ## [0.6.0] - 2026-10-08
 
