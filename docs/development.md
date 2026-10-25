@@ -14,6 +14,17 @@ Islands are the exception to the Alpine rule: one page lazy-loads one React bund
 
 Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are real HTML (no iframes). `content/` is IA notes and is not published, except `content/guidelines/*.md` (canonical guidelines). `design.md` is also copied to the site root as `/design.md`.
 
+## Open Graph images
+
+Every page that uses `layouts/base.njk` gets a **1200×630** PNG at build time (`/og/<slug>.png`), styled from brand kit v1 (default, docs, blog, and changelog templates). [Satori](https://github.com/vercel/satori) renders React markup to SVG; `@resvg/resvg-js` rasterizes it. Inter comes from `@fontsource/inter`.
+
+- **Metadata**: `tools/og/resolve-meta.mjs` picks the template from the URL and front matter (`ogTemplate`, `ogTitle`, `ogDescription`, or `ogImage` to override the file URL). Titles and descriptions come from existing page data.
+- **Build hook**: `eleventy.after` calls `tools/og/generate.mjs`. Content hashes are cached under `.cache/og/` so unchanged pages skip re-render.
+- **Head tags**: `base.njk` emits `og:image`, dimensions, alt text, and Twitter card fields; `eleventyComputed.js` sets absolute image URLs.
+- **Verify**: `npm run verify` runs `tools/verify-og-images.mjs` (missing meta, missing PNG, or wrong dimensions fail the build).
+
+Redirect stubs (`layout: false`) and non-HTML outputs (feed, sitemap, `llms.txt`) are excluded from generation and verification.
+
 ## Guidelines
 
 Canonical rules live in [`content/guidelines/`](../content/guidelines/) (version in each file's frontmatter). Humans read `/guidelines/` (hub), `/guidelines/writing/`, `/guidelines/web-design/`, the visual handbook at `/guidelines/design/`, and `/guidelines/brand/`. Agents should load [`skills/guidelines/SKILL.md`](../skills/guidelines/SKILL.md) and must not scrape the design HTML. When **building a page**, fetch `/design.md` first (`skills/design-md/SKILL.md`). Site overview for agents: `/llms.txt`. Logos stay on `/brand-assets/`.

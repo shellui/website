@@ -1,3 +1,5 @@
+import { resolveOgMeta } from "../../tools/og/resolve-meta.mjs";
+
 export default {
   /** Latest shellui/shellui product series (major.minor from /changelog/, implies .x). */
   productVersion(data) {
@@ -31,15 +33,10 @@ export default {
     return data.description || data.site?.description || "";
   },
   ogImage(data) {
-    if (data.ogImage) return data.ogImage;
-    if (!data.image) return data.ogImage;
-    const origin = String(data.site?.url || "https://shellui.com").replace(
-      /\/$/,
-      "",
-    );
-    return data.image.startsWith("http")
-      ? data.image
-      : `${origin}${data.image}`;
+    return resolveOgMeta(data).absoluteImage;
+  },
+  ogImageAlt(data) {
+    return resolveOgMeta(data).alt;
   },
   breadcrumbs(data) {
     if (data.hideBreadcrumbs) return [];

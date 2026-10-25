@@ -131,6 +131,9 @@ fi
 grep -q 'Act as an excellent' "${SITE}/design.md" || fail "/design.md missing agent composition prompt"
 grep -q '| `background`' "${SITE}/design.md" || fail "/design.md missing compact token table"
 
+log "Checking Open Graph images"
+node "${ROOT}/tools/verify-og-images.mjs"
+
 log "Checking design token drift"
 node "${ROOT}/tools/verify-design-tokens.mjs"
 
