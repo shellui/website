@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { readLayoutFromFile } from "./front-matter.mjs";
 import { resolveOgMeta, shouldGenerateOgForTemplate } from "./resolve-meta.mjs";
 import { renderOgPng } from "./render.mjs";
 
@@ -40,7 +41,8 @@ export async function generateOgImages(outputDir, templates) {
   const seen = new Set();
 
   for (const template of templates) {
-    if (!shouldGenerateOgForTemplate(template)) {
+    const layoutFromFile = readLayoutFromFile(template.inputPath);
+    if (!shouldGenerateOgForTemplate(template, layoutFromFile)) {
       skipped += 1;
       continue;
     }

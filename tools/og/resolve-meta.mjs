@@ -191,11 +191,20 @@ export function resolveOgMeta(data) {
   return meta;
 }
 
-export function shouldGenerateOgForTemplate(template) {
+const SKIP_OG_URLS = new Set([
+  "/features/chrome/",
+  "/features/microfrontend/",
+  "/features/ship/",
+  "/product/brand-assets/",
+]);
+
+export function shouldGenerateOgForTemplate(template, layoutFromFile) {
   const data = template.data || {};
-  if (data.layout === false) return false;
+  const layout = data.layout !== undefined ? data.layout : layoutFromFile;
+  if (layout === false) return false;
   const url = template.url;
   if (!url) return false;
+  if (SKIP_OG_URLS.has(url)) return false;
   if (/\.(xml|txt)$/.test(url)) return false;
   if (data.ogImage && !String(data.ogImage).startsWith("/og/")) return false;
   return true;
