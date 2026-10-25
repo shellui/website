@@ -16,7 +16,7 @@ Paste Tailwind Plus HTML into layouts or `{% demo "name" %}` blocks. Demos are r
 
 ## Guidelines
 
-Canonical rules live in [`content/guidelines/`](../content/guidelines/) (v2.0.0 in frontmatter). Humans read `/guidelines/` (hub), Brand, Foundations, Writing, Interface, and Print. Agents fetch `/design.md` (alias), `/llms.txt`, and `/llms-full.txt`. Skills live in the `shellui/skills` repo only. Tokens: `tokens/tokens.json`. Downloads: `/guidelines/brand/#downloads` (`/brand-assets/` redirects; files stay under `/brand-assets/*`).
+Canonical rules live in [`content/guidelines/`](../content/guidelines/) (v2.0.0 in frontmatter). Humans read `/guidelines/` (hub), Brand, Foundations, Writing, Interface, and Print. Agents fetch `/design.md` (alias), `/llms.txt`, and `/llms-full.txt`. Skills live in the `shellui/skills` repo only. Tokens: `tokens/tokens.json`. Downloads: `/guidelines/brand/#downloads` (legacy `/brand-assets/` HTML fallback redirect; files stay under `/brand-assets/*`).
 
 See [`AGENTS.md`](../AGENTS.md) for the short pointer.
 

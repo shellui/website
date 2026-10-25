@@ -9,4 +9,4 @@ When reviewing, writing, or building Shellui website, docs, or in-shell UI, foll
 - Hub: `/guidelines/` with Brand, Foundations, Writing, Interface, and Print
 - Tokens: `tokens/tokens.json` → `/guidelines/foundations/`
 - Site overview: `/llms.txt` and `/llms-full.txt`
-- Logos and kit downloads: `/guidelines/brand/#downloads` ( `/brand-assets/` redirects here; file paths under `/brand-assets/*` unchanged)
+- Logos and kit downloads: `/guidelines/brand/#downloads` (legacy `/brand-assets/` HTML redirect; file paths under `/brand-assets/*` unchanged)

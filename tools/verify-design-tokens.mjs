@@ -6,10 +6,11 @@ import tokens from "../src/_data/designTokens.js";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const css = fs.readFileSync(path.join(root, "src/assets/css/input.css"), "utf8");
-const md = fs.readFileSync(
+const foundationsMd = fs.readFileSync(
   path.join(root, "content/guidelines/foundations.md"),
   "utf8",
 );
+const designMd = fs.readFileSync(path.join(root, "content/guidelines/design.md"), "utf8");
 
 function fail(message) {
   console.error(`ERROR: ${message}`);
@@ -23,11 +24,14 @@ for (const color of tokens.colors) {
   if (!css.includes(color.dark)) {
     fail(`input.css missing dark ${color.token} (${color.dark})`);
   }
-  if (color.token !== "card-foreground" && !md.includes("`" + color.token + "`")) {
+  if (color.token !== "card-foreground" && !foundationsMd.includes("`" + color.token + "`")) {
     fail(`foundations.md missing token name ${color.token}`);
   }
-  if (!md.includes(color.light)) {
+  if (!foundationsMd.includes(color.light)) {
     fail(`foundations.md missing light value for ${color.token} (${color.light})`);
+  }
+  if (!designMd.includes(color.light)) {
+    fail(`design.md missing light value for ${color.token} (${color.light})`);
   }
 }
 

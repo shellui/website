@@ -1,12 +1,14 @@
 ---
 title: Web design guidelines (alias)
-description: Forever alias for Interface guidelines. Use /guidelines/interface/ for new work.
+description: Forever alias for Interface. Canonical page is /guidelines/interface/.
 version: 2.0.0
 updated: 2026-10-25
 canonical: /guidelines/interface/
 ---
 
-This file is a stable alias for [Interface](/guidelines/interface/). New work should link to `/guidelines/interface/`.
+Stable alias for agents and bookmarks. **Canonical Interface handbook:** [`/guidelines/interface/`](/guidelines/interface/) and [`interface.md`](https://shellui.com/guidelines/interface.md).
+
+When **composing pages**, prefer [`design.md`](https://shellui.com/design.md) first, then fetch the full file below for UI, accessibility, and chrome detail.
 
 
 Interface rules cover layout, interaction, and composition on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Pair with [Writing](/guidelines/writing/) for copy and [Foundations](/guidelines/foundations/) for tokens. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Keep AI, MCP, and marketplace chrome out of the default UI.

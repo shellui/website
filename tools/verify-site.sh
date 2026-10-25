@@ -126,7 +126,10 @@ grep -q '^version: 2.0.0' "${SITE}/design.md" || fail "published /design.md miss
 grep -q 'Act as an excellent' "${SITE}/design.md" || fail "/design.md missing agent composition prompt"
 grep -qF '| `background`' "${SITE}/design.md" || fail "/design.md missing token table"
 grep -q '#8a6300' "${SITE}/design.md" || fail "/design.md must use text gold #8a6300"
-grep -q '/guidelines/brand/#downloads' "${SITE}/brand-assets/index.html" || fail "brand-assets redirect must target brand downloads"
+grep -q 'noindex' "${SITE}/brand-assets/index.html" || fail "brand-assets redirect stub must be noindex"
+grep -q 'guidelines/brand/#downloads' "${SITE}/brand-assets/index.html" || fail "brand-assets redirect must target brand downloads with hash"
+grep -q 'location.replace' "${SITE}/brand-assets/index.html" || fail "brand-assets redirect must use location.replace"
+grep -q 'noindex' "${SITE}/guidelines/design/index.html" || fail "design redirect stub must be noindex"
 grep -q '/guidelines/interface/' "${SITE}/guidelines/design/index.html" || fail "design URL must redirect to interface"
 grep -q '/guidelines/interface/' "${SITE}/guidelines/web-design/index.html" || fail "web-design URL must redirect to interface"
 grep -q '/guidelines/brand/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand link"
@@ -137,6 +140,22 @@ grep -q 'Inter' "${SITE}/guidelines/foundations/index.html" || fail "foundations
 if grep -q 'Act as an excellent' "${SITE}/guidelines/interface/index.html"; then
   fail "interface HTML page should not render the full agent prompt (use design.md)"
 fi
+design_bytes="$(wc -c < "${SITE}/design.md")"
+if [[ "${design_bytes}" -gt 40960 ]]; then
+  fail "design.md must stay under 40 KB (got ${design_bytes} bytes)"
+fi
+grep -q 'guidelines/interface.md' "${SITE}/design.md" || fail "design.md must link to full interface.md"
+if grep -q '/brand-assets/' "${SITE}/sitemap.xml"; then
+  fail "sitemap must not list legacy /brand-assets/ redirect stub"
+fi
+if grep -q '/guidelines/design/' "${SITE}/sitemap.xml"; then
+  fail "sitemap must not list legacy /guidelines/design/ redirect stub"
+fi
+if grep -q '/guidelines/web-design/' "${SITE}/sitemap.xml"; then
+  fail "sitemap must not list legacy /guidelines/web-design/ redirect stub"
+fi
+grep -q '/guidelines/changelog/' "${SITE}/guidelines/index.html" || fail "guidelines pages should link to changelog"
+grep -q 'Changelog' "${SITE}/guidelines/writing/index.html" || fail "guidelines subnav missing Changelog link"
 
 log "Checking design token drift"
 node "${ROOT}/tools/verify-design-tokens.mjs"

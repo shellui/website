@@ -16,9 +16,9 @@ Major reorganization for the website release.
 - **Interface**: merges former design and web design guidelines; `/design.md` stays as agent alias
 - **Print**: new HTML and markdown for print grid, IBM Plex, folios, Pantone, and paper
 - **Writing**: sole owner of punctuation and banned words
-- **Agents**: `llms-full.txt`, raw `.md` twins, forever aliases for `/guidelines/web-design.md` and `/design.md`
+- **Agents**: `llms-full.txt`, raw `.md` twins; `/design.md` trimmed alias; `/guidelines/web-design.md` full Interface copy
 - **Site**: Inter self-hosted on screen; text gold `#8A6300` / `#E8B84A` in dark mode
 
 ## 1.x (archived)
 
-Prior versions lived as separate writing (1.0.0), web design (1.1.1), design (1.3.1), and brand (1.0.0) files. Redirects send `/guidelines/design/` and `/guidelines/web-design/` to Interface.
+Prior versions lived as separate writing (1.0.0), web design (1.1.1), design (1.3.1), and brand (1.0.0) files. Legacy HTML pages at `/guidelines/design/` and `/guidelines/web-design/` fall back to Interface.
