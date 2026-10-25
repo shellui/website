@@ -12,7 +12,7 @@ hideBreadcrumbs: true
   <p class="mx-auto mt-6 max-w-2xl text-center text-lg text-pretty text-gray-600 sm:text-xl/8 dark:text-gray-400">Shellui is free to use, modify, and distribute. Paid help is architecture, custom work, and support - not a hosted plan or usage meter.</p>
   <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
     <div class="rounded-xl rounded-t-xl bg-white p-8 ring-1 ring-gray-900/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-tr-none lg:rounded-bl-xl dark:bg-white/5 dark:ring-white/10">
-      <h2 id="tier-free" class="text-base/7 font-semibold text-primary-ink dark:text-primary">Open source</h2>
+      <h2 id="tier-free" class="text-base/7 font-semibold text-primary-ink">Open source</h2>
       <p class="mt-4 flex items-baseline gap-x-2">
         <span class="text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">Free</span>
         <span class="text-base text-gray-500 dark:text-gray-400">forever</span>
@@ -20,37 +20,37 @@ hideBreadcrumbs: true
       <p class="mt-6 text-base/7 text-gray-600 dark:text-gray-400">The full source: shell, SDK, identity, admin, storage, and email. MIT licensed.</p>
       <ul role="list" class="mt-8 space-y-3 text-sm/6 text-gray-600 dark:text-gray-400 sm:mt-10">
         <li class="flex gap-x-3">
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink dark:text-primary">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink">
             <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
           </svg>
           Full source code access
         </li>
         <li class="flex gap-x-3">
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink dark:text-primary">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink">
             <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
           </svg>
           Authentication &amp; identity
         </li>
         <li class="flex gap-x-3">
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink dark:text-primary">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink">
             <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
           </svg>
           Administration panel
         </li>
         <li class="flex gap-x-3">
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink dark:text-primary">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink">
             <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
           </svg>
           Email, newsletters &amp; broadcasts
         </li>
         <li class="flex gap-x-3">
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink dark:text-primary">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-primary-ink">
             <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
           </svg>
           Storage &amp; file management
         </li>
       </ul>
-      <a href="{{ site.github }}" aria-describedby="tier-free" class="mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-primary-ink inset-ring inset-ring-primary-ink/20 hover:inset-ring-primary-ink/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-ink dark:text-primary dark:inset-ring-primary/20 dark:hover:inset-ring-primary/40 sm:mt-10" style="text-decoration:none">View source on GitHub</a>
+      <a href="{{ site.github }}" aria-describedby="tier-free" class="mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-primary-ink inset-ring inset-ring-primary-ink/20 hover:inset-ring-primary-ink/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-ink dark:inset-ring-primary/20 dark:hover:inset-ring-primary/40 sm:mt-10" style="text-decoration:none">View source on GitHub</a>
     </div>
     <div class="relative rounded-xl bg-gray-900 p-8 ring-1 ring-gray-900/10 sm:p-10 dark:bg-gray-800">
       <h2 id="tier-support" class="text-base/7 font-semibold text-primary">Hire an expert</h2>

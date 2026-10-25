@@ -40,6 +40,12 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 - Review screenshots: `docs/guidelines-screens/` (hub and each guideline page, light and dark).
 - Document the Open Graph build pipeline in `docs/development.md` and sample PNGs under `docs/og-samples/`.
+- Correct brand guidelines: flat gold backgrounds for print and Open Graph; soft honey gold wash allowed on the website.
+- Fix `undpadded` typo in web-design guidelines (`unpadded`).
+
+### 🐛 Bug Fixes
+
+- Remap `primary-ink` to `#8a6300` on light backgrounds and `#e8b84a` in dark mode so gold text meets WCAG AA without per-page `dark:text-primary` overrides.
 
 ## [0.6.0] - 2026-10-08
 

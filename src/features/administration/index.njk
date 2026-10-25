@@ -11,8 +11,8 @@ lede: "Give staff and company owners a shared administration panel inside Shellu
 <div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
   <div class="max-w-2xl">
     <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Open administration inside your app</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Connect the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.adminPanel }}">Shellui admin app</a> through <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminUrl</code> and set its route with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminPathname</code>. Staff and company owners can then open Administration from the account menu.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">The panel uses your <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> backend and the existing Shellui session. Host the admin app yourself or use <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="https://admin.shellui.com">admin.shellui.com</a>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Connect the <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.adminPanel }}">Shellui admin app</a> through <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminUrl</code> and set its route with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminPathname</code>. Staff and company owners can then open Administration from the account menu.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The panel uses your <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.identityService }}">identity-service</a> backend and the existing Shellui session. Host the admin app yourself or use <a class="font-medium text-primary-ink underline underline-offset-2" href="https://admin.shellui.com">admin.shellui.com</a>.</p>
   </div>
   <div class="mx-auto w-full max-w-sm">
     {% include "feature-visual-admin.njk" %}
@@ -21,15 +21,15 @@ lede: "Give staff and company owners a shared administration panel inside Shellu
 
 <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
   <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connect the admin app</p>
+    <p class="text-sm font-semibold text-primary-ink">1. Connect the admin app</p>
     <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminPathname</code> and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminUrl</code> on a Shellui identity backend.</p>
   </div>
   <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Sign in as staff or owner</p>
+    <p class="text-sm font-semibold text-primary-ink">2. Sign in as staff or owner</p>
     <p class="mt-2 text-sm/6 text-muted-foreground">The shell makes administration available to staff and company owners. The identity backend checks permissions on administration requests.</p>
   </div>
   <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Open Administration</p>
+    <p class="text-sm font-semibold text-primary-ink">3. Open Administration</p>
     <p class="mt-2 text-sm/6 text-muted-foreground">Open the panel from the account menu. Individual screens have shell URLs such as <code class="rounded bg-muted px-1.5 py-0.5 text-sm">/admin/users</code>.</p>
   </div>
 </div>
@@ -57,7 +57,7 @@ lede: "Give staff and company owners a shared administration panel inside Shellu
 <section class="mt-20" aria-labelledby="directory-surfaces">
   <div class="max-w-2xl">
     <h2 id="directory-surfaces" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Everyday administration tools</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Manage accounts, sign-in, and company settings through the built-in screens. Connect storage to add file browsing and usage statistics. Connect <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/email/">email-service</a> to add the Email section.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Manage accounts, sign-in, and company settings through the built-in screens. Connect storage to add file browsing and usage statistics. Connect <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/email/">email-service</a> to add the Email section.</p>
   </div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
@@ -83,11 +83,11 @@ lede: "Give staff and company owners a shared administration panel inside Shellu
     <p class="mt-4 text-base/7 text-muted-foreground">Each delivery is signed in the Standard Webhooks style. You see the signing secret once, when you create or rotate it. A later view of the rule shows only a hint of the secret. The service image retries failed deliveries every minute, so you do not add cron.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">Point a rule at an n8n Webhook node. You can send a test event from Administration while you connect the workflow. Older addresses that used <code class="rounded bg-muted px-1.5 py-0.5 text-sm">#/actions</code> redirect to the webhook pages.</p>
     <p class="mt-6 text-sm text-muted-foreground">
-      <a href="{{ site.docs }}/identity/n8n" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">n8n guide</a>
+      <a href="{{ site.docs }}/identity/n8n" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">n8n guide</a>
       ·
-      <a href="/features/email/#rules" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Email rules</a>
+      <a href="/features/email/#rules" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Email rules</a>
       ·
-      <a href="/features/authentication/#sign-in-privacy" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Sign-in privacy</a>
+      <a href="/features/authentication/#sign-in-privacy" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Sign-in privacy</a>
     </p>
   </div>
 </section>
@@ -157,4 +157,4 @@ lede: "Give staff and company owners a shared administration panel inside Shellu
 ] %}
 {% include "feature-docs.njk" %}
 
-<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/email/">email</a> sends sign-in mail, newsletters, and broadcasts.</p>
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/email/">email</a> sends sign-in mail, newsletters, and broadcasts.</p>

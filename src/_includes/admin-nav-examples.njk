@@ -13,7 +13,7 @@
         <button
           type="button"
           class="w-full rounded-lg px-3 py-2 text-left text-sm font-medium transition-colors"
-          :class="item === '{{ navItem.id }}' ? 'bg-primary/10 text-primary-ink dark:text-primary' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'"
+          :class="item === '{{ navItem.id }}' ? 'bg-primary/10 text-primary-ink' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white'"
           role="tab"
           :aria-selected="(item === '{{ navItem.id }}').toString()"
           aria-controls="admin-nav-example-{{ navItem.id }}"

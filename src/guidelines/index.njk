@@ -15,7 +15,7 @@ hideBreadcrumbs: true
         What Shellui sounds and looks like. One topic per page, each with a markdown twin for agents. Tokens live in Foundations; logos and kit files live under Brand downloads.
       </p>
       <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
-        Guidelines v2.0.0 · <a href="/guidelines/changelog/" class="text-primary-ink underline hover:opacity-90 dark:text-primary">Changelog</a>
+        Guidelines v2.0.0 · <a href="/guidelines/changelog/" class="text-primary-ink underline hover:opacity-90">Changelog</a>
       </p>
     </header>
 
@@ -31,7 +31,7 @@ hideBreadcrumbs: true
             {% if item.agentAliasUrl %}
               <p class="mt-3 font-mono text-xs text-gray-500 dark:text-gray-400">fetch https://shellui.com{{ item.agentAliasUrl }}</p>
             {% endif %}
-            <span class="mt-4 text-sm font-semibold text-primary-ink group-hover:underline dark:text-primary">Read {{ item.navLabel | lower }}</span>
+            <span class="mt-4 text-sm font-semibold text-primary-ink group-hover:underline">Read {{ item.navLabel | lower }}</span>
           </a>
         {% endif %}
       {% endfor %}
@@ -40,9 +40,9 @@ hideBreadcrumbs: true
     <div class="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6 dark:border-gray-800 dark:bg-white/5">
       <h2 class="text-base font-semibold text-gray-900 dark:text-white">For agents</h2>
       <p class="mt-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-        Index: <a href="/llms.txt" class="font-medium text-primary-ink dark:text-primary">/llms.txt</a>.
-        Full corpus: <a href="/llms-full.txt" class="font-medium text-primary-ink dark:text-primary">/llms-full.txt</a>.
-        Building a page? Fetch <a href="/design.md" class="font-medium text-primary-ink dark:text-primary">/design.md</a> first, then the topic markdown. Do not scrape HTML.
+        Index: <a href="/llms.txt" class="font-medium text-primary-ink">/llms.txt</a>.
+        Full corpus: <a href="/llms-full.txt" class="font-medium text-primary-ink">/llms-full.txt</a>.
+        Building a page? Fetch <a href="/design.md" class="font-medium text-primary-ink">/design.md</a> first, then the topic markdown. Do not scrape HTML.
       </p>
       <pre class="mt-4 overflow-x-auto rounded-lg border border-gray-200 bg-white px-4 py-3 font-mono text-xs leading-relaxed text-gray-800 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-200"># 1. Composition alias
 https://shellui.com/design.md
