@@ -27,7 +27,12 @@ required_files=(
   guidelines/web-design.md
   guidelines/design.md
   guidelines/design/index.html
+  guidelines/brand/index.html
+  guidelines/brand.md
   design.md
+  brand-assets/shellui-brand-kit-v1.pdf
+  brand-assets/shellui-brand-assets-v1.zip
+  brand-assets/logo/shellui-mark-ink.svg
 )
 
 log "Checking required output files"
@@ -112,6 +117,9 @@ grep -q 'Tailwind Plus' "${SITE}/design.md" || fail "/design.md missing Tailwind
 grep -q 'primary' "${SITE}/design.md" || fail "/design.md missing primary token"
 grep -q '/guidelines/' "${SITE}/brand-assets/index.html" || fail "brand-assets page missing guidelines cross-link"
 grep -q '/brand-assets/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand-assets cross-link"
+grep -q '/guidelines/brand/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand link"
+grep -q '/brand-assets/shellui-brand-kit-v1.pdf' "${SITE}/guidelines/brand/index.html" || fail "brand guidelines missing kit PDF link"
+grep -q '/brand-assets/shellui-brand-assets-v1.zip' "${SITE}/guidelines/brand/index.html" || fail "brand guidelines missing assets zip link"
 grep -q 'parent skill from this repo' "${SITE}/guidelines/index.html" || fail "guidelines hub missing labeled agent skill path"
 grep -q 'data-design-swatch="primary"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing primary color swatch"
 grep -q 'data-theme-preview="light"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing light surface preview"

@@ -21,6 +21,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.6.1] - 2026-10-25
+
+### ✨ Feature
+
+- Publish Shellui brand kit v1 (PDF) and brand assets v1 (ZIP) at `/brand-assets/`, with unzipped logo, icon, Open Graph, social, and email files for direct download.
+- Add `/guidelines/brand/` and `content/guidelines/brand.md` with links to the kit and asset archive.
+
 ## [0.6.0] - 2026-10-08
 
 ### ✨ Feature
