@@ -576,3 +576,6 @@
 .agent-mark:hover { color: var(--color-gray-900); transform: translateY(-1px); }
 .dark .agent-mark:hover { color: #fff; }
 @media (prefers-reduced-motion: reduce) { .agent-mark:hover { transform: none; } }
+.copy-btn .check-icon { display: none; }
+.copy-btn[data-copied] .copy-icon { display: none; }
+.copy-btn[data-copied] .check-icon { display: block; }

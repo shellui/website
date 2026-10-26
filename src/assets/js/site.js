@@ -181,12 +181,14 @@ function markCopied(button) {
   button.setAttribute("aria-label", "Copied to clipboard");
   if (label) label.textContent = "Copied";
   if (status) status.textContent = "Copied";
+  button.setAttribute("data-copied", "");
   clearTimeout(Number(button.getAttribute("data-copy-timer") || 0));
   const timer = setTimeout(() => {
     button.setAttribute("aria-label", "Copy agent prompt");
     if (label) label.textContent = idle;
     if (status) status.textContent = "";
-  }, 1600);
+    button.removeAttribute("data-copied");
+  }, 2000);
   button.setAttribute("data-copy-timer", String(timer));
 }
 
