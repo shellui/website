@@ -33,15 +33,15 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
       href="{{ item.href }}"
       class="group anim-card flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary{% if loop.index == 1 %} sm:col-span-2 lg:col-span-4{% elif loop.index == 2 %} lg:col-span-2{% elif loop.last %} sm:col-span-2 lg:col-span-3{% else %} lg:col-span-3{% endif %}"
     >
-      {% set bleed = item.visual in ["apps-visual", "upload"] %}
+      {% set bleed = item.visual in ["apps-visual", "upload", "auth"] %}
       <div class="border-b border-border bg-muted{% if bleed %} overflow-hidden{% if item.visual != "apps-visual" %} aspect-[3/2] [&_svg]:h-full{% endif %}{% else %} p-4 sm:p-5{% endif %}">
-        <div class="mx-auto w-full max-w-[16rem] {% if item.visual == 'auth' %}max-w-[13rem]{% endif %}{% if item.visual == 'toaster' or bleed %}max-w-none{% endif %}{% if bleed %} h-full{% endif %}">
+        <div class="mx-auto w-full max-w-[16rem]{% if item.visual == 'toaster' or bleed %}max-w-none{% endif %}{% if bleed %} h-full{% endif %}">
           {% if item.visual == "toaster" %}
             {% include "feature-visual-toaster.njk" %}
           {% elif item.visual == "shell-layout" %}
             {% include "shell-layout-anim.njk" %}
           {% elif item.visual == "auth" %}
-            {% include "feature-visual-auth.njk" %}
+            {% set autBare = true %}<div class="aut-hov">{% include "auth-visual-thumb.njk" %}</div>
           {% elif item.visual == "admin" %}
             {% include "feature-visual-admin.njk" %}
           {% elif item.visual == "apps-visual" %}
