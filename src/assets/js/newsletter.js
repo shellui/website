@@ -35,6 +35,11 @@
         input.focus();
         return;
       }
+      const metadata = {};
+      form.querySelectorAll("[data-meta]").forEach((field) => {
+        const value = field.value.trim().slice(0, 2000);
+        if (value) metadata[field.dataset.meta] = value;
+      });
       button.disabled = true;
       show("sending");
       try {
@@ -45,6 +50,7 @@
             email,
             website: honeypot ? honeypot.value : "",
             ...(firstName && firstName.value.trim() ? { first_name: firstName.value.trim() } : {}),
+            ...(Object.keys(metadata).length ? { metadata } : {}),
           }),
           credentials: "omit",
         });

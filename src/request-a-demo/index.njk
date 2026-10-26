@@ -18,12 +18,41 @@ description: Request a free demo of Shellui, the open-source web app development
     {% if site.demo.key %}
     <form class="newsletter-form mt-8 space-y-5" action="{{ site.demo.endpoint }}/api/v1/public/newsletters/{{ site.demo.key }}/subscribe" method="post" novalidate>
       <div>
-        <label for="{{ did }}-name" class="block text-sm/6 font-medium text-foreground">Name</label>
+        <label for="{{ did }}-name" class="block text-sm/6 font-medium text-foreground">Name <span class="font-normal text-muted-foreground">(optional)</span></label>
         <input id="{{ did }}-name" type="text" name="first_name" autocomplete="name" maxlength="150" class="mt-2 {{ inputCls }}" />
       </div>
       <div>
         <label for="{{ did }}-email" class="block text-sm/6 font-medium text-foreground">Email</label>
         <input id="{{ did }}-email" type="email" name="email" required autocomplete="email" spellcheck="false" placeholder="you@example.com" aria-describedby="{{ did }}-status" class="mt-2 {{ inputCls }}" />
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label for="{{ did }}-company" class="block text-sm/6 font-medium text-foreground">Company or project <span class="font-normal text-muted-foreground">(optional)</span></label>
+          <input id="{{ did }}-company" type="text" data-meta="company" autocomplete="organization" maxlength="200" class="mt-2 {{ inputCls }}" />
+        </div>
+        <div>
+          <label for="{{ did }}-role" class="block text-sm/6 font-medium text-foreground">Role <span class="font-normal text-muted-foreground">(optional)</span></label>
+          <input id="{{ did }}-role" type="text" data-meta="role" autocomplete="organization-title" maxlength="200" class="mt-2 {{ inputCls }}" />
+        </div>
+      </div>
+      <div>
+        <label for="{{ did }}-team" class="block text-sm/6 font-medium text-foreground">Team size <span class="font-normal text-muted-foreground">(optional)</span></label>
+        <select id="{{ did }}-team" data-meta="team_size" class="mt-2 {{ inputCls }}">
+          <option value="">Choose a size</option>
+          <option value="solo">Solo</option>
+          <option value="2-10">2 to 10</option>
+          <option value="11-50">11 to 50</option>
+          <option value="51-200">51 to 200</option>
+          <option value="200+">More than 200</option>
+        </select>
+      </div>
+      <div>
+        <label for="{{ did }}-use" class="block text-sm/6 font-medium text-foreground">What are you building? <span class="font-normal text-muted-foreground">(optional)</span></label>
+        <input id="{{ did }}-use" type="text" data-meta="use_case" maxlength="300" class="mt-2 {{ inputCls }}" />
+      </div>
+      <div>
+        <label for="{{ did }}-message" class="block text-sm/6 font-medium text-foreground">Message <span class="font-normal text-muted-foreground">(optional)</span></label>
+        <textarea id="{{ did }}-message" data-meta="message" rows="4" maxlength="2000" class="mt-2 {{ inputCls }}"></textarea>
       </div>
       <div class="absolute -left-[9999px]" aria-hidden="true">
         <label for="{{ did }}-website">Website</label>
@@ -34,7 +63,7 @@ description: Request a free demo of Shellui, the open-source web app development
     </form>
     {% endif %}
     <p class="mt-6 text-sm/6 text-muted-foreground">
-      You confirm your address first, then we reply by email to pick a time. We store your name and email only.
+      You confirm your address first, then we reply by email to pick a time. We store your email and the details you fill in, and use them only to prepare the demo.
     </p>
   </div>
 </div>
