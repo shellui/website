@@ -1,8 +1,8 @@
 ---
 title: Interface
 description: Composition, chrome, layout, accessibility, and visual language for shellui.com, docs, and in-shell apps.
-version: 2.0.0
-updated: 2026-10-25
+version: 2.1.0
+updated: 2026-10-26
 canonical: /guidelines/interface/
 related: /design.md, /guidelines/foundations/, /guidelines/writing/
 ---
@@ -191,6 +191,27 @@ Voice rejects (banned words, dashes): [Writing](/guidelines/writing/).
 - Error messages include the next step, not only the problem
 - `&` over "and" only where space is tight (nav, buttons)
 - Brand name **Shellui** never translates: `translate="no"` on the wordmark in HTML where auto-translate would garble it
+
+## Images and themes
+
+- Product screenshots ship as a light and dark pair with matching names: `*-light.*` and `*-dark.*`
+- Open Graph images and social previews are light only. Platforms show one fixed image
+- Covers and illustrations: prefer a theme-aware SVG. Otherwise use the light image in a bordered card
+- In dark mode, light images sit in a subtle rounded card with a border so they don't glare
+- Ship WebP with a PNG fallback. Set `width` and `height` to avoid layout shift. Lazy load below the fold
+- Every image needs real `alt` text. Use `alt=""` only for decoration, and not through the shortcode
+
+Use the `themedImage` shortcode. Pass base paths without the extension; it expects `.webp` and `.png` files with the same name. `alt`, `width`, and `height` are required, and the build fails without them. `class` and `loading` are optional; `loading` defaults to `lazy`.
+
+```njk
+{% themedImage { light: "/img/docs/files-light", dark: "/img/docs/files-dark", width: 1600, height: 1000, alt: "Files app with a shared folder open" } %}
+```
+
+Leave out `dark` for a light-only image. In dark mode it renders inside a rounded card with a border:
+
+```njk
+{% themedImage { light: "/img/blog/cover", width: 1200, height: 630, alt: "Shellui cover", loading: "eager" } %}
+```
 
 ## Performance and state
 

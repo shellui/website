@@ -288,6 +288,20 @@ export default async function (eleventyConfig) {
     return `<figure class="article-figure mt-16">${img}${figcaption}</figure>`;
   });
 
+  // Themed image: light and dark <picture> pair, or light only in a dark-mode card.
+  // Pass base paths without extension; expects .webp and .png next to each other.
+  eleventyConfig.addShortcode("themedImage", (opts = {}) => {
+    const { light, dark, width, height, alt, class: cls = "", loading = "lazy" } = opts;
+    if (!light) throw new Error("themedImage: `light` is required");
+    if (typeof alt !== "string" || !alt.trim()) throw new Error(`themedImage: \`alt\` is required (${light})`);
+    if (!width || !height) throw new Error(`themedImage: \`width\` and \`height\` are required (${light})`);
+    const pic = (base, extra) =>
+      `<picture class="${escapeAttr(extra)}"><source type="image/webp" srcset="${escapeAttr(base)}.webp" />` +
+      `<img src="${escapeAttr(base)}.png" alt="${escapeAttr(alt)}" width="${escapeAttr(String(width))}" height="${escapeAttr(String(height))}" loading="${escapeAttr(loading)}" decoding="async" class="h-auto w-full ${escapeAttr(cls)}" /></picture>`;
+    if (!dark) return pic(light, "block dark:overflow-hidden dark:rounded-xl dark:ring-1 dark:ring-white/10");
+    return pic(light, "block dark:hidden") + pic(dark, "hidden dark:block");
+  });
+
   eleventyConfig.addPairedShortcode(
     "quote",
     (content, author = "", role = "", image = "") => {

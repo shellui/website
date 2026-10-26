@@ -25,6 +25,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### ✨ Feature
 
+- Interface guidelines add light and dark image rules and a `themedImage` shortcode.
 - Refresh the "Introducing Shellui" blog post for v0.7 with a new cover, square list thumbnail, and Open Graph image.
 - Homepage hero adds a discreet dot field that reacts to the mouse.
 - Newsletter sign-up is back on at `/newsletter/` and on the home, contact, and features pages.
