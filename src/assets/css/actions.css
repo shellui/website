@@ -1,0 +1,75 @@
+/* Actions illustration (ids ab-, dark copy abd-). Synced from playground-mock/svg/actions.
+   Animates when an ancestor .anim-card is hovered or focused. */
+.ab-light{--bg:#F3F4F6;--dot:#D7DADF;--win:#FFFFFF;--winln:#E5E7EB;--side:#F9FAFB;--wf:#EEF0F3;--code:#F9FAFB;--gb:#F6E3B0;--rb:#F8D3D3;--sg:var(--color-primary-ink);--sm:#6B7280;--pill:#FFFFFF;--pillln:#E5E7EB;--c:#FFFFFF;--cln:#E5E7EB;--fg:#111827;--mf:#6B7280;--mu:#F3F4F6;--mu5:#F9FAFB;--de:#DC2626;--de1:#FCE9E9;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#FFFBEB;--sh:.1}
+.ab-dark{--bg:#030712;--dot:#1A2130;--win:#0A0F1C;--winln:rgba(255,255,255,.08);--side:#0D1322;--wf:#151C2B;--code:#0D1322;--gb:#3A2E10;--rb:#3A1414;--sg:var(--color-primary);--sm:#9CA3AF;--pill:#101828;--pillln:rgba(255,255,255,.1);--c:#030712;--cln:#1F2937;--fg:#F9FAFB;--mf:#9CA3AF;--mu:#1F2937;--mu5:#11151F;--de:#EF4444;--de1:#2F0E12;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#1C1607;--sh:.1}
+.ab-art .bg{fill:var(--bg)}
+.ab-art .dot{fill:var(--dot)}
+.ab-art .win{fill:var(--win);stroke:var(--winln)}
+.ab-art .side{fill:var(--side)}
+.ab-art .div{fill:var(--winln)}
+.ab-art .wf{fill:var(--wf)}
+.ab-art .code{fill:var(--code);stroke:var(--winln)}
+.ab-art .gb{fill:var(--gb)}
+.ab-art .rb{fill:var(--rb)}
+.ab-art .sg{fill:var(--sg)}
+.ab-art .sm{fill:var(--sm)}
+.ab-art .pill{fill:var(--pill);stroke:var(--pillln)}
+.ab-art .gold{fill:var(--color-primary)}
+.ab-art .ld{fill:none;stroke:var(--color-primary);stroke-dasharray:4 4}
+.ab-art .c{fill:var(--c);stroke:var(--cln)}
+.ab-art .cf{fill:var(--c)}
+.ab-art .wh{fill:#fff}
+.ab-art .ln{fill:var(--cln)}
+.ab-art .fg{fill:var(--fg)}
+.ab-art .mf{fill:var(--mf)}
+.ab-art .mu{fill:var(--mu)}
+.ab-art .mu5{fill:var(--mu5)}
+.ab-art .de{fill:var(--de)}
+.ab-art .de1{fill:var(--de1)}
+.ab-art .pr{fill:var(--pr)}
+.ab-art .prf{fill:var(--prf)}
+.ab-art .sel{fill:var(--sel);stroke:var(--pr)}
+.ab-art .sfg{fill:none;stroke:var(--fg)}
+.ab-art .sde{fill:none;stroke:var(--de)}
+.ab-art .smf{fill:none;stroke:var(--mf)}
+.ab-art .ov{fill:#000;opacity:.5}
+.ab-art .an{transform-box:fill-box}
+.ab-art .shf{flood-color:#000;flood-opacity:var(--sh)}
+@keyframes ab-r0{0%{opacity:1;transform:none;animation-timing-function:ease}35.71%{opacity:0;transform:none}42.86%{opacity:0;transform:translateY(-12px);animation-timing-function:ease}100%{opacity:1;transform:none}}
+@keyframes ab-b0{0%{opacity:1;transform:none;animation-timing-function:ease}28.41%{opacity:0;transform:none}79.55%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+@keyframes ab-r1{0%{opacity:1;transform:none;animation-timing-function:ease}29.41%{opacity:0;transform:none}52.94%{opacity:0;transform:translateY(-12px);animation-timing-function:ease}100%{opacity:1;transform:none}}
+@keyframes ab-b1{0%{opacity:1;transform:none;animation-timing-function:ease}24.27%{opacity:0;transform:none}82.52%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+@keyframes ab-r2{0%{opacity:1;transform:none;animation-timing-function:ease}25.00%{opacity:0;transform:none}60.00%{opacity:0;transform:translateY(-12px);animation-timing-function:ease}100%{opacity:1;transform:none}}
+@keyframes ab-b2{0%{opacity:1;transform:none;animation-timing-function:ease}21.19%{opacity:0;transform:none}84.75%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+@keyframes ab-r3{0%{opacity:1;transform:none;animation-timing-function:ease}21.74%{opacity:0;transform:none}65.22%{opacity:0;transform:translateY(-12px);animation-timing-function:ease}100%{opacity:1;transform:none}}
+@keyframes ab-b3{0%{opacity:1;transform:none;animation-timing-function:ease}18.80%{opacity:0;transform:none}86.47%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+@keyframes ab-r4{0%{opacity:1;transform:none;animation-timing-function:ease}19.23%{opacity:0;transform:none}69.23%{opacity:0;transform:scale(.8);animation-timing-function:ease}100%{opacity:1;transform:none}}
+@keyframes ab-b4{0%{opacity:1;transform:none;animation-timing-function:ease}16.89%{opacity:0;transform:none}87.84%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.ab-art .an.sp{transform-box:fill-box;transform-origin:center}
+@keyframes ab-spin{to{transform:rotate(360deg)}}
+.ab-art .sp{animation:ab-spin 1s linear infinite}
+.ab-art .sprf{fill:none;stroke:var(--prf)}
+.ab-art .swh{fill:none;stroke:#fff}
+@keyframes ab-fd{0%{opacity:0}100%{opacity:1}}
+@keyframes ab-h-ini0{0%{opacity:1;transform:none;animation-timing-function:ease}35.71%{opacity:0;transform:none}42.86%{opacity:0;transform:translateY(-12px);animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .in.i0{animation:ab-h-ini0 0.70s linear both}
+@keyframes ab-h-ini1{0%{opacity:1;transform:none;animation-timing-function:ease}29.41%{opacity:0;transform:none}52.94%{opacity:0;transform:translateY(-12px);animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .in.i1{animation:ab-h-ini1 0.85s linear both}
+@keyframes ab-h-ini2{0%{opacity:1;transform:none;animation-timing-function:ease}25.00%{opacity:0;transform:none}60.00%{opacity:0;transform:translateY(-12px);animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .in.i2{animation:ab-h-ini2 1.00s linear both}
+@keyframes ab-h-ini3{0%{opacity:1;transform:none;animation-timing-function:ease}21.74%{opacity:0;transform:none}65.22%{opacity:0;transform:translateY(-12px);animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .in.i3{animation:ab-h-ini3 1.15s linear both}
+@keyframes ab-h-ini4{0%{opacity:1;transform:none;animation-timing-function:ease}19.23%{opacity:0;transform:none}69.23%{opacity:0;transform:translateY(-12px);animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .in.i4{animation:ab-h-ini4 1.30s linear both}
+@keyframes ab-h-bdb0{0%{opacity:1;transform:none;animation-timing-function:ease}28.41%{opacity:0;transform:none}79.55%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .bd.b0{animation:ab-h-bdb0 0.88s linear both}
+@keyframes ab-h-bdb1{0%{opacity:1;transform:none;animation-timing-function:ease}24.27%{opacity:0;transform:none}82.52%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .bd.b1{animation:ab-h-bdb1 1.03s linear both}
+@keyframes ab-h-bdb2{0%{opacity:1;transform:none;animation-timing-function:ease}21.19%{opacity:0;transform:none}84.75%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .bd.b2{animation:ab-h-bdb2 1.18s linear both}
+@keyframes ab-h-bdb3{0%{opacity:1;transform:none;animation-timing-function:ease}18.80%{opacity:0;transform:none}86.47%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .bd.b3{animation:ab-h-bdb3 1.33s linear both}
+@keyframes ab-h-bdb4{0%{opacity:1;transform:none;animation-timing-function:ease}16.89%{opacity:0;transform:none}87.84%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .ab-art .bd.b4{animation:ab-h-bdb4 1.48s linear both}
+.anim-card:has(.ab-art){--seq:1.48s}
+@media (prefers-reduced-motion:reduce){.ab-art *{animation:none!important}}

@@ -37,4 +37,12 @@ export default [
     how: "with a url, position, and size.",
     visual: "feature-visual-drawer.njk",
   },
+  {
+    id: "actions",
+    title: "Action buttons",
+    line: "Add a back button, a title, up to 8 trailing actions, and a primary floating button to the shell chrome. On narrow screens, extra trailing actions move into a More menu.",
+    call: "shellui.actions.set()",
+    how: "with back, title, trailing, and primary items, each with an optional variant.",
+    visual: "feature-visual-actions.njk",
+  },
 ];
