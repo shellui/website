@@ -1,0 +1,45 @@
+/* Modal illustration (ids md-, dark copy mdd-). Synced from playground-mock/svg/modal.
+   Animates when an ancestor .anim-card is hovered or focused. */
+.md-light{--bg:#F3F4F6;--dot:#D7DADF;--win:#FFFFFF;--winln:#E5E7EB;--side:#F9FAFB;--wf:#EEF0F3;--code:#F9FAFB;--gb:#F6E3B0;--rb:#F8D3D3;--sg:var(--color-primary-ink);--sm:#6B7280;--pill:#FFFFFF;--pillln:#E5E7EB;--c:#FFFFFF;--cln:#E5E7EB;--fg:#111827;--mf:#6B7280;--mu:#F3F4F6;--mu5:#F9FAFB;--de:#DC2626;--de1:#FCE9E9;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#FFFBEB;--sh:.1}
+.md-dark{--bg:#030712;--dot:#1A2130;--win:#0A0F1C;--winln:rgba(255,255,255,.08);--side:#0D1322;--wf:#151C2B;--code:#0D1322;--gb:#3A2E10;--rb:#3A1414;--sg:var(--color-primary);--sm:#9CA3AF;--pill:#101828;--pillln:rgba(255,255,255,.1);--c:#030712;--cln:#1F2937;--fg:#F9FAFB;--mf:#9CA3AF;--mu:#1F2937;--mu5:#11151F;--de:#EF4444;--de1:#2F0E12;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#1C1607;--sh:.1}
+.md-art .bg{fill:var(--bg)}
+.md-art .dot{fill:var(--dot)}
+.md-art .win{fill:var(--win);stroke:var(--winln)}
+.md-art .side{fill:var(--side)}
+.md-art .div{fill:var(--winln)}
+.md-art .wf{fill:var(--wf)}
+.md-art .code{fill:var(--code);stroke:var(--winln)}
+.md-art .gb{fill:var(--gb)}
+.md-art .rb{fill:var(--rb)}
+.md-art .sg{fill:var(--sg)}
+.md-art .sm{fill:var(--sm)}
+.md-art .pill{fill:var(--pill);stroke:var(--pillln)}
+.md-art .gold{fill:var(--color-primary)}
+.md-art .ld{fill:none;stroke:var(--color-primary);stroke-dasharray:4 4}
+.md-art .c{fill:var(--c);stroke:var(--cln)}
+.md-art .cf{fill:var(--c)}
+.md-art .wh{fill:#fff}
+.md-art .ln{fill:var(--cln)}
+.md-art .fg{fill:var(--fg)}
+.md-art .mf{fill:var(--mf)}
+.md-art .mu{fill:var(--mu)}
+.md-art .mu5{fill:var(--mu5)}
+.md-art .de{fill:var(--de)}
+.md-art .de1{fill:var(--de1)}
+.md-art .pr{fill:var(--pr)}
+.md-art .prf{fill:var(--prf)}
+.md-art .sel{fill:var(--sel);stroke:var(--pr)}
+.md-art .sfg{fill:none;stroke:var(--fg)}
+.md-art .sde{fill:none;stroke:var(--de)}
+.md-art .smf{fill:none;stroke:var(--mf)}
+.md-art .ov{fill:#000;opacity:.5}
+.md-art .an{transform-box:fill-box}
+.md-art .shf{flood-color:#000;flood-opacity:var(--sh)}
+@keyframes md-f{0%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .ova{animation:md-f .2s ease-out .25s both}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .pn{animation:md-f .15s ease-out .25s both}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b0,.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b1,.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b2{animation-delay:.4s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b3{animation-delay:.45s!important}
+@keyframes md-fd{0%{opacity:0}100%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .bd{animation:md-fd .18s ease-out both}
+@media (prefers-reduced-motion:reduce){.md-art *{animation:none!important}}

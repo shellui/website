@@ -1,7 +1,7 @@
 // Component cards on /features/apps-and-navigation/ ("Components ready to use").
-// To add a card: create src/_includes/feature-visual-<name>.njk (inline light and
-// dark SVGs, ids prefixed per component), add its CSS under
-// src/assets/css/ scoped to .anim-card:is(:hover,:focus-within,:focus-visible) .<prefix>-art,
+// To add a card: put the light and dark SVGs in src/_includes/feature-visual-<name>.njk
+// (ids prefixed per component, dark copy renamed), add src/assets/css/<name>.css with rules
+// scoped to .<prefix>-art and hover rules on .anim-card:is(:hover,:focus-within,:focus-visible),
 // import it in input.css, then add an entry below with `visual` set to the include name.
 export default [
   {
@@ -10,7 +10,22 @@ export default [
     line: "Stack success, error, and action toasts above every app in the shell.",
     visual: "feature-visual-toaster.njk",
   },
-  // { id: "dialog", title: "Dialog", line: "...", visual: "feature-visual-dialog.njk" }, // ids dl-
-  // { id: "modal", title: "Modal", line: "...", visual: "feature-visual-modal.njk" },   // ids md-
-  // { id: "drawer", title: "Drawer", line: "...", visual: "feature-visual-drawer.njk" }, // ids dr-
+  {
+    id: "dialog",
+    title: "Dialog",
+    line: "Ask for confirmation before a destructive action, rendered above the whole shell.",
+    visual: "feature-visual-dialog.njk",
+  },
+  {
+    id: "modal",
+    title: "Modal",
+    line: "Open a full settings panel or form on top of the current app.",
+    visual: "feature-visual-modal.njk",
+  },
+  {
+    id: "drawer",
+    title: "Drawer",
+    line: "Slide in details or filters from the edge of the screen without leaving the page.",
+    visual: "feature-visual-drawer.njk",
+  },
 ];
