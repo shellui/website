@@ -100,7 +100,7 @@ shellui.toast({
 <section class="mt-20" aria-labelledby="components">
   <div class="max-w-2xl">
     <h2 id="components" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Components ready to use</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Shellui ships shared interface components that your apps call through the SDK. Hover a card to see it in action.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Your app calls these components through <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/sdk</code>, and Shellui renders them in the shell, outside the iframe. Hover or focus a card to play its animation.</p>
   </div>
   <div class="mt-10 grid gap-6 md:grid-cols-2">
     {% for c in uiComponents %}
@@ -108,6 +108,7 @@ shellui.toast({
         <div class="p-6">
           <h3 id="component-{{ c.id }}-title" class="text-lg font-semibold tracking-tight text-foreground">{{ c.title }}</h3>
           <p class="mt-2 text-sm/6 text-muted-foreground">{{ c.line }}</p>
+          <p class="mt-2 text-sm/6 text-muted-foreground">Call <code class="rounded bg-muted px-1.5 py-0.5 text-[0.8rem]">{{ c.call }}</code> {{ c.how }}</p>
         </div>
         <div class="mt-auto border-t border-border bg-muted">
           {% include c.visual %}
