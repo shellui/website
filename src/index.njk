@@ -5,9 +5,19 @@ description: Shellui is an open-source web app development platform. Navigation,
 ogTitle: Ship sooner without rebuilding basic features
 ogDescription: Open-source web app platform with navigation, authentication, administration, and storage built in.
 ---
+{% set agentPrompt = "fetch https://shellui.ai to start with Shellui" %}
 <div class="relative isolate overflow-hidden page-top">
   <div class="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-amber-50 via-white to-white dark:from-amber-500/10 dark:via-gray-950 dark:to-gray-950" aria-hidden="true"></div>
-  <div class="page-x mx-auto max-w-3xl py-24 text-center sm:py-32">
+  <div class="page-x mx-auto max-w-3xl pb-16 text-center sm:pb-20">
+        <div class="mb-6 flex justify-center sm:mb-8">
+          <div class="relative flex items-center gap-x-3 rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
+            v{{ productVersion }} is out
+            <span class="h-4 w-px bg-gray-900/10 dark:bg-white/20" aria-hidden="true"></span>
+            <a href="/changelog/" class="font-semibold text-primary-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+              <span class="absolute inset-0" aria-hidden="true"></span>Read the changelog
+            </a>
+          </div>
+        </div>
     <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl lg:text-7xl dark:text-white">Ship sooner without rebuilding basic features</h1>
     <p class="mt-6 text-lg text-pretty text-gray-600 sm:text-xl/8 dark:text-gray-400">Shellui is an open-source web app platform with navigation, authentication, administration, and storage built in. Your product stays center stage, and your team skips rebuilding the basics.</p>
     <div class="mt-10 flex items-center justify-center gap-x-4">
@@ -15,6 +25,25 @@ ogDescription: Open-source web app platform with navigation, authentication, adm
           <a href="{{ site.docs }}/quickstart" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10">Get started</a>
     </div>
     <p class="mt-6 text-sm text-gray-500 dark:text-gray-400">Free and MIT licensed. Self-host it today.</p>
+          <div class="mx-auto mt-10 max-w-2xl text-left">
+            <p class="text-center text-sm font-medium text-gray-600 dark:text-gray-400">Give this instruction to your agent.</p>
+            <div class="agent-prompt mt-3 flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white sm:flex-row sm:items-stretch dark:border-gray-800 dark:bg-gray-900">
+              <p class="min-w-0 flex-1 select-all overflow-x-auto px-4 py-3 font-mono text-sm text-gray-900 sm:py-2.5 dark:text-gray-50">{{ agentPrompt }}</p>
+              <button
+                type="button"
+                class="inline-flex min-h-11 shrink-0 cursor-pointer items-center justify-center gap-2 border-t border-gray-200 px-4 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:border-t-0 sm:border-l dark:border-gray-800 dark:text-white dark:hover:bg-gray-800"
+                data-copy="{{ agentPrompt }}"
+                aria-label="Copy agent prompt"
+                onclick="window.shelluiCopyPrompt && window.shelluiCopyPrompt(this)"
+              >
+                <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <span data-copy-label>Copy</span>
+              </button>
+            </div>
+            <p class="sr-only" data-copy-status aria-live="polite"></p>
+          </div>
   </div>
 </div>
 
