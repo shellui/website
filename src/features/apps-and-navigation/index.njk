@@ -78,6 +78,15 @@ eleventyComputed:
   </div>
 </section>
 
+<section id="settings" class="mt-20 scroll-mt-24" aria-labelledby="settings-heading">
+  <div class="max-w-2xl">
+    <h2 id="settings-heading" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Settings your users already know</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Every Shellui product ships with a settings dialog. People open it from the sidebar to pick a theme, choose their language, or turn on developer mode.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Your apps add their own panels under Applications, so all settings live in one place. A change applies to every app at once. <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/features/application-settings/">Add an application settings panel</a>.</p>
+  </div>
+  <div class="mt-10">{% include "settings-visual-responsive.njk" %}</div>
+</section>
+
 <hr class="mt-16 max-w-3xl border-0 border-t border-border">
 <div class="mt-10">{% set playgroundCtaWide = true %}{% include "playground-cta.njk" %}</div>
 
@@ -86,6 +95,7 @@ eleventyComputed:
   { href: site.docs + "/features/layouts/", label: "Choose a layout" },
   { href: site.docs + "/features/themes/", label: "Configure themes" },
   { href: site.docs + "/features/internationalization/", label: "Localize the shell" },
+  { href: site.docs + "/features/application-settings/", label: "Application settings" },
   { href: site.docs + "/features/chrome-actions/", label: "Floating chrome actions" },
   { href: "/architecture/", label: "System architecture" },
   { href: "/features/authentication/", label: "Authentication" },
