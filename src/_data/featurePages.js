@@ -9,7 +9,7 @@ export default [
       "Shared theme and language settings",
       "Toasts, dialogs, modals, and drawers"
     ],
-    visual: "mfe-intro",
+    visual: "apps-visual",
     cta: "Explore apps and navigation"
   },
   {

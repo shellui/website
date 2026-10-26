@@ -38,7 +38,7 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
       href="{{ item.href }}"
       class="group anim-card flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:col-span-2"
     >
-      {% set bleed = item.visual in ["mfe-intro", "upload"] %}
+      {% set bleed = item.visual in ["apps-visual", "upload"] %}
       <div class="border-b border-border bg-muted{% if bleed %} aspect-[3/2] overflow-hidden [&_svg]:h-full{% else %} p-4 sm:p-5{% endif %}">
         <div class="mx-auto w-full max-w-[16rem] {% if item.visual == 'auth' %}max-w-[13rem]{% endif %}{% if item.visual == 'toaster' or bleed %}max-w-none{% endif %}{% if bleed %} h-full{% endif %}">
           {% if item.visual == "toaster" %}
@@ -49,8 +49,8 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
             {% include "feature-visual-auth.njk" %}
           {% elif item.visual == "admin" %}
             {% include "feature-visual-admin.njk" %}
-          {% elif item.visual == "mfe-intro" %}
-            {% include "feature-visual-mfe-thumb.njk" %}
+          {% elif item.visual == "apps-visual" %}
+            {% set avBare = true %}{% include "apps-visual-thumb.njk" %}
           {% elif item.visual == "upload" %}
             {% set upSlice = true %}{% include "feature-visual-upload.njk" %}
           {% elif item.visual == "storage" %}
