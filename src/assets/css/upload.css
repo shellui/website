@@ -1,0 +1,150 @@
+/* Upload illustration (ids up-, dark copy upd-). Synced from playground-mock/svg/upload by /workspace/tools/sync-upload.py.
+   Plays when an ancestor .anim-card is hovered, focused, or playing. */
+.up-light{--bg:#F3F4F6;--dot:#D7DADF;--win:#FFFFFF;--winln:#E5E7EB;--side:#F9FAFB;--wf:#EEF0F3;--code:#F9FAFB;--gb:#F6E3B0;--rb:#F8D3D3;--sg:var(--color-primary-ink);--sm:#6B7280;--pill:#FFFFFF;--pillln:#E5E7EB;--c:#FFFFFF;--cln:#E5E7EB;--fg:#111827;--mf:#6B7280;--mu:#F3F4F6;--mu5:#F9FAFB;--de:#DC2626;--de1:#FCE9E9;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#FFFBEB;--sh:.1}
+.up-art .bg{fill:var(--bg)}
+.up-art .dot{fill:var(--dot)}
+.up-art .win{fill:var(--win);stroke:var(--winln)}
+.up-art .side{fill:var(--side)}
+.up-art .div{fill:var(--winln)}
+.up-art .wf{fill:var(--wf)}
+.up-art .code{fill:var(--code);stroke:var(--winln)}
+.up-art .gb{fill:var(--gb)}
+.up-art .rb{fill:var(--rb)}
+.up-art .sg{fill:var(--sg)}
+.up-art .sm{fill:var(--sm)}
+.up-art .pill{fill:var(--pill);stroke:var(--pillln)}
+.up-art .gold{fill:var(--color-primary)}
+.up-art .ld{fill:none;stroke:var(--color-primary);stroke-dasharray:4 4}
+.up-art .c{fill:var(--c);stroke:var(--cln)}
+.up-art .cf{fill:var(--c)}
+.up-art .wh{fill:#fff}
+.up-art .ln{fill:var(--cln)}
+.up-art .fg{fill:var(--fg)}
+.up-art .mf{fill:var(--mf)}
+.up-art .mu{fill:var(--mu)}
+.up-art .mu5{fill:var(--mu5)}
+.up-art .de{fill:var(--de)}
+.up-art .de1{fill:var(--de1)}
+.up-art .pr{fill:var(--pr)}
+.up-art .prf{fill:var(--prf)}
+.up-art .sel{fill:var(--sel);stroke:var(--pr)}
+.up-art .sfg{fill:none;stroke:var(--fg)}
+.up-art .sde{fill:none;stroke:var(--de)}
+.up-art .smf{fill:none;stroke:var(--mf)}
+.up-art .ov{fill:#000;opacity:.5}
+.up-art .an{transform-box:fill-box}
+.up-art .shf{flood-color:#000;flood-opacity:var(--sh)}
+.up-art .hz{opacity:0}
+.up-art .trk{fill:none;stroke:var(--mu)}
+.up-art .arc{fill:none;stroke:var(--pr)}
+.up-art .ob,.up-art .pf0,.up-art .pf1,.up-art .pf2,.up-art .pf3{transform-box:fill-box;transform-origin:left}
+@keyframes up-ch{0.00%{height:375px}25.00%{height:375px}29.17%{height:365px}39.58%{height:365px}43.75%{height:355px}54.17%{height:355px}58.33%{height:345px}87.50%{height:345px}91.67%{height:287px}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .ch{animation:up-ch 7.20s linear 0.3s forwards}
+@keyframes up-rg{0.00%{opacity:1}87.50%{opacity:1}90.62%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .rg{animation:up-rg 7.20s linear 0.3s forwards}
+@keyframes up-arc{0.00%{stroke-dashoffset:62.83}6.25%{stroke-dashoffset:61.57}25.00%{stroke-dashoffset:50.26}39.58%{stroke-dashoffset:43.98}54.17%{stroke-dashoffset:33.30}66.67%{stroke-dashoffset:18.85}87.50%{stroke-dashoffset:1.88}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .arc{animation:up-arc 7.20s linear 0.3s forwards}
+@keyframes up-al{0.00%{opacity:0}87.50%{opacity:0}90.62%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .al{animation:up-al 7.20s linear 0.3s forwards}
+@keyframes up-ti0{0.00%{opacity:1}25.00%{opacity:1}26.67%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .ti0{animation:up-ti0 7.20s linear 0.3s forwards}
+@keyframes up-ti1{0.00%{opacity:0}25.00%{opacity:0}26.67%{opacity:1}39.58%{opacity:1}41.25%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .ti1{animation:up-ti1 7.20s linear 0.3s forwards}
+@keyframes up-ti2{0.00%{opacity:0}39.58%{opacity:0}41.25%{opacity:1}54.17%{opacity:1}55.83%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .ti2{animation:up-ti2 7.20s linear 0.3s forwards}
+@keyframes up-ti3{0.00%{opacity:0}54.17%{opacity:0}55.83%{opacity:1}87.50%{opacity:1}89.17%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .ti3{animation:up-ti3 7.20s linear 0.3s forwards}
+@keyframes up-ti4{0.00%{opacity:0}87.50%{opacity:0}89.17%{opacity:1}100.00%{opacity:1}100.00%{opacity:0}100.00%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .ti4{animation:up-ti4 7.20s linear 0.3s forwards}
+@keyframes up-ob{0.00%{transform:scaleX(0)}6.25%{transform:scaleX(0.02)}25.00%{transform:scaleX(0.2)}39.58%{transform:scaleX(0.3)}54.17%{transform:scaleX(0.47)}66.67%{transform:scaleX(0.7)}87.50%{transform:scaleX(0.97)}100.00%{transform:scaleX(.97)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .ob{animation:up-ob 7.20s linear 0.3s forwards}
+@keyframes up-obd{0.00%{opacity:0}87.50%{opacity:0}89.58%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .obd{animation:up-obd 7.20s linear 0.3s forwards}
+@keyframes up-s00{0.00%{opacity:1}0.00%{opacity:1}1.25%{opacity:1}14.58%{opacity:1}15.83%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s00{animation:up-s00 7.20s linear 0.3s forwards}
+@keyframes up-s01{0.00%{opacity:0}14.58%{opacity:0}15.83%{opacity:1}25.00%{opacity:1}26.25%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s01{animation:up-s01 7.20s linear 0.3s forwards}
+@keyframes up-s02{0.00%{opacity:0}25.00%{opacity:0}26.25%{opacity:1}100.00%{opacity:1}100.00%{opacity:0}100.00%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s02{animation:up-s02 7.20s linear 0.3s forwards}
+@keyframes up-pb0{0.00%{opacity:1}25.00%{opacity:1}27.08%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .pb0{animation:up-pb0 7.20s linear 0.3s forwards}
+@keyframes up-pf0{0.00%{transform:scaleX(0)}6.25%{transform:scaleX(0)}25.00%{transform:scaleX(1)}100.00%{transform:scaleX(1)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .pf0{animation:up-pf0 7.20s linear 0.3s forwards}
+@keyframes up-rw0{0.00%{transform:translate(0px,78px)}25.00%{transform:translate(0px,78px)}29.17%{transform:translate(0px,78px)}39.58%{transform:translate(0px,78px)}43.75%{transform:translate(0px,78px)}54.17%{transform:translate(0px,78px)}58.33%{transform:translate(0px,78px)}87.50%{transform:translate(0px,78px)}91.67%{transform:translate(0px,78px)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .rw0{animation:up-rw0 7.20s linear 0.3s forwards}
+@keyframes up-rf0{0.00%{opacity:0}5.21%{opacity:0}9.38%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .rf0{animation:up-rf0 7.20s linear 0.3s forwards}
+@keyframes up-s10{0.00%{opacity:1}0.00%{opacity:1}1.25%{opacity:1}18.75%{opacity:1}20.00%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s10{animation:up-s10 7.20s linear 0.3s forwards}
+@keyframes up-s11{0.00%{opacity:0}18.75%{opacity:0}20.00%{opacity:1}29.17%{opacity:1}30.42%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s11{animation:up-s11 7.20s linear 0.3s forwards}
+@keyframes up-s12{0.00%{opacity:0}29.17%{opacity:0}30.42%{opacity:1}35.42%{opacity:1}36.67%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s12{animation:up-s12 7.20s linear 0.3s forwards}
+@keyframes up-s13{0.00%{opacity:0}35.42%{opacity:0}36.67%{opacity:1}45.83%{opacity:1}47.08%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s13{animation:up-s13 7.20s linear 0.3s forwards}
+@keyframes up-s14{0.00%{opacity:0}45.83%{opacity:0}47.08%{opacity:1}54.17%{opacity:1}55.42%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s14{animation:up-s14 7.20s linear 0.3s forwards}
+@keyframes up-s15{0.00%{opacity:0}54.17%{opacity:0}55.42%{opacity:1}100.00%{opacity:1}100.00%{opacity:0}100.00%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s15{animation:up-s15 7.20s linear 0.3s forwards}
+@keyframes up-pb1{0.00%{opacity:1}54.17%{opacity:1}56.25%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .pb1{animation:up-pb1 7.20s linear 0.3s forwards}
+@keyframes up-pf1{0.00%{transform:scaleX(0)}9.38%{transform:scaleX(0)}35.42%{transform:scaleX(0.63)}54.17%{transform:scaleX(1)}100.00%{transform:scaleX(1)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .pf1{animation:up-pf1 7.20s linear 0.3s forwards}
+@keyframes up-rw1{0.00%{transform:translate(0px,140px)}25.00%{transform:translate(0px,140px)}29.17%{transform:translate(0px,130px)}39.58%{transform:translate(0px,130px)}43.75%{transform:translate(0px,130px)}54.17%{transform:translate(0px,130px)}58.33%{transform:translate(0px,130px)}87.50%{transform:translate(0px,130px)}91.67%{transform:translate(0px,130px)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .rw1{animation:up-rw1 7.20s linear 0.3s forwards}
+@keyframes up-rf1{0.00%{opacity:0}8.33%{opacity:0}12.50%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .rf1{animation:up-rf1 7.20s linear 0.3s forwards}
+@keyframes up-s20{0.00%{opacity:1}0.00%{opacity:1}1.25%{opacity:1}25.00%{opacity:1}26.25%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s20{animation:up-s20 7.20s linear 0.3s forwards}
+@keyframes up-s21{0.00%{opacity:0}25.00%{opacity:0}26.25%{opacity:1}39.58%{opacity:1}40.83%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s21{animation:up-s21 7.20s linear 0.3s forwards}
+@keyframes up-s22{0.00%{opacity:0}39.58%{opacity:0}40.83%{opacity:1}100.00%{opacity:1}100.00%{opacity:0}100.00%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s22{animation:up-s22 7.20s linear 0.3s forwards}
+@keyframes up-pb2{0.00%{opacity:1}39.58%{opacity:1}41.67%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .pb2{animation:up-pb2 7.20s linear 0.3s forwards}
+@keyframes up-pf2{0.00%{transform:scaleX(0)}12.50%{transform:scaleX(0)}25.00%{transform:scaleX(0.4)}39.58%{transform:scaleX(0.45)}100.00%{transform:scaleX(0.45)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .pf2{animation:up-pf2 7.20s linear 0.3s forwards}
+@keyframes up-rw2{0.00%{transform:translate(0px,202px)}25.00%{transform:translate(0px,202px)}29.17%{transform:translate(0px,192px)}39.58%{transform:translate(0px,192px)}43.75%{transform:translate(0px,192px)}54.17%{transform:translate(0px,192px)}58.33%{transform:translate(0px,182px)}87.50%{transform:translate(0px,182px)}91.67%{transform:translate(0px,182px)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .rw2{animation:up-rw2 7.20s linear 0.3s forwards}
+@keyframes up-rf2{0.00%{opacity:0}11.46%{opacity:0}15.62%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .rf2{animation:up-rf2 7.20s linear 0.3s forwards}
+@keyframes up-s30{0.00%{opacity:1}0.00%{opacity:1}1.25%{opacity:1}25.00%{opacity:1}26.25%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s30{animation:up-s30 7.20s linear 0.3s forwards}
+@keyframes up-s31{0.00%{opacity:0}25.00%{opacity:0}26.25%{opacity:1}41.67%{opacity:1}42.92%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s31{animation:up-s31 7.20s linear 0.3s forwards}
+@keyframes up-s32{0.00%{opacity:0}41.67%{opacity:0}42.92%{opacity:1}54.17%{opacity:1}55.42%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s32{animation:up-s32 7.20s linear 0.3s forwards}
+@keyframes up-s33{0.00%{opacity:0}54.17%{opacity:0}55.42%{opacity:1}66.67%{opacity:1}67.92%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s33{animation:up-s33 7.20s linear 0.3s forwards}
+@keyframes up-s34{0.00%{opacity:0}66.67%{opacity:0}67.92%{opacity:1}77.08%{opacity:1}78.33%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s34{animation:up-s34 7.20s linear 0.3s forwards}
+@keyframes up-s35{0.00%{opacity:0}77.08%{opacity:0}78.33%{opacity:1}87.50%{opacity:1}88.75%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s35{animation:up-s35 7.20s linear 0.3s forwards}
+@keyframes up-s36{0.00%{opacity:0}87.50%{opacity:0}88.75%{opacity:1}100.00%{opacity:1}100.00%{opacity:0}100.00%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .s36{animation:up-s36 7.20s linear 0.3s forwards}
+@keyframes up-pb3{0.00%{opacity:1}87.50%{opacity:1}89.58%{opacity:0}100.00%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .pb3{animation:up-pb3 7.20s linear 0.3s forwards}
+@keyframes up-pf3{0.00%{transform:scaleX(0)}15.62%{transform:scaleX(0)}41.67%{transform:scaleX(0.38)}66.67%{transform:scaleX(0.76)}87.50%{transform:scaleX(1)}100.00%{transform:scaleX(1)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .pf3{animation:up-pf3 7.20s linear 0.3s forwards}
+@keyframes up-rw3{0.00%{transform:translate(0px,264px)}25.00%{transform:translate(0px,264px)}29.17%{transform:translate(0px,254px)}39.58%{transform:translate(0px,254px)}43.75%{transform:translate(0px,244px)}54.17%{transform:translate(0px,244px)}58.33%{transform:translate(0px,234px)}87.50%{transform:translate(0px,234px)}91.67%{transform:translate(0px,234px)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .rw3{animation:up-rw3 7.20s linear 0.3s forwards}
+@keyframes up-rf3{0.00%{opacity:0}14.58%{opacity:0}18.75%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .rf3{animation:up-rf3 7.20s linear 0.3s forwards}
+@keyframes up-ca{0.00%{opacity:0}14.58%{opacity:0}18.75%{opacity:1}87.50%{opacity:1}89.58%{opacity:0}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .ca{animation:up-ca 7.20s linear 0.3s forwards}
+@keyframes up-en{0.00%{transform:translateY(8px)}4.17%{transform:translateY(0)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .en{animation:up-en 7.20s linear 0.3s forwards,up-eno .2s ease-out both}
+@keyframes up-eno{0%{opacity:0}100%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .b0{animation-delay:0.3s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .b1{animation-delay:0.3s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .b2{animation-delay:4.4s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .b3{animation-delay:4.5s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .b4{animation-delay:4.6s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .b5{animation-delay:4.7s!important}
+@keyframes up-fd{0%{opacity:0}100%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .bd{animation:up-fd .18s ease-out both}
+.up-dark{--bg:#030712;--dot:#1A2130;--win:#0A0F1C;--winln:rgba(255,255,255,.08);--side:#0D1322;--wf:#151C2B;--code:#0D1322;--gb:#3A2E10;--rb:#3A1414;--sg:var(--color-primary);--sm:#9CA3AF;--pill:#101828;--pillln:rgba(255,255,255,.1);--c:#030712;--cln:#1F2937;--fg:#F9FAFB;--mf:#9CA3AF;--mu:#1F2937;--mu5:#11151F;--de:#EF4444;--de1:#2F0E12;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#1C1607;--sh:.1}
+@keyframes up-fade{0%{opacity:1}83%{opacity:0}100%{opacity:0}}@keyframes up-fadein{from{opacity:0}to{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art{animation:up-fade 0.3s ease both,up-fadein .25s ease 0.3s forwards}
+.anim-card:has(.up-art){--seq:7.50s}
+@media (prefers-reduced-motion:reduce){.up-art,.up-art *{animation:none!important}}
