@@ -37,11 +37,16 @@
 .md-art .shf{flood-color:#000;flood-opacity:var(--sh)}
 @keyframes md-f{0%{opacity:0}}
 @keyframes md-fd{0%{opacity:0}100%{opacity:1}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .ova{animation:md-f .4s ease .25s both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .pn{animation:md-f .4s ease .4s both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .bd{animation:md-fd .18s ease-out both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b0{animation-delay:0.80s!important}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b1{animation-delay:0.95s!important}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b2{animation-delay:1.10s!important}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b3{animation-delay:1.25s!important}
+@keyframes md-h-ova{0%{opacity:.5;transform:none;animation-timing-function:ease}35.71%{opacity:0;transform:none}42.86%{opacity:0;animation-timing-function:ease}100%{opacity:.5;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .ova{animation:md-h-ova 0.70s linear both}
+@keyframes md-h-pn{0%{opacity:1;transform:none;animation-timing-function:ease}29.41%{opacity:0;transform:none}52.94%{opacity:0;animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .pn{animation:md-h-pn 0.85s linear both}
+@keyframes md-h-bdb0{0%{opacity:1;transform:none;animation-timing-function:ease}24.27%{opacity:0;transform:none}82.52%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .bd.b0{animation:md-h-bdb0 1.03s linear both}
+@keyframes md-h-bdb1{0%{opacity:1;transform:none;animation-timing-function:ease}21.19%{opacity:0;transform:none}84.75%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .bd.b1{animation:md-h-bdb1 1.18s linear both}
+@keyframes md-h-bdb2{0%{opacity:1;transform:none;animation-timing-function:ease}18.80%{opacity:0;transform:none}86.47%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .bd.b2{animation:md-h-bdb2 1.33s linear both}
+@keyframes md-h-bdb3{0%{opacity:1;transform:none;animation-timing-function:ease}16.89%{opacity:0;transform:none}87.84%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .bd.b3{animation:md-h-bdb3 1.48s linear both}
 @media (prefers-reduced-motion:reduce){.md-art *{animation:none!important}}

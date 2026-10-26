@@ -27,13 +27,17 @@
 .ts-art .ld{fill:none;stroke:var(--color-primary);stroke-dasharray:4 4}
 .ts-art .in{transform-box:fill-box}
 @keyframes ts-in{0%{transform:translateY(-100%);opacity:0}100%{transform:none;opacity:1}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .in{animation:ts-in .4s ease both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .i0{animation-delay:.25s}
-.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .i1{animation-delay:.4s}
-.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .i2{animation-delay:.55s}
 @keyframes ts-fd{0%{opacity:0}100%{opacity:1}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .bd{animation:ts-fd .18s ease-out both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .b0{animation-delay:.65s}
-.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .b1{animation-delay:.8s}
-.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .b2{animation-delay:.95s}
+@keyframes ts-h-ini0{0%{opacity:1;transform:none;animation-timing-function:ease}35.71%{opacity:0;transform:none}42.86%{opacity:0;transform:translateY(-100%);animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .in.i0{animation:ts-h-ini0 0.70s linear both}
+@keyframes ts-h-ini1{0%{opacity:1;transform:none;animation-timing-function:ease}29.41%{opacity:0;transform:none}52.94%{opacity:0;transform:translateY(-100%);animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .in.i1{animation:ts-h-ini1 0.85s linear both}
+@keyframes ts-h-ini2{0%{opacity:1;transform:none;animation-timing-function:ease}25.00%{opacity:0;transform:none}60.00%{opacity:0;transform:translateY(-100%);animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .in.i2{animation:ts-h-ini2 1.00s linear both}
+@keyframes ts-h-bdb0{0%{opacity:1;transform:none;animation-timing-function:ease}28.41%{opacity:0;transform:none}79.55%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .bd.b0{animation:ts-h-bdb0 0.88s linear both}
+@keyframes ts-h-bdb1{0%{opacity:1;transform:none;animation-timing-function:ease}24.27%{opacity:0;transform:none}82.52%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .bd.b1{animation:ts-h-bdb1 1.03s linear both}
+@keyframes ts-h-bdb2{0%{opacity:1;transform:none;animation-timing-function:ease}21.19%{opacity:0;transform:none}84.75%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .ts-art .bd.b2{animation:ts-h-bdb2 1.18s linear both}
 @media (prefers-reduced-motion:reduce){.ts-art *{animation:none!important}}
