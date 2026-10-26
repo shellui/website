@@ -35,11 +35,11 @@ if (canvas && !reduce) {
 
   function draw() {
     ctx.clearRect(0, 0, w, h);
-    const base = isDark() ? "255,255,255" : "17,24,39";
+    const dk = isDark(), base = dk ? "255,255,255" : "17,24,39", B = dk ? 0.12 : 0.16;
     for (const d of dots) {
       const m = Math.min(1, Math.hypot(d.ox, d.oy) / PUSH);
-      ctx.fillStyle = d.g > 0.02 ? `rgba(227,165,18,${(0.5 * d.g + 0.1) * d.a})` : `rgba(${base},${(0.07 + 0.18 * m) * d.a})`;
-      ctx.beginPath(); ctx.arc(d.x + d.ox, d.y + d.oy, 1.1, 0, 7); ctx.fill();
+      ctx.fillStyle = d.g > 0.02 ? `rgba(227,165,18,${(0.5 * d.g + 0.1) * d.a})` : `rgba(${base},${(B + 0.22 * m) * d.a})`;
+      ctx.beginPath(); ctx.arc(d.x + d.ox, d.y + d.oy, 1.25, 0, 7); ctx.fill();
     }
   }
 
