@@ -1,0 +1,34 @@
+<div class="lyx" data-layouts>
+  <div class="lyx-seg" role="tablist" aria-label="Shellui layouts">
+    <span class="lyx-pill" aria-hidden="true"></span>
+    {% for l in shellLayouts %}
+      <button type="button" role="tab" id="lyx-tab-{{ l.id }}" aria-controls="lyx-stage" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ '0' if loop.first else '-1' }}" data-layout="{{ l.id }}">{{ l.name }}{% if l.experimental %}<span class="lyx-exp">Experimental</span>{% endif %}</button>
+    {% endfor %}
+  </div>
+  <div class="lyx-fit">
+    <div class="lyx-wrap">
+      <div class="lyx-stage" id="lyx-stage" role="tabpanel" aria-labelledby="lyx-tab-sidebar" data-l="sidebar">
+        <div class="lyx-a lyx-win2" aria-hidden="true"><div class="lyx-tb2">Toaster</div><div class="lyx-ct" style="padding:18px"><div class="lyx-sk" style="width:60%"></div><div class="lyx-sk" style="width:85%;height:8px;margin-top:10px"></div><div class="lyx-btn">Show toast</div></div></div>
+        <div class="lyx-a lyx-main">
+          <div class="lyx-art" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="lyx-tb" aria-hidden="true">Layout<span>_ ▢ ✕</span></div>
+          <div class="lyx-ct">
+            <p class="lyx-h">Layout</p>
+            <p class="lyx-p">Pick sidebar, sidebar-inset, app-bar, app-bar-inset, floating, fullscreen, or windows in shellui.config.json.</p>
+            <div class="lyx-cards" aria-hidden="true">
+              {% for l in shellLayouts %}{% if not l.experimental %}
+                <div class="lyx-cd" data-c="{{ l.id }}"><div class="lyx-th">{% for t in l.thumb %}<b style="left:{{ t[0] }}px;top:{{ t[1] }}px;width:{{ t[2] }}px;height:{{ t[3] }}px"></b>{% endfor %}</div>{{ l.name }}</div>
+              {% endif %}{% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="lyx-a lyx-side" aria-hidden="true"><div class="lyx-logo"></div><div class="lyx-cap">Features</div><div class="lyx-ni"><i></i>Dialog</div><div class="lyx-ni"><i></i>Toaster</div><div class="lyx-ni"><i></i>Modal and drawer</div><div class="lyx-ni on"><i></i>Layout</div><div class="lyx-cap">Preferences</div><div class="lyx-ni"><i></i>Themes</div><div class="lyx-ni"><i></i>Language and region</div></div>
+        <div class="lyx-a lyx-bar" aria-hidden="true"><div class="lyx-logo" style="margin:0 6px 0 0"></div><span class="lyx-bi">Homepage</span><span class="lyx-bi on">Features</span><span class="lyx-bi">Preferences</span><span class="lyx-bi">External links</span></div>
+        <div class="lyx-a lyx-task" aria-hidden="true"><div class="lyx-logo" style="margin:0;width:16px;height:16px"></div><span class="lyx-bi">Shellui</span><span class="lyx-bi on">Layout</span><span class="lyx-bi">Toaster</span></div>
+      </div>
+      <div class="lyx-badges" aria-hidden="true"></div>
+    </div>
+  </div>
+  <p class="lyx-code"><span class="lyx-file">shellui.config.json</span> { "layout": "<b data-layout-value>sidebar</b>" }</p>
+  <script type="application/json" data-layout-badges>{{ shellLayouts | dump | safe }}</script>
+</div>
