@@ -36,10 +36,12 @@
 .dg-art .an{transform-box:fill-box}
 .dg-art .shf{flood-color:#000;flood-opacity:var(--sh)}
 @keyframes dg-f{0%{opacity:0}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .ova{animation:dg-f .2s ease-out .25s both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .pn{animation:dg-f .15s ease-out .25s both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .b0,.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .b1,.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .b2{animation-delay:.4s!important}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .b3{animation-delay:.45s!important}
 @keyframes dg-fd{0%{opacity:0}100%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .ova{animation:dg-f .4s ease .25s both}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .pn{animation:dg-f .4s ease .4s both}
 .anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .bd{animation:dg-fd .18s ease-out both}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .b0{animation-delay:0.80s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .b1{animation-delay:0.95s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .b2{animation-delay:1.10s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dg-art .b3{animation-delay:1.25s!important}
 @media (prefers-reduced-motion:reduce){.dg-art *{animation:none!important}}

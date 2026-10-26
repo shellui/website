@@ -36,10 +36,12 @@
 .md-art .an{transform-box:fill-box}
 .md-art .shf{flood-color:#000;flood-opacity:var(--sh)}
 @keyframes md-f{0%{opacity:0}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .ova{animation:md-f .2s ease-out .25s both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .pn{animation:md-f .15s ease-out .25s both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b0,.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b1,.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b2{animation-delay:.4s!important}
-.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b3{animation-delay:.45s!important}
 @keyframes md-fd{0%{opacity:0}100%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .ova{animation:md-f .4s ease .25s both}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .pn{animation:md-f .4s ease .4s both}
 .anim-card:is(:hover,:focus-within,:focus-visible) .md-art .bd{animation:md-fd .18s ease-out both}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b0{animation-delay:0.80s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b1{animation-delay:0.95s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b2{animation-delay:1.10s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .md-art .b3{animation-delay:1.25s!important}
 @media (prefers-reduced-motion:reduce){.md-art *{animation:none!important}}

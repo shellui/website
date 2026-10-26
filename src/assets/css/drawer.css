@@ -37,9 +37,12 @@
 .dr-art .shf{flood-color:#000;flood-opacity:var(--sh)}
 @keyframes dr-f{0%{opacity:0}}
 @keyframes dr-s{0%{transform:translateX(100%)}100%{transform:none}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .ova{animation:dr-f .5s cubic-bezier(.32,.72,0,1) .25s both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .pn{animation:dr-s .5s cubic-bezier(.32,.72,0,1) .25s both}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .bd{animation-delay:.75s!important}
 @keyframes dr-fd{0%{opacity:0}100%{opacity:1}}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .ova{animation:dr-f .4s ease .25s both}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .pn{animation:dr-s .6s cubic-bezier(.32,.72,0,1) .4s both}
 .anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .bd{animation:dr-fd .18s ease-out both}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .b0{animation-delay:1.00s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .b1{animation-delay:1.15s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .b2{animation-delay:1.30s!important}
+.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .b3{animation-delay:1.45s!important}
 @media (prefers-reduced-motion:reduce){.dr-art *{animation:none!important}}
