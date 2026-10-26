@@ -6,9 +6,10 @@ ogTitle: Ship sooner without rebuilding basic features
 ogDescription: Open-source web app platform with navigation, authentication, administration, and storage built in.
 ---
 {% set agentPrompt = "fetch https://shellui.ai to start with Shellui" %}
-<div class="relative isolate overflow-hidden page-top">
+<div class="relative isolate overflow-hidden page-top" data-hero-dots>
   <div class="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-amber-50 via-white to-white dark:from-amber-500/10 dark:via-gray-950 dark:to-gray-950" aria-hidden="true"></div>
-  <div class="page-x mx-auto max-w-3xl pb-16 text-center sm:pb-20">
+  <canvas class="pointer-events-none absolute inset-0 -z-10 size-full" aria-hidden="true"></canvas>
+  <div class="page-x mx-auto max-w-3xl pb-16 text-center sm:pb-20" data-hero-text>
         <div class="mb-6 flex justify-center sm:mb-8">
           <div class="relative flex items-center gap-x-3 rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20 dark:text-gray-400 dark:ring-white/10 dark:hover:ring-white/20">
             v{{ productVersion }} is out
@@ -188,3 +189,5 @@ ogDescription: Open-source web app platform with navigation, authentication, adm
         </div>
       </section>
     {% endif %}
+
+<script src="/assets/js/hero-dots.js" type="module"></script>
