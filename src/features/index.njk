@@ -10,8 +10,7 @@ heading: "Build your app. Share the essentials."
 lede: "Shellui is an open-source shell that brings your web apps together with shared navigation, sign-in, administration, email, and file storage. Your apps run inside embedded pages called iframes, using the frameworks you choose."
 ---
 
-<div class="grid items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
-  <div class="max-w-2xl">
+<div class="max-w-2xl">
     <h2 class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">A shared foundation for your web apps</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Build a customer portal, an internal tool, or a product with several apps. Configure the navigation, layout, and connected services in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. Each app keeps its own interface and uses the Shellui software development kit (SDK) to access shared features.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">Start with navigation and a layout, then connect authentication or storage when your project needs them. Shellui is MIT-licensed and free to run. You can host the shell and its services on your own infrastructure.</p>
@@ -26,20 +25,16 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
       <a href="/changelog/" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Changelog</a>
     </p>
   </div>
-  <div>
-    {% include "feature-visual-shell.njk" %}
-  </div>
-</div>
 
 <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
   {% for item in featurePages %}
     <a
       id="{{ item.id }}"
       href="{{ item.href }}"
-      class="group anim-card flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:col-span-2"
+      class="group anim-card flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary{% if loop.index == 1 %} sm:col-span-2 lg:col-span-4{% elif loop.index == 2 %} lg:col-span-2{% elif loop.last %} sm:col-span-2 lg:col-span-3{% else %} lg:col-span-3{% endif %}"
     >
       {% set bleed = item.visual in ["apps-visual", "upload"] %}
-      <div class="border-b border-border bg-muted{% if bleed %} aspect-[3/2] overflow-hidden [&_svg]:h-full{% else %} p-4 sm:p-5{% endif %}">
+      <div class="border-b border-border bg-muted{% if bleed %} overflow-hidden{% if item.visual != "apps-visual" %} aspect-[3/2] [&_svg]:h-full{% endif %}{% else %} p-4 sm:p-5{% endif %}">
         <div class="mx-auto w-full max-w-[16rem] {% if item.visual == 'auth' %}max-w-[13rem]{% endif %}{% if item.visual == 'toaster' or bleed %}max-w-none{% endif %}{% if bleed %} h-full{% endif %}">
           {% if item.visual == "toaster" %}
             {% include "feature-visual-toaster.njk" %}
@@ -50,7 +45,7 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
           {% elif item.visual == "admin" %}
             {% include "feature-visual-admin.njk" %}
           {% elif item.visual == "apps-visual" %}
-            {% set avBare = true %}{% include "apps-visual-thumb.njk" %}
+            {% set avBare = true %}<div class="hidden lg:block">{% include "apps-visual.njk" %}</div><div class="lg:hidden">{% include "apps-visual-thumb.njk" %}</div>
           {% elif item.visual == "upload" %}
             {% set upSlice = true %}{% include "feature-visual-upload.njk" %}
           {% elif item.visual == "storage" %}
