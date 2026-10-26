@@ -6,7 +6,7 @@
   {% set view = views[0] %}
   <div class="ag-root" data-graph-ssr aria-busy="true">
     <div class="ag-toolbar">
-      <fieldset class="ag-picker" disabled>
+      {% if views.length > 1 %}<fieldset class="ag-picker" disabled>
         <legend class="ag-picker__legend">{{ opts.pickerLegend }}</legend>
         <div class="ag-picker__options">
           {% for item in views %}
@@ -16,7 +16,7 @@
             </label>
           {% endfor %}
         </div>
-      </fieldset>
+      </fieldset>{% endif %}
       <p class="ag-summary">{{ view.summary }}</p>
     </div>
 

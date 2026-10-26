@@ -35,7 +35,7 @@ function buildNodes(view) {
     id: group.id,
     type: "frame",
     position: group.position,
-    data: { title: group.title, subtitle: group.subtitle, logo: group.logo },
+    data: { title: group.title, subtitle: group.subtitle },
     style: { width: group.size.width, height: group.size.height },
     width: group.size.width,
     height: group.size.height,
@@ -60,7 +60,6 @@ function buildNodes(view) {
       href: node.href,
       kind: node.kind,
       fill: Boolean(node.fill),
-      logo: node.logo,
     },
     style: { width: node.size.width, height: node.size.height },
     width: node.size.width,
@@ -92,6 +91,7 @@ function buildEdges(view) {
 }
 
 function ViewPicker({ viewId, onChange }) {
+  if (VIEWS.length < 2) return null;
   return (
     <fieldset className="ag-picker">
       <legend className="ag-picker__legend">Stack</legend>

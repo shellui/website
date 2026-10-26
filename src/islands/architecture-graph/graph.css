@@ -82,11 +82,6 @@
   background: color-mix(in oklab, var(--color-muted-foreground) 5%, transparent);
 }
 
-.ag-frame[data-logo="supabase"] {
-  border-color: color-mix(in oklab, #3ecf8e 45%, var(--color-border));
-  background: color-mix(in oklab, #3ecf8e 7%, transparent);
-}
-
 .ag-frame__label {
   display: flex;
   flex-wrap: wrap;
@@ -102,13 +97,6 @@
   min-width: 0;
   align-items: center;
   gap: 0.4375rem;
-}
-
-.ag-logo {
-  flex: none;
-  display: block;
-  width: 1.125rem;
-  height: auto;
 }
 
 .ag-frame__title {

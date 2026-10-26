@@ -26,7 +26,7 @@ Shellui loads each of your web apps in an iframe inside one shell. Every app kee
 ## What Shellui does today
 
 - **Apps and navigation**: Shared navigation, layout modes, themes, languages, modals, drawers, and toasts across embedded apps, driven by `@shellui/sdk`.
-- **Authentication**: Sign in once with [identity-service](https://github.com/shellui/identity-service): OAuth, OpenID Connect, SAML single sign-on, SCIM, magic links, and invitations. You can connect Supabase Auth instead.
+- **Authentication**: Sign in once with [identity-service](https://github.com/shellui/identity-service): OAuth, OpenID Connect, SAML single sign-on, SCIM, magic links, and invitations.
 - **Administration**: A shared [admin panel](https://github.com/shellui/admin) for members, company access, email, and webhooks. Add your own tools next to the built-in screens.
 - **Storage**: Upload, browse, and share files through storage-service, with file permissions, share links, and storage limits.
 - **Email**: email-service sends sign-in mail, invitations, event notices, newsletters, and broadcasts through Resend, Amazon SES, or SMTP. Sign-in mail has its own queue.

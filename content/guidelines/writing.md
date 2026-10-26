@@ -193,7 +193,7 @@ await init({
 
 ## What to mention (and what to skip)
 
-- **Default to shipping**: iframe host, `@shellui/sdk`, identity-service or Supabase Auth, admin at `/admin`, storage-service or Supabase Storage, Files
+- **Default to shipping**: iframe host, `@shellui/sdk`, identity-service, admin at `/admin`, storage-service, Files
 - **Skip unless the page is about it**: AI features, MCP, an app store, a marketplace, unreleased roadmap items
 - **Roadmap pages** may list upcoming work. Everywhere else, upcoming work is a footnote, not the lede
 - Don't frame Shellui as an AI platform. It is a shell around your app

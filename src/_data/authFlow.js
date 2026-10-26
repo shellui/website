@@ -295,7 +295,6 @@ const session = {
   omitted: {
     title: "Related details",
     items: [
-      "Supabase Auth is an alternative authentication backend; storage configuration is separate",
       "Your backend services must verify tokens and enforce their own permissions",
     ],
   },

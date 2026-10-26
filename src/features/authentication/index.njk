@@ -2,10 +2,10 @@
 layout: layouts/feature.njk
 wide: true
 title: Authentication | Shellui
-description: "Share sign-in across your Shellui apps. OAuth, OpenID Connect, SAML single sign-on, SCIM, magic links, and invitations on identity-service, or connect Supabase Auth."
+description: "Share sign-in across your Shellui apps. OAuth, OpenID Connect, SAML single sign-on, SCIM, magic links, and invitations on identity-service."
 eyebrow: Features
 heading: "One sign-in flow for your apps"
-lede: "Configure sign-in once in Shellui. The shell manages login, session renewal, and the return to the requested page. Your embedded apps receive the signed-in account through the software development kit (SDK). Choose identity-service, or connect an existing Supabase Auth project."
+lede: "Configure sign-in once in Shellui. The shell manages login, session renewal, and the return to the requested page. Your embedded apps receive the signed-in account through the software development kit (SDK). Run identity-service as your sign-in backend."
 pageScripts:
   - /assets/js/auth-flow.js
 ---
@@ -61,8 +61,8 @@ pageScripts:
 
 <section class="mt-20" aria-labelledby="identity-service-does">
   <div class="max-w-2xl">
-    <h2 id="identity-service-does" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Choose an authentication backend</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">The <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.identityService }}">identity-service</a> backend checks who you are and whether you can access a company. A company groups the accounts and access rules for your product or organization. Use it for the company access features below, or choose Supabase Auth for an existing Supabase project.</p>
+    <h2 id="identity-service-does" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">What identity-service does</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.identityService }}">identity-service</a> backend checks who you are and whether you can access a company. A company groups the accounts and access rules for your product or organization. Use it for the company access features below.</p>
   </div>
   <div class="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
     <div>
@@ -86,8 +86,8 @@ pageScripts:
       <p class="mt-2 text-sm/6 text-muted-foreground">Staff and company owners manage members, invitations, groups, and provider connections in the <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/administration/">administration panel</a>.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-pretty text-foreground">Supabase Auth</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">If you already use Supabase, connect it as your authentication backend. The sign-in methods you get depend on that project's settings.</p>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Magic links and invitations</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Members can sign in from a link sent by email, and company owners invite new people by email.</p>
     </div>
   </div>
 </section>
