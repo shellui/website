@@ -6,7 +6,9 @@
 .lyx-dots{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 .lyx:has(.lyx-dots[width]){background-image:none}
 .lyx::before{z-index:-1;content:"";position:absolute;inset:0 0 auto;height:220px;background:linear-gradient(color-mix(in srgb,var(--gold) 10%,transparent),transparent);pointer-events:none}
-.lyx-seg{position:relative;display:flex;gap:2px;max-width:100%;overflow-x:auto;width:max-content;margin:0 auto 28px;padding:4px;border:1px solid var(--bd);border-radius:10px;background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.05);scrollbar-width:none}
+.lyx-seg{position:relative;display:flex;gap:2px;max-width:100%;overflow-x:auto;width:max-content;min-width:0;margin:0;padding:4px;border:1px solid var(--bd);border-radius:10px;background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.05);scrollbar-width:none}
+.lyx-top{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 28px;position:relative}
+.lyx-play.anim-play{position:static;flex:none}
 .lyx-seg button{all:unset;cursor:pointer;flex:none;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--mu);padding:8px 14px;border-radius:7px;position:relative;z-index:1;transition:color .2s}
 .lyx-seg button[aria-selected=true]{color:var(--fg)}
 .lyx-seg button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}

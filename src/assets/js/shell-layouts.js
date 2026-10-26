@@ -1,5 +1,6 @@
 // Interactive layouts piece: segmented tabs morph one playground window.
-// Auto-cycles every 3.2s until the visitor interacts; pauses offscreen or when the tab is hidden.
+// Tour: one rAF clock drives both the ring and the switch every 3.2s. Play/pause button,
+// tab selection pauses, offscreen or hidden tab suspends without losing progress.
 const W = 960;
 const reduce = matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -13,7 +14,11 @@ for (const root of document.querySelectorAll("[data-layouts]")) {
   const fit = root.querySelector(".lyx-fit");
   const wrap = root.querySelector(".lyx-wrap");
   const q = new URLSearchParams(location.search).get("l");
-  let i = 0, auto = !q, visible = false, timer, badgeTimer;
+  const btn = root.querySelector("[data-layout-play]");
+  const ring = btn.querySelector(".anim-ring-fill");
+  const icon = btn.querySelector(".anim-icon");
+  const D = 3200, PLAY = "M16 13.5v13l10.5-6.5z", PAUSE = "M15 13.5h3.5v13H15zM21.5 13.5H25v13h-3.5z";
+  let i = 0, auto = !q, visible = false, raf = 0, last = 0, elapsed = 0, badgeTimer;
   if (q) root.dataset.still = "";
 
   const scale = () => {
@@ -43,21 +48,38 @@ for (const root of document.querySelectorAll("[data-layouts]")) {
     badgeTimer = setTimeout(() => badges.querySelectorAll(".lyx-bd").forEach((b) => b.classList.add("show")), still ? 0 : 680);
   };
 
-  const stop = () => { auto = false; clearInterval(timer); };
-  const tick = () => {
-    clearInterval(timer);
-    if (auto && visible && !document.hidden && !reduce.matches) timer = setInterval(() => go((i + 1) % L.length), 3200);
+  const paint = () => {
+    ring.style.strokeDashoffset = 100 - (100 * elapsed) / D;
+    icon.setAttribute("d", auto ? PAUSE : PLAY);
+    btn.setAttribute("aria-label", auto ? "Pause layout tour" : "Play layout tour");
   };
+  const frame = (now) => {
+    elapsed += now - last; last = now;
+    if (elapsed >= D) { elapsed = 0; go((i + 1) % L.length); }
+    paint();
+    raf = requestAnimationFrame(frame);
+  };
+  const tick = () => {
+    cancelAnimationFrame(raf); raf = 0;
+    if (auto && visible && !document.hidden && !reduce.matches) {
+      raf = requestAnimationFrame((now) => { last = now; raf = requestAnimationFrame(frame); });
+    }
+    paint();
+  };
+  const stop = () => { auto = false; tick(); };
+  btn.addEventListener("click", () => {
+    if (auto) return stop();
+    auto = true; delete root.dataset.still; tick();
+  });
 
   tabs.forEach((t, k) => {
-    t.addEventListener("click", () => { stop(); go(k); });
+    t.addEventListener("click", () => { elapsed = 0; stop(); go(k); });
     t.addEventListener("keydown", (e) => {
       const n = { ArrowRight: k + 1, ArrowLeft: k - 1, Home: 0, End: L.length - 1 }[e.key];
       if (n === undefined) return;
-      e.preventDefault(); stop(); go((n + L.length) % L.length, true);
+      e.preventDefault(); elapsed = 0; stop(); go((n + L.length) % L.length, true);
     });
   });
-  root.addEventListener("pointerdown", stop);
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; tick(); }).observe(root);
   document.addEventListener("visibilitychange", tick);
   reduce.addEventListener?.("change", tick);
