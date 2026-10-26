@@ -79,11 +79,11 @@
     <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between" aria-label="Global">
       <div class="flex lg:justify-self-start">
         <a href="/" class="inline-flex items-center" aria-label="Shellui" translate="no">
-          {% set className = "h-6 w-auto text-gray-900 dark:text-white" %}{% include "logo.njk" %}{% set className = "" %}
+          {% set className = "h-[18px] w-auto text-gray-800 dark:text-gray-100" %}{% include "logo.njk" %}{% set className = "" %}
         </a>
       </div>
 
-      <div class="hidden lg:ml-10 lg:mr-auto lg:flex lg:items-center lg:gap-x-8">
+      <div class="hidden lg:ml-8 lg:mr-auto lg:flex lg:items-center lg:gap-x-8">
         <div
           class="relative"
           @mouseenter="clearTimeout(flyTimer); developersOpen = false; featuresOpen = true"
