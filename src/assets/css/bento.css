@@ -1,0 +1,20 @@
+/* Homepage bento visuals: motion only on hover or focus, never autoplay. */
+.bv .bv-p { stroke: var(--color-primary); }
+.bv * { transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s; transform-box: fill-box; transform-origin: center; }
+.bv .bv-a, .bv .bv-b, .bv .bv-c, .bv .bv-d { opacity: 0.85; }
+.bento-tile:is(:hover, :focus-within) .bv .bv-a { opacity: 1; }
+.bento-tile:is(:hover, :focus-within) .bv-shell .bv-a { transform: translateX(-4px); }
+.bento-tile:is(:hover, :focus-within) .bv-shell .bv-b { transform: scale(1.06); }
+.bento-tile:is(:hover, :focus-within) .bv-shell .bv-c { transform: translateY(-4px); }
+.bento-tile:is(:hover, :focus-within) .bv-shell .bv-d { transform: translateY(4px); }
+.bento-tile:is(:hover, :focus-within) .bv-auth .bv-a { transform: translate(-8px, 8px) rotate(-20deg); }
+.bento-tile:is(:hover, :focus-within) .bv-auth .bv-b { transform: scaleX(1.08); }
+.bento-tile:is(:hover, :focus-within) .bv-sso .bv-a { transform: scale(0.9); }
+.bento-tile:is(:hover, :focus-within) .bv-storage .bv-a { transform: translateY(16px); }
+.bento-tile:is(:hover, :focus-within) .bv-email .bv-a { transform: translateX(-10px) rotate(-30deg); }
+.bento-tile:is(:hover, :focus-within) .bv-hooks .bv-a { transform: translateX(70px); }
+.bento-tile:is(:hover, :focus-within) .bv-admin .bv-a { transform: translateY(26px); }
+.bento-tile:is(:hover, :focus-within) .bv-desktop .bv-a { transform: translate(-6px, -6px); }
+.bento-tile:is(:hover, :focus-within) .bv-oss .bv-a { transform: rotate(14deg); }
+.bento-tile:is(:hover, :focus-within) .bv-audit .bv-a { transform: scale(1.15); }
+@media (prefers-reduced-motion: reduce) { .bv * { transition: none; transform: none !important; } }

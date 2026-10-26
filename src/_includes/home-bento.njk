@@ -1,0 +1,63 @@
+{#- Homepage feature bento. Visuals are inline SVG using currentColor and --color-primary; hover/focus motion lives in bento.css. -#}
+{% set tiles = [
+  { id: "shell", href: "/features/apps-and-navigation/", span: "md:col-span-2 lg:row-span-2", title: "One shell for all your apps", text: "Combine apps built with different frameworks under shared navigation, dialogs, and settings." },
+  { id: "auth", href: "/features/authentication/", span: "md:col-span-2", title: "Sign-in included", text: "OAuth, magic links, or Supabase Auth across every app, with the pages you choose behind a session." },
+  { id: "sso", href: "/features/authentication/", span: "", title: "SAML SSO and SCIM", text: "Register identity providers per company and provision members with SCIM." },
+  { id: "storage", href: "/features/storage/", span: "", title: "File storage", text: "Upload, share, and limit files through the SDK." },
+  { id: "email", href: "/features/email/", span: "md:col-span-2", title: "Email with your theme", text: "Edit React Email designs, recolor them with a Shellui theme, and send with Resend or SMTP." },
+  { id: "hooks", href: "/features/administration/", span: "", title: "Webhooks and n8n", text: "Every service sends signed webhooks. Point a rule at an n8n workflow." },
+  { id: "admin", href: "/features/administration/", span: "", title: "Administration", text: "Members, email, webhooks, and company access in one panel." },
+  { id: "desktop", href: "/features/web-and-desktop/", span: "", title: "Web and desktop", text: "Build static web files or a Tauri 2 desktop app from one project." },
+  { id: "oss", href: site.github, span: "md:col-span-2", title: "Open source, yours to run", text: "MIT licensed. Self-host every service, and give your agent shellui.ai to start." },
+  { id: "audit", href: "/features/administration/", span: "", title: "Audit and privacy", text: "Event logs, per-company metrics, and no sign-in links in webhooks or logs." }
+] %}
+<section id="features" class="relative z-10 page-x py-24">
+  <div class="mx-auto max-w-7xl">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">Everything around your app, already built</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Start with sign-in, files, email, and admin on day one. Add SSO, audit trails, and company controls when a larger team arrives.</p>
+    </div>
+    <ul class="bento mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {% for t in tiles %}
+      <li class="{{ t.span }}">
+        <a href="{{ t.href }}" class="bento-tile group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900">
+          <div class="flex flex-1 items-center justify-center bg-gray-50 p-6 text-gray-400 dark:bg-gray-950/60 dark:text-gray-600">
+            <svg class="bv bv-{{ t.id }} h-28 w-full max-w-xs{% if t.id == 'shell' %} lg:h-56{% endif %}" viewBox="0 0 200 110" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              {% if t.id == "shell" %}
+              <rect x="10" y="8" width="180" height="94" rx="8"/><path d="M10 24h180"/><circle cx="20" cy="16" r="2"/><circle cx="28" cy="16" r="2"/>
+              <g class="bv-a"><rect x="16" y="30" width="36" height="66" rx="4"/><path d="M24 42h20M24 52h16M24 62h18"/></g>
+              <rect class="bv-b bv-p" x="60" y="30" width="58" height="66" rx="4"/><rect class="bv-c" x="124" y="30" width="60" height="30" rx="4"/><rect class="bv-d" x="124" y="66" width="60" height="30" rx="4"/>
+              {% elif t.id == "auth" %}
+              <rect x="50" y="20" width="100" height="74" rx="8"/><path d="M66 40h68M66 56h68"/><rect class="bv-p bv-b" x="66" y="70" width="68" height="12" rx="6"/>
+              <g class="bv-a"><circle cx="160" cy="22" r="10"/><path d="M160 32v14M160 40h6"/></g>
+              {% elif t.id == "sso" %}
+              <circle cx="100" cy="55" r="14" class="bv-p"/><g class="bv-a"><circle cx="40" cy="25" r="9"/><circle cx="40" cy="85" r="9"/><circle cx="160" cy="25" r="9"/><circle cx="160" cy="85" r="9"/></g><path d="M49 29l38 20M49 81l38-20M151 29l-38 20M151 81l-38-20"/>
+              {% elif t.id == "storage" %}
+              <path d="M50 40h36l8 10h56v46H50z"/><g class="bv-a"><rect class="bv-p" x="88" y="14" width="28" height="34" rx="3"/><path d="M96 26h12M96 34h8"/></g>
+              {% elif t.id == "email" %}
+              <rect x="40" y="22" width="120" height="70" rx="6"/><path d="M40 28l60 36 60-36"/><g class="bv-a"><circle class="bv-p" cx="170" cy="24" r="8"/><circle cx="182" cy="44" r="6"/><circle cx="166" cy="56" r="5"/></g>
+              {% elif t.id == "hooks" %}
+              <circle cx="40" cy="55" r="12"/><rect x="140" y="38" width="40" height="34" rx="6"/><path d="M52 55h88" stroke-dasharray="4 6"/><circle class="bv-a bv-p" cx="60" cy="55" r="5"/>
+              {% elif t.id == "admin" %}
+              <rect x="30" y="16" width="140" height="80" rx="6"/><path d="M70 16v80"/><g class="bv-a"><rect class="bv-p" x="80" y="28" width="80" height="12" rx="3"/></g><path d="M80 52h70M80 66h56M80 80h64M42 30h16M42 42h16M42 54h16"/>
+              {% elif t.id == "desktop" %}
+              <rect x="24" y="18" width="96" height="64" rx="6"/><path d="M56 94h32M72 82v12"/><g class="bv-a"><rect class="bv-p" x="110" y="34" width="66" height="50" rx="6"/><path d="M110 46h66"/></g>
+              {% elif t.id == "oss" %}
+              <path d="M60 30l-24 25 24 25M140 30l24 25-24 25"/><path class="bv-a bv-p" d="M112 22l-24 66"/>
+              {% elif t.id == "audit" %}
+              <path d="M100 14l40 14v26c0 24-18 38-40 44-22-6-40-20-40-44V28z"/><path class="bv-a bv-p" d="M82 56l12 12 24-26"/>
+              {% endif %}
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white">{{ t.title }}</h3>
+            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">{{ t.text }}</p>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="mt-8"><a href="/features/" class="text-sm/6 font-semibold text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">See all features</a></p>
+    <div class="mt-16">{% set playgroundCtaWide = true %}{% include "playground-cta.njk" %}</div>
+  </div>
+</section>
