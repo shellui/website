@@ -30,15 +30,15 @@ ogDescription: Open-source web app platform with navigation, authentication, adm
       </div>
       <button
         type="button"
-        class="agent-prompt copy-btn group flex h-11 w-full min-w-0 cursor-pointer items-center overflow-hidden rounded-md border border-gray-200 bg-white text-left shadow-xs hover:border-gray-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:ml-auto lg:w-[36rem] dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+        class="agent-prompt copy-btn group flex h-11 w-full min-w-0 cursor-pointer items-center overflow-hidden rounded-md border border-gray-200 bg-white text-left shadow-xs hover:border-gray-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:ml-auto lg:w-auto dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
         data-copy="{{ agentPrompt }}"
         aria-label="Copy prompt for your agent: {{ agentPrompt }}"
         onclick="window.shelluiCopyPrompt && window.shelluiCopyPrompt(this)"
       >
         <span class="flex h-full shrink-0 items-center border-r border-gray-200 px-3 text-gray-400 dark:border-gray-800 dark:text-gray-500">{% include "agent-marks.njk" %}</span>
         <span class="relative h-full min-w-0 flex-1" aria-hidden="true">
-          <span class="prompt-label absolute inset-0 flex items-center truncate whitespace-nowrap px-3 text-sm font-medium text-gray-900 dark:text-white">Copy prompt for your agent</span>
-          <span class="prompt-text absolute inset-0 flex items-center px-3 font-mono text-sm text-gray-900 dark:text-gray-50"><span class="truncate">{{ agentPrompt }}</span></span>
+          <span class="prompt-label flex h-full items-center truncate whitespace-nowrap px-3 text-sm font-medium text-gray-900 dark:text-white">Copy prompt for your agent</span>
+          <span class="prompt-text absolute inset-0 flex min-w-0 items-center overflow-hidden px-3 font-mono text-sm text-gray-900 dark:text-gray-50"><span class="block min-w-0 overflow-hidden text-ellipsis whitespace-nowrap">{{ agentPrompt }}</span></span>
         </span>
         <span class="flex h-full w-11 shrink-0 items-center justify-center border-l border-gray-200 text-gray-600 group-hover:text-gray-900 dark:border-gray-800 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true">
           <svg class="copy-icon size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
