@@ -1,0 +1,19 @@
+/* Apps and navigation hero: one shell, apps in any framework. Same palette as the bento covers. */
+.mfe { --bg:#F3F4F6; --dot:#D7DADF; --card:#FFF; --ln:#E5E7EB; --wf:#E5E7EB; --ink:#030712; --mut:#6B7280; }
+.dark .mfe { --bg:#030712; --dot:#1F2737; --card:#101828; --ln:rgba(255,255,255,.1); --wf:#1E2939; --ink:#F9FAFB; --mut:#9CA3AF; }
+.mfe .bg { fill: var(--bg); } .mfe .dot { fill: var(--dot); }
+.mfe .c { fill: var(--card); stroke: var(--ln); stroke-width: 1; }
+.mfe .w { fill: var(--wf); } .mfe .g { fill: var(--color-primary); }
+.mfe .gl { fill: none; stroke: var(--color-primary); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.mfe .fr { fill: none; stroke: var(--color-primary); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.mfe text { font: 600 13px Inter, system-ui, sans-serif; fill: var(--ink); }
+.mfe .m { font: 500 11px ui-monospace, monospace; fill: var(--mut); }
+.mfe .app, .mfe .hl { opacity: 0; animation: mfe-show 12s infinite; }
+.mfe .a2 { animation-delay: 3s; } .mfe .a3 { animation-delay: 6s; } .mfe .a4 { animation-delay: 9s; }
+.mfe .flow { animation: mfe-flow 1.2s linear infinite; }
+@keyframes mfe-show { 0%, 23% { opacity: 1; } 27%, 96% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes mfe-flow { to { stroke-dashoffset: -16; } }
+@media (prefers-reduced-motion: reduce) {
+  .mfe .app, .mfe .hl, .mfe .flow { animation: none; }
+  .mfe .a1 { opacity: 1; }
+}
