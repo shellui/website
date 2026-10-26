@@ -4,24 +4,13 @@ wide: true
 title: "Apps and navigation | Shellui"
 description: "Run apps built in React, Vue, Svelte, Angular, or plain HTML inside one Shellui shell. Share navigation, layout, theme, language, and dialogs."
 eyebrow: Features
-heading: "Many apps, any framework, one product"
-lede: "Shellui is a shell for microfrontends. Each app runs in its own iframe, built with the framework your team prefers and deployed on its own schedule. The shell owns navigation, layout, theme, and language, so people move between apps as if they were one."
+eleventyComputed:
+  heading: "{{ mfeIntro.heading }}"
+  lede: "{{ mfeIntro.lede }}"
 ---
 
-<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-  <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">How the pieces fit</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">You list your apps in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. The shell draws the sidebar and loads the selected app by URL in a sandboxed iframe. Your app talks back through <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/sdk</code>, which wraps <code class="rounded bg-muted px-1.5 py-0.5 text-sm">postMessage</code> with an exact target origin.</p>
-    <dl class="mt-8 grid gap-6">
-      <div><dt class="text-sm font-semibold text-primary-ink">The shell</dt><dd class="mt-1 text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/core</code> renders navigation, layouts, settings, toasts, and dialogs. You configure it, you do not rebuild it.</dd></div>
-      <div><dt class="text-sm font-semibold text-primary-ink">Your apps</dt><dd class="mt-1 text-sm/6 text-muted-foreground">Any web app with a URL. Keep its repository, framework, and deployment. It only needs to allow iframe embedding.</dd></div>
-      <div><dt class="text-sm font-semibold text-primary-ink">The SDK</dt><dd class="mt-1 text-sm/6 text-muted-foreground">One package connects an app to the shell: read the theme and language, open a dialog, navigate to another app.</dd></div>
-    </dl>
-  </div>
-  <div>
-    {% include "feature-visual-mfe.njk" %}
-  </div>
-</div>
+{% include "framework-icons.njk" %}
+{% include "mfe-intro.njk" %}
 
 <section class="mt-20" aria-labelledby="any-stack">
   <div class="max-w-2xl">
@@ -125,7 +114,7 @@ shellui.toast({
     <div class="max-w-2xl">
       <h2 id="host-chrome-heading" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Theme, language, and floating actions</h2>
       <p class="mt-4 text-base/7 text-muted-foreground">People pick theme and language once, in the shell settings. Every app reads the same choice through the SDK. App-specific actions can appear above the content or as a floating button.</p>
-      <p class="mt-4 text-base/7 text-muted-foreground">The JavaScript framework starters from <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui init</code> include theme and language integration through <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/sdk/tiny</code>. Use the full SDK when your app also needs dialogs, authentication, or storage.</p>
+      <p class="mt-4 text-base/7 text-muted-foreground">The <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui init</code> starters load <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/sdk/tiny</code>, so they connect to the shell. Add <code class="rounded bg-muted px-1.5 py-0.5 text-sm">applyTheme()</code> to follow the shell theme. Use the full SDK when your app also needs dialogs, authentication, or storage.</p>
     </div>
     <div>
       {% include "feature-visual-chrome.njk" %}

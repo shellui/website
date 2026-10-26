@@ -50,6 +50,16 @@ ogDescription: Open-source web app platform with navigation, authentication, adm
   </div>
 </div>
 
+    <section id="intro" class="border-t border-gray-200 page-x py-24 dark:border-gray-800">
+      <div class="mx-auto max-w-7xl">
+        <div class="max-w-3xl">
+          <h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{{ mfeIntro.heading }}</h2>
+          <p class="mt-6 text-lg/8 text-muted-foreground">{{ mfeIntro.lede }}</p>
+        </div>
+        <div class="mt-16">{% set mfeTag = "h3" %}{% include "mfe-intro.njk" %}</div>
+      </div>
+    </section>
+
     {% include "home-bento.njk" %}
 
     {% include "home-init.njk" %}
