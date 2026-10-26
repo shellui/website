@@ -1,19 +1,19 @@
 ---
 layout: layouts/base.njk
-title: Book a walkthrough | Shellui
-description: Book a free walkthrough of Shellui, the open-source web app development platform.
+title: Request a demo | Shellui
+description: Request a free demo of Shellui, the open-source web app development platform.
 ---
 {% set wid = "walkthrough" %}
 {% set inputCls = "block w-full rounded-md bg-background px-3.5 py-2 text-base text-foreground outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6 dark:bg-white/5 dark:outline-white/10 dark:placeholder:text-gray-500" %}
 <div class="relative isolate page-x page-top pb-24">
   <div class="mx-auto max-w-xl">
     {% include "breadcrumbs.njk" %}
-    <h1 class="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">Book a walkthrough</h1>
+    <h1 class="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">Request a demo</h1>
     <p class="mt-6 text-lg text-pretty text-muted-foreground">
-      Get a free walkthrough of Shellui. We show you how navigation, authentication, administration, and storage fit together, and answer your questions. Shellui is free and open source.
+      Get a free demo of Shellui. We show you how navigation, authentication, administration, and storage fit together, and answer your questions. Shellui is free and open source.
     </p>
     <p class="mt-6 rounded-lg border border-border bg-muted/40 px-4 py-3 text-sm/6 text-foreground">
-      You don't need a walkthrough to use Shellui. You can fully use it today by self-hosting. <a href="{{ site.docs }}/quickstart" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Start with the quickstart</a>.
+      You don't need a demo to use Shellui. You can fully use it today by self-hosting. <a href="{{ site.docs }}/quickstart" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Start with the quickstart</a>.
     </p>
     {% if site.walkthrough.key %}
     <form class="newsletter-form mt-8 space-y-5" action="{{ site.walkthrough.endpoint }}/api/v1/public/newsletters/{{ site.walkthrough.key }}/subscribe" method="post" novalidate>
@@ -29,7 +29,7 @@ description: Book a free walkthrough of Shellui, the open-source web app develop
         <label for="{{ wid }}-website">Website</label>
         <input id="{{ wid }}-website" type="text" name="website" tabindex="-1" autocomplete="off" />
       </div>
-      <button type="submit" class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60">Book a walkthrough</button>
+      <button type="submit" class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60">Request a demo</button>
       <p id="{{ wid }}-status" class="min-h-6 text-sm/6 text-muted-foreground" role="status" aria-live="polite"></p>
     </form>
     {% endif %}
