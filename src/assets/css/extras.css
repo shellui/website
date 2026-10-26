@@ -571,3 +571,8 @@
   background-color: color-mix(in oklab, var(--color-primary) 16%, rgb(3 7 18));
   color: var(--color-primary);
 }
+
+.agent-mark { transition: color .2s, transform .2s; }
+.agent-mark:hover { color: var(--color-gray-900); transform: translateY(-1px); }
+.dark .agent-mark:hover { color: #fff; }
+@media (prefers-reduced-motion: reduce) { .agent-mark:hover { transform: none; } }
