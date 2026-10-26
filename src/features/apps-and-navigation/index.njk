@@ -97,6 +97,26 @@ shellui.toast({
   <p class="mt-8 max-w-2xl text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">fullscreen</code> hides navigation chrome. Size iframe UI to 100% of the iframe, not <code class="rounded bg-muted px-1.5 py-0.5 text-sm">100vh</code>.</p>
 </section>
 
+<section class="mt-20" aria-labelledby="components">
+  <div class="max-w-2xl">
+    <h2 id="components" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Components ready to use</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Shellui ships shared interface components that your apps call through the SDK. Hover a card to see it in action.</p>
+  </div>
+  <div class="mt-10 grid gap-6 md:grid-cols-2">
+    {% for c in uiComponents %}
+      <article id="component-{{ c.id }}" tabindex="0" aria-labelledby="component-{{ c.id }}-title" class="anim-card flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+        <div class="p-6">
+          <h3 id="component-{{ c.id }}-title" class="text-lg font-semibold tracking-tight text-foreground">{{ c.title }}</h3>
+          <p class="mt-2 text-sm/6 text-muted-foreground">{{ c.line }}</p>
+        </div>
+        <div class="mt-auto border-t border-border bg-muted">
+          {% include c.visual %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
 <section class="mt-20" aria-labelledby="sdk-chrome">
   <div class="max-w-2xl">
     <h2 id="sdk-chrome" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Show dialogs and notifications across the shell</h2>
