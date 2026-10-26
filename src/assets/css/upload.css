@@ -146,5 +146,7 @@
 .up-dark{--bg:#030712;--dot:#1A2130;--win:#0A0F1C;--winln:rgba(255,255,255,.08);--side:#0D1322;--wf:#151C2B;--code:#0D1322;--gb:#3A2E10;--rb:#3A1414;--sg:var(--color-primary);--sm:#9CA3AF;--pill:#101828;--pillln:rgba(255,255,255,.1);--c:#030712;--cln:#1F2937;--fg:#F9FAFB;--mf:#9CA3AF;--mu:#1F2937;--mu5:#11151F;--de:#EF4444;--de1:#2F0E12;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#1C1607;--sh:.1}
 @keyframes up-fade{0%{opacity:1}83%{opacity:0}100%{opacity:0}}@keyframes up-fadein{from{opacity:0}to{opacity:1}}
 .anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art{animation:up-fade 0.3s ease both,up-fadein .25s ease 0.3s forwards}
+@keyframes up-cay{0.00%{transform:translateY(0px)}25.00%{transform:translateY(0px)}29.17%{transform:translateY(-10px)}39.58%{transform:translateY(-10px)}43.75%{transform:translateY(-20px)}54.17%{transform:translateY(-20px)}58.33%{transform:translateY(-30px)}87.50%{transform:translateY(-30px)}91.67%{transform:translateY(-88px)}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .up-art .cay{animation:up-cay 7.20s linear 0.3s forwards}
 .anim-card:has(.up-art){--seq:7.50s}
 @media (prefers-reduced-motion:reduce){.up-art,.up-art *{animation:none!important}}
