@@ -27,14 +27,11 @@
           <div class="bento-art relative flex-1 border-b border-gray-200 dark:border-gray-800">
             {% if t.id == "shell" %}
             <div class="av4-hov h-full bg-gray-100 dark:bg-gray-950 lg:absolute lg:inset-0 lg:flex lg:items-center">{% set avBare = true %}{% include "apps-visual-responsive.njk" %}</div>
+            {% elif t.id == "auth" %}
+            {% include "auth-bento.njk" %}
             {% else %}
             <svg class="bv bv-{{ t.id }} block h-40 w-full py-3" viewBox="0 0 200 110"  aria-hidden="true">
               {% if false %}
-              {% elif t.id == "auth" %}
-              <rect x="56" y="18" width="88" height="74" rx="6" class="c"/><rect x="68" y="30" width="40" height="5" rx="2.5" class="ink"/><rect x="68" y="44" width="64" height="9" rx="3" class="w2"/><rect x="68" y="58" width="64" height="9" rx="3" class="w2"/>
-              <rect class="bv-b g" x="68" y="73" width="64" height="10" rx="5"/>
-              <g class="bv-a"><circle cx="160" cy="26" r="9" class="ring"/><rect x="159" y="34" width="3" height="16" rx="1.5" class="g"/><rect x="161" y="42" width="6" height="3" rx="1.5" class="g"/></g>
-              <path d="M30 78h26" class="ld"/><circle cx="30" cy="78" r="2.5" class="end"/>
               {% elif t.id == "sso" %}
               <path d="M44 26L100 55M44 84L100 55M156 26L100 55M156 84L100 55" class="ld"/>
               <g class="bv-a"><rect x="30" y="16" width="28" height="20" rx="4" class="c"/><rect x="30" y="74" width="28" height="20" rx="4" class="c"/><rect x="142" y="16" width="28" height="20" rx="4" class="c"/><rect x="142" y="74" width="28" height="20" rx="4" class="c"/></g>
