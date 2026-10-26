@@ -6,20 +6,9 @@ description: "Share sign-in across your Shellui apps. OAuth, OpenID Connect, SAM
 eyebrow: Features
 heading: "One sign-in flow for your apps"
 lede: "Configure sign-in once in Shellui. The shell manages login, session renewal, and the return to the requested page. Your embedded apps receive the signed-in account through the software development kit (SDK). Run identity-service as your sign-in backend."
-pageScripts:
-  - /assets/js/auth-flow.js
 ---
 
-<div class="mb-20">{% include "auth-visual-responsive.njk" %}</div>
-
-<section aria-labelledby="auth-exchange">
-  <div class="max-w-2xl">
-    <h2 id="auth-exchange" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">How sign-in works</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">With identity-service, you sign in with OAuth 2.0, OpenID Connect, Security Assertion Markup Language (SAML) 2.0, or a magic link. An embedded app calls <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.login()</code> to start the flow in the main browser window. After sign-in and account confirmation, identity-service returns the session to the shell.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">If you do not enable an OAuth method, the login page sends a magic link. It shows "Check your email" and waits 60s before another send. Sign-in mail can go through <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/email/">email-service</a>, on a queue that bulk mail does not share.</p>
-  </div>
-  {% include "auth-flow.njk" %}
-</section>
+<div>{% include "auth-visual-responsive.njk" %}</div>
 
 <section class="mt-20" aria-labelledby="oauth-providers">
   <div class="max-w-2xl">
