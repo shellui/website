@@ -22,6 +22,12 @@ layout: layouts/base.njk
         {% endif %}
       </div>
     </div>
+    {% if heroImage %}
+      <picture class="mt-10 block">
+        <source type="image/webp" srcset="{{ heroImage }}-1200x630.webp 1200w, {{ heroImage }}-2400x1260.webp 2400w" sizes="(min-width: 48rem) 48rem, 100vw" />
+        <img src="{{ heroImage }}-1200x630.png" srcset="{{ heroImage }}-1200x630.png 1200w, {{ heroImage }}-2400x1260.png 2400w" sizes="(min-width: 48rem) 48rem, 100vw" alt="{{ imageAlt }}" width="1200" height="630" class="w-full rounded-2xl bg-gray-50 ring-1 ring-gray-900/10 dark:bg-gray-900 dark:ring-white/10" fetchpriority="high" />
+      </picture>
+    {% endif %}
     {% if lede %}
       <p class="mt-8 text-xl/8 text-gray-700 dark:text-gray-300">{{ lede }}</p>
     {% endif %}
