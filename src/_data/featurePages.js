@@ -9,7 +9,7 @@ export default [
       "Shared theme and language settings",
       "Toasts, dialogs, modals, and drawers"
     ],
-    visual: "toaster",
+    visual: "mfe-intro",
     cta: "Explore apps and navigation"
   },
   {
@@ -61,7 +61,7 @@ export default [
       "Permissions and expiring share links",
       "Company and per-user storage limits"
     ],
-    visual: "storage",
+    visual: "upload",
     cta: "Explore file storage"
   },
   {

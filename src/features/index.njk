@@ -38,8 +38,9 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
       href="{{ item.href }}"
       class="group anim-card flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:col-span-2"
     >
-      <div class="border-b border-border bg-muted p-4 sm:p-5">
-        <div class="mx-auto w-full max-w-[16rem] {% if item.visual == 'auth' %}max-w-[13rem]{% endif %}{% if item.visual == 'toaster' %}max-w-none{% endif %}">
+      {% set bleed = item.visual in ["mfe-intro", "upload"] %}
+      <div class="border-b border-border bg-muted{% if not bleed %} p-4 sm:p-5{% endif %}">
+        <div class="mx-auto w-full max-w-[16rem] {% if item.visual == 'auth' %}max-w-[13rem]{% endif %}{% if item.visual == 'toaster' or bleed %}max-w-none{% endif %}">
           {% if item.visual == "toaster" %}
             {% include "feature-visual-toaster.njk" %}
           {% elif item.visual == "shell-layout" %}
@@ -48,6 +49,10 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
             {% include "feature-visual-auth.njk" %}
           {% elif item.visual == "admin" %}
             {% include "feature-visual-admin.njk" %}
+          {% elif item.visual == "mfe-intro" %}
+            {% set mfeBare = true %}{% include "feature-visual-mfe-intro.njk" %}
+          {% elif item.visual == "upload" %}
+            {% include "feature-visual-upload.njk" %}
           {% elif item.visual == "storage" %}
             {% include "feature-visual-storage.njk" %}
           {% elif item.visual == "email" %}
