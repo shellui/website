@@ -572,10 +572,12 @@
   color: var(--color-primary);
 }
 
-.agent-mark { transition: color .2s, transform .2s; }
-.agent-mark:hover { color: var(--color-gray-900); transform: translateY(-1px); }
-.dark .agent-mark:hover { color: #fff; }
-@media (prefers-reduced-motion: reduce) { .agent-mark:hover { transform: none; } }
+.agent-marks > :nth-child(n + 5) { display: none; }
+.agent-prompt .prompt-label, .agent-prompt .prompt-text { transition: opacity .25s, transform .25s; }
+.agent-prompt .prompt-text { opacity: 0; transform: translateY(4px); }
+.agent-prompt:is(:hover, :focus-visible, [data-copied]) .prompt-label { opacity: 0; transform: translateY(-4px); }
+.agent-prompt:is(:hover, :focus-visible, [data-copied]) .prompt-text { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .agent-prompt .prompt-label, .agent-prompt .prompt-text { transition: none; transform: none !important; } }
 .copy-btn .check-icon { display: none; }
 .copy-btn[data-copied] .copy-icon { display: none; }
 .copy-btn[data-copied] .check-icon { display: block; }
