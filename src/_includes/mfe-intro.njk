@@ -14,6 +14,6 @@
   </div>
   <div>
     <div class="av4-once" data-av4-once>{% include "apps-visual-responsive.njk" %}</div>
-    <script>(()=>{const el=document.querySelector("[data-av4-once]");if(!el)return;if(!("IntersectionObserver"in window)){el.classList.add("is-in");return}const io=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){el.classList.add("is-in");io.disconnect()}},{threshold:.4});io.observe(el)})();</script>
+    <script>(()=>{const el=document.querySelector("[data-av4-once]");if(!el)return;if(!("IntersectionObserver"in window)){el.classList.add("is-in");return}const io=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){el.classList.add("is-in");setTimeout(()=>el.classList.add("is-done"),7350);io.disconnect()}},{threshold:.4});io.observe(el)})();</script>
   </div>
 </div>
