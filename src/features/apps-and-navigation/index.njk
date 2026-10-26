@@ -67,32 +67,13 @@ eleventyComputed:
   </div>
 </section>
 
-<section id="host-chrome" class="mt-20 scroll-mt-24" aria-labelledby="host-chrome-heading">
-  <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-    <div class="max-w-2xl">
-      <h2 id="host-chrome-heading" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Theme, language, and floating actions</h2>
-      <p class="mt-4 text-base/7 text-muted-foreground">People pick theme and language once, in the shell settings. Every app reads the same choice through the SDK. App-specific actions can appear above the content or as a floating button.</p>
-      <p class="mt-4 text-base/7 text-muted-foreground">Every starter comes connected to the shell. Add dialogs, authentication, or storage when your app needs them.</p>
-    </div>
-    <div>
-      {% include "feature-visual-mfe.njk" %}
-    </div>
-  </div>
-</section>
-
-<section class="mt-20" aria-labelledby="theming">
+<section id="theming" class="mt-20 scroll-mt-24" aria-labelledby="theming-heading">
   <div class="max-w-2xl">
-    <h2 id="theming" class="scroll-mt-24 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Match the shell to your brand</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Start from a built-in theme or define your own palette. Turn on several themes and people switch between them in Settings, with every app following along.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">Themes live in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code> or in theme files. See the <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/features/themes/">themes guide</a>.</p>
+    <h2 id="theming-heading" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Your brand, their language, every app</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Pick a theme and a language in the shell. Every shadcn/ui component in every app follows with the same colors, corners, and words.</p>
   </div>
-</section>
-
-<section class="mt-20" aria-labelledby="language">
-  <div class="max-w-2xl">
-    <h2 id="language" class="scroll-mt-24 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">One language setting for every app</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">People pick their language once. The shell interface ships in English and French, navigation labels can be translated, and each app receives the choice to show its own translations.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">Shell layouts currently use left-to-right text. See <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/features/internationalization/">localize the shell</a>.</p>
+  <div class="mt-10">
+    {% include "feature-visual-theme-language.njk" %}
   </div>
 </section>
 
