@@ -45,7 +45,7 @@ eleventyComputed:
 <section class="mt-20" aria-labelledby="components">
   <div class="max-w-2xl">
     <h2 id="components" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Shared components, drawn by the shell</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Toasts, dialogs, modals, and drawers open from any app with one SDK call. Shellui draws them in the shell, outside the iframe, so they cover the full window and look the same in every app. Hover or focus a card to play it.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground"><a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/features/toasts/">Toasts</a>, <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/features/dialogs/">dialogs</a>, <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/features/modals-drawers/">modals, and drawers</a> open from any app with one SDK call. Shellui draws them in the shell, outside the iframe, so they cover the full window and look the same in every app. Hover or focus a card to play it.</p>
   </div>
   <div class="mt-10 grid gap-6 md:grid-cols-2">
     {% for c in uiComponents %}
@@ -71,6 +71,7 @@ eleventyComputed:
   <div class="max-w-2xl">
     <h2 id="theming-heading" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Your brand, their language, every app</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Pick a theme and a language in the shell. Every shadcn/ui component in every app follows with the same colors, corners, and words.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Need your own look? Create a custom theme and set every variable, from colors and fonts to radius, to match your existing brand. <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/features/themes/">Create a custom theme</a>.</p>
   </div>
   <div class="mt-10">
     {% include "feature-visual-theme-language.njk" %}
