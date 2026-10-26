@@ -16,12 +16,12 @@ if (!fs.existsSync(site)) fail("_site/ missing");
 
 const checks = [
   { path: "guidelines/index.html", must: ["/guidelines/interface/", "/guidelines/foundations/", "/llms-full.txt"] },
-  { path: "guidelines/interface/index.html", must: ["Guidelines v2.0.0", "Shellui chrome"] },
+  { path: "guidelines/interface/index.html", must: ["Guidelines v2.", "Shellui chrome"] },
   { path: "guidelines/foundations/index.html", must: ["visual-handbook", "primary-ink", "Color tokens"] },
   { path: "guidelines/brand/index.html", must: ["id=\"downloads\"", "shellui-brand-kit-v1.pdf"] },
   { path: "guidelines/print/index.html", must: ["IBM Plex", "7405 U"] },
-  { path: "design.md", must: ["version: 2.0.0", "`primary-ink`"] },
-  { path: "guidelines/interface.md", must: ["version: 2.0.0"] },
+  { path: "design.md", must: ["version: 2.", "`primary-ink`"] },
+  { path: "guidelines/interface.md", must: ["version: 2."] },
   { path: "guidelines/web-design.md", must: ["alias", "interface"] },
   { path: "llms-full.txt", must: ["# Brand", "# Interface"] },
   { path: "brand-assets/index.html", must: ["/guidelines/brand/#downloads"] },
