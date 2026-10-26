@@ -16,7 +16,16 @@ pageScripts:
   <p>Each piece has its own repository and lifecycle, and together they serve the Shellui frontend. The graph draws every Shellui service and how they connect.</p>
 </div>
 
-<section class="mt-10" aria-labelledby="map-the-stack">
+<section class="mt-16" aria-labelledby="run-it-yourself">
+  <div class="prose">
+    <h2 id="run-it-yourself">Run it yourself</h2>
+    <p>Shellui is open source under the MIT license. The shell, the services, and the admin live in public repositories on <a href="https://github.com/shellui">GitHub</a>.</p>
+    <p>Each service ships as a ready-made Docker image, so you can host identity, storage, hosting, and email on your own servers. The shell, admin, and file manager are static files you can serve from any host. <a href="{{ site.docs }}/backend/">Read the backend services docs</a>.</p>
+  </div>
+  <div class="mt-10">{% include "oss-visual-responsive.njk" %}</div>
+</section>
+
+<section class="mt-16" aria-labelledby="map-the-stack">
   <div class="prose">
     <h2 id="map-the-stack">Map the stack</h2>
     <p>Follow one box at a time. Pointing at a box or tabbing to it highlights what that box talks to, and each box title links to its section further down. Every arrow is also written out under the graph.</p>

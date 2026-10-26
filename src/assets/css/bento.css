@@ -14,7 +14,6 @@
 .bento-tile:is(:hover, :focus-within) .bv-storage .bv-a { transform: translateY(14px); }
 .bento-tile:is(:hover, :focus-within) .bv-admin .bv-a { transform: translateY(22px); }
 .bento-tile:is(:hover, :focus-within) .bv-desktop .bv-a { transform: translate(-6px, -6px); }
-.bento-tile:is(:hover, :focus-within) .bv-oss .bv-a { transform: rotate(34deg); }
 .bento-tile:is(:hover, :focus-within) .bv-audit .bv-a { transform: scale(1.3); }
 @media (prefers-reduced-motion: reduce) { .bv * { transition: none; transform: none !important; } }
 .bento-art { background: var(--bg) radial-gradient(var(--dot) .8px, transparent 1.2px) 0 0 / 14px 14px; }
