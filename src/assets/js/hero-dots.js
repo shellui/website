@@ -8,8 +8,8 @@ if (canvas && !reduce) {
   const dark = matchMedia("(prefers-color-scheme: dark)");
   const fine = matchMedia("(pointer: fine)").matches;
   const S = 24, R = 100, PUSH = 4, K = 0.06, DAMP = 0.82;
-  // Wind gusts: vertical fronts sweep left to right every ~2s, nudging nearby dots.
-  const GUST = 7, GW = 70;
+  // Wind gusts: slanted fronts (top leading) sweep left to right every 1 to 3s, nudging nearby dots.
+  const GUST = 7, GW = 70, SLANT = Math.tan(18 * Math.PI / 180);
   let fronts = [], next = 0;
   let dots = [], w = 0, h = 0, mouse = null, raf = 0, visible = true;
 
@@ -49,13 +49,13 @@ if (canvas && !reduce) {
   function step(now) {
     raf = 0;
     if (!next || now - next > 5000) next = now;
-    if (now >= next) { fronts.push({ t: now, v: (w + 2 * GW) / (2000 + Math.random() * 1000) }); next = now + 1500 + Math.random() * 1000; }
-    for (const f of fronts) f.x = (now - f.t) * f.v - GW;
+    if (now >= next) { fronts.push({ t: now, v: (w + 2 * GW + h * SLANT) / (6700 + Math.random() * 3300) }); next = now + 1000 + Math.random() * 2000; }
+    for (const f of fronts) f.x = (now - f.t) * f.v - GW - h * SLANT;
     fronts = fronts.filter((f) => f.x < w + GW);
     for (const d of dots) {
       let tx = 0, ty = 0;
       for (const f of fronts) {
-        const k = 1 - Math.abs(d.x - f.x) / GW;
+        const k = 1 - Math.abs(d.x - f.x - (h - d.y) * SLANT) / GW;
         if (k > 0) { const g = GUST * d.s * smooth(k); tx += g; ty += g * 0.25 * Math.sin(d.p); }
       }
       if (mouse) {
