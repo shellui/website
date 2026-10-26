@@ -9,6 +9,7 @@
 @import "./modal.css";
 @import "./drawer.css";
 @import "./shell-layouts.css";
+@import "./anim-card.css";
 
 @source "../../**/*.{njk,md,html,js}";
 @custom-variant dark (&:where(.dark, .dark *));

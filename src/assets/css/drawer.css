@@ -39,15 +39,16 @@
 @keyframes dr-s{0%{transform:translateX(100%)}100%{transform:none}}
 @keyframes dr-fd{0%{opacity:0}100%{opacity:1}}
 @keyframes dr-h-ova{0%{opacity:.5;transform:none;animation-timing-function:ease}35.71%{opacity:0;transform:none}42.86%{opacity:0;animation-timing-function:ease}100%{opacity:.5;transform:none}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .ova{animation:dr-h-ova 0.70s linear both}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .ova{animation:dr-h-ova 0.70s linear both}
 @keyframes dr-h-pn{0%{opacity:1;transform:none;animation-timing-function:ease}23.81%{opacity:0;transform:none}41.90%{opacity:0;transform:translateX(100%)}42.86%{opacity:1;transform:translateX(100%);animation-timing-function:cubic-bezier(.32,.72,0,1)}100%{opacity:1;transform:none}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .pn{animation:dr-h-pn 1.05s linear both}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .pn{animation:dr-h-pn 1.05s linear both}
 @keyframes dr-h-bdb0{0%{opacity:1;transform:none;animation-timing-function:ease}20.33%{opacity:0;transform:none}85.37%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .bd.b0{animation:dr-h-bdb0 1.23s linear both}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .bd.b0{animation:dr-h-bdb0 1.23s linear both}
 @keyframes dr-h-bdb1{0%{opacity:1;transform:none;animation-timing-function:ease}18.12%{opacity:0;transform:none}86.96%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .bd.b1{animation:dr-h-bdb1 1.38s linear both}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .bd.b1{animation:dr-h-bdb1 1.38s linear both}
 @keyframes dr-h-bdb2{0%{opacity:1;transform:none;animation-timing-function:ease}16.34%{opacity:0;transform:none}88.24%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .bd.b2{animation:dr-h-bdb2 1.53s linear both}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .bd.b2{animation:dr-h-bdb2 1.53s linear both}
 @keyframes dr-h-bdb3{0%{opacity:1;transform:none;animation-timing-function:ease}14.88%{opacity:0;transform:none}89.29%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
-.anim-card:is(:hover,:focus-within,:focus-visible) .dr-art .bd.b3{animation:dr-h-bdb3 1.68s linear both}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .bd.b3{animation:dr-h-bdb3 1.68s linear both}
+.anim-card:has(.dr-art){--seq:1.68s}
 @media (prefers-reduced-motion:reduce){.dr-art *{animation:none!important}}
