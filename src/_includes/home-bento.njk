@@ -11,41 +11,60 @@
   { id: "oss", href: site.github, span: "md:col-span-2", title: "Open source, yours to run", text: "MIT licensed. Self-host every service, and give your agent shellui.ai to start." },
   { id: "audit", href: "/features/administration/", span: "", title: "Audit and privacy", text: "Event logs, per-company metrics, and no sign-in links in webhooks or logs." }
 ] %}
-<section id="features" class="relative z-10 page-x py-24">
+<section id="features" class="bento relative z-10 page-x py-24">
+  <svg width="0" height="0" class="absolute" aria-hidden="true"><defs>
+    <filter id="bento-sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="4" class="shf"/></filter>
+  </defs></svg>
   <div class="mx-auto max-w-7xl">
     <div class="max-w-2xl">
       <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">Everything around your app, already built</h2>
       <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Start with sign-in, files, email, and admin on day one. Add SSO, audit trails, and company controls when a larger team arrives.</p>
     </div>
-    <ul class="bento mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <ul class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
       {% for t in tiles %}
       <li class="{{ t.span }}">
         <a href="{{ t.href }}" class="bento-tile group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900">
-          <div class="flex flex-1 items-center justify-center bg-gray-50 p-6 text-gray-400 dark:bg-gray-950/60 dark:text-gray-600">
-            <svg class="bv bv-{{ t.id }} h-28 w-full max-w-xs{% if t.id == 'shell' %} lg:h-56{% endif %}" viewBox="0 0 200 110" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="bento-art relative flex-1 border-b border-gray-200 dark:border-gray-800">
+            <svg class="bv bv-{{ t.id }} block h-40 w-full py-3{% if t.id == 'shell' %} lg:absolute lg:inset-0 lg:h-full{% endif %}" viewBox="0 0 200 110"  aria-hidden="true">
               {% if t.id == "shell" %}
-              <rect x="10" y="8" width="180" height="94" rx="8"/><path d="M10 24h180"/><circle cx="20" cy="16" r="2"/><circle cx="28" cy="16" r="2"/>
-              <g class="bv-a"><rect x="16" y="30" width="36" height="66" rx="4"/><path d="M24 42h20M24 52h16M24 62h18"/></g>
-              <rect class="bv-b bv-p" x="60" y="30" width="58" height="66" rx="4"/><rect class="bv-c" x="124" y="30" width="60" height="30" rx="4"/><rect class="bv-d" x="124" y="66" width="60" height="30" rx="4"/>
+              <rect x="22" y="14" width="156" height="82" rx="6" class="c"/><rect x="22" y="14" width="156" height="12" rx="6" class="w2"/><circle cx="31" cy="20" r="2" class="w"/><circle cx="38" cy="20" r="2" class="w"/>
+              <g class="bv-a"><rect x="30" y="32" width="30" height="56" rx="3" class="w2"/><rect x="35" y="40" width="20" height="3" rx="1.5" class="w"/><rect x="35" y="48" width="14" height="3" rx="1.5" class="g"/><rect x="35" y="56" width="18" height="3" rx="1.5" class="w"/></g>
+              <g class="bv-b"><rect x="66" y="32" width="54" height="56" rx="3" class="pc"/><rect x="74" y="42" width="38" height="4" rx="2" class="w"/><rect x="74" y="50" width="26" height="4" rx="2" class="w"/><circle cx="93" cy="72" r="6" class="g"/></g>
+              <rect class="bv-c w2" x="126" y="32" width="44" height="25" rx="3"/><rect class="bv-d w2" x="126" y="63" width="44" height="25" rx="3"/>
+              <path d="M178 40h12" class="ld"/><circle cx="190" cy="40" r="2.5" class="end"/>
               {% elif t.id == "auth" %}
-              <rect x="50" y="20" width="100" height="74" rx="8"/><path d="M66 40h68M66 56h68"/><rect class="bv-p bv-b" x="66" y="70" width="68" height="12" rx="6"/>
-              <g class="bv-a"><circle cx="160" cy="22" r="10"/><path d="M160 32v14M160 40h6"/></g>
+              <rect x="56" y="18" width="88" height="74" rx="6" class="c"/><rect x="68" y="30" width="40" height="5" rx="2.5" class="ink"/><rect x="68" y="44" width="64" height="9" rx="3" class="w2"/><rect x="68" y="58" width="64" height="9" rx="3" class="w2"/>
+              <rect class="bv-b g" x="68" y="73" width="64" height="10" rx="5"/>
+              <g class="bv-a"><circle cx="160" cy="26" r="9" class="ring"/><rect x="159" y="34" width="3" height="16" rx="1.5" class="g"/><rect x="161" y="42" width="6" height="3" rx="1.5" class="g"/></g>
+              <path d="M30 78h26" class="ld"/><circle cx="30" cy="78" r="2.5" class="end"/>
               {% elif t.id == "sso" %}
-              <circle cx="100" cy="55" r="14" class="bv-p"/><g class="bv-a"><circle cx="40" cy="25" r="9"/><circle cx="40" cy="85" r="9"/><circle cx="160" cy="25" r="9"/><circle cx="160" cy="85" r="9"/></g><path d="M49 29l38 20M49 81l38-20M151 29l-38 20M151 81l-38-20"/>
+              <path d="M44 26L100 55M44 84L100 55M156 26L100 55M156 84L100 55" class="ld"/>
+              <g class="bv-a"><rect x="30" y="16" width="28" height="20" rx="4" class="c"/><rect x="30" y="74" width="28" height="20" rx="4" class="c"/><rect x="142" y="16" width="28" height="20" rx="4" class="c"/><rect x="142" y="74" width="28" height="20" rx="4" class="c"/></g>
+              <circle cx="100" cy="55" r="15" class="c"/><circle cx="100" cy="55" r="7" class="g"/>
               {% elif t.id == "storage" %}
-              <path d="M50 40h36l8 10h56v46H50z"/><g class="bv-a"><rect class="bv-p" x="88" y="14" width="28" height="34" rx="3"/><path d="M96 26h12M96 34h8"/></g>
+              <path d="M52 42h30l7 8h59v44H52z" class="w2"/><path d="M52 52h96v42H52z" class="c"/>
+              <g class="bv-a"><rect x="86" y="12" width="28" height="36" rx="3" class="c"/><rect x="92" y="20" width="16" height="3" rx="1.5" class="w"/><rect x="92" y="27" width="11" height="3" rx="1.5" class="w"/><rect x="92" y="37" width="16" height="5" rx="2.5" class="g"/></g>
               {% elif t.id == "email" %}
-              <rect x="40" y="22" width="120" height="70" rx="6"/><path d="M40 28l60 36 60-36"/><g class="bv-a"><circle class="bv-p" cx="170" cy="24" r="8"/><circle cx="182" cy="44" r="6"/><circle cx="166" cy="56" r="5"/></g>
+              <rect x="40" y="22" width="120" height="70" rx="6" class="c"/><path d="M42 26l58 36 58-36" class="stroke"/>
+              <g class="bv-a"><circle cx="172" cy="26" r="8" class="g"/><circle cx="184" cy="46" r="6" class="ink"/><circle cx="168" cy="58" r="5" class="w"/></g>
+              <rect x="16" y="70" width="34" height="14" rx="7" class="pc"/>
               {% elif t.id == "hooks" %}
-              <circle cx="40" cy="55" r="12"/><rect x="140" y="38" width="40" height="34" rx="6"/><path d="M52 55h88" stroke-dasharray="4 6"/><circle class="bv-a bv-p" cx="60" cy="55" r="5"/>
+              <rect x="22" y="40" width="32" height="30" rx="5" class="c"/><rect x="146" y="40" width="32" height="30" rx="5" class="c"/><rect x="152" y="48" width="20" height="4" rx="2" class="g"/><rect x="152" y="56" width="14" height="4" rx="2" class="w"/>
+              <path d="M54 55h92" class="ld"/><circle class="bv-a end" cx="62" cy="55" r="4"/>
               {% elif t.id == "admin" %}
-              <rect x="30" y="16" width="140" height="80" rx="6"/><path d="M70 16v80"/><g class="bv-a"><rect class="bv-p" x="80" y="28" width="80" height="12" rx="3"/></g><path d="M80 52h70M80 66h56M80 80h64M42 30h16M42 42h16M42 54h16"/>
+              <rect x="30" y="16" width="140" height="80" rx="6" class="c"/><rect x="30" y="16" width="38" height="80" rx="6" class="w2"/>
+              <rect x="38" y="28" width="22" height="4" rx="2" class="w"/><rect x="38" y="38" width="22" height="4" rx="2" class="w"/><rect x="38" y="48" width="22" height="4" rx="2" class="w"/>
+              <rect class="bv-a g" x="78" y="26" width="82" height="12" rx="3"/><rect x="78" y="48" width="70" height="5" rx="2.5" class="w"/><rect x="78" y="60" width="56" height="5" rx="2.5" class="w"/><rect x="78" y="72" width="64" height="5" rx="2.5" class="w"/>
               {% elif t.id == "desktop" %}
-              <rect x="24" y="18" width="96" height="64" rx="6"/><path d="M56 94h32M72 82v12"/><g class="bv-a"><rect class="bv-p" x="110" y="34" width="66" height="50" rx="6"/><path d="M110 46h66"/></g>
+              <rect x="24" y="18" width="96" height="62" rx="6" class="c"/><rect x="64" y="80" width="16" height="12" class="w2"/><rect x="52" y="90" width="40" height="5" rx="2.5" class="w2"/>
+              <g class="bv-a"><rect x="104" y="34" width="72" height="52" rx="6" class="c"/><rect x="104" y="34" width="72" height="11" rx="6" class="g"/><rect x="112" y="54" width="44" height="4" rx="2" class="w"/><rect x="112" y="64" width="30" height="4" rx="2" class="w"/></g>
               {% elif t.id == "oss" %}
-              <path d="M60 30l-24 25 24 25M140 30l24 25-24 25"/><path class="bv-a bv-p" d="M112 22l-24 66"/>
+              <rect x="40" y="22" width="120" height="66" rx="6" class="c"/>
+              <path d="M76 40l-15 15 15 15M124 40l15 15-15 15" class="stroke"/><rect class="bv-a g" x="96" y="34" width="8" height="42" rx="4" transform="rotate(18 100 55)"/>
+              <rect x="128" y="80" width="46" height="14" rx="7" class="pc"/>
               {% elif t.id == "audit" %}
-              <path d="M100 14l40 14v26c0 24-18 38-40 44-22-6-40-20-40-44V28z"/><path class="bv-a bv-p" d="M82 56l12 12 24-26"/>
+              <path d="M100 14l38 13v25c0 24-17 37-38 44-21-7-38-20-38-44V27z" class="c"/><path d="M100 24l28 10v18c0 18-12 28-28 34z" class="w2"/>
+              <circle class="bv-a g" cx="100" cy="54" r="11"/>
               {% endif %}
             </svg>
           </div>
