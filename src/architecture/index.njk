@@ -68,7 +68,7 @@ pageScripts:
 
   {{ stack.heading("email-service", "Backend", "email-service") }}
   <p>email-service is a Django API that sends Shellui mail. identity-service, storage-service, and hosting-service call it when <code>EMAIL_SERVICE_API_KEY</code> is set. An event applies that company's email rules. identity-service can also send sign-in mail directly.</p>
-  <p>The company brings its own provider, Resend or SMTP, the standard mail protocol. Mail goes out on three lanes, and each lane has its own worker. Sign-in mail uses the auth lane. Newsletters and broadcasts use the bulk lane, and other event mail uses the transactional lane.</p>
+  <p>The company brings its own provider: Resend, Amazon SES, or SMTP. Sign-in mail always goes out first, so a newsletter or broadcast never delays it.</p>
   <p>It ships as a Docker image. The admin app manages rules, templates, and the provider. You can run the same image yourself.</p>
   {{ stack.stackList(["Python", "Django", "Django REST Framework", "Celery", "React Email", "Swagger", "ReDoc"]) }}
   <p class="flex flex-wrap gap-3">

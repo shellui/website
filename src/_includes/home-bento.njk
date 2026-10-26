@@ -4,7 +4,7 @@
   { id: "auth", href: "/features/authentication/", span: "md:col-span-2", title: "Sign-in included", text: "OAuth and magic links across every app, with the pages you choose behind a session." },
   { id: "sso", href: "/features/authentication/", span: "", title: "SAML SSO and SCIM", text: "Register identity providers per company and provision members with SCIM." },
   { id: "storage", href: "/features/storage/", span: "", title: "File storage", text: "Upload, share, and limit files through the SDK." },
-  { id: "email", href: "/features/email/", span: "md:col-span-2", title: "Email with your theme", text: "Edit React Email designs, recolor them with a Shellui theme, and send with Resend or SMTP." },
+  { id: "email", href: "/features/email/", span: "md:col-span-2", title: "Email and newsletters", text: "Themed sign-in mail, event mail, and newsletters, sent with Resend, Amazon SES, or SMTP." },
   { id: "hooks", href: "/features/administration/", span: "", title: "Webhooks and n8n", text: "Every service sends signed webhooks. Point a rule at an n8n workflow." },
   { id: "admin", href: "/features/administration/", span: "", title: "Administration", text: "Members, email, webhooks, and company access in one panel." },
   { id: "desktop", href: "/features/web-and-desktop/", span: "", title: "Web and desktop", text: "Build static web files or a Tauri 2 desktop app from one project." },
@@ -29,20 +29,16 @@
             <div class="av4-hov h-full bg-gray-100 dark:bg-gray-950 lg:absolute lg:inset-0 lg:flex lg:items-center">{% set avBare = true %}{% include "apps-visual-responsive.njk" %}</div>
             {% elif t.id == "auth" %}
             {% include "auth-bento.njk" %}
+            {% elif t.id == "sso" %}
+            <div class="h-40 w-full">{% include "sync-bento-v3.njk" %}</div>
+            {% elif t.id == "email" %}
+            {% include "email-bento.njk" %}
             {% else %}
             <svg class="bv bv-{{ t.id }} block h-40 w-full py-3" viewBox="0 0 200 110"  aria-hidden="true">
               {% if false %}
-              {% elif t.id == "sso" %}
-              <path d="M44 26L100 55M44 84L100 55M156 26L100 55M156 84L100 55" class="ld"/>
-              <g class="bv-a"><rect x="30" y="16" width="28" height="20" rx="4" class="c"/><rect x="30" y="74" width="28" height="20" rx="4" class="c"/><rect x="142" y="16" width="28" height="20" rx="4" class="c"/><rect x="142" y="74" width="28" height="20" rx="4" class="c"/></g>
-              <circle cx="100" cy="55" r="15" class="c"/><circle cx="100" cy="55" r="7" class="g"/>
               {% elif t.id == "storage" %}
               <path d="M52 42h30l7 8h59v44H52z" class="w2"/><path d="M52 52h96v42H52z" class="c"/>
               <g class="bv-a"><rect x="86" y="12" width="28" height="36" rx="3" class="c"/><rect x="92" y="20" width="16" height="3" rx="1.5" class="w"/><rect x="92" y="27" width="11" height="3" rx="1.5" class="w"/><rect x="92" y="37" width="16" height="5" rx="2.5" class="g"/></g>
-              {% elif t.id == "email" %}
-              <rect x="40" y="22" width="120" height="70" rx="6" class="c"/><path d="M42 26l58 36 58-36" class="stroke"/>
-              <g class="bv-a"><circle cx="172" cy="26" r="8" class="g"/><circle cx="184" cy="46" r="6" class="ink"/><circle cx="168" cy="58" r="5" class="w"/></g>
-              <rect x="16" y="70" width="34" height="14" rx="7" class="pc"/>
               {% elif t.id == "hooks" %}
               <rect x="22" y="40" width="32" height="30" rx="5" class="c"/><rect x="146" y="40" width="32" height="30" rx="5" class="c"/><rect x="152" y="48" width="20" height="4" rx="2" class="g"/><rect x="152" y="56" width="14" height="4" rx="2" class="w"/>
               <path d="M54 55h92" class="ld"/><circle class="bv-a end" cx="62" cy="55" r="4"/>

@@ -8,7 +8,9 @@ heading: "Send your product's email"
 lede: "Sign-in links, event notices, newsletters, and announcements, all managed from Administration. Your team picks the designs and decides which events send mail."
 ---
 
-<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+<div>{% include "email-providers-visual-responsive.njk" %}</div>
+
+<div class="mt-20 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
   <div class="max-w-2xl">
     <h2 class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Email and webhooks, side by side</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Each service in Administration has an Email and webhooks page. Identity, storage, and hosting events are listed in one place, and you choose what each one does: send an email, call a webhook, or both.</p>
@@ -52,6 +54,7 @@ lede: "Sign-in links, event notices, newsletters, and announcements, all managed
     <h2 id="broadcasts" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Announcements to the right members</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Send one email to members of your company. Pick the audience by group, role, access, join date, or last activity.</p>
   </div>
+  <div class="mt-10">{% include "email-visual-responsive.njk" %}</div>
 </section>
 <section class="mt-20" aria-labelledby="providers">
   <div class="max-w-2xl">

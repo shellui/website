@@ -45,7 +45,7 @@ export default [
     benefit: "Send sign-in mail, event mail, newsletters, and broadcasts from email-service. Sign-in mail keeps its own queue.",
     points: [
       "40 email designs you can recolor",
-      "Resend or SMTP, translated per recipient",
+      "Resend, Amazon SES, or SMTP, translated per recipient",
       "Newsletters, broadcasts, and a sign-in queue"
     ],
     visual: "email",

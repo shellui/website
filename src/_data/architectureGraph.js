@@ -129,7 +129,7 @@ const full = {
       title: "email-service",
       role: "Backend",
       kind: "backend",
-      description: "Company email rules. Sends with Resend or SMTP.",
+      description: "Company email rules. Sends with Resend, Amazon SES, or SMTP.",
       href: "#email-service",
       parent: "infra",
       position: { x: 340, y: 354 },
@@ -146,7 +146,7 @@ const full = {
     },
     {
       id: "provider",
-      title: "Resend or SMTP",
+      title: "Resend, SES, or SMTP",
       role: "Provider",
       kind: "store",
       description: "The company's own mail provider.",

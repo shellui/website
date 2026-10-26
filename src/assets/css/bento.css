@@ -11,9 +11,7 @@
 .bv .pc { fill: var(--card); stroke: var(--pcln); stroke-width: .8; stroke-dasharray: 3 3; }
 .bento .shf { flood-color: #111827; flood-opacity: var(--sh); }
 .bv * { transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .5s; transform-box: fill-box; transform-origin: center; }
-.bento-tile:is(:hover, :focus-within) .bv-sso .bv-a { transform: scale(.9); }
 .bento-tile:is(:hover, :focus-within) .bv-storage .bv-a { transform: translateY(14px); }
-.bento-tile:is(:hover, :focus-within) .bv-email .bv-a { transform: translateX(-10px) rotate(-30deg); }
 .bento-tile:is(:hover, :focus-within) .bv-hooks .bv-a { transform: translateX(80px); }
 .bento-tile:is(:hover, :focus-within) .bv-admin .bv-a { transform: translateY(22px); }
 .bento-tile:is(:hover, :focus-within) .bv-desktop .bv-a { transform: translate(-6px, -6px); }
