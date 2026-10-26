@@ -25,7 +25,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### ✨ Feature
 
-- Refresh the "Introducing Shellui" blog post for v0.7 with a new cover and Open Graph image.
+- Refresh the "Introducing Shellui" blog post for v0.7 with a new cover, square list thumbnail, and Open Graph image.
 - Homepage hero adds a discreet dot field that reacts to the mouse.
 - Newsletter sign-up is back on at `/newsletter/` and on the home, contact, and features pages.
 - Top bar adds "Log in" (dashboard) and "Join waitlist" (`/waitlist/`, double opt-in through email-service once a list key is set).

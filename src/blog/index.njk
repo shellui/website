@@ -31,7 +31,21 @@ description: News, release notes, and architecture notes from the Shellui team a
           {% for post in collections.blog %}
             <article class="relative isolate flex flex-col gap-8 lg:flex-row">
               <div class="relative aspect-video sm:aspect-2/1 lg:aspect-square lg:w-64 lg:shrink-0">
-                {% if post.data.image %}
+                {% if post.data.thumbnailImage %}
+                  {% set t = post.data.thumbnailImage %}
+                  <picture>
+                    <source type="image/webp" srcset="{{ t }}-600.webp 600w, {{ t }}.webp 1200w" sizes="(min-width: 64rem) 16rem, 100vw" />
+                    <img
+                      src="{{ t }}-600.png"
+                      srcset="{{ t }}-600.png 600w, {{ t }}.png 1200w"
+                      sizes="(min-width: 64rem) 16rem, 100vw"
+                      alt="{{ post.data.imageAlt or post.data.heading or post.data.title }}"
+                      class="absolute inset-0 size-full rounded-2xl bg-gray-50 object-cover dark:bg-gray-900"
+                      width="600"
+                      height="600"
+                    />
+                  </picture>
+                {% elif post.data.image %}
                   <img
                     src="{{ post.data.image }}"
                     alt="{{ post.data.imageAlt or post.data.heading or post.data.title }}"
