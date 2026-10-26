@@ -24,6 +24,10 @@
     "endpoint": "https://email.shellui.com",
     "key": "nl_EMrDlKgYvmEntCknWoI7Hdxz"
   },
+  "walkthrough": {
+    "endpoint": "https://email.shellui.com",
+    "key": "nl_H5WcGGOk6HSNt1pI6_tOsD36"
+  },
   "newsletter": {
     "endpoint": "https://email.shellui.com",
     "key": "nl_igSktwulL-JQyvFKGUGXds0Y"

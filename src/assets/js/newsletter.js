@@ -11,6 +11,7 @@
 
   function setup(form) {
     const input = form.querySelector('input[name="email"]');
+    const firstName = form.querySelector('input[name="first_name"]');
     const honeypot = form.querySelector('input[name="website"]');
     const button = form.querySelector('button[type="submit"]');
     const status = form.querySelector('[role="status"]');
@@ -40,7 +41,11 @@
         const response = await fetch(form.action, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, website: honeypot ? honeypot.value : "" }),
+          body: JSON.stringify({
+            email,
+            website: honeypot ? honeypot.value : "",
+            ...(firstName && firstName.value.trim() ? { first_name: firstName.value.trim() } : {}),
+          }),
           credentials: "omit",
         });
         if (response.status === 202) {
