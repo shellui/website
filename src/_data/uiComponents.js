@@ -40,7 +40,7 @@ export default [
   {
     id: "actions",
     title: "Action buttons",
-    line: "Add a back button, a title, up to 8 trailing actions, and a primary floating button to the shell chrome. On narrow screens, extra trailing actions move into a More menu.",
+    line: "Add a back button, a title, up to 8 trailing actions, and a primary floating button to the shell chrome. On narrow screens, extra trailing actions move into a More menu. Some layouts integrate them deeper: Windows shows them in each window title bar, and Sidebar on mobile shows them in its top bar.",
     call: "shellui.actions.set()",
     how: "with back, title, trailing, and primary items, each with an optional variant.",
     visual: "feature-visual-actions.njk",
