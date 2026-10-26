@@ -8,8 +8,9 @@ if (canvas && !reduce) {
   const dark = matchMedia("(prefers-color-scheme: dark)");
   const fine = matchMedia("(pointer: fine)").matches;
   const S = 24, R = 100, PUSH = 4, K = 0.06, DAMP = 0.82;
-  // Wind: a soft wave travelling left to right, each dot with its own phase and strength.
-  const WIND = 2.5, WL = 0.012, WS = 0.0006;
+  // Wind gusts: vertical fronts sweep left to right every ~2s, nudging nearby dots.
+  const GUST = 7, GW = 70;
+  let fronts = [], next = 0;
   let dots = [], w = 0, h = 0, mouse = null, raf = 0, visible = true;
 
   const isDark = () => document.documentElement.classList.contains("dark");
@@ -39,7 +40,7 @@ if (canvas && !reduce) {
     ctx.clearRect(0, 0, w, h);
     const dk = isDark(), base = dk ? "255,255,255" : "17,24,39", B = dk ? 0.12 : 0.16;
     for (const d of dots) {
-      const m = Math.max(0, Math.min(1, (Math.hypot(d.ox, d.oy) - WIND) / PUSH));
+      const m = Math.max(0, Math.min(1, Math.hypot(d.ox, d.oy) / GUST));
       ctx.fillStyle = d.g > 0.02 ? `rgba(227,165,18,${(0.5 * d.g + 0.1) * d.a})` : `rgba(${base},${(B + 0.22 * m) * d.a})`;
       ctx.beginPath(); ctx.arc(d.x + d.ox, d.y + d.oy, 1.25, 0, 7); ctx.fill();
     }
@@ -47,9 +48,16 @@ if (canvas && !reduce) {
 
   function step(now) {
     raf = 0;
+    if (!next || now - next > 5000) next = now;
+    if (now >= next) { fronts.push({ t: now, v: (w + 2 * GW) / (2000 + Math.random() * 1000) }); next = now + 1500 + Math.random() * 1000; }
+    for (const f of fronts) f.x = (now - f.t) * f.v - GW;
+    fronts = fronts.filter((f) => f.x < w + GW);
     for (const d of dots) {
-      const ph = d.x * WL - now * WS + d.p * 0.35;
-      let tx = Math.sin(ph) * WIND * d.s, ty = Math.cos(ph * 0.7 + d.p) * WIND * 0.4 * d.s;
+      let tx = 0, ty = 0;
+      for (const f of fronts) {
+        const k = 1 - Math.abs(d.x - f.x) / GW;
+        if (k > 0) { const g = GUST * d.s * smooth(k); tx += g; ty += g * 0.25 * Math.sin(d.p); }
+      }
       if (mouse) {
         const dx = d.x - mouse.x, dy = d.y - mouse.y, dist = Math.hypot(dx, dy) || 1;
         if (dist < R) {
