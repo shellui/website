@@ -19,7 +19,8 @@
 .lyx-main{left:192px;top:0;right:0;bottom:0;background:var(--card);overflow:hidden;border:1px solid transparent}
 .lyx-task{left:0;right:0;bottom:-40px;height:36px;background:var(--card);border-top:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:0 12px;box-sizing:border-box}
 .lyx-win2{width:380px;height:250px;right:40px;top:60px;background:var(--card);border:1px solid var(--bd);border-radius:10px;opacity:0;transform:scale(.9);box-shadow:0 10px 30px rgba(0,0,0,.12)}
-.lyx-tb2{height:28px;border-bottom:1px solid var(--bd);display:flex;align-items:center;padding:0 10px;font-size:11px;font-weight:500}
+/* Title sits on the right: the main window covers the left of this one. */
+.lyx-tb2{height:28px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-size:11px;font-weight:500}
 .lyx-sk{height:10px;background:var(--sk);border-radius:4px}
 .lyx-btn{margin-top:18px;display:inline-block;font-size:12px;font-weight:500;background:var(--fg);color:var(--card);padding:7px 12px;border-radius:6px}
 .lyx-logo{width:18px;height:18px;border-radius:5px;background:var(--fg);margin:0 0 14px 4px}
