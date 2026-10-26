@@ -45,8 +45,8 @@ Brand gold `#E3A512` is for fills, rules, and the logo, not body text. Text gold
 | --- | --- | --- | --- |
 | Brand gold | `#E3A512` | 124 C (7405 U uncoated) | Fills, rules, logo |
 | Text gold | `#8A6300` | 4027 C | Links and gold text on light |
-| Text gold (dark) | `#E8B84A` | — | Links and gold text on dark |
-| On gold | `#1A1408` | — | Text on gold buttons |
+| Text gold (dark) | `#E8B84A` | None | Links and gold text on dark |
+| On gold | `#1A1408` | None | Text on gold buttons |
 
 Verify coated and uncoated Pantone against a physical swatch before the first print run.
 

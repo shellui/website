@@ -75,7 +75,7 @@ The product is a microfrontend shell. The host owns shared chrome; the iframe ow
 - Decorative icons need `aria-hidden="true"`
 - Async updates (toasts, validation) need `aria-live="polite"`. Shell toasts already live in the host - use the SDK, don't mount a second live region that fights the host
 - Semantic HTML (`header`, `nav`, `main`, `footer`) before ARIA
-- Headings hierarchical `h1`–`h6`; one `h1` per page
+- Headings hierarchical `h1` to `h6`; one `h1` per page
 - Include a skip link to main content on long chrome (shell and marketing header)
 - `scroll-margin-top` on heading anchors so the fixed header does not cover the target
 - Meaningful media needs captions, transcripts, or descriptions
@@ -205,6 +205,12 @@ Use the `themedImage` shortcode. Pass base paths without the extension; it expec
 
 ```njk
 {% themedImage { light: "/img/docs/files-light", dark: "/img/docs/files-dark", width: 1600, height: 1000, alt: "Files app with a shared folder open" } %}
+```
+
+For SVG, pass the full `.svg` path instead of a base path. The shortcode outputs a plain `<img>` with no WebP or PNG variants. The same required fields and `.dark` toggle apply:
+
+```njk
+{% themedImage { light: "/img/blog/cover-light.svg", dark: "/img/blog/cover-dark.svg", width: 1200, height: 630, alt: "Shellui cover" } %}
 ```
 
 Leave out `dark` for a light-only image. In dark mode it renders inside a rounded card with a border:

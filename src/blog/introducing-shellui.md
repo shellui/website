@@ -10,8 +10,10 @@ authorRole: The Shellui team
 authorImage: /img/logo.png
 category: Announcement
 image: /img/blog/introducing-shellui-1200x630.png
-thumbnailImage: /img/blog/introducing-shellui-square
-heroImage: /img/blog/introducing-shellui
+thumbnailLight: /img/blog/introducing-shellui-square-light.svg
+thumbnailDark: /img/blog/introducing-shellui-square-dark.svg
+heroLight: /img/blog/introducing-shellui-cover-light.svg
+heroDark: /img/blog/introducing-shellui-cover-dark.svg
 imageAlt: Shellui cover
 ogImage: /img/blog/introducing-shellui-1200x630.png
 ogImageAlt: Introducing Shellui

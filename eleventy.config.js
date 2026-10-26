@@ -288,18 +288,21 @@ export default async function (eleventyConfig) {
     return `<figure class="article-figure mt-16">${img}${figcaption}</figure>`;
   });
 
-  // Themed image: light and dark <picture> pair, or light only in a dark-mode card.
-  // Pass base paths without extension; expects .webp and .png next to each other.
+  // Themed image: light and dark pair toggled by `.dark`, or light only in a dark-mode card.
+  // Raster: pass base paths without extension (expects .webp and .png). SVG: pass the full .svg path.
   eleventyConfig.addShortcode("themedImage", (opts = {}) => {
-    const { light, dark, width, height, alt, class: cls = "", loading = "lazy" } = opts;
+    const { light, dark, width, height, alt, class: cls = "h-auto w-full", loading = "lazy" } = opts;
     if (!light) throw new Error("themedImage: `light` is required");
     if (typeof alt !== "string" || !alt.trim()) throw new Error(`themedImage: \`alt\` is required (${light})`);
     if (!width || !height) throw new Error(`themedImage: \`width\` and \`height\` are required (${light})`);
-    const pic = (base, extra) =>
-      `<picture class="${escapeAttr(extra)}"><source type="image/webp" srcset="${escapeAttr(base)}.webp" />` +
-      `<img src="${escapeAttr(base)}.png" alt="${escapeAttr(alt)}" width="${escapeAttr(String(width))}" height="${escapeAttr(String(height))}" loading="${escapeAttr(loading)}" decoding="async" class="h-auto w-full ${escapeAttr(cls)}" /></picture>`;
+    const img = (src) =>
+      `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" width="${escapeAttr(String(width))}" height="${escapeAttr(String(height))}" loading="${escapeAttr(loading)}" decoding="async" class="${escapeAttr(cls)}" />`;
+    const pic = (base, wrap) =>
+      /\.svg$/i.test(base)
+        ? `<span class="${wrap}">${img(base)}</span>`
+        : `<picture class="${wrap}"><source type="image/webp" srcset="${escapeAttr(base)}.webp" />${img(`${base}.png`)}</picture>`;
     if (!dark) return pic(light, "block dark:overflow-hidden dark:rounded-xl dark:ring-1 dark:ring-white/10");
-    return pic(light, "block dark:hidden") + pic(dark, "hidden dark:block");
+    return pic(light, "contents dark:hidden") + pic(dark, "hidden dark:contents");
   });
 
   eleventyConfig.addPairedShortcode(
