@@ -45,7 +45,7 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
           {% elif item.visual == "admin" %}
             {% include "feature-visual-admin.njk" %}
           {% elif item.visual == "apps-visual" %}
-            {% set avBare = true %}<div class="hidden lg:block">{% include "apps-visual.njk" %}</div><div class="lg:hidden">{% include "apps-visual-thumb.njk" %}</div>
+            {% set avBare = true %}<div class="av4-hov hidden lg:block">{% include "apps-visual-v4.njk" %}</div><div class="lg:hidden">{% include "apps-visual-v4-thumb.njk" %}</div>
           {% elif item.visual == "upload" %}
             {% set upSlice = true %}{% include "feature-visual-upload.njk" %}
           {% elif item.visual == "storage" %}

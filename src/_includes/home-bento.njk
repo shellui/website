@@ -26,7 +26,7 @@
         <a href="{{ t.href }}" class="bento-tile group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900">
           <div class="bento-art relative flex-1 border-b border-gray-200 dark:border-gray-800">
             {% if t.id == "shell" %}
-            <div class="h-full bg-gray-100 dark:bg-gray-950 lg:absolute lg:inset-0 lg:flex lg:items-center">{% set avBare = true %}{% include "apps-visual-responsive.njk" %}</div>
+            <div class="av4-hov h-full bg-gray-100 dark:bg-gray-950 lg:absolute lg:inset-0 lg:flex lg:items-center">{% set avBare = true %}{% include "apps-visual-responsive.njk" %}</div>
             {% else %}
             <svg class="bv bv-{{ t.id }} block h-40 w-full py-3" viewBox="0 0 200 110"  aria-hidden="true">
               {% if false %}
