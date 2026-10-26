@@ -198,8 +198,11 @@ latest_product_version="$(
 latest_product_series="$(printf '%s' "${latest_product_version}" | grep -oE '^[0-9]+\.[0-9]+')"
 [[ -n "${latest_product_series}" ]] \
   || fail "could not derive major.minor series from v${latest_product_version}"
-grep -q "v${latest_product_series} is out" "${SITE}/index.html" \
-  || fail "homepage badge must show latest product series v${latest_product_series} (not website package version)"
+# Homepage badge announces the launch post, which must exist.
+grep -q 'href="/blog/introducing-shellui/"' "${SITE}/index.html" \
+  || fail "homepage badge must link to /blog/introducing-shellui/"
+[[ -f "${SITE}/blog/introducing-shellui/index.html" ]] \
+  || fail "homepage badge target /blog/introducing-shellui/ is missing"
 grep -q "Changelog for ${latest_product_series}" "${SITE}/index.html" \
   || fail "homepage footer must link to changelog for product series v${latest_product_series}"
 grep -q 'Floating chrome actions' "${SITE}/changelog/index.html" \
