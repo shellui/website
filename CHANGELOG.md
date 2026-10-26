@@ -28,6 +28,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 - Interface guidelines add light and dark image rules and a `themedImage` shortcode for raster and SVG.
 - Refresh the "Introducing Shellui" blog post for v0.7 with light and dark SVG cover and list thumbnail, and a PNG Open Graph image.
 - Homepage hero adds a discreet dot field that reacts to the mouse.
+- Features page shows a toaster illustration on the Apps and navigation card, animated on hover and focus.
 - Newsletter sign-up is back on at `/newsletter/` and on the home, contact, and features pages.
 - Top bar adds "Log in" (dashboard) and "Join waitlist" (`/waitlist/`, double opt-in through email-service once a list key is set).
 - Publish Shellui brand kit v1 (PDF) and brand assets v1 (ZIP), with unzipped logo, icon, Open Graph, social, and email files at stable `/brand-assets/*` paths. Brand kit source lives under `tools/brand-kit/` and reads `tokens/tokens.json`.

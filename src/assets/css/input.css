@@ -4,6 +4,7 @@
 @import "./graph-chrome.css";
 @import "./shell-layout-anim.css";
 @import "./bento.css";
+@import "./toaster.css";
 
 @source "../../**/*.{njk,md,html,js}";
 @custom-variant dark (&:where(.dark, .dark *));

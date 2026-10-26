@@ -9,7 +9,7 @@ export default [
       "Shared theme and language settings",
       "Toasts, dialogs, modals, and drawers"
     ],
-    visual: "shell-layout",
+    visual: "toaster",
     cta: "Explore apps and navigation"
   },
   {
