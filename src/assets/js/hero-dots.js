@@ -1,8 +1,13 @@
-// Discreet dot field behind the homepage hero. Decorative only.
-const hero = document.querySelector("[data-hero-dots]");
-const canvas = hero?.querySelector("canvas");
+// Discreet windy dot field. Decorative only. One instance per [data-hero-dots]
+// (homepage hero, fades out at the bottom and clears around [data-hero-text])
+// or [data-dots] (full field) element containing a <canvas>.
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (canvas && !reduce) {
+if (!reduce) document.querySelectorAll("[data-hero-dots], [data-dots]").forEach(initDots);
+
+function initDots(hero) {
+  const canvas = hero.querySelector(":scope > canvas");
+  if (!canvas) return;
+  const fade = hero.hasAttribute("data-hero-dots");
   const ctx = canvas.getContext("2d");
   const text = hero.querySelector("[data-hero-text]");
   const dark = matchMedia("(prefers-color-scheme: dark)");
@@ -29,7 +34,7 @@ if (canvas && !reduce) {
     for (let y = S / 2; y < h; y += S) for (let x = (w % S) / 2; x < w; x += S) {
       const e = rx ? Math.hypot((x - cx) / rx, (y - cy) / ry) : 9;
       const t = y / h;
-      const v = t < 0.55 ? 1 : 1 - smooth((t - 0.55) / 0.45);
+      const v = !fade || t < 0.55 ? 1 : 1 - smooth((t - 0.55) / 0.45);
       const a = smooth(Math.min(1, Math.max(0, (e - 0.85) / 0.5))) * v;
       if (a > 0.02) dots.push({ x, y, a, ox: 0, oy: 0, vx: 0, vy: 0, g: 0, p: Math.random() * 6.28, s: 0.6 + Math.random() * 0.4, gold: (x / S * 7 + y / S * 3 | 0) % 9 === 0 });
     }
