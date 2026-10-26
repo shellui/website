@@ -10,15 +10,13 @@ lede: "Sign-in links, event notices, newsletters, and announcements, all managed
 
 <div>{% include "email-providers-visual-responsive.njk" %}</div>
 
-<div class="mt-20 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+<div class="mt-20">
   <div class="max-w-2xl">
     <h2 class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Email and webhooks, side by side</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Each service in Administration has an Email and webhooks page. Identity, storage, and hosting events are listed in one place, and you choose what each one does: send an email, call a webhook, or both.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">One event can send several emails, for example a welcome note to the new member and a notice to your team.</p>
   </div>
-  <div class="mx-auto w-full max-w-sm">
-    {% include "feature-visual-email.njk" %}
-  </div>
+  <div class="mt-10">{% include "email-webhooks-visual-responsive.njk" %}</div>
 </div>
 
 <section class="mt-20" aria-labelledby="signin">
