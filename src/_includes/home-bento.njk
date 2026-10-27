@@ -1,6 +1,6 @@
-{#- Homepage feature bento. Every tile visual is an include using site tokens; shared tokens, hover and reduced motion for the storage, desktop and audit visuals live in bento.css (.btv). -#}
+{#- Homepage feature bento. Every tile visual is an include using site tokens; the art box (one height, one padding, centred, scaled to fit), shared tokens, hover and reduced motion for the storage, desktop and audit visuals live in bento.css (.btv). -#}
 {% set tiles = [
-  { id: "shell", href: "/features/apps-and-navigation/", span: "md:col-span-2 lg:row-span-2", title: "One shell for all your apps", text: "Combine apps built with different frameworks under shared navigation, dialogs, and settings." },
+  { id: "shell", href: "/features/apps-and-navigation/", span: "md:row-span-2 xl:col-span-2", title: "One shell for all your apps", text: "Combine apps built with different frameworks under shared navigation, dialogs, and settings." },
   { id: "auth", href: "/features/authentication/", span: "md:col-span-2", title: "Sign-in included", text: "OAuth and magic links across every app, with the pages you choose behind a session." },
   { id: "sso", href: "/features/authentication/", span: "", title: "SAML SSO and SCIM", text: "Register identity providers per company and provision members with SCIM." },
   { id: "storage", href: "/features/storage/", span: "", title: "File storage", text: "Upload, share, and limit files through the SDK." },
@@ -17,17 +17,17 @@
       <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">Everything around your app, already built</h2>
       <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Start with sign-in, files, email, and admin on day one. Add SSO, audit trails, and company controls when a larger team arrives.</p>
     </div>
-    <ul class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <ul class="mt-12 grid grid-cols-1 gap-4 md:grid-flow-dense md:grid-cols-2 xl:grid-cols-4">
       {% for t in tiles %}
       <li class="{{ t.span }}">
         <a href="{{ t.href }}" class="bento-tile group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900">
-          <div class="bento-art relative flex-1 border-b border-gray-200 dark:border-gray-800">
+          <div class="bento-art{% if t.id == "shell" %} bento-art-fill{% endif %} relative border-b border-gray-200 dark:border-gray-800">
             {% if t.id == "shell" %}
-            <div class="av4-hov h-full bg-gray-100 dark:bg-gray-950 lg:absolute lg:inset-0 lg:flex lg:items-center">{% set avBare = true %}{% include "apps-visual-responsive.njk" %}</div>
+            <div class="av4-hov w-full">{% set avBare = true %}<div class="w-full xl:hidden">{% include "apps-visual-v4-thumb.njk" %}</div><div class="hidden w-full xl:block">{% include "apps-visual-v4.njk" %}</div></div>
             {% elif t.id == "auth" %}
             {% include "auth-bento.njk" %}
             {% elif t.id == "sso" %}
-            <div class="h-40 w-full">{% include "sync-bento-v3.njk" %}</div>
+            {% include "sync-bento-v3.njk" %}
             {% elif t.id == "email" %}
             {% include "email-bento.njk" %}
             {% elif t.id == "hooks" %}
@@ -35,16 +35,16 @@
             {% elif t.id == "admin" %}
             {% include "admin-bento.njk" %}
             {% elif t.id == "oss" %}
-            <div class="h-40 w-full">{% include "oss-bento.njk" %}</div>
+            {% include "oss-bento.njk" %}
             {% elif t.id == "storage" %}
-            <div class="btv-wrap flex h-full items-center">{% include "storage-bento.njk" %}</div>
+            {% include "storage-bento.njk" %}
             {% elif t.id == "desktop" %}
-            <div class="btv-wrap flex h-full items-center">{% include "desktop-bento.njk" %}</div>
+            {% include "desktop-bento.njk" %}
             {% elif t.id == "audit" %}
-            <div class="btv-wrap flex h-full items-center">{% include "audit-bento.njk" %}</div>
+            {% include "audit-bento.njk" %}
             {% endif %}
           </div>
-          <div class="p-6">
+          <div class="{% if t.id != "shell" %}flex-1 {% endif %}p-6">
             <h3 class="text-base font-semibold text-gray-900 dark:text-white">{{ t.title }}</h3>
             <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">{{ t.text }}</p>
           </div>
@@ -52,7 +52,7 @@
       </li>
       {% endfor %}
     </ul>
-    <p class="mt-8"><a href="/features/" class="text-sm/6 font-semibold text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">See all features</a></p>
+    <div class="mt-12 flex justify-center"><a href="/features/" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10">See all features <span aria-hidden="true">→</span></a></div>
     <div class="mt-16">{% set playgroundCtaWide = true %}{% include "playground-cta.njk" %}</div>
   </div>
 </section>

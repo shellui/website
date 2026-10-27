@@ -9,6 +9,40 @@
   --bento-dot: color-mix(in oklch, var(--color-foreground) 10%, transparent);
 }
 
+/* One art box for every tile: same height and padding, drawing centred and scaled to fit, never above its drawn size, never cropped. */
+.bento-art {
+  --bento-art-h: 13rem;
+  --bento-pad: 1.5rem;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  height: var(--bento-art-h);
+  padding: var(--bento-pad);
+}
+/* One shell: the windows are drawn running off the bottom, so below 1280px they sit on the divider instead of stopping mid tile. From 1280px the tall 2 by 2 tile centres the wide drawing, as on develop. */
+.bento-art-fill { height: auto; min-height: var(--bento-art-h); flex: 1 1 auto; align-items: end; padding-bottom: 0; }
+.bento-art > svg { width: 100%; height: 100%; overflow: visible; }
+/* Drawn size caps (viewBox size), so a wide tile never blows a drawing up. */
+.bento-art > .aub { max-width: 480px; max-height: 209px; }
+.bento-art > .syb3 { max-width: 250px; max-height: 141px; }
+.bento-art > .stb { max-width: 298px; max-height: 140px; }
+.bento-art > .emb { max-width: 342px; max-height: 132px; }
+.bento-art > .ewb { max-width: 224px; max-height: 136px; }
+.bento-art > .adb { max-width: 298px; max-height: 144px; }
+.bento-art > .dkb { max-width: 298px; max-height: 153px; }
+.bento-art > .osb { max-width: 336px; max-height: 142px; }
+.bento-art > .apb { max-width: 298px; max-height: 144px; }
+.bento-art .av4-hov { max-width: 40rem; }
+/* The tile paints one dot grid behind every drawing, so the drawings' own backgrounds step aside. */
+.bento-art :is(.aub, .syb3, .emb, .ewb, .adb, .osb, .av4, .av4t) .bg,
+.bento-art [fill="url(#aub-d)"], .bento-art [fill="url(#syb3-d)"], .bento-art [fill="url(#emb-d)"],
+.bento-art [fill="url(#ewb-d)"], .bento-art [fill="url(#adb-dp)"], .bento-art [fill="url(#osb-dots)"],
+.bento-art [fill="url(#av4-d)"], .bento-art [fill="url(#av4t-d)"] { display: none; }
+@media (min-width: 1280px) {
+  .bento-art { --bento-art-h: 13.5rem; }
+  .bento-art-fill { align-items: center; padding-bottom: var(--bento-pad); }
+}
+
 /* Shared tokens for the storage, desktop and audit tiles (storage-bento, desktop-bento, audit-bento). Matches admin-bento. */
 .btv {
   --win: var(--color-background); --ln: var(--color-border); --side: var(--color-muted);
@@ -45,10 +79,6 @@
 .btv .ic.pk-s { stroke: var(--pk); }
 .btv .ick { fill: none; stroke: var(--pf); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .btv .shf { flood-color: var(--sc); flood-opacity: var(--sh); }
-
-/* Side nodes need about 290px; hide them on the narrow 4 column tile so no cut stubs show. */
-.btv-wrap { container-type: inline-size; }
-@container (max-width: 280px) { .btv .nd { display: none; } }
 
 /* Rest state: storage upload at 64%, the new audit row hidden. */
 .stb .a-fill { transform: scaleX(.64); }
