@@ -23,7 +23,7 @@
         <a href="{{ t.href }}" class="bento-tile group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900">
           <div class="bento-art{% if t.id == "shell" %} bento-art-fill{% endif %} relative border-b border-gray-200 dark:border-gray-800">
             {% if t.id == "shell" %}
-            <div class="av4-hov w-full">{% set avBare = true %}<div class="w-full xl:hidden">{% include "apps-visual-v4-thumb.njk" %}</div><div class="hidden w-full xl:block">{% include "apps-visual-v4.njk" %}</div></div>
+            {% include "one-shell-visual.njk" %}
             {% elif t.id == "auth" %}
             {% include "auth-bento.njk" %}
             {% elif t.id == "sso" %}

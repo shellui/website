@@ -47,6 +47,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 - Administration page, features card, and homepage bento tile are redesigned around the admin 0.8 panel, with a roles table and new light and dark visuals.
 - Homepage bento gives File storage, Web and desktop, and Audit and privacy their own visuals, and the bento styles use site tokens only.
 - Homepage bento tiles share one art height, padding, and dot background, drawings fit without cropping, and "See all features" is a centred outline button.
+- Homepage bento, Apps and navigation intro, and features Apps card share a new "One shell for all your apps" visual that switches from Chat to Docs on hover.
 - Remove links to unavailable hosted services and most service hostnames from copy and `llms.txt`.
 - Legacy URLs (`/brand-assets/`, `/product/brand-assets/`, `/guidelines/design/`, `/guidelines/web-design/`) use HTML fallback redirects (`noindex`, canonical, `location.replace` with hash preserved). GitHub Pages serves the site directly (no edge 301s). Sitemap lists canonical guideline URLs only.
 - Remove duplicated `website/skills/` (skills live in `shellui/skills` only).
