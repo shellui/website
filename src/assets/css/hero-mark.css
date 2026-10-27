@@ -1,15 +1,20 @@
-/* Homepage hero (src/index.njk). Desktop only: a taller band, plus a large
+/* Homepage hero (src/index.njk). A taller band on desktop, plus a large
    wireframe Shellui mark cropped by the hero's right and bottom edges.
-   Mobile and tablet keep .page-top and the mark stays hidden. */
+   The band sits one step lower than .page-top at every width; the mark
+   stays hidden below 1280px. */
 
+.hero-band { padding-top: calc(var(--spacing) * 22); }   /* 88px, .page-top is 80px */
+@media (width >= 48rem) {
+  .hero-band { padding-top: calc(var(--spacing) * 26); } /* md: 104px, .page-top is 96px */
+}
 @media (width >= 64rem) {
-  .hero-band { padding-top: 10rem; }   /* lg: 160px, was 128px */
+  .hero-band { padding-top: calc(var(--spacing) * 44); } /* lg: 176px */
 }
 @media (width >= 80rem) {
-  .hero-band { padding-top: 12rem; }   /* xl: 192px */
+  .hero-band { padding-top: calc(var(--spacing) * 52); } /* xl: 208px */
 }
 @media (width >= 96rem) {
-  .hero-band { padding-top: 14rem; }   /* 2xl: 224px */
+  .hero-band { padding-top: calc(var(--spacing) * 60); } /* 2xl: 240px */
 }
 
 .hero-mark {

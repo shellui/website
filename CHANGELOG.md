@@ -28,7 +28,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 - Interface guidelines add light and dark image rules and a `themedImage` shortcode for raster and SVG.
 - Refresh the "Introducing Shellui" blog post for v0.7 with light and dark SVG cover and list thumbnail, and a PNG Open Graph image.
 - Homepage hero adds a discreet dot field that reacts to the mouse.
-- Homepage hero adds a faded wireframe Shellui S on wide screens, drawn once on load, with more desktop spacing.
+- Homepage hero adds a faded wireframe Shellui S on wide screens, drawn once on load, with more space above the copy and less below.
 - Features page shows a toaster illustration on the Apps and navigation card, animated on hover and focus.
 - Apps and navigation page adds a "Components ready to use" grid with Toaster, Dialog, Modal, Drawer, and Action buttons cards.
 - Apps and navigation page replaces the layout tiles with an interactive playground window that morphs between the seven layouts.
