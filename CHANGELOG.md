@@ -43,6 +43,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### 🚨 Changed
 
 - Layout playground, Apps and navigation visual, and homepage bento match the redesigned Shellui 0.7 layouts.
+- Layout playground drops its own dot background, so only the windows desktop shows dots.
 - Administration page, features card, and homepage bento tile are redesigned around the admin 0.8 panel, with a roles table and new light and dark visuals.
 - Homepage bento gives File storage, Web and desktop, and Audit and privacy their own visuals, and the bento styles use site tokens only.
 - Remove links to unavailable hosted services and most service hostnames from copy and `llms.txt`.
