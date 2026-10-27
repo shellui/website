@@ -1,19 +1,66 @@
-/* Homepage bento visuals, styled after the blog covers. Motion only on hover or focus. */
-.bento { --bg:#F3F4F6; --dot:#D7DADF; --card:#FFF; --cardln:#E5E7EB; --wf:#E5E7EB; --wf2:#F3F4F6; --ink:#030712; --pcln:#C4C8CF; --sh:.08; }
-.dark .bento { --bg:#030712; --dot:#1F2737; --card:#101828; --cardln:rgba(255,255,255,.1); --wf:#1E2939; --wf2:#172031; --ink:#F9FAFB; --pcln:rgba(255,255,255,.22); --sh:0; }
-.bv .bg { fill: var(--bg); } .bv .dot { fill: var(--dot); }
-.bv .c { fill: var(--card); stroke: var(--cardln); stroke-width: .8; filter: url(#bento-sh); }
-.bv .w { fill: var(--wf); } .bv .w2 { fill: var(--wf2); stroke: var(--cardln); stroke-width: .6; } .bv .ink { fill: var(--ink); }
-.bv .g { fill: var(--color-primary); } .bv .ring { fill: none; stroke: var(--color-primary); stroke-width: 2.5; }
-.bv .stroke { fill: none; stroke: var(--pcln); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.bv .ld { fill: none; stroke: var(--color-primary); stroke-width: 1; stroke-dasharray: 3 3; }
-.bv .end { fill: var(--card); stroke: var(--color-primary); stroke-width: 1.2; }
-.bv .pc { fill: var(--card); stroke: var(--pcln); stroke-width: .8; stroke-dasharray: 3 3; }
-.bento .shf { flood-color: #111827; flood-opacity: var(--sh); }
-.bv * { transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .5s; transform-box: fill-box; transform-origin: center; }
-.bento-tile:is(:hover, :focus-within) .bv-storage .bv-a { transform: translateY(14px); }
-.bento-tile:is(:hover, :focus-within) .bv-admin .bv-a { transform: translateY(22px); }
-.bento-tile:is(:hover, :focus-within) .bv-desktop .bv-a { transform: translate(-6px, -6px); }
-.bento-tile:is(:hover, :focus-within) .bv-audit .bv-a { transform: scale(1.3); }
-@media (prefers-reduced-motion: reduce) { .bv * { transition: none; transform: none !important; } }
-.bento-art { background: var(--bg) radial-gradient(var(--dot) .8px, transparent 1.2px) 0 0 / 14px 14px; }
+/* Homepage bento visuals. Site tokens only; motion only on hover or focus, off under reduced motion. */
+.bento-art {
+  --bento-bg: var(--color-secondary);
+  --bento-dot: color-mix(in oklch, var(--color-foreground) 13%, transparent);
+  background: var(--bento-bg) radial-gradient(var(--bento-dot) .8px, transparent 1.2px) 0 0 / 14px 14px;
+}
+.dark .bento-art {
+  --bento-bg: var(--color-background);
+  --bento-dot: color-mix(in oklch, var(--color-foreground) 10%, transparent);
+}
+
+/* Shared tokens for the storage, desktop and audit tiles (storage-bento, desktop-bento, audit-bento). Matches admin-bento. */
+.btv {
+  --win: var(--color-background); --ln: var(--color-border); --side: var(--color-muted);
+  --fg: var(--color-foreground); --mf: var(--color-muted-foreground); --mu: var(--color-secondary);
+  --wf: color-mix(in oklch, var(--color-foreground) 11%, transparent); --wf2: var(--color-secondary);
+  --pr: var(--color-primary); --pk: var(--color-primary-ink); --pf: var(--color-primary-foreground);
+  --ok: var(--color-green-700, var(--color-primary-ink)); --er: var(--color-destructive);
+  --tl1: var(--color-red-400, var(--color-destructive)); --tl2: var(--color-amber-300, var(--color-primary)); --tl3: var(--color-green-400, var(--color-primary));
+  --sc: var(--color-foreground); --sh: .08;
+}
+.dark .btv {
+  --win: color-mix(in oklch, var(--color-background) 94%, white); --ln: color-mix(in oklch, white 9%, transparent);
+  --side: color-mix(in oklch, var(--color-background) 90%, white); --mu: color-mix(in oklch, var(--color-background) 84%, white);
+  --wf: color-mix(in oklch, white 13%, transparent); --wf2: color-mix(in oklch, var(--color-background) 84%, white);
+  --ok: var(--color-green-400, var(--color-primary)); --er: var(--color-red-400, var(--color-destructive));
+  --sc: black; --sh: .5;
+}
+.btv text { font-family: var(--font-sans, Inter), Inter, ui-sans-serif, system-ui, sans-serif; }
+.btv .mo { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+.btv .win { fill: var(--win); stroke: var(--ln); }
+.btv .card { fill: var(--win); stroke: var(--ln); }
+.btv .side { fill: var(--side); }
+.btv .sl { fill: none; stroke: var(--ln); }
+.btv .lnk { fill: none; stroke: var(--pr); stroke-dasharray: 3 4; stroke-opacity: .7; }
+.btv .fg { fill: var(--fg); } .btv .mf, .btv .mfd { fill: var(--mf); }
+.btv .fgf { fill: var(--fg); }
+.btv .mu { fill: var(--mu); } .btv .w { fill: var(--wf); } .btv .w2 { fill: var(--wf2); }
+.btv .pr { fill: var(--pr); } .btv .pk { fill: var(--pk); } .btv .pf { fill: var(--pf); }
+.btv .pfw { fill: var(--pf); fill-opacity: .75; }
+.btv .prt { fill: var(--pr); fill-opacity: .14; }
+.btv .ok { fill: var(--ok); } .btv .er { fill: var(--er); }
+.btv .tl1 { fill: var(--tl1); } .btv .tl2 { fill: var(--tl2); } .btv .tl3 { fill: var(--tl3); }
+.btv .ic { fill: none; stroke: var(--mf); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.btv .ic.pk-s { stroke: var(--pk); }
+.btv .ick { fill: none; stroke: var(--pf); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.btv .shf { flood-color: var(--sc); flood-opacity: var(--sh); }
+
+/* Side nodes need about 290px; hide them on the narrow 4 column tile so no cut stubs show. */
+.btv-wrap { container-type: inline-size; }
+@container (max-width: 280px) { .btv .nd { display: none; } }
+
+/* Rest state: storage upload at 64%, the new audit row hidden. */
+.stb .a-fill { transform: scaleX(.64); }
+.stb .a-in, .apb .a-new { opacity: 0; }
+.btv .a-fill, .btv .a-in, .btv .a-out, .btv .a-web, .btv .a-app, .btv .a-new, .btv .a-list { transform-box: fill-box; transform-origin: left center; }
+@media (prefers-reduced-motion: no-preference) {
+  .btv .a-fill, .btv .a-in, .btv .a-out, .btv .a-web, .btv .a-app, .btv .a-new, .btv .a-list { transition: transform .6s cubic-bezier(.32,.72,0,1), opacity .4s ease; }
+  .bento-tile:is(:hover, :focus-visible) .stb .a-fill { transform: none; }
+  .bento-tile:is(:hover, :focus-visible) .stb .a-out { opacity: 0; }
+  .bento-tile:is(:hover, :focus-visible) .stb .a-in { opacity: 1; transition-delay: .35s; }
+  .bento-tile:is(:hover, :focus-visible) .dkb .a-web { transform: translate(-2px, 3px); }
+  .bento-tile:is(:hover, :focus-visible) .dkb .a-app { transform: translate(4px, -5px); }
+  .bento-tile:is(:hover, :focus-visible) .apb .a-list { transform: translateY(21px); }
+  .bento-tile:is(:hover, :focus-visible) .apb .a-new { opacity: 1; transition-delay: .2s; }
+}
