@@ -6,7 +6,7 @@
   { id: "storage", href: "/features/storage/", span: "", title: "File storage", text: "Upload, share, and limit files through the SDK." },
   { id: "email", href: "/features/email/", span: "md:col-span-2", title: "Email and newsletters", text: "Themed sign-in mail, event mail, and newsletters, sent with Resend, Amazon SES, or SMTP." },
   { id: "hooks", href: "/features/administration/", span: "", title: "Email and webhook rules", text: "Pick what each event does: send an email, call a webhook, or both." },
-  { id: "admin", href: "/features/administration/", span: "", title: "Administration", text: "Members, email, webhooks, and company access in one panel." },
+  { id: "admin", href: "/features/administration/", span: "", title: "Administration", text: "Members, sign-in, email, webhooks, hosting, and job health in one panel." },
   { id: "desktop", href: "/features/web-and-desktop/", span: "", title: "Web and desktop", text: "Build static web files or a Tauri 2 desktop app from one project." },
   { id: "oss", href: "/architecture/", span: "md:col-span-2", title: "Open source, yours to run", text: "MIT licensed. Self-host every service, and give your agent shellui.ai to start." },
   { id: "audit", href: "/features/administration/", span: "", title: "Audit and privacy", text: "Event logs, per-company metrics, and no sign-in links in webhooks or logs." }
@@ -35,6 +35,8 @@
             {% include "email-bento.njk" %}
             {% elif t.id == "hooks" %}
             {% include "email-webhooks-bento.njk" %}
+            {% elif t.id == "admin" %}
+            {% include "admin-bento.njk" %}
             {% elif t.id == "oss" %}
             <div class="h-40 w-full">{% include "oss-bento.njk" %}</div>
             {% else %}

@@ -29,11 +29,11 @@ export default [
     id: "administration",
     href: "/features/administration/",
     title: "Administration",
-    benefit: "Manage accounts and company access from your app. Give staff and company owners a shared place to administer the product.",
+    benefit: "Run every Shellui service from one admin panel inside your app. Company owners and staff manage members, sign-in, email, and hosted apps.",
     points: [
-      "Email, webhooks, and OAuth setup",
-      "Invitations, SCIM, and the event log",
-      "Scheduled jobs and Prometheus metrics"
+      "Join modes, invitations, groups, and SCIM",
+      "OAuth setup, webhooks, and delivery logs",
+      "Previews, rollbacks, and scheduled job health"
     ],
     visual: "admin",
     cta: "Explore administration"
