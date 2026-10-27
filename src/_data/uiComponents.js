@@ -32,7 +32,7 @@ export default [
   {
     id: "drawer",
     title: "Drawer",
-    line: "Slide in details or filters from the edge of the screen.",
+    line: "Slide in details or filters as a panel that floats over the page.",
     call: "shellui.openDrawer()",
     how: "with a url, position, and size.",
     visual: "feature-visual-drawer.njk",

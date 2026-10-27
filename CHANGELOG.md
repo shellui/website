@@ -41,6 +41,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 🚨 Changed
 
+- Apps and navigation page: the Drawer card shows a floating drawer, 12px from the window edge with rounded corners, to match Shellui 0.7.0.
 - Layout playground, Apps and navigation visual, and homepage bento match the redesigned Shellui 0.7 layouts.
 - Administration page, features card, and homepage bento tile are redesigned around the admin 0.8 panel, with a roles table and new light and dark visuals.
 - Remove links to unavailable hosted services and most service hostnames from copy and `llms.txt`.
