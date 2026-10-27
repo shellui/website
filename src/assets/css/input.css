@@ -12,6 +12,7 @@
 @import "./shell-layouts.css";
 @import "./anim-card.css";
 @import "./upload.css";
+@import "./hero-mark.css";
 
 @source "../../**/*.{njk,md,html,js}";
 @custom-variant dark (&:where(.dark, .dark *));

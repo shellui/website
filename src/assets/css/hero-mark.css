@@ -1,0 +1,82 @@
+/* Homepage hero (src/index.njk). Desktop only: a taller band, plus a large
+   wireframe Shellui mark cropped by the hero's right and bottom edges.
+   Mobile and tablet keep .page-top and the mark stays hidden. */
+
+@media (width >= 64rem) {
+  .hero-band { padding-top: 10rem; }   /* lg: 160px, was 128px */
+}
+@media (width >= 80rem) {
+  .hero-band { padding-top: 12rem; }   /* xl: 192px */
+}
+@media (width >= 96rem) {
+  .hero-band { padding-top: 14rem; }   /* 2xl: 224px */
+}
+
+.hero-mark {
+  --hero-mark-w: clamp(30rem, 36vw, 36rem); /* 480px at 1280, 518px at 1440, 576px from 1600 */
+  --hero-mark-crop: 0.14;                   /* share of the width past the right edge */
+  --hero-mark-top: 5rem;                    /* 80px: top bar sits just under the 64px header */
+  --hero-mark-line: 0.95;                   /* viewBox units, about 1px on screen at 480 to 576px wide */
+  --hero-mark-alpha: 0.3;
+  position: absolute;
+  z-index: -10;
+  display: none;
+  pointer-events: none;
+  top: var(--hero-mark-top);
+  /* Cropped by the hero's right edge up to 1600px. Wider, it follows the content
+     column instead: right edge 6rem past the 80rem column, minus the crop. */
+  right: calc(max(0px, 50% - 46rem) - var(--hero-mark-w) * var(--hero-mark-crop));
+  width: var(--hero-mark-w);
+  height: auto;
+  aspect-ratio: 493.4 / 681.33;
+  color: var(--color-foreground);
+  opacity: var(--hero-mark-alpha);
+  /* Full strength at the top right corner, dissolving toward the copy (left)
+     and into the page below (bottom). Both masks multiply. */
+  -webkit-mask-image:
+    radial-gradient(farthest-corner at 92% 6%, black 28%, rgb(0 0 0 / 0.55) 52%, transparent 80%),
+    linear-gradient(to bottom, black 45%, transparent 84%);
+  -webkit-mask-composite: source-in;
+          mask-image:
+    radial-gradient(farthest-corner at 92% 6%, black 28%, rgb(0 0 0 / 0.55) 52%, transparent 80%),
+    linear-gradient(to bottom, black 45%, transparent 84%);
+          mask-composite: intersect;
+}
+.dark .hero-mark { --hero-mark-alpha: 0.32; }
+
+.hero-mark path {
+  stroke: currentColor;
+  stroke-width: var(--hero-mark-line);
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: hero-mark-draw 2.8s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+}
+.hero-mark path + path { animation-delay: 0.7s; }
+
+@keyframes hero-mark-draw { to { stroke-dashoffset: 0; } }
+
+@media (width >= 80rem) {
+  .hero-mark { display: block; }
+}
+
+/* From 1600px the mark no longer reaches the hero's right edge, so a soft
+   right-side fade stands in for the 14% crop and keeps the same partial view. */
+@media (width >= 100rem) {
+  .hero-mark {
+    -webkit-mask-image:
+      radial-gradient(farthest-corner at 92% 6%, black 28%, rgb(0 0 0 / 0.55) 52%, transparent 80%),
+      linear-gradient(to bottom, black 45%, transparent 84%),
+      linear-gradient(to right, black 66%, transparent 88%);
+    -webkit-mask-composite: source-in, source-in;
+            mask-image:
+      radial-gradient(farthest-corner at 92% 6%, black 28%, rgb(0 0 0 / 0.55) 52%, transparent 80%),
+      linear-gradient(to bottom, black 45%, transparent 84%),
+      linear-gradient(to right, black 66%, transparent 88%);
+            mask-composite: intersect, intersect;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mark path { animation: none; stroke-dashoffset: 0; }
+}
