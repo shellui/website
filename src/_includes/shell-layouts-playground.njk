@@ -1,3 +1,12 @@
+{#- Interactive layouts piece. Matches the shell layouts shipped in Shellui 0.7 (gold active pill, app bar underline, inset cards, glass floating panel, windows desktop with a calm dot field and a glass taskbar). Colours come from site variables only. -#}
+{%- set ico = {
+  side: '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2.5" width="12" height="11" rx="2"/><path d="M6 2.5v11"/></svg>',
+  gear: '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.2"/><path d="M8 1.8v1.6M8 12.6v1.6M1.8 8h1.6M12.6 8h1.6M3.6 3.6l1.1 1.1M11.3 11.3l1.1 1.1M3.6 12.4l1.1-1.1M11.3 4.7l1.1-1.1"/></svg>',
+  max: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6V3h3M10 3h3v3M13 10v3h-3M6 13H3v-3"/></svg>',
+  close: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>',
+  ext: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg>',
+  caret: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 6.5L8 10l3.5-3.5"/></svg>'
+} -%}
 <div class="lyx" data-layouts data-dots>
   <canvas class="lyx-dots" aria-hidden="true"></canvas>
   <div class="lyx-top">
@@ -14,10 +23,11 @@
   <div class="lyx-fit">
     <div class="lyx-wrap">
       <div class="lyx-stage" id="lyx-stage" role="tabpanel" aria-labelledby="lyx-tab-sidebar" data-l="sidebar">
-        <div class="lyx-a lyx-win2" aria-hidden="true"><div class="lyx-tb2">Toaster</div><div class="lyx-ct" style="padding:18px"><div class="lyx-sk" style="width:60%"></div><div class="lyx-sk" style="width:85%;height:8px;margin-top:10px"></div><div class="lyx-btn">Show toast</div></div></div>
+        <div class="lyx-desk" data-dots data-dots-calm aria-hidden="true"><canvas></canvas></div>
+        <div class="lyx-a lyx-win2" aria-hidden="true"><div class="lyx-tb2"><span class="lyx-tile"></span>Toaster<span class="lyx-ctl">{{ ico.max | safe }}{{ ico.close | safe }}</span></div><div class="lyx-ct" style="padding:18px"><div class="lyx-sk" style="width:60%"></div><div class="lyx-sk" style="width:85%;height:8px;margin-top:10px"></div><div class="lyx-btn">Show toast</div></div></div>
         <div class="lyx-a lyx-main">
           <div class="lyx-art" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="lyx-tb" aria-hidden="true">Layout<span>_ ▢ ✕</span></div>
+          <div class="lyx-tb" aria-hidden="true"><span class="lyx-tile"></span>Layout<span class="lyx-ctl">{{ ico.max | safe }}{{ ico.close | safe }}</span></div>
           <div class="lyx-ct">
             <p class="lyx-h">Layout</p>
             <p class="lyx-p">Pick sidebar, sidebar-inset, app-bar, app-bar-inset, floating, fullscreen, or windows in shellui.config.json.</p>
@@ -28,9 +38,17 @@
             </div>
           </div>
         </div>
-        <div class="lyx-a lyx-side" aria-hidden="true"><div class="lyx-logo"></div><div class="lyx-cap">Features</div><div class="lyx-ni"><i></i>Dialog</div><div class="lyx-ni"><i></i>Toaster</div><div class="lyx-ni"><i></i>Modal and drawer</div><div class="lyx-ni on"><i></i>Layout</div><div class="lyx-cap">Preferences</div><div class="lyx-ni"><i></i>Themes</div><div class="lyx-ni"><i></i>Language and region</div></div>
-        <div class="lyx-a lyx-bar" aria-hidden="true"><div class="lyx-logo" style="margin:0 6px 0 0"></div><span class="lyx-bi">Homepage</span><span class="lyx-bi on">Features</span><span class="lyx-bi">Preferences</span><span class="lyx-bi">External links</span></div>
-        <div class="lyx-a lyx-task" aria-hidden="true"><div class="lyx-logo" style="margin:0;width:16px;height:16px"></div><span class="lyx-bi">Shellui</span><span class="lyx-bi on">Layout</span><span class="lyx-bi">Toaster</span></div>
+        <div class="lyx-a lyx-side" aria-hidden="true">
+          <div class="lyx-sh"><span class="lyx-logo"></span><span class="lyx-ib">{{ ico.side | safe }}</span></div>
+          <div class="lyx-nav">
+            <div class="lyx-cap">Features</div><div class="lyx-ni"><i></i>Dialog</div><div class="lyx-ni"><i></i>Toaster</div><div class="lyx-ni"><i></i>Modal and drawer</div><div class="lyx-ni on"><i></i>Layout</div>
+            <div class="lyx-cap">Preferences</div><div class="lyx-ni"><i></i>Themes</div><div class="lyx-ni"><i></i>Language and region</div>
+            <div class="lyx-ni lyx-gap"><i></i>Docs<span class="lyx-ext">{{ ico.ext | safe }}</span></div>
+          </div>
+          <div class="lyx-foot"><div class="lyx-ni"><span class="lyx-gear">{{ ico.gear | safe }}</span>Settings</div></div>
+        </div>
+        <div class="lyx-a lyx-bar" aria-hidden="true"><span class="lyx-logo"></span><span class="lyx-bi">Homepage</span><span class="lyx-bi on">Features</span><span class="lyx-bi">Preferences<span class="lyx-caret">{{ ico.caret | safe }}</span></span><span class="lyx-bi">Docs<span class="lyx-ext">{{ ico.ext | safe }}</span></span><span class="lyx-ib lyx-end">{{ ico.gear | safe }}</span></div>
+        <div class="lyx-a lyx-task" aria-hidden="true"><span class="lyx-start"><span class="lyx-logo"></span>Shellui</span><span class="lyx-tk on"><span class="lyx-tile"></span>Layout</span><span class="lyx-tk open"><span class="lyx-tile"></span>Toaster</span><span class="lyx-tray"><span class="lyx-tk"><span class="lyx-gear">{{ ico.gear | safe }}</span>Settings</span><span class="lyx-clock">10:22<small>Tue, Oct 27</small></span></span></div>
       </div>
       <div class="lyx-badges" aria-hidden="true"></div>
     </div>
