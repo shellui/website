@@ -1,7 +1,7 @@
 ---
 layout: layouts/post.njk
-title: Why I built Shellui | Shellui
-heading: Why I built Shellui
+title: Introducing Shellui | Shellui
+heading: Introducing Shellui
 lede: I kept building the same sign-in, admin, and settings screens for every project. Shellui is how I stopped, and it's free and open source for you too.
 description: Sébastien Barbier on why he built Shellui, how it stays free and open source, what ships in v0.7, and where it's going next.
 date: 2026-10-28
@@ -16,7 +16,7 @@ heroLight: /img/blog/introducing-shellui-cover-light.svg
 heroDark: /img/blog/introducing-shellui-cover-dark.svg
 imageAlt: Shellui cover
 ogImage: /img/blog/introducing-shellui-1200x630.png
-ogImageAlt: Why I built Shellui
+ogImageAlt: Introducing Shellui
 tags:
   - blog
 ---
