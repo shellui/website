@@ -28,7 +28,6 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 - Interface guidelines add light and dark image rules and a `themedImage` shortcode for raster and SVG.
 - Refresh the "Introducing Shellui" blog post for v0.7 with light and dark SVG cover and list thumbnail, and a PNG Open Graph image.
 - Blog post "Introducing Shellui" rewritten by Sébastien Barbier, same URL.
-- Remove the Pricing link from the top bar, footer, and 404 page; `/pricing/` now redirects to `/waitlist/`.
 - Homepage hero adds a discreet dot field that reacts to the mouse.
 - Homepage hero adds a faded wireframe Shellui S on wide screens, drawn once on load, with more space above the copy and less below.
 - Homepage hero Shellui S draws in about 1 second and starts on the first frame.
