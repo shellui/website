@@ -15,10 +15,10 @@ layout: layouts/base.njk
     </p>
     <div class="mt-6 flex items-center gap-x-3">
       <img src="{{ authorImage or '/img/logo.png' }}" alt="{{ author or site.author }}" class="size-9 rounded-full bg-gray-50 object-contain p-0.5 dark:bg-gray-900" width="36" height="36" />
-      <div class="text-sm/5">
-        <p class="font-semibold text-gray-900 dark:text-white">{{ author or site.author }}</p>
+      <div>
+        <p class="text-base/6 font-semibold text-gray-900 dark:text-white">{{ author or site.author }}</p>
         {% if authorRole %}
-          <p class="text-gray-500 dark:text-gray-400">{{ authorRole }}</p>
+          <p class="text-xs/5 font-normal text-gray-500 dark:text-gray-400">{{ authorRole }}</p>
         {% endif %}
       </div>
     </div>
