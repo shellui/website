@@ -7,7 +7,7 @@ description: Sébastien Barbier on why he built Shellui, how it stays free and o
 date: 2026-10-28
 author: Sébastien Barbier
 authorRole: Creator of Shellui
-authorImage: /img/logo.png
+authorImage: /img/authors/sebastien-barbier.webp
 category: Story
 image: /img/blog/introducing-shellui-1200x630.png
 thumbnailLight: /img/blog/introducing-shellui-square-light.svg
