@@ -2,8 +2,8 @@
 layout: layouts/post.njk
 title: Introducing Shellui | Shellui
 heading: Introducing Shellui
-lede: I kept building the same sign-in, admin, and settings screens for every project. Shellui is how I stopped, and it's free and open source for you too.
-description: Sébastien Barbier on why he built Shellui, how it stays free and open source, what ships in v0.7, and where it's going next.
+lede: Every project needs the same sign-in, admin, and settings screens. Shellui builds them once, and it's free and open source for you too.
+description: Why Shellui exists, how it stays free and open source, what ships today, and where it's going next.
 date: 2026-10-28
 author: Sébastien Barbier
 authorRole: Creator of Shellui
@@ -21,9 +21,9 @@ tags:
   - blog
 ---
 
-Every new project I started began the same way. Before I could work on the idea itself, I had to build sign-in, a members screen, settings, file uploads, and the emails that go with all of that. Then I built them again for the next project, and again for the one after that.
+Every new project tends to start the same way. Before work on the idea itself can begin, someone has to build sign-in, a members screen, settings, file uploads, and the emails that go with all of that. Then the next project needs them again, and the one after that.
 
-Shellui is my answer to that loop. I wanted to mutualise those features across projects, so I build each one once and every project gets it. It had to be plug and play, and I wanted the shared features to be good enough that I'd never miss writing them by hand.
+Shellui is an answer to that loop. The goal is to mutualise those features across projects, so each one is built once and every project gets it. It has to be plug and play, and the shared features have to be good enough that nobody misses writing them by hand.
 
 ## What Shellui is
 
@@ -31,17 +31,17 @@ Shellui is an open-source web app development platform. It's a microfrontend she
 
 Each of your apps loads in an iframe inside one shell. An app keeps its own framework and its own deployment. It talks to the shell through `@shellui/sdk`, and it gets the same navigation, sign-in, theme, and language as every other app around it. You can add a new app to a project without touching the others, and you can drop an old one the same way.
 
-That's the plug and play part I cared about. The shell owns the common ground, so your app only has to contain your product.
+That's the plug and play part. The shell owns the common ground, so your app only has to contain your product.
 
 ## How Shellui stays free and open source
 
 Shellui is MIT licensed. The source for every part lives on [GitHub](https://github.com/shellui): the core shell, identity-service, storage-service, email-service, hosting-service, the admin panel, and the playground.
 
-You can self-host every one of those services. Nothing in the shell needs a server I run. A hosted version is on its way for people who would rather not run the services themselves. It's invite-only for now, and you can [join the waitlist](/waitlist/) to hear when it opens. The self-hosted path stays first-class either way, because it's the one I use.
+You can self-host every one of those services. Nothing in the shell depends on a server run by someone else. A hosted version is on its way for teams who would rather not run the services themselves. It's invite-only for now, and you can [join the waitlist](/waitlist/) to hear when it opens. The self-hosted path stays first-class either way, because it's the one the project runs on.
 
 ## What exists today
 
-Here's what you can use as of v0.7.
+Here's what you can use right now.
 
 - **Apps and navigation**: shared navigation, seven layout modes, themes, languages, modals, drawers, toasts, and dialogs across your embedded apps, all driven by `@shellui/sdk`.
 - **Authentication**: [identity-service](https://github.com/shellui/identity-service) handles sign-in for every app at once. It ships with 15 OAuth providers configured, plus OpenID Connect, SAML single sign-on, SCIM provisioning, magic links, and invitations.
@@ -64,9 +64,9 @@ You can follow all of this in the open on [GitHub](https://github.com/shellui) a
 
 ## Designed not to fail
 
-I use Shellui internally for all of my projects. That one fact shapes most of the design decisions. If a release breaks something, it breaks my own work first, so I have every reason to keep it stable.
+Shellui runs every project its author builds. That one fact shapes most of the design decisions. If a release breaks something, it breaks that work first, so there's every reason to keep it stable.
 
-Making it public was the obvious next step. I was already building these features once for myself, and sharing them costs nothing extra. Other people using it also means more eyes on the code and better ideas than I'd have alone.
+Making it public was the obvious next step. The features were already built once, and sharing them costs nothing extra. More people using it also means more eyes on the code and better ideas than one person would have alone.
 
 A few choices keep Shellui from becoming a single point of failure for you:
 
@@ -79,6 +79,6 @@ That's also why new features land as additive and off by default. A setup that w
 
 ## Have fun with it
 
-I built Shellui so I could spend my time on the part of each project that's actually new. I hope it does the same for you.
+Shellui exists so you can spend your time on the part of each project that's actually new.
 
-Try the [playground](https://playground.shellui.com), read the [docs](https://docs.shellui.com), or open an issue on [GitHub](https://github.com/shellui) if something doesn't work the way you expect. Have fun with it. I can't wait to see what you build.
+Try the [playground](https://playground.shellui.com), read the [docs](https://docs.shellui.com), or open an issue on [GitHub](https://github.com/shellui) if something doesn't work the way you expect. Have fun with it, and share what you build.
