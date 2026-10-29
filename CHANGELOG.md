@@ -45,6 +45,11 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 🛠 Improvements
 
+- Homepage h1 now names Shellui.
+- Longer, more descriptive title tag on /pricing/.
+- BreadcrumbList structured data on /features/, /pricing/ and every guidelines page.
+- Homepage hero dot animation starts after load, so it no longer competes with first paint.
+- Accessibility: better contrast on homepage inline code, valid definition lists on the newsletter blocks.
 - SEO: longer page titles and descriptions, IndexNow ping on deploy, and richer JSON-LD.
 
 ### 🚨 Changed

@@ -38,10 +38,11 @@ export default {
   ogImageAlt(data) {
     return resolveOgMeta(data).alt;
   },
+  // Breadcrumb data feeds the BreadcrumbList JSON-LD on every page.
+  // hideBreadcrumbs only hides the visible trail (see breadcrumbs.njk).
   breadcrumbs(data) {
-    if (data.hideBreadcrumbs) return [];
     const pageUrl = data.page?.url;
-    if (!pageUrl || pageUrl === "/") return [];
+    if (!pageUrl || pageUrl === "/" || data.eleventyExcludeFromCollections || pageUrl === "/404.html") return [];
 
     const origin = String(data.site?.url || "https://shellui.com").replace(
       /\/$/,
@@ -68,6 +69,7 @@ export default {
       interface: "Interface",
       foundations: "Foundations",
       print: "Print",
+      brand: "Brand",
     };
 
     const pageLabel = String(data.title || data.heading || "")
@@ -80,7 +82,7 @@ export default {
       path += `/${segment}`;
       const isLast = index === segments.length - 1;
       const name = isLast
-        ? pageLabel || sectionLabels[segment] || segment
+        ? sectionLabels[segment] || pageLabel || segment
         : sectionLabels[segment] || segment;
       crumbs.push({
         name,
