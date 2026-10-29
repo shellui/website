@@ -17,6 +17,10 @@ tags:
 
 The idea is a shared shell around your product: authentication, legal documents, sidebar navigation, modals, drawers, themes, toast notifications, multi-language support, and more. Pair it with the [identity-service](https://github.com/shellui/identity-service) backend or embed an [admin panel](https://github.com/shellui/admin) in the host.
 
+Shellui draws on time at SAP and on [Luigi](https://luigi-project.io/), the micro frontend framework SAP uses to compose many apps behind one host with shared navigation and identity. Shellui packages that kind of structure for smaller teams.
+
+It is built for the one-person company, the bootstrapper, and the indie maker who need to stay efficient. Navigation, auth, admin, and storage ship once so you spend time on the product, not the same boilerplate on every launch.
+
 Shellui v0.3.0 is experimental and used on real projects. Highlights include:
 
 - **Authentication**: Sign-in flows, legal documents, and optional in-app admin tooling
