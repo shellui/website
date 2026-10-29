@@ -21,6 +21,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.7.2] - 2026-10-29
+
+### ✨ Feature
+
+- Security page at /security/ and a security.txt file.
+- Who it's for section on the homepage.
+- Real playground screenshot in the hero, light and dark.
+- New page: An app shell for internal tools.
+- New page: Shellui vs building it yourself.
+
+### 🛠 Improvements
+
+- Sharper homepage hero copy.
+- Trust signals under the hero: MIT license, GitHub, latest release, self-hostable.
+- Try the playground replaces Request a demo in the hero, and sits next to the waitlist form.
+- Legal notice describes Shellui as a free and open-source project.
+
+### 🐛 Bug Fixes
+
+- No horizontal scroll at 390px on the homepage and guidelines pages.
+- Tab lists on feature pages pass Lighthouse accessibility checks.
+
 ## [0.7.1] - 2026-10-29
 
 ### 🛠 Improvements
