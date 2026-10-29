@@ -38,8 +38,6 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
         <div class="mx-auto w-full max-w-[16rem]{% if item.visual == 'toaster' or bleed %}max-w-none{% endif %}{% if bleed %} h-full{% endif %}">
           {% if item.visual == "toaster" %}
             {% include "feature-visual-toaster.njk" %}
-          {% elif item.visual == "shell-layout" %}
-            {% include "shell-layout-anim.njk" %}
           {% elif item.visual == "auth" %}
             {% set autBare = true %}<div class="aut-hov">{% include "auth-visual-thumb.njk" %}</div>
           {% elif item.visual == "admin" %}

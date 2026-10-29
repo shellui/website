@@ -46,6 +46,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### 🚨 Changed
 
 - Apps and navigation drawer animation shows the floating drawer: inset panel, rounded corners, and a softer backdrop in light and dark.
+- Drawer card copy says the panel floats over the page, and the unused shell preview block and shell layout animation are removed.
 - Layout playground, Apps and navigation visual, and homepage bento match the redesigned Shellui 0.7 layouts.
 - Layout playground drops its own dot background, so only the windows desktop shows dots.
 - Administration page, features card, and homepage bento tile are redesigned around the admin 0.8 panel, with a roles table and new light and dark visuals.
