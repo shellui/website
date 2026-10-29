@@ -1,6 +1,6 @@
 ---
 layout: layouts/base.njk
-title: Blog | Shellui
+title: "Shellui blog: release notes, news and architecture notes"
 heading: From the blog
 lede: News and notes on the web app development platform.
 description: News, release notes, and architecture notes from the Shellui team about the open-source web app development platform.
@@ -65,10 +65,10 @@ description: News, release notes, and architecture notes from the Shellui team a
                 </div>
                 <div class="mt-4 flex items-center gap-x-3">
                   <img src="{{ post.data.authorImage or '/img/logo.png' }}" alt="{{ post.data.author or site.author }}" class="size-8 rounded-full bg-gray-50 object-contain p-0.5 dark:bg-gray-900" width="32" height="32" />
-                  <div class="text-sm/5">
-                    <p class="font-semibold text-gray-900 dark:text-white">{{ post.data.author or site.author }}</p>
+                  <div>
+                    <p class="text-sm/5 font-semibold text-gray-900 dark:text-white">{{ post.data.author or site.author }}</p>
                     {% if post.data.authorRole %}
-                      <p class="text-gray-500 dark:text-gray-400">{{ post.data.authorRole }}</p>
+                      <p class="text-xs/4 font-normal text-gray-500 dark:text-gray-400">{{ post.data.authorRole }}</p>
                     {% endif %}
                   </div>
                 </div>

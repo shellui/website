@@ -27,7 +27,11 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 - Interface guidelines add light and dark image rules and a `themedImage` shortcode for raster and SVG.
 - Refresh the "Introducing Shellui" blog post for v0.7 with light and dark SVG cover and list thumbnail, and a PNG Open Graph image.
+- Blog post "Introducing Shellui" rewritten by Sébastien Barbier, same URL.
+- Blog shows Sébastien Barbier's profile photo as the author avatar.
 - Homepage hero adds a discreet dot field that reacts to the mouse.
+- Homepage hero adds a faded wireframe Shellui S on wide screens, drawn once on load, with more space above the copy and less below.
+- Homepage hero Shellui S draws in about 1 second and starts on the first frame.
 - Features page shows a toaster illustration on the Apps and navigation card, animated on hover and focus.
 - Apps and navigation page adds a "Components ready to use" grid with Toaster, Dialog, Modal, Drawer, and Action buttons cards.
 - Apps and navigation page replaces the layout tiles with an interactive playground window that morphs between the seven layouts.
@@ -41,9 +45,14 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 🚨 Changed
 
-- Apps and navigation page: the Drawer card shows a floating drawer, 12px from the window edge with rounded corners, to match Shellui 0.7.0.
+- Apps and navigation drawer animation shows the floating drawer: inset panel, rounded corners, and a softer backdrop in light and dark.
+- Drawer card copy says the panel floats over the page, and the unused shell preview block and shell layout animation are removed.
 - Layout playground, Apps and navigation visual, and homepage bento match the redesigned Shellui 0.7 layouts.
+- Layout playground drops its own dot background, so only the windows desktop shows dots.
 - Administration page, features card, and homepage bento tile are redesigned around the admin 0.8 panel, with a roles table and new light and dark visuals.
+- Homepage bento gives File storage, Web and desktop, and Audit and privacy their own visuals, and the bento styles use site tokens only.
+- Homepage bento tiles share one art height, padding, and dot background, drawings fit without cropping, and "See all features" is a centred outline button.
+- Homepage bento, Apps and navigation intro, and features Apps card share a new "One shell for all your apps" visual that switches from Chat to Docs on hover.
 - Remove links to unavailable hosted services and most service hostnames from copy and `llms.txt`.
 - Legacy URLs (`/brand-assets/`, `/product/brand-assets/`, `/guidelines/design/`, `/guidelines/web-design/`) use HTML fallback redirects (`noindex`, canonical, `location.replace` with hash preserved). GitHub Pages serves the site directly (no edge 301s). Sitemap lists canonical guideline URLs only.
 - Remove duplicated `website/skills/` (skills live in `shellui/skills` only).

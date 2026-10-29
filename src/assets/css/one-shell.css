@@ -1,0 +1,74 @@
+/* One shell visual (one-shell-visual.njk): homepage bento tile and apps and navigation intro. Site tokens only, .dark overrides values only. Motion only on hover or focus, never on show or hide, and none under reduced motion. */
+.osv {
+  --win: var(--color-background); --side: var(--color-muted); --ln: var(--color-border);
+  --fg: var(--color-foreground); --mf: var(--color-muted-foreground); --mu: var(--color-secondary);
+  --wf: color-mix(in oklch, var(--color-foreground) 11%, transparent);
+  --pr: var(--color-primary); --pf: var(--color-primary-foreground);
+  --sc: var(--color-foreground); --sh: .08;
+  width: 100%; height: 100%; overflow: visible;
+}
+.dark .osv {
+  --win: color-mix(in oklch, var(--color-background) 94%, white); --side: color-mix(in oklch, var(--color-background) 88%, white);
+  --ln: color-mix(in oklch, white 10%, transparent); --mu: color-mix(in oklch, var(--color-background) 84%, white);
+  --wf: color-mix(in oklch, white 13%, transparent); --sc: black; --sh: .5;
+}
+.osv text { font-family: var(--font-sans, Inter), Inter, ui-sans-serif, system-ui, sans-serif; }
+.osv .mo { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+.osv .side { fill: var(--side); }
+.osv .edge { fill: none; stroke: var(--ln); }
+.osv .win, .osv .card { fill: var(--win); stroke: var(--ln); }
+.osv .sl { fill: none; stroke: var(--ln); }
+.osv .fg, .osv .fwi { fill: var(--fg); }
+.osv .mf, .osv .fwm { fill: var(--mf); }
+.osv .fgf { fill: var(--fg); }
+.osv .inv { fill: var(--win); }
+.osv .mu { fill: var(--mu); }
+.osv .w { fill: var(--wf); }
+.osv .pr { fill: var(--pr); }
+.osv .pf, .osv .fwp { fill: var(--pf); }
+.osv .ring { fill: none; stroke: var(--pr); stroke-width: 1.5; }
+.osv .ic { fill: none; stroke: var(--mf); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.osv .ic2 { fill: none; stroke: var(--fg); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.osv .ick { fill: none; stroke: var(--win); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.osv .shf { flood-color: var(--sc); flood-opacity: var(--sh); }
+
+/* Distances: one nav row, one frame width, one card. */
+.osv-w { --nav: 28px; --strip: -370px; --ring: 132.5px; }
+.osv-t { --nav: 28px; --strip: -250px; --ring: 195px; }
+.osv-c { --nav: 27px; --strip: -190px; --ring: 0px; }
+
+/* Which composition shows where. Bento: compact below 768px, tall in the 2 column grid, wide in the 2 x 2 tile from 1280px. Apps page: compact below 640px, wide above. */
+.bento-art > .osv-w, .bento-art > .osv-t { display: none; }
+@media (min-width: 768px) {
+  .bento-art > .osv-c { display: none; }
+  .bento-art > .osv-t { display: block; max-width: 400px; max-height: 476px; }
+}
+@media (min-width: 1280px) {
+  .bento-art > .osv-t { display: none; }
+  .bento-art > .osv-w { display: block; max-width: 600px; max-height: 480px; }
+}
+.bento-art > .osv-c { max-width: 320px; max-height: 172px; }
+.osv-page > .osv-w { display: none; height: auto; }
+.osv-page > .osv-c { height: auto; }
+/* Features index Apps card: compact at every width. */
+.osv-card > .osv-w { display: none; }
+.osv-card > .osv-c { height: auto; max-width: 26rem; }
+@media (min-width: 640px) {
+  .osv-page > .osv-c { display: none; }
+  .osv-page > .osv-w { display: block; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .osv .a-hl, .osv .a-strip, .osv .a-ring { transition: transform .45s cubic-bezier(.32,.72,0,1); }
+  :is(.bento-tile:is(:hover, :focus-visible), .osv-page:hover, .group:is(:hover, :focus-visible) .osv-card) .osv .a-hl { transform: translateY(var(--nav)); }
+  :is(.bento-tile:is(:hover, :focus-visible), .osv-page:hover, .group:is(:hover, :focus-visible) .osv-card) .osv .a-strip { transform: translateX(var(--strip)); }
+  :is(.bento-tile:is(:hover, :focus-visible), .osv-page:hover, .group:is(:hover, :focus-visible) .osv-card) .osv .a-ring { transform: translateX(var(--ring)); }
+}
+
+/* Apps page frame and features card: the same dot field as the bento art. */
+.osv-page, .osv-card {
+  background: var(--color-secondary) radial-gradient(color-mix(in oklch, var(--color-foreground) 13%, transparent) .8px, transparent 1.2px) 0 0 / 14px 14px;
+}
+.dark :is(.osv-page, .osv-card) {
+  background: var(--color-background) radial-gradient(color-mix(in oklch, var(--color-foreground) 10%, transparent) .8px, transparent 1.2px) 0 0 / 14px 14px;
+}

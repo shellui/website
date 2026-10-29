@@ -1,21 +1,18 @@
 /* Interactive layouts piece (/features/apps-and-navigation/). Matches the Shellui 0.7 shell layouts. Site variables only. */
-.lyx{--bg:var(--color-secondary);--dot:color-mix(in oklch,var(--color-foreground) 16%,transparent);--card:var(--color-background);--bd:var(--color-border);--fg:var(--color-foreground);--mu:var(--color-muted-foreground);--muted:var(--color-secondary);--sb:var(--color-muted);--gold:var(--color-primary);--gold-fg:var(--color-primary-foreground);--gt:var(--color-primary-ink);--sk:var(--color-border);
+.lyx{--bg:var(--color-secondary);--card:var(--color-background);--bd:var(--color-border);--fg:var(--color-foreground);--mu:var(--color-muted-foreground);--muted:var(--color-secondary);--sb:var(--color-muted);--gold:var(--color-primary);--gold-fg:var(--color-primary-foreground);--gt:var(--color-primary-ink);--sk:var(--color-border);
   --chrome:color-mix(in oklch,var(--sb) 97%,black);--hover:color-mix(in oklch,var(--fg) 7%,transparent);--hair:color-mix(in oklch,var(--bd) 80%,transparent);
   --glass:color-mix(in oklch,var(--sb) 72%,transparent);--glass-edge:color-mix(in oklch,var(--bd) 70%,transparent);--glass-hi:color-mix(in oklch,white 38%,transparent);
   --glass-sh:0 1px 0 var(--glass-hi) inset,0 8px 28px color-mix(in oklch,black 12%,transparent),0 1px 3px color-mix(in oklch,black 8%,transparent);
   --win-sh:0 1px 2px color-mix(in oklch,black 8%,transparent),0 20px 44px -14px color-mix(in oklch,black 26%,transparent);
   --win-sh-idle:0 1px 2px color-mix(in oklch,black 6%,transparent),0 10px 24px -12px color-mix(in oklch,black 16%,transparent);
   --wash:color-mix(in oklch,var(--gold) 12%,transparent);--ease:cubic-bezier(.32,.72,0,1);
-  position:relative;overflow:hidden;border:1px solid var(--bd);border-radius:1rem;isolation:isolate;background:var(--bg);background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:24px 24px;padding:2.5rem 1rem 2rem}
-.dark .lyx{--bg:var(--color-background);--dot:color-mix(in oklch,var(--color-foreground) 12%,transparent);--card:var(--color-background);--muted:var(--color-secondary);--sb:color-mix(in oklch,var(--color-background) 94%,white);
+  position:relative;overflow:hidden;border:1px solid var(--bd);border-radius:1rem;isolation:isolate;background:var(--bg);padding:2.5rem 1rem 2rem}
+.dark .lyx{--bg:var(--color-background);--card:var(--color-background);--muted:var(--color-secondary);--sb:color-mix(in oklch,var(--color-background) 94%,white);
   --chrome:color-mix(in oklch,var(--sb) 88%,white);--glass:color-mix(in oklch,var(--sb) 70%,transparent);--glass-hi:color-mix(in oklch,white 10%,transparent);
   --glass-sh:0 1px 0 var(--glass-hi) inset,0 12px 36px color-mix(in oklch,black 42%,transparent),0 1px 4px color-mix(in oklch,black 24%,transparent);
   --win-sh:0 1px 2px color-mix(in oklch,black 30%,transparent),0 24px 52px -14px color-mix(in oklch,black 60%,transparent);
   --win-sh-idle:0 1px 2px color-mix(in oklch,black 24%,transparent),0 12px 28px -12px color-mix(in oklch,black 40%,transparent);
   --wash:color-mix(in oklch,var(--gold) 9%,transparent)}
-/* Windy dots (hero-dots.js) replace the static grid once the script runs. */
-.lyx-dots{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-.lyx:has(.lyx-dots[width]){background-image:none}
 .lyx::before{z-index:-1;content:"";position:absolute;inset:0 0 auto;height:220px;background:linear-gradient(color-mix(in oklch,var(--gold) 10%,transparent),transparent);pointer-events:none}
 .lyx-seg{position:relative;display:flex;gap:2px;max-width:100%;overflow-x:auto;width:max-content;min-width:0;margin:0;padding:4px;border:1px solid var(--bd);border-radius:10px;background:var(--card);box-shadow:0 1px 2px color-mix(in oklch,black 5%,transparent);scrollbar-width:none}
 .lyx-top{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 28px;position:relative}

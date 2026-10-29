@@ -4,7 +4,7 @@ wide: true
 playgroundCta: true
 newsletterSignup: true
 hideBreadcrumbs: true
-title: Features | Shellui
+title: "Features | Shellui shell, sign-in, admin, email, storage"
 description: "Build web apps with shared navigation, sign-in, administration, and file storage. Explore Shellui, an open-source microfrontend shell."
 heading: "Build your app. Share the essentials."
 lede: "Shellui is an open-source shell that brings your web apps together with shared navigation, sign-in, administration, email, and file storage. Your apps run inside embedded pages called iframes, using the frameworks you choose."
@@ -43,7 +43,7 @@ lede: "Shellui is an open-source shell that brings your web apps together with s
           {% elif item.visual == "admin" %}
             <div class="adt-hov">{% include "admin-visual-thumb.njk" %}</div>
           {% elif item.visual == "apps-visual" %}
-            {% set avBare = true %}<div class="av4-hov hidden lg:block">{% include "apps-visual-v4.njk" %}</div><div class="lg:hidden">{% include "apps-visual-v4-thumb.njk" %}</div>
+            <div class="osv-card grid h-full place-items-center p-5 sm:p-6">{% set osvPage = true %}{% include "one-shell-visual.njk" %}</div>
           {% elif item.visual == "upload" %}
             {% set upSlice = true %}{% include "feature-visual-upload.njk" %}
           {% elif item.visual == "storage" %}

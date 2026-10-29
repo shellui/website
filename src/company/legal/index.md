@@ -1,6 +1,6 @@
 ---
 layout: layouts/page.njk
-title: Legal Notice | Shellui
+title: "Legal notice | Shellui operator, hosting and data rights"
 description: "Legal notice for shellui.com: Swiss operator details, GitHub Pages hosting, FADP data protection rights, and how to reach us."
 heading: Legal notice
 lede: Legal information for this non-commercial website (Switzerland).

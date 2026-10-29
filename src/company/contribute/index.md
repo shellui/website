@@ -1,6 +1,6 @@
 ---
 layout: layouts/page.njk
-title: Contribute | Shellui
+title: "Contribute to Shellui | Code, docs, design and testing"
 description: Contribute to Shellui with code, docs, design, testing, or ideas. Email contact@shellui.com first so we can plan how to work together.
 heading: How to contribute
 lede: Code, documentation, design, testing, and ideas are welcome.

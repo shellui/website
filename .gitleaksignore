@@ -1,2 +1,4 @@
 # Public client-side newsletter list id, since removed from site.json.
 d61bf04d69e067e195bca1826c5fb7f01f74f03e:src/_data/site.json:generic-api-key:26
+# Public IndexNow key, served at the site root by design.
+0c7fad59380cb68ba120446d0fb65d38cae4f087:src/_data/site.json:generic-api-key:21
