@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
-## [0.7.0] - Unreleased
+## [0.7.0] - 2026-10-29
 
 ### ✨ Feature
 
@@ -42,6 +42,10 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 - Self-hosted Inter on shellui.com (preload, swap, Latin subset). Text gold `#8A6300` / `#E8B84A` in dark mode via generated tokens.
 - Open Graph images for guideline pages (`tools/og/guidelines.mjs`).
 - Generate per-page Open Graph images at build time (1200×630, brand kit v1 templates via Satori and resvg). Every public page gets `og:image`, dimensions, and alt text; `npm run verify` checks PNG presence, size, and copy quality.
+
+### 🛠 Improvements
+
+- SEO: longer page titles and descriptions, IndexNow ping on deploy, and richer JSON-LD.
 
 ### 🚨 Changed
 
@@ -67,6 +71,9 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### 🐛 Bug Fixes
 
 - Remap `primary-ink` to `#8a6300` on light backgrounds and `#e8b84a` in dark mode so gold text meets WCAG AA without per-page `dark:text-primary` overrides.
+### 🏗 Chore
+
+- Update dependencies: @shellui/sdk 0.6.2, alpinejs 3.17.5, Eleventy 3.1.7, markdown-it 15.0.3, and shiki 4.5.0.
 
 ## [0.6.0] - 2026-10-08
 
