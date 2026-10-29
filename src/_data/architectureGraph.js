@@ -19,13 +19,6 @@ const GROUP_INFRA = {
   subtitle: "Docker images you run",
 };
 
-const GROUP_SUPABASE = {
-  id: "supabase",
-  title: "Supabase project",
-  subtitle: "Auth and Storage, hosted",
-  logo: "supabase",
-};
-
 const SHELL = {
   id: "shell",
   title: "Shellui shell",
@@ -57,7 +50,7 @@ const HOSTING = {
   role: "All-in temporary deploy",
   kind: "hosting",
   description:
-    "shellui.app: one temporary URL for the whole Browser group - shell, your app, and Files.",
+    "One temporary URL for the whole Browser group: shell, your app, and Files.",
   href: "#hosting-service",
 };
 
@@ -65,7 +58,7 @@ const full = {
   id: "full",
   label: "Full Shellui stack",
   summary:
-    "Seven Shellui pieces, plus the blob store and the company's mail provider. Browser pieces are static files. hosting-service on shellui.app is the all-in temporary deploy for that whole tab.",
+    "Seven Shellui pieces, plus the blob store and the company's mail provider. Browser pieces are static files. hosting-service is the all-in temporary deploy for that whole tab.",
   groups: [
     { ...GROUP_CLIENT, position: { x: 0, y: 0 }, size: { width: 560, height: 484 } },
     { ...GROUP_INFRA, position: { x: 660, y: 0 }, size: { width: 620, height: 520 } },
@@ -119,7 +112,7 @@ const full = {
       title: "storage-service",
       role: "Backend",
       kind: "backend",
-      description: "Supabase-compatible REST, access grants, share links, and quotas.",
+      description: "Storage REST API, access grants, share links, and quotas.",
       href: "#storage-service",
       parent: "infra",
       position: { x: 16, y: 202 },
@@ -136,7 +129,7 @@ const full = {
       title: "email-service",
       role: "Backend",
       kind: "backend",
-      description: "Company email rules. Sends with Resend or SMTP.",
+      description: "Company email rules. Sends with Resend, Amazon SES, or SMTP.",
       href: "#email-service",
       parent: "infra",
       position: { x: 340, y: 354 },
@@ -153,7 +146,7 @@ const full = {
     },
     {
       id: "provider",
-      title: "Resend or SMTP",
+      title: "Resend, SES, or SMTP",
       role: "Provider",
       kind: "store",
       description: "The company's own mail provider.",
@@ -296,173 +289,6 @@ const full = {
   omitted: null,
 };
 
-const supabase = {
-  id: "supabase",
-  label: "Shellui + Supabase",
-  summary:
-    "Keep the Browser static files, hosting-service, and email-service. hosting-service can post events to email-service. Point backend.type and storage.url at a Supabase project for Auth and Storage.",
-  groups: [
-    { ...GROUP_CLIENT, position: { x: 0, y: 0 }, size: { width: 560, height: 396 } },
-    { ...GROUP_SUPABASE, position: { x: 660, y: 0 }, size: { width: 300, height: 320 } },
-    {
-      ...GROUP_INFRA,
-      subtitle: "Docker images you run",
-      position: { x: 660, y: 340 },
-      size: { width: 620, height: 196 },
-    },
-  ],
-  nodes: [
-    {
-      ...SHELL,
-      description: 'The same frontend, with backend.type set to "supabase".',
-      parent: "client",
-      position: { x: 20, y: 60 },
-      size: { width: 520, height: 96 },
-    },
-    {
-      ...APP,
-      description:
-        "Any stack, in an iframe. The same @shellui/sdk calls, answered by a different backend.",
-      fill: true,
-      parent: "client",
-      position: { x: 20, y: 196 },
-      size: { width: 248, height: 180 },
-    },
-    {
-      ...FILES,
-      description:
-        "The same Files app. Set filesUrl; it talks to Supabase Storage through the shell.",
-      parent: "client",
-      position: { x: 292, y: 196 },
-      size: { width: 248, height: 180 },
-    },
-    {
-      id: "supabase-auth",
-      title: "Supabase Auth",
-      role: "Hosted",
-      kind: "managed",
-      logo: "supabase",
-      description: "Replaces identity-service as the sign-in backend.",
-      parent: "supabase",
-      position: { x: 20, y: 72 },
-      size: { width: 260, height: 100 },
-    },
-    {
-      id: "supabase-storage",
-      title: "Supabase Storage",
-      role: "Hosted",
-      kind: "managed",
-      logo: "supabase",
-      description: "Replaces storage-service behind the same SDK and Files calls.",
-      parent: "supabase",
-      position: { x: 20, y: 192 },
-      size: { width: 260, height: 108 },
-    },
-    {
-      ...HOSTING,
-      parent: "infra",
-      position: { x: 16, y: 52 },
-      size: { width: 250, height: 124 },
-    },
-    {
-      id: "email",
-      title: "email-service",
-      role: "Backend",
-      kind: "backend",
-      description: "Company email rules. Sends with Resend or SMTP.",
-      href: "#email-service",
-      parent: "infra",
-      position: { x: 340, y: 52 },
-      size: { width: 264, height: 124 },
-    },
-    {
-      id: "provider",
-      title: "Resend or SMTP",
-      role: "Provider",
-      kind: "store",
-      description: "The company's own mail provider.",
-      position: { x: 1360, y: 398 },
-      size: { width: 220, height: 112 },
-    },
-  ],
-  edges: [
-    {
-      id: "shell-app",
-      source: "shell",
-      sourceHandle: "bottom-s",
-      target: "app",
-      targetHandle: "top-t",
-      label: "iframe + @shellui/sdk",
-      bidirectional: true,
-    },
-    {
-      id: "shell-files",
-      source: "shell",
-      sourceHandle: "bottom-s",
-      target: "files",
-      targetHandle: "top-t",
-      label: "filesUrl",
-    },
-    {
-      id: "shell-auth",
-      source: "shell",
-      sourceHandle: "right-s",
-      target: "supabase-auth",
-      targetHandle: "left-t",
-      label: "sign-in + session",
-    },
-    {
-      id: "shell-storage",
-      source: "shell",
-      sourceHandle: "right2-s",
-      target: "supabase-storage",
-      targetHandle: "left-t",
-      label: "/storage/v1/*",
-      labelT: 0.74,
-    },
-    {
-      id: "files-storage",
-      source: "files",
-      sourceHandle: "right-s",
-      target: "supabase-storage",
-      targetHandle: "left-t",
-      label: "/storage/v1/*",
-    },
-    {
-      id: "hosting-browser",
-      source: "hosting",
-      sourceHandle: "left-s",
-      target: "client",
-      targetHandle: "right-t",
-      label: "all-in temporary deploy",
-      labelT: 0.48,
-      labelOffset: [0, 10],
-    },
-    {
-      id: "hosting-email",
-      source: "hosting",
-      sourceHandle: "right-s",
-      target: "email",
-      targetHandle: "left-t",
-      label: "events",
-    },
-    {
-      id: "email-provider",
-      source: "email",
-      sourceHandle: "right-s",
-      target: "provider",
-      targetHandle: "left-t",
-    },
-  ],
-  omitted: {
-    title: "Not in this view",
-    items: [
-      "identity-service and storage-service, replaced by Supabase Auth and Storage",
-      "admin, which registers on a Shellui identity backend",
-    ],
-  },
-};
-
 function boundsOf(view) {
   const boxes = [
     ...view.groups,
@@ -493,5 +319,5 @@ function withConnections(view) {
 }
 
 export default {
-  views: [withConnections(full), withConnections(supabase)],
+  views: [withConnections(full)],
 };

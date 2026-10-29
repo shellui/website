@@ -178,15 +178,19 @@ function markCopied(button) {
   const status = document.querySelector("[data-copy-status]");
   const idle = button.getAttribute("data-copy-idle") || label?.textContent || "Copy";
   button.setAttribute("data-copy-idle", idle);
+  const idleAria = button.getAttribute("data-copy-aria") || button.getAttribute("aria-label") || "Copy agent prompt";
+  button.setAttribute("data-copy-aria", idleAria);
   button.setAttribute("aria-label", "Copied to clipboard");
   if (label) label.textContent = "Copied";
   if (status) status.textContent = "Copied";
+  button.setAttribute("data-copied", "");
   clearTimeout(Number(button.getAttribute("data-copy-timer") || 0));
   const timer = setTimeout(() => {
-    button.setAttribute("aria-label", "Copy agent prompt");
+    button.setAttribute("aria-label", idleAria);
     if (label) label.textContent = idle;
     if (status) status.textContent = "";
-  }, 1600);
+    button.removeAttribute("data-copied");
+  }, 2000);
   button.setAttribute("data-copy-timer", String(timer));
 }
 
@@ -228,3 +232,13 @@ if (frameworkPicker) {
     if (command) commandNode.textContent = command;
   });
 }
+
+// Shuffle agent marks per page load so no agent gets a fixed first spot.
+document.querySelectorAll("[data-shuffle]").forEach((list) => {
+  const items = [...list.children];
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  list.append(...items);
+});

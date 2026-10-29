@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: "Join the waitlist for hosted Shellui | Open-source shell"
+description: "Get an invite to the hosted Shellui service when it opens. Shellui stays free, MIT licensed, and self-hostable on your own servers today."
+---
+<div class="relative isolate page-x page-top pb-24">
+  <div class="mx-auto max-w-xl">
+    {% include "breadcrumbs.njk" %}
+    <h1 class="text-4xl font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">Join the waitlist</h1>
+    <p class="mt-6 text-lg text-pretty text-muted-foreground">
+      The hosted Shellui service opens by invite. Leave your email and we send you an invite when a spot opens. Shellui itself stays free and MIT licensed, and you can self-host it today.
+    </p>
+    <p class="mt-6 rounded-lg border border-border bg-muted/40 px-4 py-3 text-sm/6 text-foreground">
+      This waitlist is only for the hosted version. Shellui is free and open source, and you can fully use it today by self-hosting. <a href="{{ site.docs }}/quickstart" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Start with the quickstart</a>.
+    </p>
+    <div class="mt-8">
+      {% set newsletterVariant = "form" %}
+      {% set newsletterId = "waitlist" %}
+      {% set newsletterList = site.waitlist %}
+      {% set newsletterButton = "Join waitlist" %}
+      {% include "newsletter-signup.njk" %}
+    </div>
+    <p class="mt-6 text-sm/6 text-muted-foreground">
+      You confirm your address first. Only your email is stored, and every message has an unsubscribe link.
+    </p>
+  </div>
+</div>

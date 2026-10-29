@@ -1,0 +1,131 @@
+/* Interactive layouts piece (/features/apps-and-navigation/). Matches the Shellui 0.7 shell layouts. Site variables only. */
+.lyx{--bg:var(--color-secondary);--card:var(--color-background);--bd:var(--color-border);--fg:var(--color-foreground);--mu:var(--color-muted-foreground);--muted:var(--color-secondary);--sb:var(--color-muted);--gold:var(--color-primary);--gold-fg:var(--color-primary-foreground);--gt:var(--color-primary-ink);--sk:var(--color-border);
+  --chrome:color-mix(in oklch,var(--sb) 97%,black);--hover:color-mix(in oklch,var(--fg) 7%,transparent);--hair:color-mix(in oklch,var(--bd) 80%,transparent);
+  --glass:color-mix(in oklch,var(--sb) 72%,transparent);--glass-edge:color-mix(in oklch,var(--bd) 70%,transparent);--glass-hi:color-mix(in oklch,white 38%,transparent);
+  --glass-sh:0 1px 0 var(--glass-hi) inset,0 8px 28px color-mix(in oklch,black 12%,transparent),0 1px 3px color-mix(in oklch,black 8%,transparent);
+  --win-sh:0 1px 2px color-mix(in oklch,black 8%,transparent),0 20px 44px -14px color-mix(in oklch,black 26%,transparent);
+  --win-sh-idle:0 1px 2px color-mix(in oklch,black 6%,transparent),0 10px 24px -12px color-mix(in oklch,black 16%,transparent);
+  --wash:color-mix(in oklch,var(--gold) 12%,transparent);--ease:cubic-bezier(.32,.72,0,1);
+  position:relative;overflow:hidden;border:1px solid var(--bd);border-radius:1rem;isolation:isolate;background:var(--bg);padding:2.5rem 1rem 2rem}
+.dark .lyx{--bg:var(--color-background);--card:var(--color-background);--muted:var(--color-secondary);--sb:color-mix(in oklch,var(--color-background) 94%,white);
+  --chrome:color-mix(in oklch,var(--sb) 88%,white);--glass:color-mix(in oklch,var(--sb) 70%,transparent);--glass-hi:color-mix(in oklch,white 10%,transparent);
+  --glass-sh:0 1px 0 var(--glass-hi) inset,0 12px 36px color-mix(in oklch,black 42%,transparent),0 1px 4px color-mix(in oklch,black 24%,transparent);
+  --win-sh:0 1px 2px color-mix(in oklch,black 30%,transparent),0 24px 52px -14px color-mix(in oklch,black 60%,transparent);
+  --win-sh-idle:0 1px 2px color-mix(in oklch,black 24%,transparent),0 12px 28px -12px color-mix(in oklch,black 40%,transparent);
+  --wash:color-mix(in oklch,var(--gold) 9%,transparent)}
+.lyx::before{z-index:-1;content:"";position:absolute;inset:0 0 auto;height:220px;background:linear-gradient(color-mix(in oklch,var(--gold) 10%,transparent),transparent);pointer-events:none}
+.lyx-seg{position:relative;display:flex;gap:2px;max-width:100%;overflow-x:auto;width:max-content;min-width:0;margin:0;padding:4px;border:1px solid var(--bd);border-radius:10px;background:var(--card);box-shadow:0 1px 2px color-mix(in oklch,black 5%,transparent);scrollbar-width:none}
+.lyx-top{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 28px;position:relative}
+.lyx-play.anim-play{position:static;flex:none}
+.lyx-seg button{all:unset;cursor:pointer;flex:none;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--mu);padding:8px 14px;border-radius:7px;position:relative;z-index:1;transition:color .2s}
+.lyx-seg button[aria-selected=true]{color:var(--fg)}
+.lyx-seg button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.lyx-exp{font-size:10px;font-weight:500;line-height:1;padding:3px 6px;border-radius:999px;border:1px dashed var(--gold);color:var(--gt)}
+.lyx-pill{position:absolute;top:4px;height:calc(100% - 8px);background:var(--muted);border-radius:7px;transition:left .5s var(--ease),width .5s var(--ease)}
+.lyx-fit{position:relative;max-width:1200px;margin:0 auto}
+.lyx-wrap{position:relative;width:960px;transform-origin:0 0}
+.lyx-stage{position:relative;width:960px;height:600px;border-radius:14px;border:1px solid var(--bd);background:var(--sb);box-shadow:0 1px 3px color-mix(in oklch,black 6%,transparent),0 24px 48px -16px color-mix(in oklch,black 18%,transparent);overflow:hidden;color:var(--fg);transition:background .5s var(--ease)}
+.lyx-stage *{transition:all .5s var(--ease)}
+.lyx-stage svg{width:12px;height:12px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.lyx-a{position:absolute}
+.lyx-logo{width:16px;height:16px;flex:none;border-radius:4px;background:var(--fg)}
+.lyx-tile{width:13px;height:13px;flex:none;border-radius:3px;border:1.5px solid currentColor;box-sizing:border-box}
+.lyx-ib{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;color:var(--mu)}
+/* Sidebar */
+.lyx-side{left:0;top:0;bottom:0;width:192px;background:var(--sb);border-right:1px solid var(--bd);display:flex;flex-direction:column;box-sizing:border-box}
+.lyx-sh{height:32px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 6px 0 12px;border-bottom:1px solid var(--hair)}
+.lyx-nav{flex:1;padding:6px;display:flex;flex-direction:column;gap:2px}
+.lyx-ni{display:flex;align-items:center;gap:8px;height:24px;font-size:11px;font-weight:450;color:color-mix(in oklch,var(--fg) 88%,transparent);padding:0 8px;border-radius:6px;white-space:nowrap}
+.lyx-ni i{width:12px;height:12px;flex:none;border-radius:3px;border:1.5px solid color-mix(in oklch,var(--fg) 66%,transparent);box-sizing:border-box}
+.lyx-ni.on{background:var(--gold);color:var(--gold-fg);font-weight:550}.lyx-ni.on i{border-color:currentColor}
+.lyx-gap{margin-top:8px}
+.lyx-ext{margin-left:auto;display:inline-flex;opacity:.7}.lyx-ext svg{width:10px;height:10px}
+.lyx-cap{font-size:9.5px;font-weight:600;color:color-mix(in oklch,var(--fg) 58%,transparent);padding:9px 8px 3px}
+.lyx-foot{flex:none;padding:6px;border-top:1px solid var(--hair)}
+.lyx-gear{display:inline-flex}
+/* App bar */
+.lyx-bar{left:0;right:0;top:0;height:42px;background:var(--sb);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:2px;padding:0 10px;box-sizing:border-box;transform:translateY(-100%);opacity:0}
+.lyx-bar .lyx-logo{margin-right:8px}
+.lyx-bi{position:relative;display:inline-flex;align-items:center;gap:4px;height:24px;font-size:11px;font-weight:500;color:color-mix(in oklch,var(--fg) 62%,transparent);padding:0 8px;border-radius:6px;white-space:nowrap}
+.lyx-bi.on{color:var(--fg);font-weight:600}
+.lyx-bi.on::after{content:"";position:absolute;left:8px;right:8px;bottom:-9px;height:2px;border-radius:2px;background:var(--gold)}
+.lyx-caret{display:inline-flex;opacity:.7}.lyx-caret svg{width:10px;height:10px}
+.lyx-end{margin-left:auto}
+/* Content */
+.lyx-main{left:192px;top:0;right:0;bottom:0;background:var(--card);overflow:hidden;border:1px solid transparent;z-index:1}
+/* Banner behind the content, so the floating glass blur reads. */
+.lyx-art{position:absolute;left:0;right:0;top:0;height:150px;overflow:hidden;background:linear-gradient(120deg,var(--gold),color-mix(in srgb,var(--gold) 40%,var(--card)) 60%,color-mix(in srgb,var(--gold) 18%,var(--card)))}
+.lyx-art span{position:absolute;border-radius:999px;filter:blur(2px)}
+.lyx-art span:nth-child(1){width:180px;height:180px;left:-30px;top:-50px;background:color-mix(in srgb,var(--gold) 45%,white)}
+.lyx-art span:nth-child(2){width:120px;height:120px;left:110px;top:60px;background:color-mix(in srgb,var(--gold) 70%,var(--fg))}
+.lyx-art span:nth-child(3){width:220px;height:220px;right:60px;top:-90px;background:color-mix(in srgb,var(--gold) 80%,white)}
+.lyx-ct{position:relative;padding:172px 32px 28px}
+.lyx-h{margin:0;font-size:22px;font-weight:600;color:var(--fg)}
+.lyx-p{margin:8px 0 18px;font-size:13px;line-height:1.55;color:var(--mu);max-width:560px}
+.lyx-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:560px}
+.lyx-cd{border:1px solid var(--bd);border-radius:12px;padding:10px 12px;display:flex;gap:12px;align-items:center;font-size:13px;font-weight:500;color:var(--fg);background:var(--card)}
+.lyx-cd.on{border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in oklch,var(--gold) 15%,transparent)}
+.lyx-th{width:54px;height:34px;border-radius:5px;background:var(--muted);position:relative;overflow:hidden}.lyx-th b{position:absolute;background:var(--gold)}
+/* Windows: desktop, windows and taskbar */
+.lyx-desk{position:absolute;inset:0;display:none;background:radial-gradient(60% 40% at 30% 100%,var(--wash),transparent),radial-gradient(50% 30% at 75% 100%,color-mix(in oklch,var(--gold) 7%,transparent),transparent),var(--card)}
+.lyx-desk::before{content:"";position:absolute;inset:0;background-image:radial-gradient(color-mix(in oklch,var(--fg) 15%,transparent) 1.1px,transparent 1.1px);background-size:24px 24px}
+.lyx-desk canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.lyx-desk:has(canvas[width])::before{content:none}
+.lyx-win2{width:304px;height:236px;left:628px;top:96px;background:var(--card);border:1px solid var(--bd);border-radius:12px;overflow:hidden;opacity:0;transform:scale(.9);box-shadow:var(--win-sh-idle)}
+.lyx-tb,.lyx-tb2{height:27px;box-sizing:border-box;border-bottom:1px solid var(--bd);background:var(--card);display:flex;align-items:center;gap:7px;padding:0 6px 0 10px;font-size:10px;font-weight:600;color:var(--fg)}
+.lyx-tb2{padding-left:22px;color:var(--mu);font-weight:550}
+.lyx-tb{position:absolute;z-index:1;left:0;right:0;top:0;opacity:0}
+.lyx-ctl{margin-left:auto;display:flex;gap:2px;color:var(--mu)}
+.lyx-ctl svg{width:21px;height:21px;padding:5px;box-sizing:border-box;border-radius:5px}
+.lyx-sk{height:10px;background:var(--sk);border-radius:4px}
+.lyx-btn{margin-top:18px;display:inline-block;font-size:12px;font-weight:500;background:var(--fg);color:var(--card);padding:7px 12px;border-radius:6px}
+.lyx-task{left:0;right:0;bottom:-40px;height:36px;z-index:4;background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-top:1px solid var(--glass-edge);display:flex;align-items:center;gap:4px;padding:0 8px;box-sizing:border-box;font-size:10px;font-weight:500;color:var(--fg)}
+.lyx-start{display:flex;align-items:center;gap:7px;height:28px;padding:0 8px 0 4px;font-weight:600}
+.lyx-tk{position:relative;display:flex;align-items:center;gap:6px;height:28px;padding:0 8px;border-radius:6px;white-space:nowrap}
+.lyx-tk.on{background:color-mix(in oklch,var(--fg) 8%,transparent);font-weight:600}
+.lyx-tk.on::after,.lyx-tk.open::after{content:"";position:absolute;left:50%;bottom:1px;height:2px;border-radius:2px;transform:translateX(-50%)}
+.lyx-tk.on::after{width:12px;background:var(--gold)}
+.lyx-tk.open::after{width:5px;background:color-mix(in oklch,var(--fg) 40%,transparent)}
+.lyx-tray{margin-left:auto;display:flex;align-items:center;gap:6px;height:100%}
+.lyx-tray .lyx-tk{border-left:1px solid var(--hair);border-radius:0;padding-left:12px}
+.lyx-clock{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;font-variant-numeric:tabular-nums;border-left:1px solid var(--hair);padding:0 6px 0 12px}
+.lyx-clock small{font-size:8px;color:var(--mu)}
+/* Badges */
+.lyx-badges{position:absolute;inset:0;pointer-events:none;z-index:9}
+.lyx-bd{position:absolute;display:flex;align-items:center;opacity:0;transition:opacity .18s ease-out}
+.lyx-bd.show{opacity:1}
+.lyx-bd.l{flex-direction:row-reverse}
+.lyx-bd .ln{border-top:1.5px dashed var(--gold);width:28px}.lyx-bd .dt{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.lyx-bd .tx{font-family:var(--font-mono,ui-monospace,monospace);font-size:10px;font-weight:500;color:var(--gt);background:var(--card);border:1px dashed var(--gold);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.lyx-code{text-align:center;margin:22px 0 0;font-family:var(--font-mono,ui-monospace,monospace);font-size:13px;font-weight:500;color:var(--mu)}.lyx-code b{color:var(--gt);font-weight:500}
+.lyx-file{margin-right:.5em}
+/* Layouts */
+[data-l=sidebar-inset]{background:var(--chrome)}
+[data-l=sidebar-inset] .lyx-side{background:transparent;border-right-color:transparent;width:201px}
+[data-l=sidebar-inset] .lyx-sh{border-bottom-color:transparent}
+[data-l=sidebar-inset] .lyx-foot{border-top-color:transparent}
+[data-l=sidebar-inset] .lyx-ni.on{box-shadow:0 1px 2px color-mix(in oklch,black 10%,transparent)}
+[data-l=sidebar-inset] .lyx-main{left:201px;top:9px;right:9px;bottom:9px;border-color:var(--bd);border-radius:12px;box-shadow:0 1px 2px color-mix(in oklch,black 5%,transparent)}
+[data-l=app-bar] .lyx-side,[data-l=app-bar-inset] .lyx-side,[data-l=fullscreen] .lyx-side,[data-l=windows] .lyx-side{transform:translateX(-100%);opacity:0}
+[data-l=floating] .lyx-side{left:9px;top:9px;bottom:9px;width:180px;border:1px solid var(--glass-edge);border-radius:14px;background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);z-index:3;box-shadow:var(--glass-sh)}
+[data-l=floating] .lyx-ni{border-radius:8px}
+[data-l^=app-bar] .lyx-bar{transform:none;opacity:1}
+[data-l=app-bar-inset]{background:var(--chrome)}
+[data-l=app-bar-inset] .lyx-bar{background:transparent;border-bottom-color:transparent}
+[data-l=app-bar-inset] .lyx-bi.on{background:var(--card);box-shadow:0 0 0 1px var(--bd),0 1px 2px color-mix(in oklch,black 8%,transparent)}
+[data-l=app-bar-inset] .lyx-bi.on::after{opacity:0}
+[data-l^=app-bar] .lyx-main{left:0;top:42px}
+[data-l=app-bar-inset] .lyx-main{top:33px;left:9px;right:9px;bottom:9px;border-color:var(--bd);border-radius:12px;box-shadow:0 1px 2px color-mix(in oklch,black 5%,transparent)}
+[data-l=floating] .lyx-main{left:0}[data-l=floating] .lyx-ct{padding-left:222px}
+[data-l=fullscreen] .lyx-main{left:0}
+[data-l=windows] .lyx-desk{display:block}
+[data-l=windows] .lyx-main{left:48px;top:48px;right:320px;bottom:110px;border-color:color-mix(in oklch,var(--bd) 92%,var(--fg));border-radius:12px;box-shadow:var(--win-sh);z-index:2}
+[data-l=windows] .lyx-tb{opacity:1}
+[data-l=windows] .lyx-art{top:27px}
+[data-l=windows] .lyx-ct{padding-top:200px}
+[data-l=windows] .lyx-task{bottom:0}
+[data-l=windows] .lyx-win2{opacity:1;transform:none}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.lyx{--glass:color-mix(in oklch,var(--sb) 96%,transparent)}}
+@media (prefers-reduced-transparency:reduce){.lyx{--glass:color-mix(in oklch,var(--sb) 96%,transparent)}}
+@media (prefers-reduced-motion:reduce){.lyx-stage,.lyx-stage *,.lyx-pill,.lyx-bd{transition:none!important}}
+.lyx[data-still] .lyx-stage,.lyx[data-still] .lyx-stage *,.lyx[data-still] .lyx-pill,.lyx[data-still] .lyx-bd{transition:none!important}

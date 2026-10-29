@@ -1,0 +1,54 @@
+/* Drawer illustration (ids dr-, dark copy drd-). Synced from playground-mock/svg/drawer.
+   Animates when an ancestor .anim-card is hovered or focused. */
+.dr-light{--bg:#F3F4F6;--dot:#D7DADF;--win:#FFFFFF;--winln:#E5E7EB;--side:#F9FAFB;--wf:#EEF0F3;--code:#F9FAFB;--gb:#F6E3B0;--rb:#F8D3D3;--sg:var(--color-primary-ink);--sm:#6B7280;--pill:#FFFFFF;--pillln:#E5E7EB;--c:#FFFFFF;--cln:#E5E7EB;--fg:#111827;--mf:#6B7280;--mu:#F3F4F6;--mu5:#F9FAFB;--de:#DC2626;--de1:#FCE9E9;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#FFFBEB;--sh:.1;--ov:.38}
+.dr-dark{--bg:#030712;--dot:#1A2130;--win:#0A0F1C;--winln:rgba(255,255,255,.08);--side:#0D1322;--wf:#151C2B;--code:#0D1322;--gb:#3A2E10;--rb:#3A1414;--sg:var(--color-primary);--sm:#9CA3AF;--pill:#101828;--pillln:rgba(255,255,255,.1);--c:#030712;--cln:#1F2937;--fg:#F9FAFB;--mf:#9CA3AF;--mu:#1F2937;--mu5:#11151F;--de:#EF4444;--de1:#2F0E12;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#1C1607;--sh:.1;--ov:.55}
+.dr-art .bg{fill:var(--bg)}
+.dr-art .dot{fill:var(--dot)}
+.dr-art .win{fill:var(--win);stroke:var(--winln)}
+.dr-art .side{fill:var(--side)}
+.dr-art .div{fill:var(--winln)}
+.dr-art .wf{fill:var(--wf)}
+.dr-art .code{fill:var(--code);stroke:var(--winln)}
+.dr-art .gb{fill:var(--gb)}
+.dr-art .rb{fill:var(--rb)}
+.dr-art .sg{fill:var(--sg)}
+.dr-art .sm{fill:var(--sm)}
+.dr-art .pill{fill:var(--pill);stroke:var(--pillln)}
+.dr-art .gold{fill:var(--color-primary)}
+.dr-art .ld{fill:none;stroke:var(--color-primary);stroke-dasharray:4 4}
+.dr-art .c{fill:var(--c);stroke:var(--cln)}
+.dr-art .cf{fill:var(--c)}
+.dr-art .wh{fill:#fff}
+.dr-art .ln{fill:var(--cln)}
+.dr-art .fg{fill:var(--fg)}
+.dr-art .mf{fill:var(--mf)}
+.dr-art .mu{fill:var(--mu)}
+.dr-art .mu5{fill:var(--mu5)}
+.dr-art .de{fill:var(--de)}
+.dr-art .de1{fill:var(--de1)}
+.dr-art .pr{fill:var(--pr)}
+.dr-art .prf{fill:var(--prf)}
+.dr-art .sel{fill:var(--sel);stroke:var(--pr)}
+.dr-art .sfg{fill:none;stroke:var(--fg)}
+.dr-art .sde{fill:none;stroke:var(--de)}
+.dr-art .smf{fill:none;stroke:var(--mf)}
+.dr-art .ov{fill:#000;opacity:var(--ov)}
+.dr-art .an{transform-box:fill-box}
+.dr-art .shf{flood-color:#000;flood-opacity:var(--sh)}
+@keyframes dr-f{0%{opacity:0}}
+@keyframes dr-s{0%{transform:translateX(105%)}100%{transform:none}}
+@keyframes dr-fd{0%{opacity:0}100%{opacity:1}}
+@keyframes dr-h-ova{0%{opacity:var(--ov);transform:none;animation-timing-function:ease}35.71%{opacity:0;transform:none}42.86%{opacity:0;animation-timing-function:ease}100%{opacity:var(--ov);transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .ova{animation:dr-h-ova 0.70s linear both}
+@keyframes dr-h-pn{0%{opacity:1;transform:none;animation-timing-function:ease}23.81%{opacity:0;transform:none}41.90%{opacity:0;transform:translateX(105%)}42.86%{opacity:1;transform:translateX(105%);animation-timing-function:cubic-bezier(.32,.72,0,1)}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .pn{animation:dr-h-pn 1.05s linear both}
+@keyframes dr-h-bdb0{0%{opacity:1;transform:none;animation-timing-function:ease}20.33%{opacity:0;transform:none}85.37%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .bd.b0{animation:dr-h-bdb0 1.23s linear both}
+@keyframes dr-h-bdb1{0%{opacity:1;transform:none;animation-timing-function:ease}18.12%{opacity:0;transform:none}86.96%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .bd.b1{animation:dr-h-bdb1 1.38s linear both}
+@keyframes dr-h-bdb2{0%{opacity:1;transform:none;animation-timing-function:ease}16.34%{opacity:0;transform:none}88.24%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .bd.b2{animation:dr-h-bdb2 1.53s linear both}
+@keyframes dr-h-bdb3{0%{opacity:1;transform:none;animation-timing-function:ease}14.88%{opacity:0;transform:none}89.29%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dr-art .bd.b3{animation:dr-h-bdb3 1.68s linear both}
+.anim-card:has(.dr-art){--seq:1.68s}
+@media (prefers-reduced-motion:reduce){.dr-art *{animation:none!important}}

@@ -1,7 +1,7 @@
 ---
 layout: layouts/feature.njk
 wide: true
-title: Storage | Shellui
+title: "File storage, uploads and share links | Shellui"
 description: "Add file uploads, browsing, and sharing to your Shellui apps. Connect storage-service for file permissions, share links, and storage limits."
 eyebrow: Features
 heading: "File storage your apps can share"
@@ -11,7 +11,7 @@ lede: "Connect storage-service to upload, browse, and share files across your ap
 <div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
   <div class="max-w-2xl">
     <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Connect your apps to a shared file store</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">The <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.storageService }}">storage-service</a> backend stores files in Amazon S3-compatible storage or on your server's filesystem. It verifies the signed-in account and enforces company and optional per-user storage limits.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.storageService }}">storage-service</a> backend stores files in Amazon S3-compatible storage or on your server's filesystem. It verifies the signed-in account and enforces company and optional per-user storage limits.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">Your apps call <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.storage</code> through the SDK. The shell sends each request to the configured storage service with the signed-in account's access token.</p>
   </div>
   <div class="mx-auto w-full max-w-xs">
@@ -21,15 +21,15 @@ lede: "Connect storage-service to upload, browse, and share files across your ap
 
 <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
   <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connect storage</p>
+    <p class="text-sm font-semibold text-primary-ink">1. Connect storage</p>
     <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage.url</code> to your storage service. Add <code class="rounded bg-muted px-1.5 py-0.5 text-sm">filesUrl</code> to connect the Files explorer and picker.</p>
   </div>
   <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Check storage usage</p>
+    <p class="text-sm font-semibold text-primary-ink">2. Check storage usage</p>
     <p class="mt-2 text-sm/6 text-muted-foreground">See current usage in Settings → Storage. You can hide this settings page while keeping storage available in Administration and through the SDK.</p>
   </div>
   <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Work with files</p>
+    <p class="text-sm font-semibold text-primary-ink">3. Work with files</p>
     <p class="mt-2 text-sm/6 text-muted-foreground">After <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">init</code>, upload, list, move, and download through <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.storage.from("company")</code>.</p>
   </div>
 </div>
@@ -52,8 +52,22 @@ lede: "Connect storage-service to upload, browse, and share files across your ap
     <h2 id="files-from-iframe" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Upload and select files from your app</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Use the SDK to upload, list, move, and download files. Calls return <code class="rounded bg-muted px-1.5 py-0.5 text-sm">{ data, error }</code> so your app can handle failures. The file picker opens the Files app in a shell modal for selecting files or folders.</p>
   </div>
+  <article tabindex="0" aria-labelledby="upload-card-title" class="anim-card mt-10 flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:flex-row">
+    <div class="p-6 md:flex md:w-2/5 md:flex-col md:justify-center">
+      <h3 id="upload-card-title" class="text-lg font-semibold tracking-tight text-foreground">Upload progress in the shell</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Uploads appear in a shell toast with progress for each file. People keep working while files finish, can cancel one, and see which file failed.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Hover or focus the card to play it.</p>
+    </div>
+    <div class="anim-visual relative border-t border-border bg-muted md:w-3/5 md:border-t-0 md:border-l" data-anim-play>
+      {% include "feature-visual-upload.njk" %}
+      <button type="button" class="anim-play" aria-label="Play upload animation">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle class="anim-ring" cx="20" cy="20" r="19"/><circle class="anim-ring-fill" cx="20" cy="20" r="19" pathLength="100"/><path class="anim-icon" d="M16 13.5v13l10.5-6.5z"/></svg>
+      </button>
+    </div>
+  </article>
   {% include "storage-sdk-examples.njk" %}
 </section>
+<script src="/assets/js/anim-card.js" type="module"></script>
 
 <section class="mt-20" aria-labelledby="private-by-default">
   <div class="max-w-2xl">
@@ -81,7 +95,7 @@ lede: "Connect storage-service to upload, browse, and share files across your ap
 <section class="mt-20" aria-labelledby="storage-events">
   <div class="max-w-2xl">
     <h2 id="storage-events" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Events, webhooks, and email</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">When you set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">EMAIL_SERVICE_API_KEY</code>, storage posts events to email-service and stores every event for the event log. Webhook and email bodies omit tokens, sign-in links, signed URLs, and other secrets. Company owners manage the rules in <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/#webhooks">Administration</a>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">When you set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">EMAIL_SERVICE_API_KEY</code>, storage posts events to email-service and stores every event for the event log. Webhook and email bodies omit tokens, sign-in links, signed URLs, and other secrets. Company owners manage the rules in <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/administration/#webhooks">Administration</a>.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">The storage image runs webhook retries every minute and an hourly data purge. It does not need cron. In production, set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">REDIS_URL</code> or the container does not start. Scheduler metrics stay on the staff metrics endpoint.</p>
   </div>
 </section>
@@ -98,4 +112,4 @@ lede: "Connect storage-service to upload, browse, and share files across your ap
 ] %}
 {% include "feature-docs.njk" %}
 
-<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">See how the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/architecture/">architecture</a> connects the shell to its backend services.</p>
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">See how the <a class="font-medium text-primary-ink underline underline-offset-2" href="/architecture/">architecture</a> connects the shell to its backend services.</p>

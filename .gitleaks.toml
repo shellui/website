@@ -1,0 +1,16 @@
+title = "Shellui website"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Public email-service newsletter list key. The nl_ value is a client-side list id, not a credential."
+condition = "AND"
+paths = ['''src/_data/site\.json''']
+regexes = ['''nl_[A-Za-z0-9_-]+''']
+
+[[allowlists]]
+description = "Public IndexNow key. It is served at /<key>.txt by design, not a credential."
+condition = "AND"
+paths = ['''src/_data/site\.json''']
+regexes = ['''"indexNowKey": "[a-f0-9]{32}"''']

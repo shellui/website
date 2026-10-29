@@ -2,12 +2,11 @@
   "name": "Shellui",
   "url": "https://shellui.com",
   "description": "Shellui is the open-source web app development platform: a microfrontend shell with authentication, administration, email, storage, and shared UI.",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "versionScope": "website-package",
   "author": "Shellui",
   "docs": "https://docs.shellui.com",
   "playground": "https://playground.shellui.com",
-  "hosting": "https://shellui.app",
   "agent": "https://shellui.ai",
   "github": "https://github.com/shellui",
   "identityService": "https://github.com/shellui/identity-service",
@@ -15,14 +14,24 @@
   "storageService": "https://github.com/shellui/storage-service",
   "hostingService": "https://github.com/shellui/hosting-service",
   "emailService": "https://github.com/shellui/email-service",
-  "hosting": "https://shellui.app",
   "twitter": "https://x.com/shelluihq",
   "linkedin": "https://www.linkedin.com/company/shellui",
   "docker": "https://hub.docker.com/u/shellui",
+  "npm": "https://www.npmjs.com/package/@shellui/core",
+  "indexNowKey": "5e6fb66778be2c9a0998280e3fac9ac5",
   "locale": "en",
   "rss": "/blog/feed.xml",
+  "dashboard": "https://dashboard.shellui.com",
+  "waitlist": {
+    "endpoint": "https://email.shellui.com",
+    "key": "nl_EMrDlKgYvmEntCknWoI7Hdxz"
+  },
+  "demo": {
+    "endpoint": "https://email.shellui.com",
+    "key": "nl_H5WcGGOk6HSNt1pI6_tOsD36"
+  },
   "newsletter": {
     "endpoint": "https://email.shellui.com",
-    "key": ""
+    "key": "nl_igSktwulL-JQyvFKGUGXds0Y"
   }
 }

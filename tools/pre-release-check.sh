@@ -49,26 +49,23 @@ log "Pre-release check for website ${VERSION}"
 # ---------------------------------------------------------------------------
 log "1/3 Version alignment"
 
-if ! grep -E "^## \[${VERSION}\] - [0-9]{4}-[0-9]{2}-[0-9]{2}$" CHANGELOG.md >/dev/null; then
-  fail "CHANGELOG.md must contain a dated entry exactly like: ## [${VERSION}] - YYYY-MM-DD"
-fi
-if grep -E "^## \[${VERSION}\] - .*MM-DD" CHANGELOG.md >/dev/null; then
-  fail "CHANGELOG.md entry for ${VERSION} still has a placeholder date (MM-DD)"
+if grep -E "^## \[${VERSION}\] - Unreleased$" CHANGELOG.md >/dev/null; then
+  printf 'OK: version %s aligned (CHANGELOG Unreleased on develop)\n' "${VERSION}"
+elif ! grep -E "^## \[${VERSION}\] - [0-9]{4}-[0-9]{2}-[0-9]{2}$" CHANGELOG.md >/dev/null; then
+  fail "CHANGELOG.md must contain ## [${VERSION}] - Unreleased or a dated entry ## [${VERSION}] - YYYY-MM-DD"
+else
+  if grep -E "^## \[${VERSION}\] - .*MM-DD" CHANGELOG.md >/dev/null; then
+    fail "CHANGELOG.md entry for ${VERSION} still has a placeholder date (MM-DD)"
+  fi
+  printf 'OK: version %s aligned in package.json and CHANGELOG.md\n' "${VERSION}"
 fi
 
-# Topmost real release heading should be this version (ignore HTML comments).
-TOP_HEADING="$(
-  grep -E '^## \[' CHANGELOG.md \
-    | grep -v 'Unreleased' \
-    | head -1 \
-    || true
-)"
+# Topmost release heading should be this version (ignore HTML comments).
+TOP_HEADING="$(awk '/<!--/{c=1} !c && /^## \[/{print; exit} /-->/{c=0}' CHANGELOG.md || true)"
 [[ -n "${TOP_HEADING}" ]] || fail 'CHANGELOG.md has no version headings'
 EXPECTED="## [${VERSION}] -"
 [[ "${TOP_HEADING}" == "${EXPECTED}"* ]] \
   || fail "CHANGELOG.md top release is '${TOP_HEADING}', expected version ${VERSION}"
-
-printf 'OK: version %s aligned in package.json and CHANGELOG.md\n' "${VERSION}"
 
 # ---------------------------------------------------------------------------
 # 2. Hygiene

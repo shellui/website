@@ -82,7 +82,7 @@
   @apply pt-20 md:pt-24 lg:pt-32;
 }
 
-/* Horizontal shell gutters. Put on the outer band; keep max-w-* children undpadded so chrome and content share one edge. */
+/* Horizontal shell gutters. Put on the outer band; keep max-w-* children unpadded so chrome and content share one edge. */
 .page-x {
   @apply px-4 sm:px-6 lg:px-8;
 }
@@ -270,7 +270,7 @@
 }
 
 .prose :where(a) {
-  @apply text-primary-ink underline underline-offset-2 dark:text-primary;
+  @apply text-primary-ink underline underline-offset-2;
 }
 
 .prose a.outbound-button {
@@ -382,7 +382,7 @@
 }
 
 .dark .article-body > ul > li::before {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-ink);
 }
 
 .article-body > ul strong {
@@ -394,11 +394,11 @@
 }
 
 .article-body > blockquote {
-  @apply mt-10 border-l border-primary-ink pl-9 font-semibold text-gray-900 dark:border-primary dark:text-white;
+  @apply mt-10 border-l border-primary-ink pl-9 font-semibold text-gray-900 dark:text-white;
 }
 
 .article-body a {
-  @apply text-primary-ink underline underline-offset-2 dark:text-primary;
+  @apply text-primary-ink underline underline-offset-2;
 }
 
 .article-body code {
@@ -571,3 +571,13 @@
   background-color: color-mix(in oklab, var(--color-primary) 16%, rgb(3 7 18));
   color: var(--color-primary);
 }
+
+.agent-marks > :nth-child(n + 5) { display: none; }
+.agent-prompt .prompt-label, .agent-prompt .prompt-text { transition: opacity .25s, transform .25s; }
+.agent-prompt .prompt-text { opacity: 0; transform: translateY(4px); }
+.agent-prompt:is(:hover, :focus-visible, [data-copied]) .prompt-label { opacity: 0; transform: translateY(-4px); }
+.agent-prompt:is(:hover, :focus-visible, [data-copied]) .prompt-text { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .agent-prompt .prompt-label, .agent-prompt .prompt-text { transition: none; transform: none !important; } }
+.copy-btn .check-icon { display: none; }
+.copy-btn[data-copied] .copy-icon { display: none; }
+.copy-btn[data-copied] .check-icon { display: block; }

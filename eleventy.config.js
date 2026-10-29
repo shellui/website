@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { generateOgImages } from "./tools/og/generate.mjs";
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -47,10 +48,6 @@ const ISLANDS = [
   {
     entry: "src/islands/architecture-graph/index.jsx",
     outfile: "_site/assets/js/architecture-graph.island.js",
-  },
-  {
-    entry: "src/islands/auth-flow/index.jsx",
-    outfile: "_site/assets/js/auth-flow.island.js",
   },
 ];
 
@@ -218,6 +215,7 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({
     CNAME: "CNAME",
+    "brand-assets": "brand-assets",
     img: "img",
     "favicon.ico": "favicon.ico",
     "apple-touch-icon.png": "apple-touch-icon.png",
@@ -227,6 +225,8 @@ export default async function (eleventyConfig) {
     "node_modules/@tailwindplus/elements/dist/index.js": "assets/js/elements.js",
     "content/guidelines/design.md": "design.md",
     "content/guidelines": "guidelines",
+    "content/guidelines/generated": "guidelines/generated",
+    "src/assets/fonts": "assets/fonts",
   });
 
   eleventyConfig.addFilter("readableDate", (date) =>
@@ -284,6 +284,23 @@ export default async function (eleventyConfig) {
     return `<figure class="article-figure mt-16">${img}${figcaption}</figure>`;
   });
 
+  // Themed image: light and dark pair toggled by `.dark`, or light only in a dark-mode card.
+  // Raster: pass base paths without extension (expects .webp and .png). SVG: pass the full .svg path.
+  eleventyConfig.addShortcode("themedImage", (opts = {}) => {
+    const { light, dark, width, height, alt, class: cls = "h-auto w-full", loading = "lazy" } = opts;
+    if (!light) throw new Error("themedImage: `light` is required");
+    if (typeof alt !== "string" || !alt.trim()) throw new Error(`themedImage: \`alt\` is required (${light})`);
+    if (!width || !height) throw new Error(`themedImage: \`width\` and \`height\` are required (${light})`);
+    const img = (src) =>
+      `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" width="${escapeAttr(String(width))}" height="${escapeAttr(String(height))}" loading="${escapeAttr(loading)}" decoding="async" class="${escapeAttr(cls)}" />`;
+    const pic = (base, wrap) =>
+      /\.svg$/i.test(base)
+        ? `<span class="${wrap}">${img(base)}</span>`
+        : `<picture class="${wrap}"><source type="image/webp" srcset="${escapeAttr(base)}.webp" />${img(`${base}.png`)}</picture>`;
+    if (!dark) return pic(light, "block dark:overflow-hidden dark:rounded-xl dark:ring-1 dark:ring-white/10");
+    return pic(light, "contents dark:hidden") + pic(dark, "hidden dark:contents");
+  });
+
   eleventyConfig.addPairedShortcode(
     "quote",
     (content, author = "", role = "", image = "") => {
@@ -294,7 +311,7 @@ export default async function (eleventyConfig) {
       const credit = [author, role].filter(Boolean).length
         ? `<figcaption class="mt-6 flex gap-x-4">${photo}<div class="text-sm/6">${author ? `<strong class="font-semibold text-gray-900 dark:text-white">${escapeXml(author)}</strong>` : ""}${author && role ? " - " : ""}${role ? escapeXml(role) : ""}</div></figcaption>`
         : "";
-      return `<figure class="article-quote mt-10 border-l border-primary-ink pl-9 dark:border-primary"><blockquote class="font-semibold text-gray-900 dark:text-white">${quote}</blockquote>${credit}</figure>`;
+      return `<figure class="article-quote mt-10 border-l border-primary-ink pl-9"><blockquote class="font-semibold text-gray-900 dark:text-white">${quote}</blockquote>${credit}</figure>`;
     },
   );
 
@@ -324,8 +341,11 @@ export default async function (eleventyConfig) {
   eleventyConfig.on("eleventy.before", buildCss);
   eleventyConfig.on("eleventy.before", buildIslands);
 
-  eleventyConfig.on("eleventy.after", ({ dir }) => {
-    if (hashAssets) fingerprintSite(dir.output);
+  eleventyConfig.on("eleventy.after", async ({ dir, results }) => {
+    if (hashAssets) {
+      await generateOgImages(dir.output, results || []);
+      fingerprintSite(dir.output);
+    }
   });
 
   eleventyConfig.setServerOptions({

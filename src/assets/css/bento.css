@@ -1,0 +1,93 @@
+/* Homepage bento visuals. Site tokens only; motion only on hover or focus, off under reduced motion. */
+.bento-art {
+  --bento-bg: var(--color-secondary);
+  --bento-dot: color-mix(in oklch, var(--color-foreground) 13%, transparent);
+  background: var(--bento-bg) radial-gradient(var(--bento-dot) .8px, transparent 1.2px) 0 0 / 14px 14px;
+}
+.dark .bento-art {
+  --bento-bg: var(--color-background);
+  --bento-dot: color-mix(in oklch, var(--color-foreground) 10%, transparent);
+}
+
+/* One art box for every tile: same height and padding, drawing centred and scaled to fit, never above its drawn size, never cropped. */
+.bento-art {
+  --bento-art-h: 13rem;
+  --bento-pad: 1.5rem;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  height: var(--bento-art-h);
+  padding: var(--bento-pad);
+}
+/* One shell: the tile spans 2 rows from 768px, so its art box grows to fill the tile and centres the drawing with the shared padding (one-shell.css picks the composition). */
+@media (min-width: 768px) { .bento-art-fill { height: auto; min-height: var(--bento-art-h); flex: 1 1 auto; } }
+.bento-art > svg { width: 100%; height: 100%; overflow: visible; }
+/* Drawn size caps (viewBox size), so a wide tile never blows a drawing up. */
+.bento-art > .aub { max-width: 480px; max-height: 209px; }
+.bento-art > .syb3 { max-width: 250px; max-height: 141px; }
+.bento-art > .stb { max-width: 298px; max-height: 140px; }
+.bento-art > .emb { max-width: 342px; max-height: 132px; }
+.bento-art > .ewb { max-width: 224px; max-height: 136px; }
+.bento-art > .adb { max-width: 298px; max-height: 144px; }
+.bento-art > .dkb { max-width: 298px; max-height: 153px; }
+.bento-art > .osb { max-width: 336px; max-height: 142px; }
+.bento-art > .apb { max-width: 298px; max-height: 144px; }
+/* The tile paints one dot grid behind every drawing, so the drawings' own backgrounds step aside. */
+.bento-art :is(.aub, .syb3, .emb, .ewb, .adb, .osb) .bg,
+.bento-art [fill="url(#aub-d)"], .bento-art [fill="url(#syb3-d)"], .bento-art [fill="url(#emb-d)"],
+.bento-art [fill="url(#ewb-d)"], .bento-art [fill="url(#adb-dp)"], .bento-art [fill="url(#osb-dots)"] { display: none; }
+@media (min-width: 1280px) {
+  .bento-art { --bento-art-h: 13.5rem; }
+}
+
+/* Shared tokens for the storage, desktop and audit tiles (storage-bento, desktop-bento, audit-bento). Matches admin-bento. */
+.btv {
+  --win: var(--color-background); --ln: var(--color-border); --side: var(--color-muted);
+  --fg: var(--color-foreground); --mf: var(--color-muted-foreground); --mu: var(--color-secondary);
+  --wf: color-mix(in oklch, var(--color-foreground) 11%, transparent); --wf2: var(--color-secondary);
+  --pr: var(--color-primary); --pk: var(--color-primary-ink); --pf: var(--color-primary-foreground);
+  --ok: var(--color-green-700, var(--color-primary-ink)); --er: var(--color-destructive);
+  --tl1: var(--color-red-400, var(--color-destructive)); --tl2: var(--color-amber-300, var(--color-primary)); --tl3: var(--color-green-400, var(--color-primary));
+  --sc: var(--color-foreground); --sh: .08;
+}
+.dark .btv {
+  --win: color-mix(in oklch, var(--color-background) 94%, white); --ln: color-mix(in oklch, white 9%, transparent);
+  --side: color-mix(in oklch, var(--color-background) 90%, white); --mu: color-mix(in oklch, var(--color-background) 84%, white);
+  --wf: color-mix(in oklch, white 13%, transparent); --wf2: color-mix(in oklch, var(--color-background) 84%, white);
+  --ok: var(--color-green-400, var(--color-primary)); --er: var(--color-red-400, var(--color-destructive));
+  --sc: black; --sh: .5;
+}
+.btv text { font-family: var(--font-sans, Inter), Inter, ui-sans-serif, system-ui, sans-serif; }
+.btv .mo { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+.btv .win { fill: var(--win); stroke: var(--ln); }
+.btv .card { fill: var(--win); stroke: var(--ln); }
+.btv .side { fill: var(--side); }
+.btv .sl { fill: none; stroke: var(--ln); }
+.btv .lnk { fill: none; stroke: var(--pr); stroke-dasharray: 3 4; stroke-opacity: .7; }
+.btv .fg { fill: var(--fg); } .btv .mf, .btv .mfd { fill: var(--mf); }
+.btv .fgf { fill: var(--fg); }
+.btv .mu { fill: var(--mu); } .btv .w { fill: var(--wf); } .btv .w2 { fill: var(--wf2); }
+.btv .pr { fill: var(--pr); } .btv .pk { fill: var(--pk); } .btv .pf { fill: var(--pf); }
+.btv .pfw { fill: var(--pf); fill-opacity: .75; }
+.btv .prt { fill: var(--pr); fill-opacity: .14; }
+.btv .ok { fill: var(--ok); } .btv .er { fill: var(--er); }
+.btv .tl1 { fill: var(--tl1); } .btv .tl2 { fill: var(--tl2); } .btv .tl3 { fill: var(--tl3); }
+.btv .ic { fill: none; stroke: var(--mf); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.btv .ic.pk-s { stroke: var(--pk); }
+.btv .ick { fill: none; stroke: var(--pf); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.btv .shf { flood-color: var(--sc); flood-opacity: var(--sh); }
+
+/* Rest state: storage upload at 64%, the new audit row hidden. */
+.stb .a-fill { transform: scaleX(.64); }
+.stb .a-in, .apb .a-new { opacity: 0; }
+.btv .a-fill, .btv .a-in, .btv .a-out, .btv .a-web, .btv .a-app, .btv .a-new, .btv .a-list { transform-box: fill-box; transform-origin: left center; }
+@media (prefers-reduced-motion: no-preference) {
+  .btv .a-fill, .btv .a-in, .btv .a-out, .btv .a-web, .btv .a-app, .btv .a-new, .btv .a-list { transition: transform .6s cubic-bezier(.32,.72,0,1), opacity .4s ease; }
+  .bento-tile:is(:hover, :focus-visible) .stb .a-fill { transform: none; }
+  .bento-tile:is(:hover, :focus-visible) .stb .a-out { opacity: 0; }
+  .bento-tile:is(:hover, :focus-visible) .stb .a-in { opacity: 1; transition-delay: .35s; }
+  .bento-tile:is(:hover, :focus-visible) .dkb .a-web { transform: translate(-2px, 3px); }
+  .bento-tile:is(:hover, :focus-visible) .dkb .a-app { transform: translate(4px, -5px); }
+  .bento-tile:is(:hover, :focus-visible) .apb .a-list { transform: translateY(21px); }
+  .bento-tile:is(:hover, :focus-visible) .apb .a-new { opacity: 1; transition-delay: .2s; }
+}

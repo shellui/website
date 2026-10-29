@@ -1,0 +1,18 @@
+{# Microfrontend intro: how the shell, apps, and SDK fit. Used on the homepage and apps page. #}
+<div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+  <div class="max-w-2xl">
+    <{{ mfeTag or "h2" }} class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">How the pieces fit</{{ mfeTag or "h2" }}>
+    <p class="mt-4 text-base/7 text-muted-foreground">You list your apps in <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code>. The shell draws the sidebar and loads the selected app by URL in a sandboxed iframe. Your app talks back through <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/sdk</code>, which wraps <code class="rounded bg-muted px-1.5 py-0.5 text-sm">postMessage</code> with an exact target origin.</p>
+    <ul class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-muted-foreground" aria-label="Starters available with shellui init">
+      {% for item in frameworks %}{% if item.id in ["react","vue","angular","next","svelte"] %}<li class="flex items-center gap-1.5 text-sm"><svg class="size-5 shrink-0" aria-hidden="true"><use href="#fw-{{ item.id }}" /></svg>{{ "Svelte" if item.id == "svelte" else item.label }}</li>{% endif %}{% endfor %}<li class="text-sm text-muted-foreground/70">and more</li>
+    </ul>
+    <dl class="mt-8 grid gap-6">
+      <div><dt class="text-sm font-semibold text-primary-ink">The shell</dt><dd class="mt-1 text-sm/6 text-muted-foreground"><code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/core</code> renders navigation, layouts, settings, toasts, and dialogs. You configure it, you do not rebuild it.</dd></div>
+      <div><dt class="text-sm font-semibold text-primary-ink">Your apps</dt><dd class="mt-1 text-sm/6 text-muted-foreground">Any web app with a URL. Keep its repository, framework, and deployment. It only needs to allow iframe embedding.</dd></div>
+      <div><dt class="text-sm font-semibold text-primary-ink">The SDK</dt><dd class="mt-1 text-sm/6 text-muted-foreground">One package connects an app to the shell: read the theme and language, open a dialog, navigate to another app.</dd></div>
+    </dl>
+  </div>
+  <div>
+    <div class="osv-page grid place-items-center rounded-xl border border-border p-6 sm:p-8">{% set osvPage = true %}{% include "one-shell-visual.njk" %}</div>
+  </div>
+</div>

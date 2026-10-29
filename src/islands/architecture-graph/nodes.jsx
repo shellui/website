@@ -38,29 +38,14 @@ function NodeHandles({ handles = HANDLES }) {
   ]);
 }
 
-function LogoMark({ logo }) {
-  if (logo !== "supabase") return null;
-  return (
-    <img
-      className="ag-logo"
-      src="/img/supabase-logo.svg"
-      alt=""
-      width="18"
-      height="19"
-      decoding="async"
-    />
-  );
-}
-
 export const StackNode = memo(function StackNode({ data }) {
-  const { title, role, description, href, kind, fill, logo } = data;
+  const { title, role, description, href, kind, fill } = data;
 
   return (
     <div className="ag-node" data-kind={kind} data-fill={fill || undefined}>
       <NodeHandles />
       <p className="ag-node__head">
         <span className="ag-node__title-row">
-          <LogoMark logo={logo} />
           {href ? (
             <a className="ag-node__title nodrag nopan" href={href}>
               {title}
@@ -78,11 +63,10 @@ export const StackNode = memo(function StackNode({ data }) {
 
 export const FrameNode = memo(function FrameNode({ data }) {
   return (
-    <div className="ag-frame" data-logo={data.logo || undefined}>
+    <div className="ag-frame">
       <NodeHandles handles={FRAME_HANDLES} />
       <p className="ag-frame__label">
         <span className="ag-frame__title-row">
-          <LogoMark logo={data.logo} />
           <span className="ag-frame__title">{data.title}</span>
         </span>
         <span className="ag-frame__subtitle">{data.subtitle}</span>

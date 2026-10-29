@@ -1,0 +1,58 @@
+{#- Homepage feature bento. Every tile visual is an include using site tokens; the art box (one height, one padding, centred, scaled to fit), shared tokens, hover and reduced motion for the storage, desktop and audit visuals live in bento.css (.btv). -#}
+{% set tiles = [
+  { id: "shell", href: "/features/apps-and-navigation/", span: "md:row-span-2 xl:col-span-2", title: "One shell for all your apps", text: "Combine apps built with different frameworks under shared navigation, dialogs, and settings." },
+  { id: "auth", href: "/features/authentication/", span: "md:col-span-2", title: "Sign-in included", text: "OAuth and magic links across every app, with the pages you choose behind a session." },
+  { id: "sso", href: "/features/authentication/", span: "", title: "SAML SSO and SCIM", text: "Register identity providers per company and provision members with SCIM." },
+  { id: "storage", href: "/features/storage/", span: "", title: "File storage", text: "Upload, share, and limit files through the SDK." },
+  { id: "email", href: "/features/email/", span: "md:col-span-2", title: "Email and newsletters", text: "Themed sign-in mail, event mail, and newsletters, sent with Resend, Amazon SES, or SMTP." },
+  { id: "hooks", href: "/features/administration/", span: "", title: "Email and webhook rules", text: "Pick what each event does: send an email, call a webhook, or both." },
+  { id: "admin", href: "/features/administration/", span: "", title: "Administration", text: "Members, sign-in, email, webhooks, hosting, and job health in one panel." },
+  { id: "desktop", href: "/features/web-and-desktop/", span: "", title: "Web and desktop", text: "Build static web files or a Tauri 2 desktop app from one project." },
+  { id: "oss", href: "/architecture/", span: "md:col-span-2", title: "Open source, yours to run", text: "MIT licensed. Self-host every service, and give your agent shellui.ai to start." },
+  { id: "audit", href: "/features/administration/", span: "", title: "Audit and privacy", text: "Event logs, per-company metrics, and no sign-in links in webhooks or logs." }
+] %}
+<section id="features" class="bento relative z-10 page-x py-24">
+  <div class="mx-auto max-w-7xl">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">Everything around your app, already built</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Start with sign-in, files, email, and admin on day one. Add SSO, audit trails, and company controls when a larger team arrives.</p>
+    </div>
+    <ul class="mt-12 grid grid-cols-1 gap-4 md:grid-flow-dense md:grid-cols-2 xl:grid-cols-4">
+      {% for t in tiles %}
+      <li class="{{ t.span }}">
+        <a href="{{ t.href }}" class="bento-tile group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-gray-800 dark:bg-gray-900">
+          <div class="bento-art{% if t.id == "shell" %} bento-art-fill{% endif %} relative border-b border-gray-200 dark:border-gray-800">
+            {% if t.id == "shell" %}
+            {% include "one-shell-visual.njk" %}
+            {% elif t.id == "auth" %}
+            {% include "auth-bento.njk" %}
+            {% elif t.id == "sso" %}
+            {% include "sync-bento-v3.njk" %}
+            {% elif t.id == "email" %}
+            {% include "email-bento.njk" %}
+            {% elif t.id == "hooks" %}
+            {% include "email-webhooks-bento.njk" %}
+            {% elif t.id == "admin" %}
+            {% include "admin-bento.njk" %}
+            {% elif t.id == "oss" %}
+            {% include "oss-bento.njk" %}
+            {% elif t.id == "storage" %}
+            {% include "storage-bento.njk" %}
+            {% elif t.id == "desktop" %}
+            {% include "desktop-bento.njk" %}
+            {% elif t.id == "audit" %}
+            {% include "audit-bento.njk" %}
+            {% endif %}
+          </div>
+          <div class="{% if t.id != "shell" %}flex-1 {% endif %}p-6">
+            <h3 class="text-base font-semibold text-gray-900 dark:text-white">{{ t.title }}</h3>
+            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">{{ t.text }}</p>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="mt-12 flex justify-center"><a href="/features/" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10">See all features <span aria-hidden="true">→</span></a></div>
+    <div class="mt-16">{% set playgroundCtaWide = true %}{% include "playground-cta.njk" %}</div>
+  </div>
+</section>

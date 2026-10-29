@@ -22,12 +22,26 @@ required_files=(
   brand-assets/index.html
   guidelines/index.html
   guidelines/writing/index.html
-  guidelines/web-design/index.html
+  guidelines/interface/index.html
+  guidelines/foundations/index.html
+  guidelines/print/index.html
+  guidelines/changelog/index.html
   guidelines/writing.md
+  guidelines/interface.md
+  guidelines/foundations.md
+  guidelines/print.md
   guidelines/web-design.md
-  guidelines/design.md
   guidelines/design/index.html
+  guidelines/web-design/index.html
+  guidelines/brand/index.html
+  guidelines/brand.md
+  guidelines/generated/tokens.json
   design.md
+  llms-full.txt
+  assets/fonts/inter/inter-latin-400-normal.woff2
+  brand-assets/shellui-brand-kit-v1.pdf
+  brand-assets/shellui-brand-assets-v1.zip
+  brand-assets/logo/shellui-mark-ink.svg
 )
 
 log "Checking required output files"
@@ -46,14 +60,18 @@ cname="$(tr -d '[:space:]' < "${SITE}/CNAME")"
 grep -q 'Shellui' "${SITE}/index.html" || fail "index.html does not contain 'Shellui'"
 
 grep -q '/guidelines/writing/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing writing link"
-grep -q '/guidelines/web-design/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing web-design link"
+grep -q '/guidelines/interface/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing interface link"
+grep -q '/guidelines/foundations/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing foundations link"
 grep -q '/design.md' "${SITE}/guidelines/index.html" || fail "guidelines hub missing design.md fetch URL"
+grep -q '/llms-full.txt' "${SITE}/guidelines/index.html" || fail "guidelines hub missing llms-full.txt link"
 grep -q '/llms.txt' "${SITE}/guidelines/index.html" || fail "guidelines hub missing llms.txt link"
 grep -q '^# Shellui$' "${SITE}/llms.txt" || fail "llms.txt missing H1 project name"
 grep -q '^> ' "${SITE}/llms.txt" || fail "llms.txt missing blockquote summary"
-grep -q 'Built for developers' "${SITE}/llms.txt" || fail "llms.txt blockquote missing Built for phrasing"
+grep -q 'microfrontend shell' "${SITE}/llms.txt" || fail "llms.txt blockquote missing product one-liner"
 grep -q '^## Optional$' "${SITE}/llms.txt" || fail "llms.txt missing Optional section"
 grep -q 'https://shellui.com/design.md' "${SITE}/llms.txt" || fail "llms.txt missing design.md"
+grep -q 'llms-full.txt' "${SITE}/llms.txt" || fail "llms.txt missing llms-full.txt link"
+grep -q 'interface.md' "${SITE}/llms.txt" || fail "llms.txt missing interface.md"
 grep -q '\[shellui.ai\](https://shellui.ai)' "${SITE}/llms.txt" || fail "llms.txt missing markdown link for shellui.ai"
 grep -q 'npm install -g @shellui/cli' "${SITE}/llms.txt" || fail "llms.txt missing CLI install"
 grep -q 'shellui init' "${SITE}/llms.txt" || fail "llms.txt missing shellui init"
@@ -81,12 +99,9 @@ grep -q 'npm install -g @shellui/cli' "${SITE}/index.html" \
   || fail "index.html missing global CLI install"
 grep -q 'shellui init react' "${SITE}/index.html" \
   || fail "index.html missing shellui init react"
-grep -q 'shellui login' "${SITE}/index.html" \
-  || fail "index.html missing shellui login"
-grep -q 'shellui deploy' "${SITE}/index.html" \
-  || fail "index.html missing shellui deploy"
-grep -q 'shellui.app' "${SITE}/index.html" \
-  || fail "index.html missing shellui.app hosting"
+if grep -rq 'shellui\.app' "${SITE}" --include='*.html' --include='*.txt'; then
+  fail "output links to unavailable shellui.app"
+fi
 grep -q 'dist/web/' "${SITE}/index.html" \
   || fail "index.html missing static dist/web/ ship path"
 if grep -q 'Questions developers ask' "${SITE}/index.html"; then
@@ -96,35 +111,56 @@ if grep -qiE 'Flutter' "${SITE}/index.html"; then
   fail "index.html must not list Flutter as an init framework"
 fi
 
-grep -q 'Guidelines v' "${SITE}/guidelines/writing/index.html" || fail "writing guidelines page missing version label"
-grep -q 'Guidelines v' "${SITE}/guidelines/web-design/index.html" || fail "web design guidelines page missing version label"
-grep -q 'Hit targets:' "${SITE}/guidelines/web-design/index.html" || fail "web design page missing hit-target rule"
-grep -q 'id="shellui-chrome"' "${SITE}/guidelines/web-design/index.html" || fail "web design page missing chrome section"
-grep -q 'Sacrifice grammar for brevity' "${SITE}/guidelines/web-design/index.html" || fail "web design page should render shared markdown"
-grep -q 'Sacrifice grammar for brevity' "${SITE}/guidelines/web-design.md" || fail "web-design.md missing agent review prompt"
-grep -q 'Hit targets:' "${SITE}/guidelines/web-design.md" || fail "web-design.md missing compact hit-target rule"
-grep -q 'Guidelines v' "${SITE}/guidelines/design/index.html" || fail "design guidelines page missing version label"
-grep -q '^version:' "${SITE}/guidelines/writing.md" || fail "published writing.md missing version frontmatter"
-grep -q '^version:' "${SITE}/guidelines/web-design.md" || fail "published web-design.md missing version frontmatter"
-grep -q '^version:' "${SITE}/design.md" || fail "published /design.md missing version frontmatter"
-grep -q 'Eleventy' "${SITE}/design.md" || fail "/design.md missing Eleventy stack constraint"
-grep -q 'Tailwind Plus' "${SITE}/design.md" || fail "/design.md missing Tailwind Plus guidance"
-grep -q 'primary' "${SITE}/design.md" || fail "/design.md missing primary token"
-grep -q '/guidelines/' "${SITE}/brand-assets/index.html" || fail "brand-assets page missing guidelines cross-link"
-grep -q '/brand-assets/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand-assets cross-link"
-grep -q 'parent skill from this repo' "${SITE}/guidelines/index.html" || fail "guidelines hub missing labeled agent skill path"
-grep -q 'data-design-swatch="primary"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing primary color swatch"
-grep -q 'data-theme-preview="light"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing light surface preview"
-grep -q 'data-theme-preview="dark"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing dark surface preview"
-grep -q 'id="do-and-dont"' "${SITE}/guidelines/design/index.html" || fail "design handbook missing do/don't section"
-if grep -q 'Act as an excellent' "${SITE}/guidelines/design/index.html"; then
-  fail "design HTML page should not render the agent prompt"
-fi
+grep -Eq 'Guidelines v2\.[0-9]+\.[0-9]+' "${SITE}/guidelines/writing/index.html" || fail "writing guidelines page missing v2.x label"
+grep -Eq 'Guidelines v2\.[0-9]+\.[0-9]+' "${SITE}/guidelines/interface/index.html" || fail "interface page missing v2.x label"
+grep -q 'Hit targets:' "${SITE}/guidelines/interface/index.html" || fail "interface page missing hit-target rule"
+grep -q 'Shellui chrome' "${SITE}/guidelines/interface/index.html" || fail "interface page missing chrome section"
+grep -q 'data-design-swatch="primary"' "${SITE}/guidelines/foundations/index.html" || fail "foundations handbook missing primary swatch"
+grep -q 'id="visual-handbook"' "${SITE}/guidelines/foundations/index.html" || fail "foundations missing visual handbook"
+grep -Eq '^version: 2\.[0-9]+\.[0-9]+' "${SITE}/guidelines/writing.md" || fail "published writing.md missing v2 frontmatter"
+grep -Eq '^version: 2\.[0-9]+\.[0-9]+' "${SITE}/guidelines/interface.md" || fail "published interface.md missing v2 frontmatter"
+grep -Eq '^version: 2\.[0-9]+\.[0-9]+' "${SITE}/design.md" || fail "published /design.md missing v2 frontmatter"
 grep -q 'Act as an excellent' "${SITE}/design.md" || fail "/design.md missing agent composition prompt"
-grep -q '| `background`' "${SITE}/design.md" || fail "/design.md missing compact token table"
+grep -qF '| `background`' "${SITE}/design.md" || fail "/design.md missing token table"
+grep -q '#8a6300' "${SITE}/design.md" || fail "/design.md must use text gold #8a6300"
+grep -q 'noindex' "${SITE}/brand-assets/index.html" || fail "brand-assets redirect stub must be noindex"
+grep -q 'guidelines/brand/#downloads' "${SITE}/brand-assets/index.html" || fail "brand-assets redirect must target brand downloads with hash"
+grep -q 'location.replace' "${SITE}/brand-assets/index.html" || fail "brand-assets redirect must use location.replace"
+grep -q 'noindex' "${SITE}/guidelines/design/index.html" || fail "design redirect stub must be noindex"
+grep -q '/guidelines/interface/' "${SITE}/guidelines/design/index.html" || fail "design URL must redirect to interface"
+grep -q '/guidelines/interface/' "${SITE}/guidelines/web-design/index.html" || fail "web-design URL must redirect to interface"
+grep -q '/guidelines/brand/' "${SITE}/guidelines/index.html" || fail "guidelines hub missing brand link"
+grep -q 'id="downloads"' "${SITE}/guidelines/brand/index.html" || fail "brand page missing downloads section"
+grep -q '/brand-assets/shellui-brand-kit-v1.pdf' "${SITE}/guidelines/brand/index.html" || fail "brand page missing kit PDF link"
+grep -q 'shellui/skills' "${SITE}/guidelines/index.html" || fail "guidelines hub must point skills to shellui/skills repo"
+grep -q 'Inter' "${SITE}/guidelines/foundations/index.html" || fail "foundations must document Inter on screen"
+if grep -q 'Act as an excellent' "${SITE}/guidelines/interface/index.html"; then
+  fail "interface HTML page should not render the full agent prompt (use design.md)"
+fi
+design_bytes="$(wc -c < "${SITE}/design.md")"
+if [[ "${design_bytes}" -gt 40960 ]]; then
+  fail "design.md must stay under 40 KB (got ${design_bytes} bytes)"
+fi
+grep -q 'guidelines/interface.md' "${SITE}/design.md" || fail "design.md must link to full interface.md"
+if grep -q '/brand-assets/' "${SITE}/sitemap.xml"; then
+  fail "sitemap must not list legacy /brand-assets/ redirect stub"
+fi
+if grep -q '/guidelines/design/' "${SITE}/sitemap.xml"; then
+  fail "sitemap must not list legacy /guidelines/design/ redirect stub"
+fi
+if grep -q '/guidelines/web-design/' "${SITE}/sitemap.xml"; then
+  fail "sitemap must not list legacy /guidelines/web-design/ redirect stub"
+fi
+grep -q '/guidelines/changelog/' "${SITE}/guidelines/index.html" || fail "guidelines pages should link to changelog"
+grep -q 'Changelog' "${SITE}/guidelines/writing/index.html" || fail "guidelines subnav missing Changelog link"
+
+log "Checking Open Graph images"
+node "${ROOT}/tools/verify-og-images.mjs"
 
 log "Checking design token drift"
 node "${ROOT}/tools/verify-design-tokens.mjs"
+node "${ROOT}/tools/verify-gold-hex.mjs"
+node "${ROOT}/tools/check-links.mjs"
 
 # Asset fingerprinting should rewrite CSS references with a cache-busting query
 if ! grep -qE 'assets/css/site\.css\?v=[a-f0-9]{8}' "${SITE}/index.html"; then
@@ -162,8 +198,11 @@ latest_product_version="$(
 latest_product_series="$(printf '%s' "${latest_product_version}" | grep -oE '^[0-9]+\.[0-9]+')"
 [[ -n "${latest_product_series}" ]] \
   || fail "could not derive major.minor series from v${latest_product_version}"
-grep -q "v${latest_product_series} is out" "${SITE}/index.html" \
-  || fail "homepage badge must show latest product series v${latest_product_series} (not website package version)"
+# Homepage badge announces the launch post, which must exist.
+grep -q 'href="/blog/introducing-shellui/"' "${SITE}/index.html" \
+  || fail "homepage badge must link to /blog/introducing-shellui/"
+[[ -f "${SITE}/blog/introducing-shellui/index.html" ]] \
+  || fail "homepage badge target /blog/introducing-shellui/ is missing"
 grep -q "Changelog for ${latest_product_series}" "${SITE}/index.html" \
   || fail "homepage footer must link to changelog for product series v${latest_product_series}"
 grep -q 'Floating chrome actions' "${SITE}/changelog/index.html" \

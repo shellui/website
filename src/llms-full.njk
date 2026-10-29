@@ -1,0 +1,17 @@
+---
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+layout: false
+---
+{% for item in guidelines.topics -%}
+# {{ item.title }} (v{{ item.version }})
+
+{{ site.url }}{{ item.downloadUrl }}
+
+{{ item.rawBody }}
+{% if not loop.last %}
+
+---
+
+{% endif %}
+{%- endfor %}

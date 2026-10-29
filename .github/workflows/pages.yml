@@ -38,3 +38,20 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+
+  indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ping IndexNow with sitemap URLs
+        run: |
+          key=$(jq -r .indexNowKey src/_data/site.json)
+          host=shellui.com
+          urls=$(curl -fsS "https://$host/sitemap.xml" | grep -o '<loc>[^<]*</loc>' | sed 's#</\?loc>##g' | jq -R . | jq -sc .)
+          body=$(jq -nc --arg host "$host" --arg key "$key" --argjson urls "$urls" \
+            '{host:$host,key:$key,keyLocation:("https://"+$host+"/"+$key+".txt"),urlList:$urls}')
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' -d "$body" || echo fail)
+          echo "IndexNow response: $code"

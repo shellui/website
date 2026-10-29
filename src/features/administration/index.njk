@@ -1,140 +1,241 @@
 ---
 layout: layouts/feature.njk
 wide: true
-title: Administration | Shellui
-description: "Manage members, email, webhooks, SCIM, and company settings inside Shellui. Add your own administration tools alongside the built-in screens."
+title: "Admin panel for members, email and webhooks | Shellui"
+description: "Run members, sign-in, email, webhooks, hosted apps, and scheduled jobs for every Shellui service from one admin panel inside your app."
 eyebrow: Features
-heading: "Manage your product from one place"
-lede: "Give staff and company owners a shared administration panel inside Shellui. Manage membership, email, webhooks, and company access. Add your own tools alongside the built-in screens."
+heading: "Run every service from one admin panel"
+lede: "The Shellui admin app opens inside your shell for company owners and staff. Manage members and sign-in, email and webhooks, hosted apps, and service health without leaving your product."
 ---
+{% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
+{% set lnk = "font-medium text-primary-ink underline underline-offset-2" %}
+{% set h2 = "text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl" %}
+{% set frame = "overflow-hidden rounded-xl border border-border bg-muted" %}
 
-<div class="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+<div class="{{ frame }}">
+  {% include "admin-visual-responsive.njk" %}
+</div>
+
+<section class="mt-20" aria-labelledby="directory-surfaces">
   <div class="max-w-2xl">
-    <h2 class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Open administration inside your app</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Connect the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.adminPanel }}">Shellui admin app</a> through <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminUrl</code> and set its route with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">backend.adminPathname</code>. Staff and company owners can then open Administration from the account menu.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">The panel uses your <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> backend and the existing Shellui session. Host the admin app yourself or use <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="https://admin.shellui.com">admin.shellui.com</a>.</p>
+    <h2 id="directory-surfaces" class="{{ h2 }}">Every service in one sidebar</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The admin sidebar lists the services your shell connects to. Identity is always there. Storage, Hosting, and Email appear once their URL is set, and <code class="{{ code }}">showInAdmin: false</code> hides one.</p>
   </div>
-  <div class="mx-auto w-full max-w-sm">
-    {% include "feature-visual-admin.njk" %}
-  </div>
-</div>
+  <ul class="mt-10 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+    {% set groups = [
+      { name: "Identity", svc: "identity-service", items: ["Company", "Users", "Groups", "Log events", "OAuth apps", "SCIM", "Email and webhooks", "Access tokens", "Statistics"] },
+      { name: "Storage", svc: "storage-service", items: ["Files", "Email and webhooks", "Log events", "Statistics"] },
+      { name: "Hosting", svc: "hosting-service", items: ["Apps", "Email and webhooks", "Log events", "Statistics"] },
+      { name: "Email", svc: "email-service", items: ["Templates", "Broadcasts", "Newsletters", "Email and webhooks", "Provider", "Allowed link hosts", "Statistics"] },
+      { name: "Your tools", svc: "administration", items: ["Billing, support, or any internal app", "Swagger and ReDoc in developer mode", "Django admin for staff"] }
+    ] %}
+    {% for g in groups %}
+    <li class="bg-card p-5">
+      <p class="text-sm font-semibold text-foreground">{{ g.name }}</p>
+      <p class="mt-1 font-mono text-xs text-muted-foreground">{{ g.svc }}</p>
+      <ul class="mt-4 space-y-1.5 text-sm text-muted-foreground">
+        {% for i in g.items %}<li>{{ i }}</li>{% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
 
-<div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
-  <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connect the admin app</p>
-    <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminPathname</code> and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminUrl</code> on a Shellui identity backend.</p>
+<section class="mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-16" aria-labelledby="users">
+  <div class="max-w-xl">
+    <h2 id="users" class="{{ h2 }}">Decide who joins your company</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Company owners pick a join mode on the Company page. <strong class="font-semibold text-foreground">Public</strong> lets anyone who signs in join, <strong class="font-semibold text-foreground">Domain allow list</strong> admits matching email domains, and <strong class="font-semibold text-foreground">Invitation only</strong> keeps new accounts off until you turn access on.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">From Identity you can also:</p>
+    <ul class="mt-3 space-y-2 text-base/7 text-muted-foreground">
+      <li><strong class="font-semibold text-foreground">Invite by email</strong>: choose the email language, then invite again or revoke from Pending invitations</li>
+      <li><strong class="font-semibold text-foreground">Turn access on or off</strong>: one switch per member, and the member gets an email when access turns on</li>
+      <li><strong class="font-semibold text-foreground">Organize groups</strong>: create, rename, and delete groups. Groups synced from SCIM stay read-only</li>
+      <li><strong class="font-semibold text-foreground">Open a profile</strong>: groups, Shellui preferences, recent activity in each service, and a delete action</li>
+      <li><strong class="font-semibold text-foreground">Choose sign-in methods</strong>: turn magic links on or off and allow desktop sign-in schemes for Tauri apps</li>
+    </ul>
   </div>
-  <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Sign in as staff or owner</p>
-    <p class="mt-2 text-sm/6 text-muted-foreground">The shell makes administration available to staff and company owners. The identity backend checks permissions on administration requests.</p>
-  </div>
-  <div>
-    <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Open Administration</p>
-    <p class="mt-2 text-sm/6 text-muted-foreground">Open the panel from the account menu. Individual screens have shell URLs such as <code class="rounded bg-muted px-1.5 py-0.5 text-sm">/admin/users</code>.</p>
-  </div>
-</div>
+  <div class="{{ frame }}">{% include "admin-members-visual.njk" %}</div>
+</section>
 
-<div class="mt-8 max-w-3xl">
-  {% highlight "json", "shellui.config.json" %}
+<section class="mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-16" aria-labelledby="oauth-setup">
+  <div class="max-w-xl lg:order-2">
+    <h2 id="oauth-setup" class="{{ h2 }}">Connect sign-in providers from the panel</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Add an OAuth provider in four steps: choose it, set it up on the provider, paste the credentials, and check the summary. The picker covers 15 OAuth 2.0 and OpenID Connect providers, plus SAML, and the setup step shows the exact redirect URL to paste.</p>
+    <ul class="mt-4 space-y-2 text-base/7 text-muted-foreground">
+      <li><strong class="font-semibold text-foreground">Login redirects</strong>: add the origins allowed to finish sign-in. Loopback addresses always work, and hosted preview URLs are listed for you</li>
+      <li><strong class="font-semibold text-foreground">SCIM provisioning</strong>: System for Cross-domain Identity Management (SCIM) syncs users and groups from your identity provider. Copy the bearer token once, then revoke it when you rotate</li>
+      <li><strong class="font-semibold text-foreground">Access tokens</strong>: create read-only tokens for scripts and metrics scrapers. Staff can add metrics for all companies</li>
+    </ul>
+  </div>
+  <div class="{{ frame }} lg:order-1">{% include "admin-signin-visual.njk" %}</div>
+</section>
+
+<section class="mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-16" aria-labelledby="webhooks">
+  <div class="max-w-xl">
+    <h2 id="webhooks" class="{{ h2 }}">Act on events with email and webhooks</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Identity, Storage, Hosting, and Email each have an Email and webhooks page with the same rules list. A rule listens to one event, then sends an email or calls a signed webhook. Built-in rules, such as the magic link email, stay on.</p>
+    <ul class="mt-4 space-y-2 text-base/7 text-muted-foreground">
+      <li><strong class="font-semibold text-foreground">Signed webhooks</strong>: you see the signing secret once and can rotate it. Add an auth header for receivers such as an n8n Webhook node</li>
+      <li><strong class="font-semibold text-foreground">Test first</strong>: read the sample body for the event, then send a test event</li>
+      <li><strong class="font-semibold text-foreground">Delivery logs</strong>: filter by status, event, or rule. Each delivery shows its attempts, last error, and payload</li>
+      <li><strong class="font-semibold text-foreground">Requeue</strong>: the scheduler retries failed deliveries, and you can requeue one once the receiver is back</li>
+      <li><strong class="font-semibold text-foreground">Email rules</strong>: pick a design, the recipients, and the language. On email-service, limit a rule to one newsletter</li>
+    </ul>
+  </div>
+  <div class="{{ frame }}">{% include "admin-webhooks-visual.njk" %}</div>
+</section>
+
+<section class="mt-24" aria-labelledby="email-admin">
+  <div class="max-w-2xl">
+    <h2 id="email-admin" class="{{ h2 }}">Email from template to inbox</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Connect <a class="{{ lnk }}" href="/features/email/">email-service</a> and the Email group adds these pages:</p>
+  </div>
+  {% set emailCards = [
+    { t: "Templates", d: "Built-in and company designs, filtered by set. Duplicate a built-in design to edit it." },
+    { t: "Email editor", d: "Edit, Preview, or JSON. Translate the subject and text per language, and mark outdated translations up to date." },
+    { t: "Broadcasts", d: "Pick members by filters, by name, or from a newsletter, check who gets it, then confirm the send." },
+    { t: "Newsletters", d: "Subscribers with CSV import and export, a sign-up form snippet, allowed websites, and Cloudflare Turnstile." },
+    { t: "Provider", d: "Resend, Amazon SES, or SMTP. Without one, the page shows the platform fallback limits." },
+    { t: "Allowed link hosts", d: "The hosts sign-in links can point to. Add up to 32 of your own." },
+    { t: "Statistics", d: "Sent, failed, and skipped emails by day, lane, and event, plus queue depth and send latency." },
+    { t: "Email and webhooks", d: "Rules for email-service events, with the same delivery logs as every other service." }
+  ] %}
+  <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {% for c in emailCards %}
+    <li class="rounded-xl border border-border bg-card p-5">
+      <p class="text-sm font-semibold text-foreground">{{ c.t }}</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">{{ c.d }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-16" aria-labelledby="hosting">
+  <div class="max-w-xl lg:order-2">
+    <h2 id="hosting" class="{{ h2 }}">Manage hosted apps and previews</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">With hosting-service connected, Apps lists every site your company deployed, with its expiry. Renew a preview before it ends, or delete a site together with its deployments and files.</p>
+    <ul class="mt-4 space-y-2 text-base/7 text-muted-foreground">
+      <li><strong class="font-semibold text-foreground">Login check</strong>: the app page warns when the site is missing from login redirects and adds it in one click</li>
+      <li><strong class="font-semibold text-foreground">Deployment history</strong>: app version, Shellui version, status, and artifact for each deployment, with Rollback</li>
+      <li><strong class="font-semibold text-foreground">Hosting statistics</strong>: apps, deployments by status, artifact storage, and access requests</li>
+    </ul>
+  </div>
+  <div class="{{ frame }} lg:order-1">{% include "admin-hosting-visual.njk" %}</div>
+</section>
+
+<section class="mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-16" aria-labelledby="operations">
+  <div class="max-w-xl">
+    <h2 id="operations" class="{{ h2 }}">See what happened and what needs attention</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The Dashboard shows identity, storage, hosting, and email figures for your company. Each service also has a Statistics page and a Log events page, so you can go from a number to the events behind it.</p>
+    <ul class="mt-4 space-y-2 text-base/7 text-muted-foreground">
+      <li><strong class="font-semibold text-foreground">Log events</strong>: filter by event type, user email, and dates, open an event to read its fields and the same user's other events</li>
+      <li><strong class="font-semibold text-foreground">Statistics</strong>: active users, sign-ins by provider, uploads per day, company quotas, and email volume</li>
+      <li><strong class="font-semibold text-foreground">Scheduled jobs</strong>: staff see each job as Healthy, Overdue, Failing, or Disabled, with its last run and what it did</li>
+      <li><strong class="font-semibold text-foreground">Prometheus snapshot</strong>: read the raw metrics for identity, storage, or hosting, or open the endpoint with a bearer token</li>
+    </ul>
+    <p class="mt-4 text-base/7 text-muted-foreground">You don't add cron. identity-service, storage-service, and email-service start a scheduler beside the web server, and a Redis lock (<code class="{{ code }}">REDIS_URL</code>) keeps two replicas from running the same job.</p>
+  </div>
+  <div class="{{ frame }}">{% include "admin-ops-visual.njk" %}</div>
+</section>
+
+<section class="mt-24" aria-labelledby="roles">
+  <div class="max-w-2xl">
+    <h2 id="roles" class="{{ h2 }}">Who sees each page</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The shell opens Administration for company owners and staff, and identity-service checks the same roles on every request.</p>
+  </div>
+  <div class="mt-8 max-w-3xl overflow-x-auto rounded-xl border border-border">
+    <table class="w-full text-left text-sm">
+      <thead class="bg-muted text-foreground">
+        <tr><th scope="col" class="px-4 py-3 font-semibold">Page or action</th><th scope="col" class="px-4 py-3 font-semibold">Company owner</th><th scope="col" class="px-4 py-3 font-semibold">Staff</th></tr>
+      </thead>
+      <tbody class="divide-y divide-border text-muted-foreground">
+        {% set roles = [
+          ["Members, groups, invitations, and log events", "Yes", "Yes"],
+          ["Edit company details and join mode", "Yes", "No"],
+          ["OAuth apps, login redirects, and desktop schemes", "Yes", "Yes"],
+          ["SCIM tokens and webhook rules", "Yes", "No"],
+          ["Email rules", "Yes", "Yes"],
+          ["Scheduled jobs and Django admin links", "No", "Yes"],
+          ["Swagger and ReDoc", "Developer mode", "Developer mode"]
+        ] %}
+        {% for r in roles %}
+        <tr><th scope="row" class="px-4 py-3 font-medium text-foreground">{{ r[0] }}</th><td class="px-4 py-3">{{ r[1] }}</td><td class="px-4 py-3">{{ r[2] }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="mt-24" aria-labelledby="shell">
+  <div class="max-w-2xl">
+    <h2 id="shell" class="{{ h2 }}">Built on the shell you already run</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The admin app is a Shellui app, so it behaves like the rest of your product:</p>
+  </div>
+  {% set shellItems = [
+    { t: "Shell dialogs and toasts", d: "Every confirm and toast comes from the shell, so delete and revoke look the same everywhere." },
+    { t: "Your theme and language", d: "The panel follows the shell theme in light or dark, and every page reads in English or French." },
+    { t: "Works on a phone", d: "On small screens the sidebar becomes a full-screen menu with Back to menu." },
+    { t: "Links you can bookmark", d: "Pages, filters, and page numbers live in the URL, even inside the iframe." },
+    { t: "Clear page states", d: "Loading, empty, and error states on every page, and a notice when a service URL is missing." },
+    { t: "Session refresh", d: "When a request returns 401, the app gets a fresh token from the shell and retries once." }
+  ] %}
+  <ul class="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% for c in shellItems %}
+    <li class="border-l-2 border-primary pl-4">
+      <p class="text-sm font-semibold text-foreground">{{ c.t }}</p>
+      <p class="mt-1 text-sm/6 text-muted-foreground">{{ c.d }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="mt-24" aria-labelledby="setup">
+  <div class="max-w-2xl">
+    <h2 id="setup" class="{{ h2 }}">Connect the admin app in three steps</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The <a class="{{ lnk }}" href="{{ site.adminPanel }}">admin app</a> uses your <a class="{{ lnk }}" href="{{ site.identityService }}">identity-service</a> backend and the current Shellui session.</p>
+  </div>
+  <ol class="mt-8 grid max-w-3xl gap-6 sm:grid-cols-3">
+    <li>
+      <p class="text-sm font-semibold text-primary-ink">1. Host the admin app</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Serve the static files, or run the <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui/admin</code> Docker image with <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">FRAME_ANCESTORS</code> set to your shell origins.</p>
+    </li>
+    <li>
+      <p class="text-sm font-semibold text-primary-ink">2. Point the shell at it</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminUrl</code> and <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">adminPathname</code> on a Shellui backend.</p>
+    </li>
+    <li>
+      <p class="text-sm font-semibold text-primary-ink">3. Open Administration</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Sign in as an owner or staff and open it from the account menu, or go to a page such as <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">/admin/users</code>.</p>
+    </li>
+  </ol>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "json", "shellui.config.json" %}
 {
   "backend": {
     "type": "shellui",
     "url": "http://localhost:8000",
     "companyId": 1,
     "adminPathname": "/admin",
-    "adminUrl": "http://localhost:5174",
-    "login": {
-      "methods": ["oauth"],
-      "oauthProviders": ["github"]
-    }
+    "adminUrl": "http://localhost:5174"
   }
 }
     {% endhighlight %}
-</div>
-
-{# Future screenshot: Playground /admin users. Add a real image here when available. #}
-
-<section class="mt-20" aria-labelledby="directory-surfaces">
-  <div class="max-w-2xl">
-    <h2 id="directory-surfaces" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Everyday administration tools</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Manage accounts, sign-in, and company settings through the built-in screens. Connect storage to add file browsing and usage statistics. Connect <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/email/">email-service</a> to add the Email section.</p>
-  </div>
-
-  <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
-    <div>
-      <h3 id="users" class="text-base font-semibold text-pretty text-foreground">Users and invitations</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">View the member directory, invite someone by email, and remove a member from the company. Staff and superuser flags stay in Django admin. You cannot edit them here.</p>
-    </div>
-    <div>
-      <h3 id="oauth-setup" class="text-base font-semibold text-pretty text-foreground">OAuth setup</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Company owners add a sign-in provider from the catalog. The screen shows the callback URL and the redirect allowlist. System for Cross-domain Identity Management (SCIM) tokens are created here too. You see the secret once, and you can revoke it.</p>
-    </div>
-    <div>
-      <h3 class="text-base font-semibold text-pretty text-foreground">Storage and the event log</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Browse company files when storage is connected. Identity, storage, and hosting each have a log list and a detail page. The dashboard warns when stored events are older than the company retention period.</p>
-    </div>
   </div>
 </section>
 
-<section class="mt-20" aria-labelledby="webhooks">
+<section class="mt-24" aria-labelledby="custom-admin-nav">
   <div class="max-w-2xl">
-    <h2 id="webhooks" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">One webhook system</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">identity-service, storage-service, hosting-service, and email-service send signed webhooks. Company owners manage rules and delivery logs for identity, storage, and hosting in this panel. email-service adds webhooks for messages, unsubscribes, and newsletter events. Open these screens from <strong>Email and webhooks</strong>.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">Each delivery is signed in the Standard Webhooks style. You see the signing secret once, when you create or rotate it. A later view of the rule shows only a hint of the secret. The service image retries failed deliveries every minute, so you do not add cron.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">Point a rule at an n8n Webhook node. You can send a test event from Administration while you connect the workflow. Older addresses that used <code class="rounded bg-muted px-1.5 py-0.5 text-sm">#/actions</code> redirect to the webhook pages.</p>
-    <p class="mt-6 text-sm text-muted-foreground">
-      <a href="{{ site.docs }}/identity/n8n" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">n8n guide</a>
-      ·
-      <a href="/features/email/#rules" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Email rules</a>
-      ·
-      <a href="/features/authentication/#sign-in-privacy" class="font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Sign-in privacy</a>
-    </p>
-  </div>
-</section>
-
-<section class="mt-20" aria-labelledby="email-admin">
-  <div class="max-w-2xl">
-    <h2 id="email-admin" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Email in the same panel</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">The Email section has a template library, provider settings, statistics, broadcasts, and newsletters. You write an event email once, translate it in place, and recolor it with a Shellui theme. Preview and draft sends use catalog example values. You cannot paste a literal sign-in URL into a sign-in template.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">The panel calls email-service with the identity JSON Web Token (JWT). The default origin is <code class="rounded bg-muted px-1.5 py-0.5 text-sm">https://email.shellui.com</code>, or <code class="rounded bg-muted px-1.5 py-0.5 text-sm">email.url</code> from the shell config. Provider saves omit credentials you did not change. You can set the application programming interface (API) key, and later reads omit it.</p>
-  </div>
-</section>
-
-<section class="mt-20" aria-labelledby="operations">
-  <div class="max-w-2xl">
-    <h2 id="operations" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Run the services without cron</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">The identity, storage, and email images start a scheduler beside the web server. It retries webhooks every minute and purges expired data on an hourly run. hosting-service retries webhooks the same way.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">The scheduler uses Redis (<code class="rounded bg-muted px-1.5 py-0.5 text-sm">REDIS_URL</code>), an in-memory store, for its lock. It skips a run when another container already holds that lock, so two replicas do not run the same job. A production container does not start without <code class="rounded bg-muted px-1.5 py-0.5 text-sm">REDIS_URL</code>.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">Only staff read scheduled-job health on the dashboard:</p>
-    <ul class="mt-4 max-w-md list-disc space-y-2 pl-5 text-base/7 text-muted-foreground">
-      <li>Healthy</li>
-      <li>Overdue</li>
-      <li>Failing</li>
-      <li>Disabled</li>
-    </ul>
-    <p class="mt-4 text-base/7 text-muted-foreground">Company metrics in Prometheus, the metrics format, include only that company. Staff, or a token with global access, can still read the full series. Sign-in links stay out of webhook bodies and access logs.</p>
-  </div>
-</section>
-
-<section class="mt-20" aria-labelledby="custom-admin-nav">
-  <div class="max-w-2xl">
-    <h2 id="custom-admin-nav" class="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Add the tools your team needs</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Add billing, support, or other internal tools to the admin sidebar through the <code class="rounded bg-muted px-1.5 py-0.5 text-sm">administration</code> configuration. Shellui embeds each tool by default. For tools that block embedding, set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">openIn: "external"</code> to open a new tab.</p>
+    <h2 id="custom-admin-nav" class="{{ h2 }}">Add the tools your team needs</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Add billing, support, or other internal tools to an Applications group in the sidebar through the <code class="{{ code }}">administration</code> configuration. Shellui embeds each tool by default. For tools that block embedding, set <code class="{{ code }}">openIn: "external"</code> to open a new tab.</p>
   </div>
   <div class="mt-8 max-w-3xl">
     {% highlight "json", "shellui.config.json" %}
 {
   "administration": {
-    "title": {
-      "en": "Applications",
-      "fr": "Applications"
-    },
+    "title": { "en": "Applications", "fr": "Applications" },
     "navigation": [
       {
-        "label": {
-          "en": "Billing",
-          "fr": "Facturation"
-        },
+        "label": { "en": "Billing", "fr": "Facturation" },
         "path": "billing",
         "url": "https://billing.example.com/",
         "icon": "/icons/billing.svg"
@@ -157,4 +258,4 @@ lede: "Give staff and company owners a shared administration panel inside Shellu
 ] %}
 {% include "feature-docs.njk" %}
 
-<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/email/">email</a> sends sign-in mail, newsletters, and broadcasts.</p>
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="{{ lnk }}" href="/features/email/">email</a> sends sign-in mail, newsletters, and broadcasts.</p>

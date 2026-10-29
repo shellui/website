@@ -1,28 +1,19 @@
 ---
 layout: layouts/feature.njk
 wide: true
-title: Authentication | Shellui
-description: "Share sign-in across your Shellui apps. OAuth, OpenID Connect, SAML single sign-on, SCIM, magic links, and invitations on identity-service, or connect Supabase Auth."
+title: "Authentication, SSO and magic links | Shellui"
+description: "Share sign-in across your Shellui apps. OAuth, OpenID Connect, SAML single sign-on, SCIM, magic links, and invitations on identity-service."
 eyebrow: Features
 heading: "One sign-in flow for your apps"
-lede: "Configure sign-in once in Shellui. The shell manages login, session renewal, and the return to the requested page. Your embedded apps receive the signed-in account through the software development kit (SDK). Choose identity-service, or connect an existing Supabase Auth project."
-pageScripts:
-  - /assets/js/auth-flow.js
+lede: "Configure sign-in once in Shellui. The shell manages login, session renewal, and the return to the requested page. Your embedded apps receive the signed-in account through the software development kit (SDK). Run identity-service as your sign-in backend."
 ---
 
-<section aria-labelledby="auth-exchange">
-  <div class="max-w-2xl">
-    <h2 id="auth-exchange" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">How sign-in works</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">With identity-service, you sign in with OAuth 2.0, OpenID Connect, Security Assertion Markup Language (SAML) 2.0, or a magic link. An embedded app calls <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.login()</code> to start the flow in the main browser window. After sign-in and account confirmation, identity-service returns the session to the shell.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">If you do not enable an OAuth method, the login page sends a magic link. It shows "Check your email" and waits 60s before another send. Sign-in mail can go through <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/email/">email-service</a>, on a queue that bulk mail does not share.</p>
-  </div>
-  {% include "auth-flow.njk" %}
-</section>
+<div>{% include "auth-visual-responsive.njk" %}</div>
 
 <section class="mt-20" aria-labelledby="oauth-providers">
   <div class="max-w-2xl">
     <h2 id="oauth-providers" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">15 OAuth providers</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">You can turn on 15 OAuth 2.0 and OpenID Connect providers. Company owners add each one from the catalog in <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/#oauth-setup">Administration</a>. Register the identity-service callback at the provider, not your shell's login URL.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">You can turn on 15 OAuth 2.0 and OpenID Connect providers. Company owners add each one from the catalog in <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/administration/#oauth-setup">Administration</a>. Register the identity-service callback at the provider, not your shell's login URL.</p>
   </div>
 
   <div class="mt-10">
@@ -47,6 +38,7 @@ pageScripts:
     <h2 id="enterprise-sign-in" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Enterprise sign-in</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Workforce sign-in can use SAML single sign-on (SSO) and System for Cross-domain Identity Management (SCIM). You configure both per company, alongside the OAuth providers above.</p>
   </div>
+  <div class="mt-10">{% include "sync-visual-responsive.njk" %}</div>
   <div class="mt-10 grid gap-10 md:grid-cols-2 md:gap-16">
     <div>
       <h3 class="text-base font-semibold text-pretty text-foreground">SAML 2.0 single sign-on</h3>
@@ -61,8 +53,8 @@ pageScripts:
 
 <section class="mt-20" aria-labelledby="identity-service-does">
   <div class="max-w-2xl">
-    <h2 id="identity-service-does" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Choose an authentication backend</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">The <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="{{ site.identityService }}">identity-service</a> backend checks who you are and whether you can access a company. A company groups the accounts and access rules for your product or organization. Use it for the company access features below, or choose Supabase Auth for an existing Supabase project.</p>
+    <h2 id="identity-service-does" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">What identity-service does</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.identityService }}">identity-service</a> backend checks who you are and whether you can access a company. A company groups the accounts and access rules for your product or organization. Use it for the company access features below.</p>
   </div>
   <div class="mt-10 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
     <div>
@@ -83,11 +75,11 @@ pageScripts:
     </div>
     <div>
       <h3 class="text-base font-semibold text-pretty text-foreground">Account administration</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Staff and company owners manage members, invitations, groups, and provider connections in the <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">administration panel</a>.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Staff and company owners manage members, invitations, groups, and provider connections in the <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/administration/">administration panel</a>.</p>
     </div>
     <div>
-      <h3 class="text-base font-semibold text-pretty text-foreground">Supabase Auth</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">If you already use Supabase, connect it as your authentication backend. The sign-in methods you get depend on that project's settings.</p>
+      <h3 class="text-base font-semibold text-pretty text-foreground">Magic links and invitations</h3>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Members can sign in from a link sent by email, and company owners invite new people by email.</p>
     </div>
   </div>
 </section>
@@ -100,15 +92,15 @@ pageScripts:
 
   <div class="mt-10 grid max-w-3xl gap-6 sm:grid-cols-3">
     <div>
-      <p class="text-sm font-semibold text-primary-ink dark:text-primary">1. Connect a backend</p>
+      <p class="text-sm font-semibold text-primary-ink">1. Connect a backend</p>
       <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">backend</code> in <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.config.json</code> and enable the login methods you want on the page.</p>
     </div>
     <div>
-      <p class="text-sm font-semibold text-primary-ink dark:text-primary">2. Protect routes</p>
+      <p class="text-sm font-semibold text-primary-ink">2. Protect routes</p>
       <p class="mt-2 text-sm/6 text-muted-foreground">Set <code class="rounded bg-muted px-1.5 py-0.5 text-sm">requiresAuth</code> on the navigation items that need a session. Your backend must also check authentication and permissions for its data.</p>
     </div>
     <div>
-      <p class="text-sm font-semibold text-primary-ink dark:text-primary">3. Sign in from your app</p>
+      <p class="text-sm font-semibold text-primary-ink">3. Sign in from your app</p>
       <p class="mt-2 text-sm/6 text-muted-foreground">From an embedded app, call <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">init</code> from <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">@shellui/sdk</code> first, then <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">shellui.login()</code>.</p>
     </div>
   </div>
@@ -143,6 +135,8 @@ pageScripts:
     <h2 id="who-can-join" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Choose who can join</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">A successful provider login confirms an account's identity. Your company access policy decides whether that account can enter your product. Choose a policy in the administration panel's Organization settings.</p>
   </div>
+
+  <div class="mt-10">{% include "join-visual-responsive.njk" %}</div>
 
   <div class="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-8">
     <div>
@@ -185,7 +179,7 @@ pageScripts:
     <h2 id="sign-in-privacy" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Keep sign-in details private</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">A magic-link webhook never includes the sign-in link or the token. identity-service always sends that email itself, and only to the address that requested it. Access logs record the path without the query string, so tokens and codes stay out of the log.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">Staff and superuser accounts do not get a magic link. They receive a short notice to sign in with their usual method.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">A company metrics response includes only that company's series. Platform-wide series stay on the staff metrics endpoint. Webhook rules, delivery logs, and the event log are on <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/#webhooks">Administration</a>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">A company metrics response includes only that company's series. Platform-wide series stay on the staff metrics endpoint. Webhook rules, delivery logs, and the event log are on <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/administration/#webhooks">Administration</a>.</p>
   </div>
 </section>
 
@@ -201,4 +195,4 @@ pageScripts:
 ] %}
 {% include "feature-docs.njk" %}
 
-<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2 dark:text-primary" href="/features/administration/">Administration</a> manages members, email, webhooks, and company access.</p>
+<p class="mt-10 max-w-2xl text-base/7 text-muted-foreground">Next, see how <a class="font-medium text-primary-ink underline underline-offset-2" href="/features/administration/">Administration</a> manages members, email, webhooks, and company access.</p>

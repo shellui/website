@@ -1,0 +1,53 @@
+/* Dialog illustration (ids dg-, dark copy dgd-). Synced from playground-mock/svg/dialog.
+   Animates when an ancestor .anim-card is hovered or focused. */
+.dg-light{--bg:#F3F4F6;--dot:#D7DADF;--win:#FFFFFF;--winln:#E5E7EB;--side:#F9FAFB;--wf:#EEF0F3;--code:#F9FAFB;--gb:#F6E3B0;--rb:#F8D3D3;--sg:var(--color-primary-ink);--sm:#6B7280;--pill:#FFFFFF;--pillln:#E5E7EB;--c:#FFFFFF;--cln:#E5E7EB;--fg:#111827;--mf:#6B7280;--mu:#F3F4F6;--mu5:#F9FAFB;--de:#DC2626;--de1:#FCE9E9;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#FFFBEB;--sh:.1}
+.dg-dark{--bg:#030712;--dot:#1A2130;--win:#0A0F1C;--winln:rgba(255,255,255,.08);--side:#0D1322;--wf:#151C2B;--code:#0D1322;--gb:#3A2E10;--rb:#3A1414;--sg:var(--color-primary);--sm:#9CA3AF;--pill:#101828;--pillln:rgba(255,255,255,.1);--c:#030712;--cln:#1F2937;--fg:#F9FAFB;--mf:#9CA3AF;--mu:#1F2937;--mu5:#11151F;--de:#EF4444;--de1:#2F0E12;--pr:var(--color-primary);--prf:var(--color-primary-foreground);--sel:#1C1607;--sh:.1}
+.dg-art .bg{fill:var(--bg)}
+.dg-art .dot{fill:var(--dot)}
+.dg-art .win{fill:var(--win);stroke:var(--winln)}
+.dg-art .side{fill:var(--side)}
+.dg-art .div{fill:var(--winln)}
+.dg-art .wf{fill:var(--wf)}
+.dg-art .code{fill:var(--code);stroke:var(--winln)}
+.dg-art .gb{fill:var(--gb)}
+.dg-art .rb{fill:var(--rb)}
+.dg-art .sg{fill:var(--sg)}
+.dg-art .sm{fill:var(--sm)}
+.dg-art .pill{fill:var(--pill);stroke:var(--pillln)}
+.dg-art .gold{fill:var(--color-primary)}
+.dg-art .ld{fill:none;stroke:var(--color-primary);stroke-dasharray:4 4}
+.dg-art .c{fill:var(--c);stroke:var(--cln)}
+.dg-art .cf{fill:var(--c)}
+.dg-art .wh{fill:#fff}
+.dg-art .ln{fill:var(--cln)}
+.dg-art .fg{fill:var(--fg)}
+.dg-art .mf{fill:var(--mf)}
+.dg-art .mu{fill:var(--mu)}
+.dg-art .mu5{fill:var(--mu5)}
+.dg-art .de{fill:var(--de)}
+.dg-art .de1{fill:var(--de1)}
+.dg-art .pr{fill:var(--pr)}
+.dg-art .prf{fill:var(--prf)}
+.dg-art .sel{fill:var(--sel);stroke:var(--pr)}
+.dg-art .sfg{fill:none;stroke:var(--fg)}
+.dg-art .sde{fill:none;stroke:var(--de)}
+.dg-art .smf{fill:none;stroke:var(--mf)}
+.dg-art .ov{fill:#000;opacity:.5}
+.dg-art .an{transform-box:fill-box}
+.dg-art .shf{flood-color:#000;flood-opacity:var(--sh)}
+@keyframes dg-f{0%{opacity:0}}
+@keyframes dg-fd{0%{opacity:0}100%{opacity:1}}
+@keyframes dg-h-ova{0%{opacity:.5;transform:none;animation-timing-function:ease}35.71%{opacity:0;transform:none}42.86%{opacity:0;animation-timing-function:ease}100%{opacity:.5;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dg-art .ova{animation:dg-h-ova 0.70s linear both}
+@keyframes dg-h-pn{0%{opacity:1;transform:none;animation-timing-function:ease}29.41%{opacity:0;transform:none}52.94%{opacity:0;animation-timing-function:ease}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dg-art .pn{animation:dg-h-pn 0.85s linear both}
+@keyframes dg-h-bdb0{0%{opacity:1;transform:none;animation-timing-function:ease}24.27%{opacity:0;transform:none}82.52%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dg-art .bd.b0{animation:dg-h-bdb0 1.03s linear both}
+@keyframes dg-h-bdb1{0%{opacity:1;transform:none;animation-timing-function:ease}21.19%{opacity:0;transform:none}84.75%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dg-art .bd.b1{animation:dg-h-bdb1 1.18s linear both}
+@keyframes dg-h-bdb2{0%{opacity:1;transform:none;animation-timing-function:ease}18.80%{opacity:0;transform:none}86.47%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dg-art .bd.b2{animation:dg-h-bdb2 1.33s linear both}
+@keyframes dg-h-bdb3{0%{opacity:1;transform:none;animation-timing-function:ease}16.89%{opacity:0;transform:none}87.84%{opacity:0;animation-timing-function:ease-out}100%{opacity:1;transform:none}}
+.anim-card:is(:hover,:focus-within,:focus-visible,.is-playing) .dg-art .bd.b3{animation:dg-h-bdb3 1.48s linear both}
+.anim-card:has(.dg-art){--seq:1.48s}
+@media (prefers-reduced-motion:reduce){.dg-art *{animation:none!important}}

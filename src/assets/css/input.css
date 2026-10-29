@@ -1,15 +1,27 @@
 @import "tailwindcss";
+@import "./inter-font.css";
 @import "./extras.css";
 @import "./graph-chrome.css";
-@import "./shell-layout-anim.css";
+@import "./bento.css";
+@import "./one-shell.css";
+@import "./toaster.css";
+@import "./dialog.css";
+@import "./modal.css";
+@import "./drawer.css";
+@import "./actions.css";
+@import "./shell-layouts.css";
+@import "./anim-card.css";
+@import "./upload.css";
+@import "./hero-mark.css";
 
 @source "../../**/*.{njk,md,html,js}";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* GENERATED:BEGIN theme */
 @theme {
   --color-primary: #e3a512;
   --color-primary-foreground: #1a1408;
-  --color-primary-ink: #c4920a;
+  --color-primary-ink: #8a6300;
   --color-background: #ffffff;
   --color-foreground: #111827;
   --color-muted: #f9fafb;
@@ -29,11 +41,15 @@
   --radius-lg: 0.75rem;
   --radius-md: 0.375rem;
   --radius-sm: 0.25rem;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
+/* GENERATED:END theme */
 
+/* GENERATED:BEGIN dark */
 @layer theme {
   .dark {
     --color-primary: #e8b84a;
+    --color-primary-ink: #e8b84a;
     --color-ring: #e8b84a;
     --color-background: #030712;
     --color-foreground: #f9fafb;
@@ -51,3 +67,4 @@
     --color-input: #1f2937;
   }
 }
+/* GENERATED:END dark */

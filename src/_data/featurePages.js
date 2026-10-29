@@ -9,7 +9,7 @@ export default [
       "Shared theme and language settings",
       "Toasts, dialogs, modals, and drawers"
     ],
-    visual: "shell-layout",
+    visual: "apps-visual",
     cta: "Explore apps and navigation"
   },
   {
@@ -29,11 +29,11 @@ export default [
     id: "administration",
     href: "/features/administration/",
     title: "Administration",
-    benefit: "Manage accounts and company access from your app. Give staff and company owners a shared place to administer the product.",
+    benefit: "Run every Shellui service from one admin panel inside your app. Company owners and staff manage members, sign-in, email, and hosted apps.",
     points: [
-      "Email, webhooks, and OAuth setup",
-      "Invitations, SCIM, and the event log",
-      "Scheduled jobs and Prometheus metrics"
+      "Join modes, invitations, groups, and SCIM",
+      "OAuth setup, webhooks, and delivery logs",
+      "Previews, rollbacks, and scheduled job health"
     ],
     visual: "admin",
     cta: "Explore administration"
@@ -45,7 +45,7 @@ export default [
     benefit: "Send sign-in mail, event mail, newsletters, and broadcasts from email-service. Sign-in mail keeps its own queue.",
     points: [
       "40 email designs you can recolor",
-      "Resend or SMTP, translated per recipient",
+      "Resend, Amazon SES, or SMTP, translated per recipient",
       "Newsletters, broadcasts, and a sign-in queue"
     ],
     visual: "email",
@@ -61,7 +61,7 @@ export default [
       "Permissions and expiring share links",
       "Company and per-user storage limits"
     ],
-    visual: "storage",
+    visual: "upload",
     cta: "Explore file storage"
   },
   {

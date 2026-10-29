@@ -17,8 +17,8 @@
   "port": 4000,
   "title": "My Shellui App",
   "backend": {
-    "type": "supabase",
-    "url": "http://localhost:54321"
+    "type": "shellui",
+    "url": "http://localhost:8000"
   },
   "navigation": [
     {
@@ -42,7 +42,7 @@
         </div>
         <div>
           <dt class="font-semibold text-gray-900 dark:text-white"><code class="font-mono text-[0.8rem]">backend</code></dt>
-          <dd class="mt-1 text-gray-600 dark:text-gray-400">Provider (<code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui</code>, <code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">supabase</code>, or none) and API base URL.</dd>
+          <dd class="mt-1 text-gray-600 dark:text-gray-400">Provider (<code class="rounded bg-gray-100 px-1 py-0.5 text-[0.8rem] dark:bg-gray-800">shellui</code> or none) and API base URL.</dd>
         </div>
         <div>
           <dt class="font-semibold text-gray-900 dark:text-white"><code class="font-mono text-[0.8rem]">navigation</code></dt>
@@ -52,9 +52,9 @@
     </div>
 
     <p class="mt-8 text-sm text-gray-500 dark:text-gray-400">
-      <a href="{{ site.docs }}/cli/#configuration" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">CLI configuration</a>
+      <a href="{{ site.docs }}/cli/#configuration" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">CLI configuration</a>
       ·
-      <a href="{{ site.docs }}/quickstart/#write-the-config-by-hand" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-primary">Write the config by hand</a>
+      <a href="{{ site.docs }}/quickstart/#write-the-config-by-hand" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Write the config by hand</a>
       ·
       Schema: <code class="rounded bg-gray-100 px-1 py-0.5 font-mono text-[0.8rem] dark:bg-gray-800">@shellui/core/schemas/shellui.config.schema.json</code>
     </p>
