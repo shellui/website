@@ -21,6 +21,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.7.1] - 2026-10-29
+
+### 🛠 Improvements
+
+- Homepage h1 now names Shellui.
+- Longer, more descriptive title tag on /pricing/.
+- BreadcrumbList structured data on /features/, /pricing/ and every guidelines page.
+- Homepage hero dot animation starts after load, so it no longer competes with first paint.
+- Accessibility: better contrast on homepage inline code, valid definition lists on the newsletter blocks.
+
 ## [0.7.0] - 2026-10-29
 
 ### ✨ Feature

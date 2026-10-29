@@ -4,7 +4,10 @@
 // [data-dots-calm] adds the Shellui windows desktop field: slower, half the travel,
 // no pointer play, 1 dot in 11 tinted with --color-primary, 30 fps cap.
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (!reduce) document.querySelectorAll("[data-hero-dots], [data-dots]").forEach(initDots);
+// Start after load and an idle frame so the decorative field never competes with first paint.
+const start = () => document.querySelectorAll("[data-hero-dots], [data-dots]").forEach(initDots);
+const idle = () => (window.requestIdleCallback ? requestIdleCallback(start, { timeout: 2000 }) : setTimeout(start, 200));
+if (!reduce) document.readyState === "complete" ? idle() : addEventListener("load", idle, { once: true });
 
 function initDots(hero) {
   const canvas = hero.querySelector(":scope > canvas");
