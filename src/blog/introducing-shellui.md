@@ -1,9 +1,9 @@
 ---
 layout: layouts/post.njk
-title: Introducing Shellui | Shellui
+title: "Introducing Shellui: an open-source shell for web apps"
 heading: Introducing Shellui
 lede: Every project needs the same sign-in, admin, and settings screens. Shellui builds them once, and it's free and open source for you too.
-description: Why Shellui exists, how it stays free and open source, what ships today, and where it's going next.
+description: "Why Shellui exists, how it stays free and open source, what ships today, and where the open-source web app platform is going next."
 date: 2026-10-28
 author: Sébastien Barbier
 authorRole: Creator of Shellui

@@ -17,6 +17,8 @@
   "twitter": "https://x.com/shelluihq",
   "linkedin": "https://www.linkedin.com/company/shellui",
   "docker": "https://hub.docker.com/u/shellui",
+  "npm": "https://www.npmjs.com/package/@shellui/core",
+  "indexNowKey": "5e6fb66778be2c9a0998280e3fac9ac5",
   "locale": "en",
   "rss": "/blog/feed.xml",
   "dashboard": "https://dashboard.shellui.com",

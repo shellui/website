@@ -15,7 +15,9 @@
         "{{ site.github }}",
         "{{ site.linkedin }}",
         "{{ site.twitter }}",
-        "{{ site.docker }}"
+        "{{ site.docker }}",
+        "{{ site.npm }}",
+        "{{ site.docs }}"
       ]
     },
     {
@@ -23,6 +25,7 @@
       "@id": "{{ site.url }}/#website",
       "url": "{{ site.url }}",
       "name": "{{ site.name }}",
+      "alternateName": ["Shellui.com", "Shellui open-source web app platform"],
       "description": {{ site.description | dump | safe }},
       "inLanguage": "{{ site.locale or 'en' }}",
       "publisher": { "@id": "{{ site.url }}/#organization" }
