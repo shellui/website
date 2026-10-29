@@ -61,7 +61,7 @@ else
 fi
 
 # Topmost release heading should be this version (ignore HTML comments).
-TOP_HEADING="$(grep -E '^## \[' CHANGELOG.md | head -1 || true)"
+TOP_HEADING="$(awk '/<!--/{c=1} !c && /^## \[/{print; exit} /-->/{c=0}' CHANGELOG.md || true)"
 [[ -n "${TOP_HEADING}" ]] || fail 'CHANGELOG.md has no version headings'
 EXPECTED="## [${VERSION}] -"
 [[ "${TOP_HEADING}" == "${EXPECTED}"* ]] \
