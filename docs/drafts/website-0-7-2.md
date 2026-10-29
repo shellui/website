@@ -3,23 +3,19 @@
 layout: layouts/post.njk
 title: "What's new on shellui.com: security page and a clearer homepage"
 heading: A clearer homepage and a security page
-lede: Website 0.7.1 and 0.7.2 make it easier to see what Shellui is, who it's for, and how it handles your data.
-description: "Website 0.7.1 and 0.7.2 add a security page, a real playground screenshot, a who-it's-for section and two new guides for internal tools and DIY builds."
+lede: Website 0.7.1 and 0.7.2 make it easier to see who Shellui is for, and how it handles your data.
+description: "Website 0.7.1 and 0.7.2 add a security page, a who-it's-for section and two new guides for internal tools and DIY builds."
 date: 2026-10-30
 author: Sébastien Barbier
 authorRole: Creator of Shellui
 authorImage: /img/authors/sebastien-barbier.webp
 category: Release
-imageAlt: Shellui playground screenshot
+imageAlt: Shellui website update
 tags:
   - blog
 ---
 
-The first version of shellui.com explained the features. It did a worse job at three things: showing the product, saying who it's for, and explaining how it treats your data. Website 0.7.1 and 0.7.2 fix that.
-
-## See the real shell
-
-The homepage now opens with a screenshot of the [playground](https://playground.shellui.com), in light and dark. The sidebar, settings, and dialogs you see come from the shell. The page in the middle is a plain React app. Next to it, a new button takes you straight to the playground, so you can click around before you install anything.
+The first version of shellui.com explained the features. It did a worse job at two things: saying who it's for, and explaining how it treats your data. Website 0.7.1 and 0.7.2 fix that.
 
 ## Who it's for
 

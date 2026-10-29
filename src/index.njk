@@ -26,7 +26,7 @@ ogDescription: Open-source web app platform with navigation, authentication, adm
     <div class="mt-10 flex flex-col gap-4 lg:flex-row lg:items-center">
       <div class="flex items-center gap-x-4">
           <a href="{{ site.docs }}/quickstart" class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Get started</a>
-          <a href="{{ site.playground }}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10">Try the playground</a>
+          <a href="/request-a-demo/" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10">Request a demo</a>
       </div>
       <button
         type="button"
@@ -54,15 +54,11 @@ ogDescription: Open-source web app platform with navigation, authentication, adm
       <li class="inline-flex items-center gap-1.5"><svg class="size-4 text-primary-ink" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4l3.3 3.3 7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg><a href="{{ site.docs }}/quickstart" class="hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white">Self-hostable</a></li>
       <li class="inline-flex items-center gap-1.5"><svg class="size-4 text-primary-ink" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4l3.3 3.3 7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg><a href="/security/" class="hover:text-gray-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:hover:text-white">Security practices</a></li>
     </ul>
-    <figure id="hero-shot" class="mt-14 sm:mt-16">
-      <div class="hero-shot overflow-hidden rounded-xl bg-gray-50 shadow-2xl shadow-gray-900/10 ring-1 ring-gray-900/10 dark:bg-gray-900 dark:shadow-black/40 dark:ring-white/10">
-        <img src="/img/home/playground-shell-light.webp" srcset="/img/home/playground-shell-light-800.webp 800w, /img/home/playground-shell-light.webp 1600w" sizes="(min-width: 1280px) 1216px, calc(100vw - 2rem)" width="1600" height="1000" alt="The Shellui playground: shell sidebar with navigation, settings, and sign-in around a React app" loading="lazy" decoding="async" class="block h-auto w-full dark:hidden" />
-        <img src="/img/home/playground-shell-dark.webp" srcset="/img/home/playground-shell-dark-800.webp 800w, /img/home/playground-shell-dark.webp 1600w" sizes="(min-width: 1280px) 1216px, calc(100vw - 2rem)" width="1600" height="1000" alt="The Shellui playground in dark mode: shell sidebar with navigation, settings, and sign-in around a React app" loading="lazy" decoding="async" class="hidden h-auto w-full dark:block" />
-      </div>
-      <figcaption class="mt-3 text-sm text-gray-500 dark:text-gray-400">The <a href="{{ site.playground }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Shellui playground</a>: the sidebar, settings, and dialogs come from the shell. The page in the middle is a React app.</figcaption>
-    </figure>
   </div>
 </div>
+
+
+    {% include "home-bento.njk" %}
 
     <section id="who-its-for" class="border-t border-gray-200 page-x py-24 dark:border-gray-800" aria-labelledby="who-its-for-title">
       <div class="mx-auto max-w-7xl">
@@ -86,8 +82,6 @@ ogDescription: Open-source web app platform with navigation, authentication, adm
         </ul>
       </div>
     </section>
-
-    {% include "home-bento.njk" %}
 
     {% include "home-init.njk" %}
 

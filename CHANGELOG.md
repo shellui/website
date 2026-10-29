@@ -26,8 +26,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 ### ✨ Feature
 
 - Security page at /security/ and a security.txt file.
-- Who it's for section on the homepage.
-- Real playground screenshot in the hero, light and dark.
+- Who it's for section on the homepage, after the feature overview.
 - New page: An app shell for internal tools.
 - New page: Shellui vs building it yourself.
 
@@ -35,7 +34,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 - Sharper homepage hero copy.
 - Trust signals under the hero: MIT license, GitHub, latest release, self-hostable.
-- Try the playground replaces Request a demo in the hero, and sits next to the waitlist form.
+- Try the playground and Read the docs links under the waitlist form.
 - Legal notice describes Shellui as a free and open-source project.
 
 ### 🐛 Bug Fixes
