@@ -23,15 +23,17 @@ tags:
 
 Before work on the idea can begin, someone has to build sign-in, a members screen, settings, file uploads, and the emails that go with all of that. Then the next project needs them again, and the one after that.
 
-Shellui is an answer to that loop. The goal is to reuse those features across projects, so each one is built once and every project gets it. The shared features have to be good enough that nobody misses writing them by hand.
+Shellui is an answer to that loop. It is built for indie makers, bootstrappers, and one-person companies who need those shared features without a platform team. The design was heavily inspired by my time at SAP working with the [Luigi](https://luigi-project.io/) project, so the same model also fits large company projects. The goal is to reuse those features across projects, so each one is built once and every project gets it. The shared features have to be good enough that nobody misses writing them by hand - or with AI.
 
 ## What Shellui is
 
 Shellui is an open-source web app development platform. It's a microfrontend shell that wraps your application with shared navigation, authentication, storage, and administration.
 
-Each of your apps loads in an iframe inside one shell. An app keeps its own framework and its own deployment. It talks to the shell through the Shellui SDK, and it gets the same navigation, sign-in, theme, and language as every other app around it. You can add a new app to a project without touching the others, and you can drop an old one the same way.
+Each of your apps loads in an iframe inside one shell. An app keeps its own framework and its own deployment. It talks to the shell through the [Shellui SDK](https://docs.shellui.com/sdk), and it gets the same navigation, sign-in, theme, and language as every other app around it. You can add a new app to a project without touching the others, and you can drop an old one the same way.
 
-That's the plug and play part. The shell owns the common ground, so your app only has to contain your product.
+Alongside the microfrontend shell, Shellui ships a set of backend-as-a-service endpoints. identity-service, storage-service, email-service, and hosting-service cover authentication, files, mail, and temporary deploys, so each app can call shared APIs instead of standing up its own stack. Those endpoints connect with your own backend to form one unified architecture.
+
+That's the plug-and-play part. The shell owns the common ground, so your app only has to contain your product. That common ground is a solid foundation for a software factory: shared chrome and services, apps you add or drop without rebuilding the stack.
 
 ## How Shellui stays free and open source
 
@@ -54,30 +56,32 @@ Open the [playground](https://playground.shellui.com) to see it running. When yo
 
 ## Where it's going
 
-Next is built-in AI APIs and Model Context Protocol (MCP) support in the shell, so your apps can talk to models and tools through one shared surface instead of wiring each integration alone.
+Next, Shellui will become AI-native. Built-in AI APIs and Model Context Protocol (MCP) support will ship in the shell, so agents can fully manage your application - navigation, configuration, and the shared services - when you choose to let them. AI will run on a bring-your-own-token model: you supply the provider keys, and Shellui does not meter or resell model access.
 
-After that comes a marketplace with app install: discover apps, add them to a project, and run them inside the same shell with the same navigation, sign-in, and administration.
+After that comes a marketplace with app installs: discover apps, add them to a project, and run them inside the same shell with the same navigation, sign-in, and administration.
 
 You can follow all of this on [GitHub](https://github.com/shellui) and in the [changelog](/changelog/).
 
 ## Incentives over sales pressure
 
-Shellui is the in-house stack behind the projects I ship. It is public so you can use it too, but it mostly runs internal work. That is a political choice as much as a technical one. There is no sales quota, no growth metric, and no roadmap bent toward what is easiest to sell. Features land because they are needed where the stack already runs, not because they close a deal.
+Shellui is the in-house stack behind the projects I ship. It is public so you can use it too, but it mostly runs internal work. That is a political choice as much as a technical one. There is no sales quota, no growth metric, and no roadmap bent toward what is easiest to sell. Features ship because they are needed where the stack already runs, not because they close a deal.
 
 The same stance shapes who holds the power:
 
 - **Standalone services**: identity-service, storage-service, email-service, and hosting-service each run on their own. Use the ones you need and skip the rest.
 - **Open source**: you can read every line, audit it, and fix it yourself if you have to. Nothing is hidden behind a closed component.
-- **Self-hosting**: you run the services on your own infrastructure, with your own data, under the MIT licence.
+- **Self-hosting**: you run the services on your own infrastructure, with your own data, under the MIT license.
 - **No lock-in**: your apps stay ordinary web apps in their own frameworks, connected through the SDK. If you leave Shellui, your product leaves with you.
 
 New features stay additive and off by default for the same reason. Your setup should not change unless you choose it to.
 
-## Tools at a time of AI
+## Learning by doing
 
-Building Shellui was also how I learned to work with AI. Agents wrote the project end to end: they make implementation decisions, and they regularly review security and feedback. The challenge was learning how to define restrictions that steer those agents toward the outcomes the project needs.
+Shellui started as a no-pressure personal experiment. Over the years in my career, I had worked on those individual features - sign-in, admin, storage, email, and the rest - across many projects. Pulling them into one reusable instance was personally satisfying. Today it has reached a level of quality I am proud of and I believe good enough to share publicly.
 
-Shellui is designed with AI in mind as well. The shell, the SDK boundary, and the standalone services are meant to stay clear and auditable, so people and agents can build inside the same rules without locking your product into someone else's stack.
+In 2026, building with AI is the obvious path. Agents write the project end to end: they make implementation decisions, and they regularly review security and feedback. The craft is defining the constraints and guardrails that keep those agents aimed at the outcomes the project needs.
+
+The shell, the SDK boundary, and the standalone services stay clear and auditable for that reason. People and agents can build inside the same rules without locking your product into someone else's stack.
 
 ## Try it
 
