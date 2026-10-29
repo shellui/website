@@ -43,6 +43,6 @@
     "@xyflow/react": "^12.12.0",
     "alpinejs": "^3.17.5",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.1"
   }
 }
