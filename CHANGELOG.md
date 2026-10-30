@@ -32,7 +32,6 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 🛠 Improvements
 
-- Sharper homepage hero copy.
 - Trust signals under the hero: MIT license, GitHub, self-hostable, security practices.
 - Try the playground and Read the docs links under the waitlist form.
 - Legal notice describes Shellui as a free and open-source project.
