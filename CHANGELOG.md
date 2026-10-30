@@ -35,6 +35,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 - Trust signals under the hero: MIT license, GitHub, self-hostable, security practices.
 - Try the playground and Read the docs links under the waitlist form.
 - Legal notice describes Shellui as a free and open-source project.
+- Shellui for AI link to shellui.ai in the footer and under the agent prompt, and shellui.ai in the Organization sameAs.
 
 ### 🐛 Bug Fixes
 
