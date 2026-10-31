@@ -32,7 +32,7 @@ The short version:
 
 ## Micro frontends, the iframe way
 
-Shellui is a micro-frontend shell. In the vocabulary of Martin Fowler's [Micro Frontends](https://martinfowler.com/articles/micro-frontends.html) article, the shell is the **container application** and each of your apps is a **micro frontend**: a frontend built, versioned and deployed on its own. The article walks through the main ways to put them together: server-side composition, build-time packages, runtime JavaScript, Web Components, and iframes. [micro-frontends.org](https://micro-frontends.org/) and Luca Mezzalira's book [Building Micro-Frontends](https://www.buildingmicrofrontends.com/) cover the same ground, including the vertical split Shellui uses, where each app owns whole screens.
+Shellui is a micro frontend shell. In the vocabulary of Martin Fowler's [Micro Frontends](https://martinfowler.com/articles/micro-frontends.html) article, the shell is the **container application** and each of your apps is a **micro frontend**: a frontend built, versioned and deployed on its own. The article walks through the main ways to put them together: server-side composition, build-time packages, runtime JavaScript, Web Components, and iframes. [micro-frontends.org](https://micro-frontends.org/) and Luca Mezzalira's book [Building Micro-Frontends](https://www.buildingmicrofrontends.com/) cover the same ground, including the vertical split Shellui uses, where each app owns whole screens.
 
 Each option trades isolation against integration. Runtime JavaScript and Web Components share one document, so apps can load fast and share state, but they also share one global scope and one stylesheet cascade. A bad CSS selector or a library version clash in one app can break another.
 
@@ -151,7 +151,7 @@ What this means in practice:
 - **Different origin:** when your app runs on a different origin from the shell, as it does in local development (`localhost:4000` for the shell, `localhost:5173` for your app), the browser's same-origin policy keeps it out of the shell's document and storage. The sandbox and message checks sit on top of that.
 - **Same origin:** a default production build serves apps from `/app/` on the shell's own origin. That keeps framing first-party, but the sandbox becomes a guard rail, not a wall. A same-origin frame can reach the shell page, read the refresh token from `sessionStorage` and act as the signed-in user. Same-origin apps also share `localStorage`, IndexedDB and cookies with the shell and with each other. That is the answer to "Can another app read my data?": yes, if both run on the shell's origin.
 
-So the rule is the one every micro-frontend setup lives by: only embed apps you trust, and give apps you trust less their own origin. To do that:
+So the rule is the one every micro frontend setup lives by: only embed apps you trust, and give apps you trust less their own origin. To do that:
 
 - **Own origin:** set an absolute `https://` URL in the app's navigation `url`, on a host of its own, for example `https://billing.example.com`. Watch out for cookies scoped to a shared parent domain like `.example.com`: every subdomain receives them.
 - **Framing policy:** send a [`frame-ancestors`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors) policy from the app, so only your shell can frame it:
@@ -167,7 +167,7 @@ We document all of this, including the remaining work, on the [companion isolati
 
 ## Why Shellui chose iframes
 
-Iframes are not the most common way to build micro-frontends. They are the one model where the browser can enforce the separation, once each app has its own origin. Each team can ship on its own schedule, and the contract is small enough to write down in one post. A list of message types is something you can audit, log and reason about.
+Iframes are not the most common way to build micro frontends. They are the one model where the browser can enforce the separation, once each app has its own origin. Each team can ship on its own schedule, and the contract is small enough to write down in one post. A list of message types is something you can audit, log and reason about.
 
 Iframes have costs too. Each app loads its own framework, and focus, keyboard navigation and accessibility across frames need care. Deep links need syncing between the frame and the address bar, which is why `SHELLUI_URL_CHANGED` exists.
 
