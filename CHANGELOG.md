@@ -21,6 +21,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.7.2] - 2026-10-29
+
+### ✨ Feature
+
+- Security page at /security/ and a security.txt file.
+- Who it's for section on the homepage, after the feature overview.
+- New page: An app shell for internal tools.
+- New page: Shellui vs building it yourself.
+
+### 🛠 Improvements
+
+- Trust signals under the hero: MIT license, GitHub, self-hostable, security practices.
+- Try the playground and Read the docs links under the waitlist form.
+- Legal notice describes Shellui as a free and open-source project.
+- Shellui for AI link to shellui.ai in the footer and under the agent prompt, and shellui.ai in the Organization sameAs.
+
+### 🐛 Bug Fixes
+
+- No horizontal scroll at 390px on the homepage and guidelines pages.
+- Tab lists on feature pages pass Lighthouse accessibility checks.
+
 ## [0.7.1] - 2026-10-29
 
 ### 🛠 Improvements

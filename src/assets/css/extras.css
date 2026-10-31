@@ -581,3 +581,14 @@
 .copy-btn .check-icon { display: none; }
 .copy-btn[data-copied] .copy-icon { display: none; }
 .copy-btn[data-copied] .check-icon { display: block; }
+
+/* Long inline code wraps instead of pushing the page wider than the viewport. */
+:where(p, li, dd, td, figcaption, span) > code,
+.prose :not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .who-card { transition: none; }
+  .who-card:hover { transform: none; }
+}

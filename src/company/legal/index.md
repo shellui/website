@@ -3,14 +3,14 @@ layout: layouts/page.njk
 title: "Legal notice | Shellui operator, hosting and data rights"
 description: "Legal notice for shellui.com: Swiss operator details, GitHub Pages hosting, FADP data protection rights, and how to reach us."
 heading: Legal notice
-lede: Legal information for this non-commercial website (Switzerland).
+lede: Legal information for shellui.com, the website of a free and open-source project (Switzerland).
 ---
 
 > This page provides baseline legal information for a Swiss website. It is not legal advice.
 
 ## 1) Website operator
 
-This website is operated on a **non-commercial** basis as an open-source project site. It does not currently offer goods or services for sale online.
+This website presents Shellui, a free and open-source project released under the MIT License.
 
 - **Operator:** Sebastien Barbier (private individual)
 - **Country:** Switzerland

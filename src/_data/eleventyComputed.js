@@ -70,6 +70,9 @@ export default {
       foundations: "Foundations",
       print: "Print",
       brand: "Brand",
+      security: "Security",
+      "internal-tools": "Internal tools",
+      "shellui-vs-building-it-yourself": "Shellui vs building it yourself",
     };
 
     const pageLabel = String(data.title || data.heading || "")
