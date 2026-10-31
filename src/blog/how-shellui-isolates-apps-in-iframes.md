@@ -1,9 +1,9 @@
 ---
 layout: layouts/post.njk
-title: "Iframe micro-frontends in Shellui: sandbox and postMessage"
-heading: How Shellui isolates apps in iframes
+title: "How Shellui sandboxes your apps"
+heading: How Shellui sandboxes your apps
 lede: Every Shellui app runs in its own sandboxed iframe and talks to the shell through one message contract. Here is how that boundary works, what it protects, and where same-origin apps still need care.
-description: "How Shellui sandboxes micro-frontends in iframes, the postMessage contract and checks its SDK uses, and where same-origin apps still need care."
+description: "How Shellui runs each micro frontend in a sandboxed iframe, the postMessage contract and checks its SDK uses, and where same-origin apps still need care."
 date: 2026-10-31
 author: Shellui Team
 authorRole: Shellui maintainers
@@ -15,7 +15,7 @@ heroLight: /img/blog/how-shellui-isolates-apps-in-iframes-cover-light.svg
 heroDark: /img/blog/how-shellui-isolates-apps-in-iframes-cover-dark.svg
 imageAlt: A shell window with a sidebar and two app frames with dashed borders, one sending a message to the shell
 ogImage: /img/blog/how-shellui-isolates-apps-in-iframes-1200x630.png
-ogImageAlt: Iframe micro-frontends in Shellui
+ogImageAlt: How Shellui sandboxes your apps
 tags:
   - blog
 ---
@@ -30,7 +30,7 @@ The short version:
 - **Shell origin:** when your app is served from the shell's origin, which is the production default, treat it as part of the shell.
 - **Less-trusted apps:** give them a separate origin, a `frame-ancestors` policy and BFF auth.
 
-## Micro-frontends, the iframe way
+## Micro frontends, the iframe way
 
 Shellui is a micro-frontend shell. In the vocabulary of Martin Fowler's [Micro Frontends](https://martinfowler.com/articles/micro-frontends.html) article, the shell is the **container application** and each of your apps is a **micro frontend**: a frontend built, versioned and deployed on its own. The article walks through the main ways to put them together: server-side composition, build-time packages, runtime JavaScript, Web Components, and iframes. [micro-frontends.org](https://micro-frontends.org/) and Luca Mezzalira's book [Building Micro-Frontends](https://www.buildingmicrofrontends.com/) cover the same ground, including the vertical split Shellui uses, where each app owns whole screens.
 
