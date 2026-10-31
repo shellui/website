@@ -287,18 +287,23 @@ export default async function (eleventyConfig) {
   // Themed image: light and dark pair toggled by `.dark`, or light only in a dark-mode card.
   // Raster: pass base paths without extension (expects .webp and .png). SVG: pass the full .svg path.
   eleventyConfig.addShortcode("themedImage", (opts = {}) => {
-    const { light, dark, width, height, alt, class: cls = "h-auto w-full", loading = "lazy" } = opts;
+    const { light, dark, width, height, alt, class: cls = "h-auto w-full", loading = "lazy", mobileLight, mobileDark, mobileWidth = 800, mobileHeight = 1000, link = false } = opts;
     if (!light) throw new Error("themedImage: `light` is required");
     if (typeof alt !== "string" || !alt.trim()) throw new Error(`themedImage: \`alt\` is required (${light})`);
     if (!width || !height) throw new Error(`themedImage: \`width\` and \`height\` are required (${light})`);
     const img = (src) =>
       `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" width="${escapeAttr(String(width))}" height="${escapeAttr(String(height))}" loading="${escapeAttr(loading)}" decoding="async" class="${escapeAttr(cls)}" />`;
-    const pic = (base, wrap) =>
+    // Optional portrait variant for narrow screens, and an optional link to the full-size SVG.
+    const pic = (base, wrap, mobile) =>
       /\.svg$/i.test(base)
-        ? `<span class="${wrap}">${img(base)}</span>`
+        ? mobile
+          ? `<a href="${escapeAttr(base)}" class="${wrap}" aria-label="${escapeAttr(`Open full-size image: ${alt}`)}"><picture class="contents"><source media="(max-width: 640px)" srcset="${escapeAttr(mobile)}" width="${escapeAttr(String(mobileWidth))}" height="${escapeAttr(String(mobileHeight))}" />${img(base)}</picture></a>`
+          : link
+            ? `<a href="${escapeAttr(base)}" class="${wrap}">${img(base)}</a>`
+            : `<span class="${wrap}">${img(base)}</span>`
         : `<picture class="${wrap}"><source type="image/webp" srcset="${escapeAttr(base)}.webp" />${img(`${base}.png`)}</picture>`;
-    if (!dark) return pic(light, "block dark:overflow-hidden dark:rounded-xl dark:ring-1 dark:ring-white/10");
-    return pic(light, "contents dark:hidden") + pic(dark, "hidden dark:contents");
+    if (!dark) return pic(light, "block dark:overflow-hidden dark:rounded-xl dark:ring-1 dark:ring-white/10", mobileLight);
+    return pic(light, "contents dark:hidden", mobileLight) + pic(dark, "hidden dark:contents", mobileDark);
   });
 
   eleventyConfig.addPairedShortcode(
