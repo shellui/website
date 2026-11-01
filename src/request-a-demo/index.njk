@@ -52,7 +52,8 @@ description: "Request a demo of Shellui, the open-source web app platform. See t
       </div>
       <div>
         <label for="{{ did }}-message" class="block text-sm/6 font-medium text-foreground">Message <span class="font-normal text-muted-foreground">(optional)</span></label>
-        <textarea id="{{ did }}-message" data-meta="message" rows="4" maxlength="2000" class="mt-2 {{ inputCls }}"></textarea>
+        <textarea id="{{ did }}-message" data-meta="message" rows="4" maxlength="2000" aria-describedby="{{ did }}-message-hint" class="mt-2 {{ inputCls }}"></textarea>
+        <p id="{{ did }}-message-hint" class="mt-2 text-sm/6 text-muted-foreground">Do not include passwords or sensitive personal data.</p>
       </div>
       <div class="absolute -left-[9999px]" aria-hidden="true">
         <label for="{{ did }}-website">Website</label>
@@ -63,7 +64,7 @@ description: "Request a demo of Shellui, the open-source web app platform. See t
     </form>
     {% endif %}
     <p class="mt-6 text-sm/6 text-muted-foreground">
-      You confirm your address first, then we reply by email to pick a time. We store your email and the details you fill in, and use them only to prepare the demo.
+      You confirm your address first, then we reply by email to pick a time. We store your email and the details you fill in, use them only for the demo, and delete them on request at <a href="mailto:privacy@shellui.com" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">privacy@shellui.com</a>. Read the <a href="/company/privacy/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">privacy policy</a>.
     </p>
   </div>
 </div>
