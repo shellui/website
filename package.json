@@ -42,7 +42,7 @@
     "gray-matter": "^4.0.3",
     "markdown-it": "^15.0.3",
     "satori": "^0.63.2",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.5",
     "shiki": "^4.5.0",
     "tailwindcss": "^4.3.3"
   },
