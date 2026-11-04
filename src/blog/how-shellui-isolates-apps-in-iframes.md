@@ -20,9 +20,9 @@ tags:
   - blog
 ---
 
-When you add an app to Shellui, you hand it a place inside someone else's page. That raises fair questions. Can my app break the shell? Can another app read my data? What happens when a message arrives from somewhere it shouldn't?
+When you add an app to Shellui, it runs inside a page you don't own. Three questions follow. Can my app break the shell? Can another app read my data? What happens when a message arrives from somewhere it shouldn't?
 
-This post answers those questions. It covers how Shellui composes apps with iframes, how the SDK talks to the shell with messages, the message types you will meet, and the checks each message passes. It also covers the parts that are not fully isolated yet, because you should know where the boundary is before you rely on it.
+Below: how Shellui frames apps, the messages the SDK exchanges with the shell, the four checks every message passes, and the one place where isolation is still incomplete. Know where the boundary is before you rely on it.
 
 The short version:
 
@@ -34,7 +34,7 @@ The short version:
 
 Shellui is a micro frontend shell. In the vocabulary of Martin Fowler's [Micro Frontends](https://martinfowler.com/articles/micro-frontends.html) article, the shell is the **container application** and each of your apps is a **micro frontend**: a frontend built, versioned and deployed on its own. The article walks through the main ways to put them together: server-side composition, build-time packages, runtime JavaScript, Web Components, and iframes. [micro-frontends.org](https://micro-frontends.org/) and Luca Mezzalira's book [Building Micro-Frontends](https://www.buildingmicrofrontends.com/) cover the same ground, including the vertical split Shellui uses, where each app owns whole screens.
 
-Each option trades isolation against integration. Runtime JavaScript and Web Components share one document, so apps can load fast and share state, but they also share one global scope and one stylesheet cascade. A bad CSS selector or a library version clash in one app can break another.
+Every option trades isolation for integration. Runtime JavaScript and Web Components share one document, so apps can load fast and share state, but they also share one global scope and one stylesheet cascade. A bad CSS selector or a library version clash in one app can break another.
 
 Shellui picks **iframe composition**. Each app gets its own browsing context: its own document, its own JavaScript globals, its own CSS. Your app can use React 19 while the next one uses Vue 3 or plain HTML. Neither one can restyle the other by accident, and an uncaught error in one app stays in that frame. A busy loop is different: a frame on the same site as the shell can share a thread with it, so a frozen app can freeze the page.
 
@@ -60,7 +60,7 @@ What that means for your app:
 - **Native dialogs:** `alert`, `confirm` and `prompt` are blocked, because there is no `allow-modals`. Use `shellui.dialog` instead.
 - **Other capabilities:** downloads and pointer lock are blocked. The iframe has no `allow` attribute either, so fullscreen, camera and geolocation are off for apps on another origin.
 
-`allow-same-origin` deserves a closer look. We come back to it in "Where the boundary is today".
+`allow-same-origin` is the token that matters most. We come back to it in "Where the boundary is today".
 
 ## Why the SDK is built on postMessage
 
@@ -78,7 +78,7 @@ shellui.toast({ title: 'Changes saved', type: 'success' });
 shellui.navigate('/billing');
 ```
 
-For pages that only need theme, language and navigation, `shellui.tiny.js` does the same handshake in under 3 KB gzipped.
+For pages that only need theme, language and navigation, `shellui.tiny.js` runs the handshake on load, with no `init()` call, in about 1 KB gzipped.
 
 ## The handshake
 
@@ -98,7 +98,7 @@ Every message is an object with a `type` that starts with `SHELLUI_`, an optiona
 
 | Family | App to shell | Shell to app |
 | --- | --- | --- |
-| Handshake | `SETTINGS_REQUESTED`, `INITIALIZED` | `SETTINGS` |
+| Handshake | `SETTINGS_REQUESTED`, `INITIALIZED`, `SETTINGS_UPDATED` | `SETTINGS` |
 | Navigation | `NAVIGATE`, `URL_CHANGED` | `REFRESH_PAGE` |
 | Toasts | `TOAST`, `TOAST_UPDATE` | `TOAST_ACTION`, `TOAST_CANCEL`, `TOAST_CLEAR` |
 | Dialogs | `DIALOG`, `DIALOG_UPDATE` | `DIALOG_OK`, `DIALOG_CANCEL`, `DIALOG_SECONDARY` |
@@ -112,12 +112,13 @@ Every message is an object with a `type` that starts with `SHELLUI_`, an optiona
 A few notes:
 
 - **Callbacks:** when the user clicks a toast button or a dialog option, the shell sends the matching message back, so your callback runs in your app.
+- **Settings changes:** `SETTINGS_UPDATED` is how a frame, such as Shellui's own Settings page, tells the shell the user changed a preference. The shell then pushes `SETTINGS` to every live frame.
 - **Refresh:** `REFRESH_PAGE` asks the top window to reload the whole page, for example after a new shell version is installed.
 - **Nested apps:** an app can host another Shellui app with [`createAppFrame` or `ShelluiFrame`](https://docs.shellui.com/features/app-frames/). `CHILD_FRAME_REGISTER`, `CHILD_FRAME_UNREGISTER` and `CHILD_FRAME_SESSION` let the host app relay settings and a session to the child, for origins the shell config allows. Shellui does not add a `sandbox` attribute to those nested frames, so set one yourself.
 
 ## How the SDK checks each incoming message
 
-Anyone can call `postMessage` on a window they hold a reference to. So the receiving side matters most. The [OWASP HTML5 Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html) says to check the origin, treat data as untrusted, and never use `*` as a target. Shellui's message listener follows that advice.
+Any script holding a reference to a window can call `postMessage` on it, so the receiver does the real work. The [OWASP HTML5 Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html) says to check the origin, treat data as untrusted, and never use `*` as a target. Shellui's message listener follows that advice.
 
 {% themedImage { light: "/img/blog/how-shellui-isolates-apps-in-iframes-trust-checks-light.svg", dark: "/img/blog/how-shellui-isolates-apps-in-iframes-trust-checks-dark.svg", mobileLight: "/img/blog/how-shellui-isolates-apps-in-iframes-trust-checks-mobile-light.svg", mobileDark: "/img/blog/how-shellui-isolates-apps-in-iframes-trust-checks-mobile-dark.svg", width: 1200, height: 675, alt: "Four checks in a row: message shape, origin allowlist, known source, and privilege. Messages with the wrong shape are ignored; messages that fail the other checks are dropped." } %}
 
@@ -167,7 +168,7 @@ We document all of this, including the remaining work, on the [companion isolati
 
 ## Why Shellui chose iframes
 
-Iframes are not the most common way to build micro frontends. They are the one model where the browser can enforce the separation, once each app has its own origin. Each team can ship on its own schedule, and the contract is small enough to write down in one post. A list of message types is something you can audit, log and reason about.
+Iframes are not the most popular way to build micro frontends. They are the only one where the browser enforces the separation, once each app has its own origin. Teams ship on their own schedule, and the whole contract fits in one table. You can audit it, log it and diff it between releases.
 
 Iframes have costs too. Each app loads its own framework, and focus, keyboard navigation and accessibility across frames need care. Deep links need syncing between the frame and the address bar, which is why `SHELLUI_URL_CHANGED` exists.
 
