@@ -19,7 +19,7 @@ export function BlogTemplate(meta) {
     ShellFrame,
     { variant: "dark" },
     h(HeaderRow, {
-      markVariant: "goldOnDark",
+      markVariant: "white",
       label: "shellui.com",
       labelColor: COLORS.white,
       dividerColor: "#374151",
