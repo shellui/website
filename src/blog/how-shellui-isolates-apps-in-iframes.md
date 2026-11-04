@@ -4,7 +4,7 @@ title: "How Shellui sandboxes your apps"
 heading: How Shellui sandboxes your apps
 lede: Every Shellui app runs in its own sandboxed iframe and talks to the shell through one message contract. Here is how that boundary works, what it protects, and where same-origin apps still need care.
 description: "How Shellui runs each micro frontend in a sandboxed iframe, the postMessage contract and checks its SDK uses, and where same-origin apps still need care."
-date: 2026-10-31
+date: 2026-11-04
 author: Shellui Team
 authorRole: Shellui maintainers
 category: Engineering
@@ -32,19 +32,19 @@ The short version:
 
 ## Micro frontends, the iframe way
 
-Shellui is a micro frontend shell. In the vocabulary of Martin Fowler's [Micro Frontends](https://martinfowler.com/articles/micro-frontends.html) article, the shell is the **container application** and each of your apps is a **micro frontend**: a frontend built, versioned and deployed on its own. The article walks through the main ways to put them together: server-side composition, build-time packages, runtime JavaScript, Web Components, and iframes. [micro-frontends.org](https://micro-frontends.org/) and Luca Mezzalira's book [Building Micro-Frontends](https://www.buildingmicrofrontends.com/) cover the same ground, including the vertical split Shellui uses, where each app owns whole screens.
+Shellui is a micro frontend shell. In the vocabulary of Martin Fowler's [Micro Frontends](https://martinfowler.com/articles/micro-frontends.html) article, the shell is the **container application** and each of your apps is a **micro frontend**: a frontend built, versioned and deployed on its own. The article lists the ways to compose them: server-side, build-time packages, runtime JavaScript, Web Components and iframes. [micro-frontends.org](https://micro-frontends.org/) and Luca Mezzalira's book [Building Micro-Frontends](https://www.buildingmicrofrontends.com/) cover the same ground, including the vertical split Shellui uses: each app owns whole screens.
 
-Every option trades isolation for integration. Runtime JavaScript and Web Components share one document, so apps can load fast and share state, but they also share one global scope and one stylesheet cascade. A bad CSS selector or a library version clash in one app can break another.
+Every option trades isolation for integration. Runtime JavaScript and Web Components share one document: fast loads and shared state, but also one global scope and one cascade, so a bad selector or a version clash in one app breaks another.
 
-Shellui picks **iframe composition**. Each app gets its own browsing context: its own document, its own JavaScript globals, its own CSS. Your app can use React 19 while the next one uses Vue 3 or plain HTML. Neither one can restyle the other by accident, and an uncaught error in one app stays in that frame. A busy loop is different: a frame on the same site as the shell can share a thread with it, so a frozen app can freeze the page.
+Shellui picks **iframe composition**. Each app gets its own document, globals and CSS. Your app can use React 19 next to one in Vue 3 or plain HTML, neither can restyle the other, and an uncaught error stays in its frame. A busy loop is different: a frame on the same site as the shell can share a thread with it, so a frozen app can freeze the page.
 
 {% themedImage { light: "/img/blog/how-shellui-isolates-apps-in-iframes-architecture-light.svg", dark: "/img/blog/how-shellui-isolates-apps-in-iframes-architecture-dark.svg", mobileLight: "/img/blog/how-shellui-isolates-apps-in-iframes-architecture-mobile-light.svg", mobileDark: "/img/blog/how-shellui-isolates-apps-in-iframes-architecture-mobile-dark.svg", width: 1200, height: 675, alt: "The shell owns the session, theme and language, toasts and dialogs, the storage picker, and modals. Your app runs in a sandboxed iframe and exchanges postMessage requests and replies with the shell." } %}
 
-The shell owns everything that should feel the same across apps: the session, theme and language, toasts and dialogs, modals and drawers, and the storage picker. Your app owns its own screens. The SDK never reaches into the shell's internals, and on its own origin your app cannot either.
+The shell owns what should feel the same everywhere: session, theme, language, toasts, dialogs, modals, drawers and the storage picker. Your app owns its screens.
 
 ## What the iframe sandbox allows
 
-An iframe on its own already separates documents. The HTML [`sandbox` attribute](https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox) goes further: it starts from "deny everything" and lets the embedder add back only the capabilities the frame needs. MDN's [iframe reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe) lists every token, and web.dev's [Play safely in sandboxed IFrames](https://web.dev/articles/sandboxed-iframes) (2013) is still one of the clearest explanations of the model.
+An iframe already separates documents. The HTML [`sandbox` attribute](https://html.spec.whatwg.org/multipage/iframe-embed-object.html#attr-iframe-sandbox) goes further: it starts from "deny everything" and lets the embedder add back only the capabilities the frame needs. MDN's [iframe reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe) lists every token, and web.dev's [Play safely in sandboxed IFrames](https://web.dev/articles/sandboxed-iframes) (2013) still explains the model best.
 
 Shellui's content frame uses this set:
 
@@ -52,23 +52,17 @@ Shellui's content frame uses this set:
 <iframe sandbox="allow-same-origin allow-scripts allow-forms allow-popups" ...>
 ```
 
-What that means for your app:
-
-- **Allowed:** scripts and forms run, because your app is an app.
-- **Popups:** they open, but they stay sandboxed. Shellui removed `allow-popups-to-escape-sandbox`, so a window your app opens, including an OAuth or payment popup, inherits the same restrictions.
-- **Top-level navigation:** blocked. Without `allow-top-navigation`, your app cannot send the whole tab somewhere else. It asks the shell instead.
-- **Native dialogs:** `alert`, `confirm` and `prompt` are blocked, because there is no `allow-modals`. Use `shellui.dialog` instead.
-- **Other capabilities:** downloads and pointer lock are blocked. The iframe has no `allow` attribute either, so fullscreen, camera and geolocation are off for apps on another origin.
+Scripts and forms run. Popups open but inherit the sandbox, because Shellui removed `allow-popups-to-escape-sandbox`, so OAuth and payment popups stay restricted too. Everything else is off: top-level navigation (ask the shell with `shellui.navigate`), native `alert`, `confirm` and `prompt` (use `shellui.dialog`), downloads and pointer lock. The iframe has no `allow` attribute, so fullscreen, camera and geolocation are off for apps on another origin.
 
 `allow-same-origin` is the token that matters most. We come back to it in "Where the boundary is today".
 
 ## Why the SDK is built on postMessage
 
-The browser gives framed documents one supported way to talk across that boundary: [`window.postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). The sender passes a message and a `targetOrigin`. The receiver gets a `message` event with the data, the sender's `origin` and a reference to the sender's window.
+Framed documents have one supported channel across that boundary: [`window.postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage). The sender passes a message and a `targetOrigin`. The receiver gets a `message` event with the data, the sender's `origin` and a reference to the sender's window.
 
-We built the [Shellui SDK](https://docs.shellui.com/sdk/) on top of that one primitive. The contract between your app and the shell is a list of messages, not a shared object. The shell does not expose its internals to your app, and your app does not need to know how the shell renders a toast. It asks for one.
+The [Shellui SDK](https://docs.shellui.com/sdk/) is built on that one primitive. The contract is a list of messages, not a shared object: your app doesn't know how the shell renders a toast, it asks for one.
 
-In your code, the messages sit behind function calls:
+In your code, messages hide behind function calls:
 
 ```ts
 import { shellui } from '@shellui/sdk';
@@ -82,19 +76,19 @@ For pages that only need theme, language and navigation, `shellui.tiny.js` runs 
 
 ## The handshake
 
-The shell does not push anything into a frame that has not asked. When your app calls `init()`, the SDK starts a request-driven handshake:
+The shell pushes nothing into a frame that hasn't asked. `init()` starts the handshake:
 
 1. Your app posts `SHELLUI_SETTINGS_REQUESTED`, and the shell marks the frame as live.
 2. The shell replies with `SHELLUI_SETTINGS`: theme, language, region, layout insets and, if signed in, a snapshot of the user.
 3. Your app posts `SHELLUI_INITIALIZED` to say it is ready.
 
-From then on, whenever something changes, for example when the user switches to dark mode, the shell sends a fresh `SHELLUI_SETTINGS` to every live frame.
+After that, any change, such as a switch to dark mode, sends a fresh `SHELLUI_SETTINGS` to every live frame.
 
 {% themedImage { light: "/img/blog/how-shellui-isolates-apps-in-iframes-message-flow-light.svg", dark: "/img/blog/how-shellui-isolates-apps-in-iframes-message-flow-dark.svg", mobileLight: "/img/blog/how-shellui-isolates-apps-in-iframes-message-flow-mobile-light.svg", mobileDark: "/img/blog/how-shellui-isolates-apps-in-iframes-message-flow-mobile-dark.svg", width: 1200, height: 675, alt: "Sequence of messages between the shell and your app: settings requested, settings, initialized, toast, toast action, then fresh settings after a theme change." } %}
 
 ## The message types
 
-Every message is an object with a `type` that starts with `SHELLUI_`, an optional `payload`, and `from` and `to` fields that record the path through nested frames. You rarely send them by hand, but knowing them helps when you read logs or debug. The [SDK docs](https://docs.shellui.com/sdk/) have the full list; these are the main families, without the `SHELLUI_` prefix.
+Every message is an object with a `type` that starts with `SHELLUI_`, an optional `payload`, and `from` and `to` fields that record the path through nested frames. You rarely send them by hand, but you will see them in logs. The main families, without the prefix (full list in the [SDK docs](https://docs.shellui.com/sdk/)):
 
 | Family | App to shell | Shell to app |
 | --- | --- | --- |
@@ -111,50 +105,46 @@ Every message is an object with a `type` that starts with `SHELLUI_`, an optiona
 
 A few notes:
 
-- **Callbacks:** when the user clicks a toast button or a dialog option, the shell sends the matching message back, so your callback runs in your app.
+- **Callbacks:** a click on a toast button or dialog option comes back as a message, so your callback runs in your app.
 - **Settings changes:** `SETTINGS_UPDATED` is how a frame, such as Shellui's own Settings page, tells the shell the user changed a preference. The shell then pushes `SETTINGS` to every live frame.
 - **Refresh:** `REFRESH_PAGE` asks the top window to reload the whole page, for example after a new shell version is installed.
 - **Nested apps:** an app can host another Shellui app with [`createAppFrame` or `ShelluiFrame`](https://docs.shellui.com/features/app-frames/). `CHILD_FRAME_REGISTER`, `CHILD_FRAME_UNREGISTER` and `CHILD_FRAME_SESSION` let the host app relay settings and a session to the child, for origins the shell config allows. Shellui does not add a `sandbox` attribute to those nested frames, so set one yourself.
 
 ## How the SDK checks each incoming message
 
-Any script holding a reference to a window can call `postMessage` on it, so the receiver does the real work. The [OWASP HTML5 Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html) says to check the origin, treat data as untrusted, and never use `*` as a target. Shellui's message listener follows that advice.
+Any script holding a reference to a window can call `postMessage` on it, so the receiver does the real work. Shellui's listener follows the [OWASP HTML5 Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html): check the origin, treat data as untrusted, never target `*`.
 
 {% themedImage { light: "/img/blog/how-shellui-isolates-apps-in-iframes-trust-checks-light.svg", dark: "/img/blog/how-shellui-isolates-apps-in-iframes-trust-checks-dark.svg", mobileLight: "/img/blog/how-shellui-isolates-apps-in-iframes-trust-checks-mobile-light.svg", mobileDark: "/img/blog/how-shellui-isolates-apps-in-iframes-trust-checks-mobile-dark.svg", width: 1200, height: 675, alt: "Four checks in a row: message shape, origin allowlist, known source, and privilege. Messages with the wrong shape are ignored; messages that fail the other checks are dropped." } %}
 
 1. **Shape:** the data must be an object whose `type` starts with `SHELLUI_`. Anything else is ignored silently.
-2. **Origin:** `event.origin` must be on an allowlist. It holds the shell's own origin, the origins of the apps, admin pages and storage URLs in your config, and any extra origins you add with `security.allowedMessageOrigins`. An opaque `null` origin never passes.
-3. **Source:** `event.source` must be a frame the shell registered, the parent window, or the same window. A message from some other window is dropped even if its origin looks right.
-4. **Privilege:** messages that act on the user, like login, logout, profile, storage, toasts, dialogs and navigation, are only accepted from a registered app frame or the shell itself. A page that embeds the shell, or your app, in its own iframe cannot send them.
+2. **Origin:** `event.origin` must be on an allowlist: the shell's origin, the app, admin and storage URLs in your config, and anything in `security.allowedMessageOrigins`. A `null` origin never passes.
+3. **Source:** `event.source` must be a frame the shell registered, the parent window, or the same window. Any other window is dropped, even with a valid origin.
+4. **Privilege:** messages that act on the user, like login, logout, profile, storage, toasts, dialogs and navigation, are accepted only from a registered app frame or the shell itself, never from a page that embeds them.
 
-One nuance: inside your app, ordinary updates that come straight from the parent window skip the origin check when the browser cannot name the parent's origin. That proves only who framed your app, not that it is your shell. Set `frame-ancestors` on your app so only your shell can frame it.
+One nuance: inside your app, non-privileged messages from the parent window skip the origin check when the browser can't name the parent's origin. That proves who framed your app, not that it is your shell, so set `frame-ancestors`. With developer features and the `shellsdk` log namespace on, rejected messages are logged as `Rejected untrusted SHELLUI message` with the reason.
 
-When a message fails checks 2 to 4, it is dropped. With developer features and the `shellsdk` log namespace turned on, the SDK also logs `Rejected untrusted SHELLUI message` with the reason.
-
-Sending is held to the same standard. The SDK always passes an exact `targetOrigin`, resolved from the frame URL or the known parent. If it cannot work out the origin, it does not send. It never falls back to `*`.
+Sending follows the same rule. The SDK passes an exact `targetOrigin` from the frame URL or the known parent. If it can't resolve one, it doesn't send. It never falls back to `*`.
 
 ## What your app gets, and what it doesn't
 
-The session is the most sensitive thing the shell holds, so it is shared on purpose, not by default.
+The session is shared on purpose, never by default.
 
 - **Refresh token:** never sent to an app.
-- **Access token:** Shellui's own admin pages, the Files app and the Settings frame get it by default. Your apps opt in with `safeForAuthToken: true` on their navigation item. If an app talks to its own identity server, it gets that server's token, not the shell's.
-- **Service URLs:** an app gets the shell's storage, email and hosting URLs unless its navigation item sets its own. When the item names a different identity server and leaves a service out, the app gets no URL for it.
+- **Access token:** Shellui's admin pages, Files app and Settings frame get it by default. Your apps opt in with `safeForAuthToken: true`. An app with its own identity server gets that server's token, not the shell's.
+- **Service URLs:** an app gets the shell's storage, email and hosting URLs unless its navigation item sets its own. With a different identity server, an unset service gets no URL.
 
-Over the message channel, an app that only needs the user's name and theme never receives a credential. Apps that share the shell's origin are the exception, covered next.
+An app that only needs the user's name and theme never receives a credential over the message channel. Apps on the shell's origin are the exception.
 
 ## Where the boundary is today
 
-The sandbox includes `allow-same-origin` together with `allow-scripts`. The HTML spec warns about that pair: when the framed page shares the shell's origin, its scripts can reach the parent document and even remove the sandbox attribute. We keep `allow-same-origin` today because apps need their own cookies, `localStorage` and a real origin for the message checks above.
+The sandbox includes `allow-same-origin` together with `allow-scripts`. The HTML spec warns about that pair: when the framed page shares the shell's origin, its scripts can reach the parent document and even remove the sandbox attribute. We keep `allow-same-origin` because apps need their own cookies, `localStorage` and a real origin for the message checks.
 
-What this means in practice:
+- **Different origin:** as in local development (`localhost:4000` for the shell, `localhost:5173` for your app), the same-origin policy keeps your app out of the shell's document and storage. The sandbox and message checks sit on top.
+- **Same origin:** a default production build serves apps from `/app/` on the shell's own origin. There the sandbox is a guard rail, not a wall. A same-origin frame can reach the shell page, read the refresh token from `sessionStorage` and act as the signed-in user. Same-origin apps also share `localStorage`, IndexedDB and cookies with the shell and each other. So can another app read your data? Yes, if both run on the shell's origin.
 
-- **Different origin:** when your app runs on a different origin from the shell, as it does in local development (`localhost:4000` for the shell, `localhost:5173` for your app), the browser's same-origin policy keeps it out of the shell's document and storage. The sandbox and message checks sit on top of that.
-- **Same origin:** a default production build serves apps from `/app/` on the shell's own origin. That keeps framing first-party, but the sandbox becomes a guard rail, not a wall. A same-origin frame can reach the shell page, read the refresh token from `sessionStorage` and act as the signed-in user. Same-origin apps also share `localStorage`, IndexedDB and cookies with the shell and with each other. That is the answer to "Can another app read my data?": yes, if both run on the shell's origin.
+The rule every micro frontend setup lives by: embed only apps you trust, and give apps you trust less their own origin:
 
-So the rule is the one every micro frontend setup lives by: only embed apps you trust, and give apps you trust less their own origin. To do that:
-
-- **Own origin:** set an absolute `https://` URL in the app's navigation `url`, on a host of its own, for example `https://billing.example.com`. Watch out for cookies scoped to a shared parent domain like `.example.com`: every subdomain receives them.
+- **Own origin:** use an absolute navigation `url` on its own host, such as `https://billing.example.com`. Cookies scoped to `.example.com` still reach every subdomain.
 - **Framing policy:** send a [`frame-ancestors`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors) policy from the app, so only your shell can frame it:
 
   ```http
@@ -164,13 +154,13 @@ So the rule is the one every micro frontend setup lives by: only embed apps you 
   Shellui's Next.js and Nuxt starters set `frame-ancestors`, but only for `localhost:4000` in development. Add your production shell origin yourself.
 - **BFF auth:** turn on [BFF auth](https://docs.shellui.com/features/security/) so the refresh token lives in an HttpOnly cookie that no script can copy out. A same-origin app can still use the session through the shell's routes, so pair BFF with a separate origin.
 
-We document all of this, including the remaining work, on the [companion isolation](https://docs.shellui.com/features/companion-isolation/) page. Dropping `allow-same-origin` when shell and app share an origin, and an origin allowlist for navigation in the config schema, are both on that list.
+The remaining work is tracked on the [companion isolation](https://docs.shellui.com/features/companion-isolation/) page, including dropping `allow-same-origin` when shell and app share an origin and a navigation origin allowlist in the config schema.
 
 ## Why Shellui chose iframes
 
 Iframes are not the most popular way to build micro frontends. They are the only one where the browser enforces the separation, once each app has its own origin. Teams ship on their own schedule, and the whole contract fits in one table. You can audit it, log it and diff it between releases.
 
-Iframes have costs too. Each app loads its own framework, and focus, keyboard navigation and accessibility across frames need care. Deep links need syncing between the frame and the address bar, which is why `SHELLUI_URL_CHANGED` exists.
+The costs are real: each app loads its own framework, focus and accessibility across frames need care, and deep links must sync with the address bar, which is why `SHELLUI_URL_CHANGED` exists.
 
 To see it working, open the [playground](https://playground.shellui.com) and run this in your browser's developer tools console:
 
@@ -180,4 +170,4 @@ addEventListener('message', (e) => {
 });
 ```
 
-That shows messages from the app to the shell. Switch the console context to the app's iframe and run it again to see the other direction. The code behind all of this is on [GitHub](https://github.com/shellui/shellui), in `packages/sdk/src/utils/messageSecurity.ts` and `packages/core/src/components/contentIframeSandbox.ts`.
+That logs app-to-shell traffic. Switch the console context to the app's iframe to see the other direction. The code behind all of this is on [GitHub](https://github.com/shellui/shellui), in `packages/sdk/src/utils/messageSecurity.ts` and `packages/core/src/components/contentIframeSandbox.ts`.
