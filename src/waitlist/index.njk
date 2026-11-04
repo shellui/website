@@ -18,13 +18,14 @@ description: "Get an invite to the hosted Shellui service when it opens. Shellui
       {% set newsletterId = "waitlist" %}
       {% set newsletterList = site.waitlist %}
       {% set newsletterButton = "Join waitlist" %}
+      {% set newsletterHideNotice = true %}
       {% include "newsletter-signup.njk" %}
     </div>
     <p class="mt-4 text-sm/6 text-muted-foreground">
       Want to look around first? <a href="{{ site.playground }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Try the playground</a> or <a href="{{ site.docs }}" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">read the docs</a>.
     </p>
     <p class="mt-4 text-sm/6 text-muted-foreground">
-      You confirm your address first. Only your email is stored, and every message has an unsubscribe link.
+      You confirm your address first. Only your email is stored, and you can leave at any time with the unsubscribe link. Read the <a href="/company/privacy/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">privacy policy</a>.
     </p>
   </div>
 </div>

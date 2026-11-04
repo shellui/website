@@ -38,6 +38,11 @@
       </button>
     </div>
     <p id="{{ id }}-status" class="mt-3 min-h-6 text-sm/6 text-muted-foreground" role="status" aria-live="polite"></p>
+    {%- if not newsletterHideNotice %}
+    <p class="text-xs/5 text-muted-foreground">
+      We send a confirmation email first. Only your email is stored, and every email has an unsubscribe link. Read the <a href="/company/privacy/" class="font-medium text-primary-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">privacy policy</a>.
+    </p>
+    {%- endif %}
   </form>
 {%- endmacro -%}
 
