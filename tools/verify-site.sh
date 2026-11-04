@@ -207,7 +207,10 @@ grep -q "Changelog for ${latest_product_series}" "${SITE}/index.html" \
   || fail "homepage footer must link to changelog for product series v${latest_product_series}"
 grep -q 'Floating chrome actions' "${SITE}/changelog/index.html" \
   || fail "changelog page missing curated 0.5.0 chrome actions highlight"
-if grep -qiE 'Flutter Web|🗑 Removed|Removed</h3>' "${SITE}/changelog/index.html"; then
+# Scope to the v0.5.0 entry only: later releases may legitimately have a Removed section.
+changelog_050="$(sed -n '/>v0\.5\.0</,/>v0\.4\.1</p' "${SITE}/changelog/index.html")"
+[ -n "${changelog_050}" ] || fail "changelog page missing v0.5.0 entry"
+if printf '%s' "${changelog_050}" | grep -qiE 'Flutter Web|🗑 Removed|Removed</h3>'; then
   fail "changelog page must not show a Removed / Flutter section for 0.5.0"
 fi
 

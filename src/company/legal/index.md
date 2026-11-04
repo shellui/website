@@ -1,71 +1,39 @@
 ---
 layout: layouts/page.njk
 title: "Legal notice | Shellui operator, hosting and data rights"
-description: "Legal notice for shellui.com: Swiss operator details, GitHub Pages hosting, FADP data protection rights, and how to reach us."
+description: "Legal notice for shellui.com: publisher, hosting, open-source license and contact."
 heading: Legal notice
 lede: Legal information for shellui.com, the website of a free and open-source project (Switzerland).
 ---
 
-> This page provides baseline legal information for a Swiss website. It is not legal advice.
+Last updated: 2026-11-01
 
-## 1) Website operator
+## Publisher
 
-This website presents Shellui, a free and open-source project released under the MIT License.
+shellui.com presents Shellui, a free and open-source project under the MIT License. It is published by Sébastien Barbier, a private individual based in Switzerland.
 
-- **Operator:** Sebastien Barbier (private individual)
-- **Country:** Switzerland
-- **Contact email:** [contact@shellui.com](mailto:contact@shellui.com)
+- General contact: [contact@shellui.com](mailto:contact@shellui.com)
+- Privacy: [privacy@shellui.com](mailto:privacy@shellui.com)
+- Security: read the [security page](/security/)
 
-## 2) Hosting and infrastructure
+## Hosting
 
-- **Website hosting / static delivery:** GitHub (GitHub Pages / GitHub infrastructure)
-- **Additional infrastructure provider:** OVHcloud France
+- Website: GitHub Pages, GitHub, Inc., United States.
+- Waitlist, newsletter and demo forms: Shellui email service on OVHcloud servers in Gravelines, France. Emails are sent through Resend.
+- Emails you send to shellui.com addresses: Fastmail, Australia.
 
-Depending on the active setup, logs and technical metadata may be processed by these providers for security, delivery, and operations.
+## Personal data
 
-## 3) Data protection notice (Switzerland)
+Read the [privacy policy](/company/privacy/).
 
-The Federal Act on Data Protection (FADP; revDSG) applies. Personal data is processed only as needed to operate this site, respond to requests, and secure the service.
+## Links
 
-### Categories of data
+Links to other sites are given for information. We have no control over their content.
 
-- Contact data you submit (for example via email)
-- Technical data (for example IP address, browser, timestamps, request logs)
+## Copyright and license
 
-### Purposes
+Shellui source code is published under the [MIT License](https://github.com/shellui/shellui/blob/main/LICENSE). Website text and images belong to the publisher unless stated otherwise.
 
-- Operating and securing the website
-- Responding to inquiries
-- Troubleshooting and abuse prevention
+## Applicable law
 
-### Recipients / processors
-
-- GitHub (hosting and delivery)
-- OVHcloud France (infrastructure services)
-
-### Cross-border processing
-
-Infrastructure providers may process data outside Switzerland. Where required, transfers are based on legally recognized safeguards.
-
-### Retention
-
-Data is retained only as long as necessary for the stated purposes or legal obligations.
-
-### Your rights
-
-Under applicable law, you may request access, correction, deletion, restriction, and information about data processing.
-
-For privacy requests, contact: [contact@shellui.com](mailto:contact@shellui.com)
-
-## 4) Liability for links and content
-
-External links are provided for convenience. The operator is not responsible for third-party content outside their control.
-
-## 5) Copyright
-
-Unless otherwise indicated, content on this website is owned by the website operator. Shellui is open source under the MIT License where applicable.
-
-## 6) Contact
-
-For legal or privacy questions, contact: [contact@shellui.com](mailto:contact@shellui.com)
-
+Swiss law applies. Courts of Zürich, Switzerland.
