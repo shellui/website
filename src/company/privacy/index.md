@@ -18,7 +18,7 @@ The controller is Sébastien Barbier, a private individual based in Switzerland.
 
 Write to [privacy@shellui.com](mailto:privacy@shellui.com) for any privacy question or request.
 
-There is no EU representative and no data protection officer. [TO CONFIRM with a lawyer: GDPR Article 27 exemption for occasional, low-risk processing, and whether an email address alone meets the contact duty of GDPR Art. 13(1)(a) and FADP Art. 19(2)(a).]
+There is no EU representative and no data protection officer.
 
 ## 2. What data we process and why
 
@@ -76,8 +76,8 @@ All providers act on our behalf as processors. We may disclose data to authoriti
 ## 4. Transfers outside Switzerland and the EU
 
 - France: covered by Switzerland's and the EU's own rules. No extra safeguard needed.
-- United States: where the provider is certified under the EU-US Data Privacy Framework and its Swiss-US extension, the transfer relies on the adequacy decision of the European Commission and Switzerland's recognition of the Swiss-US framework (FADP Art. 16(1)). Otherwise it relies on the European Commission's Standard Contractual Clauses, adapted for Swiss law (GDPR Art. 46, FADP Art. 16(2)). [TO CONFIRM: current certification of GitHub, Resend and Sentry on dataprivacyframework.gov, and signed DPAs.]
-- Australia: Standard Contractual Clauses in Fastmail's data processing agreement (GDPR Art. 46, FADP Art. 16(2)). [TO CONFIRM: Fastmail DPA signed or accepted.]
+- United States: where the provider is certified under the EU-US Data Privacy Framework and its Swiss-US extension, the transfer relies on the adequacy decision of the European Commission and Switzerland's recognition of the Swiss-US framework (FADP Art. 16(1)). Otherwise it relies on the European Commission's Standard Contractual Clauses, adapted for Swiss law (GDPR Art. 46, FADP Art. 16(2)).
+- Australia: Standard Contractual Clauses in Fastmail's data processing agreement (GDPR Art. 46, FADP Art. 16(2)).
 
 You can ask for a copy of these safeguards at privacy@shellui.com.
 
@@ -88,9 +88,9 @@ You can ask for a copy of these safeguards at privacy@shellui.com.
 | Unconfirmed sign-up | Deleted after 7 days |
 | Waitlist or newsletter subscription | Until you unsubscribe. Your address, name and form details are then erased after 7 days. A one-way code of your address is kept so we do not add you again by mistake |
 | Demo request | Until the demo is done, then 12 months |
-| Sent email records in the email service | 30 days [TO CONFIRM: production setting] |
+| Sent email records in the email service | 30 days |
 | Emails you send us | As long as needed to answer, then 12 months |
-| GitHub server logs | Set by GitHub, [TO CONFIRM] |
+| GitHub server logs | Set by GitHub, see the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) |
 
 Email addresses are stored encrypted in the email service.
 

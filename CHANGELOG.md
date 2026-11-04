@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.8.1] - 2026-11-04
+
+### 📚 Documentation
+
+- Privacy policy no longer shows TO CONFIRM placeholders, and the email retention and GitHub log entries are filled in.
+
 ## [0.8.0] - 2026-11-04
 
 ### ✨ Feature
