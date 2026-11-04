@@ -38,7 +38,7 @@ Shellui is open source, so every practice on this page lives in code you can rea
 
 ## Report a vulnerability
 
-Email [contact@shellui.com](mailto:contact@shellui.com) with the affected service, the version, and the steps to reproduce. Do not open a public issue for a security problem.
+Email [security@shellui.com](mailto:security@shellui.com) with the affected service, the version, and the steps to reproduce. Do not open a public issue for a security problem.
 
 - We confirm receipt and keep you updated while we work on a fix.
 - Machine-readable contact details live in [/.well-known/security.txt](/.well-known/security.txt).
