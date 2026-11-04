@@ -21,6 +21,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.8.0] - 2026-11-04
+
+### ✨ Feature
+
+- Blog post: How Shellui sandboxes your apps.
+- Privacy policy page at /company/privacy/.
+
+### 🛠 Improvements
+
+- Legal notice rewritten for Shellui as a free and open-source project.
+- Privacy notices on the waitlist, newsletter and request a demo forms.
+- security.txt and the security page list security@shellui.com as the contact.
+- Privacy link in the footer.
+- Introducing Shellui Open Graph image shows the Shellui logo in black.
+- Default blog Open Graph template draws the Shellui logo in white on dark.
+
+### 🐛 Bug Fixes
+
+- Changelog site check only looks for a Removed section in the 0.5.0 entry.
+
+### 🏗 Chore
+
+- Bump sharp from 0.34.5 to 0.35.5 in the dev dependencies group.
+
 ## [0.7.2] - 2026-10-29
 
 ### ✨ Feature

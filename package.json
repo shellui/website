@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "The official website for Shellui, the web app development platform.",
   "private": true,
   "type": "module",
@@ -42,7 +42,7 @@
     "gray-matter": "^4.0.3",
     "markdown-it": "^15.0.3",
     "satori": "^0.63.2",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.5",
     "shiki": "^4.5.0",
     "tailwindcss": "^4.3.3"
   },
