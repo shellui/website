@@ -11,6 +11,7 @@ updates:
         dependency-type: development
         patterns:
           - "*"
+    target-branch: "develop"
 
   - package-ecosystem: github-actions
     directory: /
@@ -18,3 +19,4 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    target-branch: "develop"
