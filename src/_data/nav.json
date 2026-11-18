@@ -1,24 +1,46 @@
 {
+  "developerGroups": [
+    { "id": "build", "label": "Build" },
+    { "id": "project", "label": "Project" }
+  ],
   "developers": [
     {
-      "href": "/architecture/",
-      "label": "Architecture",
-      "description": "How the Shellui stack fits together.",
-      "icon": "cube"
-    },
-    {
-      "href": "/roadmap/",
-      "label": "Roadmap",
-      "description": "Upcoming work and milestones.",
-      "icon": "map"
-    },
-    {
+      "group": "build",
       "href": "https://docs.shellui.com",
       "label": "Documentation",
       "description": "Guides, references, and API docs.",
       "icon": "book"
     },
     {
+      "group": "build",
+      "href": "/cli/",
+      "label": "CLI",
+      "description": "Create, run, build, and deploy from your terminal.",
+      "icon": "terminal"
+    },
+    {
+      "group": "build",
+      "href": "/mcp/",
+      "label": "MCP",
+      "description": "Connect AI agents to your company, with approvals.",
+      "icon": "chip"
+    },
+    {
+      "group": "project",
+      "href": "/architecture/",
+      "label": "Architecture",
+      "description": "How the Shellui stack fits together.",
+      "icon": "cube"
+    },
+    {
+      "group": "project",
+      "href": "/roadmap/",
+      "label": "Roadmap",
+      "description": "Upcoming work and milestones.",
+      "icon": "map"
+    },
+    {
+      "group": "project",
       "href": "/changelog/",
       "label": "Changelog",
       "description": "Every release and what changed.",

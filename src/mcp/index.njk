@@ -1,0 +1,160 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: "Shellui MCP server: connect agents with OAuth"
+description: "Connect an MCP client to your Shellui company. OAuth sign-in on identity-service, read and write access levels, approvals for changes, and revocation."
+eyebrow: Developers
+heading: Connect AI agents to your company
+lede: Shellui runs a Model Context Protocol (MCP) server for each company. An agent signs in with OAuth on identity-service. It then reads and changes data in identity, storage, hosting, and email, within the access you approve.
+---
+{% import "github-repo-button.njk" as repo %}
+
+<section class="mt-4" aria-labelledby="one-url">
+  <div class="max-w-2xl">
+    <h2 id="one-url" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">One MCP URL per company</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">ai-service exposes one MCP endpoint per company. The path is <code class="rounded bg-muted px-1.5 py-0.5 text-sm">/c/your_company_id/mcp</code>. Behind that URL it reaches identity-service, storage-service, hosting-service, and email-service. Your agent only needs that one URL. Copy the full address from Settings rather than typing a host.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="connect">
+  <div class="max-w-2xl">
+    <h2 id="connect" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Connect an MCP client</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Connect a client in three steps:</p>
+  </div>
+  <ol class="mt-8 grid max-w-3xl gap-6 sm:grid-cols-3">
+    <li>
+      <p class="text-sm font-semibold text-primary-ink">1. Copy the URL</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">In Shellui, open Settings, then MCP / AI agents. Copy the company MCP URL and the prompt next to it.</p>
+    </li>
+    <li>
+      <p class="text-sm font-semibold text-primary-ink">2. Add the server</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Add the URL as a remote MCP server in your client, or paste the prompt into your agent.</p>
+    </li>
+    <li>
+      <p class="text-sm font-semibold text-primary-ink">3. Approve access</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Sign in on identity-service, pick the services, the access level, and the read level, then choose Approve.</p>
+    </li>
+  </ol>
+  <div class="mt-8 max-w-2xl space-y-4 text-base/7 text-muted-foreground">
+    <p>A client with a browser uses the OAuth authorization code flow with Proof Key for Code Exchange (PKCE). A headless agent or CLI uses device login: it shows you a link and a code, and you approve them in your browser. Never paste a token into a chat.</p>
+    <p>Any MCP client with OAuth support can connect. A client that cannot sign in with OAuth can use a static secret from that same Settings page. Shellui shows the secret once.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="tools">
+  <div class="max-w-2xl">
+    <h2 id="tools" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Tools your agent can use</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">By default the server lists a few discovery tools, so the agent searches for the right operation instead of loading every tool.</p>
+  </div>
+
+  <div class="mt-10 max-w-3xl">
+    <h3 class="text-base font-semibold text-pretty text-foreground">Discovery tools</h3>
+    <div class="prose mt-4">
+      <div class="prose-table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Tool</th><th scope="col">What it does</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><code>ai_list_services</code></th>
+              <td>List the connected services with example tasks.</td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ai_search_tools</code></th>
+              <td>Find tools from a short phrase, filtered by service or by read and write.</td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ai_describe_tool</code></th>
+              <td>Show the arguments of one or more tools.</td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ai_call_tool</code></th>
+              <td>Run a tool through the same access checks and approvals.</td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ai_get_approval</code></th>
+              <td>Check whether a pending approval was accepted. It does not run the tool.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="mt-4 text-base/7 text-muted-foreground">Four common reads are listed too: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">identity_list_users</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage_list_bucket</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting_list_apps</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">email_list_messages</code>.</p>
+  </div>
+
+  <div class="mt-10 max-w-3xl">
+    <h3 class="text-base font-semibold text-pretty text-foreground">Service tools</h3>
+    <p class="mt-2 max-w-2xl text-sm/6 text-muted-foreground">Names start with the service, for example <code class="rounded bg-muted px-1 py-0.5 text-[0.8rem]">identity_create_invitations</code>.</p>
+    <div class="prose mt-4">
+      <div class="prose-table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Service</th><th scope="col">What the tools cover</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">identity</th>
+              <td>Users, invitations, groups, companies, sign-in methods, OAuth clients and redirects, SCIM tokens, audit events</td>
+            </tr>
+            <tr>
+              <th scope="row">storage</th>
+              <td>Buckets, files, share links, access grants, quotas</td>
+            </tr>
+            <tr>
+              <th scope="row">hosting</th>
+              <td>Preview sites, deployments, domains, environment variables, deploy tokens</td>
+            </tr>
+            <tr>
+              <th scope="row">email</th>
+              <td>Templates, newsletters, broadcasts, messages, rules, suppressions, provider</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="mt-4 text-base/7 text-muted-foreground">Clients can ask for the full list with <code class="rounded bg-muted px-1.5 py-0.5 text-sm">?tools=all</code>.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="bounds">
+  <div class="max-w-2xl">
+    <h2 id="bounds" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">How Shellui keeps agents in bounds</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">identity-service is the authorization server. Each connection is an agent scoped to one company.</p>
+    <ul class="mt-4 space-y-3 text-base/7 text-muted-foreground">
+      <li><strong class="font-semibold text-foreground">OAuth on identity-service</strong>: each approval creates a company-scoped agent. Access tokens last 15 minutes. A connection expires within 90 days.</li>
+      <li><strong class="font-semibold text-foreground">Company scope</strong>: the token's audience is your company's MCP URL. A token for one company can't call another company's URL.</li>
+      <li><strong class="font-semibold text-foreground">Access levels</strong>: Read only, Ask before changes (the default), or Full access. Full access still asks before a destructive tool.</li>
+      <li><strong class="font-semibold text-foreground">Read levels</strong>: Safe (the default) masks personal data in tool results. Sensitive returns more fields, never stored secrets.</li>
+      <li><strong class="font-semibold text-foreground">Staff can't authorize agents</strong>: staff accounts can't approve an MCP client or a device code. Use a member account of the company.</li>
+      <li><strong class="font-semibold text-foreground">Sign-in page</strong>: shows the client name as unverified, the return address, and a warning not to continue if you didn't start the connection.</li>
+      <li><strong class="font-semibold text-foreground">Revoke at any time</strong>: pause or revoke an agent from Settings, under MCP / AI agents, or from Agents in admin. Services check the revocation list every 30s.</li>
+      <li><strong class="font-semibold text-foreground">Call log</strong>: every tool call is logged for that company.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="approvals">
+  <div class="max-w-2xl">
+    <h2 id="approvals" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Approvals inside the chat</h2>
+    <ul class="mt-4 space-y-3 text-base/7 text-muted-foreground">
+      <li>When an agent with Ask before changes calls a tool that writes, Shellui asks you first. If the client supports MCP form elicitation, the question appears in the chat. You see the real tool name, then choose Approve or Deny.</li>
+      <li>Destructive tools always use the approval page on identity-service, never the chat. That page shows a summary of the arguments. You approve there, and the agent runs the call once.</li>
+      <li>An approval covers one call with the same arguments and expires after 10 minutes. An agent can't approve its own request.</li>
+      <li>With Ask before changes, a non-destructive write can stay allowed for 60s on that connection. Destructive tools still ask every time. Full access does not skip that check.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="mt-16 max-w-3xl">
+  {{ repo.githubRepoButton("shellui/ai-service") }}
+</div>
+
+{% set featureDocs = [
+  { href: "https://github.com/shellui/ai-service/blob/develop/docs/mcp.md", label: "MCP gateway docs", external: true },
+  { href: "https://github.com/shellui/ai-service/blob/develop/docs/mcp-device-login.md", label: "Device login", external: true },
+  { href: "/features/authentication/", label: "Authentication" },
+  { href: "/security/", label: "Security" },
+  { href: "/architecture/", label: "Architecture" }
+] %}
+{% include "feature-docs.njk" %}

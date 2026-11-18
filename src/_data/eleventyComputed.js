@@ -61,6 +61,8 @@ export default {
       architecture: "Architecture",
       roadmap: "Roadmap",
       changelog: "Changelog",
+      cli: "CLI",
+      mcp: "MCP",
       pricing: "Pricing",
       guidelines: "Guidelines",
       writing: "Writing",

@@ -1,0 +1,78 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: "Shellui CLI: create, run, build, and deploy"
+description: "Install @shellui/cli and run shellui init, start, build, and deploy. Sign in with device login, then read companies, projects, storage, and hosting."
+eyebrow: Developers
+heading: Run Shellui from your terminal
+lede: The shellui command creates a project, runs the shell around your app, builds a static site, and deploys a preview. It also signs you in and reads companies, projects, storage, and hosting from the terminal.
+---
+{% import "github-repo-button.njk" as repo %}
+
+<section class="mt-4" aria-labelledby="install">
+  <div class="max-w-2xl">
+    <h2 id="install" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Install the CLI and start a project</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Install <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/cli</code> with npm. It needs Node.js 18 or later.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "bash" %}
+npm install -g @shellui/cli
+shellui init
+shellui start
+    {% endhighlight %}
+  </div>
+  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui init</code> asks for a framework and a backend. <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui start</code> serves the shell with your app inside it. The steps are in the <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/installation">installation docs</a>.</p>
+</section>
+
+<section class="mt-20" aria-labelledby="commands">
+  <div class="max-w-2xl">
+    <h2 id="commands" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Commands</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Every command reads <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code> from the current folder, or the nearest parent, up to <code class="rounded bg-muted px-1.5 py-0.5 text-sm">.git</code>. Pass <code class="rounded bg-muted px-1.5 py-0.5 text-sm">--config</code> to point at another file or folder. Flags and examples are in the <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/cli">CLI reference</a>.</p>
+    <ul class="mt-6 space-y-3 text-base/7 text-muted-foreground">
+      <li><strong class="font-semibold text-foreground">Create and run</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">init</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">start</code> (alias <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dev</code>), and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">build</code> create a project, serve the shell, and write <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dist/web/</code>.</li>
+      <li><strong class="font-semibold text-foreground">Configuration</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">config migrate</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">split</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">unsplit</code> turn a TypeScript config into JSON, or split that JSON into section files.</li>
+      <li><strong class="font-semibold text-foreground">Sign-in</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">login</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">logout</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">whoami</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">auth status</code> sign you in and show the account without printing tokens.</li>
+      <li><strong class="font-semibold text-foreground">Companies</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">companies list</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">get</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">use</code> read regional companies and set the default numeric id.</li>
+      <li><strong class="font-semibold text-foreground">Projects</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">projects list</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">get</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">use</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">regions</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">endpoints</code> read dashboard companies by UUID (<code class="rounded bg-muted px-1.5 py-0.5 text-sm">create</code> is not available from the CLI).</li>
+      <li><strong class="font-semibold text-foreground">Preview deploys</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">deploy</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">deploy history</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">deploy rollback</code> upload a 7-day preview and make an earlier deployment live again.</li>
+      <li><strong class="font-semibold text-foreground">Storage and hosting</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage buckets list</code> and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">get</code> read buckets, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting apps</code> and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting deployments</code> read preview sites and deployments.</li>
+    </ul>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">companies</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">auth</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">projects</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting</code> accept <code class="rounded bg-muted px-1.5 py-0.5 text-sm">--json</code> for scripts.</p>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="credentials">
+  <div class="max-w-2xl">
+    <h2 id="credentials" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Where the CLI keeps your sign-in</h2>
+    <ul class="mt-4 space-y-3 text-base/7 text-muted-foreground">
+      <li><code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui login</code> uses the OAuth 2.0 device authorization grant. You approve the code in your browser on identity-service. The CLI never prints tokens.</li>
+      <li>Tokens go to your operating system keychain. When no keychain is available, the CLI warns once and writes them to a file only your user can read (mode <code class="rounded bg-muted px-1.5 py-0.5 text-sm">0600</code>).</li>
+    </ul>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="ci">
+  <div class="max-w-2xl">
+    <h2 id="ci" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Deploy previews from CI</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">In admin, open Hosting, then Apps, and create a token under Deploy tokens. Store it as the <code class="rounded bg-muted px-1.5 py-0.5 text-sm">SHELLUI_DEPLOY_TOKEN</code> secret. When that variable is set, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui deploy</code> skips sign-in. The token can create or update previews for your company, and nothing else.</p>
+  </div>
+  <div class="mt-8 max-w-3xl">
+    {% highlight "bash" %}
+SHELLUI_DEPLOY_TOKEN=your_deploy_token_here npx shellui deploy --build
+    {% endhighlight %}
+  </div>
+  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground">That command builds, then uploads <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dist/web/</code> as a preview.</p>
+</section>
+
+<div class="mt-16 max-w-3xl">
+  {{ repo.githubRepoButton("shellui/shellui") }}
+</div>
+
+{% set featureDocs = [
+  { href: site.docs + "/cli", label: "CLI reference", external: true },
+  { href: site.docs + "/installation", label: "Installation", external: true },
+  { href: site.docs + "/hosting/deploy-with-cli", label: "Deploy with the CLI", external: true },
+  { href: "/architecture/", label: "Architecture" },
+  { href: "/changelog/", label: "Changelog" }
+] %}
+{% include "feature-docs.njk" %}
