@@ -1,0 +1,30 @@
+<figure>
+  <figcaption class="sr-only">An AI client reaches a company MCP server, then a permission gate, then an in-chat approval or a browser approval page.</figcaption>
+  <div class="rounded-xl border border-border bg-card p-4 sm:p-5">
+    <ol class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <li class="mcp-flow-step rounded-lg bg-muted p-3">
+        <p class="text-sm font-semibold text-foreground">AI client</p>
+        <p class="mt-1 text-sm text-muted-foreground">Claude, Cursor, ChatGPT, or any MCP client with OAuth</p>
+      </li>
+      <li class="mcp-flow-step rounded-lg bg-muted p-3">
+        <p class="text-sm font-semibold text-foreground">Company MCP</p>
+        <p class="mt-2 font-mono text-[0.8rem] text-foreground">/c/your_company_id/mcp</p>
+        <p class="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
+          <span class="mcp-live-dot inline-block size-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
+          Company URL
+        </p>
+      </li>
+      <li class="mcp-flow-step rounded-lg bg-muted p-3">
+        <p class="text-sm font-semibold text-foreground">Permission gate</p>
+        <p class="mt-1 text-sm text-muted-foreground">Read only, Ask before changes, or Full access</p>
+      </li>
+      <li class="mcp-flow-step rounded-lg bg-muted p-3">
+        <p class="text-sm font-semibold text-foreground">Your decision</p>
+        <div class="mt-2 grid gap-2">
+          <p class="text-sm text-muted-foreground">Approve or Deny in chat</p>
+          <p class="text-sm text-muted-foreground">Approval page for destructive tools</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</figure>

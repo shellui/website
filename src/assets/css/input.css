@@ -13,6 +13,7 @@
 @import "./anim-card.css";
 @import "./upload.css";
 @import "./hero-mark.css";
+@import "./cli-mcp.css";
 
 @source "../../**/*.{njk,md,html,js}";
 @custom-variant dark (&:where(.dark, .dark *));

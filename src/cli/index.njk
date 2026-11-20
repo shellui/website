@@ -1,18 +1,64 @@
 ---
 layout: layouts/feature.njk
 wide: true
-title: "Shellui CLI: create, run, build, and deploy"
-description: "Install @shellui/cli and run shellui init, start, build, and deploy. Sign in with device login, then read companies, projects, storage, and hosting."
+customHero: true
+title: "Shellui CLI: create, run, build, and deploy from your terminal"
+description: "Install @shellui/cli and run shellui init, start, build, and deploy. Sign in with a device code, then read companies, projects, storage, and hosting."
 eyebrow: Developers
-heading: Run Shellui from your terminal
-lede: The shellui command creates a project, runs the shell around your app, builds a static site, and deploys a preview. It also signs you in and reads companies, projects, storage, and hosting from the terminal.
+heading: Build, sign in, and deploy from your terminal
+lede: The shellui command creates a project, serves the shell around your app, and uploads a 7-day preview. Sign in with a device code. Commands that talk to a service can print JSON for scripts.
 ---
 {% import "github-repo-button.njk" as repo %}
+{% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
+{% set lnk = "font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %}
+{% set h2 = "text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl" %}
 
-<section class="mt-4" aria-labelledby="install">
+<div class="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,28rem)] lg:gap-16">
   <div class="max-w-2xl">
-    <h2 id="install" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Install the CLI and start a project</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Install <code class="rounded bg-muted px-1.5 py-0.5 text-sm">@shellui/cli</code> with npm. It needs Node.js 18 or later.</p>
+    <p class="text-base/7 font-semibold text-primary-ink">{{ eyebrow }}</p>
+    <h1 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{{ heading }}</h1>
+    <p class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">{{ lede }}</p>
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href="#install" class="inline-flex min-h-11 items-center rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Install the CLI</a>
+      <a href="{{ site.docs }}/cli" class="inline-flex min-h-11 items-center rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10">CLI reference</a>
+    </div>
+  </div>
+  <div class="w-full lg:justify-self-end">
+    {% include "cli-terminal-visual.njk" %}
+  </div>
+</div>
+
+<section class="mt-20" aria-labelledby="why-cli">
+  <div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
+    <div class="max-w-2xl">
+      <h2 id="why-cli" class="{{ h2 }}">Why developers use the CLI</h2>
+      <p class="mt-4 text-base/7 text-muted-foreground">One package, <code class="{{ code }}">@shellui/cli</code>, covers local development, sign-in, and preview deploys. Flags and the full reference stay in the docs.</p>
+    </div>
+    <div class="grid gap-8">
+      <div>
+        <h3 class="text-base font-semibold text-pretty text-foreground">Local development</h3>
+        <p class="mt-2 text-sm/6 text-muted-foreground"><code class="{{ code }}">shellui start</code> (alias <code class="{{ code }}">shellui dev</code>) serves the shell around your app. By default, when identity-service is configured, the dev host keeps the shell refresh token in an HttpOnly cookie on the shell origin. Page JavaScript only sees the access token. Turn the host auth routes off and the refresh token goes to <code class="{{ code }}">sessionStorage</code> instead. This is the shell session, not the CLI credential store. Details are in the <a class="{{ lnk }}" href="{{ site.docs }}/features/security">security docs</a>.</p>
+      </div>
+      <div>
+        <h3 class="text-base font-semibold text-pretty text-foreground">Device-code sign-in</h3>
+        <p class="mt-2 text-sm/6 text-muted-foreground"><code class="{{ code }}">shellui login</code> uses the OAuth 2.0 device authorization grant. You approve a code in the browser on identity-service. The CLI never prints tokens.</p>
+      </div>
+      <div>
+        <h3 class="text-base font-semibold text-pretty text-foreground">Scripts and CI</h3>
+        <p class="mt-2 text-sm/6 text-muted-foreground"><code class="{{ code }}">companies</code>, <code class="{{ code }}">auth</code>, <code class="{{ code }}">projects</code>, <code class="{{ code }}">storage</code>, and <code class="{{ code }}">hosting</code> accept <code class="{{ code }}">--json</code>. For CI, set <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code> so <code class="{{ code }}">shellui deploy</code> can upload a preview without a login session.</p>
+      </div>
+      <div>
+        <h3 class="text-base font-semibold text-pretty text-foreground">One config file</h3>
+        <p class="mt-2 text-sm/6 text-muted-foreground">Projects are configured in <code class="{{ code }}">shellui.config.json</code>. The Commands section explains which commands read the current folder and which walk up to <code class="{{ code }}">.git</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-20" aria-labelledby="install">
+  <div class="max-w-2xl">
+    <h2 id="install" class="{{ h2 }}">Install the CLI and start a project</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Install <code class="{{ code }}">@shellui/cli</code> with npm. It needs Node.js 18 or later.</p>
   </div>
   <div class="mt-8 max-w-3xl">
     {% highlight "bash" %}
@@ -21,47 +67,47 @@ shellui init
 shellui start
     {% endhighlight %}
   </div>
-  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui init</code> asks for a framework and a backend. <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui start</code> serves the shell with your app inside it. The steps are in the <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/installation">installation docs</a>.</p>
+  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground"><code class="{{ code }}">shellui init</code> asks for a framework and a backend. <code class="{{ code }}">shellui start</code> serves the shell with your app inside it. The steps are in the <a class="{{ lnk }}" href="{{ site.docs }}/installation">installation docs</a>.</p>
 </section>
 
 <section class="mt-20" aria-labelledby="commands">
   <div class="max-w-2xl">
-    <h2 id="commands" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Commands</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">start</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">build</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">init</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">config</code> read <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.config.json</code> from the current folder. Sign-in and service commands look in the nearest parent, up to <code class="rounded bg-muted px-1.5 py-0.5 text-sm">.git</code>. Pass <code class="rounded bg-muted px-1.5 py-0.5 text-sm">--config</code> to point at another file or folder. Flags and examples are in the <a class="font-medium text-primary-ink underline underline-offset-2" href="{{ site.docs }}/cli">CLI reference</a>.</p>
+    <h2 id="commands" class="{{ h2 }}">Commands</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">start</code>, <code class="{{ code }}">build</code>, <code class="{{ code }}">init</code>, and <code class="{{ code }}">config</code> read <code class="{{ code }}">shellui.config.json</code> from the current folder. Sign-in and service commands look in the nearest parent, up to <code class="{{ code }}">.git</code>. Pass <code class="{{ code }}">--config</code> to point at another file or folder. Flags and examples are in the <a class="{{ lnk }}" href="{{ site.docs }}/cli">CLI reference</a>.</p>
     <ul class="mt-6 space-y-3 text-base/7 text-muted-foreground">
-      <li><strong class="font-semibold text-foreground">Create and run</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">init</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">start</code> (alias <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dev</code>), and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">build</code> create a project, serve the shell, and write <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dist/web/</code>.</li>
-      <li><strong class="font-semibold text-foreground">Configuration</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">config migrate</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">split</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">unsplit</code> turn a TypeScript config into JSON, or split that JSON into section files.</li>
-      <li><strong class="font-semibold text-foreground">Sign-in</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">login</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">logout</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">whoami</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">auth status</code> sign you in and show the account without printing tokens.</li>
-      <li><strong class="font-semibold text-foreground">Companies</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">companies list</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">get</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">use</code> read regional companies and set the default numeric id.</li>
-      <li><strong class="font-semibold text-foreground">Projects</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">projects list</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">get</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">use</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">regions</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">endpoints</code> read dashboard companies by UUID (<code class="rounded bg-muted px-1.5 py-0.5 text-sm">create</code> is not available from the CLI).</li>
-      <li><strong class="font-semibold text-foreground">Preview deploys</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">deploy</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">deploy history</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">deploy rollback</code> upload a 7-day preview and make an earlier deployment live again.</li>
-      <li><strong class="font-semibold text-foreground">Storage and hosting</strong>: <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage buckets list</code> and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">get</code> read buckets, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting apps</code> and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting deployments</code> read preview sites and deployments.</li>
+      <li><strong class="font-semibold text-foreground">Create and run</strong>: <code class="{{ code }}">init</code>, <code class="{{ code }}">start</code> (alias <code class="{{ code }}">dev</code>), and <code class="{{ code }}">build</code> create a project, serve the shell, and write <code class="{{ code }}">dist/web/</code>.</li>
+      <li><strong class="font-semibold text-foreground">Configuration</strong>: <code class="{{ code }}">config migrate</code>, <code class="{{ code }}">split</code>, and <code class="{{ code }}">unsplit</code> turn a TypeScript config into JSON, or split that JSON into section files.</li>
+      <li><strong class="font-semibold text-foreground">Sign-in</strong>: <code class="{{ code }}">login</code>, <code class="{{ code }}">logout</code>, <code class="{{ code }}">whoami</code>, and <code class="{{ code }}">auth status</code> sign you in and show the account without printing tokens.</li>
+      <li><strong class="font-semibold text-foreground">Companies</strong>: <code class="{{ code }}">companies list</code>, <code class="{{ code }}">get</code>, and <code class="{{ code }}">use</code> read regional companies and set the default numeric id.</li>
+      <li><strong class="font-semibold text-foreground">Projects</strong>: <code class="{{ code }}">projects list</code>, <code class="{{ code }}">get</code>, <code class="{{ code }}">use</code>, <code class="{{ code }}">regions</code>, and <code class="{{ code }}">endpoints</code> read dashboard companies by UUID (<code class="{{ code }}">create</code> is not available from the CLI).</li>
+      <li><strong class="font-semibold text-foreground">Preview deploys</strong>: <code class="{{ code }}">deploy</code>, <code class="{{ code }}">deploy history</code>, and <code class="{{ code }}">deploy rollback</code> upload a 7-day preview and make an earlier deployment live again.</li>
+      <li><strong class="font-semibold text-foreground">Storage and hosting</strong>: <code class="{{ code }}">storage buckets list</code> and <code class="{{ code }}">get</code> read buckets, and <code class="{{ code }}">hosting apps</code> and <code class="{{ code }}">hosting deployments</code> read preview sites and deployments.</li>
     </ul>
-    <p class="mt-4 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">companies</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">auth</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">projects</code>, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">storage</code>, and <code class="rounded bg-muted px-1.5 py-0.5 text-sm">hosting</code> accept <code class="rounded bg-muted px-1.5 py-0.5 text-sm">--json</code> for scripts.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">companies</code>, <code class="{{ code }}">auth</code>, <code class="{{ code }}">projects</code>, <code class="{{ code }}">storage</code>, and <code class="{{ code }}">hosting</code> accept <code class="{{ code }}">--json</code> for scripts.</p>
   </div>
 </section>
 
 <section class="mt-20" aria-labelledby="credentials">
   <div class="max-w-2xl">
-    <h2 id="credentials" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Where the CLI keeps your sign-in</h2>
+    <h2 id="credentials" class="{{ h2 }}">Where the CLI keeps your sign-in</h2>
     <ul class="mt-4 space-y-3 text-base/7 text-muted-foreground">
-      <li><code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui login</code> uses the OAuth 2.0 device authorization grant. You approve the code in your browser on identity-service. The CLI never prints tokens.</li>
-      <li>Tokens go to your operating system keychain. When no keychain is available, the CLI warns once and writes them to a file only your user can read (mode <code class="rounded bg-muted px-1.5 py-0.5 text-sm">0600</code>).</li>
+      <li><code class="{{ code }}">shellui login</code> uses the OAuth 2.0 device authorization grant. You approve the code in your browser on identity-service. The CLI never prints tokens.</li>
+      <li>Tokens go to your operating system keychain. When no keychain is available, the CLI warns once and writes them to a file only your user can read (mode <code class="{{ code }}">0600</code>).</li>
     </ul>
   </div>
 </section>
 
 <section class="mt-20" aria-labelledby="ci">
   <div class="max-w-2xl">
-    <h2 id="ci" class="text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl">Deploy previews from CI</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">In admin, open Hosting, then Apps, and create a token under Deploy tokens. Store it as the <code class="rounded bg-muted px-1.5 py-0.5 text-sm">SHELLUI_DEPLOY_TOKEN</code> secret. When that variable is set, <code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui deploy</code> skips sign-in. The token can create or update previews for your company, and nothing else.</p>
+    <h2 id="ci" class="{{ h2 }}">Deploy previews from CI</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">In admin, open Hosting, then Apps, and create a token under Deploy tokens. Store it as the <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code> secret. When that variable is set, <code class="{{ code }}">shellui deploy</code> skips sign-in. The token can create or update previews for your company, and nothing else.</p>
   </div>
   <div class="mt-8 max-w-3xl">
     {% highlight "bash" %}
 SHELLUI_DEPLOY_TOKEN=your_deploy_token_here npx shellui deploy --build
     {% endhighlight %}
   </div>
-  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground">That command builds, then uploads <code class="rounded bg-muted px-1.5 py-0.5 text-sm">dist/web/</code> as a preview.</p>
+  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground">That command builds, then uploads <code class="{{ code }}">dist/web/</code> as a preview.</p>
 </section>
 
 <div class="mt-16 max-w-3xl">
@@ -72,6 +118,7 @@ SHELLUI_DEPLOY_TOKEN=your_deploy_token_here npx shellui deploy --build
   { href: site.docs + "/cli", label: "CLI reference", external: true },
   { href: site.docs + "/installation", label: "Installation", external: true },
   { href: site.docs + "/hosting/deploy-with-cli", label: "Deploy with the CLI", external: true },
+  { href: site.docs + "/features/security", label: "Security hardening", external: true },
   { href: "/architecture/", label: "Architecture" },
   { href: "/changelog/", label: "Changelog" }
 ] %}

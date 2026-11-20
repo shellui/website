@@ -107,8 +107,15 @@ grep -q 'npm install -g @shellui/cli' "${SITE}/index.html" \
   || fail "index.html missing global CLI install"
 grep -q 'shellui init react' "${SITE}/index.html" \
   || fail "index.html missing shellui init react"
-if grep -rq 'shellui\.app' "${SITE}" --include='*.html' --include='*.txt'; then
-  fail "output links to unavailable shellui.app"
+# The CLI terminal example prints a preview host from the hosting docs.
+# Any other shellui.app string is still a broken public link.
+shellui_app_hits="$(grep -RIl 'shellui\.app' "${SITE}" --include='*.html' --include='*.txt' || true)"
+if [[ -n "${shellui_app_hits}" ]]; then
+  unexpected="$(printf '%s\n' "${shellui_app_hits}" | grep -v "/cli/index.html$" || true)"
+  if [[ -n "${unexpected}" ]]; then
+    printf '%s\n' "${unexpected}" >&2
+    fail "output links to unavailable shellui.app"
+  fi
 fi
 grep -q 'dist/web/' "${SITE}/index.html" \
   || fail "index.html missing static dist/web/ ship path"
