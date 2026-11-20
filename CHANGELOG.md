@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [Unreleased]
+
+### ✨ Feature
+
+- CLI and MCP pages under Developers, with visual heroes, grouped CLI commands, and MCP client setup for Claude, Cursor, ChatGPT, VS Code, Windsurf, and Inspector.
+
 ## [0.8.1] - 2026-11-04
 
 ### 📚 Documentation

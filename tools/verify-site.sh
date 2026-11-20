@@ -38,6 +38,8 @@ required_files=(
   guidelines/generated/tokens.json
   design.md
   llms-full.txt
+  cli/index.html
+  mcp/index.html
   assets/fonts/inter/inter-latin-400-normal.woff2
   brand-assets/shellui-brand-kit-v1.pdf
   brand-assets/shellui-brand-assets-v1.zip
@@ -77,6 +79,12 @@ grep -q 'npm install -g @shellui/cli' "${SITE}/llms.txt" || fail "llms.txt missi
 grep -q 'shellui init' "${SITE}/llms.txt" || fail "llms.txt missing shellui init"
 grep -q 'docs.shellui.com/sdk' "${SITE}/llms.txt" || fail "llms.txt missing SDK docs link"
 grep -q 'Auth backend source' "${SITE}/llms.txt" || fail "llms.txt missing identity-service annotation"
+grep -q '/cli/' "${SITE}/llms.txt" || fail "llms.txt missing CLI page"
+grep -q '/mcp/' "${SITE}/llms.txt" || fail "llms.txt missing MCP page"
+grep -q '/cli/' "${SITE}/sitemap.xml" || fail "sitemap missing /cli/"
+grep -q '/mcp/' "${SITE}/sitemap.xml" || fail "sitemap missing /mcp/"
+grep -q 'BreadcrumbList' "${SITE}/cli/index.html" || fail "CLI page missing breadcrumb structured data"
+grep -q 'BreadcrumbList' "${SITE}/mcp/index.html" || fail "MCP page missing breadcrumb structured data"
 grep -qE '^- \[.+\]\(.+\): ' "${SITE}/llms.txt" || fail "llms.txt missing annotated link list entries"
 if grep -q '\[This file\]' "${SITE}/llms.txt"; then
   fail "llms.txt should not self-link with [This file]"
@@ -99,8 +107,15 @@ grep -q 'npm install -g @shellui/cli' "${SITE}/index.html" \
   || fail "index.html missing global CLI install"
 grep -q 'shellui init react' "${SITE}/index.html" \
   || fail "index.html missing shellui init react"
-if grep -rq 'shellui\.app' "${SITE}" --include='*.html' --include='*.txt'; then
-  fail "output links to unavailable shellui.app"
+# The CLI terminal example prints a preview host from the hosting docs.
+# Any other shellui.app string is still a broken public link.
+shellui_app_hits="$(grep -RIl 'shellui\.app' "${SITE}" --include='*.html' --include='*.txt' || true)"
+if [[ -n "${shellui_app_hits}" ]]; then
+  unexpected="$(printf '%s\n' "${shellui_app_hits}" | grep -v "/cli/index.html$" || true)"
+  if [[ -n "${unexpected}" ]]; then
+    printf '%s\n' "${unexpected}" >&2
+    fail "output links to unavailable shellui.app"
+  fi
 fi
 grep -q 'dist/web/' "${SITE}/index.html" \
   || fail "index.html missing static dist/web/ ship path"

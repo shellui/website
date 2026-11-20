@@ -15,6 +15,7 @@ function fail(msg) {
 if (!fs.existsSync(site)) fail("_site/ missing");
 
 const checks = [
+  { path: "index.html", must: ["/cli/", "/mcp/"] },
   { path: "guidelines/index.html", must: ["/guidelines/interface/", "/guidelines/foundations/", "/llms-full.txt"] },
   { path: "guidelines/interface/index.html", must: ["Guidelines v2.", "Shellui chrome"] },
   { path: "guidelines/foundations/index.html", must: ["visual-handbook", "primary-ink", "Color tokens"] },

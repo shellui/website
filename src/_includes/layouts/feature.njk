@@ -20,8 +20,17 @@ layout: layouts/base.njk
   </div>
 </article>
 {% else %}
-<div class="page-top page-x bg-white pb-16 sm:pb-20 dark:bg-gray-950">
-  <div class="mx-auto max-w-7xl">
+<div class="page-top page-x relative isolate bg-white pb-16 sm:pb-20 dark:bg-gray-950">
+  {% if customHero %}
+  <div class="pointer-events-none absolute inset-x-0 -top-24 -z-10 h-[28rem] overflow-hidden" aria-hidden="true">
+    <div class="absolute left-1/2 top-0 h-64 w-[40rem] -translate-x-1/2 rounded-full bg-linear-to-r from-primary to-amber-200 opacity-20 blur-3xl dark:opacity-15"></div>
+  </div>
+  {% endif %}
+  <div class="relative mx-auto max-w-7xl">
+    {% if customHero %}
+      {% include "breadcrumbs.njk" %}
+      {{ content | safe }}
+    {% else %}
     <div class="lg:max-w-2xl">
       {% include "breadcrumbs.njk" %}
       {% if eyebrow %}
@@ -35,6 +44,7 @@ layout: layouts/base.njk
     <div class="mt-10 {% if wide %}max-w-7xl{% else %}prose max-w-2xl{% endif %}">
       {{ content | safe }}
     </div>
+    {% endif %}
   </div>
 </div>
 {% endif %}
