@@ -40,6 +40,7 @@ required_files=(
   llms-full.txt
   cli/index.html
   mcp/index.html
+  opentelemetry/index.html
   assets/fonts/inter/inter-latin-400-normal.woff2
   brand-assets/shellui-brand-kit-v1.pdf
   brand-assets/shellui-brand-assets-v1.zip
@@ -80,9 +81,21 @@ grep -q 'shellui init' "${SITE}/llms.txt" || fail "llms.txt missing shellui init
 grep -q 'docs.shellui.com/sdk' "${SITE}/llms.txt" || fail "llms.txt missing SDK docs link"
 grep -q 'Auth backend source' "${SITE}/llms.txt" || fail "llms.txt missing identity-service annotation"
 grep -q '/cli/' "${SITE}/llms.txt" || fail "llms.txt missing CLI page"
+grep -q 'https://ai.shellui.com/mcp' "${SITE}/llms.txt" || fail "llms.txt missing https://ai.shellui.com/mcp"
+if grep -q '/c/' "${SITE}/llms.txt" || grep -q 'company URL' "${SITE}/mcp/index.html"; then
+  fail "site copy must not document a company MCP URL"
+fi
 grep -q '/mcp/' "${SITE}/llms.txt" || fail "llms.txt missing MCP page"
+grep -q '/opentelemetry/' "${SITE}/llms.txt" || fail "llms.txt missing OpenTelemetry page"
+grep -q '/opentelemetry/' "${SITE}/sitemap.xml" || fail "sitemap missing /opentelemetry/"
 grep -q '/cli/' "${SITE}/sitemap.xml" || fail "sitemap missing /cli/"
 grep -q '/mcp/' "${SITE}/sitemap.xml" || fail "sitemap missing /mcp/"
+grep -q 'rel="canonical" href="https://shellui.com/cli/"' "${SITE}/cli/index.html" || fail "CLI canonical must be /cli/"
+grep -q 'rel="canonical" href="https://shellui.com/mcp/"' "${SITE}/mcp/index.html" || fail "MCP canonical must be /mcp/"
+grep -q 'rel="canonical" href="https://shellui.com/opentelemetry/"' "${SITE}/opentelemetry/index.html" || fail "OpenTelemetry canonical must be /opentelemetry/"
+if grep -R -n -E 'href="/(cli|mcp|opentelemetry)"' "${SITE}" --include='*.html' | grep -v '/404.html'; then
+  fail "internal links must use the trailing-slash canonical for /cli/, /mcp/, and /opentelemetry/"
+fi
 grep -q 'BreadcrumbList' "${SITE}/cli/index.html" || fail "CLI page missing breadcrumb structured data"
 grep -q 'BreadcrumbList' "${SITE}/mcp/index.html" || fail "MCP page missing breadcrumb structured data"
 grep -qE '^- \[.+\]\(.+\): ' "${SITE}/llms.txt" || fail "llms.txt missing annotated link list entries"

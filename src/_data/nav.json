@@ -22,8 +22,15 @@
       "group": "build",
       "href": "/mcp/",
       "label": "MCP",
-      "description": "Connect AI agents to your company, with approvals.",
+      "description": "Connect an agent at ai.shellui.com/mcp, with approvals.",
       "icon": "chip"
+    },
+    {
+      "group": "build",
+      "href": "/opentelemetry/",
+      "label": "OpenTelemetry",
+      "description": "Export traces, metrics, and logs to your own backend.",
+      "icon": "chart"
     },
     {
       "group": "project",

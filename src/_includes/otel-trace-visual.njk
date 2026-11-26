@@ -1,0 +1,36 @@
+<figure class="rounded-xl border border-border bg-card p-4 sm:p-5">
+  <figcaption class="sr-only">A trace across Shellui: identity handles sign-in, email-service sends the message on that trace, then identity runs a scheduled job.</figcaption>
+  <div class="flex items-center justify-between gap-3">
+    <p class="font-mono text-xs text-muted-foreground">trace</p>
+    <p class="text-xs text-muted-foreground">OTLP</p>
+  </div>
+  <ol class="mt-4 space-y-4">
+    <li class="otel-span">
+      <div class="flex items-baseline justify-between gap-3 text-sm">
+        <span class="font-semibold text-foreground">identity</span>
+        <span class="text-muted-foreground">sign-in</span>
+      </div>
+      <div class="mt-2 h-2 overflow-hidden rounded-full bg-muted">
+        <div class="otel-bar h-full w-full rounded-full bg-primary"></div>
+      </div>
+    </li>
+    <li class="otel-span pl-6">
+      <div class="flex items-baseline justify-between gap-3 text-sm">
+        <span class="font-semibold text-foreground">email</span>
+        <span class="text-muted-foreground">send message</span>
+      </div>
+      <div class="mt-2 h-2 overflow-hidden rounded-full bg-muted">
+        <div class="otel-bar h-full w-2/3 rounded-full bg-primary/80"></div>
+      </div>
+    </li>
+    <li class="otel-span">
+      <div class="flex items-baseline justify-between gap-3 text-sm">
+        <span class="font-semibold text-foreground">identity</span>
+        <span class="text-muted-foreground">scheduled job</span>
+      </div>
+      <div class="mt-2 h-2 overflow-hidden rounded-full bg-muted">
+        <div class="otel-bar h-full w-1/2 rounded-full bg-primary/70"></div>
+      </div>
+    </li>
+  </ol>
+</figure>

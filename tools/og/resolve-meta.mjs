@@ -9,6 +9,7 @@ const SECTION_LABELS = {
   changelog: "Changelog",
   cli: "CLI",
   mcp: "MCP",
+  opentelemetry: "OpenTelemetry",
   pricing: "Pricing",
   roadmap: "Roadmap",
   newsletter: "Newsletter",
@@ -68,7 +69,8 @@ function resolveTemplate(url, data) {
     url.startsWith("/guidelines/") ||
     url === "/architecture/" ||
     url === "/cli/" ||
-    url === "/mcp/"
+    url === "/mcp/" ||
+    url === "/opentelemetry/"
   ) {
     return "docs";
   }
@@ -81,6 +83,7 @@ function docsHeaderLabel(url) {
   if (url === "/architecture/") return "Architecture";
   if (url === "/cli/") return "CLI";
   if (url === "/mcp/") return "MCP";
+  if (url === "/opentelemetry/") return "OpenTelemetry";
   return "Docs";
 }
 

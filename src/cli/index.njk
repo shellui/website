@@ -6,7 +6,7 @@ title: "Shellui CLI: create, run, build, and deploy from your terminal"
 description: "Install @shellui/cli and run shellui init, start, build, and deploy. Sign in with a device code, then read companies, projects, storage, and hosting."
 eyebrow: Developers
 heading: Build, sign in, and deploy from your terminal
-lede: The shellui command creates a project, serves the shell around your app, and uploads a 7-day preview. Sign in with a device code. Commands that talk to a service can print JSON for scripts.
+lede: The command is shellui. It creates a project, serves the shell around your app, and uploads a 7-day preview for a workshop or a demo. Sign in with a device code. Commands that talk to a service can print JSON for scripts.
 ---
 {% import "github-repo-button.njk" as repo %}
 {% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
@@ -29,30 +29,28 @@ lede: The shellui command creates a project, serves the shell around your app, a
 </div>
 
 <section class="mt-20" aria-labelledby="why-cli">
-  <div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
-    <div class="max-w-2xl">
-      <h2 id="why-cli" class="{{ h2 }}">Why developers use the CLI</h2>
-      <p class="mt-4 text-base/7 text-muted-foreground">One package, <code class="{{ code }}">@shellui/cli</code>, covers local development, sign-in, and preview deploys. Flags and the full reference stay in the docs.</p>
-    </div>
-    <div class="grid gap-8">
-      <div>
-        <h3 class="text-base font-semibold text-pretty text-foreground">Local development</h3>
-        <p class="mt-2 text-sm/6 text-muted-foreground"><code class="{{ code }}">shellui start</code> (alias <code class="{{ code }}">shellui dev</code>) serves the shell around your app. By default, when identity-service is configured, the dev host keeps the shell refresh token in an HttpOnly cookie on the shell origin. Page JavaScript only sees the access token. Turn the host auth routes off and the refresh token goes to <code class="{{ code }}">sessionStorage</code> instead. This is the shell session, not the CLI credential store. Details are in the <a class="{{ lnk }}" href="{{ site.docs }}/features/security">security docs</a>.</p>
-      </div>
-      <div>
-        <h3 class="text-base font-semibold text-pretty text-foreground">Device-code sign-in</h3>
-        <p class="mt-2 text-sm/6 text-muted-foreground"><code class="{{ code }}">shellui login</code> uses the OAuth 2.0 device authorization grant. You approve a code in the browser on identity-service. The CLI never prints tokens.</p>
-      </div>
-      <div>
-        <h3 class="text-base font-semibold text-pretty text-foreground">Scripts and CI</h3>
-        <p class="mt-2 text-sm/6 text-muted-foreground"><code class="{{ code }}">companies</code>, <code class="{{ code }}">auth</code>, <code class="{{ code }}">projects</code>, <code class="{{ code }}">storage</code>, and <code class="{{ code }}">hosting</code> accept <code class="{{ code }}">--json</code>. For CI, set <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code> so <code class="{{ code }}">shellui deploy</code> can upload a preview without a login session.</p>
-      </div>
-      <div>
-        <h3 class="text-base font-semibold text-pretty text-foreground">One config file</h3>
-        <p class="mt-2 text-sm/6 text-muted-foreground">Projects are configured in <code class="{{ code }}">shellui.config.json</code>. The Commands section explains which commands read the current folder and which walk up to <code class="{{ code }}">.git</code>.</p>
-      </div>
-    </div>
+  <div class="max-w-2xl">
+    <h2 id="why-cli" class="{{ h2 }}">Four steps, one command</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The program name is <code class="{{ code }}">shellui</code>. There is no shorter name.</p>
   </div>
+  <ol class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <li class="mcp-flow-step rounded-xl border border-border bg-card p-4">
+      <p class="font-mono text-sm font-semibold text-foreground">shellui init</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Create the project and pick a framework.</p>
+    </li>
+    <li class="mcp-flow-step rounded-xl border border-border bg-card p-4">
+      <p class="font-mono text-sm font-semibold text-foreground">shellui start</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Serve the shell around your app. <code class="{{ code }}">shellui dev</code> is the same command.</p>
+    </li>
+    <li class="mcp-flow-step rounded-xl border border-border bg-card p-4">
+      <p class="font-mono text-sm font-semibold text-foreground">shellui login</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Approve a device code in the browser. The CLI never prints tokens.</p>
+    </li>
+    <li class="mcp-flow-step rounded-xl border border-border bg-card p-4">
+      <p class="font-mono text-sm font-semibold text-foreground">shellui deploy</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Upload a 7-day preview for a workshop or a demo.</p>
+    </li>
+  </ol>
 </section>
 
 <section class="mt-20" aria-labelledby="install">
@@ -75,12 +73,12 @@ shellui start
     <h2 id="commands" class="{{ h2 }}">Commands</h2>
     <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">start</code>, <code class="{{ code }}">build</code>, <code class="{{ code }}">init</code>, and <code class="{{ code }}">config</code> read <code class="{{ code }}">shellui.config.json</code> from the current folder. Sign-in and service commands look in the nearest parent, up to <code class="{{ code }}">.git</code>. Pass <code class="{{ code }}">--config</code> to point at another file or folder. Flags and examples are in the <a class="{{ lnk }}" href="{{ site.docs }}/cli">CLI reference</a>.</p>
     <ul class="mt-6 space-y-3 text-base/7 text-muted-foreground">
-      <li><strong class="font-semibold text-foreground">Create and run</strong>: <code class="{{ code }}">init</code>, <code class="{{ code }}">start</code> (alias <code class="{{ code }}">dev</code>), and <code class="{{ code }}">build</code> create a project, serve the shell, and write <code class="{{ code }}">dist/web/</code>.</li>
+      <li><strong class="font-semibold text-foreground">Create and run</strong>: <code class="{{ code }}">shellui init</code>, <code class="{{ code }}">shellui start</code> (<code class="{{ code }}">shellui dev</code> is the same command), and <code class="{{ code }}">shellui build</code> create a project, serve the shell, and write <code class="{{ code }}">dist/web/</code>.</li>
       <li><strong class="font-semibold text-foreground">Configuration</strong>: <code class="{{ code }}">config migrate</code>, <code class="{{ code }}">split</code>, and <code class="{{ code }}">unsplit</code> turn a TypeScript config into JSON, or split that JSON into section files.</li>
       <li><strong class="font-semibold text-foreground">Sign-in</strong>: <code class="{{ code }}">login</code>, <code class="{{ code }}">logout</code>, <code class="{{ code }}">whoami</code>, and <code class="{{ code }}">auth status</code> sign you in and show the account without printing tokens.</li>
       <li><strong class="font-semibold text-foreground">Companies</strong>: <code class="{{ code }}">companies list</code>, <code class="{{ code }}">get</code>, and <code class="{{ code }}">use</code> read regional companies and set the default numeric id.</li>
       <li><strong class="font-semibold text-foreground">Projects</strong>: <code class="{{ code }}">projects list</code>, <code class="{{ code }}">get</code>, <code class="{{ code }}">use</code>, <code class="{{ code }}">regions</code>, and <code class="{{ code }}">endpoints</code> read dashboard companies by UUID (<code class="{{ code }}">create</code> is not available from the CLI).</li>
-      <li><strong class="font-semibold text-foreground">Preview deploys</strong>: <code class="{{ code }}">deploy</code>, <code class="{{ code }}">deploy history</code>, and <code class="{{ code }}">deploy rollback</code> upload a 7-day preview and make an earlier deployment live again.</li>
+      <li><strong class="font-semibold text-foreground">Preview deploys</strong>: <code class="{{ code }}">shellui deploy</code> uploads a 7-day preview for a workshop or a demo. <code class="{{ code }}">shellui deploy history</code> lists those deploys, and <code class="{{ code }}">shellui deploy rollback</code> makes an earlier preview live again. There is no production deploy and no <code class="{{ code }}">--prod</code> flag.</li>
       <li><strong class="font-semibold text-foreground">Storage and hosting</strong>: <code class="{{ code }}">storage buckets list</code> and <code class="{{ code }}">get</code> read buckets, and <code class="{{ code }}">hosting apps</code> and <code class="{{ code }}">hosting deployments</code> read preview sites and deployments.</li>
     </ul>
     <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">companies</code>, <code class="{{ code }}">auth</code>, <code class="{{ code }}">projects</code>, <code class="{{ code }}">storage</code>, and <code class="{{ code }}">hosting</code> accept <code class="{{ code }}">--json</code> for scripts.</p>
@@ -90,18 +88,39 @@ shellui start
 <section class="mt-20" aria-labelledby="credentials">
   <div class="max-w-2xl">
     <h2 id="credentials" class="{{ h2 }}">Where the CLI keeps your sign-in</h2>
-    <ul class="mt-4 space-y-3 text-base/7 text-muted-foreground">
-      <li><code class="{{ code }}">shellui login</code> uses the OAuth 2.0 device authorization grant. You approve the code in your browser on identity-service. The CLI never prints tokens.</li>
-      <li>Tokens go to your operating system keychain. When no keychain is available, the CLI warns once and writes them to a file only your user can read (mode <code class="{{ code }}">0600</code>).</li>
-    </ul>
+    <p class="mt-4 text-base/7 text-muted-foreground">You approve the device code in the browser. The CLI never prints tokens.</p>
+  </div>
+  <div class="mt-8 grid gap-3 sm:grid-cols-2">
+    <div class="rounded-xl border border-border bg-card p-4">
+      <p class="text-sm font-semibold text-foreground">Keychain</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Tokens go to your operating system keychain.</p>
+    </div>
+    <div class="rounded-xl border border-border bg-card p-4">
+      <p class="text-sm font-semibold text-foreground">File fallback</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">If no keychain is available, the CLI warns once and writes a file only your user can read (mode <code class="{{ code }}">0600</code>).</p>
+    </div>
   </div>
 </section>
 
 <section class="mt-20" aria-labelledby="ci">
   <div class="max-w-2xl">
     <h2 id="ci" class="{{ h2 }}">Deploy previews from CI</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">In admin, open Hosting, then Apps, and create a token under Deploy tokens. Store it as the <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code> secret. When that variable is set, <code class="{{ code }}">shellui deploy</code> skips sign-in. The token can create or update previews for your company, and nothing else.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">A deploy token uploads a 7-day preview without a login. It cannot publish a production site.</p>
   </div>
+  <ol class="mt-8 grid gap-3 sm:grid-cols-3">
+    <li class="rounded-xl border border-border bg-card p-4">
+      <p class="text-sm font-semibold text-primary-ink">1. Create</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">In admin, open Hosting, then Apps, then Deploy tokens.</p>
+    </li>
+    <li class="rounded-xl border border-border bg-card p-4">
+      <p class="text-sm font-semibold text-primary-ink">2. Store</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Save it as <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code>.</p>
+    </li>
+    <li class="rounded-xl border border-border bg-card p-4">
+      <p class="text-sm font-semibold text-primary-ink">3. Upload</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground"><code class="{{ code }}">shellui deploy</code> skips sign-in and updates that company's previews only.</p>
+    </li>
+  </ol>
   <div class="mt-8 max-w-3xl">
     {% highlight "bash" %}
 SHELLUI_DEPLOY_TOKEN=your_deploy_token_here npx shellui deploy --build

@@ -80,11 +80,27 @@
 .mcp-flow-step:nth-child(3) { animation-delay: 0.32s; }
 .mcp-flow-step:nth-child(4) { animation-delay: 0.46s; }
 
+@keyframes otel-bar-in {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.otel-bar {
+  transform-origin: left center;
+  animation: otel-bar-in 0.7s ease-out both;
+}
+
+.otel-bar:nth-child(1) { animation-delay: 0.05s; }
+
+.otel-span:nth-child(2) .otel-bar { animation-delay: 0.2s; }
+.otel-span:nth-child(3) .otel-bar { animation-delay: 0.35s; }
+
 @media (prefers-reduced-motion: reduce) {
   .cli-term__cursor,
   .cli-term__line,
   .mcp-live-dot,
-  .mcp-flow-step {
+  .mcp-flow-step,
+  .otel-bar {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

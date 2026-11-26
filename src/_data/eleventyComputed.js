@@ -63,6 +63,7 @@ export default {
       changelog: "Changelog",
       cli: "CLI",
       mcp: "MCP",
+      opentelemetry: "OpenTelemetry",
       pricing: "Pricing",
       guidelines: "Guidelines",
       writing: "Writing",

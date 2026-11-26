@@ -25,7 +25,8 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### ✨ Feature
 
-- CLI and MCP pages under Developers, with visual heroes, grouped CLI commands, and MCP client setup for Claude, Cursor, ChatGPT, VS Code, Windsurf, and Inspector.
+- CLI, MCP, and OpenTelemetry pages under Developers, with a diagram at the start of each section. The MCP page documents https://ai.shellui.com/mcp only. Homepage bento adds those three tiles, folds SAML SSO and SCIM into Sign-in included, and drops Audit and privacy.
+- Roadmap: Smart Shell shipped in November 2026. Marketplace and Horizon stay planned.
 
 ## [0.8.1] - 2026-11-04
 
