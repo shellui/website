@@ -219,7 +219,7 @@ export default {
     },
     {
       label: "Body",
-      sample: "Lead with what ships today. Keep AI, MCP, and marketplace chrome quiet unless the page is about that surface.",
+      sample: "Lead with what ships today. Shipped MCP, agent skills, and on-device AI can appear where they help the reader.",
       className: "text-base/7 text-muted-foreground",
       utility: "text-base/7",
     },

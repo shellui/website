@@ -7,6 +7,9 @@ const SECTION_LABELS = {
   blog: "Blog",
   architecture: "Architecture",
   changelog: "Changelog",
+  cli: "CLI",
+  mcp: "MCP",
+  opentelemetry: "OpenTelemetry",
   pricing: "Pricing",
   roadmap: "Roadmap",
   newsletter: "Newsletter",
@@ -61,7 +64,14 @@ function resolveTemplate(url, data) {
     return url === "/blog/" ? "default" : "blog";
   }
   if (url === "/changelog/") return "changelog";
-  if (url.startsWith("/features/") || url.startsWith("/guidelines/") || url === "/architecture/") {
+  if (
+    url.startsWith("/features/") ||
+    url.startsWith("/guidelines/") ||
+    url === "/architecture/" ||
+    url === "/cli/" ||
+    url === "/mcp/" ||
+    url === "/opentelemetry/"
+  ) {
     return "docs";
   }
   return "default";
@@ -71,6 +81,9 @@ function docsHeaderLabel(url) {
   if (url.startsWith("/features/")) return "Features";
   if (url.startsWith("/guidelines/")) return "Guidelines";
   if (url === "/architecture/") return "Architecture";
+  if (url === "/cli/") return "CLI";
+  if (url === "/mcp/") return "MCP";
+  if (url === "/opentelemetry/") return "OpenTelemetry";
   return "Docs";
 }
 

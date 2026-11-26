@@ -32,6 +32,9 @@
 .bento-art > .dkb { max-width: 298px; max-height: 153px; }
 .bento-art > .osb { max-width: 336px; max-height: 142px; }
 .bento-art > .apb { max-width: 298px; max-height: 144px; }
+.bento-art > .clb,
+.bento-art > .mcb,
+.bento-art > .otb { max-width: 298px; max-height: 140px; }
 /* The tile paints one dot grid behind every drawing, so the drawings' own backgrounds step aside. */
 .bento-art :is(.aub, .syb3, .emb, .ewb, .adb, .osb) .bg,
 .bento-art [fill="url(#aub-d)"], .bento-art [fill="url(#syb3-d)"], .bento-art [fill="url(#emb-d)"],
@@ -40,7 +43,7 @@
   .bento-art { --bento-art-h: 13.5rem; }
 }
 
-/* Shared tokens for the storage, desktop and audit tiles (storage-bento, desktop-bento, audit-bento). Matches admin-bento. */
+/* Shared tokens for the storage and desktop tiles (storage-bento, desktop-bento). Matches admin-bento. */
 .btv {
   --win: var(--color-background); --ln: var(--color-border); --side: var(--color-muted);
   --fg: var(--color-foreground); --mf: var(--color-muted-foreground); --mu: var(--color-secondary);

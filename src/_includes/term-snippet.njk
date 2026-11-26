@@ -1,0 +1,10 @@
+<figure class="code-sample cli-term min-w-0">
+  <figcaption class="sr-only">{{ termCaption }}</figcaption>
+  <div class="flex items-center gap-2 border-b border-border px-6 py-3.5">
+    <span class="size-2 rounded-full bg-muted-foreground/40" aria-hidden="true"></span>
+    <span class="size-2 rounded-full bg-muted-foreground/40" aria-hidden="true"></span>
+    <span class="size-2 rounded-full bg-muted-foreground/40" aria-hidden="true"></span>
+    <span class="ml-1 font-mono text-xs text-muted-foreground">shellui</span>
+  </div>
+  <pre class="text-sm leading-7">{% for line in termLines %}<span class="cli-term__line block">{% if line.prompt %}<span class="text-muted-foreground">$ </span>{% endif %}<span class="{{ line.tone or 'text-foreground' }}">{{ line.text }}</span></span>{% endfor %}</pre>
+</figure>

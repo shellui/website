@@ -1,0 +1,70 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: "Shellui MCP: writes wait for your approval by default"
+description: "Connect a client with dynamic registration or device login to https://ai.shellui.com/mcp. You choose how much it can do. Writes wait for your approval by default."
+eyebrow: Developers
+heading: Let your agent work in your Shellui apps
+lede: You choose how much it can do. Writes wait for your approval by default.
+---
+{% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
+{% set lnk = "font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %}
+{% set h2 = "text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl" %}
+{% set split = "mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-16" %}
+
+{% include "mcp-connect-visual.njk" %}
+
+<section class="{{ split }}" aria-labelledby="approve">
+  <div class="max-w-xl">
+    <h2 id="approve" class="{{ h2 }}">You choose what needs approval</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">By default, writes wait for you. A client that supports form elicitation shows Approve or Deny in chat. Other clients get an approval link. Under Ask, the same tool with the same arguments can run again for 60 seconds after you approve it.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Destructive tools are refused unless you allowed them when you connected. Then they open an approval page in your browser. That page is not the connection consent page. The server you add is still <code class="{{ code }}">https://ai.shellui.com/mcp</code>.</p>
+    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md#global-mcp-shellui-account">How the public connector works</a></p>
+  </div>
+  <div class="min-w-0">{% include "mcp-approval-visual.njk" %}</div>
+</section>
+
+<section class="{{ split }}" aria-labelledby="access">
+  <div class="max-w-xl lg:order-2">
+    <h2 id="access" class="{{ h2 }}">Choose how much it can do</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Read only blocks writes. Ask before changes is the default: writes wait for you. Full access runs non-destructive writes with no approval. Destructive tools still need the approval page, and only if you allowed them at consent.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Safe reads are the default. A tool marked sensitive does not run unless you choose Sensitive data. Staff accounts cannot approve an agent.</p>
+    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md">Device login and access</a></p>
+  </div>
+  <div class="min-w-0 lg:order-1">{% include "mcp-access-visual.njk" %}</div>
+</section>
+
+<section class="mt-24" aria-labelledby="clients">
+  <div class="max-w-2xl">
+    <h2 id="clients" class="{{ h2 }}">Connect from your client</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The client needs OAuth dynamic client registration, or device login. Add <code class="{{ code }}">https://ai.shellui.com/mcp</code>. Each chip opens that client's own MCP docs. This is not a tested list.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">A browser client uses an authorization code. A headless agent can use device login. Never paste a token into a chat. Agents learn how to use Shellui at <a class="{{ lnk }}" href="https://shellui.ai">shellui.ai</a>.</p>
+  </div>
+  <ul class="mt-8 flex flex-wrap gap-3">
+    {% for item in [
+      { href: "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp", label: "Claude" },
+      { href: "https://code.claude.com/docs/en/mcp", label: "Claude Code" },
+      { href: "https://cursor.com/docs/mcp", label: "Cursor" },
+      { href: "https://developers.openai.com/api/docs/guides/custom-mcp-server", label: "ChatGPT" },
+      { href: "https://code.visualstudio.com/docs/copilot/customization/mcp-servers", label: "VS Code" },
+      { href: "https://docs.devin.ai/windsurf/plugins/cascade/mcp", label: "Windsurf" },
+      { href: "https://modelcontextprotocol.io/docs/tools/inspector", label: "MCP Inspector" }
+    ] %}
+    <li>
+      <a href="{{ item.href }}" class="inline-flex min-h-11 items-center rounded-full border border-border bg-card px-5 text-sm font-semibold text-foreground hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" target="_blank" rel="noopener noreferrer">{{ item.label }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<div class="mt-16 sm:mt-24">
+  <a href="https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md#global-mcp-shellui-account" class="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Read the MCP docs</a>
+</div>
+
+{% set featureDocs = [
+  { href: "https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md#global-mcp-shellui-account", label: "Public MCP connector", external: true },
+  { href: "https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md", label: "Device login and access", external: true },
+  { href: "/features/authentication/", label: "Authentication" },
+  { href: "/security/", label: "Security" }
+] %}
+{% include "feature-docs.njk" %}

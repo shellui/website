@@ -1,13 +1,13 @@
 ---
 title: Writing guidelines
 description: Voice, tone, and review rules for Shellui website and docs prose.
-version: 2.0.0
-updated: 2026-10-25
+version: 2.1.0
+updated: 2026-11-26
 canonical: /guidelines/writing/
 related: /guidelines/interface/, /guidelines/brand/
 ---
 
-These rules cover copy on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and in-product strings that developers read. Lead with what Shellui ships today: a microfrontend shell with shared navigation, authentication, administration, and storage. Keep AI, MCP, and marketplace ideas quiet unless the page is actually about that surface.
+These rules cover copy on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and in-product strings that developers and their agents read. Lead with what Shellui ships today: a microfrontend shell with shared navigation, authentication, administration, and storage. Shellui is AI native. Shipped AI surfaces (MCP at [ai.shellui.com/mcp](https://ai.shellui.com/mcp), agent skills, on-device AI) can appear wherever they help the reader. Do not tease unreleased AI or marketplace work.
 
 Agents: load this file. Do not scrape the HTML page. The `version` field in the frontmatter is the public "Guidelines v…" label.
 
@@ -27,8 +27,8 @@ Review files against every rule below. Output concise, high-signal findings. Sac
 - The product name is **Shellui** only. Never "The Host". Never raise the last two letters or camel-case the name; packages and repos stay lowercase (`@shellui/sdk`, `shellui/identity-service`)
 - In prose, "the shell" (lowercase) is the running host around the iframe app. That is a common noun, not a second brand
 - Default one-liner: Shellui is an open-source web app development platform: a microfrontend shell that wraps your application with shared navigation, authentication, storage, and administration (defined once in [Brand](/guidelines/brand/))
-- Audience is developers shipping a product inside that shell, not generic "users" or "teams exploring AI"
-- Surfaces: [docs.shellui.com](https://docs.shellui.com) for docs, [playground.shellui.com](https://playground.shellui.com) to try it, [GitHub](https://github.com/shellui) for source. Mention [shellui.ai](https://shellui.ai) only when the page is about that property
+- Audience is developers shipping a product inside that shell, and the agents working for them. Not generic "users"
+- Surfaces: [docs.shellui.com](https://docs.shellui.com) for docs, [playground.shellui.com](https://playground.shellui.com) to try it, [GitHub](https://github.com/shellui) for source. [shellui.ai](https://shellui.ai) is where agents learn to use Shellui. Mention it when agents are the audience. The homepage agent prompt is the introduction to Shellui for that audience
 - Logo usage lives on [Brand](/guidelines/brand/) only. Do not mix logo rules into product docs
 
 ## Voice and tone
@@ -58,7 +58,7 @@ Review files against every rule below. Output concise, high-signal findings. Sac
 - `easy`, `simple`, `quick`: puts pressure on the reader and reads as marketing. Replace with a concrete description ("one command", "default settings", "most projects don't need this")
 - `very`, `just`, `really`, `simply`: filler; cut or rewrite
 - `seamless`, `robust`, `powerful`, `next-generation`, `unlock`, `leverage`: marketing fog; name the behavior
-- Do not tease unreleased AI, MCP, app-store, or marketplace work on pages about the shell, auth, admin, or storage
+- Do not tease unreleased AI, an app store, or a marketplace. Shipped MCP, agent skills, and on-device AI can appear wherever they help the reader
 
 ### Concision
 
@@ -193,10 +193,10 @@ await init({
 
 ## What to mention (and what to skip)
 
-- **Default to shipping**: iframe host, `@shellui/sdk`, identity-service, admin at `/admin`, storage-service, Files
-- **Skip unless the page is about it**: AI features, MCP, an app store, a marketplace, unreleased roadmap items
+- **Default to shipping**: iframe host, `@shellui/sdk`, identity-service, admin at `/admin`, storage-service, Files, and shipped AI (MCP at [ai.shellui.com/mcp](https://ai.shellui.com/mcp), agent skills, on-device AI)
+- **Skip unreleased work**: unreleased AI, an app store, a marketplace, and unreleased roadmap items
 - **Roadmap pages** may list upcoming work. Everywhere else, upcoming work is a footnote, not the lede
-- Don't frame Shellui as an AI platform. It is a shell around your app
+- Shellui is AI native: a shell around your app that agents can operate. Shipped AI surfaces can appear wherever they help the reader. Do not present unreleased work as shipping
 
 ## Review
 
@@ -265,7 +265,7 @@ How drafts get checked - by a person or an agent.
 - Paragraphs over 4 sentences or covering two ideas
 - Bare URLs or `here`/`link` as anchor text
 - Calling the product "The Host" or any spelling other than Shellui
-- Leading a shipping-product page with AI, MCP, or marketplace copy
+- Teasing unreleased AI, an app store, or a marketplace on a shipping-product page
 - Ordinary hyphens flagged as errors (hyphens are preferred)
 
 ## Review output

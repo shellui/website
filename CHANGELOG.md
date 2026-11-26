@@ -21,6 +21,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.9.0] - 2026-11-26
+
+### ✨ Feature
+
+- CLI, MCP, and OpenTelemetry pages under Developers. Each page has a feature header, one visual, and a few short sections.
+- The MCP page documents `https://ai.shellui.com/mcp` only. You choose how much an agent can do, and writes wait for your approval by default.
+- OpenTelemetry covers trace and metric export to a backend you run. Logs carry trace and span ids and are not an OTLP signal.
+- Homepage bento adds CLI, MCP, and OpenTelemetry tiles.
+
+### 🛠 Improvements
+
+- Homepage bento folds SAML SSO and SCIM into Sign-in included.
+- Roadmap marks Smart Shell shipped in November 2026. Marketplace and Horizon stay planned.
+
+### 🚨 Changed
+
+- Writing 2.1.0, Brand 2.1.0, and Interface 2.2.0. Shellui is AI native. Shipped MCP, agent skills, and on-device AI can appear where they help. shellui.ai is where agents learn to use Shellui. Unreleased AI and marketplace teasers stay out.
+
+### 🗑 Removed
+
+- Homepage bento drops the Audit and privacy tile.
+
 ## [0.8.1] - 2026-11-04
 
 ### 📚 Documentation

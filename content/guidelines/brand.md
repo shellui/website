@@ -1,8 +1,8 @@
 ---
 title: Brand
 description: Shellui identity, logo usage, voice summary, and downloadable brand files.
-version: 2.0.0
-updated: 2026-10-25
+version: 2.1.0
+updated: 2026-11-26
 canonical: /guidelines/brand/
 related: /guidelines/foundations/, /guidelines/print/, /guidelines/writing/
 ---
@@ -31,7 +31,7 @@ Brand is identity: name, one-liner, logo, color summary, and production files. T
 
 ## Voice (summary)
 
-Developers are the audience. Active voice, evidence over slogans, no rhetorical questions. Full rules: [Writing](/guidelines/writing/).
+Developers and the agents working for them are the audience. [shellui.ai](https://shellui.ai) is where agents learn to use Shellui. The homepage agent prompt introduces Shellui to that audience. Active voice, evidence over slogans, no rhetorical questions. Full rules: [Writing](/guidelines/writing/).
 
 ## Downloads {#downloads}
 

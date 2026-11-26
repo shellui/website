@@ -54,8 +54,8 @@ const core = extractSections(body, DESIGN_SECTIONS);
 const designFront = `---
 title: Design
 description: Agent composition authority for Shellui pages. Trimmed alias; full Interface rules live on interface.md.
-version: 2.0.0
-updated: 2026-10-25
+version: 2.1.0
+updated: 2026-11-26
 canonical: /design.md
 related: /guidelines/interface/, /guidelines/foundations/
 ---
@@ -101,8 +101,8 @@ if (Buffer.byteLength(designMd, "utf8") > MAX_DESIGN_BYTES) {
 const webAliasFront = `---
 title: Web design guidelines (alias)
 description: Forever alias for Interface. Canonical page is /guidelines/interface/.
-version: 2.0.0
-updated: 2026-10-25
+version: 2.2.0
+updated: 2026-11-26
 canonical: /guidelines/interface/
 ---
 
