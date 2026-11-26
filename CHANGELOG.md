@@ -25,7 +25,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### 🐛 Bug Fixes
 
-- MCP access copy no longer says Full access writes without approval. Project tools for identity, storage, hosting, and email open at Ask. A destructive project call returns an approval link only an owner can use.
+- MCP access copy now separates account and project rules. Full access runs non-destructive account writes with no approval, and an account destructive tool is refused unless it was allowed at consent. Project tools for identity, storage, hosting, and email open at Ask, and a destructive project call returns an approval link only an owner can use.
 
 ### 🛠 Improvements
 

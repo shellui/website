@@ -18,7 +18,8 @@ lede: You choose how much it can do. Writes wait for your approval by default.
   <div class="max-w-xl">
     <h2 id="approve" class="{{ h2 }}">You choose what needs approval</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">By default, writes wait for you. A client that supports form elicitation shows Approve or Deny in chat. Other clients get an approval link. Under Ask, the same tool with the same arguments can run again for 60 seconds after you approve it.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">On a project, a destructive call returns an approval link, and only an owner can use it. That page is not the connection consent page. The server you add is still <code class="{{ code }}">https://ai.shellui.com/mcp</code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">On the account, Full access runs non-destructive writes with no approval. An account destructive tool is refused unless you allowed it when you connected, and then it opens an approval page. That page is not the connection consent page.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">On a project, a destructive call returns an approval link, and only an owner can use it. The server you add is still <code class="{{ code }}">https://ai.shellui.com/mcp</code>.</p>
     <p class="mt-6 text-sm"><a class="{{ lnk }}" href="{{ site.docs }}/ai/mcp-device-login/#global-mcp-shellui-account">How the public connector works</a></p>
   </div>
   <div class="min-w-0">{% include "mcp-approval-visual.njk" %}</div>
@@ -27,7 +28,8 @@ lede: You choose how much it can do. Writes wait for your approval by default.
 <section class="{{ split }}" aria-labelledby="access">
   <div class="max-w-xl lg:order-2">
     <h2 id="access" class="{{ h2 }}">Choose how much it can do</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Read only blocks writes. Ask before changes is the default: writes wait for you. Full access does not skip approval on project tools. Identity, storage, hosting, and email open at Ask even when the agent is on Full access.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Read only blocks writes. Ask before changes is the default: writes wait for you. Full access runs non-destructive account writes with no approval. An account destructive tool is refused unless you allowed it when you connected.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Project tools for identity, storage, hosting, and email open at Ask even under Full access. A destructive project call returns an approval link, and only an owner can use it.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">Safe reads are the default. A tool marked sensitive does not run unless you choose Sensitive data. Staff accounts cannot approve an agent.</p>
     <p class="mt-6 text-sm"><a class="{{ lnk }}" href="{{ site.docs }}/ai/mcp-device-login/#global-mcp-shellui-account">Device login and access</a></p>
   </div>
@@ -63,7 +65,6 @@ lede: You choose how much it can do. Writes wait for your approval by default.
 
 {% set featureDocs = [
   { href: site.docs + "/ai/mcp-device-login/#global-mcp-shellui-account", label: "Public MCP connector", external: true },
-  { href: site.docs + "/ai/mcp-device-login/#global-mcp-shellui-account", label: "Device login and access", external: true },
   { href: "/features/authentication/", label: "Authentication" },
   { href: "/security/", label: "Security" }
 ] %}
