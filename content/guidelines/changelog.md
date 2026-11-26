@@ -8,11 +8,12 @@ canonical: /guidelines/changelog/
 
 ## 2.2.0 (2026-11-26)
 
-Writing 2.1.0, Brand 2.1.0, and Interface 2.2.0.
+Writing 2.1.0, Brand 2.1.0, Design 2.1.0, and Interface 2.2.0.
 
 - **Writing**: Shellui is AI native. Shipped MCP, agent skills, and on-device AI can appear wherever they help the reader. [shellui.ai](https://shellui.ai) is where agents learn to use Shellui, and the homepage agent prompt may introduce Shellui. Audience includes the agents working for developers. Unreleased AI and marketplace teasers stay out
 - **Brand**: same audience and shellui.ai rule, in the voice summary
 - **Interface**: shipped AI surfaces can appear where they help. The reject list now flags unreleased AI and marketplace chrome, not shipped MCP
+- **Design**: the trimmed alias is 2.1.0 and carries the same AI native rule
 
 ## 2.0.0 (2026-10-25)
 

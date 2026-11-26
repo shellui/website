@@ -21,11 +21,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.9.1] - 2026-11-26
+
+### 🐛 Bug Fixes
+
+- MCP access copy now separates account and project rules. Full access runs non-destructive account writes with no approval, and an account destructive tool is refused unless it was allowed at consent. Project tools for identity, storage, hosting, and email open at Ask, and a destructive project call returns an approval link only an owner can use.
+
+### 🛠 Improvements
+
+- MCP docs links go to the public connector on docs.shellui.com.
+- The 0.9.0 changelog line now says each section has its own visual. The guidelines changelog lists Design 2.1.0.
+
 ## [0.9.0] - 2026-11-26
 
 ### ✨ Feature
 
-- CLI, MCP, and OpenTelemetry pages under Developers. Each page has a feature header, one visual, and a few short sections.
+- CLI, MCP, and OpenTelemetry pages under Developers. Each page has a feature header and several sections, and each section has its own visual.
 - The MCP page documents `https://ai.shellui.com/mcp` only. You choose how much an agent can do, and writes wait for your approval by default.
 - OpenTelemetry covers trace and metric export to a backend you run. Logs carry trace and span ids and are not an OTLP signal.
 - Homepage bento adds CLI, MCP, and OpenTelemetry tiles.
