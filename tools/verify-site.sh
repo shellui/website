@@ -82,8 +82,8 @@ grep -q 'docs.shellui.com/sdk' "${SITE}/llms.txt" || fail "llms.txt missing SDK 
 grep -q 'Auth backend source' "${SITE}/llms.txt" || fail "llms.txt missing identity-service annotation"
 grep -q '/cli/' "${SITE}/llms.txt" || fail "llms.txt missing CLI page"
 grep -q 'https://ai.shellui.com/mcp' "${SITE}/llms.txt" || fail "llms.txt missing https://ai.shellui.com/mcp"
-if grep -q '/c/' "${SITE}/llms.txt" || grep -q 'company URL' "${SITE}/mcp/index.html"; then
-  fail "site copy must not document a company MCP URL"
+if grep -RInE 'ai\.shellui\.com/(c/|[a-z]{2}/)|/c/[0-9]+/mcp' "${SITE}" --include='*.html' --include='*.txt' --include='*.xml'; then
+  fail "site copy must not document a company or regional MCP URL"
 fi
 grep -q '/mcp/' "${SITE}/llms.txt" || fail "llms.txt missing MCP page"
 grep -q '/opentelemetry/' "${SITE}/llms.txt" || fail "llms.txt missing OpenTelemetry page"
@@ -120,15 +120,8 @@ grep -q 'npm install -g @shellui/cli' "${SITE}/index.html" \
   || fail "index.html missing global CLI install"
 grep -q 'shellui init react' "${SITE}/index.html" \
   || fail "index.html missing shellui init react"
-# The CLI terminal example prints a preview host from the hosting docs.
-# Any other shellui.app string is still a broken public link.
-shellui_app_hits="$(grep -RIl 'shellui\.app' "${SITE}" --include='*.html' --include='*.txt' || true)"
-if [[ -n "${shellui_app_hits}" ]]; then
-  unexpected="$(printf '%s\n' "${shellui_app_hits}" | grep -v "/cli/index.html$" || true)"
-  if [[ -n "${unexpected}" ]]; then
-    printf '%s\n' "${unexpected}" >&2
-    fail "output links to unavailable shellui.app"
-  fi
+if grep -RIn 'shellui\.app' "${SITE}" --include='*.html' --include='*.txt'; then
+  fail "output links to unavailable shellui.app"
 fi
 grep -q 'dist/web/' "${SITE}/index.html" \
   || fail "index.html missing static dist/web/ ship path"

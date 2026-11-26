@@ -43,7 +43,7 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
 <section class="mt-20" aria-labelledby="permissions">
   <div class="max-w-2xl">
     <h2 id="permissions" class="{{ h2 }}">Elicitation and permissions</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">You stay in the path when an agent writes data. Shellui calls this elicitation: the server asks you to approve a tool call before it runs.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">You stay in the path when an agent writes data. The server asks you to approve a tool call before it runs (MCP elicitation).</p>
   </div>
 
   <div class="mt-10">
@@ -83,7 +83,7 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
       <li><strong class="font-semibold text-foreground">Account scope</strong>: the token audience is <code class="{{ code }}">https://ai.shellui.com/mcp</code>. That connection reaches the companies and regions the account can access.</li>
       <li><strong class="font-semibold text-foreground">Read levels</strong>: Safe is the default. A tool marked sensitive does not run unless you choose Sensitive data.</li>
       <li><strong class="font-semibold text-foreground">Staff cannot authorize agents</strong>: staff accounts cannot approve an MCP client or a device code.</li>
-      <li><strong class="font-semibold text-foreground">Sign-in page</strong>: shows the client name as unverified, and a warning not to continue if you did not start the connection.</li>
+      <li><strong class="font-semibold text-foreground">Consent page</strong>: on ai.shellui.com, after you sign in to Shellui. It shows the client name as unverified, and a warning not to continue if you did not start the connection.</li>
       <li><strong class="font-semibold text-foreground">Revoke at any time</strong>: you can revoke an agent. A revoked agent can no longer call the connector.</li>
       <li><strong class="font-semibold text-foreground">Call log</strong>: tool calls are logged in ai-service.</li>
     </ul>
@@ -93,7 +93,7 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
 <section class="mt-20" aria-labelledby="tools">
   <div class="max-w-2xl">
     <h2 id="tools" class="{{ h2 }}">Tools your agent can use</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">By default the server lists a few discovery tools, so the agent searches for the right operation instead of loading every tool.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">The default list is the tools below.</p>
   </div>
 
   <div class="mt-10 max-w-3xl">
@@ -110,35 +110,51 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
               <td>List the companies you can access, with region and status.</td>
             </tr>
             <tr>
-              <th scope="row"><code>ai_search_tools</code></th>
-              <td>Find tools from a short phrase, filtered by service or by read and write.</td>
+              <th scope="row"><code>ai_wait_for_company</code></th>
+              <td>Wait until one company is active or failed, for about 60 seconds.</td>
             </tr>
             <tr>
-              <th scope="row"><code>ai_describe_tool</code></th>
-              <td>Show the arguments of one or more tools.</td>
+              <th scope="row"><code>ai_company_search_tools</code></th>
+              <td>Search tools for one company from a short phrase.</td>
             </tr>
             <tr>
-              <th scope="row"><code>ai_call_tool</code></th>
-              <td>Run a tool through the same access checks and approvals.</td>
+              <th scope="row"><code>ai_company_describe_tool</code></th>
+              <td>Show the arguments of tools for one company.</td>
             </tr>
             <tr>
               <th scope="row"><code>ai_call_company_tool</code></th>
               <td>Run a tool for one company the account can access.</td>
             </tr>
             <tr>
-              <th scope="row"><code>ai_get_approval</code></th>
-              <td>Check whether a pending approval was accepted. It does not run the tool.</td>
+              <th scope="row"><code>ai_search_tools</code></th>
+              <td>Search tools on this connector from a short phrase.</td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ai_describe_tool</code></th>
+              <td>Show the arguments of a tool on this connector.</td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ai_call_tool</code></th>
+              <td>Run a tool named by search or describe on this connector. Company tools use <code>ai_call_company_tool</code>.</td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ai_grant_company_access</code></th>
+              <td>Change this agent's access on one company. Narrowing applies at once. Widening needs an approval link.</td>
+            </tr>
+            <tr>
+              <th scope="row"><code>ai_revoke_company_access</code></th>
+              <td>Revoke this agent on one company.</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <p class="mt-4 text-base/7 text-muted-foreground">Example calls include <code class="{{ code }}">identity_list_users</code>, <code class="{{ code }}">storage_list_bucket</code>, <code class="{{ code }}">hosting_list_apps</code>, and <code class="{{ code }}">email_list_messages</code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Those company calls include names such as <code class="{{ code }}">identity_list_users</code>, <code class="{{ code }}">storage_list_bucket</code>, <code class="{{ code }}">hosting_list_apps</code>, and <code class="{{ code }}">email_list_messages</code>.</p>
   </div>
 
   <div class="mt-10 max-w-3xl">
     <h3 class="text-base font-semibold text-pretty text-foreground">Service tools</h3>
-    <p class="mt-2 max-w-2xl text-sm/6 text-muted-foreground">Names start with the service, for example <code class="{{ code }}">identity_create_invitations</code>. Through the connector, those calls cover identity, storage, hosting, and email.</p>
+    <p class="mt-2 max-w-2xl text-sm/6 text-muted-foreground">Identity, storage, hosting, and email are not returned by <code class="{{ code }}">ai_search_tools</code>. Call <code class="{{ code }}">ai_list_companies</code>, then <code class="{{ code }}">ai_company_search_tools</code> with that company id and a short phrase, then <code class="{{ code }}">ai_call_company_tool</code>. Names start with the service, for example <code class="{{ code }}">identity_create_invitations</code>.</p>
     <div class="prose mt-4">
       <div class="prose-table-wrap">
         <table>
@@ -219,8 +235,8 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
         <li>In Claude, open Customize, then Connectors.</li>
         <li>Add a custom connector. On Team and Enterprise plans, an owner adds it under Organization settings, then Connectors, first.</li>
         <li>Name it Shellui and paste https://ai.shellui.com/mcp.</li>
-        <li>Choose OAuth sign-in. Leave the client id and secret blank unless you were told to register a client. Shellui supports dynamic client registration.</li>
-        <li>Approve the connection on identity-service.</li>
+        <li>Choose OAuth sign-in. Leave the client id blank. Shellui supports dynamic client registration.</li>
+        <li>Sign in to Shellui in the browser, then choose the access level and choose Allow.</li>
       </ol>
       <p class="mt-4 text-sm"><a class="{{ lnk }}" href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp" target="_blank" rel="noopener noreferrer">Get started with custom connectors using remote MCP</a></p>
     </article>
@@ -263,7 +279,7 @@ claude mcp add --transport http shellui https://ai.shellui.com/mcp
         <li>Select the plus button, then Add custom MCP server.</li>
         <li>Enter a name, paste https://ai.shellui.com/mcp as the server URL, and choose OAuth.</li>
         <li>Review the risk warning, create the plugin, and install it before you use it in a conversation.</li>
-        <li>In the prompt box, type <code class="{{ code }}">@</code> and select the plugin. Sign in on identity-service when ChatGPT asks.</li>
+        <li>In the prompt box, type <code class="{{ code }}">@</code> and select the plugin. Sign in to Shellui when ChatGPT asks.</li>
       </ol>
     </article>
 

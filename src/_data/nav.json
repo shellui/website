@@ -29,7 +29,7 @@
       "group": "build",
       "href": "/opentelemetry/",
       "label": "OpenTelemetry",
-      "description": "Export traces, metrics, and logs to your own backend.",
+      "description": "Export traces and metrics to your own backend.",
       "icon": "chart"
     },
     {

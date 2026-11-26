@@ -2,11 +2,11 @@
 layout: layouts/feature.njk
 wide: true
 customHero: true
-title: "Shellui OpenTelemetry: traces, metrics, and logs over OTLP"
-description: "Point OTEL_EXPORTER_OTLP_ENDPOINT at any OpenTelemetry backend. Shellui services export traces, metrics, and logs. Nothing is bundled."
+title: "Shellui OpenTelemetry: traces and metrics over OTLP"
+description: "Point OTEL_EXPORTER_OTLP_ENDPOINT at any OpenTelemetry backend. Shellui services export traces and metrics. Logs carry trace and span ids."
 eyebrow: Developers
 heading: Follow a request across Shellui services
-lede: identity, email, storage, hosting, saas, and ai export traces, metrics, and logs over OTLP through shellui-django. Point the export at a backend you run.
+lede: identity, email, storage, hosting, and ai export traces and metrics over OTLP through shellui-django. Logs carry the trace and span ids. Point the export at a backend you run.
 ---
 {% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
 {% set lnk = "font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %}
@@ -34,7 +34,7 @@ lede: identity, email, storage, hosting, saas, and ai export traces, metrics, an
   <ol class="mt-8 grid gap-3 sm:grid-cols-3">
     <li class="rounded-xl border border-border bg-card p-4">
       <p class="text-sm font-semibold text-foreground">Shellui services</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">identity, email, storage, hosting, saas, and ai.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">identity, email, storage, hosting, and ai.</p>
     </li>
     <li class="rounded-xl border border-border bg-card p-4">
       <p class="text-sm font-semibold text-foreground">OTLP</p>
@@ -52,18 +52,18 @@ lede: identity, email, storage, hosting, saas, and ai export traces, metrics, an
   <div class="mt-8 max-w-3xl">
     {% highlight "bash" %}
 OTEL_SERVICE_NAME=shellui-identity
-OTEL_EXPORTER_OTLP_ENDPOINT=https://your-otlp-host:4318
+OTEL_EXPORTER_OTLP_ENDPOINT=https://your_collector_host:4318
 OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
     {% endhighlight %}
   </div>
-  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground">The exporter appends <code class="{{ code }}">/v1/traces</code>. Set <code class="{{ code }}">OTEL_EXPORTER_OTLP_HEADERS</code> when your collector requires a header. Install the library extra with <code class="{{ code }}">pip install shellui-django[otel]</code>. Each service calls <code class="{{ code }}">setup_telemetry</code> itself. Do not wrap the process with <code class="{{ code }}">opentelemetry-instrument</code>.</p>
+  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground">The exporter appends the per-signal paths, <code class="{{ code }}">/v1/traces</code> and <code class="{{ code }}">/v1/metrics</code>. Set <code class="{{ code }}">OTEL_EXPORTER_OTLP_HEADERS</code> when your collector requires a header. Install the library extra with <code class="{{ code }}">pip install shellui-django[otel]</code>. Each service calls <code class="{{ code }}">setup_telemetry</code> itself. Do not wrap the process with <code class="{{ code }}">opentelemetry-instrument</code>.</p>
 </section>
 
 <section class="mt-20" aria-labelledby="signals">
   <div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
     <div class="max-w-2xl">
       <h2 id="signals" class="{{ h2 }}">What each service sends</h2>
-      <p class="mt-4 text-base/7 text-muted-foreground">identity, email, storage, hosting, saas, and ai send three signals. Traces follow a request through outbound HTTP and into a Celery task. Metrics include <code class="{{ code }}">http.server.request.duration</code>. Logs carry <code class="{{ code }}">trace_id</code> and <code class="{{ code }}">span_id</code> while a span is active.</p>
+      <p class="mt-4 text-base/7 text-muted-foreground">identity, email, storage, hosting, and ai send traces and metrics. Traces follow a request through outbound HTTP and into a Celery task. Metrics include <code class="{{ code }}">http.server.request.duration</code>. Logs carry <code class="{{ code }}">trace_id</code> and <code class="{{ code }}">span_id</code> while a span is active. They are not exported over OTLP.</p>
       <p class="mt-4 text-base/7 text-muted-foreground">On identity-service, <code class="{{ code }}">GET /api/v1/metrics</code> and <code class="{{ code }}">GET /api/v1/metrics/all</code> answer 404. Read those series from your collector instead. Company statistics stay on <code class="{{ code }}">GET /api/v1/stats</code>. Scheduled job state stays on <code class="{{ code }}">GET /api/v1/scheduled-jobs</code>.</p>
     </div>
     <div>

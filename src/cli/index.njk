@@ -56,7 +56,7 @@ lede: The command is shellui. It creates a project, serves the shell around your
 <section class="mt-20" aria-labelledby="install">
   <div class="max-w-2xl">
     <h2 id="install" class="{{ h2 }}">Install the CLI and start a project</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Install <code class="{{ code }}">@shellui/cli</code> with npm. It needs Node.js 18 or later.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Install <code class="{{ code }}">@shellui/cli</code> with npm. It needs Node.js 20.19 or later, or Node.js 22.12 or later.</p>
   </div>
   <div class="mt-8 max-w-3xl">
     {% highlight "bash" %}
@@ -77,7 +77,7 @@ shellui start
       <li><strong class="font-semibold text-foreground">Configuration</strong>: <code class="{{ code }}">config migrate</code>, <code class="{{ code }}">split</code>, and <code class="{{ code }}">unsplit</code> turn a TypeScript config into JSON, or split that JSON into section files.</li>
       <li><strong class="font-semibold text-foreground">Sign-in</strong>: <code class="{{ code }}">login</code>, <code class="{{ code }}">logout</code>, <code class="{{ code }}">whoami</code>, and <code class="{{ code }}">auth status</code> sign you in and show the account without printing tokens.</li>
       <li><strong class="font-semibold text-foreground">Companies</strong>: <code class="{{ code }}">companies list</code>, <code class="{{ code }}">get</code>, and <code class="{{ code }}">use</code> read regional companies and set the default numeric id.</li>
-      <li><strong class="font-semibold text-foreground">Projects</strong>: <code class="{{ code }}">projects list</code>, <code class="{{ code }}">get</code>, <code class="{{ code }}">use</code>, <code class="{{ code }}">regions</code>, and <code class="{{ code }}">endpoints</code> read dashboard companies by UUID (<code class="{{ code }}">create</code> is not available from the CLI).</li>
+      <li><strong class="font-semibold text-foreground">Projects</strong>: <code class="{{ code }}">projects list</code>, <code class="{{ code }}">get</code>, <code class="{{ code }}">use</code>, <code class="{{ code }}">regions</code>, and <code class="{{ code }}">endpoints</code> read the companies on your account (<code class="{{ code }}">create</code> is not available from the CLI).</li>
       <li><strong class="font-semibold text-foreground">Preview deploys</strong>: <code class="{{ code }}">shellui deploy</code> uploads a 7-day preview for a workshop or a demo. <code class="{{ code }}">shellui deploy history</code> lists those deploys, and <code class="{{ code }}">shellui deploy rollback</code> makes an earlier preview live again. There is no production deploy and no <code class="{{ code }}">--prod</code> flag.</li>
       <li><strong class="font-semibold text-foreground">Storage and hosting</strong>: <code class="{{ code }}">storage buckets list</code> and <code class="{{ code }}">get</code> read buckets, and <code class="{{ code }}">hosting apps</code> and <code class="{{ code }}">hosting deployments</code> read preview sites and deployments.</li>
     </ul>
@@ -114,7 +114,7 @@ shellui start
     </li>
     <li class="rounded-xl border border-border bg-card p-4">
       <p class="text-sm font-semibold text-primary-ink">2. Store</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Save it as <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code>.</p>
+      <p class="mt-2 text-sm/6 text-muted-foreground">Save it as a CI secret named <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code>. Do not put the token on the command line.</p>
     </li>
     <li class="rounded-xl border border-border bg-card p-4">
       <p class="text-sm font-semibold text-primary-ink">3. Upload</p>
@@ -123,10 +123,11 @@ shellui start
   </ol>
   <div class="mt-8 max-w-3xl">
     {% highlight "bash" %}
-SHELLUI_DEPLOY_TOKEN=your_deploy_token_here npx shellui deploy --build
+npm ci
+npx -p @shellui/cli shellui deploy --build
     {% endhighlight %}
   </div>
-  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground">That command builds, then uploads <code class="{{ code }}">dist/web/</code> as a preview.</p>
+  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground"><code class="{{ code }}">npm ci</code> installs the project. <code class="{{ code }}">npx -p @shellui/cli</code> runs the published package. The command reads <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code> from the CI secret and uploads <code class="{{ code }}">dist/web/</code> as a preview.</p>
 </section>
 
 <div class="mt-16 max-w-3xl">
