@@ -1,7 +1,6 @@
 ---
 layout: layouts/feature.njk
 wide: true
-customHero: true
 title: "Shellui OpenTelemetry: traces and metrics over OTLP"
 description: "Point OTEL_EXPORTER_OTLP_ENDPOINT at any OpenTelemetry backend. Shellui services export traces and metrics. Logs carry trace and span ids."
 eyebrow: Developers
@@ -11,43 +10,16 @@ lede: identity, email, storage, hosting, and ai export traces and metrics over O
 {% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
 {% set lnk = "font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %}
 {% set h2 = "text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl" %}
+{% set measure = "max-w-prose" %}
+{% set section = "mt-16 sm:mt-24" %}
 
-<div class="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,28rem)] lg:gap-16">
-  <div class="max-w-2xl">
-    <p class="text-base/7 font-semibold text-primary-ink">{{ eyebrow }}</p>
-    <h1 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{{ heading }}</h1>
-    <p class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">{{ lede }}</p>
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <a href="#setup" class="inline-flex min-h-11 items-center rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Point your collector</a>
-      <a href="#alerts" class="inline-flex min-h-11 items-center rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10">Recommended alerts</a>
-    </div>
-  </div>
-  <div class="w-full lg:justify-self-end">
-    {% include "otel-trace-visual.njk" %}
-  </div>
-</div>
+<div class="max-w-xl">{% include "otel-trace-visual.njk" %}</div>
 
-<section class="mt-20" aria-labelledby="setup">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="setup">
+  <div class="{{ measure }}">
     <h2 id="setup" class="{{ h2 }}">Point the export at your backend</h2>
-  </div>
-  <ol class="mt-8 grid gap-3 sm:grid-cols-3">
-    <li class="rounded-xl border border-border bg-card p-4">
-      <p class="text-sm font-semibold text-foreground">Shellui services</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">identity, email, storage, hosting, and ai.</p>
-    </li>
-    <li class="rounded-xl border border-border bg-card p-4">
-      <p class="text-sm font-semibold text-foreground">OTLP</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground"><code class="{{ code }}">OTEL_EXPORTER_OTLP_ENDPOINT</code> turns export on.</p>
-    </li>
-    <li class="rounded-xl border border-border bg-card p-4">
-      <p class="text-sm font-semibold text-foreground">Your backend</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Nothing is bundled. Leave the endpoint empty and export stays off.</p>
-    </li>
-  </ol>
-  <div class="mt-8 max-w-2xl">
-    <p class="text-base/7 text-muted-foreground">Set the endpoint to the OTLP HTTP base URL of a collector you run.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">The same process reads the standard <code class="{{ code }}">OTEL_*</code> variables. <code class="{{ code }}">OTEL_EXPORTER_OTLP_PROTOCOL</code> is <code class="{{ code }}">http/protobuf</code>. <code class="{{ code }}">OTEL_SERVICE_NAME</code> names the process. <code class="{{ code }}">OTEL_RESOURCE_ATTRIBUTES</code> can set <code class="{{ code }}">deployment.environment</code> and <code class="{{ code }}">cloud.region</code>. <code class="{{ code }}">OTEL_SDK_DISABLED=true</code> turns export off even when an endpoint is set.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">identity, email, storage, hosting, and ai export when <code class="{{ code }}">OTEL_EXPORTER_OTLP_ENDPOINT</code> is set. Leave it empty and export stays off. Nothing is bundled.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">OTEL_EXPORTER_OTLP_PROTOCOL</code> is <code class="{{ code }}">http/protobuf</code>. <code class="{{ code }}">OTEL_SERVICE_NAME</code> names the process. <code class="{{ code }}">OTEL_RESOURCE_ATTRIBUTES</code> can set <code class="{{ code }}">deployment.environment</code> and <code class="{{ code }}">cloud.region</code>. <code class="{{ code }}">OTEL_SDK_DISABLED=true</code> turns export off even when an endpoint is set.</p>
   </div>
   <div class="mt-8 max-w-3xl">
     {% highlight "bash" %}
@@ -56,60 +28,66 @@ OTEL_EXPORTER_OTLP_ENDPOINT=https://your_collector_host:4318
 OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
     {% endhighlight %}
   </div>
-  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground">The exporter appends the per-signal paths, <code class="{{ code }}">/v1/traces</code> and <code class="{{ code }}">/v1/metrics</code>. Set <code class="{{ code }}">OTEL_EXPORTER_OTLP_HEADERS</code> when your collector requires a header. Install the library extra with <code class="{{ code }}">pip install shellui-django[otel]</code>. Each service calls <code class="{{ code }}">setup_telemetry</code> itself. Do not wrap the process with <code class="{{ code }}">opentelemetry-instrument</code>.</p>
+  <p class="mt-6 {{ measure }} text-base/7 text-muted-foreground">The exporter appends the per-signal paths, <code class="{{ code }}">/v1/traces</code> and <code class="{{ code }}">/v1/metrics</code>. Set <code class="{{ code }}">OTEL_EXPORTER_OTLP_HEADERS</code> when your collector requires a header. Install the library extra with <code class="{{ code }}">pip install shellui-django[otel]</code>. Each service calls <code class="{{ code }}">setup_telemetry</code> itself. Do not wrap the process with <code class="{{ code }}">opentelemetry-instrument</code>.</p>
 </section>
 
-<section class="mt-20" aria-labelledby="signals">
-  <div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16">
-    <div class="max-w-2xl">
-      <h2 id="signals" class="{{ h2 }}">What each service sends</h2>
-      <p class="mt-4 text-base/7 text-muted-foreground">identity, email, storage, hosting, and ai send traces and metrics. Traces follow a request through outbound HTTP and into a Celery task. Metrics include <code class="{{ code }}">http.server.request.duration</code>. Logs carry <code class="{{ code }}">trace_id</code> and <code class="{{ code }}">span_id</code> while a span is active. They are not exported over OTLP.</p>
-      <p class="mt-4 text-base/7 text-muted-foreground">On identity-service, <code class="{{ code }}">GET /api/v1/metrics</code> and <code class="{{ code }}">GET /api/v1/metrics/all</code> answer 404. Read those series from your collector instead. Company statistics stay on <code class="{{ code }}">GET /api/v1/stats</code>. Scheduled job state stays on <code class="{{ code }}">GET /api/v1/scheduled-jobs</code>.</p>
-    </div>
-    <div>
-      <h3 class="text-base font-semibold text-foreground">One sign-in, then mail, then a job</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">The frame is a schematic of one trace, not a screenshot of a vendor UI. identity records the sign-in. email-service sends the message on that same trace. A scheduled job is its own span when the worker runs it.</p>
-    </div>
+<section class="{{ section }}" aria-labelledby="signals">
+  <div class="{{ measure }}">
+    <h2 id="signals" class="{{ h2 }}">What each service sends</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Traces follow a request through outbound HTTP and into a Celery task. Metrics include <code class="{{ code }}">http.server.request.duration</code>. Logs carry <code class="{{ code }}">trace_id</code> and <code class="{{ code }}">span_id</code> while a span is active. They are not exported over OTLP.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">On identity-service, <code class="{{ code }}">GET /api/v1/metrics</code> and <code class="{{ code }}">GET /api/v1/metrics/all</code> answer 404. Company statistics stay on <code class="{{ code }}">GET /api/v1/stats</code>. Scheduled job state stays on <code class="{{ code }}">GET /api/v1/scheduled-jobs</code>.</p>
   </div>
 </section>
 
-<section class="mt-20" aria-labelledby="local">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="local">
+  <div class="{{ measure }}">
     <h2 id="local" class="{{ h2 }}">Local dev uses Jaeger</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">The dev Compose stack starts Jaeger with the other services. Open the trace UI at <a class="{{ lnk }}" href="http://localhost:16686">http://localhost:16686</a>. Traces stay in memory until that container stops. The generated env file sets <code class="{{ code }}">OTEL_EXPORTER_OTLP_ENDPOINT</code> to <code class="{{ code }}">http://jaeger:4318</code> on the Compose network. Clear that variable to stop export. Jaeger still starts.</p>
   </div>
 </section>
 
-<section class="mt-20" aria-labelledby="alerts">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="alerts">
+  <div class="{{ measure }}">
     <h2 id="alerts" class="{{ h2 }}">Recommended alerts</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Set these in the backend you run. Shellui does not host the alerts. The list is the set worth paging on. It is not a hosted monitor.</p>
-    <ul class="mt-8 grid gap-3 sm:grid-cols-2">
-      <li class="rounded-xl border border-border bg-card p-4"><p class="text-sm font-semibold text-foreground">Error rate</p><p class="mt-1 text-sm/6 text-muted-foreground">Count HTTP 5xx only. Do not count 404.</p></li>
-      <li class="rounded-xl border border-border bg-card p-4"><p class="text-sm font-semibold text-foreground">Latency</p><p class="mt-1 text-sm/6 text-muted-foreground">p95 of <code class="{{ code }}">http.server.request.duration</code>.</p></li>
-      <li class="rounded-xl border border-border bg-card p-4"><p class="text-sm font-semibold text-foreground">Service down</p><p class="mt-1 text-sm/6 text-muted-foreground">Export stops, or the health check fails.</p></li>
-      <li class="rounded-xl border border-border bg-card p-4"><p class="text-sm font-semibold text-foreground">Email queue stuck</p><p class="mt-1 text-sm/6 text-muted-foreground">The email worker stops draining its queue.</p></li>
-      <li class="rounded-xl border border-border bg-card p-4"><p class="text-sm font-semibold text-foreground">Scheduled job overdue</p><p class="mt-1 text-sm/6 text-muted-foreground">Last success is older than 3 times the job interval.</p></li>
-      <li class="rounded-xl border border-border bg-card p-4"><p class="text-sm font-semibold text-foreground">Scheduler beat not seen</p><p class="mt-1 text-sm/6 text-muted-foreground"><code class="{{ code }}">beat_stale</code> after 3 minutes with no publish.</p></li>
-      <li class="rounded-xl border border-border bg-card p-4 sm:col-span-2"><p class="text-sm font-semibold text-foreground">Host</p><p class="mt-1 text-sm/6 text-muted-foreground">CPU, memory, disk, and the machine being down. Those come from the host agent on your collector.</p></li>
-    </ul>
+    <p class="mt-4 text-base/7 text-muted-foreground">Set these in the backend you run. Shellui does not host the alerts.</p>
+    <dl class="mt-8 space-y-6 text-base/7">
+      <div>
+        <dt class="font-semibold text-foreground">Error rate</dt>
+        <dd class="mt-1 text-muted-foreground">Count HTTP 5xx. Do not count 404.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-foreground">Latency</dt>
+        <dd class="mt-1 text-muted-foreground">p95 of <code class="{{ code }}">http.server.request.duration</code>.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-foreground">Service down</dt>
+        <dd class="mt-1 text-muted-foreground">Export stops, or the health check fails.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-foreground">Email queue stuck</dt>
+        <dd class="mt-1 text-muted-foreground">The email worker stops draining its queue.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-foreground">Scheduled job overdue</dt>
+        <dd class="mt-1 text-muted-foreground">Last success is older than 3 times the job interval.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-foreground">Scheduler beat not seen</dt>
+        <dd class="mt-1 text-muted-foreground"><code class="{{ code }}">beat_stale</code> after 3 minutes with no publish.</dd>
+      </div>
+      <div>
+        <dt class="font-semibold text-foreground">Host</dt>
+        <dd class="mt-1 text-muted-foreground">CPU, memory, disk, and the machine being down. Those come from the host agent on your collector.</dd>
+      </div>
+    </dl>
   </div>
 </section>
 
-<section class="mt-20" aria-labelledby="noise">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="noise">
+  <div class="{{ measure }}">
     <h2 id="noise" class="{{ h2 }}">What stays out of the trace</h2>
-    <div class="mt-8 grid gap-3 sm:grid-cols-2">
-      <div class="rounded-xl border border-border bg-card p-4">
-        <p class="text-sm font-semibold text-foreground">Dropped</p>
-        <p class="mt-2 text-sm/6 text-muted-foreground">Database and Redis calls with no parent span. Idle polls would otherwise start a one-span trace for every query.</p>
-      </div>
-      <div class="rounded-xl border border-border bg-card p-4">
-        <p class="text-sm font-semibold text-foreground">Kept</p>
-        <p class="mt-2 text-sm/6 text-muted-foreground">The same calls inside a request or a Celery task. Outbound HTTP with no parent stays, so the next service can join.</p>
-      </div>
-    </div>
-    <p class="mt-4 text-base/7 text-muted-foreground">Sampling is yours. Leave <code class="{{ code }}">OTEL_TRACES_SAMPLER</code> unset to keep that drop rule. Set it, for example to <code class="{{ code }}">parentbased_traceidratio</code>, when you want a standard sampler instead. Retention is also yours. The process does not choose how long your backend keeps the data.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Database and Redis calls with no parent span are dropped. Idle polls would otherwise start a one-span trace for every query. The same calls inside a request or a Celery task stay. Outbound HTTP with no parent stays, so the next service can join.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Leave <code class="{{ code }}">OTEL_TRACES_SAMPLER</code> unset to keep that drop rule. Set it, for example to <code class="{{ code }}">parentbased_traceidratio</code>, when you want a standard sampler instead. The process does not choose how long your backend keeps the data.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">SigNoz is one open-source backend that accepts this OTLP export. Any other collector that speaks OTLP HTTP works the same way.</p>
     <p class="mt-4 text-sm"><a class="{{ lnk }}" href="https://github.com/shellui/django-commons/blob/main/docs/telemetry.md" target="_blank" rel="noopener noreferrer">shellui-django OpenTelemetry docs</a></p>
   </div>

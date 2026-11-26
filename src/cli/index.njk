@@ -1,7 +1,6 @@
 ---
 layout: layouts/feature.njk
 wide: true
-customHero: true
 title: "Shellui CLI: create, run, build, and deploy from your terminal"
 description: "Install @shellui/cli and run shellui init, start, build, and deploy. Sign in with a device code, then read companies, projects, storage, and hosting."
 eyebrow: Developers
@@ -12,49 +11,20 @@ lede: The command is shellui. It creates a project, serves the shell around your
 {% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
 {% set lnk = "font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %}
 {% set h2 = "text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl" %}
+{% set measure = "max-w-prose" %}
+{% set section = "mt-16 sm:mt-24" %}
 
-<div class="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,28rem)] lg:gap-16">
-  <div class="max-w-2xl">
-    <p class="text-base/7 font-semibold text-primary-ink">{{ eyebrow }}</p>
-    <h1 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{{ heading }}</h1>
-    <p class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">{{ lede }}</p>
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <a href="#install" class="inline-flex min-h-11 items-center rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Install the CLI</a>
-      <a href="{{ site.docs }}/cli" class="inline-flex min-h-11 items-center rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10">CLI reference</a>
-    </div>
-  </div>
-  <div class="w-full lg:justify-self-end">
-    {% include "cli-terminal-visual.njk" %}
-  </div>
-</div>
+<div class="max-w-3xl">{% include "cli-terminal-visual.njk" %}</div>
 
-<section class="mt-20" aria-labelledby="why-cli">
-  <div class="max-w-2xl">
-    <h2 id="why-cli" class="{{ h2 }}">Four steps, one command</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">The program name is <code class="{{ code }}">shellui</code>. There is no shorter name.</p>
+<section class="{{ section }}" aria-labelledby="why-cli">
+  <div class="{{ measure }}">
+    <h2 id="why-cli" class="{{ h2 }}">The shellui command</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The program name is <code class="{{ code }}">shellui</code>. There is no shorter name. <code class="{{ code }}">init</code> creates the project, <code class="{{ code }}">start</code> serves it (<code class="{{ code }}">dev</code> is the same command), <code class="{{ code }}">login</code> uses a device code, and <code class="{{ code }}">deploy</code> uploads a 7-day preview.</p>
   </div>
-  <ol class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-    <li class="mcp-flow-step rounded-xl border border-border bg-card p-4">
-      <p class="font-mono text-sm font-semibold text-foreground">shellui init</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Create the project and pick a framework.</p>
-    </li>
-    <li class="mcp-flow-step rounded-xl border border-border bg-card p-4">
-      <p class="font-mono text-sm font-semibold text-foreground">shellui start</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Serve the shell around your app. <code class="{{ code }}">shellui dev</code> is the same command.</p>
-    </li>
-    <li class="mcp-flow-step rounded-xl border border-border bg-card p-4">
-      <p class="font-mono text-sm font-semibold text-foreground">shellui login</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Approve a device code in the browser. The CLI never prints tokens.</p>
-    </li>
-    <li class="mcp-flow-step rounded-xl border border-border bg-card p-4">
-      <p class="font-mono text-sm font-semibold text-foreground">shellui deploy</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Upload a 7-day preview for a workshop or a demo.</p>
-    </li>
-  </ol>
 </section>
 
-<section class="mt-20" aria-labelledby="install">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="install">
+  <div class="{{ measure }}">
     <h2 id="install" class="{{ h2 }}">Install the CLI and start a project</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">Install <code class="{{ code }}">@shellui/cli</code> with npm. It needs Node.js 20.19 or later, or Node.js 22.12 or later.</p>
   </div>
@@ -65,14 +35,14 @@ shellui init
 shellui start
     {% endhighlight %}
   </div>
-  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground"><code class="{{ code }}">shellui init</code> asks for a framework and a backend. <code class="{{ code }}">shellui start</code> serves the shell with your app inside it. The steps are in the <a class="{{ lnk }}" href="{{ site.docs }}/installation">installation docs</a>.</p>
+  <p class="mt-6 {{ measure }} text-base/7 text-muted-foreground"><code class="{{ code }}">shellui init</code> asks for a framework and a backend. <code class="{{ code }}">shellui start</code> serves the shell with your app inside it. The steps are in the <a class="{{ lnk }}" href="{{ site.docs }}/installation">installation docs</a>.</p>
 </section>
 
-<section class="mt-20" aria-labelledby="commands">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="commands">
+  <div class="{{ measure }}">
     <h2 id="commands" class="{{ h2 }}">Commands</h2>
     <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">start</code>, <code class="{{ code }}">build</code>, <code class="{{ code }}">init</code>, and <code class="{{ code }}">config</code> read <code class="{{ code }}">shellui.config.json</code> from the current folder. Sign-in and service commands look in the nearest parent, up to <code class="{{ code }}">.git</code>. Pass <code class="{{ code }}">--config</code> to point at another file or folder. Flags and examples are in the <a class="{{ lnk }}" href="{{ site.docs }}/cli">CLI reference</a>.</p>
-    <ul class="mt-6 space-y-3 text-base/7 text-muted-foreground">
+    <ul class="mt-8 space-y-6 text-base/7 text-muted-foreground">
       <li><strong class="font-semibold text-foreground">Create and run</strong>: <code class="{{ code }}">shellui init</code>, <code class="{{ code }}">shellui start</code> (<code class="{{ code }}">shellui dev</code> is the same command), and <code class="{{ code }}">shellui build</code> create a project, serve the shell, and write <code class="{{ code }}">dist/web/</code>.</li>
       <li><strong class="font-semibold text-foreground">Configuration</strong>: <code class="{{ code }}">config migrate</code>, <code class="{{ code }}">split</code>, and <code class="{{ code }}">unsplit</code> turn a TypeScript config into JSON, or split that JSON into section files.</li>
       <li><strong class="font-semibold text-foreground">Sign-in</strong>: <code class="{{ code }}">login</code>, <code class="{{ code }}">logout</code>, <code class="{{ code }}">whoami</code>, and <code class="{{ code }}">auth status</code> sign you in and show the account without printing tokens.</li>
@@ -85,49 +55,25 @@ shellui start
   </div>
 </section>
 
-<section class="mt-20" aria-labelledby="credentials">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="credentials">
+  <div class="{{ measure }}">
     <h2 id="credentials" class="{{ h2 }}">Where the CLI keeps your sign-in</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">You approve the device code in the browser. The CLI never prints tokens.</p>
-  </div>
-  <div class="mt-8 grid gap-3 sm:grid-cols-2">
-    <div class="rounded-xl border border-border bg-card p-4">
-      <p class="text-sm font-semibold text-foreground">Keychain</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Tokens go to your operating system keychain.</p>
-    </div>
-    <div class="rounded-xl border border-border bg-card p-4">
-      <p class="text-sm font-semibold text-foreground">File fallback</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">If no keychain is available, the CLI warns once and writes a file only your user can read (mode <code class="{{ code }}">0600</code>).</p>
-    </div>
+    <p class="mt-4 text-base/7 text-muted-foreground">You approve the device code in the browser. The CLI never prints tokens. Tokens go to the operating system keychain. If no keychain is available, the CLI warns once and writes a file only your user can read (mode <code class="{{ code }}">0600</code>).</p>
   </div>
 </section>
 
-<section class="mt-20" aria-labelledby="ci">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="ci">
+  <div class="{{ measure }}">
     <h2 id="ci" class="{{ h2 }}">Deploy previews from CI</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">A deploy token uploads a 7-day preview without a login. It cannot publish a production site.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Create a deploy token in admin, under Hosting, then Apps, then Deploy tokens. Store it as a CI secret named <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code>. Do not put the token on the command line. The token uploads a 7-day preview and cannot publish a production site.</p>
   </div>
-  <ol class="mt-8 grid gap-3 sm:grid-cols-3">
-    <li class="rounded-xl border border-border bg-card p-4">
-      <p class="text-sm font-semibold text-primary-ink">1. Create</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">In admin, open Hosting, then Apps, then Deploy tokens.</p>
-    </li>
-    <li class="rounded-xl border border-border bg-card p-4">
-      <p class="text-sm font-semibold text-primary-ink">2. Store</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Save it as a CI secret named <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code>. Do not put the token on the command line.</p>
-    </li>
-    <li class="rounded-xl border border-border bg-card p-4">
-      <p class="text-sm font-semibold text-primary-ink">3. Upload</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground"><code class="{{ code }}">shellui deploy</code> skips sign-in and updates that company's previews only.</p>
-    </li>
-  </ol>
   <div class="mt-8 max-w-3xl">
     {% highlight "bash" %}
 npm ci
 npx -p @shellui/cli shellui deploy --build
     {% endhighlight %}
   </div>
-  <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground"><code class="{{ code }}">npm ci</code> installs the project. <code class="{{ code }}">npx -p @shellui/cli</code> runs the published package. The command reads <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code> from the CI secret and uploads <code class="{{ code }}">dist/web/</code> as a preview.</p>
+  <p class="mt-6 {{ measure }} text-base/7 text-muted-foreground"><code class="{{ code }}">npm ci</code> installs the project. <code class="{{ code }}">npx -p @shellui/cli</code> runs the published package. The command reads <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code> from the CI secret and uploads <code class="{{ code }}">dist/web/</code> as a preview.</p>
 </section>
 
 <div class="mt-16 max-w-3xl">

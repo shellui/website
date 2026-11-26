@@ -1,7 +1,6 @@
 ---
 layout: layouts/feature.njk
 wide: true
-customHero: true
 title: "Shellui MCP: one connection at ai.shellui.com/mcp"
 description: "Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. One connection reaches the companies and regions that account can access."
 eyebrow: Developers
@@ -12,54 +11,36 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
 {% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
 {% set lnk = "font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %}
 {% set h2 = "text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl" %}
+{% set measure = "max-w-prose" %}
+{% set section = "mt-16 sm:mt-24" %}
 
-<div class="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,28rem)] lg:gap-16">
-  <div class="max-w-2xl">
-    <p class="text-base/7 font-semibold text-primary-ink">{{ eyebrow }}</p>
-    <h1 class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">{{ heading }}</h1>
-    <p class="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">{{ lede }}</p>
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <a href="#connect" class="inline-flex min-h-11 items-center rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Connect your agent</a>
-      <a href="#permissions" class="inline-flex min-h-11 items-center rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-white/5 dark:text-white dark:ring-white/10 dark:hover:bg-white/10">See how approvals work</a>
-    </div>
-  </div>
-  <div class="w-full lg:justify-self-end">
-    {% include "mcp-permission-visual.njk" %}
-  </div>
+<div class="max-w-prose rounded-xl border border-border bg-card px-6 py-8 sm:px-8 sm:py-10">
+  <h2 id="connectors" class="text-base font-semibold text-foreground">MCP server</h2>
+  <p class="mt-4 break-all font-mono text-base leading-7 text-foreground">https://ai.shellui.com/mcp</p>
+  <p class="mt-4 text-base/7 text-muted-foreground">Any MCP client with OAuth support. The authorization server lists the authorization code grant with PKCE (S256), refresh tokens, dynamic client registration, and the device-code grant.</p>
 </div>
 
-<section class="mt-20" aria-labelledby="connectors">
-  <div class="max-w-2xl">
-    <h2 id="connectors" class="{{ h2 }}">The Shellui connector</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Add this URL in your MCP client. One connection reaches the companies and regions the account can access.</p>
-  </div>
-  <div class="mt-8 max-w-xl rounded-xl border border-border bg-muted p-5 ring-1 ring-primary/40">
-    <h3 class="text-base font-semibold text-foreground">MCP server</h3>
-    <p class="mt-2 break-all font-mono text-sm text-foreground">https://ai.shellui.com/mcp</p>
-    <p class="mt-3 text-sm/6 text-muted-foreground">Any MCP client with OAuth support. The authorization server lists the authorization code grant with PKCE (S256), refresh tokens, dynamic client registration, and the device-code grant.</p>
-  </div>
-</section>
-
-<section class="mt-20" aria-labelledby="permissions">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="permissions">
+  <div class="{{ measure }}">
     <h2 id="permissions" class="{{ h2 }}">Elicitation and permissions</h2>
     <p class="mt-4 text-base/7 text-muted-foreground">You stay in the path when an agent writes data. The server asks you to approve a tool call before it runs (MCP elicitation).</p>
   </div>
+  <div class="mt-8 max-w-5xl">{% include "mcp-permission-visual.njk" %}</div>
 
   <div class="mt-10">
     <h3 class="text-base font-semibold text-pretty text-foreground">Access levels</h3>
-    <div class="mt-4 grid gap-4 md:grid-cols-3">
-      <div class="rounded-xl border border-border p-5">
+    <div class="mt-6 grid gap-6 lg:grid-cols-3">
+      <div class="rounded-xl border border-border px-6 py-7 sm:px-7">
         <h4 class="text-base font-semibold text-foreground">Read only</h4>
-        <p class="mt-2 text-sm/6 text-muted-foreground">The agent can run safe reads. Writes do not run.</p>
+        <p class="mt-3 text-base/7 text-muted-foreground">The agent can run safe reads. Writes do not run.</p>
       </div>
-      <div class="rounded-xl border border-border bg-muted p-5 ring-1 ring-primary/40">
-        <h4 class="text-base font-semibold text-foreground">Ask before changes (default)</h4>
-        <p class="mt-2 text-sm/6 text-muted-foreground">Writes wait for your approval.</p>
+      <div class="rounded-xl border border-border px-6 py-7 sm:px-7">
+        <h4 class="text-base font-semibold text-foreground">Ask before changes</h4>
+        <p class="mt-3 text-base/7 text-muted-foreground">The default. Writes wait for your approval.</p>
       </div>
-      <div class="rounded-xl border border-border p-5">
+      <div class="rounded-xl border border-border px-6 py-7 sm:px-7">
         <h4 class="text-base font-semibold text-foreground">Full access</h4>
-        <p class="mt-2 text-sm/6 text-muted-foreground">Non-destructive writes can run without asking. Destructive tools still wait for an approval page.</p>
+        <p class="mt-3 text-base/7 text-muted-foreground">Non-destructive writes can run without asking. Destructive tools still wait for an approval page.</p>
       </div>
     </div>
     <p class="mt-4 max-w-2xl text-base/7 text-muted-foreground">On the consent page you can allow destructive actions. Each one still opens an approval link. If you leave that off, destructive calls do not run. The connector does not delete a Shellui project.</p>
@@ -67,7 +48,7 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
 
   <div class="mt-10 max-w-2xl">
     <h3 class="text-base font-semibold text-pretty text-foreground">How a write is approved</h3>
-    <ul class="mt-4 space-y-3 text-base/7 text-muted-foreground">
+    <ul class="mt-6 space-y-5 text-base/7 text-muted-foreground">
       <li>When an agent with Ask before changes calls a tool that writes, Shellui asks you first. If the client supports MCP form elicitation, the question appears in the chat. You see the real tool name and arguments, then choose Approve or Deny.</li>
       <li>Destructive actions, when you allowed them at consent, use the approval page, never the chat. That page shows a summary of the arguments. You approve there, and the agent runs the call once. That approval expires after 10 minutes.</li>
       <li>An approval covers one call with the same arguments. An agent cannot approve its own request.</li>
@@ -78,7 +59,7 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
   <div class="mt-10 max-w-2xl">
     <h3 class="text-base font-semibold text-pretty text-foreground">How Shellui keeps agents in bounds</h3>
     <p class="mt-4 text-base/7 text-muted-foreground">https://ai.shellui.com is the authorization server for this connector. One agent can reach the companies and regions that account can access.</p>
-    <ul class="mt-4 space-y-3 text-base/7 text-muted-foreground">
+    <ul class="mt-6 space-y-5 text-base/7 text-muted-foreground">
       <li><strong class="font-semibold text-foreground">OAuth on the connector</strong>: access tokens last 1 hour by default. Refresh tokens last 30 days by default.</li>
       <li><strong class="font-semibold text-foreground">Account scope</strong>: the token audience is <code class="{{ code }}">https://ai.shellui.com/mcp</code>. That connection reaches the companies and regions the account can access.</li>
       <li><strong class="font-semibold text-foreground">Read levels</strong>: Safe is the default. A tool marked sensitive does not run unless you choose Sensitive data.</li>
@@ -90,15 +71,15 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
   </div>
 </section>
 
-<section class="mt-20" aria-labelledby="tools">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="tools">
+  <div class="{{ measure }}">
     <h2 id="tools" class="{{ h2 }}">Tools your agent can use</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">The default list is the tools below.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Identity, storage, hosting, and email are not in <code class="{{ code }}">ai_search_tools</code>. Call <code class="{{ code }}">ai_list_companies</code>, then <code class="{{ code }}">ai_company_search_tools</code> with that company id, then <code class="{{ code }}">ai_call_company_tool</code>.</p>
   </div>
 
   <div class="mt-10 max-w-3xl">
     <h3 class="text-base font-semibold text-pretty text-foreground">Discovery tools</h3>
-    <div class="prose mt-4">
+    <div class="prose dev-tools mt-6">
       <div class="prose-table-wrap">
         <table>
           <thead>
@@ -154,8 +135,8 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
 
   <div class="mt-10 max-w-3xl">
     <h3 class="text-base font-semibold text-pretty text-foreground">Service tools</h3>
-    <p class="mt-2 max-w-2xl text-sm/6 text-muted-foreground">Identity, storage, hosting, and email are not returned by <code class="{{ code }}">ai_search_tools</code>. Call <code class="{{ code }}">ai_list_companies</code>, then <code class="{{ code }}">ai_company_search_tools</code> with that company id and a short phrase, then <code class="{{ code }}">ai_call_company_tool</code>. Names start with the service, for example <code class="{{ code }}">identity_create_invitations</code>.</p>
-    <div class="prose mt-4">
+    <p class="mt-3 max-w-prose text-base/7 text-muted-foreground">Names start with the service, for example <code class="{{ code }}">identity_create_invitations</code>.</p>
+    <div class="prose dev-tools mt-6">
       <div class="prose-table-wrap">
         <table>
           <thead>
@@ -185,27 +166,11 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
   </div>
 </section>
 
-<section class="mt-20" aria-labelledby="connect">
-  <div class="max-w-2xl">
+<section class="{{ section }}" aria-labelledby="connect">
+  <div class="{{ measure }}">
     <h2 id="connect" class="{{ h2 }}">Connect your AI agent</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Any MCP client with OAuth support can connect. Paste <code class="{{ code }}">https://ai.shellui.com/mcp</code> as a remote MCP server, then finish sign-in in the browser. Pick the access level and the read level, then choose Allow.</p>
-  </div>
-  <ol class="mt-8 grid max-w-3xl gap-6 sm:grid-cols-3">
-    <li>
-      <p class="text-sm font-semibold text-primary-ink">1. Copy the URL</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Use <code class="{{ code }}">https://ai.shellui.com/mcp</code>.</p>
-    </li>
-    <li>
-      <p class="text-sm font-semibold text-primary-ink">2. Add the server</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Add the URL as a remote MCP server in your client.</p>
-    </li>
-    <li>
-      <p class="text-sm font-semibold text-primary-ink">3. Approve access</p>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Finish sign-in in the browser, pick the access level and the read level, then choose Allow.</p>
-    </li>
-  </ol>
-  <div class="mt-8 max-w-2xl space-y-4 text-base/7 text-muted-foreground">
-    <p>A client with a browser uses the OAuth authorization code flow with Proof Key for Code Exchange (PKCE). A headless agent uses device login: it shows you a link and a code, and you approve them in your browser. The live authorization server lists that device-code grant. Never paste a token into a chat.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Paste <code class="{{ code }}">https://ai.shellui.com/mcp</code> as a remote MCP server. Sign in to Shellui in the browser, pick the access level and the read level, then choose Allow.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">A client with a browser uses the authorization code grant with PKCE. A headless agent uses device login: it shows a link and a code, and you approve them in the browser. Never paste a token into a chat.</p>
   </div>
 
   <nav class="mt-10" aria-label="AI clients">
@@ -227,11 +192,11 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
     </ul>
   </nav>
 
-  <div class="mt-8 grid gap-6 lg:grid-cols-2">
-    <article id="claude" class="scroll-mt-28 rounded-xl border border-border p-5">
+  <div class="mt-10 grid min-w-0 gap-8 lg:grid-cols-2">
+    <article id="claude" class="min-w-0 scroll-mt-28 rounded-xl border border-border px-6 py-7 sm:px-8 sm:py-8">
       <h3 class="text-base font-semibold text-foreground">Claude</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Custom connectors on Claude.ai, Claude Desktop, Cowork, and mobile run on Anthropic's infrastructure and call https://ai.shellui.com/mcp over HTTPS.</p>
-      <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm/6 text-muted-foreground">
+      <p class="mt-2 text-base/7 text-muted-foreground">Custom connectors on Claude.ai, Claude Desktop, Cowork, and mobile run on Anthropic's infrastructure and call https://ai.shellui.com/mcp over HTTPS.</p>
+      <ol class="mt-5 list-decimal space-y-3 pl-5 text-base/7 text-muted-foreground">
         <li>In Claude, open Customize, then Connectors.</li>
         <li>Add a custom connector. On Team and Enterprise plans, an owner adds it under Organization settings, then Connectors, first.</li>
         <li>Name it Shellui and paste https://ai.shellui.com/mcp.</li>
@@ -241,21 +206,21 @@ lede: Connect any MCP client with OAuth support to https://ai.shellui.com/mcp. T
       <p class="mt-4 text-sm"><a class="{{ lnk }}" href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp" target="_blank" rel="noopener noreferrer">Get started with custom connectors using remote MCP</a></p>
     </article>
 
-    <article id="claude-code" class="scroll-mt-28 rounded-xl border border-border p-5">
+    <article id="claude-code" class="min-w-0 scroll-mt-28 rounded-xl border border-border px-6 py-7 sm:px-8 sm:py-8">
       <h3 class="text-base font-semibold text-foreground">Claude Code</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Add https://ai.shellui.com/mcp as an HTTP server, then authenticate in the session.</p>
+      <p class="mt-2 text-base/7 text-muted-foreground">Add https://ai.shellui.com/mcp as an HTTP server, then authenticate in the session.</p>
       <div class="mt-4">
         {% highlight "bash" %}
 claude mcp add --transport http shellui https://ai.shellui.com/mcp
         {% endhighlight %}
       </div>
-      <p class="mt-4 text-sm/6 text-muted-foreground">In a Claude Code session, run <code class="{{ code }}">/mcp</code>, select the Shellui server, and choose Authenticate. Finish the Shellui sign-in in the browser.</p>
+      <p class="mt-4 text-base/7 text-muted-foreground">In a Claude Code session, run <code class="{{ code }}">/mcp</code>, select the Shellui server, and choose Authenticate. Finish the Shellui sign-in in the browser.</p>
       <p class="mt-4 text-sm"><a class="{{ lnk }}" href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener noreferrer">Connect Claude Code to tools via MCP</a></p>
     </article>
 
-    <article id="cursor" class="scroll-mt-28 rounded-xl border border-border p-5">
+    <article id="cursor" class="min-w-0 scroll-mt-28 rounded-xl border border-border px-6 py-7 sm:px-8 sm:py-8">
       <h3 class="text-base font-semibold text-foreground">Cursor</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">You can add the server from Customize, or write it in <code class="{{ code }}">mcp.json</code>. Project tools live in <code class="{{ code }}">.cursor/mcp.json</code>. Tools for every project live in <code class="{{ code }}">~/.cursor/mcp.json</code>.</p>
+      <p class="mt-2 text-base/7 text-muted-foreground">You can add the server from Customize, or write it in <code class="{{ code }}">mcp.json</code>. Project tools live in <code class="{{ code }}">.cursor/mcp.json</code>. Tools for every project live in <code class="{{ code }}">~/.cursor/mcp.json</code>.</p>
       <div class="mt-4">
         {% highlight "json" %}
 {
@@ -267,14 +232,14 @@ claude mcp add --transport http shellui https://ai.shellui.com/mcp
 }
         {% endhighlight %}
       </div>
-      <p class="mt-4 text-sm/6 text-muted-foreground">Cursor uses OAuth with PKCE and reads the server's protected-resource metadata. You do not need a static client id. Sign in when Cursor opens the browser. Do not add an <code class="{{ code }}">auth</code> block unless an operator gave you a fixed client.</p>
+      <p class="mt-4 text-base/7 text-muted-foreground">Cursor uses OAuth with PKCE and reads the server's protected-resource metadata. You do not need a static client id. Sign in when Cursor opens the browser. Do not add an <code class="{{ code }}">auth</code> block unless an operator gave you a fixed client.</p>
       <p class="mt-4 text-sm"><a class="{{ lnk }}" href="https://cursor.com/docs/mcp" target="_blank" rel="noopener noreferrer">Model Context Protocol (MCP) in Cursor</a></p>
     </article>
 
-    <article id="chatgpt" class="scroll-mt-28 rounded-xl border border-border p-5">
+    <article id="chatgpt" class="min-w-0 scroll-mt-28 rounded-xl border border-border px-6 py-7 sm:px-8 sm:py-8">
       <h3 class="text-base font-semibold text-foreground">ChatGPT</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Use ChatGPT on the web. Workspace permissions apply, and not every plan can add a custom server. OpenAI has renamed this surface before. If the labels below do not match what you see, follow <a class="{{ lnk }}" href="https://developers.openai.com/api/docs/guides/custom-mcp-server" target="_blank" rel="noopener noreferrer">Add custom MCP server</a>.</p>
-      <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm/6 text-muted-foreground">
+      <p class="mt-2 text-base/7 text-muted-foreground">Use ChatGPT on the web. Workspace permissions apply, and not every plan can add a custom server. OpenAI has renamed this surface before. If the labels below do not match what you see, follow <a class="{{ lnk }}" href="https://developers.openai.com/api/docs/guides/custom-mcp-server" target="_blank" rel="noopener noreferrer">Add custom MCP server</a>.</p>
+      <ol class="mt-5 list-decimal space-y-3 pl-5 text-base/7 text-muted-foreground">
         <li>Open ChatGPT Plugins.</li>
         <li>Select the plus button, then Add custom MCP server.</li>
         <li>Enter a name, paste https://ai.shellui.com/mcp as the server URL, and choose OAuth.</li>
@@ -283,16 +248,16 @@ claude mcp add --transport http shellui https://ai.shellui.com/mcp
       </ol>
     </article>
 
-    <article id="vscode" class="scroll-mt-28 rounded-xl border border-border p-5">
+    <article id="vscode" class="min-w-0 scroll-mt-28 rounded-xl border border-border px-6 py-7 sm:px-8 sm:py-8">
       <h3 class="text-base font-semibold text-foreground">VS Code</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">GitHub Copilot can add https://ai.shellui.com/mcp as an HTTP server.</p>
-      <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm/6 text-muted-foreground">
+      <p class="mt-2 text-base/7 text-muted-foreground">GitHub Copilot can add https://ai.shellui.com/mcp as an HTTP server.</p>
+      <ol class="mt-5 list-decimal space-y-3 pl-5 text-base/7 text-muted-foreground">
         <li>In a Copilot chat session, run Chat: Open Customizations from the Command Palette, then open MCP Servers.</li>
         <li>Select Add Server, choose HTTP, and paste https://ai.shellui.com/mcp.</li>
         <li>Give the server an id such as <code class="{{ code }}">shellui</code>.</li>
         <li>For personal use, choose Global, then Copilot Global, when that destination is offered. Complete the OAuth sign-in in the browser.</li>
       </ol>
-      <p class="mt-4 text-sm/6 text-muted-foreground">Portable config for the Copilot harness lives in <code class="{{ code }}">~/.copilot/mcp-config.json</code>, or <code class="{{ code }}">$COPILOT_HOME/mcp-config.json</code> when that variable is set. A workspace file, <code class="{{ code }}">.mcp.json</code> at the project root, can share the definition with teammates.</p>
+      <p class="mt-4 text-base/7 text-muted-foreground">Portable config for the Copilot harness lives in <code class="{{ code }}">~/.copilot/mcp-config.json</code>, or <code class="{{ code }}">$COPILOT_HOME/mcp-config.json</code> when that variable is set. A workspace file, <code class="{{ code }}">.mcp.json</code> at the project root, can share the definition with teammates.</p>
       <div class="mt-4">
         {% highlight "json" %}
 {
@@ -305,13 +270,13 @@ claude mcp add --transport http shellui https://ai.shellui.com/mcp
 }
         {% endhighlight %}
       </div>
-      <p class="mt-4 text-sm/6 text-muted-foreground">Do not treat <code class="{{ code }}">.vscode/mcp.json</code> with a top-level <code class="{{ code }}">servers</code> key as the default. That file is the older editor-managed format.</p>
+      <p class="mt-4 text-base/7 text-muted-foreground">Do not treat <code class="{{ code }}">.vscode/mcp.json</code> with a top-level <code class="{{ code }}">servers</code> key as the default. That file is the older editor-managed format.</p>
       <p class="mt-4 text-sm"><a class="{{ lnk }}" href="https://code.visualstudio.com/docs/copilot/customization/mcp-servers" target="_blank" rel="noopener noreferrer">Add and use MCP servers in VS Code</a> and the <a class="{{ lnk }}" href="https://code.visualstudio.com/docs/copilot/reference/mcp-configuration" target="_blank" rel="noopener noreferrer">MCP configuration reference</a>.</p>
     </article>
 
-    <article id="windsurf" class="scroll-mt-28 rounded-xl border border-border p-5">
+    <article id="windsurf" class="min-w-0 scroll-mt-28 rounded-xl border border-border px-6 py-7 sm:px-8 sm:py-8">
       <h3 class="text-base font-semibold text-foreground">Windsurf</h3>
-      <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm/6 text-muted-foreground">
+      <ol class="mt-5 list-decimal space-y-3 pl-5 text-base/7 text-muted-foreground">
         <li>Open Cascade's MCP menu, or go to Settings, then Tools, then Windsurf Settings, and add a server.</li>
         <li>To edit the file directly, use Open MCP config file. On macOS and Linux the Cortex-managed file is <code class="{{ code }}">~/.config/devin/mcp_config.json</code> (or <code class="{{ code }}">$XDG_CONFIG_HOME/devin/mcp_config.json</code>). On Windows it is <code class="{{ code }}">%AppData%/devin/mcp_config.json</code>.</li>
         <li>Add a Streamable HTTP server and refresh the MCP panel. Cascade supports OAuth on Streamable HTTP and SSE.</li>
@@ -327,25 +292,25 @@ claude mcp add --transport http shellui https://ai.shellui.com/mcp
 }
         {% endhighlight %}
       </div>
-      <p class="mt-4 text-sm/6 text-muted-foreground"><code class="{{ code }}">url</code> is also accepted. Do not put a bearer token in <code class="{{ code }}">headers</code> for the default OAuth path.</p>
+      <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">url</code> is also accepted. Do not put a bearer token in <code class="{{ code }}">headers</code> for the default OAuth path.</p>
       <p class="mt-4 text-sm"><a class="{{ lnk }}" href="https://docs.devin.ai/windsurf/plugins/cascade/mcp" target="_blank" rel="noopener noreferrer">Windsurf Cascade MCP configuration</a></p>
     </article>
 
-    <article id="mcp-inspector" class="scroll-mt-28 rounded-xl border border-border p-5">
+    <article id="mcp-inspector" class="min-w-0 scroll-mt-28 rounded-xl border border-border px-6 py-7 sm:px-8 sm:py-8">
       <h3 class="text-base font-semibold text-foreground">MCP Inspector</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Requires Node.js as documented by the Inspector. Launch it and point it at https://ai.shellui.com/mcp:</p>
+      <p class="mt-2 text-base/7 text-muted-foreground">Requires Node.js as documented by the Inspector. Launch it and point it at https://ai.shellui.com/mcp:</p>
       <div class="mt-4">
         {% highlight "bash" %}
 npx @modelcontextprotocol/inspector --server-url https://ai.shellui.com/mcp --transport http
         {% endhighlight %}
       </div>
-      <p class="mt-4 text-sm/6 text-muted-foreground">You can also run <code class="{{ code }}">npx @modelcontextprotocol/inspector</code> with no target and add a Streamable HTTP server in the UI. When the server answers 401, the Inspector follows protected-resource metadata and opens the Shellui sign-in in your browser. Do not paste access tokens into the Inspector chat or the URL bar.</p>
+      <p class="mt-4 text-base/7 text-muted-foreground">You can also run <code class="{{ code }}">npx @modelcontextprotocol/inspector</code> with no target and add a Streamable HTTP server in the UI. When the server answers 401, the Inspector follows protected-resource metadata and opens the Shellui sign-in in your browser. Do not paste access tokens into the Inspector chat or the URL bar.</p>
       <p class="mt-4 text-sm"><a class="{{ lnk }}" href="https://modelcontextprotocol.io/docs/tools/inspector" target="_blank" rel="noopener noreferrer">MCP Inspector</a></p>
     </article>
 
-    <article id="other-clients" class="scroll-mt-28 rounded-xl border border-border p-5">
+    <article id="other-clients" class="min-w-0 scroll-mt-28 rounded-xl border border-border px-6 py-7 sm:px-8 sm:py-8">
       <h3 class="text-base font-semibold text-foreground">Other clients, including Grok</h3>
-      <p class="mt-2 text-sm/6 text-muted-foreground">Any MCP client with OAuth support can connect. Add a remote MCP server, paste https://ai.shellui.com/mcp, and complete the Shellui OAuth sign-in. Headless tools can use dynamic client registration or the device-code grant. Follow that client's own MCP settings if the labels differ.</p>
+      <p class="mt-2 text-base/7 text-muted-foreground">Any MCP client with OAuth support can connect. Add a remote MCP server, paste https://ai.shellui.com/mcp, and complete the Shellui OAuth sign-in. Headless tools can use dynamic client registration or the device-code grant. Follow that client's own MCP settings if the labels differ.</p>
     </article>
   </div>
 </section>

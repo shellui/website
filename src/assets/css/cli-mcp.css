@@ -29,10 +29,21 @@
 
 .cli-term pre {
   margin: 0;
-  padding: 1rem 1.1rem;
+  padding: 1.5rem 1.75rem 1.75rem;
   overflow-x: auto;
   background: transparent;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  line-height: 1.7;
+}
+
+.cli-term__line + .cli-term__line {
+  margin-top: 0.2rem;
+}
+
+.dev-tools :where(th),
+.dev-tools :where(td) {
+  padding: 0.85rem 1rem;
+  line-height: 1.6;
 }
 
 .cli-term__cursor {
