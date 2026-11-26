@@ -25,7 +25,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 ### ✨ Feature
 
-- CLI, MCP, and OpenTelemetry pages under Developers. Each page has a feature header, one visual, and a few short sections.
+- CLI, MCP, and OpenTelemetry pages under Developers. Each page has a feature header and several sections, and each section has its own visual.
 - The MCP page documents `https://ai.shellui.com/mcp` only. You choose how much an agent can do, and writes wait for your approval by default.
 - OpenTelemetry covers trace and metric export to a backend you run. Logs carry trace and span ids and are not an OTLP signal.
 - Homepage bento adds CLI, MCP, and OpenTelemetry tiles.
