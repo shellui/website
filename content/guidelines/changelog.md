@@ -2,13 +2,13 @@
 title: Guidelines changelog
 description: Version history for all Shellui public guidelines (major release 2.0.0).
 version: 2.0.0
-updated: 2026-10-25
+updated: 2026-11-26
 canonical: /guidelines/changelog/
 ---
 
-## 2026-11-26
+## 2.2.0 (2026-11-26)
 
-Writing 2.1.0, Brand 2.1.0, Interface 2.2.0.
+Writing 2.1.0, Brand 2.1.0, and Interface 2.2.0.
 
 - **Writing**: Shellui is AI native. Shipped MCP, agent skills, and on-device AI can appear wherever they help the reader. [shellui.ai](https://shellui.ai) is where agents learn to use Shellui, and the homepage agent prompt may introduce Shellui. Audience includes the agents working for developers. Unreleased AI and marketplace teasers stay out
 - **Brand**: same audience and shellui.ai rule, in the voice summary

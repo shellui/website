@@ -17,9 +17,9 @@ lede: You choose how much it can do. Writes wait for your approval by default.
 <section class="{{ split }}" aria-labelledby="approve">
   <div class="max-w-xl">
     <h2 id="approve" class="{{ h2 }}">You choose what needs approval</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">By default, writes wait for you. A client that supports form elicitation shows Approve or Deny in chat. Other clients get an approval link. Under Ask, that same write can run again for 60 seconds on the connection.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">By default, writes wait for you. A client that supports form elicitation shows Approve or Deny in chat. Other clients get an approval link. Under Ask, the same tool with the same arguments can run again for 60 seconds after you approve it.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">Destructive tools are refused unless you allowed them when you connected. Then they open an approval page in your browser. That page is not the connection consent page. The server you add is still <code class="{{ code }}">https://ai.shellui.com/mcp</code>.</p>
-    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="https://github.com/shellui/ai-service/blob/main/docs/mcp.md">How approvals work</a></p>
+    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md#global-mcp-shellui-account">How the public connector works</a></p>
   </div>
   <div class="min-w-0">{% include "mcp-approval-visual.njk" %}</div>
 </section>
@@ -58,11 +58,11 @@ lede: You choose how much it can do. Writes wait for your approval by default.
 </section>
 
 <div class="mt-16 sm:mt-24">
-  <a href="https://github.com/shellui/ai-service/blob/main/docs/mcp.md" class="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Read the MCP docs</a>
+  <a href="https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md#global-mcp-shellui-account" class="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Read the MCP docs</a>
 </div>
 
 {% set featureDocs = [
-  { href: "https://github.com/shellui/ai-service/blob/main/docs/mcp.md", label: "MCP gateway docs", external: true },
+  { href: "https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md#global-mcp-shellui-account", label: "Public MCP connector", external: true },
   { href: "https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md", label: "Device login and access", external: true },
   { href: "/features/authentication/", label: "Authentication" },
   { href: "/security/", label: "Security" }
