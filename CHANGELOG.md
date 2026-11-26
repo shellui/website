@@ -27,6 +27,7 @@ See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog
 
 - CLI, MCP, and OpenTelemetry pages under Developers, with a diagram at the start of each section. The MCP page documents `https://ai.shellui.com/mcp` only. OpenTelemetry covers trace and metric export. Logs carry trace and span ids and are not an OTLP signal. Homepage bento adds those three tiles, folds SAML SSO and SCIM into Sign-in included, and drops Audit and privacy.
 - Roadmap: Smart Shell shipped in November 2026. Marketplace and Horizon stay planned.
+- Writing, Brand, and Interface guidelines: Shellui is AI native. Shipped MCP, agent skills, and on-device AI can appear where they help. shellui.ai is where agents learn to use Shellui. Unreleased AI and marketplace teasers stay out.
 
 ## [0.8.1] - 2026-11-04
 
