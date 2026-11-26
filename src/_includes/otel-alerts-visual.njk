@@ -1,0 +1,9 @@
+<ul class="divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
+  <li class="px-6 py-5 sm:px-8"><p class="font-semibold text-foreground">Error rate</p><p class="mt-1 text-base/7 text-muted-foreground">Count HTTP 5xx. Do not count 404.</p></li>
+  <li class="px-6 py-5 sm:px-8"><p class="font-semibold text-foreground">Latency</p><p class="mt-1 text-base/7 text-muted-foreground">p95 of http.server.request.duration.</p></li>
+  <li class="px-6 py-5 sm:px-8"><p class="font-semibold text-foreground">Service down</p><p class="mt-1 text-base/7 text-muted-foreground">Export stops, or the health check fails.</p></li>
+  <li class="px-6 py-5 sm:px-8"><p class="font-semibold text-foreground">Email queue</p><p class="mt-1 text-base/7 text-muted-foreground">The email worker stops draining its queue.</p></li>
+  <li class="px-6 py-5 sm:px-8"><p class="font-semibold text-foreground">Job overdue</p><p class="mt-1 text-base/7 text-muted-foreground">Last success is older than 3 times the interval.</p></li>
+  <li class="px-6 py-5 sm:px-8"><p class="font-semibold text-foreground">Beat not seen</p><p class="mt-1 text-base/7 text-muted-foreground">beat_stale after 3 minutes with no publish.</p></li>
+  <li class="px-6 py-5 sm:px-8"><p class="font-semibold text-foreground">Host</p><p class="mt-1 text-base/7 text-muted-foreground">CPU, memory, disk, or the machine is down.</p></li>
+</ul>
