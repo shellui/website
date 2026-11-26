@@ -43,7 +43,7 @@
   .bento-art { --bento-art-h: 13.5rem; }
 }
 
-/* Shared tokens for the storage, desktop and audit tiles (storage-bento, desktop-bento, audit-bento). Matches admin-bento. */
+/* Shared tokens for the storage and desktop tiles (storage-bento, desktop-bento). Matches admin-bento. */
 .btv {
   --win: var(--color-background); --ln: var(--color-border); --side: var(--color-muted);
   --fg: var(--color-foreground); --mf: var(--color-muted-foreground); --mu: var(--color-secondary);
