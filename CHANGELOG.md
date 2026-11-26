@@ -21,6 +21,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [0.9.1] - 2026-11-26
+
+### 🐛 Bug Fixes
+
+- MCP access copy no longer says Full access writes without approval. Project tools for identity, storage, hosting, and email open at Ask. A destructive project call returns an approval link only an owner can use.
+
+### 🛠 Improvements
+
+- MCP docs links go to the public connector on docs.shellui.com.
+- The 0.9.0 changelog line now says each section has its own visual. The guidelines changelog lists Design 2.1.0.
+
 ## [0.9.0] - 2026-11-26
 
 ### ✨ Feature
