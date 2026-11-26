@@ -1,0 +1,52 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: "Shellui OpenTelemetry: follow a request in your own tool"
+description: "Follow one request across Shellui services in an observability tool you run. Traces and metrics export over OTLP. Logs carry trace and span ids."
+eyebrow: Developers
+heading: Follow one request across your services
+lede: See a sign-in, and the mail that request sends, in an observability tool you run.
+---
+{% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
+{% set lnk = "font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %}
+{% set h2 = "text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl" %}
+{% set split = "mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-16" %}
+
+{% include "otel-trace-visual.njk" %}
+
+<section class="{{ split }}" aria-labelledby="backend">
+  <div class="max-w-xl">
+    <h2 id="backend" class="{{ h2 }}">Send it to your backend</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Identity, email, storage, hosting, and ai export traces and metrics over OTLP. Point <code class="{{ code }}">OTEL_EXPORTER_OTLP_ENDPOINT</code> at a collector you run. Leave it empty and export stays off.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Logs carry <code class="{{ code }}">trace_id</code> and <code class="{{ code }}">span_id</code>. They are not exported over OTLP. In the dev stack, open Jaeger at <a class="{{ lnk }}" href="http://localhost:16686">localhost:16686</a>.</p>
+    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="https://github.com/shellui/django-commons/blob/main/docs/telemetry.md">shellui-django OpenTelemetry docs</a></p>
+  </div>
+  <div class="min-w-0">
+    {% highlight "bash" %}
+OTEL_SERVICE_NAME=shellui-identity
+OTEL_EXPORTER_OTLP_ENDPOINT=https://your_collector_host:4318
+OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+    {% endhighlight %}
+  </div>
+</section>
+
+<section class="{{ split }}" aria-labelledby="alerts">
+  <div class="max-w-xl lg:order-2">
+    <h2 id="alerts" class="{{ h2 }}">Page on these signals</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Set the alerts in the backend you run. Shellui does not host them.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Database and Redis calls with no parent span are dropped. The same calls inside a request stay, and so does outbound HTTP with no parent.</p>
+    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="https://github.com/shellui/django-commons/blob/main/docs/telemetry.md">Sampling and metric names</a></p>
+  </div>
+  <div class="min-w-0 lg:order-1">{% include "otel-alerts-visual.njk" %}</div>
+</section>
+
+<div class="mt-16 sm:mt-24">
+  <a href="https://github.com/shellui/django-commons/blob/main/docs/telemetry.md" class="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Read the OpenTelemetry docs</a>
+</div>
+
+{% set featureDocs = [
+  { href: "https://github.com/shellui/django-commons/blob/main/docs/telemetry.md", label: "shellui-django telemetry", external: true },
+  { href: "/architecture/", label: "Architecture" },
+  { href: "/security/", label: "Security" }
+] %}
+{% include "feature-docs.njk" %}

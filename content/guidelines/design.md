@@ -1,8 +1,8 @@
 ---
 title: Design
 description: Agent composition authority for Shellui pages. Trimmed alias; full Interface rules live on interface.md.
-version: 2.0.0
-updated: 2026-10-25
+version: 2.1.0
+updated: 2026-11-26
 canonical: /design.md
 related: /guidelines/interface/, /guidelines/foundations/
 ---
@@ -45,9 +45,9 @@ Type: Inter on screen. One `h1` per page. Lede `text-lg text-muted-foreground`. 
 
 ## Product
 
-Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Audience: developers shipping a product inside that shell.
+Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Audience: developers shipping a product inside that shell, and the agents working for them.
 
-Precise, calm, direct, technically literate, evidence-led, restrained. Name is **Shellui** only. Never "The Host". In prose, "the shell" (lowercase) is the running host. Lead with what ships today (iframe host, `@shellui/sdk`, identity-service, `/admin`, storage, Files). Keep AI, MCP, marketplace, and app-store chrome quiet unless the page is about that surface.
+Precise, calm, direct, technically literate, evidence-led, restrained. Name is **Shellui** only. Never "The Host". In prose, "the shell" (lowercase) is the running host. Lead with what ships today (iframe host, `@shellui/sdk`, identity-service, `/admin`, storage, Files, MCP at [ai.shellui.com/mcp](https://ai.shellui.com/mcp), agent skills, on-device AI). Do not lead with unreleased AI or marketplace chrome.
 
 ## Priority (when building pages)
 
@@ -105,7 +105,7 @@ Passes: frame the job → choose composition → apply Foundations tokens → in
 - Nested cards, or borders used to repair weak hierarchy
 - Arbitrary icon tiles, logo clouds, fake screenshots
 - A second theme picker, second nav, or host chrome rebuilt in an iframe
-- Leading a shipping-product page with AI / MCP / marketplace atmosphere
+- Leading a shipping-product page with unreleased AI or marketplace atmosphere
 - Authoring-process narration in page copy
 
 Voice rejects (banned words, dashes): [Writing](/guidelines/writing/).

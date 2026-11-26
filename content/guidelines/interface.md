@@ -1,13 +1,13 @@
 ---
 title: Interface
 description: Composition, chrome, layout, accessibility, and visual language for shellui.com, docs, and in-shell apps.
-version: 2.1.0
-updated: 2026-10-26
+version: 2.2.0
+updated: 2026-11-26
 canonical: /guidelines/interface/
 related: /design.md, /guidelines/foundations/, /guidelines/writing/
 ---
 
-Interface rules cover layout, interaction, and composition on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Pair with [Writing](/guidelines/writing/) for copy and [Foundations](/guidelines/foundations/) for tokens. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Keep AI, MCP, and marketplace chrome out of the default UI.
+Interface rules cover layout, interaction, and composition on [shellui.com](https://shellui.com), [docs.shellui.com](https://docs.shellui.com), and apps hosted in the Shellui iframe. Pair with [Writing](/guidelines/writing/) for copy and [Foundations](/guidelines/foundations/) for tokens. Lead with the shipping shell: navigation, authentication, administration, storage, light and dark themes. Shellui is AI native. Shipped AI surfaces can appear where they help the reader. Keep unreleased AI and marketplace chrome out of the default UI.
 
 Agents: load this file or `/design.md` (stable alias). Do not scrape HTML handbooks. The `version` field in frontmatter is the public "Guidelines v…" label.
 
@@ -24,9 +24,9 @@ Review files against every rule below. Output concise, high-signal findings. Sac
 
 ## Product
 
-Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Audience: developers shipping a product inside that shell.
+Shellui is an open-source web app development platform: a microfrontend shell with shared navigation, authentication, administration, and storage. Audience: developers shipping a product inside that shell, and the agents working for them.
 
-Precise, calm, direct, technically literate, evidence-led, restrained. Name is **Shellui** only. Never "The Host". In prose, "the shell" (lowercase) is the running host. Lead with what ships today (iframe host, `@shellui/sdk`, identity-service, `/admin`, storage, Files). Keep AI, MCP, marketplace, and app-store chrome quiet unless the page is about that surface.
+Precise, calm, direct, technically literate, evidence-led, restrained. Name is **Shellui** only. Never "The Host". In prose, "the shell" (lowercase) is the running host. Lead with what ships today (iframe host, `@shellui/sdk`, identity-service, `/admin`, storage, Files, MCP at [ai.shellui.com/mcp](https://ai.shellui.com/mcp), agent skills, on-device AI). Do not lead with unreleased AI or marketplace chrome.
 
 ## Priority (when building pages)
 
@@ -140,7 +140,7 @@ Passes: frame the job → choose composition → apply Foundations tokens → in
 - Nested cards, or borders used to repair weak hierarchy
 - Arbitrary icon tiles, logo clouds, fake screenshots
 - A second theme picker, second nav, or host chrome rebuilt in an iframe
-- Leading a shipping-product page with AI / MCP / marketplace atmosphere
+- Leading a shipping-product page with unreleased AI or marketplace atmosphere
 - Authoring-process narration in page copy
 
 Voice rejects (banned words, dashes): [Writing](/guidelines/writing/).
@@ -265,7 +265,7 @@ Leave out `dark` for a light-only image. In dark mode it renders inside a rounde
 - Rebuilding shell toasts, dialogs, or nav inside the iframe
 - `100vh` layouts that sit under host chrome
 - A second theme picker in a hosted app
-- Shipping-product UI that leads with AI, MCP, or marketplace chrome
+- Shipping-product UI that leads with unreleased AI or marketplace chrome
 - Missing dark-theme styles (`dark:` or theme tokens)
 - Focus or headings hidden under the fixed marketing header or shell top bar
 

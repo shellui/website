@@ -1,0 +1,22 @@
+<ul class="divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
+  <li class="px-6 py-5 sm:px-8">
+    <p class="font-semibold text-foreground">Job overdue</p>
+    <p class="mt-1 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">scheduled.job.overdue</code> stays 1. That covers a stopped beat, a stuck worker, or a missing cron line.</p>
+  </li>
+  <li class="px-6 py-5 sm:px-8">
+    <p class="font-semibold text-foreground">Failing runs</p>
+    <p class="mt-1 text-base/7 text-muted-foreground">Failed scheduled-job runs keep increasing.</p>
+  </li>
+  <li class="px-6 py-5 sm:px-8">
+    <p class="font-semibold text-foreground">Scheduler Redis down</p>
+    <p class="mt-1 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">scheduler.redis.up</code> is 0.</p>
+  </li>
+  <li class="px-6 py-5 sm:px-8">
+    <p class="font-semibold text-foreground">Email lane worker down</p>
+    <p class="mt-1 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">shellui.email.lane.worker.up</code> is 0.</p>
+  </li>
+  <li class="px-6 py-5 sm:px-8">
+    <p class="font-semibold text-foreground">Webhooks given up</p>
+    <p class="mt-1 text-base/7 text-muted-foreground"><code class="rounded bg-muted px-1.5 py-0.5 text-sm">webhook_deliveries_given_up</code> increases.</p>
+  </li>
+</ul>

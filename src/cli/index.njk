@@ -1,0 +1,110 @@
+---
+layout: layouts/feature.njk
+wide: true
+title: "Shellui CLI: create a project and share a preview"
+description: "The shellui command scaffolds an app, serves it locally, and uploads a 7-day preview. Node.js 20.19 or 22.12 or later."
+eyebrow: Developers
+heading: Create a project and share a preview
+lede: The shellui command scaffolds an app, serves it on your machine, and uploads a 7-day preview.
+---
+{% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
+{% set lnk = "font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %}
+{% set h2 = "text-2xl font-semibold tracking-tight text-pretty text-foreground sm:text-3xl" %}
+{% set split = "mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-16" %}
+
+{% set termCaption = "shellui init, shellui start, and shellui deploy --build." %}
+{% set termLines = [
+  { prompt: true, text: "shellui init" },
+  { prompt: true, text: "shellui start" },
+  { prompt: true, text: "shellui deploy --build" },
+  { tone: "text-primary-ink", text: "Preview deploy complete." }
+] %}
+{% include "term-snippet.njk" %}
+
+<section class="{{ split }}" aria-labelledby="scaffold">
+  <div class="max-w-xl">
+    <h2 id="scaffold" class="{{ h2 }}">Scaffold the project</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Install <code class="{{ code }}">@shellui/cli</code>. It needs Node.js 20.19 or later, or Node.js 22.12 or later.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">shellui init</code> asks for a framework and a backend, then writes the project. The program name is <code class="{{ code }}">shellui</code>. An agent can learn those steps at <a class="{{ lnk }}" href="https://shellui.ai">shellui.ai</a>.</p>
+    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="{{ site.docs }}/installation">Installation</a></p>
+  </div>
+  <div class="min-w-0">
+    {% set termCaption = "Install the CLI and create a project." %}
+    {% set termLines = [
+      { prompt: true, text: "npm install -g @shellui/cli" },
+      { prompt: true, text: "shellui init" }
+    ] %}
+    {% include "term-snippet.njk" %}
+  </div>
+</section>
+
+<section class="{{ split }}" aria-labelledby="run">
+  <div class="max-w-xl lg:order-2">
+    <h2 id="run" class="{{ h2 }}">Run it locally</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">shellui start</code> serves the shell with your app inside it. <code class="{{ code }}">shellui dev</code> is the same command.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">shellui login</code> shows a device code. You approve it in the browser. Tokens go to the keychain, or to a mode 0600 file when no keychain is available.</p>
+    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="{{ site.docs }}/cli">CLI reference</a></p>
+  </div>
+  <div class="min-w-0 lg:order-1">
+    {% set termCaption = "shellui start prints Starting Shellui." %}
+    {% set termLines = [
+      { prompt: true, text: "shellui start" },
+      { text: "Starting Shellui..." }
+    ] %}
+    {% include "term-snippet.njk" %}
+  </div>
+</section>
+
+<section class="{{ split }}" aria-labelledby="preview">
+  <div class="max-w-xl">
+    <h2 id="preview" class="{{ h2 }}">Share a 7-day preview</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">shellui deploy</code> uploads a preview for a workshop or a demo. There is no production deploy and no <code class="{{ code }}">--prod</code> flag.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">shellui deploy history</code> lists those previews. <code class="{{ code }}">shellui deploy rollback</code> makes an earlier preview live again.</p>
+    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="{{ site.docs }}/hosting/deploy-with-cli">Deploy with the CLI</a></p>
+  </div>
+  <div class="min-w-0">
+    {% set termCaption = "Device-code sign-in, then a preview deploy." %}
+    {% set termLines = [
+      { prompt: true, text: "shellui login" },
+      { text: "Sign in to Shellui" },
+      { text: "  Code  ABCD-1234" },
+      { text: "  Link  https://id.shellui.com/oauth/cli/device?user_code=ABCD-1234" },
+      { text: "Opened the verification page in your browser." },
+      { tone: "text-primary-ink", text: "Logged in successfully." },
+      { prompt: true, text: "shellui deploy --build" },
+      { tone: "text-primary-ink", text: "Preview deploy complete." },
+      { text: "Browse:       https://preview.example.com/" }
+    ] %}
+    {% include "term-snippet.njk" %}
+  </div>
+</section>
+
+<section class="{{ split }}" aria-labelledby="ci">
+  <div class="max-w-xl lg:order-2">
+    <h2 id="ci" class="{{ h2 }}">Upload that preview from CI</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">Create a deploy token in admin, under Hosting, then Apps, then Deploy tokens. Store it as a CI secret named <code class="{{ code }}">SHELLUI_DEPLOY_TOKEN</code>.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Do not put the token on the command line. <code class="{{ code }}">npm ci</code> installs the project. <code class="{{ code }}">npx -p @shellui/cli</code> runs the published package.</p>
+    <p class="mt-6 text-sm"><a class="{{ lnk }}" href="{{ site.docs }}/hosting/deploy-with-cli">Deploy with the CLI</a></p>
+  </div>
+  <div class="min-w-0 lg:order-1">
+    {% set termCaption = "CI install, then a preview deploy with the published CLI package." %}
+    {% set termLines = [
+      { prompt: true, text: "npm ci" },
+      { prompt: true, text: "npx -p @shellui/cli shellui deploy --build" }
+    ] %}
+    {% include "term-snippet.njk" %}
+  </div>
+</section>
+
+<div class="mt-16 sm:mt-24">
+  <a href="{{ site.docs }}/cli" class="inline-flex min-h-11 items-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-xs hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Read the CLI reference</a>
+</div>
+
+{% set featureDocs = [
+  { href: site.docs + "/cli", label: "CLI reference", external: true },
+  { href: site.docs + "/installation", label: "Installation", external: true },
+  { href: site.docs + "/hosting/deploy-with-cli", label: "Deploy with the CLI", external: true },
+  { href: site.docs + "/features/security", label: "Security hardening", external: true },
+  { href: "/architecture/", label: "Architecture" }
+] %}
+{% include "feature-docs.njk" %}
