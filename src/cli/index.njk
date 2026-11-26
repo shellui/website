@@ -42,15 +42,14 @@ lede: The shellui command scaffolds an app, serves it on your machine, and uploa
   <div class="max-w-xl lg:order-2">
     <h2 id="run" class="{{ h2 }}">Run it locally</h2>
     <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">shellui start</code> serves the shell with your app inside it. <code class="{{ code }}">shellui dev</code> is the same command.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">shellui login</code> shows a device code. You approve it in the browser. Tokens stay in the keychain.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground"><code class="{{ code }}">shellui login</code> shows a device code. You approve it in the browser. Tokens go to the keychain, or to a mode 0600 file when no keychain is available.</p>
     <p class="mt-6 text-sm"><a class="{{ lnk }}" href="{{ site.docs }}/cli">CLI reference</a></p>
   </div>
   <div class="min-w-0 lg:order-1">
-    {% set termCaption = "shellui start, which is the same command as shellui dev." %}
+    {% set termCaption = "shellui start prints Starting Shellui." %}
     {% set termLines = [
       { prompt: true, text: "shellui start" },
-      { prompt: true, text: "shellui dev" },
-      { text: "Serving the shell." }
+      { text: "Starting Shellui..." }
     ] %}
     {% include "term-snippet.njk" %}
   </div>

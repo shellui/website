@@ -1,11 +1,11 @@
 ---
 layout: layouts/feature.njk
 wide: true
-title: "Shellui MCP: your agent, with approval on every write"
-description: "Connect any MCP client with OAuth to https://ai.shellui.com/mcp. You approve every write in your Shellui apps."
+title: "Shellui MCP: writes wait for your approval by default"
+description: "Connect a client with dynamic registration or device login to https://ai.shellui.com/mcp. You choose how much it can do. Writes wait for your approval by default."
 eyebrow: Developers
 heading: Let your agent work in your Shellui apps
-lede: Connect it once. You approve every write.
+lede: You choose how much it can do. Writes wait for your approval by default.
 ---
 {% set code = "rounded bg-muted px-1.5 py-0.5 text-sm" %}
 {% set lnk = "font-medium text-primary-ink underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %}
@@ -16,9 +16,9 @@ lede: Connect it once. You approve every write.
 
 <section class="{{ split }}" aria-labelledby="approve">
   <div class="max-w-xl">
-    <h2 id="approve" class="{{ h2 }}">You approve every write</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">When an agent writes data, the server asks you first. In chat you see the tool name, then choose Approve or Deny.</p>
-    <p class="mt-4 text-base/7 text-muted-foreground">Destructive tools open an approval page on ai.shellui.com instead of the chat. You sign in to Shellui before that consent.</p>
+    <h2 id="approve" class="{{ h2 }}">You choose what needs approval</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">By default, writes wait for you. A client that supports form elicitation shows Approve or Deny in chat. Other clients get an approval link. Under Ask, that same write can run again for 60 seconds on the connection.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Destructive tools are refused unless you allowed them when you connected. Then they open an approval page in your browser. That page is not the connection consent page. The server you add is still <code class="{{ code }}">https://ai.shellui.com/mcp</code>.</p>
     <p class="mt-6 text-sm"><a class="{{ lnk }}" href="https://github.com/shellui/ai-service/blob/main/docs/mcp.md">How approvals work</a></p>
   </div>
   <div class="min-w-0">{% include "mcp-approval-visual.njk" %}</div>
@@ -27,7 +27,7 @@ lede: Connect it once. You approve every write.
 <section class="{{ split }}" aria-labelledby="access">
   <div class="max-w-xl lg:order-2">
     <h2 id="access" class="{{ h2 }}">Choose how much it can do</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Read only blocks writes. Ask before changes is the default: writes wait for you. Full access lets non-destructive writes run, and destructive tools still open the approval page.</p>
+    <p class="mt-4 text-base/7 text-muted-foreground">Read only blocks writes. Ask before changes is the default: writes wait for you. Full access runs non-destructive writes with no approval. Destructive tools still need the approval page, and only if you allowed them at consent.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">Safe reads are the default. A tool marked sensitive does not run unless you choose Sensitive data. Staff accounts cannot approve an agent.</p>
     <p class="mt-6 text-sm"><a class="{{ lnk }}" href="https://github.com/shellui/ai-service/blob/main/docs/mcp-device-login.md">Device login and access</a></p>
   </div>
@@ -36,8 +36,8 @@ lede: Connect it once. You approve every write.
 
 <section class="mt-24" aria-labelledby="clients">
   <div class="max-w-2xl">
-    <h2 id="clients" class="{{ h2 }}">Works with your client</h2>
-    <p class="mt-4 text-base/7 text-muted-foreground">Any MCP client with OAuth support can connect. Add <code class="{{ code }}">https://ai.shellui.com/mcp</code>, then follow that client's own settings if the labels differ.</p>
+    <h2 id="clients" class="{{ h2 }}">Connect from your client</h2>
+    <p class="mt-4 text-base/7 text-muted-foreground">The client needs OAuth dynamic client registration, or device login. Add <code class="{{ code }}">https://ai.shellui.com/mcp</code>. Each chip opens that client's own MCP docs. This is not a tested list.</p>
     <p class="mt-4 text-base/7 text-muted-foreground">A browser client uses an authorization code. A headless agent can use device login. Never paste a token into a chat. Agents learn how to use Shellui at <a class="{{ lnk }}" href="https://shellui.ai">shellui.ai</a>.</p>
   </div>
   <ul class="mt-8 flex flex-wrap gap-3">
