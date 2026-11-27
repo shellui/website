@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 See for sample https://raw.githubusercontent.com/favoloso/conventional-changelog-emoji/master/CHANGELOG.md
 -->
 
+## [Unreleased]
+
+### 🏗 Chore
+
+- Dependencies updated: `@xyflow/react` 13, `@shellui/sdk` 0.8.6, Eleventy 3.1.8, Tailwind CSS 4.3.5 and Shiki 4.6. CI and Pages builds now run on Node.js 26 (Active LTS), and `.nvmrc` pins 26.13.1 for local work.
+
 ## [0.9.1] - 2026-11-26
 
 ### 🐛 Bug Fixes
